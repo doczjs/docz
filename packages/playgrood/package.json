@@ -1,0 +1,12 @@
+{
+  "name": "playgrodd",
+  "version": "0.0.0",
+  "preferGlobal": true,
+  "main": "src/index.js",
+  "bin": {
+    "playgrodd": "./bin/index.js"
+  },
+  "dependencies": {
+    "yargs": "^11.0.0"
+  }
+}

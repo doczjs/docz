@@ -1,0 +1,11 @@
+{
+  "name": "playgrodd-example-basic",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "playgrodd start"
+  },
+  "devDependencies": {
+    "playgrodd": "0.0.0"
+  }
+}

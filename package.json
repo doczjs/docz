@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "devDependencies": {
+    "lerna": "^2.9.0"
+  }
+}
