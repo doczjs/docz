@@ -1,1 +1,0 @@
-const doc = render => render

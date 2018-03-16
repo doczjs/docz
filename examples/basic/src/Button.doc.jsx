@@ -1,4 +1,10 @@
-import { doc } from 'playgrodd'
-import { Button } from './'
+/**
+ * @playgrodd
+ * @name: Button
+ */
 
-doc('Button', () => <Button>Click me</Button>)
+import React from 'react'
+import { doc } from 'playgrodd'
+import { Button } from './Button'
+
+doc(() => <Button>Click me</Button>)

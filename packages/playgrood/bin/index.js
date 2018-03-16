@@ -1,19 +1,20 @@
 #!/usr/bin/env node
 
-const { server } = require('../src/server')
+const yargs = require('yargs')
+const { server } = require('../build/main/server')
 
-require('yargs')
+yargs
   .command(
     'start [files]',
     'initialize the playground server',
     yargs => {
       yargs.positional('files', {
         type: 'string',
-        default: '**/*.doc.js',
+        default: '**/*.doc.(js|jsx)',
         describe: 'files that you want to document',
       })
     },
-    argv => server(argv)
+    server
   )
   .demandCommand()
   .help()
