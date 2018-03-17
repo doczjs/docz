@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-import { IComponent } from '../utils/components'
+import { IComponents } from '../utils/components'
 
 export interface IHtmlProps {
-  components: IComponent[]
+  components: IComponents
 }
 
 export const Html: React.SFC<IHtmlProps> = ({ components }) => {
@@ -15,12 +15,12 @@ export const Html: React.SFC<IHtmlProps> = ({ components }) => {
         <title>playgrodd</title>
         <body>
           <div id="root" />
-          <script src="./index.jsx" />
           <script
             dangerouslySetInnerHTML={{
-              __html: `window.__PLAYGRODD_COMPONENTS__ = ${stringifiedComps}`,
+              __html: `window.__PLAYGRODD_COMPONENTS__ = ${stringifiedComps};`,
             }}
           />
+          <script src="./index.jsx" />
         </body>
       </head>
     </html>

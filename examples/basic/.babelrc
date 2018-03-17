@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    ["module-resolver", {
+      "alias": {
+        "playgrodd": "../../packages/playgrood/build/main",
+        "playgrodd-theme-default": "../../packages/playgrood/build/main/theme/default.js"
+      }
+    }]
+  ]
+}

@@ -9,6 +9,7 @@
     "playgrodd": "^0.0.1"
   },
   "devDependencies": {
+    "babel-plugin-module-resolver": "^3.1.0",
     "babel-preset-react": "^6.24.1"
   }
 }

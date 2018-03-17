@@ -11,6 +11,11 @@ export interface IComponent {
   readonly route: string
   readonly name: string | null
   readonly hasManifest: boolean
+  readonly importFn?: any
+}
+
+export interface IComponents {
+  readonly [key: string]: IComponent
 }
 
 const ROOT_PATH = fs.realpathSync(process.cwd())
@@ -33,7 +38,7 @@ const parseEntry = (entry: string) => {
   const ast = convertToAst(entry)
   const manifest = findManifest(ast)
   const name = nameOnManifest(manifest)
-  const route = path.join(path.parse(entry).dir, name || '')
+  const route = `/${path.join(path.parse(entry).dir, name || '')}`
   const filepath = path.join(ROOT_PATH, entry)
 
   return {
@@ -45,13 +50,14 @@ const parseEntry = (entry: string) => {
   }
 }
 
-const filterByManifest = (component: IComponent) => !!component.hasManifest
+const reduceEntries = (obj: Object, entry: IComponent) =>
+  entry.hasManifest ? { ...obj, [`${entry.name}`]: entry } : obj
 
-export const componentsFromPattern = (pattern: string): IComponent[] => {
+export const componentsFromPattern = (pattern: string): IComponents => {
   const ignoreGlob = '!node_modules'
   const entries: string[] = glob.sync(
     Array.isArray(pattern) ? [...pattern, ignoreGlob] : [pattern, ignoreGlob]
   )
 
-  return entries.map(parseEntry).filter(filterByManifest)
+  return entries.map(parseEntry).reduce(reduceEntries, {})
 }

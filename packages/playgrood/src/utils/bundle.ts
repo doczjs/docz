@@ -33,10 +33,10 @@ const tempFile = (filepath: string, content: string) =>
     }
   })
 
-export const createBundle = async (html: string, entry: string) => {
+export const createBundle = async (html: string, main: string) => {
   await trash(DIST_PATH)
   await trash(THEME_PATH)
-  await tempFile(INDEX_JS, entry)
+  await tempFile(INDEX_JS, main)
   await tempFile(INDEX_HTML, html)
 
   const bundler = new Bundler(INDEX_HTML, {
