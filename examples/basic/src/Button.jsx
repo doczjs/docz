@@ -1,3 +1,8 @@
+/**
+ * @playgrodd
+ * @name: Button
+ */
+
 import React from 'react'
 
-export const Button = ({ children }) => <button>{children}</button>
+export const doc = () => <button>click me</button>

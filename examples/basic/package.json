@@ -6,6 +6,9 @@
     "start": "playgrodd start"
   },
   "dependencies": {
-    "playgrodd": "0.0.0"
+    "playgrodd": "^0.0.1"
+  },
+  "devDependencies": {
+    "babel-preset-react": "^6.24.1"
   }
 }
