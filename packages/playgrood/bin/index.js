@@ -10,8 +10,9 @@ yargs
     yargs => {
       yargs.positional('files', {
         type: 'string',
-        default: '**/*.doc.(js|jsx)',
+        default: '**/*.(js|jsx)',
         describe: 'files that you want to document',
+        require: true,
       })
     },
     server

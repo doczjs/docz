@@ -5,7 +5,7 @@ import { v4 } from 'uuid'
 import { parse } from 'babylon'
 import { File, Comment } from 'babel-types'
 
-export interface Component {
+export interface IComponent {
   readonly id: string
   readonly filepath: string
   readonly route: string
@@ -45,9 +45,13 @@ const parseEntry = (entry: string) => {
   }
 }
 
-const filterByManifest = (component: Component) => !!component.hasManifest
+const filterByManifest = (component: IComponent) => !!component.hasManifest
 
-export const componentsFromPattern = (pattern: string): Component[] => {
-  const entries: string[] = glob.sync(pattern)
+export const componentsFromPattern = (pattern: string): IComponent[] => {
+  const ignoreGlob = '!node_modules'
+  const entries: string[] = glob.sync(
+    Array.isArray(pattern) ? [...pattern, ignoreGlob] : [pattern, ignoreGlob]
+  )
+
   return entries.map(parseEntry).filter(filterByManifest)
 }
