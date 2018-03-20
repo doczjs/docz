@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const yargs = require('yargs')
-const { server } = require('../build/main/server')
+const { server } = require('../dist/main/server')
 
 yargs
   .command(

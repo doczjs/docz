@@ -28,4 +28,5 @@ es
 lib
 stats.html
 build
+dist
 index.d.ts
