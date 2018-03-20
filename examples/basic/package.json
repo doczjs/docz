@@ -6,10 +6,17 @@
     "start": "playgrodd start"
   },
   "dependencies": {
-    "playgrodd": "^0.0.1"
+    "emotion": "^9.0.2",
+    "playgrodd": "^0.0.1",
+    "playgrodd-theme-default": "^0.0.1",
+    "prop-types": "^15.6.1",
+    "react-emotion": "^9.0.2"
   },
   "devDependencies": {
-    "babel-plugin-module-resolver": "^3.1.0",
-    "babel-preset-react": "^6.24.1"
+    "@babel/core": "7.0.0-beta.42",
+    "@babel/preset-env": "^7.0.0-beta.42",
+    "@babel/preset-react": "^7.0.0-beta.42",
+    "babel-plugin-emotion": "^9.0.1",
+    "babel-plugin-module-resolver": "^3.1.0"
   }
 }

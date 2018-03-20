@@ -1,8 +1,6 @@
-/**
- * @playgrodd
- * @name: Button
- */
-
 import React from 'react'
+import { doc } from 'playgrodd'
 
-export const doc = () => <button>click me</button>
+const Button = ({ children }) => <button>{children}</button>
+
+doc('Button').section(() => <Button>Click me</Button>)
