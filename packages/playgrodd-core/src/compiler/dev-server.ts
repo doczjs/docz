@@ -3,7 +3,7 @@ import * as paths from './paths'
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http'
 const host = process.env.HOST || '0.0.0.0'
 
-export const config = (compiler: any) => ({
+export const devServer = (compiler: any) => ({
   compress: true,
   clientLogLevel: 'none',
   contentBase: paths.DIST,

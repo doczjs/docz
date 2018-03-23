@@ -1,14 +1,12 @@
-import fs from 'fs'
+import * as fs from 'fs'
 import mkdir from 'mkdirp'
 import trash from 'trash'
 import webpack from 'webpack'
 
 import * as paths from './paths'
-import { config } from './config'
-import { IComponentMap } from '../utils/components'
+import { IEntryObj } from './files-parser'
+import { createConfig } from './create-config'
 import { generateHtml, generateJs } from './generate-files'
-
-export { config as devServerConfig } from './dev-server'
 
 const checkMkdirTheme = (): void => {
   try {
@@ -23,10 +21,10 @@ const tempFile = (filepath: string, content: string) => {
   fs.writeFileSync(filepath, content, 'utf-8')
 }
 
-export const createCompiler = async (components: IComponentMap) => {
+export const createCompiler = async (entries: IEntryObj[]) => {
   const js = generateJs()
   const html = generateHtml()
-  const webpackConfig = await config(components)
+  const webpackConfig = await createConfig(entries)
 
   await trash(paths.THEME)
   tempFile(paths.INDEX_JS, js)

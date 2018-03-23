@@ -1,0 +1,25 @@
+{
+  "name": "playgrodd-core",
+  "version": "0.0.1",
+  "main": "./dist/main/index.jsx",
+  "typings": "./dist/main/index.d.ts",
+  "module": "./dist/module/index.jsx",
+  "source": "src/index.ts",
+  "scripts": {
+    "build": "run-s clean && run-p build:*",
+    "build:main": "tsc -p tsconfig.json",
+    "build:module": "tsc -p tsconfig.module.json",
+    "fix": "run-s fix:*",
+    "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
+    "fix:tslint": "tslint --fix --project .",
+    "clean": "trash dist"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.2",
+    "prettier": "^1.11.1",
+    "trash-cli": "^1.4.0",
+    "tslint": "^5.9.1",
+    "tslint-config-prettier": "^1.10.0",
+    "typescript": "^2.7.2"
+  }
+}

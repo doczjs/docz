@@ -5,17 +5,7 @@ import { parse } from 'babylon'
 import { NodePath } from 'babel-traverse'
 import * as t from 'babel-types'
 
-import { traverseAndAssign } from './traverse'
-
-export interface IComponent {
-  readonly id: string
-  readonly route: string
-  readonly filepath: string
-}
-
-export interface IComponentMap {
-  readonly [key: string]: IComponent
-}
+import { traverseAndAssign } from '../utils/traverse'
 
 const ROOT_PATH = fs.realpathSync(process.cwd())
 
@@ -51,25 +41,30 @@ const getNameFromDoc = traverseAndAssign<any, string>(
   path => path.node.arguments[0].value
 )
 
-const reduceByName = (obj: any, entry: string): IComponentMap => {
-  const ast = convertToAst(entry)
-  const name = getNameFromDoc(ast)
-  const route = path.join('/', path.parse(entry).dir, name || '')
-  const filepath = path.join(ROOT_PATH, entry)
-
-  return Object.assign({}, obj, {
-    [`${name}`]: {
-      filepath,
-      route,
-    },
-  })
+export interface IEntryObj {
+  name: string
+  filepath: string
+  route: string
 }
 
-export const componentsFromPattern = (pattern: string): IComponentMap => {
+const mountEntriesMapper = (file: string): IEntryObj => {
+  const ast = convertToAst(file)
+  const name = getNameFromDoc(ast) || ''
+  const route = path.join('/', path.parse(file).dir, name)
+  const filepath = path.relative(ROOT_PATH, file)
+
+  return {
+    name,
+    route,
+    filepath,
+  }
+}
+
+export const entriesMapper = (pattern: string): IEntryObj[] => {
   const ignoreGlob = '!node_modules'
-  const entries: string[] = glob.sync(
+  const files: string[] = glob.sync(
     Array.isArray(pattern) ? [...pattern, ignoreGlob] : [pattern, ignoreGlob]
   )
 
-  return entries.filter(isPlaygroddFile).reduce(reduceByName, {})
+  return files.filter(isPlaygroddFile).map(mountEntriesMapper)
 }

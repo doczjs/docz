@@ -1,7 +1,4 @@
-import * as React from 'react'
-import { renderToString } from 'react-dom/server'
-
-const Html = () => (
+export const generateHtml = () => `
   <html>
     <head>
       <title>Playgrodd</title>
@@ -10,18 +7,16 @@ const Html = () => (
       </body>
     </head>
   </html>
-)
-
-export const generateHtml = () => renderToString(<Html />)
+`
 
 export const generateJs = () =>
   `import 'babel-polyfill'
 
   import * as React from 'react'
   import { render } from 'react-dom'
-  import { App } from 'playgrodd-theme-default'
+  import { Theme } from 'playgrodd-theme-default'
 
   render(
-    <App />,
+    <Theme />,
     document.querySelector('#root')
   )`

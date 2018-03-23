@@ -1,13 +1,11 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import findup from 'find-up'
-import webpack, { Loader, Configuration } from 'webpack'
+import { Loader, Configuration } from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 
-import { IComponentMap } from '../utils/components'
 import * as paths from './paths'
-
-export { config as devServerConfig } from './dev-server'
+import { IEntryObj } from './files-parser'
 
 const babelLoader = (babelrc: string | null): Loader => ({
   loader: require.resolve('babel-loader'),
@@ -23,8 +21,8 @@ const babelLoader = (babelrc: string | null): Loader => ({
       },
 })
 
-export const config = async (
-  components: IComponentMap
+export const createConfig = async (
+  entries: IEntryObj[]
 ): Promise<Configuration> => {
   const babelrcPath = await findup('.babelrc')
   const babelrc = babelrcPath ? fs.readFileSync(babelrcPath, 'utf-8') : null
@@ -32,10 +30,7 @@ export const config = async (
   return {
     mode: 'development',
     context: paths.ROOT,
-    entry: [
-      ...Object.values(components).map(({ filepath: f }) => f),
-      paths.INDEX_JS,
-    ],
+    entry: [...entries.map(entry => entry.filepath), paths.INDEX_JS],
     output: {
       pathinfo: true,
       path: paths.DIST,
@@ -58,11 +53,12 @@ export const config = async (
     },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      modules: [paths.ROOT, 'node_modules'],
+      alias: {
+        src: path.join(paths.ROOT, 'src'),
+      },
     },
     plugins: [
-      new webpack.DefinePlugin({
-        __PLAYGRODD_COMPONENTS__: JSON.stringify(components),
-      }),
       new HtmlWebpackPlugin({
         template: paths.INDEX_HTML,
       }),
