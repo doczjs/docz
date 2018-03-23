@@ -2,6 +2,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as findup from 'find-up'
 import { Loader, Configuration } from 'webpack'
+import * as webpack from 'webpack'
 import * as HtmlWebpackPlugin from 'html-webpack-plugin'
 
 import { IEntryObj } from './files-parser'
@@ -27,13 +28,15 @@ export const createConfig = async (
   const babelrcPath = findup.sync(['.babelrc', 'babelrc.js'])
   const babelrc = babelrcPath ? fs.readFileSync(babelrcPath, 'utf-8') : null
 
-  console.log(entries)
-
   return {
     mode: 'development',
     context: paths.ROOT,
+    devtool: '#source-map',
     entry: [
       require.resolve('babel-polyfill'),
+      `${require.resolve(
+        'webpack-hot-middleware/client'
+      )}?path=/__webpack_hmr&timeout=20000'`,
       ...entries.map(entry => entry.filepath),
       paths.INDEX_JS,
     ],
@@ -60,11 +63,12 @@ export const createConfig = async (
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       modules: [paths.ROOT, 'node_modules'],
-      alias: {
-        src: path.join(paths.ROOT, 'src'),
-      },
+      alias: { src: path.join(paths.ROOT, 'src') },
     },
     plugins: [
+      new webpack.NamedModulesPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(),
       new HtmlWebpackPlugin({
         template: paths.INDEX_HTML,
       }),
