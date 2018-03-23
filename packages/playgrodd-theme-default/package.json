@@ -1,18 +1,29 @@
 {
   "name": "playgrodd-theme-default",
   "version": "0.0.1",
-  "main": "./dist/index.js",
   "license": "MIT",
+  "main": "dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "module": "dist/index.m.js",
+  "source": "src/index.jsx",
   "scripts": {
-    "build": "babel src --out-dir dist"
+    "dev": "libundler watch",
+    "build": "libundler build -s",
+    "build:prod": "yarn run build -p --hash --gzip"
   },
   "dependencies": {
-    "playgrodd": "^0.0.1"
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "peerDependencies": {
+    "playgrodd": "^0.0.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.42",
+    "@babel/core": "7.0.0-beta.42",
     "@babel/preset-env": "^7.0.0-beta.42",
-    "@babel/preset-react": "^7.0.0-beta.42",
-    "babel-plugin-module-resolver": "^3.1.0"
+    "@babel/preset-react": "^7.0.0-beta.42"
   }
 }

@@ -1,10 +1,11 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 
-import { Playgrodd, Preview } from 'playgrodd'
+import { createTheme, Playgrodd, Preview } from 'playgrodd'
 
-export const App = () => (
-  <Playgrodd>
+export const Theme = createTheme(() => (
+  <div>
+    <h1>Default theme</h1>
     <ul>
       <li>
         <Link to="/src/Alert">Alert</Link>
@@ -14,5 +15,5 @@ export const App = () => (
       </li>
     </ul>
     <Preview />
-  </Playgrodd>
-)
+  </div>
+))

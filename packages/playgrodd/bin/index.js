@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const yargs = require('yargs')
-const { server } = require('../dist/main/server')
+const { server } = require('playgrodd-core')
 
 yargs
   .command(

@@ -1,3 +1,3 @@
 export { Preview } from './components/Preview'
-export { Playgrodd } from './components/Playgrodd'
+export { createTheme } from './components/create-theme'
 export { doc } from './documents'

@@ -1,10 +1,5 @@
-import invariant from 'invariant'
-import { v4 } from 'uuid'
-
-export { Preview } from '../components/Preview'
-export { Playgrodd } from '../components/Playgrodd'
-
-import { container } from './container'
+import * as uuid from 'uuid'
+import { container } from '../container'
 
 const isFn = (value: any): boolean => typeof value === 'function'
 
@@ -18,39 +13,56 @@ export interface ISection {
   title?: string
 }
 
-export class Doc {
+export interface IDocArgs {
+  name: string
+}
+
+export interface IDoc {
+  description(value: string): Doc
+  section(...args: any[]): Doc
+  getName(): string
+  getDescription(): string | null
+  getSections(): ISection[]
+}
+
+export interface IDocMap {
+  [key: string]: IDoc
+}
+
+export class Doc implements IDoc {
   private _name: string
   private _description: string | null
   private _sections: ISection[]
 
-  constructor(name: string) {
+  constructor({ name }: IDocArgs) {
     this._name = name
     this._sections = []
     this._description = null
 
-    container.add(this)
+    container.addDoc(this)
     return this
   }
 
   // setters
 
-  description(value: string) {
+  public description(value: string) {
     this._description = value
     return this
   }
 
-  section(...args: any[]) {
+  public section(...args: any[]) {
     const [title, renderMethod] = args
     const render: IRenderMethod = isFn(title) ? title : renderMethod
 
-    invariant(
-      !isFn(title) || !isFn(renderMethod),
-      'You need to set a function that will be render your sectoin'
-    )
+    if (!isFn(title) || !isFn(renderMethod)) {
+      throw new Error(
+        'You need to set a function that will render your section'
+      )
+    }
 
     this._sections.push({
       render,
-      id: v4(),
+      id: uuid.v4(),
       ...(title && !isFn(title) && { title }),
     })
 
@@ -59,21 +71,17 @@ export class Doc {
 
   // getters
 
-  public getName(): string {
+  public getName() {
     return this._name
   }
 
-  public getDescription(): string | null {
+  public getDescription() {
     return this._description
   }
 
-  public getSections(): ISection[] {
+  public getSections() {
     return this._sections
   }
 }
 
-export interface IDoc {
-  (name: string): Doc
-}
-
-export const doc: IDoc = name => new Doc(name)
+export const doc = (name: string): Doc => new Doc({ name })
