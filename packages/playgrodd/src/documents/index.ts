@@ -1,4 +1,4 @@
-import * as uuid from 'uuid'
+import { ulid } from 'ulid'
 import { container } from '../container'
 
 const isFn = (value: any): boolean => typeof value === 'function'
@@ -54,15 +54,9 @@ export class Doc implements IDoc {
     const [title, renderMethod] = args
     const render: IRenderMethod = isFn(title) ? title : renderMethod
 
-    if (!isFn(title) || !isFn(renderMethod)) {
-      throw new Error(
-        'You need to set a function that will render your section'
-      )
-    }
-
     this._sections.push({
       render,
-      id: uuid.v4(),
+      id: ulid(),
       ...(title && !isFn(title) && { title }),
     })
 

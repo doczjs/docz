@@ -10,8 +10,8 @@
     "playgrodd": "./bin/index.js"
   },
   "scripts": {
-    "dev": "libundler watch",
-    "build": "libundler build",
+    "dev": "libundler watch --ts",
+    "build": "libundler build --ts",
     "build:prod": "yarn run build --compress --sourcemap",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
@@ -23,8 +23,8 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
+    "ulid": "^2.3.0",
     "unstated": "^1.1.0",
-    "uuid": "^3.2.1",
     "yargs": "^11.0.0"
   },
   "devDependencies": {

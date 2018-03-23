@@ -1,12 +1,12 @@
 import * as fs from 'fs'
-import mkdir from 'mkdirp'
-import trash from 'trash'
-import webpack from 'webpack'
+import * as mkdir from 'mkdirp'
+import * as del from 'del'
+import * as webpack from 'webpack'
 
-import * as paths from './paths'
 import { IEntryObj } from './files-parser'
 import { createConfig } from './create-config'
 import { generateHtml, generateJs } from './generate-files'
+import * as paths from '../config/paths'
 
 const checkMkdirTheme = (): void => {
   try {
@@ -26,7 +26,7 @@ export const createCompiler = async (entries: IEntryObj[]) => {
   const html = generateHtml()
   const webpackConfig = await createConfig(entries)
 
-  await trash(paths.THEME)
+  await del.sync(paths.THEME)
   tempFile(paths.INDEX_JS, js)
   tempFile(paths.INDEX_HTML, html)
 

@@ -1,11 +1,11 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import findup from 'find-up'
+import * as findup from 'find-up'
 import { Loader, Configuration } from 'webpack'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
+import * as HtmlWebpackPlugin from 'html-webpack-plugin'
 
-import * as paths from './paths'
 import { IEntryObj } from './files-parser'
+import * as paths from '../config/paths'
 
 const babelLoader = (babelrc: string | null): Loader => ({
   loader: require.resolve('babel-loader'),
@@ -24,13 +24,19 @@ const babelLoader = (babelrc: string | null): Loader => ({
 export const createConfig = async (
   entries: IEntryObj[]
 ): Promise<Configuration> => {
-  const babelrcPath = await findup('.babelrc')
+  const babelrcPath = findup.sync(['.babelrc', 'babelrc.js'])
   const babelrc = babelrcPath ? fs.readFileSync(babelrcPath, 'utf-8') : null
+
+  console.log(entries)
 
   return {
     mode: 'development',
     context: paths.ROOT,
-    entry: [...entries.map(entry => entry.filepath), paths.INDEX_JS],
+    entry: [
+      require.resolve('babel-polyfill'),
+      ...entries.map(entry => entry.filepath),
+      paths.INDEX_JS,
+    ],
     output: {
       pathinfo: true,
       path: paths.DIST,

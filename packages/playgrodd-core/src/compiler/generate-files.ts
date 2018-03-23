@@ -10,9 +10,7 @@ export const generateHtml = () => `
 `
 
 export const generateJs = () =>
-  `import 'babel-polyfill'
-
-  import * as React from 'react'
+  `import * as React from 'react'
   import { render } from 'react-dom'
   import { Theme } from 'playgrodd-theme-default'
 
