@@ -63,7 +63,9 @@ export const createConfig = async (
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       modules: [paths.ROOT, 'node_modules'],
-      alias: { src: path.join(paths.ROOT, 'src') },
+      alias: {
+        src: path.join(paths.ROOT, 'src'),
+      },
     },
     plugins: [
       new webpack.NamedModulesPlugin(),
