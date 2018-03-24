@@ -51,7 +51,7 @@ const mountEntriesMapper = (file: string): IEntryObj => {
   const ast = convertToAst(file)
   const name = getNameFromDoc(ast) || ''
   const route = path.join('/', path.parse(file).dir, name)
-  const filepath = path.join(ROOT_PATH, file)
+  const filepath = path.relative(ROOT_PATH, file)
 
   return {
     name,

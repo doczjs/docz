@@ -5,28 +5,30 @@ import * as webpack from 'webpack'
 
 import { IEntryObj } from './files-parser'
 import { createConfig } from './create-config'
-import { generateHtml, generateJs } from './generate-files'
+import { generateApp, generateHtml, generateJs } from './generate-files'
 import * as paths from '../config/paths'
 
-const checkMkdirTheme = (): void => {
+const createTempDir = (): void => {
   try {
-    fs.lstatSync(paths.THEME)
+    fs.lstatSync(paths.PLAYGRODD)
   } catch (err) {
-    mkdir.sync(paths.THEME)
+    mkdir.sync(paths.PLAYGRODD)
   }
 }
 
 const tempFile = (filepath: string, content: string) => {
-  checkMkdirTheme()
+  createTempDir()
   fs.writeFileSync(filepath, content, 'utf-8')
 }
 
 export const createCompiler = async (entries: IEntryObj[]) => {
+  const app = generateApp(entries)
   const js = generateJs()
   const html = generateHtml()
   const webpackConfig = await createConfig(entries)
 
-  await del.sync(paths.THEME)
+  await del.sync(paths.PLAYGRODD)
+  tempFile(paths.APP_JS, app)
   tempFile(paths.INDEX_JS, js)
   tempFile(paths.INDEX_HTML, html)
 

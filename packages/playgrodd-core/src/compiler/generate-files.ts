@@ -1,20 +1,33 @@
+import { IEntryObj } from './files-parser'
+
 export const generateHtml = () => `
-  <html>
-    <head>
-      <title>Playgrodd</title>
-      <body>
-        <div id="root" />
-      </body>
-    </head>
-  </html>
+<html>
+  <head>
+    <title>Playgrodd</title>
+    <body>
+      <div id="root" />
+    </body>
+  </head>
+</html>
 `
 
-export const generateJs = () =>
-  `import * as React from 'react'
-  import { render } from 'react-dom'
-  import { Theme } from 'playgrodd-theme-default'
+const importEntry = (entry: IEntryObj) => `import '${entry.filepath}'`
 
-  render(
-    <Theme />,
-    document.querySelector('#root')
-  )`
+export const generateApp = (entries: IEntryObj[]) =>
+  `${entries.map(importEntry).join('\n')}
+
+import React from 'react'
+import { hot } from 'react-hot-loader'
+import { Theme } from 'playgrodd-theme-default'
+
+export const App = hot(module)(Theme)`
+
+export const generateJs = () =>
+  `import React from 'react'
+import { render } from 'react-dom'
+import { App } from './app'
+
+render(
+  <App />,
+  document.querySelector('#root')
+)`
