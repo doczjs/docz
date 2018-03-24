@@ -5,16 +5,17 @@
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
-  "source": "src/index.tsx",
+  "source": "src/index.jsx",
   "scripts": {
     "dev": "libundler watch",
-    "build": "libundler build -s",
-    "build:prod": "yarn run build -p --hash --gzip"
+    "build": "libundler build --sourcemap --compress"
   },
   "dependencies": {
+    "emotion-normalize": "^7.0.1",
     "playgrodd": "^0.0.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-helmet": "^5.2.0",
     "react-router-dom": "^4.2.2"
   },
   "peerDependencies": {
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@babel/core": "7.0.0-beta.42",
     "@babel/preset-env": "^7.0.0-beta.42",
-    "@babel/preset-react": "^7.0.0-beta.42"
+    "@babel/preset-react": "^7.0.0-beta.42",
+    "babel-plugin-emotion": "^9.1.0"
   }
 }
