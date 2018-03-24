@@ -1,14 +1,27 @@
 import * as React from 'react'
+import { SFC } from 'react'
 import { Subscribe } from 'unstated'
+import { Route } from 'react-router-dom'
+import { PreviewProps, Doc, Docs } from 'playgrodd'
 
-import { DocumentsContainer } from '../container'
-import { IDoc } from '../documents'
+import { DocsContainer } from '../container'
 
-export const Preview: React.SFC = () => (
-  <Subscribe to={[DocumentsContainer]}>
+export const Preview: SFC<PreviewProps> = ({ children }) => (
+  <Subscribe to={[DocsContainer]}>
     {({ state }) => {
-      const documents: IDoc[] = Object.values(state.documents)
-      return documents.length > 0 && documents.map(doc => doc.getName())
+      const docs: Docs = Object.values(state.docs)
+
+      return (
+        docs.length > 0 &&
+        docs.map((doc: Doc) => (
+          <Route
+            exact
+            key={doc.id}
+            path={doc.route}
+            render={() => children(doc)}
+          />
+        ))
+      )
     }}
   </Subscribe>
 )

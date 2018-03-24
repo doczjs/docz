@@ -7,7 +7,7 @@ import { container } from '../container'
 
 export const history: History = createBrowserHistory()
 
-export interface ICreateTheme {
+interface ICreateTheme {
   (WrappedComponent: React.ComponentType): React.ComponentType
 }
 

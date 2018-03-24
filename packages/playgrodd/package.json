@@ -11,8 +11,7 @@
   },
   "scripts": {
     "dev": "libundler watch --ts",
-    "build": "libundler build --ts",
-    "build:prod": "yarn run build --compress --sourcemap",
+    "build": "libundler build --ts --compress --sourcemap",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
     "fix:tslint": "tslint --fix --project ."
@@ -26,6 +25,10 @@
     "ulid": "^2.3.0",
     "unstated": "^1.1.0",
     "yargs": "^11.0.0"
+  },
+  "peerDependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   },
   "devDependencies": {
     "@types/babel-traverse": "^6.25.3",

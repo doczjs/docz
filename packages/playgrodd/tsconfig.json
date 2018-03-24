@@ -3,8 +3,9 @@
   "compilerOptions": {
     "outDir": "dist/main",
     "rootDir": "src",
+    "declaration": false,
     "types": ["node"],
-    "typeRoots": ["node_modules/@types", "src/types"]
+    "typeRoots": ["node_modules/@types", "index.d.ts"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules/**"]

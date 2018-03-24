@@ -1,29 +1,23 @@
 import { Container } from 'unstated'
-import { IDoc, IDocMap } from '../documents'
+import { Doc, DocMap } from 'playgrodd'
 
-export interface DocumentState {
-  documents: IDocMap | undefined
+interface DocsState {
+  docs: DocMap | undefined
 }
 
-export class DocumentsContainer extends Container<DocumentState> {
+export class DocsContainer extends Container<DocsState> {
   constructor() {
     super()
-    this.state = {
-      documents: {},
-    }
+    this.state = { docs: {} }
   }
 
-  public addDoc(doc: IDoc) {
+  public addDoc(doc: Doc) {
     this.setState({
-      documents: Object.assign({}, this.state.documents, {
-        [`${doc.getName()}`]: doc,
+      docs: Object.assign({}, this.state.docs, {
+        [`${doc.name}`]: doc,
       }),
     })
   }
-
-  public getDocuments(): IDocMap | undefined {
-    return this.state.documents
-  }
 }
 
-export const container = new DocumentsContainer()
+export const container = new DocsContainer()

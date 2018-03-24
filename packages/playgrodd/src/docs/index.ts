@@ -1,40 +1,18 @@
 import { ulid } from 'ulid'
+import { Section, DocConstructorArgs } from 'playgrodd'
+
 import { container } from '../container'
 
 const isFn = (value: any): boolean => typeof value === 'function'
 
-export interface IRenderMethod {
-  (): JSX.Element
-}
-
-export interface ISection {
-  id: string
-  render: IRenderMethod
-  title?: string
-}
-
-export interface IDocArgs {
-  name: string
-}
-
-export interface IDoc {
-  description(value: string): Doc
-  section(...args: any[]): Doc
-  getName(): string
-  getDescription(): string | null
-  getSections(): ISection[]
-}
-
-export interface IDocMap {
-  [key: string]: IDoc
-}
-
-export class Doc implements IDoc {
+export class Doc {
+  private _id: string
   private _name: string
   private _description: string | null
-  private _sections: ISection[]
+  private _sections: Section[]
 
-  constructor({ name }: IDocArgs) {
+  constructor({ name }: DocConstructorArgs) {
+    this._id = ulid()
     this._name = name
     this._sections = []
     this._description = null
@@ -45,14 +23,14 @@ export class Doc implements IDoc {
 
   // setters
 
-  public description(value: string) {
+  public description(value: string): Doc {
     this._description = value
     return this
   }
 
-  public section(...args: any[]) {
+  public section(...args: any[]): Doc {
     const [title, renderMethod] = args
-    const render: IRenderMethod = isFn(title) ? title : renderMethod
+    const render = isFn(title) ? title : renderMethod
 
     this._sections.push({
       render,
@@ -65,16 +43,24 @@ export class Doc implements IDoc {
 
   // getters
 
-  public getName() {
+  public get id(): string {
+    return this._id
+  }
+
+  public get name(): string {
     return this._name
   }
 
-  public getDescription() {
+  public get docDescription(): string | null {
     return this._description
   }
 
-  public getSections() {
+  public get sections(): Section[] {
     return this._sections
+  }
+
+  public get route(): string {
+    return `/${this._name}`
   }
 }
 
