@@ -4,12 +4,6 @@
     "@babel/preset-react"
   ],
   "plugins": [
-    "emotion",
-    ["module-resolver", {
-      "alias": {
-        "playgrodd": "../../node_modules/playgrodd/dist/index.js",
-        "playgrodd-theme-default": "../../node_modules/playgrodd-theme-default/dist/index.js"
-      }
-    }]
+    "emotion"
   ]
 }
