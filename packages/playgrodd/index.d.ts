@@ -18,14 +18,17 @@ declare module 'playgrodd' {
   export class Doc {
     public id: string
     public name: string
-    public docDescription: string | null
     public sections: Section[]
-    public route: string
+    public docDescription: string | null
+    public docRoute: string
+    public docOrder: number
 
     public constructor({ name }: DocConstructorArgs)
 
     public description(value: string): Doc
     public section(...args: any[]): Doc
+    public route(value: string): Doc
+    public order(num: number): Doc
   }
 
   export interface DocMap {

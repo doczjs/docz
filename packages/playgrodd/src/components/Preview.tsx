@@ -17,7 +17,7 @@ export const Preview: SFC<PreviewProps> = ({ children }) => (
           <Route
             exact
             key={doc.id}
-            path={doc.route}
+            path={doc.docRoute}
             render={() => children(doc)}
           />
         ))

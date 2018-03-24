@@ -10,12 +10,16 @@ export class Doc {
   private _name: string
   private _description: string | null
   private _sections: Section[]
+  private _route: string
+  private _order: number
 
   constructor({ name }: DocConstructorArgs) {
     this._id = ulid()
     this._name = name
-    this._sections = []
     this._description = null
+    this._sections = []
+    this._route = `/${name}`
+    this._order = 0
 
     container.addDoc(this)
     return this
@@ -41,6 +45,16 @@ export class Doc {
     return this
   }
 
+  public route(value: string): Doc {
+    this._route = value
+    return this
+  }
+
+  public order(num: number): Doc {
+    this._order = num
+    return this
+  }
+
   // getters
 
   public get id(): string {
@@ -51,16 +65,20 @@ export class Doc {
     return this._name
   }
 
-  public get docDescription(): string | null {
-    return this._description
-  }
-
   public get sections(): Section[] {
     return this._sections
   }
 
-  public get route(): string {
-    return `/${this._name}`
+  public get docDescription(): string | null {
+    return this._description
+  }
+
+  public get docRoute(): string {
+    return this._route
+  }
+
+  public get docOrder(): number {
+    return this._order
   }
 }
 
