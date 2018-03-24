@@ -5,13 +5,13 @@
   "typings": "./dist/main/index.d.ts",
   "module": "./dist/module/index.js",
   "scripts": {
+    "dev": "run-s clean build:main && run-p \"build:main -- -w\"",
     "build": "run-s clean && run-p build:*",
     "build:main": "tsc -p tsconfig.json",
     "build:module": "tsc -p tsconfig.module.json",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
     "fix:tslint": "tslint --fix --project .",
-    "watch": "run-s clean build:main && run-p \"build:main -- -w\"",
     "clean": "trash dist"
   },
   "dependencies": {

@@ -30,3 +30,4 @@ stats.html
 build
 dist
 .rpt2_cache
+.cache
