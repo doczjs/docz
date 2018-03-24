@@ -6,7 +6,7 @@
   },
   "devDependencies": {
     "lerna": "^2.9.0",
-    "libundler": "^1.4.0",
+    "libundler": "^1.5.1",
     "npm-run-all": "^4.1.2",
     "prettier": "^1.11.1",
     "trash-cli": "^1.4.0",
