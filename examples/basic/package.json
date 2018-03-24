@@ -16,9 +16,6 @@
     "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
-    "@babel/core": "7.0.0-beta.42",
-    "@babel/preset-env": "^7.0.0-beta.42",
-    "@babel/preset-react": "^7.0.0-beta.42",
     "babel-plugin-emotion": "^9.0.1"
   }
 }
