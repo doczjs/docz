@@ -11,7 +11,7 @@ const kinds = {
 }
 
 const Alert = styled('div')`
-  padding: 10px 15px;
+  padding: 15px 20px;
   background: white;
   border-radius: 3px;
   color: white;

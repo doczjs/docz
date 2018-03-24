@@ -33,7 +33,11 @@ export const createConfig = async (
     mode: 'development',
     context: paths.ROOT,
     devtool: '#source-map',
-    entry: [require.resolve('babel-polyfill'), paths.INDEX_JS],
+    entry: [
+      require.resolve('babel-polyfill'),
+      require.resolve('react-dev-utils/webpackHotDevClient'),
+      paths.INDEX_JS,
+    ],
     output: {
       pathinfo: true,
       path: paths.DIST,
@@ -58,18 +62,20 @@ export const createConfig = async (
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       modules: [paths.ROOT, 'node_modules'],
       alias: {
-        src: path.join(paths.ROOT, 'src'),
+        '@babel/runtime': path.dirname(
+          require.resolve('@babel/runtime/package.json')
+        ),
       },
     },
     devServer: {
-      contentBase: paths.DIST,
-      hot: true,
+      logLevel: 'silent',
     },
     plugins: [
       new webpack.NamedModulesPlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
       new HtmlWebpackPlugin({
+        inject: true,
         template: paths.INDEX_HTML,
       }),
     ],
