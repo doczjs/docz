@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "es2017",
+    "target": "es5",
     "module": "commonjs",
 
     "outDir": "dist/main",
@@ -10,5 +10,5 @@
     "typeRoots": ["node_modules/@types", "src/types"]
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules/**"]
+  "exclude": ["node_modules/**", "templates/**"]
 }

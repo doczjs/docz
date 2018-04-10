@@ -1,14 +1,30 @@
-import { Arguments } from 'yargs'
-import * as WebpackDevServer from 'webpack-dev-server'
+import * as bundlers from './bundlers'
+import { Entries } from './Entries'
 
-import { entriesMapper } from './compiler'
-import { createCompiler } from './compiler'
-import { devServerConfig } from './config/dev-server'
+const prop = (key: string, obj: any) => obj[key]
 
-export const server = async ({ files: pattern }: Arguments) => {
-  const entries = await entriesMapper(pattern)
-  const compiler = await createCompiler(entries)
-  const server = new WebpackDevServer(compiler, devServerConfig())
+interface IConstructorParams {
+  port: number
+  files: string
+  bundler: 'webpack'
+}
 
-  server.listen(3000)
+export class Server {
+  private bundler: any
+  private entries: Entries
+  private port: number
+
+  constructor({ port, bundler, files: pattern }: IConstructorParams) {
+    this.port = port
+    this.bundler = prop(bundler, bundlers)()
+    this.entries = new Entries(pattern)
+  }
+
+  public async start() {
+    const entries = this.entries.parse()
+    const compiler = await this.bundler.createCompiler(entries)
+    const server = await this.bundler.createServer(compiler)
+
+    server.listen(this.port)
+  }
 }

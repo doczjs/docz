@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const yargs = require('yargs')
-const { server } = require('playgrodd-core')
+const { Server } = require('playgrodd-core')
 
 yargs
   .command(
@@ -12,10 +12,18 @@ yargs
         type: 'string',
         default: '**/*.(js|jsx)',
         describe: 'files that you want to document',
-        require: true,
+      })
+      yargs.positional('port', {
+        type: 'number',
+        default: 3000,
+      })
+      yargs.positional('bundler', {
+        type: 'string',
+        default: 'webpack',
+        describe: 'bundler to use',
       })
     },
-    server
+    argv => new Server(argv).start()
   )
   .demandCommand()
   .help()
