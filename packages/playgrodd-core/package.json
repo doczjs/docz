@@ -5,18 +5,20 @@
   "typings": "./dist/main/index.d.ts",
   "module": "./dist/module/index.js",
   "scripts": {
+    "copy-templates": "node scripts/copy-templates",
+    "clean": "trash dist && yarn copy-templates",
     "dev": "run-s clean build:main && run-p \"build:main -- -w\"",
     "build": "run-s clean && run-p build:*",
     "build:main": "tsc -p tsconfig.json",
     "build:module": "tsc -p tsconfig.module.json",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
-    "fix:tslint": "tslint --fix --project .",
-    "clean": "trash dist"
+    "fix:tslint": "tslint --fix --project ."
   },
   "dependencies": {
     "@babel/core": "^7.0.0-beta.42",
     "@babel/runtime": "^7.0.0-beta.42",
+    "art-template": "^4.12.2",
     "babel-loader": "^8.0.0-beta.1",
     "babel-polyfill": "^7.0.0-beta.3",
     "babel-traverse": "^6.26.0",
@@ -43,6 +45,7 @@
     "@types/express": "^4.11.1",
     "@types/mkdirp": "^0.5.2",
     "@types/webpack": "^4.1.2",
-    "@types/webpack-dev-server": "^2.9.4"
+    "@types/webpack-dev-server": "^2.9.4",
+    "shelljs": "^0.8.1"
   }
 }
