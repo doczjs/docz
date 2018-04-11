@@ -24,6 +24,7 @@
     "babylon": "^6.18.0",
     "express": "^4.16.3",
     "fast-glob": "^2.2.0",
+    "load-cfg": "^0.0.1",
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {

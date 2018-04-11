@@ -15,7 +15,7 @@ const finds = (name: string): string[] => [
 ]
 
 export const load = (name: string, defaultConfig: any = {}) => {
-  let file
+  let file = {}
   const filepath = findup.sync(finds(name))
 
   if (filepath) {

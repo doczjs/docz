@@ -1,4 +1,8 @@
+import { load } from 'load-cfg'
+
 import * as paths from './config/paths'
+import { pick } from './utils/helpers'
+
 import { Entries } from './Entries'
 import { Bundler, BundlerFactory } from './Bundler'
 
@@ -18,11 +22,18 @@ export class Server {
   private bundler: Bundler
   private entries: Entries
 
-  constructor({ port, bundler, files: pattern, theme }: IConstructorParams) {
+  constructor(args: IConstructorParams) {
+    const initialArgs = this.getInitialArgs(args)
+    const { port, theme, files, bundler } = load('playgrodd', initialArgs)
+
     this.port = port
     this.theme = theme
-    this.entries = new Entries(pattern)
+    this.entries = new Entries(files)
     this.bundler = this.getBundler(bundler).create({ port, paths })
+  }
+
+  private getInitialArgs(args: IConstructorParams) {
+    return pick(['port', 'theme', 'files', 'bundler'], args)
   }
 
   private getBundler(bundler: string): BundlerFactory {
@@ -33,14 +44,9 @@ export class Server {
     }
   }
 
-  private getTheme() {
-    return `playgrodd-theme-${this.theme}`
-  }
-
   public async start() {
-    const theme = this.getTheme()
     const entries = this.entries.parse()
-    const compiler = await this.bundler.createCompiler(theme, entries)
+    const compiler = await this.bundler.createCompiler(this.theme, entries)
     const server = await this.bundler.createServer(compiler)
 
     server.listen(this.port)

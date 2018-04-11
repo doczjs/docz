@@ -19,7 +19,7 @@ yargs
       })
       yargs.positional('theme', {
         type: 'string',
-        default: 'default',
+        default: 'playgrodd-theme-default',
       })
       yargs.positional('bundler', {
         type: 'string',
