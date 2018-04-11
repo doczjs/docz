@@ -1,0 +1,21 @@
+{
+  "name": "load-cfg",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "module": "dist/index.m.js",
+  "source": "src/index.ts",
+  "license": "MIT",
+  "scripts": {
+    "dev": "libundler watch --ts",
+    "build": "libundler build --ts --compress --sourcemap"
+  },
+  "dependencies": {
+    "find-up": "^2.1.0",
+    "deepmerge": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/find-up": "^2.1.1",
+    "@types/node": "9.6.4"
+  }
+}
