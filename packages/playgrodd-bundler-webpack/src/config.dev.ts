@@ -1,38 +1,19 @@
 import * as path from 'path'
-import { Loader, Configuration } from 'webpack'
+import { Configuration } from 'webpack'
 import * as webpack from 'webpack'
 import * as HtmlWebpackPlugin from 'html-webpack-plugin'
 import * as webpackDevServerUtils from 'react-dev-utils/WebpackDevServerUtils'
 import * as WebpackDevServer from 'webpack-dev-server'
-import * as merge from 'deepmerge'
-import { load } from 'load-cfg'
-
-import * as paths from '../../config/paths'
-import { Entry } from '../../Entry'
+import { IBundlerFactoryParams as Args, Entry } from 'playgrodd-core'
 
 import { devServerConfig } from './config-devserver'
+import * as loaders from './loaders'
 
 const HOST = process.env.HOST || '0.0.0.0'
 
-const babelLoader = (): Loader => {
-  const babelrc = load('babel', null)
-  const options = merge(babelrc, {
-    babelrc: false,
-    cacheDirectory: true,
-    presets: [
-      require.resolve('@babel/preset-env'),
-      require.resolve('@babel/preset-react'),
-    ],
-    plugins: [require.resolve('react-hot-loader/babel')],
-  })
-
-  return {
-    options,
-    loader: require.resolve('babel-loader'),
-  }
-}
-
-export const config = (entries: Entry[]): Configuration => ({
+export const config = ({ paths }: Args) => (
+  entries: Entry[]
+): Configuration => ({
   mode: 'development',
   context: paths.ROOT,
   devtool: '#source-map',
@@ -54,15 +35,19 @@ export const config = (entries: Entry[]): Configuration => ({
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        include: [paths.ROOT],
-        use: babelLoader(),
+        oneOf: [
+          {
+            test: /\.(js|jsx|mjs)$/,
+            exclude: /node_modules/,
+            include: [paths.ROOT],
+            use: [require.resolve('thread-loader'), loaders.babel],
+          },
+        ],
       },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+    extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
     modules: [paths.ROOT, 'node_modules'],
     alias: {
       '@babel/runtime': path.dirname(
@@ -84,7 +69,7 @@ export const config = (entries: Entry[]): Configuration => ({
   ],
 })
 
-export const setup = (port: number) => (config: Configuration) => {
+export const setup = ({ paths, port }: Args) => (config: Configuration) => {
   const appName = require(paths.PACKAGE_JSON).name
   const protocol = process.env.HTTPS === 'true' ? 'https' : 'http'
   const urls = webpackDevServerUtils.prepareUrls(protocol, HOST, port)
@@ -98,5 +83,5 @@ export const setup = (port: number) => (config: Configuration) => {
   )
 }
 
-export const server = (compiler: any): WebpackDevServer =>
-  new WebpackDevServer(compiler, devServerConfig())
+export const server = (args: Args) => (compiler: any): WebpackDevServer =>
+  new WebpackDevServer(compiler, devServerConfig(args))

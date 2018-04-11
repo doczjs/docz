@@ -22,11 +22,11 @@ const touch = (file: string, content: string) => {
 const compiled = (templateFile: string) =>
   compile(fs.readFileSync(`${paths.TEMPLATES_PATH}/${templateFile}`, 'utf-8'))
 
-type TConfigFn<C> = (entries: Entry[]) => C
-type TSetupFn<C> = (config: C) => Promise<any>
-type TServerFn<S> = (compiler: any) => S
+export type TConfigFn<C> = (entries: Entry[]) => C
+export type TSetupFn<C> = (config: C) => Promise<any>
+export type TServerFn<S> = (compiler: any) => S
 
-interface IConstructorParams<C, S> {
+export interface IConstructorParams<C, S> {
   id: string
   config: TConfigFn<C>
   setup: TSetupFn<C>
@@ -50,11 +50,11 @@ export class Bundler<C = any, S = any> {
     this.server = server
   }
 
-  public async createCompiler(entries: Entry[]) {
+  public async createCompiler(theme: string, entries: Entry[]) {
     const config = this.config(entries)
 
     await del(paths.PLAYGRODD)
-    touch(paths.APP_JS, app({ entries }))
+    touch(paths.APP_JS, app({ theme, entries }))
     touch(paths.INDEX_JS, js({}))
     touch(paths.INDEX_HTML, html({}))
 
@@ -64,4 +64,13 @@ export class Bundler<C = any, S = any> {
   public async createServer(compiler: any): Promise<S> {
     return await this.server(compiler)
   }
+}
+
+export interface IBundlerFactoryParams {
+  port: number
+  paths: paths.Paths
+}
+
+export interface BundlerFactory {
+  create: (args: IBundlerFactoryParams) => Bundler
 }

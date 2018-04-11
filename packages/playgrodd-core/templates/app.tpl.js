@@ -2,6 +2,6 @@
 <% }); %>
 import React from 'react'
 import { hot } from 'react-hot-loader'
-import { Theme } from 'playgrodd-theme-default'
+import { Theme } from '<%- theme %>'
 
 export const App = hot(module)(Theme)

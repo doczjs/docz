@@ -1,12 +1,14 @@
 import { Application } from 'express'
 import * as errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware'
 
-import * as paths from '../../config/paths'
-
 export const PROTOCOL = process.env.HTTPS === 'true' ? 'https' : 'http'
 export const HOST = process.env.HOST || '0.0.0.0'
 
-export const devServerConfig = () => ({
+export interface IDevServerConfigParams {
+  paths: any
+}
+
+export const devServerConfig = ({ paths }: IDevServerConfigParams) => ({
   compress: true,
   clientLogLevel: 'none',
   contentBase: paths.PLAYGRODD,
