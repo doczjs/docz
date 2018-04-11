@@ -17,10 +17,13 @@ yargs
         type: 'number',
         default: 3000,
       })
+      yargs.positional('theme', {
+        type: 'string',
+        default: 'default',
+      })
       yargs.positional('bundler', {
         type: 'string',
         default: 'webpack',
-        describe: 'bundler to use',
       })
     },
     argv => new Server(argv).start()

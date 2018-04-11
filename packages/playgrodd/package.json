@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "playgrodd-core": "^0.0.1",
+    "playgrodd-bundler-webpack": "^0.0.1",
+    "playgrodd-theme-default": "^0.0.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
@@ -27,8 +29,8 @@
     "yargs": "^11.0.0"
   },
   "peerDependencies": {
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1"
   },
   "devDependencies": {
     "@types/node": "^9.6.4",

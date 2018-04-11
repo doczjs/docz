@@ -5,6 +5,7 @@
     "bs": "lerna bootstrap"
   },
   "devDependencies": {
+    "del": "^3.0.0",
     "lerna": "^2.10.1",
     "libundler": "^1.5.1",
     "npm-run-all": "^4.1.2",

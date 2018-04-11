@@ -9,7 +9,10 @@
   "license": "MIT",
   "scripts": {
     "dev": "libundler watch --ts",
-    "build": "libundler build --ts --compress --sourcemap"
+    "build": "libundler build --ts --compress --sourcemap",
+    "fix": "run-s fix:*",
+    "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
+    "fix:tslint": "tslint --fix --project ."
   },
   "dependencies": {
     "find-up": "^2.1.0",
@@ -17,6 +20,7 @@
   },
   "devDependencies": {
     "@types/find-up": "^2.1.1",
+    "@types/deepmerge": "^2.1.0",
     "@types/node": "9.6.4"
   }
 }
