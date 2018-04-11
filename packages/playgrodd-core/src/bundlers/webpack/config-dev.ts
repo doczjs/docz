@@ -1,53 +1,21 @@
-import * as errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware'
 import * as path from 'path'
-import { Application } from 'express'
 import { Loader, Configuration } from 'webpack'
 import * as webpack from 'webpack'
-import * as merge from 'deepmerge'
 import * as HtmlWebpackPlugin from 'html-webpack-plugin'
 import * as webpackDevServerUtils from 'react-dev-utils/WebpackDevServerUtils'
 import * as WebpackDevServer from 'webpack-dev-server'
+import * as merge from 'deepmerge'
+import { load } from 'load-cfg'
 
-import { loadConfig } from '../utils/load-config'
-import * as paths from '../config/paths'
+import * as paths from '../../config/paths'
+import { Entry } from '../../Entry'
 
-import { Bundler } from '../Bundler'
-import { Entry } from '../Entry'
+import { devServerConfig } from './config-devserver'
 
-export const PORT = 3000
-export const PROTOCOL = process.env.HTTPS === 'true' ? 'https' : 'http'
-export const HOST = process.env.HOST || '0.0.0.0'
-
-const devServerConfig = () => ({
-  compress: true,
-  clientLogLevel: 'none',
-  contentBase: paths.PLAYGRODD,
-  watchContentBase: true,
-  hot: true,
-  quiet: true,
-  noInfo: true,
-  publicPath: '/',
-  https: PROTOCOL === 'https',
-  host: HOST,
-  overlay: false,
-  watchOptions: {
-    ignored: /node_modules/,
-  },
-  stats: {
-    colors: true,
-    chunks: false,
-    chunkModules: false,
-  },
-  historyApiFallback: {
-    disableDotRule: true,
-  },
-  before(app: Application) {
-    app.use(errorOverlayMiddleware())
-  },
-})
+const HOST = process.env.HOST || '0.0.0.0'
 
 const babelLoader = (): Loader => {
-  const babelrc = loadConfig('babel', null)
+  const babelrc = load('babel', null)
   const options = merge(babelrc, {
     babelrc: false,
     cacheDirectory: true,
@@ -64,7 +32,7 @@ const babelLoader = (): Loader => {
   }
 }
 
-const config = (entries: Entry[]): Configuration => ({
+export const config = (entries: Entry[]): Configuration => ({
   mode: 'development',
   context: paths.ROOT,
   devtool: '#source-map',
@@ -116,10 +84,10 @@ const config = (entries: Entry[]): Configuration => ({
   ],
 })
 
-const setup = (config: Configuration) => {
+export const setup = (port: number) => (config: Configuration) => {
   const appName = require(paths.PACKAGE_JSON).name
   const protocol = process.env.HTTPS === 'true' ? 'https' : 'http'
-  const urls = webpackDevServerUtils.prepareUrls(protocol, HOST, PORT)
+  const urls = webpackDevServerUtils.prepareUrls(protocol, HOST, port)
 
   return webpackDevServerUtils.createCompiler(
     webpack,
@@ -130,13 +98,5 @@ const setup = (config: Configuration) => {
   )
 }
 
-const server = (compiler: any): WebpackDevServer =>
+export const server = (compiler: any): WebpackDevServer =>
   new WebpackDevServer(compiler, devServerConfig())
-
-export const bundler = (): Bundler =>
-  new Bundler<Configuration, WebpackDevServer>({
-    id: 'webpack',
-    config,
-    setup,
-    server,
-  })

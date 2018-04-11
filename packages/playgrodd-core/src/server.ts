@@ -15,8 +15,8 @@ export class Server {
 
   constructor({ port, bundler, files: pattern }: IConstructorParams) {
     this.port = port
-    this.bundler = prop(bundler, bundlers)()
     this.entries = new Entries(pattern)
+    this.bundler = prop(bundler, bundlers)({ port })
   }
 
   public async start() {
