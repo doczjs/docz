@@ -6,13 +6,13 @@
     "start": "playgrodd start"
   },
   "dependencies": {
-    "emotion": "^9.0.2",
+    "emotion": "^9.1.1",
     "playgrodd": "^0.0.1",
     "playgrodd-theme-default": "^0.0.1",
     "prop-types": "^15.6.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-emotion": "^9.0.2",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-emotion": "^9.1.1",
     "react-router-dom": "^4.2.2"
   },
   "devDependencies": {

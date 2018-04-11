@@ -1,7 +1,6 @@
 import * as bundlers from './bundlers'
 import { Entries } from './Entries'
-
-const prop = (key: string, obj: any) => obj[key]
+import { prop } from './utils/helpers'
 
 interface IConstructorParams {
   port: number
