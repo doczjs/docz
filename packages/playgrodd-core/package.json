@@ -29,6 +29,7 @@
     "express": "^4.16.3",
     "fast-glob": "^2.2.0",
     "html-webpack-plugin": "^3.2.0",
+    "load-cfg": "^0.0.1",
     "mkdirp": "^0.5.1",
     "react-dev-utils": "^5.0.1",
     "react-hot-loader": "^4.0.1",
