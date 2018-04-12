@@ -3,7 +3,7 @@ import { SFC } from 'react'
 import { Subscribe } from 'unstated'
 import { Doc, DocsProps } from 'playgrodd'
 
-import { DocsContainer } from '../container'
+import { DocsContainer } from '../DocsContainer'
 
 const sortByOrder = (a: Doc, b: Doc) => b.docOrder - a.docOrder
 

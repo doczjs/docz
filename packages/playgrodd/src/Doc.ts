@@ -1,7 +1,6 @@
 import { ulid } from 'ulid'
 import { Section, DocConstructorArgs } from 'playgrodd'
-
-import { container } from '../container'
+import { container } from './DocsContainer'
 
 const isFn = (value: any): boolean => typeof value === 'function'
 
@@ -21,7 +20,6 @@ export class Doc {
     this._route = `/${name}`
     this._order = 0
 
-    container.addDoc(this)
     return this
   }
 
@@ -82,4 +80,9 @@ export class Doc {
   }
 }
 
-export const doc = (name: string): Doc => new Doc({ name })
+export const doc = (name: string): Doc => {
+  const newDoc = new Doc({ name })
+
+  container.addDoc(newDoc)
+  return newDoc
+}

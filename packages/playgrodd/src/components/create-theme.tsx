@@ -3,7 +3,7 @@ import { Router } from 'react-router-dom'
 import { createBrowserHistory, History } from 'history'
 import { Provider } from 'unstated'
 
-import { container } from '../container'
+import { container } from '../DocsContainer'
 
 export const history: History = createBrowserHistory()
 

@@ -2,14 +2,14 @@ import * as React from 'react'
 import { SFC } from 'react'
 import { Subscribe } from 'unstated'
 import { Route } from 'react-router-dom'
-import { PreviewProps, Doc, Docs } from 'playgrodd'
+import { PreviewProps, Doc } from 'playgrodd'
 
-import { DocsContainer } from '../container'
+import { DocsContainer } from '../DocsContainer'
 
 export const Preview: SFC<PreviewProps> = ({ children }) => (
   <Subscribe to={[DocsContainer]}>
     {({ state }) => {
-      const docs: Docs = Object.values(state.docs)
+      const docs: Doc[] = Object.values(state.docs)
 
       return (
         docs.length > 0 &&

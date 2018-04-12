@@ -35,8 +35,6 @@ declare module 'playgrodd' {
     [key: string]: Doc
   }
 
-  export type Docs = Doc[]
-
   /**
    * Components
    */
