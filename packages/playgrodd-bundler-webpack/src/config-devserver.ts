@@ -1,17 +1,14 @@
+import { ConfigArgs } from 'playgrodd-core'
 import { Application } from 'express'
 import * as errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware'
 
 export const PROTOCOL = process.env.HTTPS === 'true' ? 'https' : 'http'
 export const HOST = process.env.HOST || '0.0.0.0'
 
-export interface IDevServerConfigParams {
-  paths: any
-}
-
-export const devServerConfig = ({ paths }: IDevServerConfigParams) => ({
+export const devServerConfig = ({ paths }: ConfigArgs) => ({
   compress: true,
   clientLogLevel: 'none',
-  contentBase: paths.PLAYGRODD,
+  contentBase: paths.playgrodd,
   watchContentBase: true,
   hot: true,
   quiet: true,

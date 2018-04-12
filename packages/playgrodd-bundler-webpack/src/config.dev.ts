@@ -4,75 +4,75 @@ import * as webpack from 'webpack'
 import * as HtmlWebpackPlugin from 'html-webpack-plugin'
 import * as webpackDevServerUtils from 'react-dev-utils/WebpackDevServerUtils'
 import * as WebpackDevServer from 'webpack-dev-server'
-import { IBundlerFactoryParams as Args, Entry } from 'playgrodd-core'
+import { ConfigArgs as Config, Entry } from 'playgrodd-core'
 
 import { devServerConfig } from './config-devserver'
 import * as loaders from './loaders'
 
-const HOST = process.env.HOST || '0.0.0.0'
-
-export const config = ({ paths }: Args) => (
+export const config = ({ paths, host, src }: Config) => (
   entries: Entry[]
-): Configuration => ({
-  mode: 'development',
-  context: paths.ROOT,
-  devtool: '#source-map',
-  entry: [
-    require.resolve('babel-polyfill'),
-    require.resolve('react-dev-utils/webpackHotDevClient'),
-    paths.INDEX_JS,
-  ],
-  output: {
-    pathinfo: true,
-    path: paths.DIST,
-    publicPath: '/',
-    filename: 'static/js/[name].js',
-    sourceMapFilename: 'static/js/[name].js.map',
-    crossOriginLoading: 'anonymous',
-    devtoolModuleFilenameTemplate: (info: any) =>
-      path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
-  },
-  module: {
-    rules: [
-      {
-        oneOf: [
-          {
-            test: /\.(js|jsx|mjs)$/,
-            exclude: /node_modules/,
-            include: [paths.ROOT],
-            use: [require.resolve('thread-loader'), loaders.babel],
-          },
-        ],
-      },
-    ],
-  },
-  resolve: {
-    extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
-    modules: [paths.ROOT, 'node_modules'],
-    alias: {
-      '@babel/runtime': path.dirname(
-        require.resolve('@babel/runtime/package.json')
-      ),
-    },
-  },
-  devServer: {
-    logLevel: 'silent',
-  },
-  plugins: [
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new HtmlWebpackPlugin({
-      inject: true,
-      template: paths.INDEX_HTML,
-    }),
-  ],
-})
+): Configuration => {
+  const srcPath = path.resolve(paths.root, src)
 
-export const setup = ({ paths, port }: Args) => (config: Configuration) => {
-  const appName = require(paths.PACKAGE_JSON).name
-  const protocol = process.env.HTTPS === 'true' ? 'https' : 'http'
-  const urls = webpackDevServerUtils.prepareUrls(protocol, HOST, port)
+  return {
+    mode: 'development',
+    devtool: '#source-map',
+    context: paths.root,
+    entry: [
+      require.resolve('babel-polyfill'),
+      require.resolve('react-dev-utils/webpackHotDevClient'),
+      paths.indexJs,
+    ],
+    output: {
+      pathinfo: true,
+      path: paths.dist,
+      publicPath: '/',
+      filename: 'static/js/[name].js',
+      sourceMapFilename: 'static/js/[name].js.map',
+      crossOriginLoading: 'anonymous',
+      devtoolModuleFilenameTemplate: (info: any) =>
+        path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
+    },
+    module: {
+      rules: [
+        {
+          oneOf: [
+            {
+              test: /\.(js|jsx|mjs)$/,
+              exclude: /node_modules/,
+              include: [srcPath, paths.playgrodd],
+              use: [require.resolve('thread-loader'), loaders.babel],
+            },
+          ],
+        },
+      ],
+    },
+    resolve: {
+      extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
+      modules: ['node_modules', srcPath],
+      alias: {
+        '@babel/runtime': path.dirname(
+          require.resolve('@babel/runtime/package.json')
+        ),
+      },
+    },
+    plugins: [
+      new webpack.NamedModulesPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(),
+      new HtmlWebpackPlugin({
+        inject: true,
+        template: paths.indexHtml,
+      }),
+    ],
+  }
+}
+
+export const setup = ({ paths, port, host, protocol }: Config) => (
+  config: Configuration
+) => {
+  const appName = require(paths.packageJson).name
+  const urls = webpackDevServerUtils.prepareUrls(protocol, host, port)
 
   return webpackDevServerUtils.createCompiler(
     webpack,
@@ -83,5 +83,5 @@ export const setup = ({ paths, port }: Args) => (config: Configuration) => {
   )
 }
 
-export const server = (args: Args) => (compiler: any): WebpackDevServer =>
-  new WebpackDevServer(compiler, devServerConfig(args))
+export const server = (config: Config) => (compiler: any): WebpackDevServer =>
+  new WebpackDevServer(compiler, devServerConfig(config))

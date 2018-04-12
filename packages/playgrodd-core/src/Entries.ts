@@ -37,7 +37,9 @@ export class Entries {
     )
   }
 
-  public parse(): Entry[] {
-    return this.files.filter(isPlaygroddFile).map(file => new Entry(file))
+  public parse(src: string): Entry[] {
+    return this.files
+      .filter(isPlaygroddFile)
+      .map(file => new Entry({ file, src }))
   }
 }

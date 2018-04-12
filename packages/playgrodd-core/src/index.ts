@@ -1,5 +1,5 @@
 export { Paths } from './config/Paths'
 
-export { Server } from './server'
 export { Entry } from './Entry'
-export { Bundler, IBundlerFactoryParams } from './Bundler'
+export { createBundler, IBundlerCreate } from './Bundler'
+export { Server, ConfigArgs } from './server'
