@@ -68,7 +68,7 @@ export const config = ({ paths, host, src }: Config) => (
   }
 }
 
-export const setup = ({ paths, port, host, protocol }: Config) => (
+export const compiler = ({ paths, port, host, protocol }: Config) => (
   config: Configuration
 ) => {
   const appName = require(paths.packageJson).name

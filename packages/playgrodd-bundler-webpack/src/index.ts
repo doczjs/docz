@@ -2,7 +2,7 @@ import { Configuration } from 'webpack'
 import { createBundler, IBundlerCreate } from 'playgrodd-core'
 import * as WebpackDevServer from 'webpack-dev-server'
 
-import { config, setup, server } from './config.dev'
+import { config, compiler, server } from './config.dev'
 
 export const bundler: IBundlerCreate<
   Configuration,
@@ -11,5 +11,5 @@ export const bundler: IBundlerCreate<
   id: 'webpack',
   config,
   server,
-  setup,
+  compiler,
 })

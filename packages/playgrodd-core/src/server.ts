@@ -21,6 +21,7 @@ export interface ConfigArgs {
   env: string
   host: string
   protocol: string
+  plugins: any[]
 }
 
 export interface IConstructorParams {

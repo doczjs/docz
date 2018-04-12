@@ -24,7 +24,7 @@ const compiled = (templateFile: string) =>
   compile(fs.readFileSync(`${paths.templatesPath}/${templateFile}`, 'utf-8'))
 
 export type TConfigFn<C> = (entries: Entry[]) => C
-export type TSetupFn<C> = (config: C) => Promise<any>
+export type TCompilerFn<C> = (config: C) => Promise<any>
 export type TServerFn<S> = (compiler: any) => S
 
 export interface ICompilerOpts {
@@ -34,7 +34,7 @@ export interface ICompilerOpts {
 export interface IConstructorParams<C, S> extends ICompilerOpts {
   id: string
   config: TConfigFn<C>
-  setup: TSetupFn<C>
+  compiler: TCompilerFn<C>
   server: TServerFn<S>
 }
 
@@ -46,14 +46,20 @@ export class Bundler<C = any, S = any> {
   readonly id: string
   readonly theme: string
   private config: TConfigFn<C>
-  private setup: TSetupFn<C>
+  private compiler: TCompilerFn<C>
   private server: TServerFn<S>
 
-  constructor({ id, config, theme, setup, server }: IConstructorParams<C, S>) {
+  constructor({
+    id,
+    config,
+    theme,
+    compiler,
+    server,
+  }: IConstructorParams<C, S>) {
     this.id = id
     this.theme = theme
     this.config = config
-    this.setup = setup
+    this.compiler = compiler
     this.server = server
   }
 
@@ -66,7 +72,7 @@ export class Bundler<C = any, S = any> {
     touch(paths.indexJs, js({}))
     touch(paths.indexHtml, html({}))
 
-    return await this.setup(config)
+    return await this.compiler(config)
   }
 
   public async createServer(compiler: any): Promise<S> {
@@ -77,7 +83,7 @@ export class Bundler<C = any, S = any> {
 export interface IFactory<C, S> {
   id: string
   config: (args: ConfigArgs) => TConfigFn<C>
-  setup: (args: ConfigArgs) => TSetupFn<C>
+  compiler: (args: ConfigArgs) => TCompilerFn<C>
   server: (args: ConfigArgs) => TServerFn<S>
 }
 
@@ -93,7 +99,7 @@ export function createBundler<C, S>(
       id: factory.id,
       theme: args.theme,
       config: factory.config(args),
-      setup: factory.setup(args),
+      compiler: factory.compiler(args),
       server: factory.server(args),
     })
 }
