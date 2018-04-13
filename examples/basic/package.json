@@ -8,6 +8,7 @@
   "dependencies": {
     "emotion": "^9.1.1",
     "playgrodd": "^0.0.1",
+    "playgrodd-core": "^0.0.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
