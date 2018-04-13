@@ -8,7 +8,9 @@ interface DocsState {
 export class DocsContainer extends Container<DocsState> {
   constructor() {
     super()
-    this.state = { docs: {} }
+    this.state = {
+      docs: {},
+    }
   }
 
   public addDoc(doc: Doc) {
@@ -20,4 +22,4 @@ export class DocsContainer extends Container<DocsState> {
   }
 }
 
-export const container = new DocsContainer()
+export const docsContainer = new DocsContainer()

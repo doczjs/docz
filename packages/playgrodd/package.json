@@ -17,8 +17,8 @@
     "fix:tslint": "tslint --fix --project ."
   },
   "dependencies": {
-    "playgrodd-core": "^0.0.1",
     "playgrodd-bundler-webpack": "^0.0.1",
+    "playgrodd-core": "^0.0.1",
     "playgrodd-theme-default": "^0.0.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.1",

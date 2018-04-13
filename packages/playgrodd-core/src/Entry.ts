@@ -30,9 +30,10 @@ export class Entry {
   constructor({ src, file }: IConstructorParams) {
     const ast = convertToAst(file)
     const name = getNameFromDoc(ast) || ''
-    const route = path.join('/', path.parse(file).dir, name)
-    const source = path.relative(paths.root, src)
-    const filepath = path.relative(source, file)
+    const srcPath = path.resolve(paths.root, src)
+    const filepath = path.relative(path.relative(paths.root, src), file)
+    const dir = path.relative(srcPath, path.parse(file).dir)
+    const route = path.join('/', dir, name)
 
     this.name = name
     this.route = route

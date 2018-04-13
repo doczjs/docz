@@ -4,6 +4,8 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 import { Theme } from '<%- THEME %>'
 
+window.__DOCZ_ROUTES__ = <%- ROUTES %>
+
 const _wrappers = [<%- WRAPPERS %>]
 
 const recursiveWrappers = ([Wrapper, ...rest], props) => (
@@ -17,7 +19,7 @@ const Wrapper = props =>
 
 const WrappedTheme = () => (
   <Wrapper>
-    <Theme routes={<%- ROUTES %>} />
+    <Theme />
   </Wrapper>
 )
 

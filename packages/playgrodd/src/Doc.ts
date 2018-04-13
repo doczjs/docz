@@ -1,6 +1,6 @@
 import { ulid } from 'ulid'
 import { Section, DocConstructorArgs } from 'playgrodd'
-import { container } from './DocsContainer'
+import { docsContainer } from './DocsContainer'
 
 const isFn = (value: any): boolean => typeof value === 'function'
 
@@ -72,7 +72,11 @@ export class Doc {
   }
 
   public get docRoute(): string {
-    return this._route
+    const ROUTES =
+      window && typeof window !== 'undefined' && (window as any).__DOCZ_ROUTES__
+
+    if (this._route !== `/${this._name}`) return this._route
+    return ROUTES ? ROUTES[this._name] : this._route
   }
 
   public get docOrder(): number {
@@ -83,6 +87,6 @@ export class Doc {
 export const doc = (name: string): Doc => {
   const newDoc = new Doc({ name })
 
-  container.addDoc(newDoc)
+  docsContainer.addDoc(newDoc)
   return newDoc
 }
