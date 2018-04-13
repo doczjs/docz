@@ -5,6 +5,7 @@ import { pick } from './utils/helpers'
 
 import { Entries } from './Entries'
 import { Bundler } from './Bundler'
+import { Plugin } from './Plugin'
 
 process.env.BABEL_ENV = process.env.BABEL_ENV || 'development'
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
@@ -12,17 +13,6 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 const ENV = process.env.NODE_ENV
 const HOST = process.env.HOST || '0.0.0.0'
 const PROTOCOL = process.env.HTTPS === 'true' ? 'https' : 'http'
-
-export interface ConfigArgs {
-  paths: any
-  port: number
-  theme: string
-  src: string
-  env: string
-  host: string
-  protocol: string
-  plugins: any[]
-}
 
 export interface IConstructorParams {
   port: number
@@ -32,18 +22,31 @@ export interface IConstructorParams {
   src: string
 }
 
+export interface ConfigArgs extends IConstructorParams {
+  paths: any
+  env: string
+  host: string
+  protocol: string
+  plugins: Plugin[]
+}
+
 export class Server {
   private port: number
   private src: string
-  private bundler: Bundler
+  private plugins: Plugin[]
   private entries: Entries
+  private bundler: Bundler
 
   constructor(args: IConstructorParams) {
     const initialArgs = this.getInitialArgs(args)
-    const { port, theme, files, bundler, src } = load('playgrodd', initialArgs)
+    const { port, theme, files, bundler, src, plugins } = load(
+      'playgrodd',
+      initialArgs
+    )
 
     this.port = port
     this.src = src
+    this.plugins = plugins
     this.entries = new Entries(files)
 
     this.bundler = this.getBundler(bundler).bundler({
@@ -51,6 +54,7 @@ export class Server {
       paths,
       theme,
       src,
+      plugins,
       env: ENV,
       host: HOST,
       protocol: PROTOCOL,
@@ -70,10 +74,17 @@ export class Server {
   }
 
   public async start() {
-    const { entries, bundler } = this
+    const { bundler, entries, plugins } = this
 
     const compiler = await bundler.createCompiler(entries.parse(this.src))
     const server = await bundler.createServer(compiler)
+
+    if (plugins && plugins.length > 0) {
+      for (const plugin of plugins) {
+        await plugin.bundlerCompiler(compiler)
+        await plugin.bundlerServer(server)
+      }
+    }
 
     server.listen(this.port)
   }

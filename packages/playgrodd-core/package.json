@@ -25,7 +25,8 @@
     "express": "^4.16.3",
     "fast-glob": "^2.2.0",
     "load-cfg": "^0.0.1",
-    "mkdirp": "^0.5.1"
+    "mkdirp": "^0.5.1",
+    "prettier": "^1.12.0"
   },
   "devDependencies": {
     "@types/babel-traverse": "^6.25.3",
@@ -33,6 +34,7 @@
     "@types/del": "^3.0.1",
     "@types/express": "^4.11.1",
     "@types/mkdirp": "^0.5.2",
+    "@types/prettier": "^1.12.0",
     "shelljs": "^0.8.1"
   }
 }
