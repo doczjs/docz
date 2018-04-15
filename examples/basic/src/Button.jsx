@@ -1,5 +1,5 @@
 import React from 'react'
-import { doc } from 'playgrodd'
+import { doc } from 'docz'
 
 const Button = ({ children }) => <button>{children}</button>
 

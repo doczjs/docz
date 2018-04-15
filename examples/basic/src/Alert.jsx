@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { doc } from 'playgrodd'
+import { doc } from 'docz'
 import styled from 'react-emotion'
 import t from 'prop-types'
 
