@@ -1,7 +1,6 @@
 import { Loader } from 'webpack'
-
-import * as merge from 'deepmerge'
 import { load } from 'load-cfg'
+import merge from 'deepmerge'
 
 export const babel: Loader = {
   loader: require.resolve('babel-loader'),

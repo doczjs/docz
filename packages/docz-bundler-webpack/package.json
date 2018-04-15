@@ -1,15 +1,17 @@
 {
   "name": "docz-bundler-webpack",
   "version": "0.0.1",
-  "main": "./dist/index.js",
-  "typings": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "module": "dist/index.m.js",
   "source": "src/index.ts",
+  "typings": "./dist/index.d.ts",
   "license": "MIT",
   "scripts": {
     "clean": "trash dist",
     "compile": "tsc -p tsconfig.json",
-    "dev": "run-s clean && run-s \"compile -w\"",
-    "build": "run-s clean && run-s compile",
+    "dev": "libundler watch --ts --external all",
+    "build": "libundler build --ts --external all --compress --sourcemap",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
     "fix:tslint": "tslint --fix --project ."

@@ -1,6 +1,6 @@
 import './styles'
 
-import React, { Fragment } from 'react'
+import * as React from 'react'
 import { createTheme } from 'docz'
 import { injectGlobal } from 'emotion'
 import { Helmet } from 'react-helmet'

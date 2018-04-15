@@ -398,12 +398,6 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-"@babel/plugin-external-helpers@^7.0.0-beta.42":
-  version "7.0.0-beta.42"
-  resolved "https://registry.npmjs.org/@babel/plugin-external-helpers/-/plugin-external-helpers-7.0.0-beta.42.tgz#88b6bc650490026553aaa1733486d84bad177481"
-  dependencies:
-    "@babel/helper-plugin-utils" "7.0.0-beta.42"
-
 "@babel/plugin-proposal-async-generator-functions@7.0.0-beta.42":
   version "7.0.0-beta.42"
   resolved "https://registry.npmjs.org/@babel/plugin-proposal-async-generator-functions/-/plugin-proposal-async-generator-functions-7.0.0-beta.42.tgz#81465d19b6f5559092d9be4d11d6351131d08696"
@@ -2924,6 +2918,17 @@ define-property@^2.0.2:
     is-descriptor "^1.0.2"
     isobject "^3.0.1"
 
+del@3.0.0, del@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/del/-/del-3.0.0.tgz#53ecf699ffcbcb39637691ab13baf160819766e5"
+  dependencies:
+    globby "^6.1.0"
+    is-path-cwd "^1.0.0"
+    is-path-in-cwd "^1.0.0"
+    p-map "^1.1.1"
+    pify "^3.0.0"
+    rimraf "^2.2.8"
+
 del@^2.0.2:
   version "2.2.2"
   resolved "https://registry.npmjs.org/del/-/del-2.2.2.tgz#c12c981d067846c84bcaf862cff930d907ffd1a8"
@@ -2934,17 +2939,6 @@ del@^2.0.2:
     object-assign "^4.0.1"
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
-    rimraf "^2.2.8"
-
-del@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/del/-/del-3.0.0.tgz#53ecf699ffcbcb39637691ab13baf160819766e5"
-  dependencies:
-    globby "^6.1.0"
-    is-path-cwd "^1.0.0"
-    is-path-in-cwd "^1.0.0"
-    p-map "^1.1.1"
-    pify "^3.0.0"
     rimraf "^2.2.8"
 
 delayed-stream@~1.0.0:
@@ -4888,12 +4882,11 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-libundler@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.npmjs.org/libundler/-/libundler-1.6.0.tgz#6b947256d651adf8ba22c8165daeea9fade12d6e"
+libundler@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.npmjs.org/libundler/-/libundler-1.6.2.tgz#2537f8b582f0ceb1f779561de51b140928ec68fd"
   dependencies:
     "@babel/core" "^7.0.0-beta.42"
-    "@babel/plugin-external-helpers" "^7.0.0-beta.42"
     bluebird "^3.5.1"
     bluebird-co "^2.2.0"
     chalk "^2.3.2"
@@ -4915,7 +4908,6 @@ libundler@^1.6.0:
     rollup-plugin-commonjs "^9.1.0"
     rollup-plugin-gzip "^1.3.0"
     rollup-plugin-node-resolve "^3.3.0"
-    rollup-plugin-replace "^2.0.0"
     rollup-plugin-sizes "^0.4.0"
     rollup-plugin-sourcemaps "^0.4.2"
     rollup-plugin-typescript2 "^0.12.0"
@@ -6619,14 +6611,6 @@ rollup-plugin-node-resolve@^3.3.0:
     builtin-modules "^2.0.0"
     is-module "^1.0.0"
     resolve "^1.1.6"
-
-rollup-plugin-replace@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/rollup-plugin-replace/-/rollup-plugin-replace-2.0.0.tgz#19074089c8ed57184b8cc64e967a03d095119277"
-  dependencies:
-    magic-string "^0.22.4"
-    minimatch "^3.0.2"
-    rollup-pluginutils "^2.0.1"
 
 rollup-plugin-sizes@^0.4.0:
   version "0.4.2"

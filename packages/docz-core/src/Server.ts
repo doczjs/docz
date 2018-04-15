@@ -7,10 +7,10 @@ import { Entries } from './Entries'
 import { Bundler } from './Bundler'
 import { Plugin } from './Plugin'
 
-process.env.BABEL_ENV = process.env.BABEL_ENV || 'development'
-process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+process.env['BABEL_ENV'] = process.env['BABEL_ENV'] || 'development'
+process.env['NODE_ENV'] = process.env['NODE_ENV'] || 'development'
 
-const ENV = process.env.NODE_ENV
+const ENV = process.env['NODE_ENV']
 const HOST = process.env.HOST || '0.0.0.0'
 const PROTOCOL = process.env.HTTPS === 'true' ? 'https' : 'http'
 

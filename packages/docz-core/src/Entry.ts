@@ -1,12 +1,12 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import * as t from 'babel-types'
+import { File } from 'babel-types'
 import { parse } from 'babylon'
 
 import * as paths from './config/paths'
 import { traverseAndAssign } from './utils/traverse'
 
-export const convertToAst = (entry: string): t.File =>
+export const convertToAst = (entry: string): File =>
   parse(fs.readFileSync(entry, 'utf-8'), {
     sourceType: 'module',
     plugins: ['jsx'],

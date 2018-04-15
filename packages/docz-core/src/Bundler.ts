@@ -1,9 +1,9 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import * as mkdir from 'mkdirp'
-import * as del from 'del'
-import { compile } from 'art-template'
 import * as prettier from 'prettier'
+import { compile } from 'art-template'
+import del from 'del'
 
 import * as paths from './config/paths'
 import { Entry } from './Entry'
@@ -127,7 +127,7 @@ export class Bundler<C = any, S = any> {
   }
 
   public async createCompiler(entries: Entry[]) {
-    await del(paths.docz)
+    del.sync(paths.docz)
     this.generateFilesByTemplate(entries)
     return await this.compiler(this.mountConfig(entries))
   }

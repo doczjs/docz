@@ -1,5 +1,5 @@
 import traverse from 'babel-traverse'
-import * as t from 'babel-types'
+import { File } from 'babel-types'
 
 export interface IWhenFn<P> {
   (path: P): boolean
@@ -13,7 +13,7 @@ export function traverseAndAssign<P = any, V = any>(
   when: IWhenFn<P>,
   assign: IAssignFn<P, V>
 ) {
-  return (ast: t.File): V | undefined => {
+  return (ast: File): V | undefined => {
     let value
 
     traverse(ast, {

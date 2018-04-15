@@ -1,6 +1,6 @@
 import { ConfigArgs } from 'docz-core'
 import { Application } from 'express'
-import * as errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware'
+import errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware'
 
 export const PROTOCOL = process.env.HTTPS === 'true' ? 'https' : 'http'
 export const HOST = process.env.HOST || '0.0.0.0'
