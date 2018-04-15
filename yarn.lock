@@ -4888,9 +4888,9 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-libundler@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.npmjs.org/libundler/-/libundler-1.5.1.tgz#d3434301df9e5c300dfcd488e3a06109c96f0118"
+libundler@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.npmjs.org/libundler/-/libundler-1.6.0.tgz#6b947256d651adf8ba22c8165daeea9fade12d6e"
   dependencies:
     "@babel/core" "^7.0.0-beta.42"
     "@babel/plugin-external-helpers" "^7.0.0-beta.42"
