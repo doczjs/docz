@@ -6,7 +6,7 @@ import { Theme } from '<%- THEME %>'
 
 window.__DOCZ_ROUTES__ = <%- ROUTES %>
 
-const _wrappers = [<%- WRAPPERS %>]
+const _wrappers = [<% if (WRAPPERS) {%><%- WRAPPERS %><%}%>]
 
 const recursiveWrappers = ([Wrapper, ...rest], props) => (
   <Wrapper {...props}>

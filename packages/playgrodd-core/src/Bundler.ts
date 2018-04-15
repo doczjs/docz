@@ -43,7 +43,7 @@ export interface ICompilerOpts {
   args: ConfigArgs
 }
 
-export interface IConstructorParams<C, S> extends ICompilerOpts {
+export interface IBundlerConstructor<C, S> extends ICompilerOpts {
   id: string
   config: TConfigFn<C>
   compiler: TCompilerFn<C>
@@ -61,14 +61,9 @@ export class Bundler<C = any, S = any> {
   private compiler: TCompilerFn<C>
   private server: TServerFn<S>
 
-  constructor({
-    args,
+  constructor(params: IBundlerConstructor<C, S>) {
+    const { args, id, config, compiler, server } = params
 
-    id,
-    config,
-    compiler,
-    server,
-  }: IConstructorParams<C, S>) {
     this.args = args
     this.id = id
     this.config = config

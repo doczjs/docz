@@ -17,7 +17,7 @@ const getNameFromDoc = traverseAndAssign<any, string>(
   path => path.node.arguments[0].value
 )
 
-export interface IConstructorParams {
+export interface IEntryConstructor {
   file: string
   src: string
 }
@@ -27,7 +27,7 @@ export class Entry {
   public filepath: string
   public route: string
 
-  constructor({ src, file }: IConstructorParams) {
+  constructor({ src, file }: IEntryConstructor) {
     const ast = convertToAst(file)
     const name = getNameFromDoc(ast) || ''
     const srcPath = path.resolve(paths.root, src)

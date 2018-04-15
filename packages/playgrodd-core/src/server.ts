@@ -14,7 +14,7 @@ const ENV = process.env.NODE_ENV
 const HOST = process.env.HOST || '0.0.0.0'
 const PROTOCOL = process.env.HTTPS === 'true' ? 'https' : 'http'
 
-export interface IConstructorParams {
+export interface IServerConstructor {
   port: number
   theme: string
   files: string
@@ -22,7 +22,7 @@ export interface IConstructorParams {
   src: string
 }
 
-export interface ConfigArgs extends IConstructorParams {
+export interface ConfigArgs extends IServerConstructor {
   paths: any
   env: string
   host: string
@@ -37,7 +37,7 @@ export class Server {
   private entries: Entries
   private bundler: Bundler
 
-  constructor(args: IConstructorParams) {
+  constructor(args: IServerConstructor) {
     const initialArgs = this.getInitialArgs(args)
     const { port, theme, files, bundler, src, plugins } = load(
       'playgrodd',
@@ -61,7 +61,7 @@ export class Server {
     })
   }
 
-  private getInitialArgs(args: IConstructorParams) {
+  private getInitialArgs(args: IServerConstructor) {
     return pick(['port', 'theme', 'files', 'bundler', 'src'], args)
   }
 
