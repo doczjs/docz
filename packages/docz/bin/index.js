@@ -3,6 +3,13 @@
 const yargs = require('yargs')
 const { Server } = require('docz-core')
 
+const exts = '{j,t}{s,sx}'
+const defaultFilesGlob = [
+  `docs/**.${exts}`,
+  `**/__docs__/*.${exts}`,
+  `**/*.doc.${exts}`,
+]
+
 yargs
   .command(
     'start [files]',
@@ -15,7 +22,7 @@ yargs
       })
       yargs.positional('files', {
         type: 'string',
-        default: '**/*.(js|jsx)',
+        default: defaultFilesGlob,
       })
       yargs.positional('port', {
         alias: 'p',

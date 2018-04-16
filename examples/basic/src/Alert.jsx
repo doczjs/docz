@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import { doc } from 'docz'
 import styled from 'react-emotion'
 import t from 'prop-types'
 
@@ -10,7 +9,7 @@ const kinds = {
   warning: '#FFA502',
 }
 
-const Alert = styled('div')`
+export const Alert = styled('div')`
   padding: 15px 20px;
   background: white;
   border-radius: 3px;
@@ -21,15 +20,3 @@ const Alert = styled('div')`
 Alert.propTypes = {
   color: t.oneOf(['info', 'positive', 'negative', 'warning']),
 }
-
-doc('Alert')
-  .description('This component is used to show alerts')
-  .section('Basic usage', () => <Alert>Some message</Alert>)
-  .section('Using different kinds', () => (
-    <Fragment>
-      <Alert>Some message</Alert>
-      <Alert kind="positive">Some message</Alert>
-      <Alert kind="negative">Some message</Alert>
-      <Alert kind="warning">Some message</Alert>
-    </Fragment>
-  ))
