@@ -4,8 +4,6 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 import { Theme } from '<%- THEME %>'
 
-window.__DOCZ_ROUTES__ = <%- ROUTES %>
-
 const _wrappers = [<% if (WRAPPERS) {%><%- WRAPPERS %><%}%>]
 
 const recursiveWrappers = ([Wrapper, ...rest], props) => (

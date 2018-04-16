@@ -1,6 +1,7 @@
 import { ulid } from 'ulid'
 import { Section, DocConstructorArgs } from 'docz'
 import { docsContainer } from './DocsContainer'
+import kebabcase from 'lodash.kebabcase'
 
 const isFn = (value: any): boolean => typeof value === 'function'
 
@@ -17,7 +18,7 @@ export class Doc {
     this._name = name
     this._description = null
     this._sections = []
-    this._route = `/${name}`
+    this._route = `/${kebabcase(name)}`
     this._order = 0
 
     return this
@@ -44,7 +45,7 @@ export class Doc {
   }
 
   public route(value: string): Doc {
-    this._route = value
+    this._route = kebabcase(value)
     return this
   }
 
@@ -72,11 +73,7 @@ export class Doc {
   }
 
   public get docRoute(): string {
-    const ROUTES =
-      window && typeof window !== 'undefined' && (window as any).__DOCZ_ROUTES__
-
-    if (this._route !== `/${this._name}`) return this._route
-    return ROUTES ? ROUTES[this._name] : this._route
+    return this._route
   }
 
   public get docOrder(): number {
