@@ -1,5 +1,6 @@
 import * as fs from 'fs'
 import * as path from 'path'
+import * as resolve from 'resolve'
 
 export type Paths = {
   root: string
@@ -9,7 +10,7 @@ export type Paths = {
   indexJs: string
   indexHtml: string
   dist: string
-  templatesPath: string
+  templates: string
 }
 
 export const root = fs.realpathSync(process.cwd())
@@ -21,4 +22,4 @@ export const indexJs = path.resolve(docz, 'index.jsx')
 export const indexHtml = path.resolve(docz, 'index.html')
 export const dist = path.resolve(docz, 'dist/')
 
-export const templatesPath = path.resolve(__dirname, '../../templates')
+export const templates = path.join(resolve.sync('docz-core'), '../templates')
