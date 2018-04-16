@@ -1,16 +1,20 @@
 import { load } from 'load-cfg'
+import { FSWatcher } from 'chokidar'
+import * as chokidar from 'chokidar'
+import del from 'del'
 
 import * as paths from './config/paths'
 import { pick } from './utils/helpers'
 
+import { Entry } from './Entry'
 import { Entries } from './Entries'
 import { Bundler } from './Bundler'
 import { Plugin } from './Plugin'
 
-process.env['BABEL_ENV'] = process.env['BABEL_ENV'] || 'development'
-process.env['NODE_ENV'] = process.env['NODE_ENV'] || 'development'
+process.env.BABEL_ENV = process.env.BABEL_ENV || 'development'
+process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
-const ENV = process.env['NODE_ENV']
+const ENV = process.env.NODE_ENV
 const HOST = process.env.HOST || '0.0.0.0'
 const PROTOCOL = process.env.HTTPS === 'true' ? 'https' : 'http'
 
@@ -31,30 +35,22 @@ export interface ConfigArgs extends IServerConstructor {
 }
 
 export class Server {
-  private port: number
-  private src: string
-  private plugins: Plugin[]
-  private entries: Entries
+  readonly config: ConfigArgs
+  readonly watcher: FSWatcher
   private bundler: Bundler
 
   constructor(args: IServerConstructor) {
     const initialArgs = this.getInitialArgs(args)
-    const { port, theme, files, bundler, src, plugins } = load(
-      'docz',
-      initialArgs
-    )
+    const config = load('docz', initialArgs)
 
-    this.port = port
-    this.src = src
-    this.plugins = plugins
-    this.entries = new Entries(files)
+    this.config = config
+    this.watcher = chokidar.watch(config.files, {
+      ignored: /(^|[\/\\])\../,
+    })
 
-    this.bundler = this.getBundler(bundler).bundler({
-      port,
+    this.bundler = this.getBundler(config.bundler).bundler({
+      ...config,
       paths,
-      theme,
-      src,
-      plugins,
       env: ENV,
       host: HOST,
       protocol: PROTOCOL,
@@ -62,7 +58,10 @@ export class Server {
   }
 
   private getInitialArgs(args: IServerConstructor) {
-    return pick(['port', 'theme', 'files', 'bundler', 'src'], args)
+    return {
+      ...pick(['port', 'theme', 'files', 'bundler', 'src'], args),
+      plugins: [],
+    }
   }
 
   private getBundler(bundler: string) {
@@ -73,11 +72,42 @@ export class Server {
     }
   }
 
-  public async start() {
-    const { bundler, entries, plugins } = this
+  private processEntries(config: ConfigArgs) {
+    const { files, src, theme, plugins } = config
+    const cache = new Map()
 
-    const compiler = await bundler.createCompiler(entries.parse(this.src))
-    const server = await bundler.createServer(compiler)
+    const generateFilesAndUpdateCache = (entries: Entries) => {
+      cache.set('map', entries.map())
+      Entries.generateFiles({ entries: entries.all, plugins, theme })
+    }
+
+    const updateEntries = () =>
+      generateFilesAndUpdateCache(new Entries(files, src))
+
+    const parseToUpdate = (path: string) => {
+      const name = Entry.parseName(path)
+      const entry = cache.get('map')[path]
+      const newEntries = new Entries(files, src)
+
+      if (name && name !== entry && newEntries.files.includes(path)) {
+        generateFilesAndUpdateCache(newEntries)
+      }
+    }
+
+    this.watcher.on('unlink', updateEntries)
+    this.watcher.on('change', parseToUpdate)
+
+    generateFilesAndUpdateCache(new Entries(files, src))
+  }
+
+  public async start() {
+    const { plugins, port } = this.config
+
+    del.sync(paths.docz)
+    this.processEntries(this.config)
+
+    const compiler = await this.bundler.createCompiler()
+    const server = await this.bundler.createServer(compiler)
 
     if (plugins && plugins.length > 0) {
       for (const plugin of plugins) {
@@ -86,6 +116,6 @@ export class Server {
       }
     }
 
-    server.listen(this.port)
+    server.listen(port)
   }
 }

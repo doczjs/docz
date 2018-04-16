@@ -25,18 +25,18 @@ export interface IEntryConstructor {
 export class Entry {
   public name: string
   public filepath: string
-  public route: string
 
   constructor({ src, file }: IEntryConstructor) {
     const ast = convertToAst(file)
     const name = getNameFromDoc(ast) || ''
-    const srcPath = path.resolve(paths.root, src)
-    const filepath = path.relative(path.relative(paths.root, src), file)
-    const dir = path.relative(srcPath, path.parse(file).dir)
-    const route = path.join('/', dir, name)
+    const filepath = path.relative(paths.root, file)
 
     this.name = name
-    this.route = route
     this.filepath = filepath
+  }
+
+  static parseName(file: string) {
+    const ast = convertToAst(file)
+    return getNameFromDoc(ast)
   }
 }
