@@ -2737,6 +2737,25 @@ cosmiconfig@^4.0.0:
     parse-json "^4.0.0"
     require-from-string "^2.0.1"
 
+cp-file@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/cp-file/-/cp-file-5.0.0.tgz#bc700fd30ca32d24d46c7fb02b992e435fc5a978"
+  dependencies:
+    graceful-fs "^4.1.2"
+    make-dir "^1.0.0"
+    nested-error-stacks "^2.0.0"
+    pify "^3.0.0"
+    safe-buffer "^5.0.1"
+
+cpy@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.npmjs.org/cpy/-/cpy-6.0.0.tgz#0b6888e037bb5a7b02a62249551316208a523253"
+  dependencies:
+    arrify "^1.0.1"
+    cp-file "^5.0.0"
+    globby "^6.0.0"
+    nested-error-stacks "^2.0.0"
+
 create-ecdh@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/create-ecdh/-/create-ecdh-4.0.0.tgz#888c723596cdf7612f6498233eebd7a35301737d"
@@ -4006,7 +4025,7 @@ globby@^5.0.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-globby@^6.1.0:
+globby@^6.0.0, globby@^6.1.0:
   version "6.1.0"
   resolved "https://registry.npmjs.org/globby/-/globby-6.1.0.tgz#f5a6d70e8395e21c858fb0489d64df02424d506c"
   dependencies:
@@ -4944,9 +4963,9 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-libundler@^1.6.3:
-  version "1.6.3"
-  resolved "https://registry.npmjs.org/libundler/-/libundler-1.6.3.tgz#e0f6dfcf1b4472d06b2cf9262bb4089a713a2e47"
+libundler@^1.6.4:
+  version "1.6.4"
+  resolved "https://registry.npmjs.org/libundler/-/libundler-1.6.4.tgz#88acdf9935448617f50a7215b081e250dae91556"
   dependencies:
     "@babel/core" "^7.0.0-beta.42"
     bluebird "^3.5.1"
@@ -5047,6 +5066,10 @@ lodash._reinterpolate@~3.0.0:
 lodash.foreach@^4.5.0:
   version "4.5.0"
   resolved "https://registry.npmjs.org/lodash.foreach/-/lodash.foreach-4.5.0.tgz#1a6a35eace401280c7f06dddec35165ab27e3e53"
+
+lodash.isobject@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.npmjs.org/lodash.isobject/-/lodash.isobject-3.0.2.tgz#3c8fb8d5b5bf4bf90ae06e14f2a530a4ed935e1d"
 
 lodash.kebabcase@^4.1.1:
   version "4.1.1"
@@ -5478,6 +5501,12 @@ negotiator@0.6.1:
 neo-async@^2.5.0:
   version "2.5.0"
   resolved "https://registry.npmjs.org/neo-async/-/neo-async-2.5.0.tgz#76b1c823130cca26acfbaccc8fbaf0a2fa33b18f"
+
+nested-error-stacks@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/nested-error-stacks/-/nested-error-stacks-2.0.0.tgz#98b2ffaefb4610fa3936f1e71435d30700de2840"
+  dependencies:
+    inherits "~2.0.1"
 
 no-case@^2.2.0:
   version "2.3.2"
@@ -6688,6 +6717,15 @@ rollup-plugin-commonjs@^9.1.0:
     magic-string "^0.22.4"
     resolve "^1.5.0"
     rollup-pluginutils "^2.0.1"
+
+rollup-plugin-cpy@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/rollup-plugin-cpy/-/rollup-plugin-cpy-1.0.0.tgz#495836b776639b9cf93a2c21a829b67ccff46a42"
+  dependencies:
+    chalk "^2.3.2"
+    cpy "^6.0.0"
+    lodash.isobject "^3.0.2"
+    mkdirp "^0.5.1"
 
 rollup-plugin-gzip@^1.3.0:
   version "1.3.0"

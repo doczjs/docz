@@ -5,13 +5,20 @@
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
+  "typings": "dist/index.d.ts",
   "source": "src/index.ts",
   "bin": {
     "docz": "./bin/index.js"
   },
+  "files": [
+    "bin/",
+    "dist/",
+    "package.json",
+    "README.md"
+  ],
   "scripts": {
     "dev": "libundler watch --ts",
-    "build": "libundler build --ts --compress --sourcemap",
+    "build": "libundler build --ts --c --sm",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
     "fix:tslint": "yarn run tslint --fix",
     "tslint": "tslint --project ."
@@ -20,15 +27,14 @@
     "docz-bundler-webpack": "^0.0.1",
     "docz-core": "^0.0.1",
     "docz-theme-default": "^0.0.1",
+    "history": "4.7.2",
     "lodash.kebabcase": "^4.1.1",
     "prop-types": "^15.6.1",
-    "history": "4.7.2",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-router-dom": "^4.2.2",
     "ulid": "^2.3.0",
-    "unstated": "^1.1.0",
-    "yargs": "^11.0.0"
+    "unstated": "^1.1.0"
   },
   "peerDependencies": {
     "react": "^16.3.1",
@@ -40,6 +46,7 @@
     "@types/react": "^16.3.8",
     "@types/react-dom": "^16.0.5",
     "@types/react-router-dom": "^4.2.6",
-    "@types/yargs": "^11.0.0"
+    "@types/yargs": "^11.0.0",
+    "rollup-plugin-cpy": "^1.0.0"
   }
 }

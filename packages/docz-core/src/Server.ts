@@ -4,8 +4,6 @@ import * as chokidar from 'chokidar'
 import del from 'del'
 
 import * as paths from './config/paths'
-import { pick } from './utils/helpers'
-
 import { Entry } from './Entry'
 import { Entries } from './Entries'
 import { Bundler } from './Bundler'
@@ -14,65 +12,69 @@ import { Plugin } from './Plugin'
 process.env.BABEL_ENV = process.env.BABEL_ENV || 'development'
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
-const ENV = process.env.NODE_ENV
-const HOST = process.env.HOST || '0.0.0.0'
-const PROTOCOL = process.env.HTTPS === 'true' ? 'https' : 'http'
-
-export interface IServerConstructor {
-  port: number
+export interface ServerConstructor {
   theme: string
   files: string
   bundler: string
   src: string
-}
-
-export interface ConfigArgs extends IServerConstructor {
-  paths: any
+  port: number
   env: string
   host: string
   protocol: string
+  debug: boolean
+}
+
+export interface ConfigArgs extends ServerConstructor {
+  paths: paths.Paths
   plugins: Plugin[]
 }
 
 export class Server {
-  readonly config: ConfigArgs
-  readonly watcher: FSWatcher
-  private bundler: Bundler
+  private readonly config: ConfigArgs
+  private readonly watcher: FSWatcher
+  private readonly bundler: Bundler
 
-  constructor(args: IServerConstructor) {
-    const initialArgs = this.getInitialArgs(args)
-    const config = load('docz', initialArgs)
+  constructor(args: ServerConstructor) {
+    const config = load('docz', { ...args, paths, plugins: [] })
+    const selectedBundler = this.getBundler(config.bundler)
+    const ignoreWatch = {
+      ignored: /(^|[\/\\])\../,
+    }
 
     this.config = config
-    this.watcher = chokidar.watch(config.files, {
-      ignored: /(^|[\/\\])\../,
-    })
-
-    this.bundler = this.getBundler(config.bundler).bundler({
-      ...config,
-      paths,
-      env: ENV,
-      host: HOST,
-      protocol: PROTOCOL,
-    })
+    this.watcher = chokidar.watch(config.files, ignoreWatch)
+    this.bundler = selectedBundler.bundler(config)
   }
 
-  private getInitialArgs(args: IServerConstructor) {
-    return {
-      ...pick(['port', 'theme', 'files', 'bundler', 'src'], args),
-      plugins: [],
+  public async start(): Promise<void> {
+    const { plugins, port } = this.config
+
+    del.sync(paths.docz)
+    this.processEntries(this.config)
+
+    const compiler = await this.bundler.createCompiler()
+    const server = await this.bundler.createServer(compiler)
+
+    if (plugins && plugins.length > 0) {
+      for (const plugin of plugins) {
+        await plugin.bundlerCompiler(compiler)
+        await plugin.bundlerServer(server)
+      }
     }
+
+    server.listen(port)
   }
 
-  private getBundler(bundler: string) {
+  private getBundler(bundler: string): any {
     try {
       return require(`docz-bundler-${bundler}`)
     } catch (err) {
+      // tslint:disable-next-line
       return require('docz-bundler-webpack')
     }
   }
 
-  private processEntries(config: ConfigArgs) {
+  private processEntries(config: ConfigArgs): void {
     const { files, src, theme, plugins } = config
     const cache = new Map()
 
@@ -98,24 +100,5 @@ export class Server {
     this.watcher.on('change', parseToUpdate)
 
     generateFilesAndUpdateCache(new Entries(files, src))
-  }
-
-  public async start() {
-    const { plugins, port } = this.config
-
-    del.sync(paths.docz)
-    this.processEntries(this.config)
-
-    const compiler = await this.bundler.createCompiler()
-    const server = await this.bundler.createServer(compiler)
-
-    if (plugins && plugins.length > 0) {
-      for (const plugin of plugins) {
-        await plugin.bundlerCompiler(compiler)
-        await plugin.bundlerServer(server)
-      }
-    }
-
-    server.listen(port)
   }
 }

@@ -2,21 +2,21 @@ import { Container } from 'unstated'
 
 import { Doc } from '../'
 
-interface DocsState {
-  docs: Doc[]
+export interface DocsState {
+  docs: Map<string, Doc>
 }
 
 export class DocsContainer extends Container<DocsState> {
   constructor() {
     super()
     this.state = {
-      docs: [],
+      docs: new Map<string, Doc>(),
     }
   }
 
   public addDoc(doc: Doc): void {
     this.setState({
-      docs: this.state.docs.concat([doc]),
+      docs: this.state.docs.set(doc.name, doc),
     })
   }
 }

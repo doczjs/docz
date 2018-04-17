@@ -6,9 +6,14 @@
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
   "source": "src/index.jsx",
+  "files": [
+    "dist/",
+    "package.json",
+    "README.md"
+  ],
   "scripts": {
     "dev": "libundler watch",
-    "build": "libundler build --sourcemap --compress"
+    "build": "libundler build --c --sm"
   },
   "dependencies": {
     "emotion-normalize": "^7.0.1",

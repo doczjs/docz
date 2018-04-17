@@ -5,11 +5,11 @@ export type TConfigFn<C> = () => C
 export type TCompilerFn<C> = (config: C) => Promise<any>
 export type TServerFn<S> = (compiler: any) => S
 
-export interface ICompilerOpts {
+export interface CompilerOpts {
   args: ConfigArgs
 }
 
-export interface IBundlerConstructor<C, S> extends ICompilerOpts {
+export interface BundlerConstructor<C, S> extends CompilerOpts {
   id: string
   config: TConfigFn<C>
   compiler: TCompilerFn<C>
@@ -17,13 +17,13 @@ export interface IBundlerConstructor<C, S> extends ICompilerOpts {
 }
 
 export class Bundler<C = any, S = any> {
-  readonly id: string
-  readonly args: ConfigArgs
+  public readonly id: string
+  private readonly args: ConfigArgs
   private config: TConfigFn<C>
   private compiler: TCompilerFn<C>
   private server: TServerFn<S>
 
-  constructor(params: IBundlerConstructor<C, S>) {
+  constructor(params: BundlerConstructor<C, S>) {
     const { args, id, config, compiler, server } = params
 
     this.args = args
@@ -33,12 +33,20 @@ export class Bundler<C = any, S = any> {
     this.server = server
   }
 
-  private reduceWithPlugins(dev: boolean) {
+  public async createCompiler(): Promise<any> {
+    return this.compiler(this.mountConfig())
+  }
+
+  public async createServer(compiler: any): Promise<S> {
+    return this.server(compiler)
+  }
+
+  private reduceWithPlugins(dev: boolean): any {
     return (config: C, plugin: Plugin) =>
       plugin.bundlerConfig(config, dev) || config
   }
 
-  private mountConfig() {
+  private mountConfig(): C {
     const { plugins, env } = this.args
 
     const dev = env === 'development'
@@ -48,36 +56,26 @@ export class Bundler<C = any, S = any> {
       ? plugins.reduce(this.reduceWithPlugins(dev), initialConfig)
       : initialConfig
   }
-
-  public async createCompiler() {
-    return await this.compiler(this.mountConfig())
-  }
-
-  public async createServer(compiler: any): Promise<S> {
-    return await this.server(compiler)
-  }
 }
 
-export interface IFactory<C, S> {
+export interface Factory<C, S> {
   id: string
   config: (args: ConfigArgs) => TConfigFn<C>
   compiler: (args: ConfigArgs) => TCompilerFn<C>
   server: (args: ConfigArgs) => TServerFn<S>
 }
 
-export interface IBundlerCreate<C, S> {
-  (args: ConfigArgs): Bundler<C, S>
-}
+export type BundlerCreate<C, S> = (args: ConfigArgs) => Bundler<C, S>
 
 export function createBundler<C, S>(
-  factory: IFactory<C, S>
-): IBundlerCreate<C, S> {
+  factory: Factory<C, S>
+): BundlerCreate<C, S> {
   return (args: ConfigArgs): Bundler<C, S> =>
     new Bundler({
       args,
-      id: factory.id,
-      config: factory.config(args),
       compiler: factory.compiler(args),
+      config: factory.config(args),
+      id: factory.id,
       server: factory.server(args),
     })
 }

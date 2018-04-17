@@ -46,8 +46,8 @@ export class Doc {
     return this
   }
 
-  public route(value: string): Doc {
-    this._route = kebabcase(value)
+  public route(path: string): Doc {
+    this._route = path
     return this
   }
 

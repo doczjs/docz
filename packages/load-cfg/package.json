@@ -6,6 +6,11 @@
   "module": "dist/index.m.js",
   "typings": "dist/index.d.ts",
   "source": "src/index.ts",
+  "files": [
+    "dist/",
+    "package.json",
+    "README.md"
+  ],
   "license": "MIT",
   "scripts": {
     "dev": "libundler watch --ts --external all",

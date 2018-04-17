@@ -4,12 +4,17 @@
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
+  "typings": "dist/index.d.ts",
   "source": "src/index.ts",
-  "typings": "./dist/index.d.ts",
   "license": "MIT",
+  "files": [
+    "dist/",
+    "package.json",
+    "README.md"
+  ],
   "scripts": {
-    "dev": "libundler watch --ts -e all",
-    "build": "libundler build --ts -e all -c -sm",
+    "dev": "libundler watch --ts --e all",
+    "build": "libundler build --ts --e all --c",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
     "fix:tslint": "yarn run tslint --fix",
     "tslint": "tslint --project ."

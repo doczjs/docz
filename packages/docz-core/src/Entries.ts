@@ -11,25 +11,25 @@ import * as paths from './config/paths'
 
 import { traverseAndAssign } from './utils/traverse'
 import { Entry, convertToAst } from './Entry'
-import { Plugin, IPluginFactory } from './Plugin'
+import { Plugin, PluginFactory } from './Plugin'
 
-const hasImport = (path: NodePath<any>): boolean =>
-  path.isImportDeclaration() &&
-  path.node &&
-  path.node.source &&
-  path.node.source.value === 'docz'
+const hasImport = (filepath: NodePath<any>): boolean =>
+  filepath.isImportDeclaration() &&
+  filepath.node &&
+  filepath.node.source &&
+  filepath.node.source.value === 'docz'
 
-const hasDocFn = (path: NodePath<any>): boolean =>
-  path.node.specifiers &&
-  path.node.specifiers.some(
+const hasDocFn = (filepath: NodePath<any>): boolean =>
+  filepath.node.specifiers &&
+  filepath.node.specifiers.some(
     (node: NodePath<any>) =>
       t.isImportSpecifier(node) && node.imported.name === 'doc'
   )
 
-const checkImport = traverseAndAssign<NodePath<t.Node>, boolean>(
-  path => hasImport(path) && hasDocFn(path),
-  path => true
-)
+const checkImport = traverseAndAssign<NodePath<t.Node>, boolean>({
+  assign: () => true,
+  when: p => hasImport(p) && hasDocFn(p),
+})
 
 const isFile = (entry: string) => checkImport(convertToAst(entry))
 
@@ -58,20 +58,43 @@ const touch = (file: string, raw: string) => {
 const compiled = (file: string) =>
   compile(fs.readFileSync(path.join(paths.templates, file), 'utf-8'))
 
-const propOf = (arr: any[], method: keyof IPluginFactory) =>
+const propOf = (arr: any[], method: keyof PluginFactory) =>
   arr && arr.map(p => p[method]).filter(m => m)
 
 const app = compiled('app.tpl.js')
 const js = compiled('index.tpl.js')
 const html = compiled('index.tpl.html')
 
-export interface IGenerateFilesParams {
+export interface GenerateFilesParams {
   entries: Entry[]
   plugins: Plugin[]
   theme: string
 }
 
 export class Entries {
+  public static generateFiles(args: GenerateFilesParams): void {
+    const { entries, theme, plugins } = args
+
+    touch(paths.indexHtml, html({}))
+
+    touch(
+      paths.appJs,
+      app({
+        ENTRIES: entries,
+        THEME: theme,
+        WRAPPERS: propOf(plugins, 'wrapper'),
+      })
+    )
+
+    touch(
+      paths.indexJs,
+      js({
+        AFTER_RENDERS: propOf(plugins, 'afterRender'),
+        BEFORE_RENDERS: propOf(plugins, 'beforeRender'),
+      })
+    )
+  }
+
   public files: string[]
   public all: Entry[]
 
@@ -85,30 +108,13 @@ export class Entries {
     this.all = files.filter(isFile).map(file => new Entry({ file, src }))
   }
 
-  public map() {
-    return this.all.reduce((obj: any, entry: Entry) => {
-      return Object.assign({}, obj, { [entry.filepath]: entry.name })
-    }, {})
-  }
-
-  static generateFiles({ entries, theme, plugins }: IGenerateFilesParams) {
-    touch(paths.indexHtml, html({}))
-
-    touch(
-      paths.appJs,
-      app({
-        THEME: theme,
-        ENTRIES: entries,
-        WRAPPERS: propOf(plugins, 'wrapper'),
-      })
-    )
-
-    touch(
-      paths.indexJs,
-      js({
-        BEFORE_RENDERS: propOf(plugins, 'beforeRender'),
-        AFTER_RENDERS: propOf(plugins, 'afterRender'),
-      })
+  public map(): Record<string, string> {
+    return this.all.reduce(
+      (obj: any, entry: Entry) => ({
+        ...obj,
+        [entry.filepath]: entry.name,
+      }),
+      {}
     )
   }
 }

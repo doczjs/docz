@@ -4,17 +4,23 @@
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
+  "typings": "dist/index.d.ts",
   "source": "src/index.ts",
-  "typings": "./dist/index.d.ts",
+  "files": [
+    "dist/",
+    "package.json",
+    "README.md"
+  ],
   "scripts": {
-    "dev": "libundler watch --ts -e all",
-    "build": "libundler build --ts -e all -c -sm",
-    "fix": "run-s fix:*",
+    "dev": "libundler watch --ts --e all",
+    "build": "libundler build --ts --e all --c",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
-    "fix:tslint": "tslint --fix --project ."
+    "fix:tslint": "yarn run tslint --fix",
+    "tslint": "tslint --project ."
   },
   "dependencies": {
     "@types/chokidar": "^1.7.5",
+    "@types/yargs": "^11.0.0",
     "art-template": "^4.12.2",
     "babel-traverse": "^6.26.0",
     "babel-types": "^6.26.0",
@@ -26,7 +32,8 @@
     "load-cfg": "^0.0.1",
     "mkdirp": "^0.5.1",
     "prettier": "^1.12.0",
-    "resolve": "^1.7.1"
+    "resolve": "^1.7.1",
+    "yargs": "^11.0.0"
   },
   "devDependencies": {
     "@types/babel-traverse": "^6.25.3",
@@ -36,6 +43,6 @@
     "@types/mkdirp": "^0.5.2",
     "@types/prettier": "^1.12.0",
     "@types/resolve": "^0.0.7",
-    "shelljs": "^0.8.1"
+    "rollup-plugin-cpy": "^1.0.0"
   }
 }

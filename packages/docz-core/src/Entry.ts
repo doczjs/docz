@@ -8,35 +8,35 @@ import { traverseAndAssign } from './utils/traverse'
 
 export const convertToAst = (entry: string): File =>
   parse(fs.readFileSync(entry, 'utf-8'), {
-    sourceType: 'module',
     plugins: ['jsx'],
+    sourceType: 'module',
   })
 
-const getNameFromDoc = traverseAndAssign<any, string>(
-  path => path.isCallExpression() && path.node.callee.name === 'doc',
-  path => path.node.arguments[0].value
-)
+const getNameFromDoc = traverseAndAssign<any, string>({
+  assign: p => p.node.arguments[0].value,
+  when: p => p.isCallExpression() && p.node.callee.name === 'doc',
+})
 
-export interface IEntryConstructor {
+export interface EntryConstructor {
   file: string
   src: string
 }
 
 export class Entry {
+  public static parseName(file: string): string | undefined {
+    const ast = convertToAst(file)
+    return getNameFromDoc(ast)
+  }
+
   public name: string
   public filepath: string
 
-  constructor({ src, file }: IEntryConstructor) {
+  constructor({ src, file }: EntryConstructor) {
     const ast = convertToAst(file)
     const name = getNameFromDoc(ast) || ''
     const filepath = path.relative(paths.root, file)
 
     this.name = name
     this.filepath = filepath
-  }
-
-  static parseName(file: string) {
-    const ast = convertToAst(file)
-    return getNameFromDoc(ast)
   }
 }

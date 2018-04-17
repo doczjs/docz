@@ -1,4 +1,7 @@
 import React from 'react'
 import { doc } from 'docz'
 
-doc('Getting Started').section(() => <div>Hello world from docz!</div>)
+doc('Getting Started')
+  .order(1)
+  .route('/')
+  .section(() => <div>This is just the Home!</div>)

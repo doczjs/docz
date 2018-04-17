@@ -9,6 +9,11 @@ const sortByOrder = (a: Doc, b: Doc) => b.docOrder - a.docOrder
 
 export const Docs: SFC<DocsProps> = ({ children }) => (
   <Subscribe to={[DocsContainer]}>
-    {({ state }) => children(state.docs.sort(sortByOrder))}
+    {({ state }) => {
+      const docs: Doc[] = Array.from(state.docs.values())
+      const sortedDocs: Doc[] = docs.sort(sortByOrder)
+
+      return children(sortedDocs)
+    }}
   </Subscribe>
 )

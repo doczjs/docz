@@ -1,30 +1,30 @@
 import { isFn } from './utils/helpers'
 
-export type IBundlerConfig = <Config>(config: Config, dev: boolean) => Config
-export type IBundlerCompiler = <Compiler>(compiler: Compiler) => void
-export type IBundlerServer = <Server>(server: Server) => void
-export type IBeforeRender = () => void
-export type IAfterRender = () => void
-export type IWrapper = <R>(props: { children: any }) => R
+export type BundlerConfig = <Config>(config: Config, dev: boolean) => Config
+export type BundlerCompiler = <Compiler>(compiler: Compiler) => void
+export type BundlerServer = <Server>(server: Server) => void
+export type BeforeRender = () => void
+export type AfterRender = () => void
+export type Wrapper = <R>(props: { children: any }) => R
 
-export interface IPluginFactory {
-  bundlerConfig: IBundlerConfig
-  bundlerCompiler: IBundlerCompiler
-  bundlerServer: IBundlerServer
-  beforeRender: IBeforeRender
-  afterRender: IAfterRender
-  wrapper: IWrapper
+export interface PluginFactory {
+  bundlerConfig: BundlerConfig
+  bundlerCompiler: BundlerCompiler
+  bundlerServer: BundlerServer
+  beforeRender: BeforeRender
+  afterRender: AfterRender
+  wrapper: Wrapper
 }
 
 export class Plugin {
-  readonly bundlerConfig: IBundlerConfig
-  readonly bundlerCompiler: IBundlerCompiler
-  readonly bundlerServer: IBundlerServer
-  readonly beforeRender: IBeforeRender
-  readonly afterRender: IAfterRender
-  readonly wrapper: IWrapper
+  public readonly bundlerConfig: BundlerConfig
+  public readonly bundlerCompiler: BundlerCompiler
+  public readonly bundlerServer: BundlerServer
+  public readonly beforeRender: BeforeRender
+  public readonly afterRender: AfterRender
+  public readonly wrapper: Wrapper
 
-  constructor(p: IPluginFactory) {
+  constructor(p: PluginFactory) {
     this.bundlerConfig = (config: any, dev: boolean) => {
       return isFn(p.bundlerConfig) && p.bundlerConfig(config, dev)
     }
@@ -43,6 +43,6 @@ export class Plugin {
   }
 }
 
-export function createPlugin(factory: IPluginFactory) {
+export function createPlugin(factory: PluginFactory): Plugin {
   return new Plugin(factory)
 }
