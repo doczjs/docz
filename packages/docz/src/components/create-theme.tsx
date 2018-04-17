@@ -8,17 +8,15 @@ import { docsContainer } from '../DocsContainer'
 
 export const history: History = createBrowserHistory()
 
-interface ICreateThemeProps {
+interface CreateThemeProps {
   routes: {
     [key: string]: string
   }
 }
 
-interface ICreateTheme {
-  (WrappedComponent: ComponentType): ComponentType<ICreateThemeProps>
-}
+type CreateTheme = (WC: ComponentType) => ComponentType<CreateThemeProps>
 
-export const createTheme: ICreateTheme = WrappedComponent => () => (
+export const createTheme: CreateTheme = WrappedComponent => () => (
   <Router history={history}>
     <Provider inject={[docsContainer]}>
       <WrappedComponent />

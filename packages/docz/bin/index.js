@@ -3,11 +3,11 @@
 const yargs = require('yargs')
 const { Server } = require('docz-core')
 
-const exts = '{j,t}{s,sx}'
-const defaultFilesGlob = [
-  `docs/**.${exts}`,
-  `**/__docs__/*.${exts}`,
-  `**/*.doc.${exts}`,
+const EXTS = '{j,t}{s,sx}'
+const DEFAULT_FILES_GLOB = [
+  `docs/**.${EXTS}`,
+  `**/__docs__/*.${EXTS}`,
+  `**/*.doc.${EXTS}`,
 ]
 
 yargs
@@ -22,12 +22,7 @@ yargs
       })
       yargs.positional('files', {
         type: 'string',
-        default: defaultFilesGlob,
-      })
-      yargs.positional('port', {
-        alias: 'p',
-        type: 'number',
-        default: 3000,
+        default: DEFAULT_FILES_GLOB,
       })
       yargs.positional('theme', {
         type: 'string',
@@ -36,6 +31,27 @@ yargs
       yargs.positional('bundler', {
         type: 'string',
         default: 'webpack',
+      })
+      yargs.positional('port', {
+        alias: 'p',
+        type: 'number',
+        default: process.env.PORT || 3000,
+      })
+      yargs.positional('env', {
+        type: 'boolean',
+        default: process.env.NODE_ENV || 'development',
+      })
+      yargs.positional('debug', {
+        type: 'boolean',
+        default: process.env.DEBUG || false,
+      })
+      yargs.positional('protocol', {
+        type: 'string',
+        default: process.env.HTTPS === 'true' ? 'https' : 'http',
+      })
+      yargs.positional('host', {
+        type: 'string',
+        default: process.env.HOST || '0.0.0.0',
       })
     },
     argv => new Server(argv).start()

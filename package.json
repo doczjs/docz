@@ -2,6 +2,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
+    "clean": "lerna clean",
     "bs": "lerna bootstrap",
     "build": "lerna run build"
   },

@@ -1,7 +1,9 @@
+/* tslint:disable:variable-name */
 import { ulid } from 'ulid'
-import { Section, DocConstructorArgs } from 'docz'
-import { docsContainer } from './DocsContainer'
 import kebabcase from 'lodash.kebabcase'
+
+import { Section, DocConstructorArgs } from '../'
+import { docsContainer } from './DocsContainer'
 
 const isFn = (value: any): boolean => typeof value === 'function'
 

@@ -4156,7 +4156,7 @@ he@1.1.x:
   version "1.1.1"
   resolved "https://registry.npmjs.org/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
 
-history@^4.7.2:
+history@4.7.2, history@^4.7.2:
   version "4.7.2"
   resolved "https://registry.npmjs.org/history/-/history-4.7.2.tgz#22b5c7f31633c5b8021c7f4a8a954ac139ee8d5b"
   dependencies:

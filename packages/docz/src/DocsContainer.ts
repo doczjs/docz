@@ -1,23 +1,22 @@
 import { Container } from 'unstated'
-import { Doc, DocMap } from 'docz'
+
+import { Doc } from '../'
 
 interface DocsState {
-  docs: DocMap | undefined
+  docs: Doc[]
 }
 
 export class DocsContainer extends Container<DocsState> {
   constructor() {
     super()
     this.state = {
-      docs: {},
+      docs: [],
     }
   }
 
-  public addDoc(doc: Doc) {
+  public addDoc(doc: Doc): void {
     this.setState({
-      docs: Object.assign({}, this.state.docs, {
-        [`${doc.name}`]: doc,
-      }),
+      docs: this.state.docs.concat([doc]),
     })
   }
 }
