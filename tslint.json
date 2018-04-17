@@ -7,9 +7,11 @@
 
     // TODO: allow devDependencies only in **/*.spec.ts files:
     // waiting on https://github.com/palantir/tslint/pull/3708
+    "no-unused-expression": [true, "allow-fast-null-checks"],
     "no-implicit-dependencies": [true, "dev"],
     "no-duplicate-imports": false,
     "no-submodule-imports": false,
+    "no-console": false,
 
     // Recommended built-in rules
     "no-var-keyword": true,
