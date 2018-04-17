@@ -33,9 +33,9 @@ export const List = () => (
   <Docs>
     {docs => (
       <Sidebar>
-        {docs.map(({ id, name, docRoute }) => (
+        {docs.map(({ id, name, route }) => (
           <li key={id}>
-            <Link to={docRoute}>{name}</Link>
+            <Link to={route}>{name}</Link>
           </li>
         ))}
       </Sidebar>

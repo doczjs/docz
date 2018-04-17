@@ -2,12 +2,11 @@
 import { ulid } from 'ulid'
 import kebabcase from 'lodash.kebabcase'
 
-import { Section, DocConstructorArgs } from '../'
+import { isFn } from './utils/helpers'
+import { Section, DocConstructorArgs, DocObj } from '../'
 import { docsContainer } from './DocsContainer'
 
-const isFn = (value: any): boolean => typeof value === 'function'
-
-export class Doc {
+class Doc {
   private _id: string
   private _name: string
   private _description: string | null
@@ -26,7 +25,9 @@ export class Doc {
     return this
   }
 
-  // setters
+  /**
+   * setters
+   */
 
   public description(value: string): Doc {
     this._description = value
@@ -56,30 +57,23 @@ export class Doc {
     return this
   }
 
-  // getters
-
-  public get id(): string {
-    return this._id
-  }
-
   public get name(): string {
     return this._name
   }
 
-  public get sections(): Section[] {
-    return this._sections
-  }
+  /**
+   * getters
+   */
 
-  public get docDescription(): string | null {
-    return this._description
-  }
-
-  public get docRoute(): string {
-    return this._route
-  }
-
-  public get docOrder(): number {
-    return this._order
+  public toObject(): DocObj {
+    return {
+      description: this._description,
+      id: this._id,
+      name: this._name,
+      order: this._order,
+      route: this._route,
+      sections: this._sections,
+    }
   }
 }
 

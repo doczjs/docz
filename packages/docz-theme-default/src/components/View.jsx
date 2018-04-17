@@ -26,10 +26,10 @@ const Section = styled('div')`
 
 export const View = () => (
   <Preview>
-    {({ id, name, docDescription, sections }) => (
+    {({ id, name, description, sections }) => (
       <Container key={id}>
         <Title>{name}</Title>
-        {docDescription && <Description>{docDescription}</Description>}
+        {description && <Description>{description}</Description>}
         {sections &&
           sections.length > 0 &&
           sections.map(section => (

@@ -6,28 +6,29 @@ export interface Section {
   render: () => ReactNode
 }
 
-export interface DocArgs {
-  name: string
-}
-
 export interface DocConstructorArgs {
   name: string
 }
 
 export class Doc {
-  public id: string
-  public name: string
-  public sections: Section[]
-  public docDescription: string | null
-  public docRoute: string
-  public docOrder: number
-
   public constructor({ name }: DocConstructorArgs)
 
   public description(value: string): Doc
   public section(...args: any[]): Doc
   public route(value: string): Doc
   public order(num: number): Doc
+  public toObject(): DocObj
+
+  public name: string
+}
+
+export interface DocObj {
+  readonly id: string
+  readonly name: string
+  readonly sections: Section[]
+  readonly description: string | null
+  readonly route: string
+  readonly order: number
 }
 
 /**
@@ -37,13 +38,13 @@ export class Doc {
 export function createTheme(WrappedComponent: ComponentType): ComponentType
 
 export interface PreviewProps {
-  children: (doc: Doc) => ReactNode
+  children: (doc: DocObj) => ReactNode
 }
 
 export const Preview: SFC<PreviewProps>
 
 export interface DocsProps {
-  children: (docs: Doc[]) => ReactNode
+  children: (docs: DocObj[]) => ReactNode
 }
 
 export const Docs: SFC<DocsProps>
