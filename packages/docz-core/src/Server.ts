@@ -12,21 +12,26 @@ import { Plugin } from './Plugin'
 process.env.BABEL_ENV = process.env.BABEL_ENV || 'development'
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
-export interface ServerConstructor {
-  theme: string
+export interface Argv {
+  /* io args */
+  src: string
   files: string
   bundler: string
-  src: string
-  port: number
+  /* template args */
+  title: string
+  description: string
+  theme: string
+  /* bundler args */
   env: string
-  host: string
-  protocol: string
   debug: boolean
+  protocol: string
+  host: string
+  port: number
 }
 
-export interface ConfigArgs extends ServerConstructor {
-  paths: paths.Paths
-  plugins: Plugin[]
+export interface ConfigArgs extends Argv {
+  paths?: paths.Paths
+  plugins?: Plugin[]
 }
 
 export class Server {
@@ -34,7 +39,7 @@ export class Server {
   private readonly watcher: FSWatcher
   private readonly bundler: Bundler
 
-  constructor(args: ServerConstructor) {
+  constructor(args: ConfigArgs) {
     const config = load('docz', { ...args, paths, plugins: [] })
     const selectedBundler = this.getBundler(config.bundler)
     const ignoreWatch = {
@@ -75,12 +80,12 @@ export class Server {
   }
 
   private processEntries(config: ConfigArgs): void {
-    const { files, src, theme, plugins } = config
+    const { files, src } = config
     const cache = new Map()
 
     const generateFilesAndUpdateCache = (entries: Entries) => {
       cache.set('map', entries.map())
-      Entries.generateFiles({ entries: entries.all, plugins, theme })
+      entries.writeFiles(config)
     }
 
     const updateEntries = () =>

@@ -52,7 +52,7 @@ export class Bundler<C = any, S = any> {
     const dev = env === 'development'
     const initialConfig = this.config()
 
-    return Boolean(plugins) && plugins.length > 0
+    return plugins && plugins.length > 0
       ? plugins.reduce(this.reduceWithPlugins(dev), initialConfig)
       : initialConfig
   }

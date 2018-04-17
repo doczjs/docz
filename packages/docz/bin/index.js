@@ -24,18 +24,21 @@ yargs
         type: 'string',
         default: DEFAULT_FILES_GLOB,
       })
-      yargs.positional('theme', {
-        type: 'string',
-        default: 'docz-theme-default',
-      })
       yargs.positional('bundler', {
         type: 'string',
         default: 'webpack',
       })
-      yargs.positional('port', {
-        alias: 'p',
-        type: 'number',
-        default: process.env.PORT || 3000,
+      yargs.positional('title', {
+        type: 'string',
+        default: 'Docz',
+      })
+      yargs.positional('description', {
+        type: 'string',
+        default: 'My awesome design system!',
+      })
+      yargs.positional('theme', {
+        type: 'string',
+        default: 'docz-theme-default',
       })
       yargs.positional('env', {
         type: 'boolean',
@@ -52,6 +55,11 @@ yargs
       yargs.positional('host', {
         type: 'string',
         default: process.env.HOST || '0.0.0.0',
+      })
+      yargs.positional('port', {
+        alias: 'p',
+        type: 'number',
+        default: process.env.PORT || 3000,
       })
     },
     argv => new Server(argv).start()

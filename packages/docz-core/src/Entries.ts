@@ -1,37 +1,15 @@
 import * as glob from 'fast-glob'
-import * as t from 'babel-types'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as mkdir from 'mkdirp'
 import * as prettier from 'prettier'
-import { NodePath } from 'babel-traverse'
 import { compile } from 'art-template'
 
 import * as paths from './config/paths'
+import { propOf } from './utils/helpers'
 
-import { traverseAndAssign } from './utils/traverse'
-import { Entry, convertToAst } from './Entry'
-import { Plugin, PluginFactory } from './Plugin'
-
-const hasImport = (filepath: NodePath<any>): boolean =>
-  filepath.isImportDeclaration() &&
-  filepath.node &&
-  filepath.node.source &&
-  filepath.node.source.value === 'docz'
-
-const hasDocFn = (filepath: NodePath<any>): boolean =>
-  filepath.node.specifiers &&
-  filepath.node.specifiers.some(
-    (node: NodePath<any>) =>
-      t.isImportSpecifier(node) && node.imported.name === 'doc'
-  )
-
-const checkImport = traverseAndAssign<NodePath<t.Node>, boolean>({
-  assign: () => true,
-  when: p => hasImport(p) && hasDocFn(p),
-})
-
-const isFile = (entry: string) => checkImport(convertToAst(entry))
+import { Entry } from './Entry'
+import { ConfigArgs } from './Server'
 
 const mkd = (dir: string): void => {
   try {
@@ -58,43 +36,11 @@ const touch = (file: string, raw: string) => {
 const compiled = (file: string) =>
   compile(fs.readFileSync(path.join(paths.templates, file), 'utf-8'))
 
-const propOf = (arr: any[], method: keyof PluginFactory) =>
-  arr && arr.map(p => p[method]).filter(m => m)
-
 const app = compiled('app.tpl.js')
 const js = compiled('index.tpl.js')
 const html = compiled('index.tpl.html')
 
-export interface GenerateFilesParams {
-  entries: Entry[]
-  plugins: Plugin[]
-  theme: string
-}
-
 export class Entries {
-  public static generateFiles(args: GenerateFilesParams): void {
-    const { entries, theme, plugins } = args
-
-    touch(paths.indexHtml, html({}))
-
-    touch(
-      paths.appJs,
-      app({
-        ENTRIES: entries,
-        THEME: theme,
-        WRAPPERS: propOf(plugins, 'wrapper'),
-      })
-    )
-
-    touch(
-      paths.indexJs,
-      js({
-        AFTER_RENDERS: propOf(plugins, 'afterRender'),
-        BEFORE_RENDERS: propOf(plugins, 'beforeRender'),
-      })
-    )
-  }
-
   public files: string[]
   public all: Entry[]
 
@@ -105,7 +51,31 @@ export class Entries {
     )
 
     this.files = files
-    this.all = files.filter(isFile).map(file => new Entry({ file, src }))
+    this.all = files.filter(Entry.check).map(file => new Entry({ file, src }))
+  }
+
+  public writeFiles(args: Partial<ConfigArgs>): void {
+    const { theme, plugins, title, description } = args
+
+    const rawIndexHtml = html({
+      DESCRIPTION: description,
+      TITLE: title,
+    })
+
+    const rawAppJs = app({
+      ENTRIES: this.all,
+      THEME: theme,
+      WRAPPERS: propOf(plugins, 'wrapper'),
+    })
+
+    const rawIndexJs = js({
+      AFTER_RENDERS: propOf(plugins, 'afterRender'),
+      BEFORE_RENDERS: propOf(plugins, 'beforeRender'),
+    })
+
+    touch(paths.indexHtml, rawIndexHtml)
+    touch(paths.appJs, rawAppJs)
+    touch(paths.indexJs, rawIndexJs)
   }
 
   public map(): Record<string, string> {

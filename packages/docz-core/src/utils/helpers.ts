@@ -24,3 +24,7 @@ export function pick<R = object>(props: string[], obj: any): R {
 
   return newObj as R
 }
+
+export function propOf<T>(arr: any[] | undefined, method: keyof T): any {
+  return arr && arr.map(p => p[method]).filter(m => m)
+}
