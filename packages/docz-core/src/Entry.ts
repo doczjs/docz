@@ -8,11 +8,17 @@ import { parse } from 'babylon'
 import * as paths from './config/paths'
 import { traverseAndAssign } from './utils/traverse'
 
-const convertToAst = (entry: string): File =>
-  parse(fs.readFileSync(entry, 'utf-8'), {
-    plugins: ['jsx'],
-    sourceType: 'module',
-  })
+const convertToAst = (entry: string): File | null => {
+  try {
+    return parse(fs.readFileSync(entry, 'utf-8'), {
+      plugins: ['jsx'],
+      sourceType: 'module',
+    })
+  } catch (err) {
+    console.log(err)
+    return null
+  }
+}
 
 const getNameFromDoc = traverseAndAssign<any, string>({
   assign: p => p.node.arguments[0].value,
@@ -43,21 +49,22 @@ export interface EntryConstructor {
 }
 
 export class Entry {
-  public static parseName(file: string): string | undefined {
+  public static parseName(file: string): string | undefined | null {
     const ast = convertToAst(file)
-    return getNameFromDoc(ast)
+    return ast && getNameFromDoc(ast)
   }
 
-  public static check(entry: string): boolean | undefined {
-    return checkImport(convertToAst(entry))
+  public static check(entry: string): boolean | undefined | null {
+    const ast = convertToAst(entry)
+    return ast && checkImport(ast)
   }
 
-  public name: string
+  public name: string | undefined
   public filepath: string
 
   constructor({ src, file }: EntryConstructor) {
     const ast = convertToAst(file)
-    const name = getNameFromDoc(ast) || ''
+    const name = ast ? getNameFromDoc(ast) : ''
     const filepath = path.relative(paths.root, file)
 
     this.name = name
