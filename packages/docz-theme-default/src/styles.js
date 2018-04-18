@@ -1,6 +1,6 @@
 import { css, injectGlobal } from 'emotion'
 
-const BACKGROUND = '#white'
+const BACKGROUND = 'white'
 const TEXT_COLOR = '#2f3542'
 const LINK_COLOR = '#5352ed'
 
@@ -24,6 +24,8 @@ injectGlobal`
   }
 
   body {
+    margin: 0;
+    padding: 0;
     font-family: 'Noto Sans', sans-serif;
     font-size: 16px;
     line-height: 1.5;

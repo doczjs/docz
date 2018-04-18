@@ -6,7 +6,7 @@ import { Preview } from 'docz'
 const Container = styled('div')`
   width: 960px;
   max-width: 960px;
-  padding: 50px 20px;
+  padding: 50px;
   margin: 0 auto;
 `
 

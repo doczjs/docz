@@ -2,14 +2,15 @@
 import { ulid } from 'ulid'
 import kebabcase from 'lodash.kebabcase'
 
-import { isFn } from './utils/helpers'
-import { Section, DocConstructorArgs, DocObj } from '../'
+import { isFn, safeUrl } from './utils/helpers'
+import { Section, DocConstructorArgs, DocObj, Group, GroupObj } from '../'
 import { docsContainer } from './DocsContainer'
 
 class Doc {
   private _id: string
   private _name: string
   private _description: string | null
+  private _group: GroupObj | null
   private _sections: Section[]
   private _route: string
   private _order: number
@@ -18,6 +19,7 @@ class Doc {
     this._id = ulid()
     this._name = name
     this._description = null
+    this._group = null
     this._sections = []
     this._route = `/${kebabcase(name)}`
     this._order = 0
@@ -28,6 +30,20 @@ class Doc {
   /**
    * setters
    */
+
+  public group(group: Group): Doc {
+    const groupObj = group.toObject()
+
+    this._group = groupObj
+    this._route = groupObj.route + this._route
+
+    return this
+  }
+
+  public order(num: number): Doc {
+    this._order = num
+    return this
+  }
 
   public description(value: string): Doc {
     this._description = value
@@ -48,12 +64,7 @@ class Doc {
   }
 
   public route(path: string): Doc {
-    this._route = encodeURI(path.replace(/\s/g, ''))
-    return this
-  }
-
-  public order(num: number): Doc {
-    this._order = num
+    this._route = safeUrl(path)
     return this
   }
 
@@ -68,6 +79,7 @@ class Doc {
   public toObject(): DocObj {
     return {
       description: this._description,
+      group: this._group,
       id: this._id,
       name: this._name,
       order: this._order,

@@ -5,9 +5,9 @@ import { createTheme } from 'docz'
 import { injectGlobal } from 'emotion'
 import { Helmet } from 'react-helmet'
 
-import { List } from './components/List'
-import { View } from './components/View'
 import { Main } from './components/Main'
+import { Menu } from './components/Menu'
+import { View } from './components/View'
 
 export const Theme = createTheme(() => (
   <React.Fragment>
@@ -18,7 +18,7 @@ export const Theme = createTheme(() => (
       />
     </Helmet>
     <Main>
-      <List />
+      <Menu />
       <View />
     </Main>
   </React.Fragment>
