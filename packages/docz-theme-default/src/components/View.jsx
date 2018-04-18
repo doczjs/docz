@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react'
+import { Route } from 'react-router-dom'
 import styled from 'react-emotion'
 
-import { Preview } from 'docz'
+import { Docs } from 'docz'
 
 const Container = styled('div')`
   width: 960px;
@@ -24,21 +25,32 @@ const Section = styled('div')`
   margin-top: 50px;
 `
 
+const Doc = ({ id, name, description, sections }) => (
+  <Container>
+    <Title>{name}</Title>
+    {description && <Description>{description}</Description>}
+    {sections &&
+      sections.length > 0 &&
+      sections.map(section => (
+        <Section key={section.id}>
+          {section.title && <h3>{section.title}</h3>}
+          <div>{section.render()}</div>
+        </Section>
+      ))}
+  </Container>
+)
+
 export const View = () => (
-  <Preview>
-    {({ id, name, description, sections }) => (
-      <Container key={id}>
-        <Title>{name}</Title>
-        {description && <Description>{description}</Description>}
-        {sections &&
-          sections.length > 0 &&
-          sections.map(section => (
-            <Section key={section.id}>
-              {section.title && <h3>{section.title}</h3>}
-              <div>{section.render()}</div>
-            </Section>
-          ))}
-      </Container>
-    )}
-  </Preview>
+  <Docs>
+    {({ docs }) =>
+      docs.map(doc => (
+        <Route
+          exact
+          key={doc.id}
+          path={doc.route}
+          render={() => <Doc {...doc} />}
+        />
+      ))
+    }
+  </Docs>
 )

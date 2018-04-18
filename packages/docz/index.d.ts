@@ -60,19 +60,16 @@ export interface DocObj {
 
 export function createTheme(WrappedComponent: ComponentType): ComponentType
 
-export interface PreviewProps {
-  children: (doc: DocObj) => ReactNode
-}
-
-export const Preview: SFC<PreviewProps>
-
-export interface LinksObj {
+export interface DocsRenderProps {
   groups: GroupObj[]
   docs: DocObj[]
 }
 
-export interface LinksProps {
-  children: ({ groups, docs }: LinksObj) => ReactNode
+export interface DocsProps {
+  children: ({ groups, docs }: DocsRenderProps) => ReactNode
 }
 
-export const Links: SFC<LinksProps>
+export const Docs: SFC<DocsProps>
+
+export function doc(name: string): Doc
+export function group(name: string): Group

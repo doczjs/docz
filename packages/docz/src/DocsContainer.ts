@@ -1,6 +1,6 @@
 import { Container } from 'unstated'
 
-import { Doc, DocObj, LinksObj, Group, GroupObj } from '../'
+import { Doc, DocObj, DocsRenderProps, Group, GroupObj } from '../'
 
 export interface DocsState {
   docs: Map<string, Doc>
@@ -28,11 +28,7 @@ export class DocsContainer extends Container<DocsState> {
     })
   }
 
-  public docsObject(): DocObj[] {
-    return Array.from(this.state.docs.values()).map(doc => doc.toObject())
-  }
-
-  public links(): LinksObj {
+  public docs(): DocsRenderProps {
     const sortByOrder = (a: DocObj | GroupObj, b: DocObj | GroupObj) =>
       b.order - a.order
 

@@ -16,8 +16,9 @@
     "build": "libundler build --c --sm"
   },
   "dependencies": {
-    "emotion-normalize": "^7.0.1",
     "docz": "^0.0.1",
+    "emotion-normalize": "^7.0.1",
+    "history": "^4.7.2",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-helmet": "^5.2.0",

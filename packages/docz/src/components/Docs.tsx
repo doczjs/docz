@@ -2,14 +2,12 @@ import * as React from 'react'
 import { SFC } from 'react'
 import { Subscribe } from 'unstated'
 
-import { LinksProps } from '../../'
+import { DocsProps } from '../../'
 import { DocsContainer } from '../DocsContainer'
 import { isFn } from '../utils/helpers'
 
-export const Links: SFC<LinksProps> = ({ children }) => (
+export const Docs: SFC<DocsProps> = ({ children }) => (
   <Subscribe to={[DocsContainer]}>
-    {(container: DocsContainer) =>
-      isFn(children) && children(container.links())
-    }
+    {(container: DocsContainer) => isFn(children) && children(container.docs())}
   </Subscribe>
 )

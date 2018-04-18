@@ -6,8 +6,8 @@
     "start": "docz start"
   },
   "dependencies": {
-    "emotion": "^9.1.1",
     "docz": "^0.0.1",
+    "emotion": "^9.1.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",

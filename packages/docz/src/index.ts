@@ -1,5 +1,4 @@
-export { Links } from './components/Links'
-export { Preview } from './components/Preview'
+export { Docs } from './components/Docs'
 export { createTheme } from './components/create-theme'
 
 export { doc } from './Doc'

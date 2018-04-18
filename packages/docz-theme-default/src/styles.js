@@ -10,7 +10,8 @@ const selection = css`
 `
 
 injectGlobal`
-  @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700');
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css')
 
   *, *:before, *:after {
     box-sizing: border-box;
@@ -26,7 +27,7 @@ injectGlobal`
   body {
     margin: 0;
     padding: 0;
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     line-height: 1.5;
     background: ${BACKGROUND};
