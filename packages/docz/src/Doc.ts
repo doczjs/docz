@@ -48,7 +48,7 @@ class Doc {
   }
 
   public route(path: string): Doc {
-    this._route = path
+    this._route = encodeURI(path.replace(/\s/g, ''))
     return this
   }
 
