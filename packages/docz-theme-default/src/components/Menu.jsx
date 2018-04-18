@@ -4,12 +4,16 @@ import styled, { css } from 'react-emotion'
 
 import { Docs } from 'docz'
 
-const BORDER_COLOR = '#ced6e0'
-const LINK_COLOR = '#2f3542'
 const PURPLE = '#6554C0'
+const BLUE = '#0052CC'
+const OCEAN_BLUE = '#00B8D9'
+const ORANGE = '#FF5630'
 const GRAY = '#EAECEF'
 const GRAY_LIGHT = '#F4F5F7'
 const GRAY_MEDIUM = '#C1C7D0'
+const GRAY_DARK = '#172B4D'
+
+const BORDER_COLOR = '#ced6e0'
 
 const Sidebar = styled('div')`
   padding: 15px 0;
@@ -47,23 +51,33 @@ const LinkStyled = styled(BaseLink)`
   color: white;
   background: transparent;
   border-radius: 3px;
+  transition: background 0.3s;
 
   &,
   &:visited {
-    color: ${LINK_COLOR};
+    color: ${GRAY_DARK};
   }
 
   &.active {
     background: ${GRAY};
   }
 
-  &::before {
+  &:before {
     position: absolute;
+    content: '';
     top: 0;
     left: 0;
-    width: 5px;
+    width: 4px;
     height: 100%;
     background: ${PURPLE};
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 0.3s;
+  }
+
+  &:hover::before,
+  &.active:before {
+    transform: scaleX(1);
   }
 `
 
