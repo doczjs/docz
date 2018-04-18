@@ -15,6 +15,7 @@ export function traverseAndAssign<P = any, V = any>({
   when,
 }: TraverseParams<P, V>): TraverseReturn<V> {
   return ast => {
+    // tslint:disable-next-line
     let value
 
     traverse(ast, {

@@ -30,7 +30,7 @@ export interface Argv {
 }
 
 export interface ConfigArgs extends Argv {
-  paths?: paths.Paths
+  paths: paths.Paths
   plugins?: Plugin[]
 }
 

@@ -4,17 +4,14 @@
     "interface-name": [true, "never-prefix"],
     "ordered-imports": false,
     "object-literal-sort-keys": [true, "shorthand-first"],
-
-    // TODO: allow devDependencies only in **/*.spec.ts files:
-    // waiting on https://github.com/palantir/tslint/pull/3708
+    "no-console": false,
     "no-unused-expression": [true, "allow-fast-null-checks"],
     "no-implicit-dependencies": [true, "dev"],
     "no-duplicate-imports": false,
     "no-submodule-imports": false,
-    "no-console": false,
-
-    // Recommended built-in rules
-    "no-var-keyword": true,
+    "no-shadowed-variable": false,
+    "max-classes-per-file": false,
+    "no-var-keyword": false,
     "no-parameter-reassignment": true,
     "typedef": [true, "call-signature"]
   }
