@@ -4,7 +4,7 @@ module.exports = {
   plugins: [
     copy([
       {
-        files: 'templates/*.{js,html}',
+        files: 'templates/*.{js,html,json}',
         dest: 'dist/templates',
       },
     ]),

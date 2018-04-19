@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as mkdir from 'mkdirp'
 import { compile } from 'art-template'
-import { ulid } from 'ulid'
+import stringify from 'json-stringify-pretty-compact'
 
 import * as paths from './config/paths'
 import { propOf } from './utils/helpers'
@@ -21,7 +21,7 @@ const mkd = (dir: string): void => {
 }
 
 const touch = (file: string, raw: string) => {
-  const content = /js/.test(path.extname(file)) ? format(raw) : raw
+  const content = /js$/.test(path.extname(file)) ? format(raw) : raw
 
   mkd(paths.docz)
   fs.writeFileSync(file, content, 'utf-8')
@@ -36,50 +36,87 @@ const html = compiled('index.tpl.html')
 
 export class Entries {
   public files: string[]
-  public all: Entry[]
+  public config: ConfigArgs
+  public entries: Entry[]
 
-  constructor(pattern: string, src: string) {
+  constructor(config: ConfigArgs) {
+    const { files: pattern } = config
+
     const ignoreGlob = '!node_modules'
     const files: string[] = glob.sync(
       Array.isArray(pattern) ? [...pattern, ignoreGlob] : [pattern, ignoreGlob]
     )
 
     this.files = files
-    this.all = files.filter(Entry.check).map(file => new Entry(file))
+    this.config = config
+    this.entries = files.filter(Entry.check).map(file => new Entry(file))
   }
 
-  public writeFiles(args: Partial<ConfigArgs>): void {
-    const { theme, plugins, title, description } = args
+  public find(file: string): Entry | undefined {
+    return this.entries.find(entry => entry.filepath === file)
+  }
+
+  public findIndex(file: string): number {
+    return this.entries.findIndex(entry => entry.filepath === file)
+  }
+
+  public add(entry: Entry): void {
+    this.entries.push(entry)
+  }
+
+  public remove(file: string): void {
+    const idx = this.findIndex(file)
+
+    if (idx > -1) {
+      this.entries.splice(idx, 1)
+    }
+  }
+
+  public update(file: string): void {
+    const idx = this.findIndex(file)
+    const entry = new Entry(file)
+
+    if (idx > -1) {
+      this.entries.splice(idx, 1, entry)
+    }
+  }
+
+  public write(): void {
+    const { plugins, title, description, theme } = this.config
+
+    const wrappers = propOf(plugins, 'wrapper')
+    const afterRenders = propOf(plugins, 'afterRender')
+    const beforeRenders = propOf(plugins, 'beforeRender')
+    const imports = this.entries.map(e => e.filepath.replace('.jsx', ''))
 
     const rawIndexHtml = html({
-      TITLE: title,
-      DESCRIPTION: description,
-      ENTRIES_RAW: JSON.stringify(this.map('name')),
+      title,
+      description,
     })
 
     const rawAppJs = app({
-      ENTRIES: this.all,
-      THEME: theme,
-      WRAPPERS: propOf(plugins, 'wrapper'),
+      imports,
+      theme,
+      wrappers,
     })
 
     const rawIndexJs = js({
-      AFTER_RENDERS: propOf(plugins, 'afterRender'),
-      BEFORE_RENDERS: propOf(plugins, 'beforeRender'),
+      afterRenders,
+      beforeRenders,
     })
 
     touch(paths.indexHtml, rawIndexHtml)
     touch(paths.appJs, rawAppJs)
     touch(paths.indexJs, rawIndexJs)
-  }
 
-  public map(key: keyof Entry = 'filepath'): Record<string, string> {
-    return this.all.reduce(
-      (obj: any, entry: Entry) => ({
-        ...obj,
-        [entry[key]]: { id: ulid(), ...entry },
-      }),
-      {}
+    touch(
+      paths.dataJson,
+      stringify({
+        title,
+        description,
+        theme,
+        entries: this.entries,
+      })
     )
   }
 }

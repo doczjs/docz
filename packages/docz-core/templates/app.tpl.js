@@ -1,10 +1,9 @@
-<% ENTRIES.forEach(function(entry) { %>import '<%- entry.filepath %>'
-<% }); %>
 import React from 'react'
 import { hot } from 'react-hot-loader'
-import { Theme } from '<%- THEME %>'
+import { Theme } from '<%- theme %>'
+import data from './data.json'
 
-const _wrappers = [<% if (WRAPPERS) {%><%- WRAPPERS %><%}%>]
+const _wrappers = [<% if (wrappers) {%><%- wrappers %><%}%>]
 
 const recursiveWrappers = ([Wrapper, ...rest], props) => (
   <Wrapper {...props}>
@@ -17,7 +16,7 @@ const Wrapper = props =>
 
 const WrappedTheme = () => (
   <Wrapper>
-    <Theme />
+    <Theme data={data} />
   </Wrapper>
 )
 

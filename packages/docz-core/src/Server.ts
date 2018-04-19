@@ -1,7 +1,6 @@
 import { load } from 'load-cfg'
 import { FSWatcher } from 'chokidar'
 import * as chokidar from 'chokidar'
-import get from 'lodash.get'
 import del from 'del'
 
 import * as paths from './config/paths'
@@ -81,30 +80,31 @@ export class Server {
   }
 
   private processEntries(config: ConfigArgs): void {
-    const { files, src } = config
-    const cache = new Map()
+    const entries = new Entries(config)
 
-    const generateFilesAndUpdateCache = (entries: Entries) => {
-      cache.set('map', entries.map())
-      entries.writeFiles(config)
+    const onUnlink = (file: string) => {
+      entries.remove(file)
+      entries.write()
     }
 
-    const updateEntries = () =>
-      generateFilesAndUpdateCache(new Entries(files, src))
+    const onChange = (file: string) => {
+      const name = Entry.parseName(file)
+      const entry = entries.find(file)
 
-    const parseToUpdate = (path: string) => {
-      const entry = get(cache.get('map'), path)
-      const newEntry = new Entry(path)
-      const newEntries = new Entries(files, src)
+      if (name && !entry) {
+        entries.add(new Entry(file))
+        entries.write()
+      }
 
-      if (newEntry.diff(entry) && newEntries.files.includes(path)) {
-        generateFilesAndUpdateCache(newEntries)
+      if (name && entry) {
+        entries.update(file)
+        entries.write()
       }
     }
 
-    this.watcher.on('unlink', updateEntries)
-    this.watcher.on('change', parseToUpdate)
+    this.watcher.on('unlink', onUnlink)
+    this.watcher.on('change', onChange)
 
-    generateFilesAndUpdateCache(new Entries(files, src))
+    entries.write()
   }
 }

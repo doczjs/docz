@@ -1,12 +1,12 @@
 import * as path from 'path'
 import * as t from 'babel-types'
+import { ulid } from 'ulid'
 import { NodePath } from 'babel-traverse'
 import generate from 'babel-generator'
 import get from 'lodash.get'
 
 import * as paths from './config/paths'
 import { traverseAndAssign, traverseAndAssignEach } from './utils/traverse'
-import { isArrEqual } from './utils/helpers'
 import { format } from './utils/format'
 
 const hasImport = (p: NodePath<any>): boolean =>
@@ -64,19 +64,15 @@ export class Entry {
     return sections && sections.reverse()
   }
 
+  public id: string
   public filepath: string
   public name: string | null
   public sections: string[] | null
 
   constructor(file: string) {
+    this.id = ulid()
     this.filepath = path.relative(paths.root, file)
     this.name = Entry.parseName(file)
     this.sections = Entry.parseSections(file)
-  }
-
-  public diff(entry: any): boolean {
-    return (
-      this.name !== entry.name || !isArrEqual(this.sections, entry.sections)
-    )
   }
 }
