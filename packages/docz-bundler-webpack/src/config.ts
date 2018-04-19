@@ -3,10 +3,11 @@ import * as webpack from 'webpack'
 import { Configuration } from 'webpack'
 import { ConfigArgs } from 'docz-core'
 import { load } from 'load-cfg'
-import Webpackbar from 'webpackbar'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import Config from 'webpack-chain'
 import merge from 'deepmerge'
+import Webpackbar from 'webpackbar'
+import Config from 'webpack-chain'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import friendlyErrors from 'friendly-errors-webpack-plugin'
 
 const INLINE_LIMIT = 10000
 
@@ -183,7 +184,7 @@ export const createConfig = (args: ConfigArgs) => (): Configuration => {
         template: paths.indexHtml,
       }])
 
-  config.when(!debug, cfg =>
+  config.when(!debug, cfg =>{
     cfg
       .plugin('webpackbar')
       .use(Webpackbar, [{
@@ -191,7 +192,10 @@ export const createConfig = (args: ConfigArgs) => (): Configuration => {
         compiledIn: false,
         name: 'Client',
       }])
-  )
+    cfg
+      .plugin('friendly-errors')
+      .use(friendlyErrors)
+  })
 
   return config.toConfig()
 }

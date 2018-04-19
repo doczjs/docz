@@ -2,12 +2,17 @@ import { ConfigArgs } from 'docz-core'
 import { Application } from 'express'
 import errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware'
 
-export const devServerConfig = ({ paths, host, protocol }: ConfigArgs) => ({
+export const devServerConfig = ({
+  paths,
+  host,
+  debug,
+  protocol,
+}: ConfigArgs) => ({
   host,
   before(app: Application): void {
-    app.use(errorOverlayMiddleware())
+    !debug && app.use(errorOverlayMiddleware())
   },
-  clientLogLevel: 'none',
+  clientLogLevel: !debug ? 'none' : 'error',
   compress: true,
   contentBase: paths.docz,
   historyApiFallback: {
@@ -15,10 +20,10 @@ export const devServerConfig = ({ paths, host, protocol }: ConfigArgs) => ({
   },
   hot: true,
   https: protocol === 'https',
-  noInfo: true,
+  noInfo: !debug,
   overlay: false,
   publicPath: '/',
-  quiet: true,
+  quiet: !debug,
   stats: {
     chunkModules: false,
     chunks: false,
