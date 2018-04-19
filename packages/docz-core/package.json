@@ -19,30 +19,33 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@types/chokidar": "^1.7.5",
-    "@types/yargs": "^11.0.0",
     "art-template": "^4.12.2",
+    "babel-file-loader": "^1.0.3",
+    "babel-generator": "^6.26.1",
     "babel-traverse": "^6.26.0",
     "babel-types": "^6.26.0",
-    "babylon": "^6.18.0",
     "chokidar": "^2.0.3",
     "del": "3.0.0",
     "express": "^4.16.3",
     "fast-glob": "^2.2.0",
     "load-cfg": "^0.0.1",
+    "lodash.get": "^4.4.2",
     "mkdirp": "^0.5.1",
     "prettier": "^1.12.0",
     "resolve": "^1.7.1",
+    "ulid": "^2.3.0",
     "yargs": "^11.0.0"
   },
   "devDependencies": {
     "@types/babel-traverse": "^6.25.3",
-    "@types/babylon": "^6.16.2",
+    "@types/chokidar": "^1.7.5",
     "@types/del": "^3.0.1",
     "@types/express": "^4.11.1",
+    "@types/lodash.get": "^4.4.3",
     "@types/mkdirp": "^0.5.2",
     "@types/prettier": "^1.12.0",
     "@types/resolve": "^0.0.7",
+    "@types/yargs": "^11.0.0",
     "rollup-plugin-cpy": "^1.0.0"
   }
 }

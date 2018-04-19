@@ -1,6 +1,7 @@
 import { load } from 'load-cfg'
 import { FSWatcher } from 'chokidar'
 import * as chokidar from 'chokidar'
+import get from 'lodash.get'
 import del from 'del'
 
 import * as paths from './config/paths'
@@ -92,11 +93,11 @@ export class Server {
       generateFilesAndUpdateCache(new Entries(files, src))
 
     const parseToUpdate = (path: string) => {
-      const name = Entry.parseName(path)
-      const entry = cache.get('map')[path]
+      const entry = get(cache.get('map'), path)
+      const newEntry = new Entry(path)
       const newEntries = new Entries(files, src)
 
-      if (name && name !== entry && newEntries.files.includes(path)) {
+      if (newEntry.diff(entry) && newEntries.files.includes(path)) {
         generateFilesAndUpdateCache(newEntries)
       }
     }

@@ -2,11 +2,12 @@ import * as glob from 'fast-glob'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as mkdir from 'mkdirp'
-import * as prettier from 'prettier'
 import { compile } from 'art-template'
+import { ulid } from 'ulid'
 
 import * as paths from './config/paths'
 import { propOf } from './utils/helpers'
+import { format } from './utils/format'
 
 import { Entry } from './Entry'
 import { ConfigArgs } from './Server'
@@ -18,13 +19,6 @@ const mkd = (dir: string): void => {
     mkdir.sync(dir)
   }
 }
-
-const format = (raw: string) =>
-  prettier.format(raw, {
-    semi: false,
-    singleQuote: true,
-    trailingComma: 'all',
-  })
 
 const touch = (file: string, raw: string) => {
   const content = /js/.test(path.extname(file)) ? format(raw) : raw
@@ -51,15 +45,16 @@ export class Entries {
     )
 
     this.files = files
-    this.all = files.filter(Entry.check).map(file => new Entry({ file, src }))
+    this.all = files.filter(Entry.check).map(file => new Entry(file))
   }
 
   public writeFiles(args: Partial<ConfigArgs>): void {
     const { theme, plugins, title, description } = args
 
     const rawIndexHtml = html({
-      DESCRIPTION: description,
       TITLE: title,
+      DESCRIPTION: description,
+      ENTRIES_RAW: JSON.stringify(this.map('name')),
     })
 
     const rawAppJs = app({
@@ -78,11 +73,11 @@ export class Entries {
     touch(paths.indexJs, rawIndexJs)
   }
 
-  public map(): Record<string, string> {
+  public map(key: keyof Entry = 'filepath'): Record<string, string> {
     return this.all.reduce(
       (obj: any, entry: Entry) => ({
         ...obj,
-        [entry.filepath]: entry.name,
+        [entry[key]]: { id: ulid(), ...entry },
       }),
       {}
     )

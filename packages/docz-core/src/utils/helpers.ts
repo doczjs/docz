@@ -28,3 +28,15 @@ export function pick<R = object>(props: string[], obj: any): R {
 export function propOf<T>(arr: any[] | undefined, method: keyof T): any {
   return arr && arr.map(p => p[method]).filter(m => m)
 }
+
+export function isArrEqual(arr: any[] | null, to: any[] | null): boolean {
+  if (!arr || !to || arr.length !== to.length) return false
+  // tslint:disable
+  let equals = false
+
+  for (let i = 0; i < arr.length; i++) {
+    equals = arr[i] === to[i]
+  }
+
+  return equals
+}

@@ -2,7 +2,7 @@ import { Plugin } from './Plugin'
 import { ConfigArgs } from './Server'
 
 export type TConfigFn<C> = () => C
-export type TCompilerFn<C> = (config: C) => Promise<any>
+export type TCompilerFn<C> = (config: C) => any
 export type TServerFn<S> = (compiler: any) => S
 
 export interface CompilerOpts {
