@@ -40,10 +40,8 @@ const parseSections = traverseAndAssignEach<NodePath<t.Node>, string[]>({
     if (name === 'section' && args && args.length > 0) {
       for (const arg of args) {
         if (arg.type !== 'StringLiteral') {
-          const { code } = generate(arg.body, {})
-          const formatted: any = format(code)
-
-          return formatted.slice(1, Infinity)
+          const { code } = generate(arg.body)
+          return format(code).slice(1, Infinity) as any
         }
       }
     }

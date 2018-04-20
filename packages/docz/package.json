@@ -5,7 +5,11 @@
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
   "typings": "dist/index.d.ts",
-  "source": ["src/index.ts", "src/Doc.ts", "src/utils/helpers.ts"],
+  "source": [
+    "src/index.ts",
+    "src/Doc.ts",
+    "src/utils/helpers.ts"
+  ],
   "bin": {
     "docz": "./bin/index.js"
   },

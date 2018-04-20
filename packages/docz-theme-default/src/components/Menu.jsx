@@ -3,23 +3,16 @@ import { NavLink as BaseLink } from 'react-router-dom'
 import { Docs } from 'docz-react'
 import styled, { css } from 'react-emotion'
 
-const PURPLE = '#6554C0'
-const BLUE = '#0052CC'
-const OCEAN_BLUE = '#00B8D9'
-const ORANGE = '#FF5630'
-const GRAY = '#EAECEF'
-const GRAY_LIGHT = '#F4F5F7'
-const GRAY_MEDIUM = '#C1C7D0'
-const GRAY_DARK = '#172B4D'
+import * as colors from '../styles/colors'
 
-const BORDER_COLOR = '#ced6e0'
+const BORDER = '#ced6e0'
 
 const Sidebar = styled('div')`
   padding: 15px 0;
   width: 200px;
   height: 100vh;
-  border-right: 1px solid ${BORDER_COLOR};
-  background: ${GRAY_LIGHT};
+  border-right: 1px solid ${colors.BORDER};
+  background: ${colors.GRAY_LIGHT};
 `
 
 const List = styled('ul')`
@@ -38,7 +31,7 @@ const Category = styled('li')`
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
-  color: ${GRAY_MEDIUM};
+  color: ${colors.GRAY_MEDIUM};
 `
 
 const LinkStyled = styled(BaseLink)`
@@ -54,11 +47,11 @@ const LinkStyled = styled(BaseLink)`
 
   &,
   &:visited {
-    color: ${GRAY_DARK};
+    color: ${colors.GRAY_DARK};
   }
 
   &.active {
-    background: ${GRAY};
+    background: ${colors.GRAY};
   }
 
   &:before {
@@ -68,7 +61,7 @@ const LinkStyled = styled(BaseLink)`
     left: 0;
     width: 4px;
     height: 100%;
-    background: ${PURPLE};
+    background: ${colors.PURPLE};
     transform: scaleX(0);
     transform-origin: 0 50%;
     transition: transform 0.3s;

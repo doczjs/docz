@@ -16,13 +16,12 @@
     "build": "libundler build --c --sm"
   },
   "dependencies": {
-    "codemirror": "^5.36.0",
+    "classnames": "^2.2.5",
     "docz-react": "^0.0.1",
     "emotion-normalize": "^7.0.1",
-    "highlight.js": "^9.12.0",
     "history": "^4.7.2",
+    "prismjs": "^1.14.0",
     "react": "^16.3.1",
-    "react-codemirror2": "^4.2.1",
     "react-dom": "^16.3.1",
     "react-helmet": "^5.2.0",
     "react-router-dom": "^4.2.2"
@@ -35,6 +34,7 @@
   "devDependencies": {
     "@babel/core": "7.0.0-beta.44",
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.44",
+    "@babel/plugin-proposal-export-namespace-from": "^7.0.0-beta.44",
     "@babel/preset-env": "^7.0.0-beta.44",
     "@babel/preset-react": "^7.0.0-beta.44",
     "babel-plugin-emotion": "^9.1.0"

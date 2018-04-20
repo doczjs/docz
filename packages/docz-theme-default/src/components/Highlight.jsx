@@ -1,18 +1,36 @@
-import hljs from 'highlight.js'
-import React from 'react'
-import { css } from 'react-emotion'
+import 'prismjs'
+import 'prismjs/components/prism-jsx'
+import '../styles/prism-github'
 
-const preClass = css`
-  padding: 20px;
-  font-size: 14px;
-  border-radius: 3px;
-`
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import cx from 'classnames'
+import prism from 'prismjs'
 
-export class Highlight extends React.Component {
-  constructor(props) {
-    super(props)
-    this.setEl = this.setEl.bind(this)
+export class Highlight extends PureComponent {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    language: PropTypes.string,
   }
+
+  render() {
+    const className = cx({
+      'react-prism': true,
+      [`language-${this.props.language}`]: !!this.props.language,
+    })
+
+    return (
+      <pre
+        className={className}
+        ref={ref => {
+          this.el = ref
+        }}
+      >
+        <code>{this.props.children}</code>
+      </pre>
+    )
+  }
+
   componentDidMount() {
     this.highlightCode()
   }
@@ -22,42 +40,6 @@ export class Highlight extends React.Component {
   }
 
   highlightCode() {
-    const nodes = this.el.querySelectorAll('pre code')
-
-    for (let i = 0; i < nodes.length; i++) {
-      hljs.highlightBlock(nodes[i])
-    }
+    prism.highlightElement(this.el)
   }
-
-  setEl(el) {
-    this.el = el
-  }
-
-  render() {
-    const { children, className, element: Element, innerHTML } = this.props
-    const props = { ref: this.setEl, className }
-
-    if (innerHTML) {
-      props.dangerouslySetInnerHTML = { __html: children }
-      if (Element) {
-        return <Element {...props} />
-      }
-      return <div {...props} />
-    }
-
-    if (Element) {
-      return <Element {...props}>{children}</Element>
-    }
-    return (
-      <pre ref={this.setEl}>
-        <code className={`${preClass} ${className}`}>{children}</code>
-      </pre>
-    )
-  }
-}
-
-Highlight.defaultProps = {
-  innerHTML: false,
-  className: null,
-  element: null,
 }
