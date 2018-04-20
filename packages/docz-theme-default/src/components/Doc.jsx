@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import * as Icon from 'react-feather'
 import styled from 'react-emotion'
 
 import { Highlight } from './Highlight'
@@ -12,17 +13,39 @@ const Container = styled('div')`
 `
 
 const Title = styled('h2')`
+  position: relative;
   font-size: 48px;
-  font-weight: 400;
+  font-weight: 200;
   margin: 0;
+
+  &:before {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    width: 10%;
+    height: 4px;
+    background: ${colors.PURPLE};
+  }
+`
+
+const IconLink = styled(Icon.Link)`
+  margin-right: 10px;
+`
+
+const Filepath = styled('div')`
+  display: flex;
+  align-items: center;
+  margin: 15px 0 0;
+  color: ${colors.GRAY_MEDIUM};
 `
 
 const Description = styled('p')`
-  margin: 0 0 10px;
+  margin: 20px 0 10px;
 `
 
 const Section = styled('div')`
-  margin-top: 50px;
+  margin-top: 40px;
 `
 
 const Render = styled('div')`
@@ -34,6 +57,7 @@ const Render = styled('div')`
 `
 
 const CodeButton = styled('button')`
+  cursor: pointer;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -46,10 +70,6 @@ const CodeButton = styled('button')`
   color: ${colors.GRAY_DARK};
   text-transform: uppercase;
   transform: translate(1px, 100%);
-`
-
-const Filepath = styled('code')`
-  color: ${colors.GRAY_MEDIUM};
 `
 
 class DocSection extends Component {
@@ -78,7 +98,7 @@ class DocSection extends Component {
             <div>{section.render()}</div>
           )}
           <CodeButton onClick={this.handleToggleCode}>
-            {showingCode ? 'Hide' : 'Show'} code
+            <Icon.Code width={15} />
           </CodeButton>
         </Render>
       </Section>
@@ -99,14 +119,17 @@ export class Doc extends Component {
     this.setState({ showingCode: !this.state.showingCode })
 
   render() {
-    const { id, name, filepath, description, sections } = this.props
+    const { id, name, filepath, body, description, sections } = this.props
     const { showingCode } = this.state
 
     return (
       <Container key={id}>
         <Title>{name}</Title>
+        <Filepath>
+          <IconLink size={15} />
+          <code>{filepath}</code>
+        </Filepath>
         {description && <Description>{description}</Description>}
-        <Filepath>{filepath}</Filepath>
         {sections &&
           sections.length > 0 &&
           sections.map(section => (

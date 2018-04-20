@@ -20,7 +20,7 @@ export interface DocObj {
   readonly route: string
   readonly id: string | undefined
   readonly order: number
-  readonly description: string | null
+  readonly description: string | undefined
   readonly filepath: string | undefined
   readonly category: string | undefined
   readonly sections: Section[]
@@ -36,17 +36,16 @@ export interface Entry {
 
 export class Doc {
   private _name: string
+  private _route: string
   private _id: string | undefined
+  private _order: number
+  private _description: string | undefined
   private _filepath: string | undefined
   private _category: string | undefined
-  private _description: string | null
   private _sections: Section[]
-  private _route: string
-  private _order: number
 
   constructor(name: string) {
     this._name = name
-    this._description = null
     this._sections = []
     this._route = `/${kebabcase(name)}`
     this._order = 0
