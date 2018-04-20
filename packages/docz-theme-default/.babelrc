@@ -5,7 +5,6 @@
   ],
   "plugins": [
     "emotion",
-    "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-proposal-export-namespace-from"
+    "@babel/plugin-proposal-class-properties"
   ]
 }

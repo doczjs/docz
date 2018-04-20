@@ -3,7 +3,6 @@ import './styles'
 import * as React from 'react'
 
 import { injectGlobal } from 'emotion'
-import { Helmet } from 'react-helmet'
 import { BrowserRouter } from 'react-router-dom'
 import { theme } from 'docz-react'
 

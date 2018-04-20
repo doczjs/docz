@@ -7,19 +7,15 @@ import { Doc } from './Doc'
 
 export const View = () => (
   <Docs>
-    {({ loading, docs }) =>
-      loading ? (
-        <div>loading...</div>
-      ) : (
-        docs.map(doc => (
-          <Route
-            exact
-            key={doc.id}
-            path={doc.route}
-            render={() => <Doc {...doc} />}
-          />
-        ))
-      )
+    {({ docs }) =>
+      docs.map(doc => (
+        <Route
+          exact
+          key={doc.id}
+          path={doc.route}
+          render={() => <Doc {...doc} />}
+        />
+      ))
     }
   </Docs>
 )
