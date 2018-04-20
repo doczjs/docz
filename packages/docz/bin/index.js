@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const yargs = require('yargs')
-const { Server } = require('docz-core')
+const { Server } = require('../dist/index.umd')
 
 const EXTS = '{j,t}{s,sx}'
 const DEFAULT_FILES_GLOB = [
@@ -23,6 +23,10 @@ yargs
       yargs.positional('files', {
         type: 'string',
         default: DEFAULT_FILES_GLOB,
+      })
+      yargs.positional('type', {
+        type: 'string',
+        default: 'react',
       })
       yargs.positional('bundler', {
         type: 'string',

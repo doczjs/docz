@@ -6,11 +6,12 @@ import generate from 'babel-generator'
 import get from 'lodash.get'
 
 import * as paths from './config/paths'
-import { traverseAndAssign, traverseAndAssignEach } from './utils/traverse'
 import { format } from './utils/format'
+import { traverseAndAssign, traverseAndAssignEach } from './utils/traverse'
+import { AppType } from './Server'
 
-const hasImport = (p: NodePath<any>): boolean =>
-  t.isImportDeclaration(p) && get(p, 'node.source.value') === 'docz'
+const hasImport = (p: NodePath<any>, type: AppType): boolean =>
+  t.isImportDeclaration(p) && get(p, 'node.source.value') === `docz-${type}`
 
 const hasDocFn = (p: NodePath<any>): boolean =>
   p.node.specifiers &&
@@ -19,10 +20,11 @@ const hasDocFn = (p: NodePath<any>): boolean =>
       t.isImportSpecifier(node) && node.imported.name === 'doc'
   )
 
-const checkImport = traverseAndAssign<NodePath<t.Node>, boolean>({
-  when: p => hasImport(p) && hasDocFn(p),
-  assign: () => true,
-})
+const checkImport = (type: AppType) =>
+  traverseAndAssign<NodePath<t.Node>, boolean>({
+    when: p => hasImport(p, type) && hasDocFn(p),
+    assign: () => true,
+  })
 
 const getNameFromDoc = traverseAndAssign<any, string>({
   when: p => p.isCallExpression() && get(p, 'node.callee.name') === 'doc',
@@ -51,8 +53,8 @@ const parseSections = traverseAndAssignEach<NodePath<t.Node>, string[]>({
 export class Entry {
   readonly [key: string]: any
 
-  public static check(file: string): boolean | null {
-    return checkImport(file)
+  public static check(type: AppType): (file: string) => boolean | null {
+    return file => checkImport(type)(file)
   }
 
   public static parseName(file: string): string | null {

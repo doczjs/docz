@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Route } from 'react-router-dom'
+import { Docs } from 'docz-react'
 import styled from 'react-emotion'
-import { Docs } from 'docz'
 
 import { Highlight } from './Highlight'
 

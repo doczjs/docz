@@ -1,8 +1,7 @@
 import React from 'react'
 import { NavLink as BaseLink } from 'react-router-dom'
+import { Docs } from 'docz-react'
 import styled, { css } from 'react-emotion'
-
-import { Docs } from 'docz'
 
 const PURPLE = '#6554C0'
 const BLUE = '#0052CC'

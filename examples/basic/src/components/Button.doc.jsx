@@ -1,5 +1,5 @@
 import React from 'react'
-import { doc } from 'docz'
+import { doc } from 'docz-react'
 
 import { Button } from './Button'
 

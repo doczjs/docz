@@ -1,4 +1,4 @@
-import { ConfigArgs } from 'docz-core'
+import { ConfigArgs } from 'docz'
 import { Application } from 'express'
 import errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware'
 

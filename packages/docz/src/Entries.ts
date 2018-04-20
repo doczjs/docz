@@ -10,7 +10,7 @@ import { propOf } from './utils/helpers'
 import { format } from './utils/format'
 
 import { Entry } from './Entry'
-import { ConfigArgs } from './Server'
+import { ConfigArgs, AppType } from './Server'
 
 const mkd = (dir: string): void => {
   try {
@@ -27,12 +27,8 @@ const touch = (file: string, raw: string) => {
   fs.writeFileSync(file, content, 'utf-8')
 }
 
-const compiled = (file: string) =>
-  compile(fs.readFileSync(path.join(paths.templates, file), 'utf-8'))
-
-const app = compiled('app.tpl.js')
-const js = compiled('index.tpl.js')
-const html = compiled('index.tpl.html')
+const compiled = (type: AppType) => (file: string) =>
+  compile(fs.readFileSync(path.join(paths.templatesOf(type), file), 'utf-8'))
 
 export class Entries {
   public files: string[]
@@ -50,7 +46,7 @@ export class Entries {
     this.files = files
     this.config = config
     this.entries = files
-      .filter(Entry.check)
+      .filter(Entry.check(config.type))
       .map(file => new Entry(file, config.src))
   }
 
@@ -84,7 +80,12 @@ export class Entries {
   }
 
   public write(): void {
-    const { plugins, title, description, theme } = this.config
+    const { plugins, title, description, theme, type } = this.config
+    const template = compiled(type)
+
+    const app = template('app.tpl.js')
+    const js = template('index.tpl.js')
+    const html = template('index.tpl.html')
 
     const wrappers = propOf(plugins, 'wrapper')
     const afterRenders = propOf(plugins, 'afterRender')

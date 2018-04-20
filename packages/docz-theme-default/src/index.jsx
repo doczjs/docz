@@ -6,7 +6,7 @@ import { injectGlobal } from 'emotion'
 import { createBrowserHistory } from 'history'
 import { Helmet } from 'react-helmet'
 import { Router } from 'react-router-dom'
-import { theme } from 'docz'
+import { theme } from 'docz-react'
 
 import { Main } from './components/Main'
 import { Menu } from './components/Menu'

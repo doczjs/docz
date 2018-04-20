@@ -12,11 +12,14 @@ import { Plugin } from './Plugin'
 process.env.BABEL_ENV = process.env.BABEL_ENV || 'development'
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
+export type AppType = 'react'
+
 export interface Argv {
   /* io args */
   src: string
   files: string
   bundler: string
+  type: AppType
   /* template args */
   title: string
   description: string
@@ -94,7 +97,7 @@ export class Server {
       const entry = entries.find(file)
 
       if (name) {
-        !entry && entries.add(new Entry(file))
+        !entry && entries.add(new Entry(file, config.src))
         entry && entries.update(file)
         update()
       }

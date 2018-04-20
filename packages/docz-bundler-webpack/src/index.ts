@@ -1,5 +1,5 @@
 import { Configuration } from 'webpack'
-import { ConfigArgs, createBundler, BundlerCreate } from 'docz-core'
+import { ConfigArgs, createBundler, BundlerCreate } from 'docz'
 import * as WebpackDevServer from 'webpack-dev-server'
 import webpack from 'webpack'
 

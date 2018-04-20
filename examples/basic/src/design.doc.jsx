@@ -1,5 +1,5 @@
 import React from 'react'
-import { doc } from 'docz'
+import { doc } from 'docz-react'
 
 doc('Design System')
   .order(0)

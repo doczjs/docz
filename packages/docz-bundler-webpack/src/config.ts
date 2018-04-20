@@ -1,7 +1,7 @@
 import * as path from 'path'
 import * as webpack from 'webpack'
 import { Configuration } from 'webpack'
-import { ConfigArgs } from 'docz-core'
+import { ConfigArgs } from 'docz'
 import { load } from 'load-cfg'
 import merge from 'deepmerge'
 import Webpackbar from 'webpackbar'
