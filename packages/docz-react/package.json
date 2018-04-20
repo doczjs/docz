@@ -19,7 +19,6 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "lodash.kebabcase": "^4.1.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",

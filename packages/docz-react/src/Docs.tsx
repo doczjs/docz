@@ -1,8 +1,15 @@
 import * as React from 'react'
+import { Doc, DocObj, Entry } from 'docz/doc'
+import { isFn } from 'docz/utils'
 
-import { Doc } from './Doc'
-import { DocsProps, DocObj, Entry } from '../'
-import { isFn } from './utils/helpers'
+export interface DocsRenderProps {
+  docs: DocObj[]
+  categories: string[]
+}
+
+export interface DocsProps {
+  children: (renderProps: DocsRenderProps) => React.ReactNode
+}
 
 export const cache = new Map()
 export const entriesContext = React.createContext([] as Entry[])

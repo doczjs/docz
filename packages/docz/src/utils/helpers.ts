@@ -2,6 +2,7 @@ const { keys } = Object
 
 export const isFn = (value: any): boolean => typeof value === 'function'
 export const prop = (key: string, obj: any): any => obj[key]
+export const safeUrl = (value: string) => encodeURI(value.replace(/\s/g, ''))
 
 export function omit<R = object>(props: string[], obj: any): R {
   const newObj = keys(obj)

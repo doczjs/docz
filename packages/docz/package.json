@@ -5,12 +5,15 @@
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
   "typings": "dist/index.d.ts",
-  "source": "src/index.ts",
+  "source": ["src/index.ts", "src/Doc.ts", "src/utils/helpers.ts"],
   "bin": {
     "docz": "./bin/index.js"
   },
   "files": [
     "dist/",
+    "doc.d.ts",
+    "doc.js",
+    "utils.js",
     "package.json",
     "README.md"
   ],
@@ -36,6 +39,7 @@
     "json-stringify-pretty-compact": "^1.1.0",
     "load-cfg": "^0.0.1",
     "lodash.get": "^4.4.2",
+    "lodash.kebabcase": "^4.1.1",
     "mkdirp": "^0.5.1",
     "prettier": "^1.12.0",
     "resolve": "^1.7.1",

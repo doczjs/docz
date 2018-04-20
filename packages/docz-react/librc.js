@@ -7,10 +7,6 @@ module.exports = {
         files: 'templates/*.{js,html,json}',
         dest: 'dist/templates',
       },
-      {
-        files: 'index.d.ts',
-        dest: 'dist',
-      },
     ]),
   ],
 }
