@@ -69,9 +69,11 @@ export class Entry {
   public name: string | null
   public sections: string[] | null
 
-  constructor(file: string) {
+  constructor(file: string, src: string) {
+    const filepath = path.relative(paths.root, file)
+
     this.id = ulid()
-    this.filepath = path.relative(paths.root, file)
+    this.filepath = filepath
     this.name = Entry.parseName(file)
     this.sections = Entry.parseSections(file)
   }

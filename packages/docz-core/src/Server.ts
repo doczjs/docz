@@ -82,29 +82,27 @@ export class Server {
   private processEntries(config: ConfigArgs): void {
     const entries = new Entries(config)
 
+    const update = () => entries.write()
+
     const onUnlink = (file: string) => {
       entries.remove(file)
-      entries.write()
+      update()
     }
 
     const onChange = (file: string) => {
       const name = Entry.parseName(file)
       const entry = entries.find(file)
 
-      if (name && !entry) {
-        entries.add(new Entry(file))
-        entries.write()
-      }
-
-      if (name && entry) {
-        entries.update(file)
-        entries.write()
+      if (name) {
+        !entry && entries.add(new Entry(file))
+        entry && entries.update(file)
+        update()
       }
     }
 
     this.watcher.on('unlink', onUnlink)
     this.watcher.on('change', onChange)
 
-    entries.write()
+    update()
   }
 }

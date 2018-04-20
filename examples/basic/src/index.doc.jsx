@@ -4,4 +4,4 @@ import { doc } from 'docz'
 doc('Overview')
   .order(1)
   .route('/')
-  .section(() => <div>This is just the Home!</div>)
+  .section(() => <div>This is just the Home page!</div>)

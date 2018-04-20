@@ -31,8 +31,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
-    "ulid": "^2.3.0",
-    "unstated": "^1.1.0"
+    "ulid": "^2.3.0"
   },
   "peerDependencies": {
     "react": "^16.3.1",

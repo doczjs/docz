@@ -49,7 +49,9 @@ export class Entries {
 
     this.files = files
     this.config = config
-    this.entries = files.filter(Entry.check).map(file => new Entry(file))
+    this.entries = files
+      .filter(Entry.check)
+      .map(file => new Entry(file, config.src))
   }
 
   public find(file: string): Entry | undefined {
@@ -74,7 +76,7 @@ export class Entries {
 
   public update(file: string): void {
     const idx = this.findIndex(file)
-    const entry = new Entry(file)
+    const entry = new Entry(file, this.config.src)
 
     if (idx > -1) {
       this.entries.splice(idx, 1, entry)
@@ -87,7 +89,7 @@ export class Entries {
     const wrappers = propOf(plugins, 'wrapper')
     const afterRenders = propOf(plugins, 'afterRender')
     const beforeRenders = propOf(plugins, 'beforeRender')
-    const imports = this.entries.map(e => e.filepath.replace('.jsx', ''))
+    const imports = this.entries.map(e => e.filepath)
 
     const rawIndexHtml = html({
       title,

@@ -1,3 +1,5 @@
+<% imports.forEach(imp => { %>import '<%- imp %>'
+<% }) %>
 import React from 'react'
 import { hot } from 'react-hot-loader'
 import { Theme } from '<%- theme %>'
@@ -14,10 +16,10 @@ const recursiveWrappers = ([Wrapper, ...rest], props) => (
 const Wrapper = props =>
   _wrappers.length ? recursiveWrappers(_wrappers, props) : props.children
 
-const WrappedTheme = () => (
+const App = () => (
   <Wrapper>
-    <Theme data={data} />
+    <Theme entries={data.entries} />
   </Wrapper>
 )
 
-export const App = hot(module)(WrappedTheme)
+export default hot(module)(App)

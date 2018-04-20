@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { App } from './app'
+import App from './app'
 
 const _beforeRenders = [<% if (beforeRenders) {%><%- beforeRenders %><%}%>]
 const _afterRenders = [<% if (afterRenders) {%><%- afterRenders %><%}%>]

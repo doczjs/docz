@@ -102,8 +102,10 @@ export const createConfig = (args: ConfigArgs) => (): Configuration => {
     babelrc: false,
     cacheDirectory: true,
     highlightCode: true,
-    plugins: [require.resolve('react-hot-loader/babel')],
     presets: [require.resolve('babel-preset-react-app')],
+    plugins: [
+      require.resolve('react-hot-loader/babel'),
+    ],
   })
 
   config.module
