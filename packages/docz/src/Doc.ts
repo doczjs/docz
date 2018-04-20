@@ -2,24 +2,23 @@
 import { ulid } from 'ulid'
 import kebabcase from 'lodash.kebabcase'
 
+import { cache } from './Docs'
 import { isFn, safeUrl } from './utils/helpers'
-import { Section, DocConstructorArgs, DocObj, Group, GroupObj } from '../'
-import { docsContainer } from './DocsContainer'
+import { Section, DocObj, Entry } from '../'
 
-class Doc {
-  private _id: string
+export class Doc {
   private _name: string
+  private _id: string | undefined
+  private _filepath: string | undefined
+  private _category: string | undefined
   private _description: string | null
-  private _group: GroupObj | null
   private _sections: Section[]
   private _route: string
   private _order: number
 
-  constructor({ name }: DocConstructorArgs) {
-    this._id = ulid()
+  constructor(name: string) {
     this._name = name
     this._description = null
-    this._group = null
     this._sections = []
     this._route = `/${kebabcase(name)}`
     this._order = 0
@@ -27,15 +26,9 @@ class Doc {
     return this
   }
 
-  /**
-   * setters
-   */
-
-  public group(group: Group): Doc {
-    const groupObj = group.toObject()
-
-    this._group = groupObj
-    this._route = groupObj.route + this._route
+  public category(category: string): Doc {
+    this._category = category
+    this._route = `/${kebabcase(category)}` + this._route
 
     return this
   }
@@ -68,21 +61,28 @@ class Doc {
     return this
   }
 
-  public get name(): string {
-    return this._name
-  }
+  public findEntryAndMerge(entries: Entry[]): Doc {
+    const entry = entries.find(entry => entry.name === this._name)
 
-  /**
-   * getters
-   */
+    if (entry) {
+      this._id = entry.id
+      this._filepath = entry.filepath
+      this._sections.forEach((section, id) => {
+        section.code = entry.sections[id]
+      })
+    }
+
+    return this
+  }
 
   public toObject(): DocObj {
     return {
-      description: this._description,
-      group: this._group,
       id: this._id,
       name: this._name,
       order: this._order,
+      category: this._category,
+      description: this._description,
+      filepath: this._filepath,
       route: this._route,
       sections: this._sections,
     }
@@ -90,8 +90,8 @@ class Doc {
 }
 
 export const doc = (name: string): Doc => {
-  const newDoc = new Doc({ name })
+  const newDoc = new Doc(name)
 
-  docsContainer.addDoc(newDoc)
+  cache.set(name, newDoc)
   return newDoc
 }

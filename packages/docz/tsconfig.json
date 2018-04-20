@@ -4,7 +4,7 @@
     "outDir": "dist",
     "rootDir": "src",
     "declaration": false,
-    "typeRoots": ["node_modules/@types", "index.d.ts"]
+    "typeRoots": ["node_modules/@types", "src/index.d.ts"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules/**"]

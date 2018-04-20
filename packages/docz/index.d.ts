@@ -3,73 +3,60 @@ import { SFC, ReactNode, ComponentType } from 'react'
 export interface Section {
   id: string
   title?: string
+  code?: string
   render: () => ReactNode
-}
-
-export interface GroupConstructorArgs {
-  name: string
-}
-
-export class Group {
-  public constructor({ name }: GroupConstructorArgs)
-
-  public route(value: string): Group
-  public order(num: number): Group
-  public toObject(): GroupObj
-
-  public name: string
-}
-
-export interface GroupObj {
-  id: string
-  name: string
-  order: number
-  route: string
 }
 
 export interface DocConstructorArgs {
   name: string
 }
 
-export class Doc {
-  public constructor({ name }: DocConstructorArgs)
+export interface DocObj {
+  readonly name: string
+  readonly route: string
+  readonly id: string | undefined
+  readonly order: number
+  readonly description: string | null
+  readonly filepath: string | undefined
+  readonly category: string | undefined
+  readonly sections: Section[]
+}
 
+export class Doc {
+  public constructor(name: string)
   public order(num: number): Doc
-  public group(group: Group): Doc
+  public category(name: string): Doc
   public route(value: string): Doc
   public description(value: string): Doc
   public section(...args: any[]): Doc
   public toObject(): DocObj
-
-  public name: string
 }
 
-export interface DocObj {
-  readonly id: string
-  readonly name: string
-  readonly group: GroupObj | null
-  readonly sections: Section[]
-  readonly description: string | null
-  readonly route: string
-  readonly order: number
+export interface Entry {
+  id: string
+  name: string
+  filepath: string
+  importPath: string
+  sections: string[]
 }
 
 /**
  * Components
  */
 
-export function createTheme(WrappedComponent: ComponentType): ComponentType
-
 export interface DocsRenderProps {
-  groups: GroupObj[]
   docs: DocObj[]
+  categories: string[]
 }
 
 export interface DocsProps {
-  children: ({ groups, docs }: DocsRenderProps) => ReactNode
+  children: (renderProps: DocsRenderProps) => ReactNode
 }
 
-export const Docs: SFC<DocsProps>
+/**
+ * Api
+ */
 
 export function doc(name: string): Doc
-export function group(name: string): Group
+export function theme(WrappedComponent: ComponentType): ComponentType
+export const Docs: SFC<DocsProps>
