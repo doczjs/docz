@@ -33,7 +33,7 @@ const List = styled('ul')`
   }
 `
 
-const Group = styled('li')`
+const Category = styled('li')`
   padding: 0 20px;
   margin: 20px 0 5px;
   font-size: 12px;
@@ -93,25 +93,29 @@ const Links = ({ docs }) =>
     </li>
   ))
 
-const GroupedLinks = ({ groups, docs }) =>
-  groups.map(group => (
-    <React.Fragment key={group.id}>
-      <Group>{group.name}</Group>
+const GroupedLinks = ({ categories, docs }) =>
+  categories.map(category => (
+    <React.Fragment key={category}>
+      <Category>{category}</Category>
       <Links
-        docs={docs.filter(doc => doc.group && doc.group.id === group.id)}
+        docs={docs.filter(doc => doc.category && doc.category === category)}
       />
     </React.Fragment>
   ))
 
 export const Menu = () => (
   <Docs>
-    {({ groups, docs }) => (
-      <Sidebar>
-        <List>
-          <Links docs={docs.filter(doc => !doc.group)} />
-          <GroupedLinks groups={groups} docs={docs} />
-        </List>
-      </Sidebar>
-    )}
+    {({ loading, categories, docs }) =>
+      loading ? (
+        <div>loading..</div>
+      ) : (
+        <Sidebar>
+          <List>
+            <Links docs={docs.filter(doc => !doc.category)} />
+            <GroupedLinks categories={categories} docs={docs} />
+          </List>
+        </Sidebar>
+      )
+    }
   </Docs>
 )
