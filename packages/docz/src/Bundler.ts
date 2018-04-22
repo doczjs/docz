@@ -1,26 +1,30 @@
 import { Plugin } from './Plugin'
 import { ConfigArgs } from './Server'
 
-export type TConfigFn<C> = () => C
-export type TServerFn<C, S> = (config: C) => S
+export interface BundlerServer {
+  start(): any
+}
+
+export type ConfigFn<C> = () => C
+export type ServerFn<C> = (config: C) => BundlerServer
 
 export interface CompilerOpts {
   args: ConfigArgs
 }
 
-export interface BundlerConstructor<C, S> extends CompilerOpts {
+export interface BundlerConstructor<C> extends CompilerOpts {
   id: string
-  config: TConfigFn<C>
-  server: TServerFn<C, S>
+  config: ConfigFn<C>
+  server: ServerFn<C>
 }
 
-export class Bundler<C = any, S = any> {
+export class Bundler<C = any> {
   public readonly id: string
   private readonly args: ConfigArgs
-  private config: TConfigFn<C>
-  private server: TServerFn<C, S>
+  private config: ConfigFn<C>
+  private server: ServerFn<C>
 
-  constructor(params: BundlerConstructor<C, S>) {
+  constructor(params: BundlerConstructor<C>) {
     const { args, id, config, server } = params
 
     this.args = args
@@ -33,7 +37,7 @@ export class Bundler<C = any, S = any> {
     return this.mountConfig(this.config())
   }
 
-  public async createServer(config: C): Promise<S> {
+  public async createServer(config: C): Promise<BundlerServer> {
     const { plugins } = this.args
     const server = await this.server(config)
 
@@ -61,22 +65,20 @@ export class Bundler<C = any, S = any> {
   }
 }
 
-export interface Factory<C, S> {
+export interface Factory<C> {
   id: string
-  config: (args: ConfigArgs) => TConfigFn<C>
-  server: (args: ConfigArgs) => TServerFn<C, S>
+  config: (args: ConfigArgs) => ConfigFn<C>
+  server: (args: ConfigArgs) => ServerFn<C>
 }
 
-export type BundlerCreate<C, S> = (args: ConfigArgs) => Bundler<C, S>
+export type BundlerCreate<C> = (args: ConfigArgs) => Bundler<C>
 
-export function createBundler<C, S>(
-  factory: Factory<C, S>
-): BundlerCreate<C, S> {
-  return (args: ConfigArgs): Bundler<C, S> =>
+export function createBundler<C>(factory: Factory<C>): BundlerCreate<C> {
+  return (args: ConfigArgs): Bundler<C> =>
     new Bundler({
       args,
-      config: factory.config(args),
       id: factory.id,
+      config: factory.config(args),
       server: factory.server(args),
     })
 }

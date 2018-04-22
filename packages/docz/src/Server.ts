@@ -55,15 +55,13 @@ export class Server {
   }
 
   public async start(): Promise<void> {
-    const { port } = this.config
-
     del.sync(paths.docz)
     this.processEntries(this.config)
 
     const config = this.bundler.getConfig()
     const server = await this.bundler.createServer(config)
 
-    server.listen(port)
+    server.start()
   }
 
   private getBundler(bundler: string): any {
