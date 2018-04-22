@@ -1246,6 +1246,12 @@
   dependencies:
     execa "^0.2.2"
 
+"@sindresorhus/slugify@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.npmjs.org/@sindresorhus/slugify/-/slugify-0.1.1.tgz#6027bb9ddefcf5ffe1c8ade6937d6f86f3e57159"
+  dependencies:
+    lodash.deburr "^4.1.0"
+
 "@types/acorn@^4.0.3":
   version "4.0.3"
   resolved "https://registry.npmjs.org/@types/acorn/-/acorn-4.0.3.tgz#d1f3e738dde52536f9aad3d3380d14e448820afd"
@@ -5314,6 +5320,10 @@ lodash._reinterpolate@~3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
 
+lodash.deburr@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npmjs.org/lodash.deburr/-/lodash.deburr-4.1.0.tgz#ddb1bbb3ef07458c0177ba07de14422cb033ff9b"
+
 lodash.foreach@^4.5.0:
   version "4.5.0"
   resolved "https://registry.npmjs.org/lodash.foreach/-/lodash.foreach-4.5.0.tgz#1a6a35eace401280c7f06dddec35165ab27e3e53"
@@ -5325,10 +5335,6 @@ lodash.get@^4.4.2:
 lodash.isobject@^3.0.2:
   version "3.0.2"
   resolved "https://registry.npmjs.org/lodash.isobject/-/lodash.isobject-3.0.2.tgz#3c8fb8d5b5bf4bf90ae06e14f2a530a4ed935e1d"
-
-lodash.kebabcase@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.npmjs.org/lodash.kebabcase/-/lodash.kebabcase-4.1.1.tgz#8489b1cb0d29ff88195cceca448ff6d6cc295c36"
 
 lodash.merge@^4.6.0:
   version "4.6.1"

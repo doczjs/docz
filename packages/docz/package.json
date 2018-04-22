@@ -29,6 +29,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
+    "@sindresorhus/slugify": "^0.1.1",
     "art-template": "^4.12.2",
     "babel-file-loader": "^1.0.3",
     "babel-generator": "^6.26.1",
@@ -43,7 +44,6 @@
     "json-stringify-pretty-compact": "^1.1.0",
     "load-cfg": "^0.0.1",
     "lodash.get": "^4.4.2",
-    "lodash.kebabcase": "^4.1.1",
     "mkdirp": "^0.5.1",
     "prettier": "^1.12.0",
     "resolve": "^1.7.1",

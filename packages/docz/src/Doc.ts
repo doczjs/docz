@@ -1,6 +1,6 @@
 /* tslint:disable:variable-name */
 import { ulid } from 'ulid'
-import kebabcase from 'lodash.kebabcase'
+import slugify from '@sindresorhus/slugify'
 
 import { isFn, safeUrl } from './utils/helpers'
 
@@ -47,7 +47,7 @@ export class Doc {
   constructor(name: string) {
     this._name = name
     this._sections = []
-    this._route = `/${kebabcase(name)}`
+    this._route = `/${slugify(name)}`
     this._order = 0
 
     return this
@@ -55,7 +55,7 @@ export class Doc {
 
   public category(category: string): Doc {
     this._category = category
-    this._route = `/${kebabcase(category)}` + this._route
+    this._route = `/${slugify(category)}` + this._route
 
     return this
   }
