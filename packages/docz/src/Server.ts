@@ -55,20 +55,13 @@ export class Server {
   }
 
   public async start(): Promise<void> {
-    const { plugins, port } = this.config
+    const { port } = this.config
 
     del.sync(paths.docz)
     this.processEntries(this.config)
 
-    const compiler = await this.bundler.createCompiler()
-    const server = await this.bundler.createServer(compiler)
-
-    if (plugins && plugins.length > 0) {
-      for (const plugin of plugins) {
-        await plugin.bundlerCompiler(compiler)
-        await plugin.bundlerServer(server)
-      }
-    }
+    const config = this.bundler.getConfig()
+    const server = await this.bundler.createServer(config)
 
     server.listen(port)
   }
@@ -84,7 +77,6 @@ export class Server {
 
   private processEntries(config: ConfigArgs): void {
     const entries = new Entries(config)
-
     const update = () => entries.write()
 
     const onUnlink = (file: string) => {
