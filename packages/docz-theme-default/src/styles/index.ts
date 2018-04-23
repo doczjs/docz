@@ -9,6 +9,7 @@ const selection = css`
   color: white;
 `
 
+// tslint:disable
 injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
   @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css');

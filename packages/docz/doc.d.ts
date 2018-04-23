@@ -1,1 +1,1 @@
-export { Doc, DocObj, Entry } from './dist/Doc'
+export { Doc, DocObj, Entry, Section } from './dist/Doc'

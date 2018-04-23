@@ -2,7 +2,6 @@ import './styles'
 
 import * as React from 'react'
 
-import { injectGlobal } from 'emotion'
 import { BrowserRouter } from 'react-router-dom'
 import { theme } from 'docz-react'
 

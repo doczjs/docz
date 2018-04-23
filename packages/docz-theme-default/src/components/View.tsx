@@ -1,7 +1,6 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Route } from 'react-router-dom'
 import { Docs } from 'docz-react'
-import styled from 'react-emotion'
 
 import { Doc } from './Doc'
 

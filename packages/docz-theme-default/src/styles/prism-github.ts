@@ -1,5 +1,6 @@
 import { injectGlobal } from 'react-emotion'
 
+// tslint:disable
 injectGlobal`
 /*
 

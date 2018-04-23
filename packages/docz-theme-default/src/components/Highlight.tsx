@@ -3,17 +3,22 @@ import 'prismjs/components/prism-jsx'
 import '../styles/prism-github'
 
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 import cx from 'classnames'
 import prism from 'prismjs'
 
-export class Highlight extends PureComponent {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    language: PropTypes.string,
+interface HighlightProps {
+  language: string
+}
+
+export class Highlight extends PureComponent<HighlightProps> {
+  private el: Element | null
+
+  constructor(props: HighlightProps) {
+    super(props)
+    this.el = null
   }
 
-  render() {
+  public render(): JSX.Element {
     const className = cx({
       'react-prism': true,
       [`language-${this.props.language}`]: !!this.props.language,
@@ -22,8 +27,8 @@ export class Highlight extends PureComponent {
     return (
       <pre
         className={className}
-        ref={ref => {
-          this.el = ref
+        ref={node => {
+          this.el = node
         }}
       >
         <code>{this.props.children}</code>
@@ -31,15 +36,15 @@ export class Highlight extends PureComponent {
     )
   }
 
-  componentDidMount() {
+  public componentDidMount(): void {
     this.highlightCode()
   }
 
-  componentDidUpdate() {
+  public componentDidUpdate(): void {
     this.highlightCode()
   }
 
-  highlightCode() {
-    prism.highlightElement(this.el)
+  private highlightCode(): void {
+    prism.highlightElement(this.el as Element)
   }
 }

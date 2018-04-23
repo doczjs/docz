@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
-import * as Icon from 'react-feather'
+import React, { SFC } from 'react'
 import styled from 'react-emotion'
+import { DocObj, Section } from 'docz-react'
+import { Toggle } from 'react-powerplug'
+import * as Icon from 'react-feather'
 
 import { Highlight } from './Highlight'
 import * as colors from '../styles/colors'
@@ -72,70 +74,53 @@ const CodeButton = styled('button')`
   transform: translate(1px, 100%);
 `
 
-class DocSection extends Component {
-  constructor(props) {
-    super(props)
+interface DocSectionProps {
+  section: Section
+}
 
-    this.state = {
-      showingCode: false,
-    }
-  }
+interface ToggleProps {
+  toggle: () => void
+  on: boolean
+}
 
-  handleToggleCode = () =>
-    this.setState({ showingCode: !this.state.showingCode })
-
-  render() {
-    const { section } = this.props
-    const { showingCode } = this.state
-
-    return (
-      <Section key={section.id}>
-        {section.title && <h3>{section.title}</h3>}
+const DocSection: SFC<DocSectionProps> = ({ section }) => (
+  <Section key={section.id}>
+    {section.title && <h3>{section.title}</h3>}
+    <Toggle initial={false}>
+      {({ toggle, on }: ToggleProps) => (
         <Render>
-          {showingCode ? (
+          {on ? (
             <Highlight language="jsx">{section.code}</Highlight>
           ) : (
             <div>{section.render()}</div>
           )}
-          <CodeButton onClick={this.handleToggleCode}>
+          <CodeButton onClick={toggle}>
             <Icon.Code width={15} />
           </CodeButton>
         </Render>
-      </Section>
-    )
-  }
-}
+      )}
+    </Toggle>
+  </Section>
+)
 
-export class Doc extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      showingCode: false,
-    }
-  }
-
-  handleToggleCode = () =>
-    this.setState({ showingCode: !this.state.showingCode })
-
-  render() {
-    const { id, name, filepath, body, description, sections } = this.props
-    const { showingCode } = this.state
-
-    return (
-      <Container key={id}>
-        <Title>{name}</Title>
-        <Filepath>
-          <IconLink size={15} />
-          <code>{filepath}</code>
-        </Filepath>
-        {description && <Description>{description}</Description>}
-        {sections &&
-          sections.length > 0 &&
-          sections.map(section => (
-            <DocSection key={section.id} section={section} />
-          ))}
-      </Container>
-    )
-  }
-}
+export const Doc: SFC<DocObj> = ({
+  id,
+  name,
+  filepath,
+  description,
+  sections,
+}) => (
+  <Container key={id}>
+    <Title>{name}</Title>
+    <Filepath>
+      <IconLink size={15} />
+      <code>{filepath}</code>
+    </Filepath>
+    {description && <Description>{description}</Description>}
+    {sections &&
+      sections.length > 0 &&
+      sections.map(section => (
+        <DocSection key={section.id} section={section} />
+      ))}
+  </Container>
+)

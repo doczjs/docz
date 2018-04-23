@@ -10,3 +10,4 @@ export const doc = (name: string): Doc => {
 
 export { theme } from './theme'
 export { Docs } from './Docs'
+export { DocObj, Section } from 'docz/doc'
