@@ -3,8 +3,6 @@ import * as path from 'path'
 import * as url from 'url'
 import resolve from 'resolve'
 
-import { AppType } from '../Server'
-
 const ENV_PUBLIC_URL = process.env.PUBLIC_URL
 
 const ensureSlash = (filepath: any, needsSlash: boolean) => {
@@ -45,8 +43,7 @@ export interface Paths {
   indexHtml: string
 }
 
-export const templatesOf = (type: AppType) =>
-  path.join(resolve.sync(`docz-${type}`), '../templates')
+export const templates = path.join(resolve.sync('docz'), '../templates')
 
 export const docz = resolveApp('.docz')
 export const packageJson = resolveApp('package.json')
