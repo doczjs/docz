@@ -2,8 +2,6 @@ import * as React from 'react'
 
 import { cache, Doc, DocObj, Entry } from 'docz'
 
-console.log(cache)
-
 export const isFn = (value: any): boolean => typeof value === 'function'
 
 export interface DocsRenderProps {
