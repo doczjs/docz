@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { doc } from 'docz-react'
+import { doc } from 'docz'
 
 import { Alert } from './Alert'
 

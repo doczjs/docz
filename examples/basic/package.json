@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "docz start"
+    "dev": "docz dev"
   },
   "dependencies": {
     "docz": "^0.0.1",

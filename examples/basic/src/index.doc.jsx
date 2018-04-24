@@ -1,5 +1,5 @@
 import React from 'react'
-import { doc } from 'docz-react'
+import { doc } from 'docz'
 import Markdown from 'react-markdown'
 
 const description = `
@@ -17,4 +17,4 @@ A design system can help establish a common vocabulary between everyone in an or
 doc('Overview')
   .route('/')
   .order(1)
-  .description(<Markdown source={description} />)
+  .description(description)

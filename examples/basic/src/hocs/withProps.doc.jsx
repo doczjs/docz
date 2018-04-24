@@ -1,5 +1,5 @@
 import React from 'react'
-import { doc } from 'docz-react'
+import { doc } from 'docz'
 
 doc('withProps')
   .category('Hocs')

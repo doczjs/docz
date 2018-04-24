@@ -1,0 +1,30 @@
+{
+  "name": "load-cfg",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "module": "dist/index.m.js",
+  "typings": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "files": [
+    "dist/",
+    "package.json",
+    "README.md"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dev": "libundler watch --ts --external all",
+    "build": "libundler build --ts --external all --compress --sourcemap",
+    "fix": "run-s fix:*",
+    "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
+    "fix:tslint": "tslint --fix --project ."
+  },
+  "dependencies": {
+    "deepmerge": "^2.1.0",
+    "find-up": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/find-up": "^2.1.1",
+    "@types/node": "9.6.6"
+  }
+}

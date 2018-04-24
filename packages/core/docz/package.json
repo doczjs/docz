@@ -1,0 +1,29 @@
+{
+  "name": "docz",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "module": "dist/index.m.js",
+  "typings": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "bin": {
+    "docz": "./bin/index.js"
+  },
+  "files": [
+    "dist/",
+    "package.json",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "libundler watch --ts",
+    "build": "libundler build --ts --c",
+    "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
+    "fix:tslint": "yarn run tslint --fix",
+    "tslint": "tslint --project ."
+  },
+  "dependencies": {
+    "@sindresorhus/slugify": "^0.1.1",
+    "ulid": "^2.3.0",
+    "yargs": "^11.0.0"
+  }
+}
