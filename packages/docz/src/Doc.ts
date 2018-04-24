@@ -8,7 +8,7 @@ export interface Section {
   id: string
   title?: string
   code?: string
-  render: () => any
+  render: (container: HTMLElement) => any
 }
 
 export interface DocConstructorArgs {
@@ -34,6 +34,8 @@ export interface Entry {
   sections: string[]
 }
 
+export type RenderFn = (child: any, container: HTMLElement) => void
+
 export class Doc {
   private _name: string
   private _route: string
@@ -43,12 +45,14 @@ export class Doc {
   private _filepath: string | undefined
   private _category: string | undefined
   private _sections: Section[]
+  private _render: RenderFn
 
-  constructor(name: string) {
+  constructor(name: string, render: RenderFn) {
     this._name = name
     this._sections = []
     this._route = `/${slugify(name)}`
     this._order = 0
+    this._render = render
 
     return this
   }
@@ -73,10 +77,11 @@ export class Doc {
   public section(...args: any[]): Doc {
     const [title, renderMethod] = args
     const render = isFn(title) ? title : renderMethod
+    const id = ulid()
 
     this._sections.push({
-      render,
-      id: ulid(),
+      id,
+      render: (container: HTMLElement) => this._render(render, container),
       ...(title && !isFn(title) && { title }),
     })
 

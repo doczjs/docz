@@ -5,6 +5,7 @@ import { Toggle } from 'react-powerplug'
 import * as Icon from 'react-feather'
 
 import { Highlight } from './Highlight'
+import { Render } from './Render'
 import * as colors from '../styles/colors'
 
 const Container = styled('div')`
@@ -50,7 +51,7 @@ const Section = styled('div')`
   margin-top: 40px;
 `
 
-const Render = styled('div')`
+const RenderWrapper = styled('div')`
   position: relative;
   padding: 10px;
   background: white;
@@ -74,13 +75,13 @@ const CodeButton = styled('button')`
   transform: translate(1px, 100%);
 `
 
-interface DocSectionProps {
-  section: Section
-}
-
 interface ToggleProps {
   toggle: () => void
   on: boolean
+}
+
+interface DocSectionProps {
+  section: Section
 }
 
 const DocSection: SFC<DocSectionProps> = ({ section }) => (
@@ -88,16 +89,16 @@ const DocSection: SFC<DocSectionProps> = ({ section }) => (
     {section.title && <h3>{section.title}</h3>}
     <Toggle initial={false}>
       {({ toggle, on }: ToggleProps) => (
-        <Render>
+        <RenderWrapper>
           {on ? (
             <Highlight language="jsx">{section.code}</Highlight>
           ) : (
-            <div>{section.render()}</div>
+            <Render render={section.render} />
           )}
           <CodeButton onClick={toggle}>
             <Icon.Code width={15} />
           </CodeButton>
-        </Render>
+        </RenderWrapper>
       )}
     </Toggle>
   </Section>
