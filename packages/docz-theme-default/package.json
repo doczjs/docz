@@ -1,0 +1,47 @@
+{
+  "name": "docz-theme-default",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "module": "dist/index.m.js",
+  "source": "src/index.tsx",
+  "files": [
+    "dist/",
+    "package.json",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "libundler watch --ts -e all",
+    "build": "libundler build --ts -e all --c --sm"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "docz": "^0.0.1",
+    "emotion": "^9.1.2",
+    "emotion-normalize": "^7.0.1",
+    "history": "^4.7.2",
+    "prismjs": "^1.14.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-emotion": "^9.1.2",
+    "react-feather": "^1.1.0",
+    "react-powerplug": "^0.1.5",
+    "react-router-dom": "^4.2.2"
+  },
+  "peerDependencies": {
+    "docz": "^0.0.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "7.0.0-beta.46",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.44",
+    "@babel/preset-env": "^7.0.0-beta.44",
+    "@babel/preset-react": "^7.0.0-beta.44",
+    "@types/classnames": "^2.2.3",
+    "@types/prismjs": "^1.9.0",
+    "@types/react-router-dom": "^4.2.6",
+    "babel-plugin-emotion": "^9.1.0"
+  }
+}

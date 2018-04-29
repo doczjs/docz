@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "del": "^3.0.0",
-    "lerna": "^2.10.1",
+    "lerna": "^2.11.0",
     "libundler": "^1.6.4",
     "npm-run-all": "^4.1.2",
     "prettier": "^1.11.1",
@@ -18,10 +18,7 @@
     "typescript": "^2.8.3"
   },
   "workspaces": [
-    "packages/bundlers/*",
-    "packages/core/*",
-    "packages/renders/*",
-    "packages/themes/*",
+    "packages/*",
     "examples/*"
   ]
 }

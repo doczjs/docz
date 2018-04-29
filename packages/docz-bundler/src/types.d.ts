@@ -1,0 +1,8 @@
+declare module 'art-template'
+declare module 'babel-file-loader'
+declare module 'babel-generator'
+declare module 'friendly-errors-webpack-plugin'
+declare module 'json-stringify-pretty-compact'
+declare module 'lodash.get'
+declare module 'webpackbar'
+declare module 'webpack-dev-server-speedy'
