@@ -8,13 +8,14 @@ import Config from 'webpack-chain'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import friendlyErrors from 'friendly-errors-webpack-plugin'
 
-import { ConfigArgs } from '../Server'
+import { Config as ConfigObj } from '../../commands/args'
 
 const INLINE_LIMIT = 10000
 
-export const createConfig = (args: ConfigArgs) => (): Configuration => {
+export const createConfig = (args: ConfigObj) => (): Configuration => {
   const { paths, env, debug } = args
 
+  const srcPath = path.resolve(paths.root, args.src)
   const isProd = env === 'production'
   const config = new Config()
 
@@ -107,7 +108,7 @@ export const createConfig = (args: ConfigArgs) => (): Configuration => {
   config.module
     .rule('js')
     .test(/\.js?x$/)
-    .include.add(paths.root)
+    .include.add(srcPath)
     .add(paths.docz)
     .end()
     .exclude.add(/node_modules/)
@@ -122,7 +123,7 @@ export const createConfig = (args: ConfigArgs) => (): Configuration => {
   config.module
     .rule('mdx')
     .test(/\.mdx$/)
-    .include.add(paths.root)
+    .include.add(srcPath)
     .add(paths.docz)
     .end()
     .exclude.add(/node_modules/)
@@ -133,7 +134,10 @@ export const createConfig = (args: ConfigArgs) => (): Configuration => {
     .end()
     .use('@mdx-js/loader')
     .loader(require.resolve('@mdx-js/loader'))
-    .options(args.mdxOptions || {})
+    .options({
+      mdPlugins: args.mdPlugins,
+      hastPlugins: args.hastPlugins,
+    })
 
   config.module
     .rule('images')

@@ -10,7 +10,7 @@ import { propOf } from './utils/helpers'
 import { format } from './utils/format'
 
 import { Entry } from './Entry'
-import { ConfigArgs } from './Server'
+import { Config } from './commands/args'
 
 const mkd = (dir: string): void => {
   try {
@@ -36,10 +36,10 @@ const html = compiled('index.tpl.html')
 
 export class Entries {
   public files: string[]
-  public config: ConfigArgs
+  public config: Config
   public entries: Entry[]
 
-  constructor(config: ConfigArgs) {
+  constructor(config: Config) {
     const { files: pattern } = config
 
     const ignoreGlob = '!node_modules'

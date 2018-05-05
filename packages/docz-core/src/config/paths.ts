@@ -43,7 +43,7 @@ export interface Paths {
   indexHtml: string
 }
 
-export const templates = path.join(resolve.sync('docz-bundler'), '../templates')
+export const templates = path.join(resolve.sync('docz-core'), '../templates')
 
 export const docz = resolveApp('.docz')
 export const packageJson = resolveApp('package.json')

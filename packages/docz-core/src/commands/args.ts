@@ -1,3 +1,29 @@
+import { Paths } from '../config/paths'
+import { Plugin } from '../Plugin'
+
+export interface Argv {
+  /* io args */
+  src: string
+  files: string
+  /* template args */
+  title: string
+  description: string
+  theme: string
+  /* bundler args */
+  env: string
+  debug: boolean
+  protocol: string
+  host: string
+  port: number
+}
+
+export interface Config extends Argv {
+  paths: Paths
+  plugins?: Plugin[]
+  mdPlugins: any[]
+  hastPlugins: any[]
+}
+
 const EXTS = '{j,t}{s,sx}'
 const DEFAULT_FILES_GLOB = [
   `docs/**.${EXTS}`,
@@ -5,7 +31,7 @@ const DEFAULT_FILES_GLOB = [
   `**/*.doc.${EXTS}`,
 ]
 
-export const createArgs = (yargs: any) => {
+export const args = (yargs: any) => {
   yargs.positional('source', {
     alias: 'src',
     type: 'string',

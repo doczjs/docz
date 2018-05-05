@@ -1,5 +1,5 @@
 {
-  "name": "docz-bundler",
+  "name": "docz-core",
   "version": "0.0.1",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",

@@ -4,10 +4,10 @@ import webpack from 'webpack'
 
 import { devServerConfig } from './devserver'
 import { createConfig as config } from './config'
-import { Bundler, BundlerServer } from '../Bundler'
-import { ConfigArgs as Args } from '../Server'
+import { Bundler, BundlerServer } from '../../Bundler'
+import { Config } from '../../commands/args'
 
-export const server = (args: Args) => (config: CFG): BundlerServer => {
+export const server = (args: Config) => (config: CFG): BundlerServer => {
   const compiler = webpack(config)
   const devserver = devServerConfig(args)
   const server = new WebpackDevServer(compiler, devserver)
@@ -17,7 +17,7 @@ export const server = (args: Args) => (config: CFG): BundlerServer => {
   }
 }
 
-export const bundler = (args: Args): Bundler<CFG> =>
+export const bundler = (args: Config): Bundler<CFG> =>
   new Bundler({
     args,
     config: config(args),

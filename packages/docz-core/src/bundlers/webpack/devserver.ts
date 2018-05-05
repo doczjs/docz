@@ -1,6 +1,6 @@
-import { ConfigArgs as Args } from '../Server'
+import { Config } from '../../commands/args'
 
-export const devServerConfig = ({ paths, host, debug, protocol }: Args) => ({
+export const devServerConfig = ({ paths, host, debug, protocol }: Config) => ({
   host,
   clientLogLevel: !debug ? 'none' : 'error',
   compress: true,

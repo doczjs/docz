@@ -1,5 +1,5 @@
 import { Plugin } from './Plugin'
-import { ConfigArgs } from './Server'
+import { Config } from './commands/args'
 
 export interface BundlerServer {
   start(): any
@@ -9,13 +9,13 @@ export type ConfigFn<C> = () => C
 export type ServerFn<C> = (config: C) => BundlerServer
 
 export interface BundlerConstructor<C> {
-  args: ConfigArgs
+  args: Config
   config: ConfigFn<C>
   server: ServerFn<C>
 }
 
 export class Bundler<C = any> {
-  private readonly args: ConfigArgs
+  private readonly args: Config
   private config: ConfigFn<C>
   private server: ServerFn<C>
 

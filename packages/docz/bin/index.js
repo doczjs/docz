@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 
 const yargs = require('yargs')
-const { Server, createArgs } = require('docz-bundler')
+const { commands } = require('docz-core')
 
 yargs
-  .command('dev [files]', 'initialize docz dev server', createArgs, argv =>
-    new Server(argv).start()
+  .command(
+    'dev [files]',
+    'initialize docz dev server',
+    commands.args,
+    commands.dev
   )
   .demandCommand()
   .help()
