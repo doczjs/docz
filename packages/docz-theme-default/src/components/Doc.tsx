@@ -1,11 +1,8 @@
 import React, { SFC } from 'react'
 import styled from 'react-emotion'
-import { DocObj, Section } from 'docz'
-import { Toggle } from 'react-powerplug'
+import { DocObj } from 'docz'
 import * as Icon from 'react-feather'
 
-import { Highlight } from './Highlight'
-import { Render } from './Render'
 import * as colors from '../styles/colors'
 
 const Container = styled('div')`
@@ -43,73 +40,11 @@ const Filepath = styled('div')`
   color: ${colors.GRAY_MEDIUM};
 `
 
-const Description = styled('p')`
-  margin: 20px 0 10px;
-`
-
-const Section = styled('div')`
-  margin-top: 40px;
-`
-
-const RenderWrapper = styled('div')`
-  position: relative;
-  padding: 10px;
-  background: white;
-  border: 1px solid ${colors.GRAY};
-  border-radius: 3px 3px 0 3px;
-`
-
-const CodeButton = styled('button')`
-  cursor: pointer;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 0 0 3px 3px;
-  background: ${colors.GRAY};
-  font-size: 10px;
-  font-weight: 600;
-  color: ${colors.GRAY_DARK};
-  text-transform: uppercase;
-  transform: translate(1px, 100%);
-`
-
-interface ToggleProps {
-  toggle: () => void
-  on: boolean
-}
-
-interface DocSectionProps {
-  section: Section
-}
-
-const DocSection: SFC<DocSectionProps> = ({ section }) => (
-  <Section key={section.id}>
-    {section.title && <h3>{section.title}</h3>}
-    <Toggle initial={false}>
-      {({ toggle, on }: ToggleProps) => (
-        <RenderWrapper>
-          {on ? (
-            <Highlight language="jsx">{section.code}</Highlight>
-          ) : (
-            <Render render={section.render} />
-          )}
-          <CodeButton onClick={toggle}>
-            <Icon.Code width={15} />
-          </CodeButton>
-        </RenderWrapper>
-      )}
-    </Toggle>
-  </Section>
-)
-
 export const Doc: SFC<DocObj> = ({
   id,
   name,
   filepath,
-  description,
-  sections,
+  component: Component,
 }) => (
   <Container key={id}>
     <Title>{name}</Title>
@@ -117,11 +52,6 @@ export const Doc: SFC<DocObj> = ({
       <IconLink size={15} />
       <code>{filepath}</code>
     </Filepath>
-    {description && <Description>{description}</Description>}
-    {sections &&
-      sections.length > 0 &&
-      sections.map(section => (
-        <DocSection key={section.id} section={section} />
-      ))}
+    <Component />
   </Container>
 )

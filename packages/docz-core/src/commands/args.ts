@@ -24,13 +24,6 @@ export interface Config extends Argv {
   hastPlugins: any[]
 }
 
-const EXTS = '{j,t}{s,sx}'
-const DEFAULT_FILES_GLOB = [
-  `docs/**.${EXTS}`,
-  `**/__docs__/*.${EXTS}`,
-  `**/*.doc.${EXTS}`,
-]
-
 export const args = (yargs: any) => {
   yargs.positional('source', {
     alias: 'src',
@@ -39,7 +32,7 @@ export const args = (yargs: any) => {
   })
   yargs.positional('files', {
     type: 'string',
-    default: DEFAULT_FILES_GLOB,
+    default: '**/*.mdx',
   })
   yargs.positional('title', {
     type: 'string',

@@ -1,9 +1,7 @@
-<% imports.forEach(imp => { %>import '<%- imp %>'
-<% }) %>
 import React from 'react'
 import { hot } from 'react-hot-loader'
 import { Theme } from '<%- theme %>'
-import data from './data.json'
+import { Docs } from './docs'
 
 const _wrappers = [<% if (wrappers) {%><%- wrappers %><%}%>]
 
@@ -18,7 +16,9 @@ const Wrapper = props =>
 
 const App = () => (
   <Wrapper>
-    <Theme entries={data.entries} />
+    <Docs>
+      {(docs) => <Theme docs={docs} />}
+    </Docs>
   </Wrapper>
 )
 

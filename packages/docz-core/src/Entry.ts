@@ -1,50 +1,48 @@
+import * as fs from 'fs'
 import * as path from 'path'
-import * as t from 'babel-types'
 import { ulid } from 'ulid'
-import { NodePath } from 'babel-traverse'
-import generate from 'babel-generator'
-import get from 'lodash.get'
+import unified from 'unified'
+import remark from 'remark-parse'
+import toMDXAST from '@mdx-js/mdxast'
+import slugify from '@sindresorhus/slugify'
 
 import * as paths from './config/paths'
-import { format } from './utils/format'
-import { traverseAndAssign, traverseAndAssignEach } from './utils/traverse'
 
-const hasImport = (p: NodePath<any>): boolean =>
-  t.isImportDeclaration(p) && get(p, 'node.source.value') === `docz`
+const parseMdx = (file: string) => {
+  const raw = fs.readFileSync(file, 'utf-8')
+  const tree = unified()
+    .use(remark)
+    .parse(raw)
 
-const hasDocFn = (p: NodePath<any>): boolean =>
-  p.node.specifiers &&
-  p.node.specifiers.some(
-    (node: NodePath<any>) =>
-      t.isImportSpecifier(node) && node.imported.name === 'doc'
+  return toMDXAST({})(tree)
+}
+
+const checkImport = (file: string) => {
+  const ast = parseMdx(file)
+
+  return (
+    ast.children &&
+    ast.children.some(
+      (child: any) => child.type === 'import' && /docz/.test(child.value)
+    )
   )
+}
 
-const checkImport = traverseAndAssign<NodePath<t.Node>, boolean>({
-  when: p => hasImport(p) && hasDocFn(p),
-  assign: () => true,
-})
+const getNameFromDoc = (file: string) => {
+  const ast = parseMdx(file)
+  const found =
+    ast.children &&
+    ast.children.find(
+      (child: any) =>
+        child &&
+        child.type === 'export' &&
+        /export const meta/.test(child.value) &&
+        /doc\(.+\)/.test(child.value)
+    )
 
-const getNameFromDoc = traverseAndAssign<any, string>({
-  when: p => p.isCallExpression() && get(p, 'node.callee.name') === 'doc',
-  assign: p => get(p, 'node.arguments[0].value'),
-})
-
-const parseSections = traverseAndAssignEach<NodePath<t.Node>, string[]>({
-  when: 'MemberExpression',
-  assign: p => {
-    const name = get(p, 'node.property.name')
-    const args = get(p, 'parentPath.node.arguments')
-
-    if (name === 'section' && args && args.length > 0) {
-      for (const arg of args) {
-        if (arg.type !== 'StringLiteral') {
-          const { code } = generate(arg.body)
-          return format(code).slice(1, Infinity) as any
-        }
-      }
-    }
-  },
-})
+  const name = found.value.match(/(doc\()(.+)(\))/)
+  return slugify(name[2])
+}
 
 export class Entry {
   readonly [key: string]: any
@@ -57,15 +55,9 @@ export class Entry {
     return getNameFromDoc(file)
   }
 
-  public static parseSections(file: string): string[] | null {
-    const sections = parseSections(file)
-    return sections && sections.reverse()
-  }
-
   public id: string
   public filepath: string
   public name: string | null
-  public sections: string[] | null
 
   constructor(file: string, src: string) {
     const filepath = path.relative(paths.root, file)
@@ -73,6 +65,5 @@ export class Entry {
     this.id = ulid()
     this.filepath = filepath
     this.name = Entry.parseName(file)
-    this.sections = Entry.parseSections(file)
   }
 }

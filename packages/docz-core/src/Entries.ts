@@ -30,6 +30,7 @@ const touch = (file: string, raw: string) => {
 const compiled = (file: string) =>
   compile(fs.readFileSync(path.join(paths.templates, file), 'utf-8'))
 
+const docs = compiled('docs.tpl.js')
 const app = compiled('app.tpl.js')
 const js = compiled('index.tpl.js')
 const html = compiled('index.tpl.html')
@@ -54,35 +55,6 @@ export class Entries {
       .map(file => new Entry(file, config.src))
   }
 
-  public find(file: string): Entry | undefined {
-    return this.entries.find(entry => entry.filepath === file)
-  }
-
-  public findIndex(file: string): number {
-    return this.entries.findIndex(entry => entry.filepath === file)
-  }
-
-  public add(entry: Entry): void {
-    this.entries.push(entry)
-  }
-
-  public remove(file: string): void {
-    const idx = this.findIndex(file)
-
-    if (idx > -1) {
-      this.entries.splice(idx, 1)
-    }
-  }
-
-  public update(file: string): void {
-    const idx = this.findIndex(file)
-    const entry = new Entry(file, this.config.src)
-
-    if (idx > -1) {
-      this.entries.splice(idx, 1, entry)
-    }
-  }
-
   public write(): void {
     const { plugins, title, description, theme } = this.config
 
@@ -96,8 +68,11 @@ export class Entries {
       description,
     })
 
-    const rawAppJs = app({
+    const rawDocsJs = docs({
       imports,
+    })
+
+    const rawAppJs = app({
       theme,
       wrappers,
     })
@@ -109,6 +84,7 @@ export class Entries {
 
     touch(paths.indexHtml, rawIndexHtml)
     touch(paths.appJs, rawAppJs)
+    touch(paths.docsJs, rawDocsJs)
     touch(paths.indexJs, rawIndexJs)
 
     touch(

@@ -1,16 +1,16 @@
 import * as React from 'react'
 import { ComponentType } from 'react'
 
-import { entriesContext } from './Docs'
+import { docsContext } from './Docs'
 
 export interface ThemeProps {
-  entries: any[]
+  docs: any[]
 }
 
 export type Theme = (WC: ComponentType) => ComponentType<ThemeProps>
 
-export const theme: Theme = WrappedComponent => ({ entries }) => (
-  <entriesContext.Provider value={entries}>
+export const theme: Theme = WrappedComponent => ({ docs }) => (
+  <docsContext.Provider value={docs}>
     <WrappedComponent />
-  </entriesContext.Provider>
+  </docsContext.Provider>
 )

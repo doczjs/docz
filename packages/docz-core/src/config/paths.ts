@@ -38,6 +38,7 @@ export interface Paths {
   dist: string
   templates: string
   appJs: string
+  docsJs: string
   indexJs: string
   dataJson: string
   indexHtml: string
@@ -52,7 +53,7 @@ export const servedPath = getServedPath(resolveApp('package.json'))
 export const dist = path.resolve(docz, 'dist/')
 
 export const appJs = path.resolve(docz, 'app.jsx')
+export const docsJs = path.resolve(docz, 'docs.jsx')
 export const indexJs = path.resolve(docz, 'index.jsx')
 export const dataJson = path.resolve(docz, 'data.json')
-
 export const indexHtml = path.resolve(docz, 'index.html')
