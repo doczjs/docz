@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { DocObj } from './Doc'
+import { Doc, DocObj } from './Doc'
 
 export const isFn = (value: any): boolean => typeof value === 'function'
 export const docsContext = React.createContext([] as DocObj[])
@@ -23,9 +23,7 @@ export const Docs: React.SFC<DocsProps> = ({ children }) => (
         )
       }
 
-      console.log(docs)
-
-      return children({ docs, categories: [] })
+      return children({ docs, categories: Doc.categoriesFromDocs(docs) })
     }}
   </docsContext.Consumer>
 )
