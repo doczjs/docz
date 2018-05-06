@@ -62,12 +62,8 @@ export const createConfig = (args: ConfigObj) => (): Configuration => {
    * entries
    */
 
-  const addHotClientEntry = (entry: Config.EntryPoint) =>
-    entry.add(require.resolve('react-dev-utils/webpackHotDevClient'))
-
   config
     .entry('app')
-    .when(!isProd, addHotClientEntry)
     .add(require.resolve('babel-polyfill'))
     .add(paths.indexJs)
 
@@ -86,7 +82,7 @@ export const createConfig = (args: ConfigObj) => (): Configuration => {
     .merge(['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx', '.mdx'])
     .end()
     .modules.add('node_modules')
-    .add(paths.root)
+    .add(srcPath)
 
   config.resolveLoader
     .set('symlinks', true)
@@ -177,16 +173,6 @@ export const createConfig = (args: ConfigObj) => (): Configuration => {
       limit: INLINE_LIMIT,
       name: `static/fonts/[name].[hash:8].[ext]`,
     })
-
-  /**
-   * plugins
-   */
-
-  config.when(!isProd, cfg =>
-    cfg
-      .plugin('hot-module-replacement-plugin')
-      .use(webpack.HotModuleReplacementPlugin)
-  )
 
   config
     .plugin('named-modules-plugin')

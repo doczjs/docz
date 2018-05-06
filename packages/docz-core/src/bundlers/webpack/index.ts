@@ -1,6 +1,6 @@
-import { Configuration as CFG } from 'webpack'
-import WebpackDevServer from 'webpack-dev-server-speedy'
 import webpack from 'webpack'
+import { Configuration as CFG } from 'webpack'
+import serve from 'webpack-serve'
 
 import { devServerConfig } from './devserver'
 import { createConfig as config } from './config'
@@ -9,11 +9,10 @@ import { Config } from '../../commands/args'
 
 export const server = (args: Config) => (config: CFG): BundlerServer => {
   const compiler = webpack(config)
-  const devserver = devServerConfig(args)
-  const server = new WebpackDevServer(compiler, devserver)
+  const devserver = devServerConfig(args, compiler, config)
 
   return {
-    start: () => server.listen(args.port),
+    start: async () => serve(devserver),
   }
 }
 

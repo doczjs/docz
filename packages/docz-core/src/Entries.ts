@@ -21,7 +21,7 @@ const mkd = (dir: string): void => {
 }
 
 const touch = (file: string, raw: string) => {
-  const content = /js$/.test(path.extname(file)) ? format(raw) : raw
+  const content = /jsx?$/.test(path.extname(file)) ? format(raw) : raw
 
   mkd(paths.docz)
   fs.writeFileSync(file, content, 'utf-8')
@@ -63,23 +63,22 @@ export class Entries {
     const beforeRenders = propOf(plugins, 'beforeRender')
     const imports = this.entries.map(e => e.filepath)
 
-    const rawIndexHtml = html({
-      title,
-      description,
-    })
-
-    const rawDocsJs = docs({
-      imports,
-    })
+    const rawDocsJs = docs({})
 
     const rawAppJs = app({
       theme,
       wrappers,
+      imports,
     })
 
     const rawIndexJs = js({
       afterRenders,
       beforeRenders,
+    })
+
+    const rawIndexHtml = html({
+      title,
+      description,
     })
 
     touch(paths.indexHtml, rawIndexHtml)

@@ -60,7 +60,8 @@ export class Entry {
   public name: string | null
 
   constructor(file: string, src: string) {
-    const filepath = path.relative(paths.root, file)
+    const srcPath = path.resolve(paths.root, src)
+    const filepath = path.relative(srcPath, file)
 
     this.id = ulid()
     this.filepath = filepath

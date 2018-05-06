@@ -16,18 +16,21 @@ export class Docs extends Component {
     docs: [],
   }
 
-  importDocs = async () => {
-    const docs = await Promise.all([<%imports.forEach((imp, index) => { %>
-      import('<%- imp %>'),<% }) %>
-    ])
+  importDocs = () =>
+    Promise.all(this.props.imports).then(docs =>
+      this.setState({
+        docs: mergeDocsWithEntries(docs, data.entries),
+      })
+    )
 
-    this.setState({
-      docs: mergeDocsWithEntries(docs, data.entries)
-    })
+  componentWillReceiveProps() {
+    if (module.hot) {
+      setImmediate(this.importDocs)
+    }
   }
 
-  async componentDidMount() {
-    await this.importDocs()
+  componentDidMount() {
+    this.importDocs()
   }
 
   render() {

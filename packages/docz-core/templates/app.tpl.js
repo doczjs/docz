@@ -16,7 +16,7 @@ const Wrapper = props =>
 
 const App = () => (
   <Wrapper>
-    <Docs>
+    <Docs imports={[<% imports.forEach((imp, index) => { %>import('<%- imp %>'),<% }) %>]}>
       {(docs) => <Theme docs={docs} />}
     </Docs>
   </Wrapper>

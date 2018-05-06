@@ -1,26 +1,37 @@
+import * as path from 'path'
+import { Compiler, Configuration } from 'webpack'
+import convert from 'koa-connect'
+import history from 'connect-history-api-fallback'
+
 import { Config } from '../../commands/args'
 
-export const devServerConfig = ({ paths, host, debug, protocol }: Config) => ({
-  host,
-  clientLogLevel: !debug ? 'none' : 'error',
-  compress: true,
-  contentBase: paths.docz,
-  historyApiFallback: {
-    disableDotRule: true,
-  },
-  hot: true,
-  https: protocol === 'https',
-  noInfo: !debug,
-  overlay: false,
-  publicPath: '/',
-  quiet: !debug,
-  stats: {
-    chunkModules: false,
-    chunks: false,
-    colors: true,
-  },
-  watchContentBase: true,
-  watchOptions: {
-    ignored: /node_modules/,
-  },
-})
+export const devServerConfig = (
+  args: Config,
+  compiler: Compiler,
+  config: Configuration
+) => {
+  const { port, host } = args
+  const nonExistentDir = path.resolve(__dirname, 'non-existent')
+
+  return {
+    content: [nonExistentDir],
+    compiler,
+    host,
+    dev: { logLevel: 'warn' },
+    hot: {
+      logLevel: 'error',
+      reload: false,
+    },
+    logLevel: 'error',
+    port,
+    add: (app: any) => {
+      app.use(
+        convert(
+          history({
+            rewrites: [{ from: /\.html$/, to: '/' }],
+          })
+        )
+      )
+    },
+  }
+}
