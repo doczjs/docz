@@ -1,2 +1,2 @@
 declare module '@sindresorhus/slugify'
-declare module 'pascalcase'
+declare module 'pascalcase''

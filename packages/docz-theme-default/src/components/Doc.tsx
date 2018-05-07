@@ -1,7 +1,6 @@
 import React, { SFC } from 'react'
 import styled from 'react-emotion'
 import { DocObj } from 'docz'
-import * as Icon from 'react-feather'
 
 import * as colors from '../styles/colors'
 
@@ -12,7 +11,7 @@ const Container = styled('div')`
   margin: 0 auto;
 `
 
-const Title = styled('h2')`
+const Title = styled('h1')`
   position: relative;
   font-size: 48px;
   font-weight: 200;
@@ -29,29 +28,8 @@ const Title = styled('h2')`
   }
 `
 
-const IconLink = styled(Icon.Link)`
-  margin-right: 10px;
-`
-
-const Filepath = styled('div')`
-  display: flex;
-  align-items: center;
-  margin: 15px 0 0;
-  color: ${colors.GRAY_MEDIUM};
-`
-
-export const Doc: SFC<DocObj> = ({
-  id,
-  name,
-  filepath,
-  component: Component,
-}) => (
+export const Doc: SFC<DocObj> = ({ id, component: Component }) => (
   <Container key={id}>
-    <Title>{name}</Title>
-    <Filepath>
-      <IconLink size={15} />
-      <code>{filepath}</code>
-    </Filepath>
-    <Component />
+    <Component components={{ h1: Title }} />
   </Container>
 )
