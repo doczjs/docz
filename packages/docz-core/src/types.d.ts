@@ -1,5 +1,6 @@
 declare module '@mdx-js/mdxast'
 declare module '@mdx-js/mdx'
+declare module 'chokidar'
 declare module '@sindresorhus/slugify'
 declare module 'unified'
 declare module 'remark-parse'

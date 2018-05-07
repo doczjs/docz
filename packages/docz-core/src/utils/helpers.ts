@@ -30,7 +30,9 @@ export function propOf<T>(arr: any[] | undefined, method: keyof T): any {
 }
 
 export function isArrEqual(arr: any[] | null, to: any[] | null): boolean {
-  if (!arr || !to || arr.length !== to.length) return false
+  if (!arr || !to || arr.length !== to.length) {
+    return false
+  }
   // tslint:disable
   let equals = false
 

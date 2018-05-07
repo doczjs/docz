@@ -27,12 +27,13 @@ export interface DocObj {
 
 export interface Entry {
   id: string
+  slug: string
   name: string
   filepath: string
 }
 
 export class Doc {
-  static categoriesFromDocs = (docs: DocObj[]) =>
+  public static categoriesFromDocs = (docs: DocObj[]) =>
     docs.reduce(
       (arr: string[], { category }: DocObj) =>
         category && arr.indexOf(category) === -1 ? arr.concat([category]) : arr,
@@ -77,7 +78,7 @@ export class Doc {
 
   public findEntryAndMerge(entries: Record<string, Entry>): Doc {
     const entry = Object.values(entries).find(
-      entry => entry.name === this._slug
+      entry => entry.slug === this._slug
     )
 
     if (entry) {

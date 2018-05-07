@@ -41,7 +41,7 @@ const getNameFromDoc = (file: string) => {
     )
 
   const name = found.value.match(/(doc\()(.+)(\))/)
-  return slugify(name[2])
+  return name[2]
 }
 
 export class Entry {
@@ -56,15 +56,16 @@ export class Entry {
   }
 
   public id: string
+  public slug: string
   public filepath: string
-  public name: string | null
 
   constructor(file: string, src: string) {
     const srcPath = path.resolve(paths.root, src)
     const filepath = path.relative(srcPath, file)
+    const name = Entry.parseName(file)
 
     this.id = ulid()
+    this.slug = slugify(name)
     this.filepath = filepath
-    this.name = Entry.parseName(file)
   }
 }

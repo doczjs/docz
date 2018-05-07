@@ -12,7 +12,7 @@
     "no-shadowed-variable": false,
     "max-classes-per-file": false,
     "no-var-keyword": false,
-    "no-parameter-reassignment": true,
+    "no-parameter-reassignment": false,
     "typedef": [true, "call-signature"]
   }
 }

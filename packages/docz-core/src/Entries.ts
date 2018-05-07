@@ -6,7 +6,7 @@ import { compile } from 'art-template'
 import stringify from 'json-stringify-pretty-compact'
 
 import * as paths from './config/paths'
-import { propOf } from './utils/helpers'
+import { propOf, omit } from './utils/helpers'
 import { format } from './utils/format'
 
 import { Entry } from './Entry'
@@ -36,10 +36,12 @@ const app = compiled('app.tpl.js')
 const js = compiled('index.tpl.js')
 const html = compiled('index.tpl.html')
 
+export type EntryMap = Record<string, Entry>
+
 export class Entries {
   public files: string[]
   public config: Config
-  public entries: Entry[]
+  public entries: EntryMap
 
   constructor(config: Config) {
     const { files: pattern } = config
@@ -51,13 +53,44 @@ export class Entries {
 
     this.files = files
     this.config = config
-    this.entries = files
-      .filter(Entry.check)
-      .map(file => new Entry(file, config.src))
+    this.entries = this.getEntries(files)
   }
 
   public write(): void {
-    const { entries } = this
+    this.writeStructuredFiles()
+    this.writeDataAndImports()
+  }
+
+  public rewrite(): void {
+    this.writeDataAndImports()
+  }
+
+  public remove(file: string): void {
+    this.entries = omit([this.entryFilepath(file)], this.entries)
+  }
+
+  public update(file: string): void {
+    const filepath = this.entryFilepath(file)
+
+    this.entries = {
+      ...this.entries,
+      [filepath]: new Entry(file, this.config.src),
+    }
+  }
+
+  private entryFilepath(file: string): string {
+    const srcPath = path.resolve(paths.root, this.config.src)
+    return path.relative(srcPath, file)
+  }
+
+  private getEntries(files: string[]): EntryMap {
+    return files.filter(Entry.check).reduce((obj, file) => {
+      const entry = new Entry(file, this.config.src)
+      return { ...obj, [entry.filepath]: entry }
+    }, {})
+  }
+
+  private writeStructuredFiles(): void {
     const { plugins, title, description, theme } = this.config
 
     const wrappers = propOf(plugins, 'wrapper')
@@ -65,28 +98,28 @@ export class Entries {
     const beforeRenders = propOf(plugins, 'beforeRender')
 
     const rawDocsJs = docs({})
-    const rawImportsJs = imports({ entries })
     const rawAppJs = app({ theme, wrappers })
     const rawIndexJs = js({ afterRenders, beforeRenders })
     const rawIndexHtml = html({ title, description })
 
-    touch(paths.importsJs, rawImportsJs)
     touch(paths.docsJs, rawDocsJs)
     touch(paths.appJs, rawAppJs)
     touch(paths.indexJs, rawIndexJs)
     touch(paths.indexHtml, rawIndexHtml)
+  }
 
-    touch(
-      paths.dataJson,
-      stringify({
-        title,
-        description,
-        theme,
-        entries: this.entries.reduce(
-          (obj, entry) => Object.assign({}, obj, { [`${entry.id}`]: entry }),
-          {}
-        ),
-      })
-    )
+  private writeDataAndImports(): void {
+    const { title, description, theme } = this.config
+
+    const rawImportsJs = imports({ entries: Object.values(this.entries) })
+    const rawData = stringify({
+      title,
+      description,
+      theme,
+      entries: this.entries,
+    })
+
+    touch(paths.importsJs, rawImportsJs)
+    touch(paths.dataJson, rawData)
   }
 }

@@ -1,3 +1,3 @@
 export const imports = {
-  <% entries.forEach(entry => { %>'<%- entry.id %>': import('<%- entry.filepath %>'),<% }) %>
+  <% entries.forEach(entry => { %>'<%- entry.filepath %>': import('<%- entry.filepath %>'),<% }) %>
 }
