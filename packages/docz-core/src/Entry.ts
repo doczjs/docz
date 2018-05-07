@@ -23,7 +23,8 @@ const checkImport = (file: string) => {
   return (
     ast.children &&
     ast.children.some(
-      (child: any) => child.type === 'import' && /docz/.test(child.value)
+      (child: any) =>
+        child && child.type === 'import' && /docz/.test(child.value)
     )
   )
 }
@@ -40,15 +41,15 @@ const getNameFromDoc = (file: string) => {
         /doc\(.+\)/.test(child.value)
     )
 
-  const name = found.value.match(/(doc\()(.+)(\))/)
-  return name[2]
+  const name = found && found.value.match(/(doc\()(.+)(\))/)
+  return name ? name[2] : null
 }
 
 export class Entry {
   readonly [key: string]: any
 
   public static check(file: string): boolean | null {
-    return checkImport(file)
+    return checkImport(file) && Boolean(getNameFromDoc(file))
   }
 
   public static parseName(file: string): string | null {
