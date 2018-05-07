@@ -1,9 +1,13 @@
 import * as React from 'react'
 
 import { Doc, DocObj } from './Doc'
+import { DocsMap } from './theme'
 
 export const isFn = (value: any): boolean => typeof value === 'function'
-export const docsContext = React.createContext([] as DocObj[])
+export const docsContext = React.createContext({} as DocsMap)
+
+const sortDocs = (docs: DocObj[]) =>
+  docs.sort((docA, docB) => docB.order - docA.order)
 
 export interface DocsRenderProps {
   docs: DocObj[]
@@ -23,7 +27,12 @@ export const Docs: React.SFC<DocsProps> = ({ children }) => (
         )
       }
 
-      return children({ docs, categories: Doc.categoriesFromDocs(docs) })
+      const docsArr = Object.values(docs)
+
+      return children({
+        docs: sortDocs(docsArr),
+        categories: Doc.categoriesFromDocs(docsArr),
+      })
     }}
   </docsContext.Consumer>
 )

@@ -15,9 +15,10 @@ export interface DocConstructorArgs {
 }
 
 export interface DocObj {
-  readonly name: string
-  readonly route: string
   readonly id: string | undefined
+  readonly name: string
+  readonly slug: string
+  readonly route: string
   readonly order: number
   readonly filepath: string | undefined
   readonly category: string | undefined
@@ -39,6 +40,7 @@ export class Doc {
     )
 
   private _name: string
+  private _slug: string
   private _route: string
   private _id: string | undefined
   private _order: number
@@ -46,8 +48,11 @@ export class Doc {
   private _category: string | undefined
 
   constructor(name: string) {
+    const slug = slugify(name)
+
     this._name = name
-    this._route = `/${slugify(name)}`
+    this._slug = slug
+    this._route = `/${slug}`
     this._order = 0
 
     return this
@@ -70,8 +75,10 @@ export class Doc {
     return this
   }
 
-  public findEntryAndMerge(entries: Entry[]): Doc {
-    const entry = entries.find(entry => entry.name === slugify(this._name))
+  public findEntryAndMerge(entries: Record<string, Entry>): Doc {
+    const entry = Object.values(entries).find(
+      entry => entry.name === this._slug
+    )
 
     if (entry) {
       this._id = entry.id
@@ -88,10 +95,11 @@ export class Doc {
       component: Component,
       id: this._id,
       name: this._name,
-      order: this._order,
-      category: this._category,
+      slug: this._slug,
       filepath: this._filepath,
       route: this._route,
+      order: this._order,
+      category: this._category,
     }
   }
 }

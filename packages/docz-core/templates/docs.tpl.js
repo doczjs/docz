@@ -1,36 +1,37 @@
 import React, { Component } from 'react'
-import data from './data.json'
-
-const mergeDocsWithEntries = (docs, entries) =>
-  docs
-    .map(doc => {
-      const Component = doc.default
-      const instance = doc.meta.findEntryAndMerge(entries)
-
-      return instance.toObject(Component)
-    })
-    .sort((docA, docB) => docB.order - docA.order)
+import { entries } from './data'
+import Promise from 'bluebird'
+import produce from 'immer'
 
 export class Docs extends Component {
   state = {
-    docs: [],
+    docs: {},
   }
 
-  importDocs = () =>
-    Promise.all(this.props.imports).then(docs =>
-      this.setState({
-        docs: mergeDocsWithEntries(docs, data.entries),
-      })
-    )
+  importDocs = async imports => {
+    const docs = await Promise.props(imports)
 
-  componentWillReceiveProps() {
+    this.setState({
+      docs: produce(docs, draft => {
+        Object.keys(draft).forEach(key => {
+          const { default: component, meta: instance } = draft[key]
+          const doc = instance.findEntryAndMerge(entries)
+          const docObj = doc.toObject(component)
+
+          draft[key] = docObj
+        })
+      }),
+    })
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (module.hot) {
-      setImmediate(this.importDocs)
+      setImmediate(() => this.importDocs(nextProps.imports))
     }
   }
 
   componentDidMount() {
-    this.importDocs()
+    this.importDocs(this.props.imports)
   }
 
   render() {

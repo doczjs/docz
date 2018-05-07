@@ -30,6 +30,7 @@ const touch = (file: string, raw: string) => {
 const compiled = (file: string) =>
   compile(fs.readFileSync(path.join(paths.templates, file), 'utf-8'))
 
+const imports = compiled('imports.tpl.js')
 const docs = compiled('docs.tpl.js')
 const app = compiled('app.tpl.js')
 const js = compiled('index.tpl.js')
@@ -56,35 +57,24 @@ export class Entries {
   }
 
   public write(): void {
+    const { entries } = this
     const { plugins, title, description, theme } = this.config
 
     const wrappers = propOf(plugins, 'wrapper')
     const afterRenders = propOf(plugins, 'afterRender')
     const beforeRenders = propOf(plugins, 'beforeRender')
-    const imports = this.entries.map(e => e.filepath)
 
     const rawDocsJs = docs({})
+    const rawImportsJs = imports({ entries })
+    const rawAppJs = app({ theme, wrappers })
+    const rawIndexJs = js({ afterRenders, beforeRenders })
+    const rawIndexHtml = html({ title, description })
 
-    const rawAppJs = app({
-      theme,
-      wrappers,
-      imports,
-    })
-
-    const rawIndexJs = js({
-      afterRenders,
-      beforeRenders,
-    })
-
-    const rawIndexHtml = html({
-      title,
-      description,
-    })
-
-    touch(paths.indexHtml, rawIndexHtml)
-    touch(paths.appJs, rawAppJs)
+    touch(paths.importsJs, rawImportsJs)
     touch(paths.docsJs, rawDocsJs)
+    touch(paths.appJs, rawAppJs)
     touch(paths.indexJs, rawIndexJs)
+    touch(paths.indexHtml, rawIndexHtml)
 
     touch(
       paths.dataJson,
@@ -92,7 +82,10 @@ export class Entries {
         title,
         description,
         theme,
-        entries: this.entries,
+        entries: this.entries.reduce(
+          (obj, entry) => Object.assign({}, obj, { [`${entry.id}`]: entry }),
+          {}
+        ),
       })
     )
   }
