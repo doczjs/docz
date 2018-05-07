@@ -1,48 +1,43 @@
-import * as fs from 'fs'
 import * as path from 'path'
 import { ulid } from 'ulid'
+import vfile from 'to-vfile'
 import unified from 'unified'
 import remark from 'remark-parse'
 import toMDXAST from '@mdx-js/mdxast'
 import slugify from '@sindresorhus/slugify'
+import find from 'unist-util-find'
+import is from 'unist-util-is'
 
 import * as paths from './config/paths'
 
 const parseMdx = (file: string) => {
-  const raw = fs.readFileSync(file, 'utf-8')
+  const raw = vfile.readSync(file, 'utf-8')
+  const mdx = toMDXAST()
   const tree = unified()
     .use(remark)
     .parse(raw)
 
-  return toMDXAST({})(tree)
+  return mdx(tree)
 }
+const hasDoczImported = (node: any) =>
+  is('import', node) && /docz/.test(node.value)
+
+const getNameFromTree = (node: any) =>
+  is('export', node) &&
+  /export const meta/.test(node.value) &&
+  /doc\(.+\)/.test(node.value)
 
 const checkImport = (file: string) => {
   const ast = parseMdx(file)
-
-  return (
-    ast.children &&
-    ast.children.some(
-      (child: any) =>
-        child && child.type === 'import' && /docz/.test(child.value)
-    )
-  )
+  return Boolean(find(ast, hasDoczImported))
 }
 
 const getNameFromDoc = (file: string) => {
   const ast = parseMdx(file)
-  const found =
-    ast.children &&
-    ast.children.find(
-      (child: any) =>
-        child &&
-        child.type === 'export' &&
-        /export const meta/.test(child.value) &&
-        /doc\(.+\)/.test(child.value)
-    )
+  const node = find(ast, getNameFromTree)
 
-  const name = found && found.value.match(/(doc\()(.+)(\))/)
-  return name ? name[2] : null
+  const match = node && node.value.match(/doc\((\'|\")(.+)(\'|\")/)
+  return match ? match[2] : null
 }
 
 export class Entry {
