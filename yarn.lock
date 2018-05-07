@@ -1418,12 +1418,6 @@
   version "3.0.3"
   resolved "https://registry.npmjs.org/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
 
-"@types/mkdirp@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.npmjs.org/@types/mkdirp/-/mkdirp-0.5.2.tgz#503aacfe5cc2703d5484326b1b27efa67a339c1f"
-  dependencies:
-    "@types/node" "*"
-
 "@types/node@*":
   version "10.0.0"
   resolved "https://registry.npmjs.org/@types/node/-/node-10.0.0.tgz#c40f8e07dce607d3ef25a626b93a6a7cdcf97881"
@@ -1480,6 +1474,13 @@
   dependencies:
     "@types/express-serve-static-core" "*"
     "@types/mime" "*"
+
+"@types/shelljs@^0.7.9":
+  version "0.7.9"
+  resolved "https://registry.npmjs.org/@types/shelljs/-/shelljs-0.7.9.tgz#3abecb72d9cad9cd4b0e7cb86ed10a97d93ba602"
+  dependencies:
+    "@types/glob" "*"
+    "@types/node" "*"
 
 "@types/tapable@*":
   version "1.0.2"

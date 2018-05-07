@@ -1,7 +1,7 @@
 import * as glob from 'fast-glob'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as mkdir from 'mkdirp'
+import { test, mkdir } from 'shelljs'
 import { compile } from 'art-template'
 import stringify from 'json-stringify-pretty-compact'
 
@@ -13,11 +13,7 @@ import { Entry } from './Entry'
 import { Config } from './commands/args'
 
 const mkd = (dir: string): void => {
-  try {
-    fs.lstatSync(dir)
-  } catch (err) {
-    mkdir.sync(dir)
-  }
+  !test('-d', dir) && mkdir('-p', dir)
 }
 
 const touch = (file: string, raw: string) => {
@@ -38,21 +34,12 @@ const html = compiled('index.tpl.html')
 export type EntryMap = Record<string, Entry>
 
 export class Entries {
-  public files: string[]
   public config: Config
   public entries: EntryMap
 
   constructor(config: Config) {
-    const { files: pattern } = config
-
-    const ignoreGlob = '!node_modules'
-    const files: string[] = glob.sync(
-      Array.isArray(pattern) ? [...pattern, ignoreGlob] : [pattern, ignoreGlob]
-    )
-
-    this.files = files
     this.config = config
-    this.entries = this.getEntries(files)
+    this.entries = this.getEntries(config)
   }
 
   public write(): void {
@@ -71,9 +58,26 @@ export class Entries {
   public update(file: string): void {
     const filepath = this.entryFilepath(file)
 
-    this.entries = {
-      ...this.entries,
-      [filepath]: new Entry(file, this.config.src),
+    if (Entry.check(file)) {
+      this.entries = {
+        ...this.entries,
+        [filepath]: new Entry(file, this.config.src),
+      }
+    }
+  }
+
+  public clean(dir: string): void {
+    if (test('-d', dir)) {
+      this.entries = this.getEntries(this.config)
+      return
+    }
+
+    const { paths } = this.config
+    const src = path.resolve(paths.root, this.config.src)
+
+    for (const file of Object.keys(this.entries)) {
+      const filepath = path.join(src, file)
+      if (!test('-f', filepath)) this.remove(filepath)
     }
   }
 
@@ -82,7 +86,14 @@ export class Entries {
     return path.relative(srcPath, file)
   }
 
-  private getEntries(files: string[]): EntryMap {
+  private getEntries(config: Config): EntryMap {
+    const { files: pattern } = config
+
+    const ignoreGlob = '!node_modules'
+    const files: string[] = glob.sync(
+      Array.isArray(pattern) ? [...pattern, ignoreGlob] : [pattern, ignoreGlob]
+    )
+
     return files.filter(Entry.check).reduce((obj, file) => {
       const entry = new Entry(file, this.config.src)
       return { ...obj, [entry.filepath]: entry }

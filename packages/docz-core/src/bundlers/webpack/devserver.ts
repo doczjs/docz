@@ -14,16 +14,18 @@ export const devServerConfig = (
   const nonExistentDir = path.resolve(__dirname, 'non-existent')
 
   return {
-    content: [nonExistentDir],
     compiler,
     host,
-    dev: { logLevel: 'warn' },
+    port,
+    content: [nonExistentDir],
+    dev: {
+      logLevel: args.debug ? 'debug' : 'warn',
+    },
     hot: {
       logLevel: 'error',
       reload: false,
     },
     logLevel: 'error',
-    port,
     add: (app: any) => {
       app.use(
         convert(

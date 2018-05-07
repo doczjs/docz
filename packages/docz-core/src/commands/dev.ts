@@ -3,7 +3,6 @@ import chokidar from 'chokidar'
 import del from 'del'
 
 import * as paths from '../config/paths'
-import { Entry } from '../Entry'
 import { Entries } from '../Entries'
 import { webpack } from '../bundlers'
 import { Config } from './args'
@@ -11,38 +10,46 @@ import { Config } from './args'
 process.env.BABEL_ENV = process.env.BABEL_ENV || 'development'
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
+const handleUpdate = (entries: Entries) => (file: string) => {
+  entries.update(file)
+  entries.rewrite()
+}
+
+const handleRemove = (entries: Entries) => (file: string) => {
+  entries.remove(file)
+  entries.rewrite()
+}
+
+const handleRemoveDir = (entries: Entries) => (
+  event: string,
+  path: string,
+  details: any
+) => {
+  if (details.event === 'moved' && details.type === 'directory') {
+    entries.clean(details.path)
+    entries.rewrite()
+  }
+}
+
+const writeEntriesAndWatch = (config: Config) => {
+  const entries = new Entries(config)
+  const watcher = chokidar.watch(config.files, {
+    ignored: /(^|[\/\\])\../,
+  })
+
+  watcher
+    .on('change', handleUpdate(entries))
+    .on('unlink', handleRemove(entries))
+    .on('raw', handleRemoveDir(entries))
+
+  entries.write()
+}
+
 const INITIAL_CONFIG = {
   paths,
   plugins: [],
   mdPlugins: [],
   hastPlugins: [],
-}
-
-const writeEntriesAndWatch = (config: Config) => {
-  const watcher = chokidar.watch(config.files, {
-    ignored: /(^|[\/\\])\../,
-  })
-
-  const entries = new Entries(config)
-
-  const onUnlink = (file: string) => {
-    entries.remove(file)
-    entries.rewrite()
-  }
-
-  const onChange = (file: string) => {
-    const name = Entry.parseName(file)
-
-    if (name) {
-      entries.update(file)
-      entries.rewrite()
-    }
-  }
-
-  watcher.on('unlink', onUnlink)
-  watcher.on('change', onChange)
-
-  entries.write()
 }
 
 export const dev = async (args: Config) => {

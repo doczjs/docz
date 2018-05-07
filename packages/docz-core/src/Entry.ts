@@ -52,21 +52,21 @@ export class Entry {
     return checkImport(file) && Boolean(getNameFromDoc(file))
   }
 
-  public static parseName(file: string): string | null {
-    return getNameFromDoc(file)
+  public static slug(file: string): string | null {
+    const name = getNameFromDoc(file)
+    return name ? slugify(name) : null
   }
 
   public id: string
-  public slug: string
   public filepath: string
+  public slug: string | null
 
   constructor(file: string, src: string) {
     const srcPath = path.resolve(paths.root, src)
     const filepath = path.relative(srcPath, file)
-    const name = Entry.parseName(file)
 
     this.id = ulid()
-    this.slug = slugify(name)
+    this.slug = Entry.slug(file)
     this.filepath = filepath
   }
 }
