@@ -1311,6 +1311,10 @@
   dependencies:
     "@types/estree" "*"
 
+"@types/bluebird@^3.5.20":
+  version "3.5.20"
+  resolved "https://registry.npmjs.org/@types/bluebird/-/bluebird-3.5.20.tgz#f6363172add6f4eabb8cada53ca9af2781e8d6a1"
+
 "@types/body-parser@*":
   version "1.17.0"
   resolved "https://registry.npmjs.org/@types/body-parser/-/body-parser-1.17.0.tgz#9f5c9d9bd04bb54be32d5eb9fc0d8c974e6cf58c"
@@ -4342,10 +4346,6 @@ ignore-walk@^3.0.1:
 ignore@^3.3.3, ignore@^3.3.5:
   version "3.3.7"
   resolved "https://registry.npmjs.org/ignore/-/ignore-3.3.7.tgz#612289bfb3c220e186a58118618d5be8c1bab021"
-
-immer@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.npmjs.org/immer/-/immer-1.3.0.tgz#b5c462dad2a129ad909eb4a180de63ffaa348d12"
 
 import-lazy@^2.1.0:
   version "2.1.0"

@@ -13,6 +13,7 @@
     "max-classes-per-file": false,
     "no-var-keyword": false,
     "no-parameter-reassignment": false,
+    "no-object-literal-type-assertion": false,
     "typedef": [true, "call-signature"]
   }
 }

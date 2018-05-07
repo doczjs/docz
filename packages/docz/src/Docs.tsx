@@ -1,10 +1,10 @@
 import * as React from 'react'
 
 import { Doc, DocObj } from './Doc'
-import { DocsMap } from './theme'
+import { DocMap } from './theme'
 
 export const isFn = (value: any): boolean => typeof value === 'function'
-export const docsContext = React.createContext({} as DocsMap)
+export const docsContext = React.createContext({} as DocMap)
 
 const sortDocs = (docs: DocObj[]) =>
   docs.sort((docA, docB) => docB.order - docA.order)

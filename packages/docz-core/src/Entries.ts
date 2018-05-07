@@ -31,7 +31,6 @@ const compiled = (file: string) =>
   compile(fs.readFileSync(path.join(paths.templates, file), 'utf-8'))
 
 const imports = compiled('imports.tpl.js')
-const docs = compiled('docs.tpl.js')
 const app = compiled('app.tpl.js')
 const js = compiled('index.tpl.js')
 const html = compiled('index.tpl.html')
@@ -97,12 +96,10 @@ export class Entries {
     const afterRenders = propOf(plugins, 'afterRender')
     const beforeRenders = propOf(plugins, 'beforeRender')
 
-    const rawDocsJs = docs({})
     const rawAppJs = app({ theme, wrappers })
     const rawIndexJs = js({ afterRenders, beforeRenders })
     const rawIndexHtml = html({ title, description })
 
-    touch(paths.docsJs, rawDocsJs)
     touch(paths.appJs, rawAppJs)
     touch(paths.indexJs, rawIndexJs)
     touch(paths.indexHtml, rawIndexHtml)

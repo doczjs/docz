@@ -2,8 +2,8 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 import { Theme } from '<%- theme %>'
 
-import { Docs } from './docs'
 import { imports } from './imports'
+import data from './data.json'
 
 const _wrappers = [<% if (wrappers) {%><%- wrappers %><%}%>]
 
@@ -17,11 +17,7 @@ const Wrapper = props =>
   _wrappers.length ? recursiveWrappers(_wrappers, props) : props.children
 
 const App = () => (
-  <Wrapper>
-    <Docs imports={imports}>
-      {(docs) => <Theme docs={docs} />}
-    </Docs>
-  </Wrapper>
+  <Theme data={data} imports={imports} wrapper={Wrapper} />
 )
 
 export default hot(module)(App)
