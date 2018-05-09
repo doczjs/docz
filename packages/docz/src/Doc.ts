@@ -7,7 +7,7 @@ export const isFn = (value: any): boolean => typeof value === 'function'
 export const safeUrl = (value: string) => encodeURI(value.replace(/\s/g, ''))
 
 export type MDXComponent = ComponentType<{
-  components?: Record<string, ComponentType>
+  components?: Record<string, ComponentType<any>>
 }>
 
 export interface DocConstructorArgs {

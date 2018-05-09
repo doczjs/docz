@@ -3,9 +3,11 @@ import chokidar from 'chokidar'
 import del from 'del'
 
 import * as paths from '../config/paths'
+import { Config } from './args'
+
 import { Entries } from '../Entries'
 import { webpack } from '../bundlers'
-import { Config } from './args'
+import { playgroundHast } from '../hast/playground-plugin'
 
 process.env.BABEL_ENV = process.env.BABEL_ENV || 'development'
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
@@ -49,7 +51,7 @@ const INITIAL_CONFIG = {
   paths,
   plugins: [],
   mdPlugins: [],
-  hastPlugins: [],
+  hastPlugins: [playgroundHast],
 }
 
 export const dev = async (args: Config) => {

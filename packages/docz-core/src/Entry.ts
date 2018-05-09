@@ -19,6 +19,7 @@ const parseMdx = (file: string) => {
 
   return mdx(tree)
 }
+
 const hasDoczImported = (node: any) =>
   is('import', node) && /docz/.test(node.value)
 

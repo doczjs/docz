@@ -1,4 +1,4 @@
-import { doc } from 'docz'
+import { doc, Playground } from 'docz'
 import { Alert } from './Alert'
 
 export const meta = doc('Alert')
@@ -8,11 +8,15 @@ export const meta = doc('Alert')
 
 ## Basic usage
 
-<Alert>Some message</Alert>
+<Playground>
+  <Alert>Other message</Alert>
+</Playground>
 
 ## Using different kinds
 
-<Alert>Some message</Alert>
-<Alert kind="positive">Some message</Alert>
-<Alert kind="negative">Some message</Alert>
-<Alert kind="warning">Some message</Alert>
+<Playground>
+  <Alert>Some message</Alert>
+  <Alert kind="positive">Some message</Alert>
+  <Alert kind="negative">Some message</Alert>
+  <Alert kind="warning">Some message</Alert>
+</Playground>

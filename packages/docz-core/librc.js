@@ -1,4 +1,5 @@
 const copy = require('rollup-plugin-cpy')
+const pkg = require('./package.json')
 
 module.exports = {
   plugins: [

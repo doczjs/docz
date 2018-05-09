@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Component, ComponentType as CT } from 'react'
 import Promise from 'bluebird'
 
-import { docsContext } from './Docs'
+import { docsContext } from './components/Docs'
 import { Doc, DocObj, Entry } from './Doc'
 
 export interface MSXImport {

@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { Doc, DocObj } from './Doc'
-import { DocMap } from './theme'
+import { Doc, DocObj } from '../Doc'
+import { DocMap } from '../theme'
 
 export const isFn = (value: any): boolean => typeof value === 'function'
 export const docsContext = React.createContext({} as DocMap)
