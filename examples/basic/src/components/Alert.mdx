@@ -9,7 +9,7 @@ export const meta = doc('Alert')
 ## Basic usage
 
 <Playground>
-  <Alert>Other message</Alert>
+  <Alert>Some message</Alert>
 </Playground>
 
 ## Using different kinds
@@ -19,4 +19,16 @@ export const meta = doc('Alert')
   <Alert kind="positive">Some message</Alert>
   <Alert kind="negative">Some message</Alert>
   <Alert kind="warning">Some message</Alert>
+</Playground>
+
+## Use with children as a function
+
+<Playground>
+  {() => {
+    const message = 'Hello world'
+
+    return (
+      <Alert>{message}</Alert>
+    )
+  }}
 </Playground>
