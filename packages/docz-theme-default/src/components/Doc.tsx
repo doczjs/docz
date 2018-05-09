@@ -3,6 +3,7 @@ import styled from 'react-emotion'
 import { DocObj } from 'docz'
 
 import * as colors from '../styles/colors'
+import { Render } from './Render'
 
 const Container = styled('div')`
   width: 960px;
@@ -15,7 +16,6 @@ const Title = styled('h1')`
   position: relative;
   font-size: 48px;
   font-weight: 200;
-  margin: 0;
 
   &:before {
     position: absolute;
@@ -30,6 +30,6 @@ const Title = styled('h1')`
 
 export const Doc: SFC<DocObj> = ({ id, component: Component }) => (
   <Container key={id}>
-    <Component components={{ h1: Title }} />
+    <Component components={{ h1: Title, Render }} />
   </Container>
 )

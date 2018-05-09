@@ -1,4 +1,5 @@
 import './styles'
+import './styles/prism-theme'
 
 import * as React from 'react'
 

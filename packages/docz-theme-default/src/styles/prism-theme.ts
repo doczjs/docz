@@ -2,18 +2,9 @@ import { injectGlobal } from 'react-emotion'
 
 // tslint:disable
 injectGlobal`
-/*
-
-Name:       Base16 Atelier Sulphurpool Light
-Author:     Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/sulphurpool)
-
-Prism template by Bram de Haan (http://atelierbram.github.io/syntax-highlighting/prism/)
-Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16)
-
-*/
 code[class*="language-"],
 pre[class*="language-"] {
-  font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
+  font-family: "Hack", "Consolas", "Menlo", "Monaco", "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
   font-size: 14px;
   line-height: 1.375;
   direction: ltr;

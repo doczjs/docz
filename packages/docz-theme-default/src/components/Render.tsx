@@ -1,40 +1,31 @@
 import * as React from 'react'
-import { Component } from 'react'
+import { Fragment } from 'react'
+import { RenderComponent } from 'docz'
+import styled from 'react-emotion'
 
-interface RenderProps {
-  render: (container: HTMLElement) => any
-}
+import * as colors from '../styles/colors'
 
-interface RenderState {
-  container: HTMLElement | null
-}
+const ComponentWrapper = styled('div')`
+  position: relative;
+  padding: 50px;
+  background: white;
+  border: 1px solid ${colors.GRAY};
+  border-radius: 3px 3px 0 0;
+`
 
-export class Render extends Component<RenderProps, RenderState> {
-  private container: HTMLElement | null
+const CodeWrapper = styled('div')`
+  border: 1px solid ${colors.GRAY};
+  border-top: 0;
+  border-radius: 0 0 3px 3px;
 
-  constructor(props: RenderProps) {
-    super(props)
-    this.container = null
-
-    this.state = {
-      container: null,
-    }
+  pre {
+    border-radius: 0 0 3px 3px;
   }
+`
 
-  public componentDidMount(): void {
-    if (this.container) {
-      this.setState({ container: this.container })
-    }
-  }
-
-  public render(): JSX.Element {
-    const { render } = this.props
-    const { container } = this.state
-
-    return (
-      <div ref={node => (this.container = node)}>
-        {container && render(container)}
-      </div>
-    )
-  }
-}
+export const Render: RenderComponent = ({ component, code }) => (
+  <Fragment>
+    <ComponentWrapper>{component}</ComponentWrapper>
+    <CodeWrapper>{code}</CodeWrapper>
+  </Fragment>
+)

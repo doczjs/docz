@@ -32,8 +32,7 @@ injectGlobal`
     font-size: 16px;
     line-height: 1.5;
     background: ${BACKGROUND};
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow: hidden;
   }
 
   body {
