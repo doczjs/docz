@@ -9,6 +9,8 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import friendlyErrors from 'friendly-errors-webpack-plugin'
 
 import { Config as ConfigObj } from '../../commands/args'
+import { plugin as mdastPlugin } from '../../utils/plugin-mdast'
+import { plugin as hastPlugin } from '../../utils/plugin-hast'
 
 const INLINE_LIMIT = 10000
 
@@ -131,8 +133,8 @@ export const createConfig = (args: ConfigObj) => (): Configuration => {
     .use('@mdx-js/loader')
     .loader(require.resolve('@mdx-js/loader'))
     .options({
-      mdPlugins: args.mdPlugins,
-      hastPlugins: args.hastPlugins,
+      mdPlugins: args.mdPlugins.concat([mdastPlugin]),
+      hastPlugins: args.hastPlugins.concat([hastPlugin]),
     })
 
   config.module
