@@ -4,9 +4,8 @@ import { injectGlobal } from 'react-emotion'
 injectGlobal`
 code[class*="language-"],
 pre[class*="language-"] {
-  font-family: "Hack", "Consolas", "Menlo", "Monaco", "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
   font-size: 14px;
-  line-height: 1.375;
+  line-height: 1.5;
   direction: ltr;
   text-align: left;
   white-space: pre;
@@ -38,15 +37,15 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 
 /* Code blocks */
 pre[class*="language-"] {
-  padding: 1em;
+  padding: 2rem;
   margin: 0;
   overflow: auto;
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
-  padding: .1em;
-  border-radius: .3em;
+  padding: .1rem;
+  border-radius: .3rem;
 }
 
 .token.comment,
@@ -144,7 +143,7 @@ pre[class*="language-"] {
 
 pre > code.highlight {
   outline: 0.4em solid #c94922;
-  outline-offset: .4em;
+  outline-offset: .4rem;
 }
 
 /* overrides color-values for the Line Numbers plugin

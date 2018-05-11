@@ -7,7 +7,7 @@ import * as colors from '../styles/colors'
 
 const ComponentWrapper = styled('div')`
   position: relative;
-  padding: 50px;
+  padding: 2rem;
   background: white;
   border: 1px solid ${colors.GRAY};
   border-radius: 3px 3px 0 0;
