@@ -1,3 +1,14 @@
 import React from 'react'
+import t from 'prop-types'
 
-export const Button = ({ children }) => <button>{children}</button>
+const Button = ({ children }) => <button>{children}</button>
+
+Button.propTypes = {
+  /**
+    Button element children
+  */
+  children: t.any,
+  color: t.string,
+}
+
+export default Button

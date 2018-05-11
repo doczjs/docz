@@ -100,7 +100,7 @@ export const createConfig = (args: ConfigObj) => (): Configuration => {
     cacheDirectory: true,
     highlightCode: true,
     presets: [require.resolve('babel-preset-react-app')],
-    plugins: [require.resolve('react-hot-loader/babel')],
+    plugins: [],
   })
 
   config.module
@@ -116,7 +116,13 @@ export const createConfig = (args: ConfigObj) => (): Configuration => {
     .end()
     .use('babel-loader')
     .loader(require.resolve('babel-loader'))
-    .options(babelrc)
+    .options({
+      ...babelrc,
+      plugins: babelrc.plugins.concat([
+        require.resolve('react-hot-loader/babel'),
+        require.resolve('babel-plugin-react-docgen'),
+      ]),
+    })
 
   config.module
     .rule('mdx')

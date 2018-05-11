@@ -10,8 +10,8 @@ const Sidebar = styled('div')`
   padding: 15px 0;
   width: 200px;
   height: 100vh;
-  border-right: 1px solid ${colors.BORDER};
-  background: ${colors.GRAY_LIGHT};
+  border-right: 1px solid ${colors.border};
+  background: ${colors.snow};
 `
 
 const List = styled('ul')`
@@ -30,7 +30,7 @@ const Category = styled('li')`
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
-  color: ${colors.GRAY_MEDIUM};
+  color: ${colors.steel};
 `
 
 interface LinksProps {

@@ -18,11 +18,11 @@ const LinkStyled = styled(BaseLink)`
 
   &,
   &:visited {
-    color: ${colors.GRAY_DARK};
+    color: ${colors.silver};
   }
 
   &.active {
-    background: ${colors.GRAY};
+    background: ${colors.darkSnow};
   }
 
   &:before {
@@ -32,7 +32,7 @@ const LinkStyled = styled(BaseLink)`
     left: 0;
     width: 4px;
     height: 100%;
-    background: ${colors.PURPLE};
+    background: ${colors.purple};
     transform: scaleX(0);
     transform-origin: 0 50%;
     transition: transform 0.3s;

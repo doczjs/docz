@@ -9,12 +9,12 @@ const ComponentWrapper = styled('div')`
   position: relative;
   padding: 2rem;
   background: white;
-  border: 1px solid ${colors.GRAY};
+  border: 1px solid ${colors.border};
   border-radius: 3px 3px 0 0;
 `
 
 const CodeWrapper = styled('div')`
-  border: 1px solid ${colors.GRAY};
+  border: 1px solid ${colors.border};
   border-top: 0;
   border-radius: 0 0 3px 3px;
 

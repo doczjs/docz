@@ -4,14 +4,19 @@ import nodeToString from 'hast-util-to-string'
 
 import { format } from '../utils/format'
 
-const hasOpenTag = (node: any) => /^\<Playground/.test(node.value)
+const componentName = (value: any) => {
+  const match = value.match(/^\<\\?(\w+)/)
+  return match && match[1]
+}
 
-export const plugin = () => (tree: any, file: any) => {
-  visit(tree, 'jsx', visitor)
+const isPlayground = (name: string) => name === 'Playground'
+const isPropsTable = (name: string) => name === 'PropsTable'
 
-  function visitor(node: any, idx: any, parent: any): void {
-    if (!hasOpenTag(node)) return
+const addCodeProp = (node: any) => {
+  const name = componentName(node.value)
 
+  if (isPlayground(name)) {
+    const tagOpen = new RegExp(`^\\<${name}`)
     const code = format(nodeToString(node)).slice(1, Infinity)
     const html = prism.highlight(code, prism.languages.jsx)
 
@@ -21,8 +26,27 @@ export const plugin = () => (tree: any, file: any) => {
       </pre>
     )`
 
-    node.value = node.value
-      .replace(/^\<Playground/, `<Playground __code={${codeComponent}}`)
-      .replace(/^\<Playground/, '<Playground components={components}')
+    node.value = node.value.replace(
+      tagOpen,
+      `<${name} __code={${codeComponent}}`
+    )
+  }
+}
+
+const addComponentsProp = (node: any) => {
+  const name = componentName(node.value)
+
+  if (isPlayground(name) || isPropsTable(name)) {
+    const tagOpen = new RegExp(`^\\<${name}`)
+    node.value = node.value.replace(tagOpen, `<${name} components={components}`)
+  }
+}
+
+export const plugin = () => (tree: any, file: any) => {
+  visit(tree, 'jsx', visitor)
+
+  function visitor(node: any, idx: any, parent: any): void {
+    addComponentsProp(node)
+    addCodeProp(node)
   }
 }

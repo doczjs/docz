@@ -2,6 +2,8 @@ import React, { Fragment } from 'react'
 import styled from 'react-emotion'
 import t from 'prop-types'
 
+import Button from './Button'
+
 const kinds = {
   info: '#5352ED',
   positive: '#2ED573',
@@ -9,7 +11,7 @@ const kinds = {
   warning: '#FFA502',
 }
 
-export const Alert = styled('div')`
+const Alert = styled('div')`
   padding: 15px 20px;
   background: white;
   border-radius: 3px;
@@ -20,3 +22,5 @@ export const Alert = styled('div')`
 Alert.propTypes = {
   color: t.oneOf(['info', 'positive', 'negative', 'warning']),
 }
+
+export default Alert

@@ -1,10 +1,21 @@
-import { doc, Playground } from 'docz'
-import { Button } from './Button'
+import { doc, Playground, PropsTable } from 'docz'
+import Button from './Button'
 
 export const meta = doc('Button')
   .category('Components')
 
 # Button
+
+Buttons make common actions more obvious and help users more easily perform them. Buttons use labels and sometimes icons to communicate the action that will occur when the user touches them.
+
+### Best practices
+
+- Group buttons logically into sets based on usage and importance.
+- Ensure that button actions are clear and consistent.
+- The main action of a group set can be a primary button.
+- Select a single button variation and do not mix them.
+
+<PropsTable of={Button} />
 
 ## Basic usage
 

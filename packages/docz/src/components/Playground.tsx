@@ -11,9 +11,7 @@ export type RenderComponent = ComponentType<{
 export interface PlaygroundProps {
   __code: string
   children: any
-  components: {
-    [key: string]: ComponentType<any>
-  }
+  components: any
 }
 
 const DefaultRender: RenderComponent = ({ component, code }) => (

@@ -28,6 +28,7 @@
     "@types/shelljs": "^0.7.9",
     "art-template": "^4.12.2",
     "babel-loader": "^8.0.0-beta.1",
+    "babel-plugin-react-docgen": "^1.9.0",
     "babel-polyfill": "^7.0.0-beta.3",
     "babel-preset-react-app": "^4.0.0-next.b2fd8db8",
     "chokidar": "^2.0.3",

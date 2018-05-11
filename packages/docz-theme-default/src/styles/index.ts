@@ -1,18 +1,16 @@
 import { css, injectGlobal } from 'emotion'
 
-const BACKGROUND = 'white'
-const TEXT_COLOR = '#2f3542'
-const LINK_COLOR = '#5352ed'
+import * as colors from './colors'
 
 const selection = css`
-  background: ${LINK_COLOR};
+  background: ${colors.linkColor};
   color: white;
 `
 
 // tslint:disable
 injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Fira+Mono');
-  @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600,700');
   @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css');
 
   *, *:before, *:after {
@@ -32,7 +30,7 @@ injectGlobal`
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     line-height: 1.5;
-    background: ${BACKGROUND};
+    background: ${colors.background};
     overflow: hidden;
   }
 
@@ -41,7 +39,7 @@ injectGlobal`
   }
 
   body > *, #root {
-    color: ${TEXT_COLOR};
+    color: ${colors.textColor};
   }
 
   html, body, #root {
@@ -51,11 +49,11 @@ injectGlobal`
 
   a, a:visited, a:active {
     text-decoration: none;
-    color: ${LINK_COLOR};
+    color: ${colors.linkColor};
   }
 
   a:hover {
-    color: ${LINK_COLOR};
+    color: ${colors.linkColor};
   }
 
   input:-webkit-autofill,
@@ -76,7 +74,7 @@ injectGlobal`
   }
 
   select {
-    color: ${TEXT_COLOR};
+    color: ${colors.textColor};
   }
 
   code, pre {

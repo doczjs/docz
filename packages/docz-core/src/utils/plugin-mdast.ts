@@ -10,7 +10,7 @@ const componentName = (value: any) => {
 }
 
 // iterate in a reverse way to merge values then delete the unused node
-const valuesFromNodes = (tree: any) => (first: any, last: any) => {
+const valuesFromNodes = (tree: any) => (first: number, last: number) => {
   const values = []
 
   if (first !== last) {
@@ -57,11 +57,13 @@ const mergeNodeWithoutCloseTag = (tree: any, node: any, idx: any) => {
     return hasJustCloseTag(value)
   })
 
-  // merge all values from node open tag until node with the close tag
-  const mergeUntilCloseTag = valuesFromNodes(tree)
-  const values = mergeUntilCloseTag(idx, tagCloseIdx)
+  if (tagCloseIdx > -1 && tagCloseIdx !== idx) {
+    // merge all values from node open tag until node with the close tag
+    const mergeUntilCloseTag = valuesFromNodes(tree)
+    const values = mergeUntilCloseTag(idx, tagCloseIdx)
 
-  node.value = values.reverse().join('\n')
+    node.value = values.reverse().join('\n')
+  }
 }
 
 // turns `html` nodes into `jsx` nodes
