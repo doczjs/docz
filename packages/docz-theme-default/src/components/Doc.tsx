@@ -10,7 +10,7 @@ import { Table } from './Table'
 const Container = styled('div')`
   width: ${rem(960)};
   max-width: ${rem(960)};
-  padding: ${rem(50)};
+  padding: ${rem(50)} ${rem(50)} ${rem(100)} ${rem(50)};
   margin: 0 auto;
 `
 
@@ -18,7 +18,7 @@ const Title = styled('h1')`
   position: relative;
   font-size: ${rem(48)};
   font-weight: 200;
-  margin: ${rem(20)} 0 ${rem(40)};
+  margin: ${rem(50)} 0 ${rem(40)};
 
   &:before {
     position: absolute;
