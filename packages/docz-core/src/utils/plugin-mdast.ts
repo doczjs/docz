@@ -1,13 +1,17 @@
 import visit from 'unist-util-visit'
 import remove from 'unist-util-remove'
 
-const componentName = (value: string) => {
+// TODO: create types
+
+// match component name by regexp
+const componentName = (value: any) => {
   const match = value.match(/^\<\\?(\w+)/)
   return match && match[1]
 }
 
-const valuesFromTreeNodes = (tree: any) => (first: number, last: number) => {
-  const values: string[] = []
+// iterate in a reverse way to merge values then delete the unused node
+const valuesFromNodes = (tree: any) => (first: any, last: any) => {
+  const values = []
 
   if (first !== last) {
     for (let i = last; i >= first; i--) {
@@ -28,34 +32,44 @@ const valuesFromTreeNodes = (tree: any) => (first: number, last: number) => {
   return values
 }
 
-export const plugin = () => (tree: any, file: any) => {
+const mergeNodeWithoutCloseTag = (tree: any, node: any, idx: any) => {
+  if (!node.value || typeof node.value !== 'string') return
+
+  // parse component name and create two regexp to check open and close tag
+  const component = componentName(node.value)
+  const tagOpen = new RegExp(`^\\<${component}`)
+  const tagClose = new RegExp(`\\<\\/${component}\\>$`)
+
+  const hasOpenTag = (val: any) => tagOpen.test(val)
+  const hasCloseTag = (val: any) => tagClose.test(val)
+  const hasJustCloseTag = (val: any) =>
+    val && !hasOpenTag(val) && hasCloseTag(val)
+
+  // return default value is has open and close tag
+  if (!component || (hasOpenTag(node.value) && hasCloseTag(node.value))) {
+    return
+  }
+
+  // when some node has just the open tag
+  // find node index with equivalent close tag
+  const tagCloseIdx = tree.children.findIndex(({ value, children }: any) => {
+    if (children) return children.some((c: any) => hasJustCloseTag(c.value))
+    return hasJustCloseTag(value)
+  })
+
+  // merge all values from node open tag until node with the close tag
+  const mergeUntilCloseTag = valuesFromNodes(tree)
+  const values = mergeUntilCloseTag(idx, tagCloseIdx)
+
+  node.value = values.reverse().join('\n')
+}
+
+// turns `html` nodes into `jsx` nodes
+export const plugin = () => (tree: any) => {
   visit(tree, 'html', visitor)
 
-  function visitor(node: any, idx: any, parent: any): void {
-    try {
-      if (!node.value || typeof node.value !== 'string') return
-
-      const component = componentName(node.value)
-      const tagOpen = new RegExp(`^\\<${component}`)
-      const tagClose = new RegExp(`\\<\\/${component}\\>$`)
-
-      const hasOpenTag = (value: string) => tagOpen.test(value)
-      const hasCloseTag = (value: string) => tagClose.test(value)
-
-      if (!component || (hasOpenTag(node.value) && hasCloseTag(node.value)))
-        return
-
-      const tagCloseIdx = tree.children.findIndex(
-        ({ value }: any) => value && !hasOpenTag(value) && hasCloseTag(value)
-      )
-
-      const mergeUntilCloseTag = valuesFromTreeNodes(tree)
-      const values = mergeUntilCloseTag(idx, tagCloseIdx)
-
-      node.value = values.reverse().join('\n')
-    } catch (err) {
-      console.log(err)
-      return
-    }
+  function visitor(node: any, idx: any): void {
+    // check if a node has just open tag
+    mergeNodeWithoutCloseTag(tree, node, idx)
   }
 }
