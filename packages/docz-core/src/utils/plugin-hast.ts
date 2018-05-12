@@ -14,9 +14,9 @@ const isPropsTable = (name: string) => name === 'PropsTable'
 
 const addCodeProp = (node: any) => {
   const name = componentName(node.value)
+  const tagOpen = new RegExp(`^\\<${name}`)
 
   if (isPlayground(name)) {
-    const tagOpen = new RegExp(`^\\<${name}`)
     const code = format(nodeToString(node)).slice(1, Infinity)
     const html = prism.highlight(code, prism.languages.jsx)
 
@@ -46,7 +46,7 @@ export const plugin = () => (tree: any, file: any) => {
   visit(tree, 'jsx', visitor)
 
   function visitor(node: any, idx: any, parent: any): void {
-    addComponentsProp(node)
     addCodeProp(node)
+    addComponentsProp(node)
   }
 }
