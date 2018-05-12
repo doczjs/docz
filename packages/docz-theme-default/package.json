@@ -25,7 +25,7 @@
     "react-dom": "^16.3.2",
     "react-emotion": "^9.1.2",
     "react-feather": "^1.1.0",
-    "react-powerplug": "^0.1.5",
+    "react-lightweight-tooltip": "^1.0.0",
     "react-router-dom": "^4.2.2"
   },
   "peerDependencies": {

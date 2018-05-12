@@ -22,7 +22,7 @@ const DefaultRender: RenderComponent = ({ component, code }) => (
 )
 
 export const Playground: SFC<PlaygroundProps> = ({
-  components: { Render = DefaultRender },
+  components: { render: Render = DefaultRender },
   children,
   __code,
 }) => (

@@ -3,7 +3,7 @@ import { NavLink as BaseLink, LinkProps, match } from 'react-router-dom'
 import { Location } from 'history'
 import styled from 'react-emotion'
 
-import * as colors from '../styles/colors'
+import * as colors from '../../styles/colors'
 
 const LinkStyled = styled(BaseLink)`
   position: relative;

@@ -3,7 +3,7 @@ import { DocObj } from 'docz'
 import { Docs } from 'docz'
 import styled from 'react-emotion'
 
-import * as colors from '../styles/colors'
+import * as colors from '../../styles/colors'
 import { Link } from './Link'
 
 const Sidebar = styled('div')`
