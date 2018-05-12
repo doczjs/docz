@@ -61,7 +61,6 @@ export const createConfig = (args: ConfigObj) => (): Configuration => {
 
   config.when(debug, cfg => cfg.devtool('source-map'))
   config.when(!isProd, cfg => cfg.devtool('cheap-module-eval-source-map'))
-  config.devServer.quiet(!debug)
 
   config.node.merge({
     child_process: 'empty',
