@@ -20,11 +20,11 @@ const AlertStyled = styled('div')`
 const Alert = props => <AlertStyled {...props} />
 
 Alert.propTypes = {
-  color: t.oneOf(['info', 'positive', 'negative', 'warning']),
+  kind: t.oneOf(['info', 'positive', 'negative', 'warning']),
 }
 
 Alert.defaultProps = {
-  color: 'info',
+  kind: 'info',
 }
 
 export default Alert
