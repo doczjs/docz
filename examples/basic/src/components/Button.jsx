@@ -29,7 +29,7 @@ const kind = outline => (bg, color) => {
 
     &:hover {
       box-shadow: inset 0 0 0 1000px ${boxShadowColor};
-      color: white;
+      color: ${color};
     }
   `
 }
@@ -39,8 +39,10 @@ const kinds = outline => {
 
   return {
     primary: get('#1FB6FF', 'white'),
-    secondary: get('#592DEA', 'white'),
+    secondary: get('#5352ED', 'white'),
     cancel: get('#FF4949', 'white'),
+    dark: get('#273444', 'white'),
+    gray: get('#8492A6', 'white'),
   }
 }
 
@@ -62,7 +64,7 @@ const Button = ({ children, ...props }) => (
 
 Button.propTypes = {
   scales: t.oneOf(['small', 'normal', 'big']),
-  kind: t.oneOf(['primary', 'secondary', 'cancel']),
+  kind: t.oneOf(['primary', 'secondary', 'cancel', 'dark', 'gray']),
   outline: t.bool,
 }
 
