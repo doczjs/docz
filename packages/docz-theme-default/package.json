@@ -16,11 +16,13 @@
     "build": "libundler build --ts -e all --c --sm"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "docz": "^0.0.1",
     "emotion": "^9.1.2",
     "emotion-normalize": "^7.0.1",
     "history": "^4.7.2",
     "polished": "^1.9.2",
+    "prismjs": "^1.14.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-emotion": "^9.1.2",
@@ -38,6 +40,8 @@
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.44",
     "@babel/preset-env": "^7.0.0-beta.44",
     "@babel/preset-react": "^7.0.0-beta.44",
+    "@types/classnames": "^2.2.3",
+    "@types/prismjs": "^1.9.0",
     "@types/react-router-dom": "^4.2.6",
     "babel-plugin-emotion": "^9.1.0"
   }

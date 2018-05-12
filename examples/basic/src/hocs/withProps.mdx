@@ -6,3 +6,18 @@ export const meta = doc('withProp')
 # withProps
 
 This section talk about withProps hoc
+
+```jsx
+import React from 'react'
+import { withProps } from '@lib/withProps'
+
+const mapProps = () => ({
+  greet: 'Hi'
+})
+
+export const Greeter = withProps(mapProps)(
+  ({ greet, name }) => (
+    <div>{greet} {name}</div>
+  )
+)
+```

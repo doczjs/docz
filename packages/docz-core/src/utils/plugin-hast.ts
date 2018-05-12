@@ -1,5 +1,4 @@
 import visit from 'unist-util-visit'
-import prism from 'node-prismjs'
 import nodeToString from 'hast-util-to-string'
 
 import { format } from '../utils/format'
@@ -18,12 +17,11 @@ const addCodeProp = (node: any) => {
 
   if (isPlayground(name)) {
     const code = format(nodeToString(node)).slice(1, Infinity)
-    const html = prism.highlight(code, prism.languages.jsx)
 
     const codeComponent = `(
-      <pre className="react-prism language-jsx">
-        <code dangerouslySetInnerHTML={{ __html: \`${html}\` }} />
-      </pre>
+      <components.pre className="react-prism language-jsx">
+        <code>{\`${code}\`}</code>
+      </components.pre>
     )`
 
     node.value = node.value.replace(

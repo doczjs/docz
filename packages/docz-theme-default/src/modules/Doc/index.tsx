@@ -20,6 +20,7 @@ export const Doc: SFC<DocObj> = ({ id, route, component: Component }) => (
             table: components.Table,
             render: components.Render,
             tooltip: components.Tooltip,
+            pre: components.Pre,
           }}
         />
       </Container>
