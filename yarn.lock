@@ -6613,9 +6613,9 @@ react-lifecycles-compat@^3.0.2:
   version "3.0.2"
   resolved "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.2.tgz#7279047275bd727a912e25f734c0559527e84eff"
 
-react-powerplug@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.npmjs.org/react-powerplug/-/react-powerplug-0.1.5.tgz#f3dd7612c60efc55b6c7a2ddee284a8bcb6db783"
+react-lightweight-tooltip@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/react-lightweight-tooltip/-/react-lightweight-tooltip-1.0.0.tgz#1fb96831b88de21a4d73d02148aae3d8d0aea9bc"
 
 react-router-dom@^4.2.2:
   version "4.2.2"

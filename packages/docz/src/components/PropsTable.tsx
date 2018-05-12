@@ -1,12 +1,21 @@
 import * as React from 'react'
 import { Fragment, SFC, ComponentType } from 'react'
 
+export interface EnumValue {
+  value: string
+  computed: boolean
+}
+
 export interface Prop {
-  type: {
-    name: string
-  }
   required: boolean
   description?: string
+  type: {
+    name: string
+    value?: EnumValue[]
+  }
+  defaultValue?: {
+    value: string
+  }
 }
 
 export type ComponentWithDocGenInfo = ComponentType & {
@@ -23,14 +32,33 @@ export interface PropsTable {
   }
 }
 
+export type TooltipComponent = React.ComponentType<{
+  text: React.ReactNode
+  children: React.ReactNode
+}>
+
+const getValue = (value: string) => value.replace(/\'/g, '')
+
+const getPropType = (prop: Prop, Tooltip?: TooltipComponent) => {
+  const name = prop.type.name.toUpperCase()
+
+  if (!Tooltip || !prop.type.value) return name
+
+  return (
+    <Tooltip text={prop.type.value.map(val => getValue(val.value)).join(' | ')}>
+      {name}
+    </Tooltip>
+  )
+}
+
 export const PropsTable: SFC<PropsTable> = ({ of: component, components }) => {
   const info = component.__docgenInfo
+  const props = info && info.props
 
-  if (info && info.props && Object.keys(info.props).length === 0) {
+  if (!info || !props) {
     return null
   }
 
-  const { props } = info
   const H2 = components.h2 || 'h2'
   const Table = components.table || 'table'
   const Thead = components.thead || 'thead'
@@ -38,23 +66,19 @@ export const PropsTable: SFC<PropsTable> = ({ of: component, components }) => {
   const Th = components.th || 'th'
   const Tbody = components.tbody || 'tbody'
   const Td = components.td || 'td'
+  const Tooltip = components.tooltip
 
   return (
     <Fragment>
       <H2>Properties</H2>
-      <Table class="PropsTable">
+      <Table className="PropsTable">
         <Thead>
           <Tr>
-            <Th width="15%" class="PropsTable--property">
-              Property
-            </Th>
-            <Th width="15%" class="PropsTable--type">
-              Type
-            </Th>
-            <Th width="15%" class="PropsTable--required">
-              Required
-            </Th>
-            <Th width="55%" class="PropsTable--description">
+            <Th className="PropsTable--property">Property</Th>
+            <Th className="PropsTable--type">Type</Th>
+            <Th className="PropsTable--required">Required</Th>
+            <Th className="PropsTable--description">Default</Th>
+            <Th width="40%" className="PropsTable--description">
               Description
             </Th>
           </Tr>
@@ -67,9 +91,12 @@ export const PropsTable: SFC<PropsTable> = ({ of: component, components }) => {
               return (
                 <Tr key={name}>
                   <Td>{name}</Td>
-                  <Td>{prop.type.name}</Td>
+                  <Td>{getPropType(prop, Tooltip)}</Td>
                   <Td>{String(prop.required)}</Td>
-                  <Td>{prop.description}</Td>
+                  <Td>
+                    {prop.defaultValue && getValue(prop.defaultValue.value)}
+                  </Td>
+                  <Td>{prop.description && prop.description}</Td>
                 </Tr>
               )
             })}
