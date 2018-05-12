@@ -7,12 +7,44 @@ import Webpackbar from 'webpackbar'
 import Config from 'webpack-chain'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import friendlyErrors from 'friendly-errors-webpack-plugin'
+import HappyPack from 'happypack'
 
 import { Config as ConfigObj } from '../../commands/args'
 import { plugin as mdastPlugin } from '../../utils/plugin-mdast'
 import { plugin as hastPlugin } from '../../utils/plugin-hast'
 
 const INLINE_LIMIT = 10000
+
+const babelrc = merge(load('babel', null), {
+  babelrc: false,
+  cacheDirectory: true,
+  presets: [require.resolve('babel-preset-react-app')],
+  plugins: [],
+})
+
+interface HappypackLoaderParams {
+  id: string
+  plugins?: any[]
+}
+
+const happypackLoader = ({
+  id,
+  plugins = babelrc.plugins,
+}: HappypackLoaderParams) => [
+  {
+    id,
+    threads: 2,
+    loaders: [
+      {
+        loader: require.resolve('babel-loader'),
+        query: {
+          ...babelrc,
+          plugins,
+        },
+      },
+    ],
+  },
+]
 
 export const createConfig = (args: ConfigObj) => (): Configuration => {
   const { paths, env, debug } = args
@@ -95,14 +127,6 @@ export const createConfig = (args: ConfigObj) => (): Configuration => {
    * loaders
    */
 
-  const babelrc = merge(load('babel', null), {
-    babelrc: false,
-    cacheDirectory: true,
-    highlightCode: true,
-    presets: [require.resolve('babel-preset-react-app')],
-    plugins: [],
-  })
-
   config.module
     .rule('js')
     .test(/\.js?x$/)
@@ -111,37 +135,41 @@ export const createConfig = (args: ConfigObj) => (): Configuration => {
     .end()
     .exclude.add(/node_modules/)
     .end()
-    .use('thread-loader')
-    .loader(require.resolve('thread-loader'))
-    .end()
-    .use('babel-loader')
-    .loader(require.resolve('babel-loader'))
-    .options({
-      ...babelrc,
-      plugins: babelrc.plugins.concat([
-        require.resolve('react-hot-loader/babel'),
-        require.resolve('babel-plugin-react-docgen'),
-      ]),
-    })
+    .use('happypack-jsx')
+    .loader('happypack/loader?id=jsx')
 
   config.module
     .rule('mdx')
-    .test(/\.mdx$/)
+    .test(/\.md?x$/)
     .include.add(srcPath)
     .add(paths.docz)
     .end()
     .exclude.add(/node_modules/)
     .end()
-    .use('babel-loader')
-    .loader(require.resolve('babel-loader'))
-    .options(babelrc)
+    .use('happypack-mdx')
+    .loader('happypack/loader?id=mdx')
     .end()
-    .use('@mdx-js/loader')
+    .use('mdx-loader')
     .loader(require.resolve('@mdx-js/loader'))
     .options({
       mdPlugins: args.mdPlugins.concat([mdastPlugin]),
       hastPlugins: args.hastPlugins.concat([hastPlugin]),
     })
+
+  const jsx = happypackLoader({
+    id: 'jsx',
+    plugins: babelrc.plugins.concat([
+      require.resolve('react-hot-loader/babel'),
+      require.resolve('babel-plugin-react-docgen'),
+    ]),
+  })
+
+  const mdx = happypackLoader({
+    id: 'mdx',
+  })
+
+  config.plugin('happypack-jsx').use(HappyPack, jsx)
+  config.plugin('happypack-mdx').use(HappyPack, mdx)
 
   config.module
     .rule('images')
