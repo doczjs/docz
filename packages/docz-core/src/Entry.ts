@@ -3,66 +3,77 @@ import { ulid } from 'ulid'
 import vfile from 'to-vfile'
 import unified from 'unified'
 import remark from 'remark-parse'
-import toMDXAST from '@mdx-js/mdxast'
+import matter from 'remark-frontmatter'
+import parseFrontmatter from 'remark-parse-yaml'
 import slugify from '@sindresorhus/slugify'
 import find from 'unist-util-find'
 import is from 'unist-util-is'
+import get from 'lodash.get'
 
 import * as paths from './config/paths'
 
 const parseMdx = (file: string) => {
   const raw = vfile.readSync(file, 'utf-8')
-  const mdx = toMDXAST()
-  const tree = unified()
-    .use(remark)
-    .parse(raw)
+  const parser = unified()
+    .use(remark, { type: 'yaml', marker: '-' })
+    .use(matter)
+    .use(parseFrontmatter)
 
-  return mdx(tree)
+  return parser.runSync(parser.parse(raw))
 }
 
-const hasDoczImported = (node: any) =>
-  is('import', node) && /docz/.test(node.value)
-
-const getNameFromTree = (node: any) =>
-  is('export', node) &&
-  /export const meta/.test(node.value) &&
-  /doc\(.+\)/.test(node.value)
-
-const checkImport = (file: string) => {
-  const ast = parseMdx(file)
-  return Boolean(find(ast, hasDoczImported))
+const getFromParsedData = (value: string) => (ast: any) => {
+  const node = find(ast, (node: any) => is('yaml', node))
+  return get(node, `data.parsedValue.${value}`)
 }
 
-const getNameFromDoc = (file: string) => {
-  const ast = parseMdx(file)
-  const node = find(ast, getNameFromTree)
-
-  const match = node && node.value.match(/doc\((\'|\")(.+)(\'|\")/)
-  return match ? match[2] : null
-}
+const getName = getFromParsedData('name')
+const getRoute = getFromParsedData('route')
+const getMenu = getFromParsedData('menu')
+const getOrder = getFromParsedData('order')
 
 export class Entry {
   readonly [key: string]: any
 
   public static check(file: string): boolean | null {
-    return checkImport(file) && Boolean(getNameFromDoc(file))
-  }
-
-  public static slug(file: string): string | null {
-    const name = getNameFromDoc(file)
-    return name ? slugify(name) : null
+    const ast = parseMdx(file)
+    return Boolean(getName(ast))
   }
 
   public id: string
   public filepath: string
-  public slug: string | null
+  public slug: string
+  public route: string
+  public name: string
+  public menu: string | null
+  public order: number
 
   constructor(file: string, src: string) {
-    const srcPath = path.resolve(paths.root, src)
-    const filepath = path.relative(srcPath, file)
+    const ast = parseMdx(file)
+    const filepath = this.getFilepath(file, src)
 
     this.id = ulid()
-    this.slug = Entry.slug(file)
     this.filepath = filepath
+    this.slug = this.slugify(filepath)
+    this.route = this.getRoute(ast)
+    this.name = getName(ast)
+    this.menu = getMenu(ast)
+    this.order = parseInt(getOrder(ast), 10) || 0
+  }
+
+  private getFilepath(file: string, src: string): string {
+    const srcPath = path.resolve(paths.root, src)
+    return path.relative(srcPath, file)
+  }
+
+  private slugify(filepath: string): string {
+    const ext = path.extname(filepath)
+    const fileWithoutExt = filepath.replace(ext, '')
+
+    return slugify(fileWithoutExt)
+  }
+
+  private getRoute(ast: any): string {
+    return getRoute(ast) || `/${this.slug}`
   }
 }

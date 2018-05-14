@@ -7,6 +7,7 @@ import Webpackbar from 'webpackbar'
 import Config from 'webpack-chain'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import friendlyErrors from 'friendly-errors-webpack-plugin'
+import matter from 'remark-frontmatter'
 import HappyPack from 'happypack'
 
 import { Config as ConfigObj } from '../../commands/args'
@@ -15,36 +16,10 @@ import { plugin as hastPlugin } from '../../utils/plugin-hast'
 
 const INLINE_LIMIT = 10000
 
-const babelrc = merge(load('babel', null), {
-  babelrc: false,
-  cacheDirectory: true,
-  presets: [require.resolve('babel-preset-react-app')],
-  plugins: [],
-})
-
 interface HappypackLoaderParams {
   id: string
   plugins?: any[]
 }
-
-const happypackLoader = ({
-  id,
-  plugins = babelrc.plugins,
-}: HappypackLoaderParams) => [
-  {
-    id,
-    threads: 2,
-    loaders: [
-      {
-        loader: require.resolve('babel-loader'),
-        query: {
-          ...babelrc,
-          plugins,
-        },
-      },
-    ],
-  },
-]
 
 export const createConfig = (args: ConfigObj) => (): Configuration => {
   const { paths, env, debug } = args
@@ -151,9 +126,37 @@ export const createConfig = (args: ConfigObj) => (): Configuration => {
     .use('mdx-loader')
     .loader(require.resolve('@mdx-js/loader'))
     .options({
-      mdPlugins: args.mdPlugins.concat([mdastPlugin]),
+      type: 'yaml',
+      marker: '-',
+      mdPlugins: args.mdPlugins.concat([matter, mdastPlugin]),
       hastPlugins: args.hastPlugins.concat([hastPlugin]),
     })
+
+  const babelrc = merge(load('babel', null), {
+    babelrc: false,
+    cacheDirectory: !debug,
+    presets: [require.resolve('babel-preset-react-app')],
+    plugins: [],
+  })
+
+  const happypackLoader = ({
+    id,
+    plugins = babelrc.plugins,
+  }: HappypackLoaderParams) => [
+    {
+      id,
+      threads: 2,
+      loaders: [
+        {
+          loader: require.resolve('babel-loader'),
+          query: {
+            ...babelrc,
+            plugins,
+          },
+        },
+      ],
+    },
+  ]
 
   const jsx = happypackLoader({
     id: 'jsx',

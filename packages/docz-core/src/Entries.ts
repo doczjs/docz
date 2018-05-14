@@ -3,7 +3,6 @@ import * as fs from 'fs'
 import * as path from 'path'
 import { test, mkdir } from 'shelljs'
 import { compile } from 'art-template'
-import stringify from 'json-stringify-pretty-compact'
 
 import * as paths from './config/paths'
 import { propOf, omit } from './utils/helpers'
@@ -26,10 +25,7 @@ const touch = (file: string, raw: string) => {
 const compiled = (file: string) =>
   compile(fs.readFileSync(path.join(paths.templates, file), 'utf-8'))
 
-const imports = compiled('imports.tpl.js')
-const app = compiled('app.tpl.js')
-const js = compiled('index.tpl.js')
-const html = compiled('index.tpl.html')
+const stringify = (obj: any) => JSON.stringify(obj, null, 2)
 
 export type EntryMap = Record<string, Entry>
 
@@ -56,13 +52,8 @@ export class Entries {
   }
 
   public update(file: string): void {
-    const filepath = this.entryFilepath(file)
-
     if (Entry.check(file)) {
-      this.entries = {
-        ...this.entries,
-        [filepath]: new Entry(file, this.config.src),
-      }
+      this.entries = this.mergeEntriesWithNewEntry(this.entries, file)
     }
   }
 
@@ -94,10 +85,18 @@ export class Entries {
       Array.isArray(pattern) ? [...pattern, ignoreGlob] : [pattern, ignoreGlob]
     )
 
-    return files.filter(Entry.check).reduce((obj, file) => {
-      const entry = new Entry(file, this.config.src)
-      return { ...obj, [entry.filepath]: entry }
-    }, {})
+    return files
+      .filter(Entry.check)
+      .reduce((obj, file) => this.mergeEntriesWithNewEntry(obj, file), {})
+  }
+
+  private mergeEntriesWithNewEntry(obj: EntryMap, file: string): EntryMap {
+    const entry = new Entry(file, this.config.src)
+
+    return {
+      ...obj,
+      [entry.filepath]: entry,
+    }
   }
 
   private writeStructuredFiles(): void {
@@ -106,6 +105,10 @@ export class Entries {
     const wrappers = propOf(plugins, 'wrapper')
     const afterRenders = propOf(plugins, 'afterRender')
     const beforeRenders = propOf(plugins, 'beforeRender')
+
+    const app = compiled('app.tpl.js')
+    const js = compiled('index.tpl.js')
+    const html = compiled('index.tpl.html')
 
     const rawAppJs = app({ theme, wrappers })
     const rawIndexJs = js({ afterRenders, beforeRenders })
@@ -118,8 +121,12 @@ export class Entries {
 
   private writeDataAndImports(): void {
     const { title, description, theme } = this.config
+    const imports = compiled('imports.tpl.js')
 
-    const rawImportsJs = imports({ entries: Object.values(this.entries) })
+    const rawImportsJs = imports({
+      entries: Object.values(this.entries),
+    })
+
     const rawData = stringify({
       title,
       description,
