@@ -1,6 +1,5 @@
 import { load } from 'load-cfg'
 import chokidar from 'chokidar'
-import del from 'del'
 
 import * as paths from '../config/paths'
 import { Config } from './args'
@@ -58,7 +57,6 @@ export const dev = async (args: Config) => {
   const bundler = webpack(config)
   const server = await bundler.createServer(bundler.getConfig())
 
-  await del(paths.docz)
   writeEntriesAndWatch(config)
   server.start()
 }
