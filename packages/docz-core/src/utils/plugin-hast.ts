@@ -1,4 +1,4 @@
-import visit from 'unist-util-visit'
+import is from 'unist-util-is'
 import nodeToString from 'hast-util-to-string'
 
 import { format } from '../utils/format'
@@ -41,11 +41,15 @@ const addComponentsProp = (node: any) => {
   }
 }
 
-export const plugin = () => async (tree: any, file: any) => {
-  visit(tree, 'jsx', visitor)
-
-  async function visitor(node: any, idx: any, parent: any): Promise<void> {
+export const plugin = () => (tree: any, file: any) => {
+  async function visitor(node: any): Promise<void> {
     await addCodeProp(node)
     addComponentsProp(node)
   }
+
+  const nodes = [
+    tree.children.filter((node: any) => is('jsx', node)).map(visitor),
+  ]
+
+  return Promise.all(nodes).then(() => tree)
 }
