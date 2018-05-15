@@ -4,59 +4,33 @@ import chokidar from 'chokidar'
 import * as paths from '../config/paths'
 import { Config } from './args'
 
-import { Entries, EntryMap } from '../Entries'
+import { Entries } from '../Entries'
 import { webpack } from '../bundlers'
 
 process.env.BABEL_ENV = process.env.BABEL_ENV || 'development'
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
-export type Rewrite = (entries: EntryMap) => Promise<void>
-
-const handleUpdate = (rewrite: Rewrite) => (entries: Entries) => async (
-  file: string
-) => {
-  const newEntries = await entries.update(file)
-  await rewrite(newEntries)
-}
-
-const handleRemove = (rewrite: Rewrite) => (entries: Entries) => async (
-  file: string
-) => {
-  const newEntries = entries.remove(file)
-  await rewrite(newEntries)
-}
-
-const handleRemoveDir = (rewrite: Rewrite) => (entries: Entries) => async (
-  event: string,
-  path: string,
-  details: any
-) => {
-  if (details.event === 'moved' && details.type === 'directory') {
-    const newEntries = await entries.clean(details.path)
-    await rewrite(newEntries)
-  }
-}
-
 const writeEntriesAndWatch = async (config: Config) => {
-  const instance = new Entries(config)
-  const entries = await instance.getMap()
+  const entries = new Entries(config)
+  const map = await entries.getMap()
 
-  const write = Entries.write(config)
-  const rewrite = Entries.rewrite(config)
-  const onChange = handleUpdate(rewrite)
-  const onUnlinkDir = handleRemove(rewrite)
-  const onRaw = handleRemoveDir(rewrite)
+  const handleUpdate = async () => Entries.rewrite(config)
+  const handleRaw = async (event: string, path: string, details: any) => {
+    if (details.event === 'moved' && details.type === 'directory') {
+      handleUpdate()
+    }
+  }
 
   const watcher = chokidar.watch(config.files, {
     ignored: /(^|[\/\\])\../,
   })
 
   watcher
-    .on('change', onChange(instance))
-    .on('unlink', onUnlinkDir(instance))
-    .on('raw', onRaw(instance))
+    .on('change', handleUpdate)
+    .on('unlink', handleUpdate)
+    .on('raw', handleRaw)
 
-  await write(entries)
+  await Entries.write(config, map)
 }
 
 const INITIAL_CONFIG = {

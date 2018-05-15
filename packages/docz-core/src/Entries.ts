@@ -2,10 +2,10 @@ import * as glob from 'fast-glob'
 import * as fs from 'fs'
 import * as path from 'path'
 import { test, mkdir } from 'shelljs'
-import { compile } from 'art-template'
+import template from 'lodash.template'
 
 import * as paths from './config/paths'
-import { propOf, omit } from './utils/helpers'
+import { propOf } from './utils/helpers'
 import { format } from './utils/format'
 
 import { Entry, parseMdx } from './Entry'
@@ -35,7 +35,7 @@ const compiled = (file: string) =>
     })
 
     stream.on('data', chunk => (data += chunk))
-    stream.on('end', () => resolve(compile(data)))
+    stream.on('end', () => resolve(template(data)))
     stream.on('error', err => reject(err))
   })
 
@@ -80,7 +80,7 @@ const writeDataAndImports = async (
   const imports = await compiled('imports.tpl.js')
 
   const rawImportsJs = imports({
-    entries: Object.values(entries),
+    entries,
   })
 
   const rawData = stringify({
@@ -97,18 +97,17 @@ const writeDataAndImports = async (
 export type EntryMap = Record<string, Entry>
 
 export class Entries {
-  public static write(config: Config): (entries: EntryMap) => Promise<void> {
-    return async (entries: EntryMap) => {
-      mkd(paths.docz)
-      await writeStructuredFiles(config)
-      await writeDataAndImports(entries, config)
-    }
+  public static async write(config: Config, entries: EntryMap): Promise<void> {
+    mkd(paths.docz)
+    await writeStructuredFiles(config)
+    await writeDataAndImports(entries, config)
   }
 
-  public static rewrite(config: Config): (entries: EntryMap) => Promise<void> {
-    return async (entries: EntryMap) => {
-      await writeDataAndImports(entries, config)
-    }
+  public static async rewrite(config: Config): Promise<void> {
+    const entries = new Entries(config)
+    const map = await entries.getMap()
+
+    await writeDataAndImports(map, config)
   }
 
   public config: Config
@@ -123,34 +122,6 @@ export class Entries {
       this.all = await this.get(this.config)
       return this.all
     }
-  }
-
-  public remove(file: string): EntryMap {
-    return omit([this.entryFilepath(file)], this.all)
-  }
-
-  public async update(file: string): Promise<EntryMap> {
-    const merge = this.mergeEntriesWithNewEntry(this.all, this.config)
-    return (await Entry.check(file)) ? merge(file) : this.all
-  }
-
-  public async clean(dir: string): Promise<EntryMap> {
-    if (test('-d', dir)) {
-      return this.get(this.config)
-    }
-
-    const { paths } = this.config
-    const src = path.resolve(paths.root, this.config.src)
-    let entries = this.all
-
-    for (const file of Object.keys(this.all)) {
-      const filepath = path.join(src, file)
-      if (!test('-f', filepath)) {
-        entries = this.remove(filepath)
-      }
-    }
-
-    return entries
   }
 
   private async get(config: Config): Promise<EntryMap> {
@@ -174,25 +145,5 @@ export class Entries {
     })
 
     return filesToReduce.reduce(reducer, {})
-  }
-
-  private entryFilepath(file: string): string {
-    const srcPath = path.resolve(paths.root, this.config.src)
-    return path.relative(srcPath, file)
-  }
-
-  private mergeEntriesWithNewEntry(
-    entries: EntryMap,
-    config: Config
-  ): (file: string) => Promise<EntryMap> {
-    return async (file: string) => {
-      const ast = await parseMdx(file)
-      const entry = new Entry(ast, file, this.config.src)
-
-      return {
-        ...entries,
-        [entry.filepath]: entry,
-      }
-    }
   }
 }

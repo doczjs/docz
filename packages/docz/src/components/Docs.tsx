@@ -1,20 +1,22 @@
 import * as React from 'react'
 import { Children } from 'react'
 
-import { dataContext, Entry, EntryMap } from '../theme'
+import { dataContext, Entry } from '../theme'
 
 export const isFn = (value: any): boolean => typeof value === 'function'
 
-const getDocsFromEntries = (entries: EntryMap) =>
-  Object.values(entries).sort((entryA, entryB) => entryB.order - entryA.order)
+const sortAlphabetically = (a: Entry, b: Entry) => {
+  if (a.name < b.name) return -1
+  if (a.name > b.name) return 1
+  return 0
+}
 
-const getCategoriesFromEntries = (entries: EntryMap) =>
+const getDocsFromEntries = (entries: Entry[]) =>
+  entries.sort((a, b) => b.order - a.order)
+
+const getCategoriesFromEntries = (entries: Entry[]) =>
   Array.from(
-    new Set([
-      ...Object.values(entries)
-        .map(entry => entry.menu)
-        .filter(c => Boolean(c)),
-    ])
+    new Set([...entries.map(entry => entry.menu).filter(c => Boolean(c))])
   )
 
 export interface DocsRenderProps {
@@ -36,8 +38,10 @@ export const Docs: React.SFC<DocsProps> = ({ children }) => (
         )
       }
 
-      const docs = getDocsFromEntries(data.entries)
-      const menus = getCategoriesFromEntries(data.entries)
+      const sortedEntries = Object.values(data.entries).sort(sortAlphabetically)
+
+      const docs = getDocsFromEntries(sortedEntries)
+      const menus = getCategoriesFromEntries(sortedEntries)
 
       return Children.only(
         children({
