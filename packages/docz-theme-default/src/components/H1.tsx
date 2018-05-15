@@ -7,7 +7,7 @@ export const H1 = styled('h1')`
   position: relative;
   font-size: ${rem(48)};
   font-weight: 200;
-  margin: ${rem(50)} 0 ${rem(40)};
+  margin: ${rem(30)} 0 ${rem(60)};
 
   &:before {
     position: absolute;

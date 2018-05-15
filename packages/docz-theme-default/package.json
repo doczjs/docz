@@ -28,7 +28,7 @@
     "react-emotion": "^9.1.2",
     "react-feather": "^1.1.0",
     "react-lightweight-tooltip": "^1.0.0",
-    "react-router-dom": "^4.2.2"
+    "react-powerplug": "^0.1.5"
   },
   "peerDependencies": {
     "docz": "^0.0.1",
@@ -42,7 +42,6 @@
     "@babel/preset-react": "^7.0.0-beta.44",
     "@types/classnames": "^2.2.3",
     "@types/prismjs": "^1.9.0",
-    "@types/react-router-dom": "^4.2.6",
     "babel-plugin-emotion": "^9.1.0"
   }
 }

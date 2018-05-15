@@ -1,70 +1,44 @@
-import React, { Fragment, SFC } from 'react'
-import { DocObj } from 'docz'
-import { Docs } from 'docz'
+import React from 'react'
+import { Docs, Link as BaseLink, Entry } from 'docz'
 import styled from 'react-emotion'
 
 import * as colors from '../../styles/colors'
-import { Link } from './Link'
+import { Menu, menuStyle } from './Menu'
 
-const Sidebar = styled('div')`
-  padding: 15px 0;
-  width: 200px;
-  height: 100vh;
+const Wrapper = styled('div')`
+  width: 320px;
+  height: 100%;
   border-right: 1px solid ${colors.border};
-  background: ${colors.snow};
 `
 
-const List = styled('ul')`
-  list-style: none;
-  padding: 0;
-  margin: 5px 0;
-
-  & ~ & {
-    margin-top: 10px;
-  }
+const Link = styled(BaseLink)`
+  ${menuStyle};
 `
 
-const Category = styled('li')`
-  padding: 0 20px;
-  margin: 20px 0 5px;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: ${colors.steel};
-`
-
-interface LinksProps {
-  docs: DocObj[]
-}
-
-const Links: SFC<LinksProps> = ({ docs }) => (
-  <Fragment>
-    {docs.map(doc => (
-      <li key={doc.id}>
-        <Link to={doc.route}>{doc.name}</Link>
-      </li>
-    ))}
-  </Fragment>
-)
-
-export const Menu = () => (
+export const Sidebar = () => (
   <Docs>
-    {({ categories, docs }) => (
-      <Sidebar>
-        <List>
-          <Links docs={docs.filter(doc => !doc.category)} />
-          {categories.map(category => (
-            <Fragment key={category}>
-              <Category>{category}</Category>
-              <Links
-                docs={docs.filter(
-                  doc => doc.category && doc.category === category
-                )}
-              />
-            </Fragment>
+    {({ docs, menus }) => {
+      const docsWithoutMenu = docs.filter((doc: Entry) => !doc.menu)
+
+      return (
+        <Wrapper>
+          {docsWithoutMenu.map(doc => (
+            <Link key={doc.id} to={doc.slug}>
+              {doc.name}
+            </Link>
           ))}
-        </List>
-      </Sidebar>
-    )}
+          {menus.map(
+            menu =>
+              menu && (
+                <Menu
+                  key={menu}
+                  menu={menu}
+                  docs={docs.filter(doc => doc.menu && doc.menu === menu)}
+                />
+              )
+          )}
+        </Wrapper>
+      )
+    }}
   </Docs>
 )

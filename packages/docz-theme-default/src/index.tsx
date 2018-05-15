@@ -3,12 +3,11 @@ import './styles/prism-theme'
 
 import * as React from 'react'
 import styled from 'react-emotion'
+import { theme, DocPreview } from 'docz'
 
-import { BrowserRouter } from 'react-router-dom'
-import { theme, Docs } from 'docz'
-
-import { Menu } from './modules/Sidebar'
-import { Doc } from './modules/Doc'
+import * as components from './components'
+import { Container } from './components'
+import { Sidebar } from './modules/Sidebar'
 
 export const Main = styled('div')`
   display: flex;
@@ -16,20 +15,28 @@ export const Main = styled('div')`
 `
 
 const View = styled('div')`
-  width: 100%;
+  flex: 1;
   height: 100%;
   overflow-y: auto;
 `
 
 export const Theme = theme(() => (
-  <BrowserRouter>
-    <Main>
-      <Menu />
-      <View>
-        <Docs>
-          {({ docs }) => docs.map(doc => <Doc key={doc.id} {...doc} />)}
-        </Docs>
-      </View>
-    </Main>
-  </BrowserRouter>
+  <Main>
+    <Sidebar />
+    <View>
+      <Container>
+        <DocPreview
+          components={{
+            h1: components.H1,
+            h2: components.H2,
+            h3: components.H3,
+            table: components.Table,
+            render: components.Render,
+            tooltip: components.Tooltip,
+            pre: components.Pre,
+          }}
+        />
+      </Container>
+    </View>
+  </Main>
 ))
