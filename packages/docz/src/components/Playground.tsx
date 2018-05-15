@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Fragment, ComponentType, SFC } from 'react'
 
-import { isFn } from '../Doc'
+import { isFn } from './Docs'
 
 export type RenderComponent = ComponentType<{
   component: JSX.Element

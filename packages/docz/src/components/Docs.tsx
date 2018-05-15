@@ -1,17 +1,25 @@
 import * as React from 'react'
+import { Children } from 'react'
 
-import { Doc, DocObj } from '../Doc'
-import { DocMap } from '../theme'
+import { dataContext, Entry, EntryMap } from '../theme'
 
 export const isFn = (value: any): boolean => typeof value === 'function'
-export const docsContext = React.createContext({} as DocMap)
 
-const sortDocs = (docs: DocObj[]) =>
-  docs.sort((docA, docB) => docB.order - docA.order)
+const getDocsFromEntries = (entries: EntryMap) =>
+  Object.values(entries).sort((entryA, entryB) => entryB.order - entryA.order)
+
+const getCategoriesFromEntries = (entries: EntryMap) =>
+  Array.from(
+    new Set([
+      ...Object.values(entries)
+        .map(entry => entry.menu)
+        .filter(c => Boolean(c)),
+    ])
+  )
 
 export interface DocsRenderProps {
-  docs: DocObj[]
-  categories: string[]
+  docs: Entry[]
+  menus: Array<string | null>
 }
 
 export interface DocsProps {
@@ -19,20 +27,24 @@ export interface DocsProps {
 }
 
 export const Docs: React.SFC<DocsProps> = ({ children }) => (
-  <docsContext.Consumer>
-    {docs => {
+  <dataContext.Consumer>
+    {({ data }) => {
+      if (!data.entries) return null
       if (!isFn(children)) {
         throw new Error(
           'You need to pass a children as a function to your <Docs/> component'
         )
       }
 
-      const docsArr = Object.values(docs)
+      const docs = getDocsFromEntries(data.entries)
+      const menus = getCategoriesFromEntries(data.entries)
 
-      return children({
-        docs: sortDocs(docsArr),
-        categories: Doc.categoriesFromDocs(docsArr),
-      })
+      return Children.only(
+        children({
+          docs,
+          menus,
+        })
+      )
     }}
-  </docsContext.Consumer>
+  </dataContext.Consumer>
 )

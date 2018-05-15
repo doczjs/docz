@@ -1,84 +1,87 @@
 import * as React from 'react'
 import { Component, ComponentType as CT } from 'react'
-import Promise from 'bluebird'
+import { BrowserRouter } from 'react-router-dom'
 
-import { docsContext } from './components/Docs'
-import { Doc, DocObj, Entry } from './Doc'
+declare var module: any
+
+export type MSXComponent = CT<{
+  components: { [key: string]: any }
+}>
 
 export interface MSXImport {
-  default: CT
-  meta: Doc
+  default: MSXComponent
 }
 
-export type DocMap = Record<string, DocObj>
+export interface Entry {
+  id: string
+  filepath: string
+  slug: string
+  route: string
+  name: string
+  menu: string | null
+  order: number
+}
+
 export type EntryMap = Record<string, Entry>
-export type ImportMap = Record<string, Promise<MSXImport>>
+export type ImportMap = Record<string, () => Promise<MSXImport>>
 
-declare const module: any
+export interface Data {
+  title?: string
+  description?: string
+  theme?: string
+  entries?: EntryMap
+}
 
-export interface ThemeProps {
+export interface DataContext {
   imports: ImportMap
-  data: {
-    title: string
-    description: string
-    theme: string
-    entries: EntryMap
-  }
+  data: Data
+}
 
+const initialContext: DataContext = {
+  imports: {},
+  data: {},
+}
+
+export const dataContext = React.createContext(initialContext)
+
+export interface ThemeProps extends DataContext {
   wrapper: CT
   children(WrappedComponent: CT): JSX.Element
 }
 
-export interface ThemeState {
-  docs: DocMap
-}
-
 export function theme(WrappedComponent: CT): CT<ThemeProps> {
-  return class Theme extends Component<ThemeProps, ThemeState> {
-    public state = {
-      docs: {},
-    }
-
-    public importDocs = async (imports: ImportMap, entries: EntryMap) => {
-      const docs = await Promise.props(imports)
-
-      this.setState({
-        docs: Object.keys(docs).reduce((obj, key) => {
-          const { default: component, meta: instance } = docs[key]
-          const doc = instance.findEntryAndMerge(entries)
-          const docObj = doc.toObject(component)
-
-          return {
-            ...obj,
-            [key]: docObj,
-          }
-        }, {}),
-      })
-    }
+  return class Theme extends Component<ThemeProps, DataContext> {
+    public state = initialContext
 
     public UNSAFE_componentWillReceiveProps(nextProps: ThemeProps): void {
       if (module.hot) {
-        setImmediate(() =>
-          this.importDocs(nextProps.imports, nextProps.data.entries)
-        )
+        setImmediate(() => this.populateState(nextProps))
       }
     }
 
     public componentDidMount(): void {
-      const { imports, data } = this.props
-      this.importDocs(imports, data.entries)
+      this.populateState(this.props)
     }
 
     public render(): JSX.Element {
       const { wrapper: Wrapper } = this.props
 
       return (
-        <docsContext.Provider value={this.state.docs}>
-          <Wrapper>
-            <WrappedComponent />
-          </Wrapper>
-        </docsContext.Provider>
+        <dataContext.Provider value={this.props}>
+          <BrowserRouter>
+            <Wrapper>
+              <WrappedComponent />
+            </Wrapper>
+          </BrowserRouter>
+        </dataContext.Provider>
       )
+    }
+
+    private populateState(props: ThemeProps): void {
+      this.setState(() => ({
+        imports: props.imports,
+        data: props.data,
+      }))
     }
   }
 }

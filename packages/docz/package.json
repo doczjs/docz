@@ -23,11 +23,12 @@
   },
   "dependencies": {
     "@sindresorhus/slugify": "^0.3.0",
-    "bluebird": "^3.5.1",
     "invariant": "^2.2.4",
+    "loadable-components": "^2.1.0",
     "pascalcase": "^0.1.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-router-dom": "^4.2.2",
     "yargs": "^11.0.0"
   },
   "peerDependencies": {
@@ -37,6 +38,7 @@
   "devDependencies": {
     "@types/bluebird": "^3.5.20",
     "@types/react": "^16.3.12",
-    "@types/react-dom": "^16.0.5"
+    "@types/react-dom": "^16.0.5",
+    "@types/react-router-dom": "^4.2.6"
   }
 }
