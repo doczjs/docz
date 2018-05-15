@@ -12,14 +12,14 @@ import get from 'lodash.get'
 
 import * as paths from './config/paths'
 
-const parseMdx = (file: string) => {
+export const parseMdx = (file: string): Promise<string> => {
   const raw = vfile.readSync(file, 'utf-8')
   const parser = unified()
     .use(remark, { type: 'yaml', marker: '-' })
     .use(matter)
     .use(parseFrontmatter)
 
-  return parser.runSync(parser.parse(raw))
+  return parser.run(parser.parse(raw))
 }
 
 const getFromParsedData = (value: string) => (ast: any) => {
@@ -35,8 +35,8 @@ const getOrder = getFromParsedData('order')
 export class Entry {
   readonly [key: string]: any
 
-  public static check(file: string): boolean | null {
-    const ast = parseMdx(file)
+  public static async check(file: string): Promise<boolean | null> {
+    const ast = await parseMdx(file)
     return Boolean(getName(ast))
   }
 
@@ -48,8 +48,7 @@ export class Entry {
   public menu: string | null
   public order: number
 
-  constructor(file: string, src: string) {
-    const ast = parseMdx(file)
+  constructor(ast: any, file: string, src: string) {
     const filepath = this.getFilepath(file, src)
 
     this.id = ulid()

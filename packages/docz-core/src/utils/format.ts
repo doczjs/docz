@@ -1,14 +1,17 @@
 import * as prettier from 'prettier'
 
-export const format = (code: string): string => {
-  try {
-    return prettier.format(code, {
-      semi: false,
-      singleQuote: true,
-      trailingComma: 'all',
-    })
-  } catch (err) {
-    console.log(err)
-    return ''
-  }
-}
+export const format = (code: string): Promise<string> =>
+  new Promise((resolve, reject) => {
+    try {
+      const result = prettier.format(code, {
+        semi: false,
+        singleQuote: true,
+        trailingComma: 'all',
+      })
+
+      resolve(result)
+    } catch (err) {
+      console.log(err)
+      resolve(err)
+    }
+  })

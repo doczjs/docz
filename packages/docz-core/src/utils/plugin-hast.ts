@@ -11,12 +11,13 @@ const componentName = (value: any) => {
 const isPlayground = (name: string) => name === 'Playground'
 const isPropsTable = (name: string) => name === 'PropsTable'
 
-const addCodeProp = (node: any) => {
+const addCodeProp = async (node: any) => {
   const name = componentName(node.value)
   const tagOpen = new RegExp(`^\\<${name}`)
 
   if (isPlayground(name)) {
-    const code = format(nodeToString(node)).slice(1, Infinity)
+    const formatted = await format(nodeToString(node))
+    const code = formatted.slice(1, Infinity)
 
     const codeComponent = `(
       <components.pre className="react-prism language-jsx">
@@ -40,11 +41,11 @@ const addComponentsProp = (node: any) => {
   }
 }
 
-export const plugin = () => (tree: any, file: any) => {
+export const plugin = () => async (tree: any, file: any) => {
   visit(tree, 'jsx', visitor)
 
-  function visitor(node: any, idx: any, parent: any): void {
-    addCodeProp(node)
+  async function visitor(node: any, idx: any, parent: any): Promise<void> {
+    await addCodeProp(node)
     addComponentsProp(node)
   }
 }

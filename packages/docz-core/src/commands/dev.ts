@@ -4,45 +4,59 @@ import chokidar from 'chokidar'
 import * as paths from '../config/paths'
 import { Config } from './args'
 
-import { Entries } from '../Entries'
+import { Entries, EntryMap } from '../Entries'
 import { webpack } from '../bundlers'
 
 process.env.BABEL_ENV = process.env.BABEL_ENV || 'development'
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
-const handleUpdate = (entries: Entries) => (file: string) => {
-  entries.update(file)
-  entries.rewrite()
+export type Rewrite = (entries: EntryMap) => Promise<void>
+
+const handleUpdate = (rewrite: Rewrite) => (entries: Entries) => async (
+  file: string
+) => {
+  const newEntries = await entries.update(file)
+  await rewrite(newEntries)
 }
 
-const handleRemove = (entries: Entries) => (file: string) => {
-  entries.remove(file)
-  entries.rewrite()
+const handleRemove = (rewrite: Rewrite) => (entries: Entries) => async (
+  file: string
+) => {
+  const newEntries = entries.remove(file)
+  await rewrite(newEntries)
 }
 
-const handleRemoveDir = (entries: Entries) => (
+const handleRemoveDir = (rewrite: Rewrite) => (entries: Entries) => async (
   event: string,
   path: string,
   details: any
 ) => {
   if (details.event === 'moved' && details.type === 'directory') {
-    entries.clean(details.path)
-    entries.rewrite()
+    const newEntries = await entries.clean(details.path)
+    await rewrite(newEntries)
   }
 }
 
-const writeEntriesAndWatch = (config: Config) => {
-  const entries = new Entries(config)
+const writeEntriesAndWatch = async (config: Config) => {
+  const instance = new Entries(config)
+  const entries = await instance.getMap()
+
+  const write = Entries.write(config)
+  const rewrite = Entries.rewrite(config)
+  const onChange = handleUpdate(rewrite)
+  const onUnlinkDir = handleRemove(rewrite)
+  const onRaw = handleRemoveDir(rewrite)
+
   const watcher = chokidar.watch(config.files, {
     ignored: /(^|[\/\\])\../,
   })
 
   watcher
-    .on('change', handleUpdate(entries))
-    .on('unlink', handleRemove(entries))
-    .on('raw', handleRemoveDir(entries))
+    .on('change', onChange(instance))
+    .on('unlink', onUnlinkDir(instance))
+    .on('raw', onRaw(instance))
 
-  entries.write()
+  await write(entries)
 }
 
 const INITIAL_CONFIG = {
@@ -57,6 +71,6 @@ export const dev = async (args: Config) => {
   const bundler = webpack(config)
   const server = await bundler.createServer(bundler.getConfig())
 
-  writeEntriesAndWatch(config)
+  await writeEntriesAndWatch(config)
   server.start()
 }

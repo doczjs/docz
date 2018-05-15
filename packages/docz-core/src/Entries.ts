@@ -8,76 +8,152 @@ import * as paths from './config/paths'
 import { propOf, omit } from './utils/helpers'
 import { format } from './utils/format'
 
-import { Entry } from './Entry'
+import { Entry, parseMdx } from './Entry'
 import { Config } from './commands/args'
 
 const mkd = (dir: string): void => {
   !test('-d', dir) && mkdir('-p', dir)
 }
 
-const touch = (file: string, raw: string) => {
-  const content = /jsx?$/.test(path.extname(file)) ? format(raw) : raw
+const touch = (file: string, raw: string) =>
+  new Promise(async (resolve, reject) => {
+    const content = /jsx?$/.test(path.extname(file)) ? await format(raw) : raw
+    const stream = fs.createWriteStream(file)
 
-  mkd(paths.docz)
-  fs.writeFileSync(file, content, 'utf-8')
-}
+    stream.write(content, 'utf-8')
+    stream.on('finish', () => resolve())
+    stream.on('error', err => reject(err))
+    stream.end()
+  })
 
 const compiled = (file: string) =>
-  compile(fs.readFileSync(path.join(paths.templates, file), 'utf-8'))
+  new Promise<(args: any) => string>((resolve, reject) => {
+    let data = ''
+    const filepath = path.join(paths.templates, file)
+    const stream = fs.createReadStream(filepath, {
+      encoding: 'utf-8',
+    })
+
+    stream.on('data', chunk => (data += chunk))
+    stream.on('end', () => resolve(compile(data)))
+    stream.on('error', err => reject(err))
+  })
 
 const stringify = (obj: any) => JSON.stringify(obj, null, 2)
+
+const writeStructuredFiles = async (config: Config): Promise<void> => {
+  const { plugins, title, description, theme } = config
+
+  const wrappers = propOf(plugins, 'wrapper')
+  const afterRenders = propOf(plugins, 'afterRender')
+  const beforeRenders = propOf(plugins, 'beforeRender')
+
+  const app = await compiled('app.tpl.js')
+  const js = await compiled('index.tpl.js')
+  const html = await compiled('index.tpl.html')
+
+  const rawAppJs = app({
+    theme,
+    wrappers,
+  })
+
+  const rawIndexJs = js({
+    afterRenders,
+    beforeRenders,
+  })
+
+  const rawIndexHtml = html({
+    title,
+    description,
+  })
+
+  await touch(paths.appJs, rawAppJs)
+  await touch(paths.indexJs, rawIndexJs)
+  await touch(paths.indexHtml, rawIndexHtml)
+}
+
+const writeDataAndImports = async (
+  entries: EntryMap,
+  config: Config
+): Promise<void> => {
+  const { title, description, theme } = config
+  const imports = await compiled('imports.tpl.js')
+
+  const rawImportsJs = imports({
+    entries: Object.values(entries),
+  })
+
+  const rawData = stringify({
+    title,
+    description,
+    theme,
+    entries,
+  })
+
+  await touch(paths.importsJs, rawImportsJs)
+  await touch(paths.dataJson, rawData)
+}
 
 export type EntryMap = Record<string, Entry>
 
 export class Entries {
-  public config: Config
-  public entries: EntryMap
-
-  constructor(config: Config) {
-    this.config = config
-    this.entries = this.getEntries(config)
-  }
-
-  public write(): void {
-    this.writeStructuredFiles()
-    this.writeDataAndImports()
-  }
-
-  public rewrite(): void {
-    this.writeDataAndImports()
-  }
-
-  public remove(file: string): void {
-    this.entries = omit([this.entryFilepath(file)], this.entries)
-  }
-
-  public update(file: string): void {
-    if (Entry.check(file)) {
-      this.entries = this.mergeEntriesWithNewEntry(this.entries, file)
+  public static write(config: Config): (entries: EntryMap) => Promise<void> {
+    return async (entries: EntryMap) => {
+      mkd(paths.docz)
+      await writeStructuredFiles(config)
+      await writeDataAndImports(entries, config)
     }
   }
 
-  public clean(dir: string): void {
+  public static rewrite(config: Config): (entries: EntryMap) => Promise<void> {
+    return async (entries: EntryMap) => {
+      await writeDataAndImports(entries, config)
+    }
+  }
+
+  public config: Config
+  public all: EntryMap
+  public getMap: () => Promise<EntryMap>
+
+  constructor(config: Config) {
+    this.config = config
+    this.all = {}
+
+    this.getMap = async () => {
+      this.all = await this.get(this.config)
+      return this.all
+    }
+  }
+
+  public remove(file: string): EntryMap {
+    return omit([this.entryFilepath(file)], this.all)
+  }
+
+  public async update(file: string): Promise<EntryMap> {
+    const merge = this.mergeEntriesWithNewEntry(this.all, this.config)
+    return (await Entry.check(file)) ? merge(file) : this.all
+  }
+
+  public async clean(dir: string): Promise<EntryMap> {
     if (test('-d', dir)) {
-      this.entries = this.getEntries(this.config)
-      return
+      return this.get(this.config)
     }
 
     const { paths } = this.config
     const src = path.resolve(paths.root, this.config.src)
+    let entries = this.all
 
-    for (const file of Object.keys(this.entries)) {
+    for (const file of Object.keys(this.all)) {
       const filepath = path.join(src, file)
-      if (!test('-f', filepath)) this.remove(filepath)
+      if (!test('-f', filepath)) {
+        entries = this.remove(filepath)
+      }
     }
+
+    return entries
   }
 
-  private entryFilepath(file: string): string {
-    const srcPath = path.resolve(paths.root, this.config.src)
-    return path.relative(srcPath, file)
-  }
-
-  private getEntries(config: Config): EntryMap {
+  private async get(config: Config): Promise<EntryMap> {
     const { files: pattern } = config
 
     const ignoreGlob = '!node_modules'
@@ -85,56 +161,38 @@ export class Entries {
       Array.isArray(pattern) ? [...pattern, ignoreGlob] : [pattern, ignoreGlob]
     )
 
-    return files
-      .filter(Entry.check)
-      .reduce((obj, file) => this.mergeEntriesWithNewEntry(obj, file), {})
-  }
+    const filesToReduce = await Promise.all(
+      files.filter(async file => Entry.check(file)).map(async file => {
+        const ast = await parseMdx(file)
+        return new Entry(ast, file, this.config.src)
+      })
+    )
 
-  private mergeEntriesWithNewEntry(obj: EntryMap, file: string): EntryMap {
-    const entry = new Entry(file, this.config.src)
-
-    return {
+    const reducer = (obj: EntryMap, entry: Entry) => ({
       ...obj,
       [entry.filepath]: entry,
+    })
+
+    return filesToReduce.reduce(reducer, {})
+  }
+
+  private entryFilepath(file: string): string {
+    const srcPath = path.resolve(paths.root, this.config.src)
+    return path.relative(srcPath, file)
+  }
+
+  private mergeEntriesWithNewEntry(
+    entries: EntryMap,
+    config: Config
+  ): (file: string) => Promise<EntryMap> {
+    return async (file: string) => {
+      const ast = await parseMdx(file)
+      const entry = new Entry(ast, file, this.config.src)
+
+      return {
+        ...entries,
+        [entry.filepath]: entry,
+      }
     }
-  }
-
-  private writeStructuredFiles(): void {
-    const { plugins, title, description, theme } = this.config
-
-    const wrappers = propOf(plugins, 'wrapper')
-    const afterRenders = propOf(plugins, 'afterRender')
-    const beforeRenders = propOf(plugins, 'beforeRender')
-
-    const app = compiled('app.tpl.js')
-    const js = compiled('index.tpl.js')
-    const html = compiled('index.tpl.html')
-
-    const rawAppJs = app({ theme, wrappers })
-    const rawIndexJs = js({ afterRenders, beforeRenders })
-    const rawIndexHtml = html({ title, description })
-
-    touch(paths.appJs, rawAppJs)
-    touch(paths.indexJs, rawIndexJs)
-    touch(paths.indexHtml, rawIndexHtml)
-  }
-
-  private writeDataAndImports(): void {
-    const { title, description, theme } = this.config
-    const imports = compiled('imports.tpl.js')
-
-    const rawImportsJs = imports({
-      entries: Object.values(this.entries),
-    })
-
-    const rawData = stringify({
-      title,
-      description,
-      theme,
-      entries: this.entries,
-    })
-
-    touch(paths.importsJs, rawImportsJs)
-    touch(paths.dataJson, rawData)
   }
 }
