@@ -1,8 +1,13 @@
 import { Plugin } from './Plugin'
 import { Config } from './commands/args'
 
+export interface Server {
+  close: () => void
+  on: (event: string, cb: (server: any) => void) => void
+}
+
 export interface BundlerServer {
-  start(): any
+  start(): Promise<Server>
 }
 
 export type ConfigFn<C> = () => C

@@ -2,9 +2,7 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 import { Theme } from '<%- theme %>'
 
-import { imports } from './imports'
-import data from './data.json'
-
+const socket = new WebSocket(`<%- websocketUrl %>`)
 const _wrappers = [<% if (wrappers) {%><%- wrappers %><%}%>]
 
 const recursiveWrappers = ([Wrapper, ...rest], props) => (
@@ -16,8 +14,32 @@ const recursiveWrappers = ([Wrapper, ...rest], props) => (
 const Wrapper = props =>
   _wrappers.length ? recursiveWrappers(_wrappers, props) : props.children
 
-const App = () => (
-  <Theme data={data} imports={imports} wrapper={Wrapper} />
-)
+class App extends React.Component {
+  state = {
+    data: {},
+    imports: {}
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return {
+      data: prevState.data,
+      imports: nextProps.imports
+    }
+  }
+
+  async componentDidMount() {
+    socket.onmessage = ev => {
+      const message = JSON.parse(ev.data)
+
+      if (message.type === 'entries data') {
+        this.setState({ data: message.data })
+      }
+    }
+  }
+
+  render() {
+    return <Theme {...this.state} wrapper={Wrapper} />
+  }
+}
 
 export default hot(module)(App)

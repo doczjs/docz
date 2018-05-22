@@ -1,34 +1,70 @@
 import { load } from 'load-cfg'
 import chokidar from 'chokidar'
+import WebSocket from 'ws'
 
 import * as paths from '../config/paths'
 import { Config } from './args'
 
-import { Entries } from '../Entries'
+import { Entries, EntryMap } from '../Entries'
 import { webpack } from '../bundlers'
 
 process.env.BABEL_ENV = process.env.BABEL_ENV || 'development'
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
-const writeEntriesAndWatch = async (config: Config) => {
+const entriesData = (entries: EntryMap, config: Config) =>
+  JSON.stringify({
+    type: 'entries data',
+    data: {
+      entries,
+      title: config.title,
+      description: config.description,
+    },
+  })
+
+const updateEntries = (socket: WebSocket) => (config: Config) => async () => {
+  const newEntries = new Entries(config)
+  const newMap = await newEntries.getMap()
+
+  await Entries.rewrite(newMap)
+  socket.send(entriesData(newMap, config))
+}
+
+const processEntries = (config: Config) => async (server: any) => {
   const entries = new Entries(config)
   const map = await entries.getMap()
-
-  const handleUpdate = async () => Entries.rewrite(config)
-  const handleRaw = async (event: string, path: string, details: any) => {
-    if (details.event === 'moved' && details.type === 'directory') {
-      handleUpdate()
-    }
-  }
-
   const watcher = chokidar.watch(config.files, {
     ignored: /(^|[\/\\])\../,
   })
 
-  watcher
-    .on('change', handleUpdate)
-    .on('unlink', handleUpdate)
-    .on('raw', handleRaw)
+  const wss = new WebSocket.Server({
+    server,
+    host: config.websocketHost,
+    port: config.websocketPort,
+  })
+
+  const handleClose = () => {
+    watcher.close()
+    wss.close()
+  }
+
+  const handleConnection = async (socket: WebSocket) => {
+    const update = updateEntries(socket)
+
+    socket.send(entriesData(map, config))
+
+    watcher.on('change', update(config))
+    watcher.on('unlink', update(config))
+    watcher.on('raw', (event: string, path: string, details: any) => {
+      if (details.event === 'moved' && details.type === 'directory') {
+        update(config)()
+      }
+    })
+  }
+
+  wss.on('connection', handleConnection)
+  server.on('close', handleClose)
+  process.on('exit', handleClose)
+  process.on('SIGINT', handleClose)
 
   await Entries.write(config, map)
 }
@@ -44,7 +80,7 @@ export const dev = async (args: Config) => {
   const config = load('docz', { ...args, ...INITIAL_CONFIG })
   const bundler = webpack(config)
   const server = await bundler.createServer(bundler.getConfig())
+  const app = await server.start()
 
-  await writeEntriesAndWatch(config)
-  server.start()
+  app.on('listening', processEntries(args))
 }

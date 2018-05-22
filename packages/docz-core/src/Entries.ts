@@ -39,8 +39,6 @@ const compiled = (file: string) =>
     stream.on('error', err => reject(err))
   })
 
-const stringify = (obj: any) => JSON.stringify(obj, null, 2)
-
 const writeStructuredFiles = async (config: Config): Promise<void> => {
   const { plugins, title, description, theme } = config
 
@@ -55,6 +53,7 @@ const writeStructuredFiles = async (config: Config): Promise<void> => {
   const rawAppJs = app({
     theme,
     wrappers,
+    websocketUrl: `ws://${config.websocketHost}:${config.websocketPort}`,
   })
 
   const rawIndexJs = js({
@@ -72,26 +71,9 @@ const writeStructuredFiles = async (config: Config): Promise<void> => {
   await touch(paths.indexHtml, rawIndexHtml)
 }
 
-const writeDataAndImports = async (
-  entries: EntryMap,
-  config: Config
-): Promise<void> => {
-  const { title, description, theme } = config
+const writeImports = async (entries: EntryMap): Promise<void> => {
   const imports = await compiled('imports.tpl.js')
-
-  const rawImportsJs = imports({
-    entries,
-  })
-
-  const rawData = stringify({
-    title,
-    description,
-    theme,
-    entries,
-  })
-
-  await touch(paths.importsJs, rawImportsJs)
-  await touch(paths.dataJson, rawData)
+  await touch(paths.importsJs, imports({ entries }))
 }
 
 export type EntryMap = Record<string, Entry>
@@ -100,14 +82,11 @@ export class Entries {
   public static async write(config: Config, entries: EntryMap): Promise<void> {
     mkd(paths.docz)
     await writeStructuredFiles(config)
-    await writeDataAndImports(entries, config)
+    await writeImports(entries)
   }
 
-  public static async rewrite(config: Config): Promise<void> {
-    const entries = new Entries(config)
-    const map = await entries.getMap()
-
-    await writeDataAndImports(map, config)
+  public static async rewrite(map: EntryMap): Promise<void> {
+    await writeImports(map)
   }
 
   public config: Config

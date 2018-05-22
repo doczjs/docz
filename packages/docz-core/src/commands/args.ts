@@ -15,6 +15,8 @@ export interface Argv {
   protocol: string
   host: string
   port: number
+  websocketPort: number
+  websocketHost: string
 }
 
 export interface Config extends Argv {
@@ -66,5 +68,13 @@ export const args = (yargs: any) => {
     alias: 'p',
     type: 'number',
     default: process.env.PORT || 3000,
+  })
+  yargs.positional('websocketHost', {
+    type: 'string',
+    default: process.env.HOST || '0.0.0.0',
+  })
+  yargs.positional('websocketPort', {
+    type: 'number',
+    default: process.env.WEBSOCKET_PORT || 8089,
   })
 }

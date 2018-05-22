@@ -1,8 +1,6 @@
 import * as React from 'react'
-import { Component, ComponentType as CT } from 'react'
+import { ComponentType as CT } from 'react'
 import { BrowserRouter } from 'react-router-dom'
-
-declare var module: any
 
 export type MSXComponent = CT<{
   components: { [key: string]: any }
@@ -50,38 +48,20 @@ export interface ThemeProps extends DataContext {
 }
 
 export function theme(WrappedComponent: CT): CT<ThemeProps> {
-  return class Theme extends Component<ThemeProps, DataContext> {
-    public state = initialContext
+  const Theme: CT<ThemeProps> = props => {
+    const { wrapper: Wrapper } = props
 
-    public UNSAFE_componentWillReceiveProps(nextProps: ThemeProps): void {
-      if (module.hot) {
-        setImmediate(() => this.populateState(nextProps))
-      }
-    }
-
-    public componentDidMount(): void {
-      this.populateState(this.props)
-    }
-
-    public render(): JSX.Element {
-      const { wrapper: Wrapper } = this.props
-
-      return (
-        <dataContext.Provider value={this.props}>
-          <BrowserRouter>
-            <Wrapper>
-              <WrappedComponent />
-            </Wrapper>
-          </BrowserRouter>
-        </dataContext.Provider>
-      )
-    }
-
-    private populateState(props: ThemeProps): void {
-      this.setState(() => ({
-        imports: props.imports,
-        data: props.data,
-      }))
-    }
+    return (
+      <dataContext.Provider value={props}>
+        <BrowserRouter>
+          <Wrapper>
+            <WrappedComponent />
+          </Wrapper>
+        </BrowserRouter>
+      </dataContext.Provider>
+    )
   }
+
+  Theme.displayName = 'DoczTheme'
+  return Theme
 }

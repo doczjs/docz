@@ -10,23 +10,22 @@ export const devServerConfig = (
   compiler: Compiler,
   config: Configuration
 ) => {
-  const { port, host } = args
   const nonExistentDir = path.resolve(__dirname, 'non-existent')
   const logLevel = (level: string) => (args.debug ? 'debug' : level)
 
   return {
     compiler,
-    host,
-    port,
+    host: args.host,
+    port: args.port,
     content: [nonExistentDir],
+    logLevel: logLevel('error'),
     dev: {
       logLevel: logLevel('silent'),
     },
     hot: {
-      logLevel: logLevel('error'),
       reload: false,
+      logLevel: logLevel('error'),
     },
-    logLevel: logLevel('error'),
     add: (app: any) => {
       app.use(
         convert(

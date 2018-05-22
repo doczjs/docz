@@ -12,7 +12,14 @@ export const server = (args: Config) => (config: CFG): BundlerServer => {
   const devserver = devServerConfig(args, compiler, config)
 
   return {
-    start: async () => serve(devserver),
+    start: async () => {
+      const instance = await serve(devserver)
+
+      return {
+        on: instance.on,
+        close: instance.close,
+      }
+    },
   }
 }
 
