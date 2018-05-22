@@ -23,21 +23,14 @@ export interface Entry {
 export type EntryMap = Record<string, Entry>
 export type ImportMap = Record<string, () => Promise<MSXImport>>
 
-export interface Data {
-  title?: string
-  description?: string
-  theme?: string
-  entries?: EntryMap
-}
-
 export interface DataContext {
   imports: ImportMap
-  data: Data
+  entries: EntryMap
 }
 
 const initialContext: DataContext = {
   imports: {},
-  data: {},
+  entries: {},
 }
 
 export const dataContext = React.createContext(initialContext)

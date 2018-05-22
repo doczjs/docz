@@ -13,10 +13,10 @@ export interface DocPreviewProps {
 
 export const DocPreview: SFC<DocPreviewProps> = ({ components }) => (
   <dataContext.Consumer>
-    {({ imports, data }) => (
+    {({ imports, entries }) => (
       <Switch>
         {Object.keys(imports).map(path => {
-          const entry = data.entries && data.entries[path]
+          const entry = entries && entries[path]
           const asyncComponent = loadable(async () => {
             const { default: Component } = await imports[path]()
             return props => <Component {...props} components={components} />

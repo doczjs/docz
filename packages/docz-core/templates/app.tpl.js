@@ -16,13 +16,13 @@ const Wrapper = props =>
 
 class App extends React.Component {
   state = {
-    data: {},
+    entries: {},
     imports: {}
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     return {
-      data: prevState.data,
+      entries: prevState.entries,
       imports: nextProps.imports
     }
   }
@@ -32,7 +32,7 @@ class App extends React.Component {
       const message = JSON.parse(ev.data)
 
       if (message.type === 'entries data') {
-        this.setState({ data: message.data })
+        this.setState({ entries: message.data })
       }
     }
   }

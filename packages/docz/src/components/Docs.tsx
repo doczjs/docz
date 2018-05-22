@@ -30,16 +30,15 @@ export interface DocsProps {
 
 export const Docs: React.SFC<DocsProps> = ({ children }) => (
   <dataContext.Consumer>
-    {({ data }) => {
-      if (!data.entries) return null
+    {({ entries }) => {
+      if (!entries) return null
       if (!isFn(children)) {
         throw new Error(
           'You need to pass a children as a function to your <Docs/> component'
         )
       }
 
-      const sortedEntries = Object.values(data.entries).sort(sortAlphabetically)
-
+      const sortedEntries = Object.values(entries).sort(sortAlphabetically)
       const docs = getDocsFromEntries(sortedEntries)
       const menus = getCategoriesFromEntries(sortedEntries)
 
