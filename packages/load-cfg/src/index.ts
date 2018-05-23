@@ -1,9 +1,9 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import * as findup from 'find-up'
+import findup from 'find-up'
 import merge from 'deepmerge'
 
-const finds = (name: string): string[] => [
+export const finds = (name: string): string[] => [
   `${name}.json`,
   `.${name}rc`,
   `${name}rc.js`,
@@ -14,20 +14,40 @@ const finds = (name: string): string[] => [
   `${name}.config.json`,
 ]
 
-export const load = (name: string, defaultConfig: any = {}) => {
+export const loadFile = (
+  filepath: string,
+  defaultFile: any = {},
+  noCache?: boolean
+) => {
+  let file
+
+  if (noCache && filepath) {
+    delete require.cache[path.resolve(filepath)]
+  }
+
+  try {
+    const isJS = path.extname(filepath) === '.js'
+
+    file = isJS
+      ? require(filepath)
+      : JSON.parse(fs.readFileSync(filepath, 'utf-8'))
+  } catch (err) {
+    file = defaultFile
+  }
+
+  return file
+}
+
+export const load = (
+  name: string,
+  defaultConfig: any = {},
+  noCache?: boolean
+) => {
   let file = {}
   const filepath = findup.sync(finds(name))
 
   if (filepath) {
-    try {
-      const isJS = path.extname(filepath) === '.js'
-
-      file = isJS
-        ? require(filepath)
-        : JSON.parse(fs.readFileSync(filepath, 'utf-8'))
-    } catch (err) {
-      file = defaultConfig
-    }
+    file = loadFile(filepath, defaultConfig, noCache)
   }
 
   return defaultConfig !== null ? merge(defaultConfig, file) : file
