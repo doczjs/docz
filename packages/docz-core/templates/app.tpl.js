@@ -16,12 +16,14 @@ const Wrapper = props =>
 
 class App extends React.Component {
   state = {
+    config: {},
     entries: {},
-    imports: {}
+    imports: {},
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     return {
+      config: prevState.config,
       entries: prevState.entries,
       imports: nextProps.imports
     }
@@ -31,8 +33,12 @@ class App extends React.Component {
     socket.onmessage = ev => {
       const message = JSON.parse(ev.data)
 
-      if (message.type === 'entries data') {
+      if (message.type === 'docz.entries') {
         this.setState({ entries: message.data })
+      }
+
+      if (message.type === 'docz.config') {
+        this.setState({ config: message.data })
       }
     }
   }

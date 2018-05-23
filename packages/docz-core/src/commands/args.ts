@@ -5,10 +5,6 @@ export interface Argv {
   /* io args */
   src: string
   files: string
-  /* template args */
-  title: string
-  description: string
-  theme: string
   /* bundler args */
   env: string
   debug: boolean
@@ -17,6 +13,10 @@ export interface Argv {
   port: number
   websocketPort: number
   websocketHost: string
+  /* template args */
+  title: string
+  description: string
+  theme: string
 }
 
 export interface Config extends Argv {
@@ -24,6 +24,9 @@ export interface Config extends Argv {
   plugins?: Plugin[]
   mdPlugins: any[]
   hastPlugins: any[]
+  themeConfig?: {
+    [key: string]: any
+  }
 }
 
 export const args = (yargs: any) => {

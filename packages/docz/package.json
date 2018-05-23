@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@sindresorhus/slugify": "^0.3.0",
+    "deepmerge": "^2.1.0",
     "invariant": "^2.2.4",
     "loadable-components": "^2.1.0",
     "pascalcase": "^0.1.1",
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.20",
+    "@types/deepmerge": "^2.1.0",
     "@types/react": "^16.3.12",
     "@types/react-dom": "^16.0.5",
     "@types/react-router-dom": "^4.2.6"

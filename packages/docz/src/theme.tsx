@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { ComponentType as CT } from 'react'
 import { BrowserRouter } from 'react-router-dom'
+import merge from 'deepmerge'
 
 export type MSXComponent = CT<{
   components: { [key: string]: any }
@@ -20,17 +21,23 @@ export interface Entry {
   order: number
 }
 
+export interface ThemeConfig {
+  [key: string]: any
+}
+
 export type EntryMap = Record<string, Entry>
 export type ImportMap = Record<string, () => Promise<MSXImport>>
 
 export interface DataContext {
-  imports: ImportMap
+  config: ThemeConfig
   entries: EntryMap
+  imports: ImportMap
 }
 
 const initialContext: DataContext = {
-  imports: {},
+  config: {},
   entries: {},
+  imports: {},
 }
 
 export const dataContext = React.createContext(initialContext)
@@ -40,12 +47,20 @@ export interface ThemeProps extends DataContext {
   children(WrappedComponent: CT): JSX.Element
 }
 
-export function theme(WrappedComponent: CT): CT<ThemeProps> {
+export function theme(
+  WrappedComponent: CT,
+  defaultConfig?: ThemeConfig
+): CT<ThemeProps> {
   const Theme: CT<ThemeProps> = props => {
-    const { wrapper: Wrapper } = props
+    const { wrapper: Wrapper, entries, imports, config = {} } = props
+    const value = {
+      entries,
+      imports,
+      config: merge(defaultConfig || {}, config),
+    }
 
     return (
-      <dataContext.Provider value={props}>
+      <dataContext.Provider value={value}>
         <BrowserRouter>
           <Wrapper>
             <WrappedComponent />
