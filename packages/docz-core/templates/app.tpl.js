@@ -1,6 +1,6 @@
 import React from 'react'
 import { hot } from 'react-hot-loader'
-import { Theme } from '<%- theme %>'
+import Theme from '<%- theme %>'
 
 const socket = new WebSocket(`<%- websocketUrl %>`)
 const _wrappers = [<% if (wrappers) {%><%- wrappers %><%}%>]

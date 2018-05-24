@@ -5,10 +5,8 @@ import cx from 'classnames'
 import prism from 'prismjs'
 import styled from 'react-emotion'
 
-import * as colors from '../styles/colors'
-
 const PreStyled = styled('pre')`
-  border: 1px solid ${colors.border};
+  ${p => p.theme.styles.pre};
 `
 
 interface PreProps {

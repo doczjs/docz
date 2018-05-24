@@ -3,17 +3,15 @@ import { Fragment } from 'react'
 import { RenderComponent } from 'docz'
 import styled from 'react-emotion'
 
-import * as colors from '../styles/colors'
-
-const ComponentWrapper = styled('div')`
-  padding: 2rem;
+const Playground = styled('div')`
   background: transparent;
-  border: 1px solid ${colors.border};
+  border: 1px solid ${p => p.theme.colors.border};
   border-bottom: 0;
   border-radius: 3px 3px 0 0;
+  ${p => p.theme.styles.playground};
 `
 
-const CodeWrapper = styled('div')`
+const Code = styled('div')`
   border-radius: 0 0 3px 3px;
 
   pre {
@@ -23,7 +21,7 @@ const CodeWrapper = styled('div')`
 
 export const Render: RenderComponent = ({ component, code }) => (
   <Fragment>
-    <ComponentWrapper>{component}</ComponentWrapper>
-    <CodeWrapper>{code}</CodeWrapper>
+    <Playground>{component}</Playground>
+    <Code>{code}</Code>
   </Fragment>
 )

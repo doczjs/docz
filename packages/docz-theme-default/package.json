@@ -20,6 +20,8 @@
     "docz": "^0.0.1",
     "emotion": "^9.1.2",
     "emotion-normalize": "^7.0.1",
+    "emotion-theming": "^9.1.2",
+    "fast-deep-equal": "^2.0.1",
     "history": "^4.7.2",
     "polished": "^1.9.2",
     "prismjs": "^1.14.0",
