@@ -5,49 +5,60 @@ import { dataContext, Entry } from '../theme'
 
 export const isFn = (value: any): boolean => typeof value === 'function'
 
-const sortAlphabetically = (a: Entry, b: Entry) => {
-  if (a.name < b.name) return -1
-  if (a.name > b.name) return 1
+const sortBy = (a: any, b: any) => {
+  if (a < b) return -1
+  if (a > b) return 1
   return 0
 }
 
-const getDocsFromEntries = (entries: Entry[]) =>
-  entries.sort((a, b) => b.order - a.order)
-
-const getCategoriesFromEntries = (entries: Entry[]) =>
+const getMenusFromEntries = (entries: Entry[]) =>
   Array.from(
-    new Set([...entries.map(entry => entry.menu).filter(c => Boolean(c))])
+    new Set(
+      entries.reduce(
+        (arr: string[], entry: Entry): string[] =>
+          entry.menu ? arr.concat([entry.menu]) : arr,
+        []
+      )
+    )
   )
 
 export interface DocsRenderProps {
   docs: Entry[]
-  menus: Array<string | null>
+  menus: string[]
 }
 
 export interface DocsProps {
-  children: (renderProps: DocsRenderProps) => React.ReactNode
+  children?: (renderProps: DocsRenderProps) => React.ReactNode
 }
 
-export const Docs: React.SFC<DocsProps> = ({ children }) => (
-  <dataContext.Consumer>
-    {({ entries }) => {
-      if (!entries) return null
-      if (!isFn(children)) {
-        throw new Error(
-          'You need to pass a children as a function to your <Docs/> component'
+export const Docs: React.SFC<DocsProps> = ({ children }) => {
+  if (typeof children !== 'function') return null
+
+  return (
+    <dataContext.Consumer>
+      {({ entries }) => {
+        if (!entries || !children) return null
+        if (!isFn(children)) {
+          throw new Error(
+            'You need to pass a children as a function to your <Docs/> component'
+          )
+        }
+
+        const entriesArr = Object.values(entries)
+        const menus = getMenusFromEntries(entriesArr).sort((a, b) =>
+          sortBy(a, b)
         )
-      }
+        const docs = entriesArr
+          .sort((a, b) => sortBy(a.name, b.name))
+          .sort((a, b) => b.order - a.order)
 
-      const sortedEntries = Object.values(entries).sort(sortAlphabetically)
-      const docs = getDocsFromEntries(sortedEntries)
-      const menus = getCategoriesFromEntries(sortedEntries)
-
-      return Children.only(
-        children({
-          docs,
-          menus,
-        })
-      )
-    }}
-  </dataContext.Consumer>
-)
+        return Children.only(
+          children({
+            menus,
+            docs,
+          })
+        )
+      }}
+    </dataContext.Consumer>
+  )
+}
