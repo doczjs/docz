@@ -6,6 +6,7 @@ import { Menu, isActive } from './Menu'
 
 const Wrapper = styled('div')`
   height: 100%;
+  background: ${p => p.theme.colors.grayLight};
   ${p => p.theme.styles.sidebar};
 
   a {
