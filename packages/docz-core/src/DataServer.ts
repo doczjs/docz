@@ -19,8 +19,16 @@ export class DataServer {
   private config: Config
 
   constructor({ server, port, host, config }: DataServerOpts) {
-    this.config = config
-    this.server = new WS.Server({ server, port, host })
+    this.server = new WS.Server({
+      server,
+      port,
+      host,
+    })
+
+    this.config = {
+      ...config,
+      websocketPort: port,
+    }
   }
 
   public async processEntries(): Promise<void> {
@@ -31,12 +39,14 @@ export class DataServer {
       ignored: /(^|[\/\\])\../,
     })
 
-    const handleConnection = async (socket: WS) => {
-      watcher.on('change', this.updateEntries)
-      watcher.on('unlink', this.updateEntries)
-      watcher.on('raw', (event: string, path: string, details: any) => {
+    const handleConnection = (socket: WS) => {
+      const update = this.updateEntries(socket)
+
+      watcher.on('change', async () => update(this.config))
+      watcher.on('unlink', async () => update(this.config))
+      watcher.on('raw', async (event: string, path: string, details: any) => {
         if (details.event === 'moved' && details.type === 'directory') {
-          this.updateEntries(socket)
+          await update(this.config)
         }
       })
 
@@ -53,11 +63,13 @@ export class DataServer {
     const watcher = chokidar.watch(finds('docz'))
 
     const handleConnection = async (socket: WS) => {
-      watcher.on('add', this.updateConfig)
-      watcher.on('change', this.updateConfig)
-      watcher.on('unlink', this.updateConfig)
+      const update = this.updateConfig(socket)
 
-      this.updateConfig(socket)
+      watcher.on('add', update)
+      watcher.on('change', update)
+      watcher.on('unlink', update)
+
+      update()
     }
 
     this.server.on('connection', handleConnection)
@@ -76,23 +88,25 @@ export class DataServer {
     return this.dataObj('docz.config', config.themeConfig)
   }
 
-  private async updateEntries(socket: WS): Promise<void> {
-    const config = this.config
+  private updateEntries(socket: WS): (config: Config) => Promise<void> {
+    return async config => {
+      if (isSocketOpened(socket)) {
+        const newEntries = new Entries(config)
+        const newMap = await newEntries.getMap()
 
-    if (isSocketOpened(socket)) {
-      const newEntries = new Entries(config)
-      const newMap = await newEntries.getMap()
-
-      await Entries.rewrite(newMap)
-      socket.send(this.entriesData(newMap))
+        await Entries.rewrite(newMap)
+        socket.send(this.entriesData(newMap))
+      }
     }
   }
 
-  private updateConfig(socket: WS): void {
+  private updateConfig(socket: WS): () => void {
     const config = load('docz', {}, true)
 
-    if (isSocketOpened(socket)) {
-      socket.send(this.configData(config))
+    return () => {
+      if (isSocketOpened(socket)) {
+        socket.send(this.configData(config))
+      }
     }
   }
 }
