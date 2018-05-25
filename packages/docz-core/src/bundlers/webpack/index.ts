@@ -1,15 +1,18 @@
-import webpack from 'webpack'
-import { Configuration as CFG } from 'webpack'
+import webpack, { Configuration as CFG } from 'webpack'
 import serve from 'webpack-serve'
+import detectPort from 'detect-port'
 
 import { devServerConfig } from './devserver'
-import { createConfig as config } from './config'
+import { createConfig } from './config'
 import { Bundler, BundlerServer } from '../../Bundler'
-import { Config } from '../../commands/args'
+import { Config as Args } from '../../commands/args'
 
-export const server = (args: Config) => (config: CFG): BundlerServer => {
+export const server = (args: Args) => async (
+  config: CFG
+): Promise<BundlerServer> => {
   const compiler = webpack(config)
-  const devserver = devServerConfig(args, compiler, config)
+  const port = await detectPort(args.port)
+  const devserver = devServerConfig({ ...args, port }, compiler, config)
 
   return {
     start: async () => {
@@ -23,9 +26,12 @@ export const server = (args: Config) => (config: CFG): BundlerServer => {
   }
 }
 
-export const bundler = (args: Config): Bundler<CFG> =>
-  new Bundler({
+export const bundler = (args: Args): Bundler<CFG> => {
+  const config: any = createConfig(args).toConfig()
+
+  return new Bundler({
     args,
-    config: config(args),
+    config,
     server: server(args),
   })
+}

@@ -30,16 +30,14 @@ const compiled = (file: string) =>
   new Promise<(args: any) => string>((resolve, reject) => {
     let data = ''
     const filepath = path.join(paths.templates, file)
-    const stream = fs.createReadStream(filepath, {
-      encoding: 'utf-8',
-    })
+    const stream = fs.createReadStream(filepath, { encoding: 'utf-8' })
 
     stream.on('data', chunk => (data += chunk))
     stream.on('end', () => resolve(template(data)))
     stream.on('error', err => reject(err))
   })
 
-const writeStructuredFiles = async (config: Config): Promise<void> => {
+const writeGeneratedFiles = async (config: Config): Promise<void> => {
   const { plugins, title, description, theme } = config
 
   const wrappers = propOf(plugins, 'wrapper')
@@ -81,7 +79,7 @@ export type EntryMap = Record<string, Entry>
 export class Entries {
   public static async write(config: Config, entries: EntryMap): Promise<void> {
     mkd(paths.docz)
-    await writeStructuredFiles(config)
+    await writeGeneratedFiles(config)
     await writeImports(entries)
   }
 
@@ -89,33 +87,35 @@ export class Entries {
     await writeImports(map)
   }
 
-  public config: Config
   public all: EntryMap
   public getMap: () => Promise<EntryMap>
 
   constructor(config: Config) {
-    this.config = config
     this.all = {}
 
     this.getMap = async () => {
-      this.all = await this.get(this.config)
+      this.all = await this.get(config)
       return this.all
     }
   }
 
   private async get(config: Config): Promise<EntryMap> {
-    const { files: pattern } = config
+    const { src, files: pattern } = config
 
     const ignoreGlob = '!node_modules'
     const files: string[] = glob.sync(
       Array.isArray(pattern) ? [...pattern, ignoreGlob] : [pattern, ignoreGlob]
     )
 
+    const isEntry = async (file: string) => Entry.check(file)
+
+    const createEntry = async (file: string) => {
+      const ast = await parseMdx(file)
+      return new Entry(ast, file, src)
+    }
+
     const filesToReduce = await Promise.all(
-      files.filter(async file => Entry.check(file)).map(async file => {
-        const ast = await parseMdx(file)
-        return new Entry(ast, file, this.config.src)
-      })
+      files.filter(isEntry).map(createEntry)
     )
 
     const reducer = (obj: EntryMap, entry: Entry) => ({

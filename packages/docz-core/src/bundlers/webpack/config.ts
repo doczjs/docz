@@ -1,14 +1,12 @@
 import * as path from 'path'
-import * as webpack from 'webpack'
-import { Configuration } from 'webpack'
 import { load } from 'load-cfg'
 import merge from 'deepmerge'
-import Webpackbar from 'webpackbar'
+import webpackBarPlugin from 'webpackbar'
 import Config from 'webpack-chain'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import friendlyErrors from 'friendly-errors-webpack-plugin'
-import matter from 'remark-frontmatter'
 import HappyPack from 'happypack'
+import friendlyErrors from 'friendly-errors-webpack-plugin'
+import htmlWebpackPlugin from 'html-webpack-plugin'
+import matter from 'remark-frontmatter'
 
 import { Config as ConfigObj } from '../../commands/args'
 import { plugin as mdastPlugin } from '../../utils/plugin-mdast'
@@ -21,7 +19,54 @@ interface HappypackLoaderParams {
   plugins?: any[]
 }
 
-export const createConfig = (args: ConfigObj) => (): Configuration => {
+const getBabelRc = (debug: boolean) =>
+  merge(load('babel', null), {
+    babelrc: false,
+    cacheDirectory: !debug,
+    presets: [require.resolve('babel-preset-react-app')],
+    plugins: [],
+  })
+
+const happypackLoader = (babelrc: any) => ({
+  id,
+  plugins,
+}: HappypackLoaderParams) => [
+  {
+    id,
+    threads: 2,
+    loaders: [
+      {
+        loader: require.resolve('babel-loader'),
+        query: {
+          ...babelrc,
+          plugins,
+        },
+      },
+    ],
+  },
+]
+
+const setupHappypack = (config: Config, babelrc: any) => {
+  const loader = happypackLoader(babelrc)
+
+  const jsx = loader({
+    id: 'jsx',
+    plugins: babelrc.plugins.concat([
+      require.resolve('react-hot-loader/babel'),
+      require.resolve('babel-plugin-react-docgen'),
+    ]),
+  })
+
+  const mdx = loader({
+    id: 'mdx',
+    plugins: babelrc.plugins,
+  })
+
+  config.plugin('happypack-jsx').use(HappyPack, jsx)
+  config.plugin('happypack-mdx').use(HappyPack, mdx)
+}
+
+export const createConfig = (args: ConfigObj): Config => {
   const { paths, env, debug } = args
 
   const srcPath = path.resolve(paths.root, args.src)
@@ -65,6 +110,23 @@ export const createConfig = (args: ConfigObj) => (): Configuration => {
     .path(paths.dist)
     .when(isProd, outputProd, outputDev)
     .crossOriginLoading('anonymous')
+
+  /**
+   * optimization
+   */
+
+  config.merge({
+    optimization: {
+      nodeEnv: 'dev',
+      namedModules: true,
+      noEmitOnErrors: true,
+      runtimeChunk: true,
+      splitChunks: {
+        chunks: 'all',
+        name: 'vendors',
+      },
+    },
+  })
 
   /**
    * entries
@@ -132,47 +194,6 @@ export const createConfig = (args: ConfigObj) => (): Configuration => {
       hastPlugins: args.hastPlugins.concat([hastPlugin]),
     })
 
-  const babelrc = merge(load('babel', null), {
-    babelrc: false,
-    cacheDirectory: !debug,
-    presets: [require.resolve('babel-preset-react-app')],
-    plugins: [],
-  })
-
-  const happypackLoader = ({
-    id,
-    plugins = babelrc.plugins,
-  }: HappypackLoaderParams) => [
-    {
-      id,
-      threads: 2,
-      loaders: [
-        {
-          loader: require.resolve('babel-loader'),
-          query: {
-            ...babelrc,
-            plugins,
-          },
-        },
-      ],
-    },
-  ]
-
-  const jsx = happypackLoader({
-    id: 'jsx',
-    plugins: babelrc.plugins.concat([
-      require.resolve('react-hot-loader/babel'),
-      require.resolve('babel-plugin-react-docgen'),
-    ]),
-  })
-
-  const mdx = happypackLoader({
-    id: 'mdx',
-  })
-
-  config.plugin('happypack-jsx').use(HappyPack, jsx)
-  config.plugin('happypack-mdx').use(HappyPack, mdx)
-
   config.module
     .rule('images')
     .test(/\.(png|jpe?g|gif)(\?.*)?$/)
@@ -212,23 +233,21 @@ export const createConfig = (args: ConfigObj) => (): Configuration => {
       name: `static/fonts/[name].[hash:8].[ext]`,
     })
 
-  config
-    .plugin('named-modules-plugin')
-    .use(webpack.NamedModulesPlugin)
-    .end()
-    .plugin('no-emit-errors')
-    .use(webpack.NoEmitOnErrorsPlugin)
-    .end()
-    .plugin('html-webpack-plugin')
-    .use(HtmlWebpackPlugin, [
-      {
-        inject: true,
-        template: paths.indexHtml,
-      },
-    ])
+  /**
+   * plugins
+   */
+
+  setupHappypack(config, getBabelRc(args.debug))
+
+  config.plugin('html-webpack-plugin').use(htmlWebpackPlugin, [
+    {
+      inject: true,
+      template: paths.indexHtml,
+    },
+  ])
 
   config.when(!debug, cfg => {
-    cfg.plugin('webpackbar').use(Webpackbar, [
+    cfg.plugin('webpackbar').use(webpackBarPlugin, [
       {
         color: '#41b883',
         compiledIn: false,
@@ -238,5 +257,5 @@ export const createConfig = (args: ConfigObj) => (): Configuration => {
     cfg.plugin('friendly-errors').use(friendlyErrors)
   })
 
-  return config.toConfig()
+  return config
 }

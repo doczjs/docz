@@ -1,5 +1,5 @@
 import { Plugin } from './Plugin'
-import { Config } from './commands/args'
+import { Config as Args } from './commands/args'
 
 export interface Server {
   close: () => void
@@ -10,18 +10,17 @@ export interface BundlerServer {
   start(): Promise<Server>
 }
 
-export type ConfigFn<C> = () => C
-export type ServerFn<C> = (config: C) => BundlerServer
+export type ServerFn<C> = (config: C) => BundlerServer | Promise<BundlerServer>
 
-export interface BundlerConstructor<C> {
-  args: Config
-  config: ConfigFn<C>
-  server: ServerFn<C>
+export interface BundlerConstructor<Config> {
+  args: Args
+  config: Config
+  server: ServerFn<Config>
 }
 
 export class Bundler<C = any> {
-  private readonly args: Config
-  private config: ConfigFn<C>
+  private readonly args: Args
+  private config: C
   private server: ServerFn<C>
 
   constructor(params: BundlerConstructor<C>) {
@@ -33,7 +32,7 @@ export class Bundler<C = any> {
   }
 
   public getConfig(): C {
-    return this.mountConfig(this.config())
+    return this.mountConfig(this.config)
   }
 
   public async createServer(config: C): Promise<BundlerServer> {

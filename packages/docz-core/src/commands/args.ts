@@ -74,7 +74,7 @@ export const args = (yargs: any) => {
   })
   yargs.positional('websocketHost', {
     type: 'string',
-    default: process.env.HOST || '0.0.0.0',
+    default: process.env.WEBSOCKET_HOST || '0.0.0.0',
   })
   yargs.positional('websocketPort', {
     type: 'number',

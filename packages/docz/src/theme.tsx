@@ -51,8 +51,12 @@ export function theme(
   WrappedComponent: CT,
   defaultConfig?: ThemeConfig
 ): CT<ThemeProps> {
-  const Theme: CT<ThemeProps> = props => {
-    const { wrapper: Wrapper, entries, imports, config = {} } = props
+  const Theme: CT<ThemeProps> = ({
+    wrapper: Wrapper,
+    entries,
+    imports,
+    config = {},
+  }) => {
     const value = {
       entries,
       imports,
