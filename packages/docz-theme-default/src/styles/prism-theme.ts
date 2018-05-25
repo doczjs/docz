@@ -1,8 +1,6 @@
 export const prismTheme = `
   code[class*="language-"],
   pre[class*="language-"] {
-    font-size: 14px;
-    line-height: 1.5;
     direction: ltr;
     text-align: left;
     white-space: pre;
@@ -16,7 +14,7 @@ export const prismTheme = `
     -ms-hyphens: none;
     hyphens: none;
     background: #f5f7ff;
-    border-radius: 3px;
+    border-radius: 5px;
     color: #5e6687;
   }
 
@@ -42,7 +40,6 @@ export const prismTheme = `
   /* Inline code */
   :not(pre) > code[class*="language-"] {
     padding: .1rem;
-    border-radius: .3rem;
   }
 
   .token.comment,

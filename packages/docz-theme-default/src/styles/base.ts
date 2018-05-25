@@ -77,9 +77,5 @@ export const base = (config: any) => {
     select {
       color: ${config.colors.text};
     }
-
-    code, pre {
-      font-family: ${config.styles.body.codeFontFamily};
-    }
   `
 }

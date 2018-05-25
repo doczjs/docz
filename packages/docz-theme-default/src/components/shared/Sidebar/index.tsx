@@ -24,7 +24,6 @@ const Wrapper = styled('div')`
 
   a:hover,
   a.active {
-    border-radius: 5px;
     color: ${p => p.theme.colors.primary};
     font-weight: 600;
   }
