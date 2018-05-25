@@ -11,6 +11,7 @@ export const Table = styled('table')`
   border-spacing: 0;
   border-collapse: collapse;
   border-style: hidden;
+  border-radius: 5px;
   font-size: 14px;
   color: ${p => p.theme.colors.grayDark};
 
