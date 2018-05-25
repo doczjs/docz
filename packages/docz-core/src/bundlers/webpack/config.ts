@@ -34,6 +34,7 @@ const happypackLoader = (babelrc: any) => ({
   {
     id,
     threads: 2,
+    verbose: false,
     loaders: [
       {
         loader: require.resolve('babel-loader'),
