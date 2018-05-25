@@ -19,6 +19,9 @@ export interface Entry {
   name: string
   menu: string | null
   order: number
+  settings: {
+    [key: string]: any
+  }
 }
 
 export interface ThemeConfig {

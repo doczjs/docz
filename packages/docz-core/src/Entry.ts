@@ -31,6 +31,7 @@ const getName = getFromParsedData('name')
 const getRoute = getFromParsedData('route')
 const getMenu = getFromParsedData('menu')
 const getOrder = getFromParsedData('order')
+const getSettings = getFromParsedData('settings')
 
 export class Entry {
   readonly [key: string]: any
@@ -47,6 +48,7 @@ export class Entry {
   public name: string
   public menu: string | null
   public order: number
+  public settings: any
 
   constructor(ast: any, file: string, src: string) {
     const filepath = this.getFilepath(file, src)
@@ -58,6 +60,7 @@ export class Entry {
     this.name = getName(ast)
     this.menu = getMenu(ast)
     this.order = parseInt(getOrder(ast), 10) || 0
+    this.settings = getSettings(ast) || {}
   }
 
   private getFilepath(file: string, src: string): string {
