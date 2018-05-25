@@ -77,14 +77,13 @@ const writeImports = async (entries: EntryMap): Promise<void> => {
 export type EntryMap = Record<string, Entry>
 
 export class Entries {
-  public static async write(config: Config, entries: EntryMap): Promise<void> {
+  public static async writeGenerated(config: Config): Promise<void> {
     mkd(paths.docz)
     await writeGeneratedFiles(config)
-    await writeImports(entries)
   }
 
-  public static async rewrite(map: EntryMap): Promise<void> {
-    await writeImports(map)
+  public static async writeImports(entries: EntryMap): Promise<void> {
+    await writeImports(entries)
   }
 
   public all: EntryMap

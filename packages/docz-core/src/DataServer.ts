@@ -34,13 +34,13 @@ export class DataServer {
   public async processEntries(): Promise<void> {
     const config = this.config
     const entries = new Entries(config)
-    const map = await entries.getMap()
     const watcher = chokidar.watch(this.config.files, {
       ignored: /(^|[\/\\])\../,
     })
 
-    const handleConnection = (socket: WS) => {
-      const update = this.updateEntries(socket)
+    const handleConnection = async (socket: WS) => {
+      const update = this.updateEntries(entries, socket)
+      const map = await entries.getMap()
 
       watcher.on('change', async () => update(this.config))
       watcher.on('unlink', async () => update(this.config))
@@ -51,12 +51,14 @@ export class DataServer {
       })
 
       socket.send(this.entriesData(map))
+      await Entries.writeImports(map)
     }
 
     this.server.on('connection', handleConnection)
     this.server.on('close', () => watcher.close())
 
-    await Entries.write(config, map)
+    await Entries.writeGenerated(config)
+    await Entries.writeImports(await entries.getMap())
   }
 
   public async processThemeConfig(): Promise<void> {
@@ -88,14 +90,16 @@ export class DataServer {
     return this.dataObj('docz.config', config.themeConfig)
   }
 
-  private updateEntries(socket: WS): (config: Config) => Promise<void> {
+  private updateEntries(
+    entries: Entries,
+    socket: WS
+  ): (config: Config) => Promise<void> {
     return async config => {
       if (isSocketOpened(socket)) {
-        const newEntries = new Entries(config)
-        const newMap = await newEntries.getMap()
+        const map = await entries.getMap()
 
-        await Entries.rewrite(newMap)
-        socket.send(this.entriesData(newMap))
+        await Entries.writeImports(map)
+        socket.send(this.entriesData(map))
       }
     }
   }

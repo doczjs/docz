@@ -18,15 +18,6 @@ class App extends React.Component {
   state = {
     config: {},
     entries: {},
-    imports: {},
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return {
-      config: prevState.config,
-      entries: prevState.entries,
-      imports: nextProps.imports
-    }
   }
 
   async componentDidMount() {
@@ -44,7 +35,8 @@ class App extends React.Component {
   }
 
   render() {
-    return <Theme {...this.state} wrapper={Wrapper} />
+    const { imports } = this.props
+    return <Theme {...this.state} imports={imports} wrapper={Wrapper} />
   }
 }
 
