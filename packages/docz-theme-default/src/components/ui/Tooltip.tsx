@@ -10,7 +10,7 @@ interface TooltipProps {
 
 export const Tooltip: SFC<TooltipProps> = ({ text, children }) => (
   <ThemeConfig>
-    {({ config }) => (
+    {config => (
       <BaseTooltip styles={config.styles.tooltip} content={text}>
         {children}
       </BaseTooltip>
