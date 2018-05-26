@@ -3,8 +3,11 @@ import { Docs, Link, Entry, ThemeConfig } from 'docz'
 import styled from 'react-emotion'
 
 import { Menu, isActive } from './Menu'
+import logo from '../../../images/docz.svg'
 
 const Wrapper = styled('div')`
+  display: flex;
+  flex-direction: column;
   height: 100%;
   background: ${p => p.theme.colors.grayLight};
   ${p => p.theme.styles.sidebar};
@@ -60,6 +63,25 @@ const LogoText = styled('h1')`
   }
 `
 
+const Menus = styled('nav')`
+  flex: 1;
+`
+
+const Footer = styled('div')`
+  padding: 10px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: ${p => p.theme.colors.grayDark};
+  border-top: 1px dashed ${p => p.theme.colors.gray};
+
+  a {
+    padding: 0;
+    margin-left: 5px;
+  }
+`
+
 export const Sidebar = () => (
   <Docs>
     {({ docs, menus }) => {
@@ -77,14 +99,22 @@ export const Sidebar = () => (
               )
             }
           </ThemeConfig>
-          {docsWithoutMenu.map(doc => (
-            <Link key={doc.id} to={doc.slug} isActive={isActive}>
-              {doc.name}
-            </Link>
-          ))}
-          {menus.map(menu => (
-            <Menu key={menu} menu={menu} docs={fromMenu(menu)} />
-          ))}
+          <Menus>
+            {docsWithoutMenu.map(doc => (
+              <Link key={doc.id} to={doc.slug} isActive={isActive}>
+                {doc.name}
+              </Link>
+            ))}
+            {menus.map(menu => (
+              <Menu key={menu} menu={menu} docs={fromMenu(menu)} />
+            ))}
+          </Menus>
+          <Footer>
+            Built with
+            <a href="#" target="_blank">
+              <img src={logo} width={40} alt="Docz" />
+            </a>
+          </Footer>
         </Wrapper>
       )
     }}
