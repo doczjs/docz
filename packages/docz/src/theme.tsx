@@ -63,7 +63,7 @@ export function theme(
     const value = {
       entries,
       imports,
-      config: merge(defaultConfig || {}, config),
+      config: merge(defaultConfig, config),
     }
 
     return (

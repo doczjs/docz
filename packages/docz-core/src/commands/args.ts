@@ -41,11 +41,11 @@ export const args = (yargs: any) => {
   })
   yargs.positional('title', {
     type: 'string',
-    default: 'Docz',
+    default: 'MyDoc',
   })
   yargs.positional('description', {
     type: 'string',
-    default: 'My awesome design system!',
+    default: 'My awesome app using Docz',
   })
   yargs.positional('theme', {
     type: 'string',

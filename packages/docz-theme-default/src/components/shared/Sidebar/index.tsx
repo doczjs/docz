@@ -1,5 +1,5 @@
 import React from 'react'
-import { Docs, Link, Entry } from 'docz'
+import { Docs, Link, Entry, ThemeConfig } from 'docz'
 import styled from 'react-emotion'
 
 import { Menu, isActive } from './Menu'
@@ -38,6 +38,28 @@ const Wrapper = styled('div')`
   }
 `
 
+const LogoImg = styled('img')`
+  margin: 24px 16px 64px;
+  padding: 0;
+`
+
+const LogoText = styled('h1')`
+  position: relative;
+  margin: 24px 16px 64px;
+  padding: 0;
+  font-size: 32px;
+
+  &:before {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    width: 15%;
+    height: 3px;
+    background: ${p => p.theme.colors.primary};
+  }
+`
+
 export const Sidebar = () => (
   <Docs>
     {({ docs, menus }) => {
@@ -46,6 +68,15 @@ export const Sidebar = () => (
 
       return (
         <Wrapper>
+          <ThemeConfig>
+            {({ title, logo }) =>
+              logo ? (
+                <LogoImg src={logo.src} width={logo.width} alt={title} />
+              ) : (
+                <LogoText>{title}</LogoText>
+              )
+            }
+          </ThemeConfig>
           {docsWithoutMenu.map(doc => (
             <Link key={doc.id} to={doc.slug} isActive={isActive}>
               {doc.name}

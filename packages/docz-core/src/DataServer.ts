@@ -87,7 +87,11 @@ export class DataServer {
   }
 
   private configData(config: Config): string {
-    return this.dataObj('docz.config', config.themeConfig)
+    return this.dataObj('docz.config', {
+      ...config.themeConfig,
+      title: config.title,
+      description: config.description,
+    })
   }
 
   private updateEntries(
@@ -105,7 +109,7 @@ export class DataServer {
   }
 
   private updateConfig(socket: WS): () => void {
-    const config = load('docz', {}, true)
+    const config = load('docz', { ...this.config }, true)
 
     return () => {
       if (isSocketOpened(socket)) {

@@ -3,12 +3,8 @@ import { SFC, Children } from 'react'
 
 import { dataContext, ThemeConfig as Config } from '../theme'
 
-export interface ThemeConfigRenderProps {
-  config: Config
-}
-
 export interface ThemeConfigProps {
-  children?: (renderProps: ThemeConfigRenderProps) => React.ReactNode
+  children?: (config: Config) => React.ReactNode
 }
 
 export const ThemeConfig: SFC<ThemeConfigProps> = ({ children }) => {
@@ -16,7 +12,7 @@ export const ThemeConfig: SFC<ThemeConfigProps> = ({ children }) => {
 
   return (
     <dataContext.Consumer>
-      {({ config }) => Children.only(children({ config }))}
+      {({ config }) => Children.only(children(config))}
     </dataContext.Consumer>
   )
 }
