@@ -4,16 +4,16 @@ import ReactDOM from 'react-dom'
 import { imports } from './imports'
 import Root from './root'
 
-const _beforeRenders = [<% if (beforeRenders) {%><%- beforeRenders %><%}%>]
-const _afterRenders = [<% if (afterRenders) {%><%- afterRenders %><%}%>]
+const _onPreRenders = [<% if (onPreRenders) {%><%- onPreRenders %><%}%>]
+const _onPostRenders = [<% if (onPostRenders) {%><%- onPostRenders %><%}%>]
 
-const beforeRender = () => _beforeRenders.forEach(f => f && f())
-const afterRender = () => _afterRenders.forEach(f => f && f())
+const onPreRender = () => _onPreRenders.forEach(f => f && f())
+const onPostRender = () => _onPostRenders.forEach(f => f && f())
 
 const root = document.querySelector('#root')
 const render = (Component = Root) => {
-  beforeRender()
-  ReactDOM.render(<Component imports={imports} />, root, afterRender)
+  onPreRender()
+  ReactDOM.render(<Component imports={imports} />, root, onPostRender)
 }
 
 if (module.hot) {

@@ -40,25 +40,16 @@ export class Bundler<C = any> {
   }
 
   public async createServer(config: C): Promise<BundlerServer> {
-    const { plugins } = this.args
-    const server = await this.server(config)
-
-    if (plugins && plugins.length > 0) {
-      for (const plugin of plugins) {
-        await plugin.bundlerServer(server)
-      }
-    }
-
-    return server
+    return this.server(config)
   }
 
-  public async build(): Promise<void> {
-    this.builder(this.config)
+  public async build(config: C): Promise<void> {
+    await this.builder(config)
   }
 
   private reduceWithPlugins(dev: boolean): any {
     return (config: C, plugin: Plugin) =>
-      plugin.bundlerConfig(config, dev) || config
+      plugin.modifyBundlerConfig(config, dev) || config
   }
 
   private mountConfig(config: C): C {

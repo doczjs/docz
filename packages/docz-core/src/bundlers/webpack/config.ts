@@ -1,6 +1,4 @@
 import * as path from 'path'
-import { load } from 'load-cfg'
-import merge from 'deepmerge'
 import webpackBarPlugin from 'webpackbar'
 import Config from 'webpack-chain'
 import HappyPack from 'happypack'
@@ -13,6 +11,7 @@ import matter from 'remark-frontmatter'
 import { Config as ConfigObj } from '../../commands/args'
 import { plugin as mdastPlugin } from '../../utils/plugin-mdast'
 import { plugin as hastPlugin } from '../../utils/plugin-hast'
+import { BabelRC } from '../../Plugin'
 import { Env } from './'
 
 const INLINE_LIMIT = 10000
@@ -21,14 +20,6 @@ interface HappypackLoaderParams {
   id: string
   plugins?: any[]
 }
-
-const getBabelRc = (debug: boolean) =>
-  merge(load('babel', null), {
-    babelrc: false,
-    cacheDirectory: !debug,
-    presets: [require.resolve('babel-preset-react-app')],
-    plugins: [],
-  })
 
 const happypackLoader = (babelrc: any) => ({
   id,
@@ -70,7 +61,10 @@ const setupHappypack = (config: Config, babelrc: any) => {
   config.plugin('happypack-mdx').use(HappyPack, mdx)
 }
 
-export const createConfig = (args: ConfigObj, env: Env): Config => {
+export const createConfig = (babelrc: BabelRC) => (
+  args: ConfigObj,
+  env: Env
+): Config => {
   const { paths, debug } = args
 
   const srcPath = path.resolve(paths.root, args.src)
@@ -273,7 +267,7 @@ export const createConfig = (args: ConfigObj, env: Env): Config => {
    * plugins
    */
 
-  setupHappypack(config, getBabelRc(args.debug))
+  setupHappypack(config, babelrc)
 
   config.plugin('assets-plugin').use(manifestPlugin, [
     {

@@ -1,4 +1,5 @@
 import * as prettier from 'prettier'
+import logger from 'signale'
 
 export const format = (code: string): Promise<string> =>
   new Promise((resolve, reject) => {
@@ -11,7 +12,7 @@ export const format = (code: string): Promise<string> =>
 
       resolve(result)
     } catch (err) {
-      console.log(err)
+      logger.fatar(err)
       resolve(err)
     }
   })

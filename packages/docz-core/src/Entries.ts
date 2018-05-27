@@ -3,10 +3,10 @@ import * as glob from 'fast-glob'
 import * as path from 'path'
 
 import * as paths from './config/paths'
-import { propOf } from './utils/helpers'
 import { touch, compiled, readIfExist } from './utils/fs'
 
 import { Entry, parseMdx } from './Entry'
+import { Plugin } from './Plugin'
 import { Config } from './commands/args'
 
 const fromTemplates = (file: string) => path.join(paths.templates, file)
@@ -14,10 +14,11 @@ const fromDocz = (file: string) => path.join(paths.docz, file)
 
 const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
   const { plugins, title, description, theme } = config
+  const props = Plugin.propsOfPlugins(plugins)
 
-  const wrappers = propOf(plugins, 'wrapper')
-  const afterRenders = propOf(plugins, 'afterRender')
-  const beforeRenders = propOf(plugins, 'beforeRender')
+  const wrappers = props('wrapper')
+  const onPreRenders = props('onPreRender')
+  const onPostRenders = props('onPostRender')
 
   const root = await compiled(fromTemplates('root.tpl.js'))
   const js = await compiled(fromTemplates('index.tpl.js'))
@@ -33,8 +34,8 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
   })
 
   const rawIndexJs = js({
-    afterRenders,
-    beforeRenders,
+    onPreRenders,
+    onPostRenders,
   })
 
   const rawIndexHtml = html({
