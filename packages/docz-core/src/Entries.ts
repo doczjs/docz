@@ -3,12 +3,13 @@ import * as path from 'path'
 
 import * as paths from './config/paths'
 import { propOf } from './utils/helpers'
-import { mkd, touch, compiled } from './utils/fs'
+import { mkd, touch, compiled, readIfExist } from './utils/fs'
 
 import { Entry, parseMdx } from './Entry'
 import { Config } from './commands/args'
 
 const fromTemplates = (file: string) => path.join(paths.templates, file)
+const fromDocz = (file: string) => path.join(paths.docz, file)
 
 const writeAppFiles = async (config: Config): Promise<void> => {
   const { plugins, title, description, theme } = config
@@ -20,6 +21,8 @@ const writeAppFiles = async (config: Config): Promise<void> => {
   const root = await compiled(fromTemplates('root.tpl.js'))
   const js = await compiled(fromTemplates('index.tpl.js'))
   const html = await compiled(fromTemplates('index.tpl.html'))
+  const head = await readIfExist(fromDocz('_head.html'))
+  const scripts = await readIfExist(fromDocz('_scripts.html'))
 
   const rawRootJs = root({
     theme,
@@ -35,6 +38,8 @@ const writeAppFiles = async (config: Config): Promise<void> => {
   const rawIndexHtml = html({
     title,
     description,
+    head: head ? head.trimRight() : '',
+    scripts: scripts ? scripts.trimRight() : '',
   })
 
   await touch(paths.rootJs, rawRootJs)
@@ -44,7 +49,7 @@ const writeAppFiles = async (config: Config): Promise<void> => {
 
 const writeImports = async (entries: EntryMap): Promise<void> => {
   const imports = await compiled(fromTemplates('imports.tpl.js'))
-  await touch(paths.importsJs, imports({ entries }))
+  await touch(paths.importsJs, imports({ entries: Object.values(entries) }))
 }
 
 export type EntryMap = Record<string, Entry>

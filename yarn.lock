@@ -1429,12 +1429,6 @@
   dependencies:
     "@types/lodash" "*"
 
-"@types/lodash.template@^4.4.3":
-  version "4.4.3"
-  resolved "https://registry.npmjs.org/@types/lodash.template/-/lodash.template-4.4.3.tgz#3c6df2eb7e964cd56b12ce55ac0e6669fef6216f"
-  dependencies:
-    "@types/lodash" "*"
-
 "@types/lodash@*":
   version "4.14.108"
   resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.108.tgz#02656af3add2e5b3174f830862c47421c00ef817"
@@ -5538,7 +5532,7 @@ lodash.sumby@^4.6.0:
   version "4.6.0"
   resolved "https://registry.npmjs.org/lodash.sumby/-/lodash.sumby-4.6.0.tgz#7d87737ddb216da2f7e5e7cd2dd9c403a7887346"
 
-lodash.template@^4.0.2, lodash.template@^4.4.0:
+lodash.template@^4.0.2:
   version "4.4.0"
   resolved "https://registry.npmjs.org/lodash.template/-/lodash.template-4.4.0.tgz#e73a0385c8355591746e020b99679c690e68fba0"
   dependencies:
