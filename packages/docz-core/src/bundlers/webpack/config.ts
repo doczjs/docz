@@ -6,11 +6,14 @@ import Config from 'webpack-chain'
 import HappyPack from 'happypack'
 import friendlyErrors from 'friendly-errors-webpack-plugin'
 import htmlWebpackPlugin from 'html-webpack-plugin'
+import manifestPlugin from 'webpack-manifest-plugin'
+import UglifyJs from 'uglifyjs-webpack-plugin'
 import matter from 'remark-frontmatter'
 
 import { Config as ConfigObj } from '../../commands/args'
 import { plugin as mdastPlugin } from '../../utils/plugin-mdast'
 import { plugin as hastPlugin } from '../../utils/plugin-hast'
+import { Env } from './'
 
 const INLINE_LIMIT = 10000
 
@@ -67,8 +70,8 @@ const setupHappypack = (config: Config, babelrc: any) => {
   config.plugin('happypack-mdx').use(HappyPack, mdx)
 }
 
-export const createConfig = (args: ConfigObj): Config => {
-  const { paths, env, debug } = args
+export const createConfig = (args: ConfigObj, env: Env): Config => {
+  const { paths, debug } = args
 
   const srcPath = path.resolve(paths.root, args.src)
   const isProd = env === 'production'
@@ -78,7 +81,7 @@ export const createConfig = (args: ConfigObj): Config => {
    * general
    */
   config.context(paths.root)
-  config.set('mode', isProd && !debug ? 'production' : 'development')
+  config.set('mode', env)
 
   config.when(debug, cfg => cfg.devtool('source-map'))
   config.when(!isProd, cfg => cfg.devtool('cheap-module-eval-source-map'))
@@ -128,6 +131,38 @@ export const createConfig = (args: ConfigObj): Config => {
       },
     },
   })
+
+  if (isProd) {
+    config.merge({
+      optimization: {
+        minimizer: [
+          new UglifyJs({
+            uglifyOptions: {
+              parse: {
+                ecma: 8,
+              },
+              compress: {
+                ecma: 5,
+                warnings: false,
+                comparisons: false,
+              },
+              mangle: {
+                safari10: true,
+              },
+              output: {
+                ecma: 5,
+                comments: false,
+                ascii_only: true,
+              },
+            },
+            parallel: true,
+            cache: true,
+            sourceMap: true,
+          }),
+        ],
+      },
+    })
+  }
 
   /**
    * entries
@@ -240,14 +275,34 @@ export const createConfig = (args: ConfigObj): Config => {
 
   setupHappypack(config, getBabelRc(args.debug))
 
+  config.plugin('assets-plugin').use(manifestPlugin, [
+    {
+      filename: 'assets.json',
+    },
+  ])
+
   config.plugin('html-webpack-plugin').use(htmlWebpackPlugin, [
     {
       inject: true,
       template: paths.indexHtml,
+      ...(isProd && {
+        minify: {
+          removeComments: true,
+          collapseWhitespace: true,
+          removeRedundantAttributes: true,
+          useShortDoctype: true,
+          removeEmptyAttributes: true,
+          removeStyleLinkTypeAttributes: true,
+          keepClosingSlash: true,
+          minifyJS: true,
+          minifyCSS: true,
+          minifyURLs: true,
+        },
+      }),
     },
   ])
 
-  config.when(!debug, cfg => {
+  config.when(!debug && !isProd, cfg => {
     cfg.plugin('webpackbar').use(webpackBarPlugin, [
       {
         color: '#41b883',
@@ -258,5 +313,6 @@ export const createConfig = (args: ConfigObj): Config => {
     cfg.plugin('friendly-errors').use(friendlyErrors)
   })
 
+  config.performance.hints(false)
   return config
 }

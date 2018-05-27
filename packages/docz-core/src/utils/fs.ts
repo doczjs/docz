@@ -1,13 +1,8 @@
 import * as path from 'path'
-import * as fs from 'fs'
-import { test, mkdir } from 'shelljs'
+import * as fs from 'fs-extra'
 import { compile } from 'art-template'
 
 import { format } from './format'
-
-export const mkd = (dir: string): void => {
-  !test('-d', dir) && mkdir('-p', dir)
-}
 
 export const touch = (file: string, raw: string) =>
   new Promise(async (resolve, reject) => {
@@ -31,8 +26,8 @@ export const read = (file: string): Promise<string> =>
   })
 
 export const readIfExist = async (file: string): Promise<string | null> => {
-  if (!test('-f', file)) return Promise.resolve(null)
-  return read(file)
+  const exist = await fs.pathExists(file)
+  return exist ? read(file) : Promise.resolve(null)
 }
 
 export const compiled = async (file: string): Promise<(args: any) => string> =>

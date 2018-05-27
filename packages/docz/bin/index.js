@@ -4,12 +4,8 @@ const yargs = require('yargs')
 const { commands } = require('docz-core')
 
 yargs
-  .command(
-    'dev [files]',
-    'initialize docz dev server',
-    commands.args,
-    commands.dev
-  )
+  .command('dev', 'initialize docz dev server', commands.args, commands.dev)
+  .command('build', 'build dir as static site', commands.args, commands.build)
   .demandCommand()
   .help()
   .wrap(72)

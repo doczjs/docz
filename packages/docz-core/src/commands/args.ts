@@ -51,10 +51,6 @@ export const args = (yargs: any) => {
     type: 'string',
     default: 'docz-theme-default',
   })
-  yargs.positional('env', {
-    type: 'boolean',
-    default: process.env.NODE_ENV || 'development',
-  })
   yargs.positional('debug', {
     type: 'boolean',
     default: process.env.DEBUG || false,

@@ -1,8 +1,10 @@
 import React from 'react'
 import { hot } from 'react-hot-loader'
 import Theme from '<%- theme %>'
+<% if (isProd) {%>import config from './config.json'<%}%>
+<% if (isProd) {%>import entries from './entries.json'<%}%>
 
-const socket = new WebSocket(`<%- websocketUrl %>`)
+<% if (isProd) {%>const socket = new WebSocket(`<%- websocketUrl %>`)<%}%>
 const _wrappers = [<% if (wrappers) {%><%- wrappers %><%}%>]
 
 const recursiveWrappers = ([Wrapper, ...rest], props) => (
@@ -14,6 +16,7 @@ const recursiveWrappers = ([Wrapper, ...rest], props) => (
 const Wrapper = props =>
   _wrappers.length ? recursiveWrappers(_wrappers, props) : props.children
 
+<% if (!isProd) {%>
 class Root extends React.Component {
   state = {
     config: {},
@@ -39,5 +42,15 @@ class Root extends React.Component {
     return <Theme {...this.state} imports={imports} wrapper={Wrapper} />
   }
 }
+<%} else {%>
+const Root = ({ imports }) => (
+  <Theme
+    imports={imports}
+    config={config}
+    entries={entries}
+    wrapper={Wrapper}
+  />
+)
+<%}%>
 
 export default hot(module)(Root)

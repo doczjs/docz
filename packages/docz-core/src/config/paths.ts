@@ -42,6 +42,8 @@ export interface Paths {
   rootJs: string
   indexJs: string
   indexHtml: string
+  configJson: string
+  entriesJson: string
 }
 
 export const templates = path.join(resolve.sync('docz-core'), '../templates')
@@ -51,9 +53,13 @@ export const servedPath = getServedPath(resolveApp('package.json'))
 
 export const docz = resolveApp('.docz')
 export const app = path.resolve(docz, 'app/')
+export const appPublic = path.resolve(docz, 'public/')
 export const dist = path.resolve(docz, 'dist/')
+export const distPublic = path.resolve(dist, 'public/')
 
 export const importsJs = path.resolve(app, 'imports.js')
 export const rootJs = path.resolve(app, 'root.jsx')
 export const indexJs = path.resolve(app, 'index.jsx')
 export const indexHtml = path.resolve(app, 'index.html')
+export const entriesJson = path.resolve(app, 'entries.json')
+export const configJson = path.resolve(app, 'config.json')

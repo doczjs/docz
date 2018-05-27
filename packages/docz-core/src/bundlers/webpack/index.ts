@@ -7,6 +7,8 @@ import { createConfig } from './config'
 import { Bundler, BundlerServer } from '../../Bundler'
 import { Config as Args } from '../../commands/args'
 
+export type Env = 'production' | 'development'
+
 export const server = (args: Args) => async (
   config: CFG
 ): Promise<BundlerServer> => {
@@ -26,8 +28,8 @@ export const server = (args: Args) => async (
   }
 }
 
-export const bundler = (args: Args): Bundler<CFG> => {
-  const config: any = createConfig(args).toConfig()
+export const bundler = (args: Args, env: Env): Bundler<CFG> => {
+  const config: any = createConfig(args, env).toConfig()
 
   return new Bundler({
     args,

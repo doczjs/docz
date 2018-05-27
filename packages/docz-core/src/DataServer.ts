@@ -57,7 +57,7 @@ export class DataServer {
     this.server.on('connection', handleConnection)
     this.server.on('close', () => watcher.close())
 
-    await Entries.writeApp(config)
+    await Entries.writeApp(config, true)
     await Entries.writeImports(await entries.getMap())
   }
 

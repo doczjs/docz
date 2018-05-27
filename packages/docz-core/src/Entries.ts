@@ -1,9 +1,10 @@
+import * as fs from 'fs-extra'
 import * as glob from 'fast-glob'
 import * as path from 'path'
 
 import * as paths from './config/paths'
 import { propOf } from './utils/helpers'
-import { mkd, touch, compiled, readIfExist } from './utils/fs'
+import { touch, compiled, readIfExist } from './utils/fs'
 
 import { Entry, parseMdx } from './Entry'
 import { Config } from './commands/args'
@@ -11,7 +12,7 @@ import { Config } from './commands/args'
 const fromTemplates = (file: string) => path.join(paths.templates, file)
 const fromDocz = (file: string) => path.join(paths.docz, file)
 
-const writeAppFiles = async (config: Config): Promise<void> => {
+const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
   const { plugins, title, description, theme } = config
 
   const wrappers = propOf(plugins, 'wrapper')
@@ -27,6 +28,7 @@ const writeAppFiles = async (config: Config): Promise<void> => {
   const rawRootJs = root({
     theme,
     wrappers,
+    isProd: !dev,
     websocketUrl: `ws://${config.websocketHost}:${config.websocketPort}`,
   })
 
@@ -47,21 +49,36 @@ const writeAppFiles = async (config: Config): Promise<void> => {
   await touch(paths.indexHtml, rawIndexHtml)
 }
 
-const writeImports = async (entries: EntryMap): Promise<void> => {
+const writeImports = async (map: EntryMap): Promise<void> => {
   const imports = await compiled(fromTemplates('imports.tpl.js'))
-  await touch(paths.importsJs, imports({ entries: Object.values(entries) }))
+  await touch(paths.importsJs, imports({ entries: Object.values(map) }))
+}
+
+const writeData = async (map: EntryMap, config: Config): Promise<void> => {
+  const configObj = {
+    title: config.title,
+    description: config.description,
+    ...config.themeConfig,
+  }
+
+  await touch(paths.entriesJson, JSON.stringify(map, null, 2))
+  await touch(paths.configJson, JSON.stringify(configObj, null, 2))
 }
 
 export type EntryMap = Record<string, Entry>
 
 export class Entries {
-  public static async writeApp(config: Config): Promise<void> {
-    mkd(paths.app)
-    await writeAppFiles(config)
+  public static async writeApp(config: Config, dev?: boolean): Promise<void> {
+    await fs.ensureDir(paths.app)
+    await writeAppFiles(config, Boolean(dev))
   }
 
-  public static async writeImports(entries: EntryMap): Promise<void> {
-    await writeImports(entries)
+  public static async writeImports(map: EntryMap): Promise<void> {
+    await writeImports(map)
+  }
+
+  public static async writeData(map: EntryMap, config: Config): Promise<void> {
+    await writeData(map, config)
   }
 
   public all: EntryMap

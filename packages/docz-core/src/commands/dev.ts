@@ -1,25 +1,16 @@
-import { load } from 'load-cfg'
 import detectPort from 'detect-port'
 
-import * as paths from '../config/paths'
 import { Config } from './args'
 import { DataServer } from '../DataServer'
 import { webpack } from '../bundlers'
+import { loadConfig } from '../utils/load-config'
 
 process.env.BABEL_ENV = process.env.BABEL_ENV || 'development'
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
 export const dev = async (args: Config) => {
-  const config = load('docz', {
-    ...args,
-    paths,
-    plugins: [],
-    mdPlugins: [],
-    hastPlugins: [],
-    themeConfig: {},
-  })
-
-  const bundler = webpack(config)
+  const config = loadConfig(args)
+  const bundler = webpack(config, 'development')
   const server = await bundler.createServer(bundler.getConfig())
   const app = await server.start()
 
