@@ -14,7 +14,7 @@ const recursiveWrappers = ([Wrapper, ...rest], props) => (
 const Wrapper = props =>
   _wrappers.length ? recursiveWrappers(_wrappers, props) : props.children
 
-class App extends React.Component {
+class Root extends React.Component {
   state = {
     config: {},
     entries: {},
@@ -40,4 +40,4 @@ class App extends React.Component {
   }
 }
 
-export default hot(module)(App)
+export default hot(module)(Root)

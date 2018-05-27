@@ -3,28 +3,30 @@ import { SFC } from 'react'
 import loadable from 'loadable-components'
 import { Switch, Route, RouteComponentProps } from 'react-router-dom'
 
-import { RenderComponent } from './Playground'
 import { dataContext, Entry } from '../theme'
+import { RenderComponent } from './Playground'
 
 export type PageProps = RouteComponentProps<any> & {
   doc?: Entry
 }
 
+export interface ComponentsMap {
+  page?: React.ComponentType<PageProps>
+  render?: RenderComponent
+  h1?: React.ComponentType<any>
+  h2?: React.ComponentType<any>
+  h3?: React.ComponentType<any>
+  h4?: React.ComponentType<any>
+  h5?: React.ComponentType<any>
+  h6?: React.ComponentType<any>
+  ul?: React.ComponentType<any>
+  table?: React.ComponentType<any>
+  pre?: React.ComponentType<any>
+  [key: string]: any
+}
+
 export interface DocPreviewProps {
-  components: {
-    page?: React.ComponentType<PageProps>
-    render?: RenderComponent
-    h1?: React.ComponentType<any>
-    h2?: React.ComponentType<any>
-    h3?: React.ComponentType<any>
-    h4?: React.ComponentType<any>
-    h5?: React.ComponentType<any>
-    h6?: React.ComponentType<any>
-    ul?: React.ComponentType<any>
-    table?: React.ComponentType<any>
-    pre?: React.ComponentType<any>
-    [key: string]: any
-  }
+  components: ComponentsMap
 }
 
 export const DocPreview: SFC<DocPreviewProps> = ({ components }) => {

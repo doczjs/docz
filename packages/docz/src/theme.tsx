@@ -3,8 +3,10 @@ import { ComponentType as CT } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import merge from 'deepmerge'
 
+import { ComponentsMap } from './components/DocPreview'
+
 export type MSXComponent = CT<{
-  components: { [key: string]: any }
+  components: ComponentsMap
 }>
 
 export interface MSXImport {

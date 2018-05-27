@@ -1,54 +1,27 @@
 import * as glob from 'fast-glob'
-import * as fs from 'fs'
 import * as path from 'path'
-import { test, mkdir } from 'shelljs'
-import template from 'lodash.template'
 
 import * as paths from './config/paths'
 import { propOf } from './utils/helpers'
-import { format } from './utils/format'
+import { mkd, touch, compiled } from './utils/fs'
 
 import { Entry, parseMdx } from './Entry'
 import { Config } from './commands/args'
 
-const mkd = (dir: string): void => {
-  !test('-d', dir) && mkdir('-p', dir)
-}
+const fromTemplates = (file: string) => path.join(paths.templates, file)
 
-const touch = (file: string, raw: string) =>
-  new Promise(async (resolve, reject) => {
-    const content = /jsx?$/.test(path.extname(file)) ? await format(raw) : raw
-    const stream = fs.createWriteStream(file)
-
-    stream.write(content, 'utf-8')
-    stream.on('finish', () => resolve())
-    stream.on('error', err => reject(err))
-    stream.end()
-  })
-
-const compiled = (file: string) =>
-  new Promise<(args: any) => string>((resolve, reject) => {
-    let data = ''
-    const filepath = path.join(paths.templates, file)
-    const stream = fs.createReadStream(filepath, { encoding: 'utf-8' })
-
-    stream.on('data', chunk => (data += chunk))
-    stream.on('end', () => resolve(template(data)))
-    stream.on('error', err => reject(err))
-  })
-
-const writeGeneratedFiles = async (config: Config): Promise<void> => {
+const writeAppFiles = async (config: Config): Promise<void> => {
   const { plugins, title, description, theme } = config
 
   const wrappers = propOf(plugins, 'wrapper')
   const afterRenders = propOf(plugins, 'afterRender')
   const beforeRenders = propOf(plugins, 'beforeRender')
 
-  const app = await compiled('app.tpl.js')
-  const js = await compiled('index.tpl.js')
-  const html = await compiled('index.tpl.html')
+  const root = await compiled(fromTemplates('root.tpl.js'))
+  const js = await compiled(fromTemplates('index.tpl.js'))
+  const html = await compiled(fromTemplates('index.tpl.html'))
 
-  const rawAppJs = app({
+  const rawRootJs = root({
     theme,
     wrappers,
     websocketUrl: `ws://${config.websocketHost}:${config.websocketPort}`,
@@ -64,22 +37,22 @@ const writeGeneratedFiles = async (config: Config): Promise<void> => {
     description,
   })
 
-  await touch(paths.appJs, rawAppJs)
+  await touch(paths.rootJs, rawRootJs)
   await touch(paths.indexJs, rawIndexJs)
   await touch(paths.indexHtml, rawIndexHtml)
 }
 
 const writeImports = async (entries: EntryMap): Promise<void> => {
-  const imports = await compiled('imports.tpl.js')
+  const imports = await compiled(fromTemplates('imports.tpl.js'))
   await touch(paths.importsJs, imports({ entries }))
 }
 
 export type EntryMap = Record<string, Entry>
 
 export class Entries {
-  public static async writeGenerated(config: Config): Promise<void> {
-    mkd(paths.docz)
-    await writeGeneratedFiles(config)
+  public static async writeApp(config: Config): Promise<void> {
+    mkd(paths.app)
+    await writeAppFiles(config)
   }
 
   public static async writeImports(entries: EntryMap): Promise<void> {
