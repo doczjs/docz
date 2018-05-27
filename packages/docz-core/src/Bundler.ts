@@ -11,24 +11,28 @@ export interface BundlerServer {
 }
 
 export type ServerFn<C> = (config: C) => BundlerServer | Promise<BundlerServer>
+export type BuildFn<C> = (config: C) => void
 
 export interface BundlerConstructor<Config> {
   args: Args
   config: Config
   server: ServerFn<Config>
+  build: BuildFn<Config>
 }
 
 export class Bundler<C = any> {
   private readonly args: Args
   private config: C
   private server: ServerFn<C>
+  private builder: BuildFn<C>
 
   constructor(params: BundlerConstructor<C>) {
-    const { args, config, server } = params
+    const { args, config, server, build } = params
 
     this.args = args
     this.config = config
     this.server = server
+    this.builder = build
   }
 
   public getConfig(): C {
@@ -46,6 +50,10 @@ export class Bundler<C = any> {
     }
 
     return server
+  }
+
+  public async build(): Promise<void> {
+    this.builder(this.config)
   }
 
   private reduceWithPlugins(dev: boolean): any {

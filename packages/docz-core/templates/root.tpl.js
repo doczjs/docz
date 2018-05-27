@@ -4,7 +4,7 @@ import Theme from '<%- theme %>'
 <% if (isProd) {%>import config from './config.json'<%}%>
 <% if (isProd) {%>import entries from './entries.json'<%}%>
 
-<% if (isProd) {%>const socket = new WebSocket(`<%- websocketUrl %>`)<%}%>
+<% if (!isProd) {%>const socket = new WebSocket(`<%- websocketUrl %>`)<%}%>
 const _wrappers = [<% if (wrappers) {%><%- wrappers %><%}%>]
 
 const recursiveWrappers = ([Wrapper, ...rest], props) => (

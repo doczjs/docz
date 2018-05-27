@@ -9,8 +9,6 @@ const isSocketOpened = (socket: WS) => socket.readyState === WS.OPEN
 
 export interface DataServerOpts {
   server: any
-  port: number
-  host: string
   config: Config
 }
 
@@ -18,22 +16,16 @@ export class DataServer {
   private server: WS.Server
   private config: Config
 
-  constructor({ server, port, host, config }: DataServerOpts) {
+  constructor({ server, config }: DataServerOpts) {
+    this.config = config
     this.server = new WS.Server({
       server,
-      port,
-      host,
+      port: config.websocketPort,
+      host: config.websocketHost,
     })
-
-    this.config = {
-      ...config,
-      websocketPort: port,
-    }
   }
 
-  public async processEntries(): Promise<void> {
-    const config = this.config
-    const entries = new Entries(config)
+  public async processEntries(entries: Entries): Promise<void> {
     const watcher = chokidar.watch(this.config.files, {
       ignored: /(^|[\/\\])\../,
     })
@@ -56,9 +48,6 @@ export class DataServer {
 
     this.server.on('connection', handleConnection)
     this.server.on('close', () => watcher.close())
-
-    await Entries.writeApp(config, true)
-    await Entries.writeImports(await entries.getMap())
   }
 
   public async processThemeConfig(): Promise<void> {
@@ -67,9 +56,9 @@ export class DataServer {
     const handleConnection = async (socket: WS) => {
       const update = this.updateConfig(socket)
 
-      watcher.on('add', update)
-      watcher.on('change', update)
-      watcher.on('unlink', update)
+      watcher.on('add', () => update())
+      watcher.on('change', () => update())
+      watcher.on('unlink', () => update())
 
       update()
     }
@@ -109,9 +98,15 @@ export class DataServer {
   }
 
   private updateConfig(socket: WS): () => void {
-    const config = load('docz', { ...this.config }, true)
+    const initialConfig = {
+      title: this.config.title,
+      description: this.config.description,
+      themeConfig: this.config.themeConfig,
+    }
 
     return () => {
+      const config = load('docz', initialConfig, true)
+
       if (isSocketOpened(socket)) {
         socket.send(this.configData(config))
       }
