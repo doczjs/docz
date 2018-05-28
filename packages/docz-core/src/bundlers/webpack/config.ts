@@ -55,11 +55,13 @@ const setupHappypack = (config: Config, args: Args, babelrc: any) => {
     loaders: [babelLoader],
   }
 
-  if (!args.typescript) {
+  if (args.propsParser && !args.typescript) {
     babelLoader.options.plugins.push(
       require.resolve('babel-plugin-react-docgen')
     )
-  } else {
+  }
+
+  if (args.propsParser && args.typescript) {
     jsx.loaders.push({
       loader: require.resolve('react-docgen-typescript-loader'),
     })

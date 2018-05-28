@@ -9,6 +9,7 @@ export interface Argv {
   env: string
   debug: boolean
   typescript: boolean
+  propsParser: boolean
   protocol: string
   host: string
   port: number
@@ -56,6 +57,10 @@ export const args = (yargs: any) => {
     alias: 'ts',
     type: 'boolean',
     default: false,
+  })
+  yargs.positional('propsParser', {
+    type: 'boolean',
+    default: true,
   })
   yargs.positional('debug', {
     type: 'boolean',
