@@ -527,6 +527,12 @@
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.42"
 
+"@babel/plugin-syntax-flow@7.0.0-beta.49":
+  version "7.0.0-beta.49"
+  resolved "https://registry.npmjs.org/@babel/plugin-syntax-flow/-/plugin-syntax-flow-7.0.0-beta.49.tgz#5b3f0b65ca9660534535643b82530fb1d58e63ee"
+  dependencies:
+    "@babel/helper-plugin-utils" "7.0.0-beta.49"
+
 "@babel/plugin-syntax-jsx@7.0.0-beta.42":
   version "7.0.0-beta.42"
   resolved "https://registry.npmjs.org/@babel/plugin-syntax-jsx/-/plugin-syntax-jsx-7.0.0-beta.42.tgz#92ef7807bbec0e12a49815a409822262cbaa7ddd"
@@ -721,6 +727,13 @@
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.42"
     "@babel/plugin-syntax-flow" "7.0.0-beta.42"
+
+"@babel/plugin-transform-flow-strip-types@7.0.0-beta.49":
+  version "7.0.0-beta.49"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-flow-strip-types/-/plugin-transform-flow-strip-types-7.0.0-beta.49.tgz#f02a26528e94b2c1d11d9573b63ee5782d4f2af9"
+  dependencies:
+    "@babel/helper-plugin-utils" "7.0.0-beta.49"
+    "@babel/plugin-syntax-flow" "7.0.0-beta.49"
 
 "@babel/plugin-transform-for-of@7.0.0-beta.42":
   version "7.0.0-beta.42"
@@ -1123,6 +1136,13 @@
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.42"
     "@babel/plugin-transform-flow-strip-types" "7.0.0-beta.42"
+
+"@babel/preset-flow@^7.0.0-beta.49":
+  version "7.0.0-beta.49"
+  resolved "https://registry.npmjs.org/@babel/preset-flow/-/preset-flow-7.0.0-beta.49.tgz#10cbee1a60db207120a4443c54c0ca5f734eb390"
+  dependencies:
+    "@babel/helper-plugin-utils" "7.0.0-beta.49"
+    "@babel/plugin-transform-flow-strip-types" "7.0.0-beta.49"
 
 "@babel/preset-react@7.0.0-beta.42":
   version "7.0.0-beta.42"
@@ -4128,6 +4148,10 @@ flat-cache@^1.2.1:
     del "^2.0.2"
     graceful-fs "^4.1.2"
     write "^0.2.1"
+
+flow-bin@^0.73.0:
+  version "0.73.0"
+  resolved "https://registry.npmjs.org/flow-bin/-/flow-bin-0.73.0.tgz#da1b90a02b0ef9c439f068c2fc14968db83be425"
 
 flush-write-stream@^1.0.0:
   version "1.0.3"
