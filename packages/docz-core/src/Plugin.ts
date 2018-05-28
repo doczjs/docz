@@ -1,14 +1,10 @@
 import get from 'lodash.get'
 
+import { Config } from './commands/args'
 import { isFn } from './utils/helpers'
+import { BabelRC } from './utils/babelrc'
 
-export interface BabelRC {
-  presets?: any[]
-  plugins?: any[]
-  cacheDirectory?: boolean
-  babelrc?: boolean
-}
-
+export type SetConfig = (config: Config) => Config
 export type ModifyBundlerConfig<C = any> = (config: C, dev: boolean) => C
 export type ModifyBabelRC = (babelrc: BabelRC) => BabelRC
 export type OnServerListening = <S>(server: S) => void
@@ -19,6 +15,7 @@ export type OnPostRender = () => void
 export type Wrapper = <R>(props: any) => R
 
 export interface PluginFactory {
+  setConfig?: SetConfig
   modifyBundlerConfig?: ModifyBundlerConfig
   modifyBabelRc?: ModifyBabelRC
   onServerListening?: OnServerListening
@@ -31,7 +28,7 @@ export interface PluginFactory {
 
 export class Plugin<C = any> implements PluginFactory {
   public static runPluginsMethod(
-    plugins: Plugin[]
+    plugins: Plugin[] | undefined
   ): (method: keyof Plugin, ...args: any[]) => void {
     return (method, ...args) => {
       if (plugins && plugins.length > 0) {
@@ -52,6 +49,18 @@ export class Plugin<C = any> implements PluginFactory {
       plugins.map(p => get(p, prop)).filter(m => m)
   }
 
+  public static reduceFromPlugins<C>(
+    plugins: Plugin[] | undefined
+  ): (method: keyof Plugin, initial: C, ...args: any[]) => C {
+    return (method, initial, ...args) => {
+      return [...(plugins || [])].reduce((obj: any, plugin) => {
+        const fn = get(plugin, method)
+        return fn && isFn(fn) ? fn(obj) : obj
+      }, initial)
+    }
+  }
+
+  public readonly setConfig?: SetConfig
   public readonly modifyBundlerConfig?: ModifyBundlerConfig<C>
   public readonly modifyBabelRc?: ModifyBabelRC
   public readonly onServerListening?: OnServerListening
@@ -62,6 +71,7 @@ export class Plugin<C = any> implements PluginFactory {
   public readonly wrapper?: Wrapper
 
   constructor(p: PluginFactory) {
+    this.setConfig = p.setConfig
     this.modifyBundlerConfig = p.modifyBundlerConfig
     this.modifyBabelRc = p.modifyBabelRc
     this.onServerListening = p.onServerListening

@@ -2,9 +2,16 @@ import { load } from 'load-cfg'
 import merge from 'deepmerge'
 
 import { Config } from '../commands/args'
-import { isFn } from './helpers'
+import { Plugin } from '../Plugin'
 
-export const babelrc = (args: Config) => {
+export interface BabelRC {
+  presets?: any[]
+  plugins?: any[]
+  cacheDirectory?: boolean
+  babelrc?: boolean
+}
+
+export const babelrc = (args: Config): BabelRC => {
   const config = merge(load('babel', null), {
     babelrc: false,
     cacheDirectory: !args.debug,
@@ -15,11 +22,7 @@ export const babelrc = (args: Config) => {
     plugins: [],
   })
 
-  return [...(args.plugins || [])].reduce(
-    (obj, plugin) =>
-      plugin.modifyBabelRc && isFn(plugin.modifyBabelRc)
-        ? plugin.modifyBabelRc(config)
-        : obj,
-    config
-  )
+  const reduce = Plugin.reduceFromPlugins<BabelRC>(args.plugins)
+
+  return reduce('modifyBabelRc', config)
 }

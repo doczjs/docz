@@ -2,9 +2,13 @@ import { load } from 'load-cfg'
 
 import * as paths from '../config/paths'
 import { Config } from '../commands/args'
+import { Plugin } from '../Plugin'
+import { omit } from './helpers'
 
-export const loadConfig = (args: Config) =>
-  load('docz', {
+const toOmit = ['_', '$0', 'version', 'help']
+
+export const loadConfig = (args: Config): Config => {
+  const config = load('docz', {
     ...args,
     paths,
     plugins: [],
@@ -12,3 +16,7 @@ export const loadConfig = (args: Config) =>
     hastPlugins: [],
     themeConfig: {},
   })
+
+  const reduce = Plugin.reduceFromPlugins<Config>(config.plugins)
+  return omit<Config>(toOmit, reduce('setConfig', config))
+}

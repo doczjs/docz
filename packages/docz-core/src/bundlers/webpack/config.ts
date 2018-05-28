@@ -9,10 +9,10 @@ import UglifyJs from 'uglifyjs-webpack-plugin'
 import matter from 'remark-frontmatter'
 import merge from 'deepmerge'
 
-import { Config as Args } from '../../commands/args'
+import { BabelRC } from '../../utils/babelrc'
 import { plugin as mdastPlugin } from '../../utils/plugin-mdast'
 import { plugin as hastPlugin } from '../../utils/plugin-hast'
-import { BabelRC } from '../../Plugin'
+import { Config as Args } from '../../commands/args'
 import { Env } from './'
 
 const INLINE_LIMIT = 10000
