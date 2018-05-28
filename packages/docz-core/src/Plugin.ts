@@ -9,7 +9,7 @@ export interface BabelRC {
   babelrc?: boolean
 }
 
-export type ModifyBundlerConfig = <C>(config: C, dev: boolean) => C
+export type ModifyBundlerConfig<C = any> = (config: C, dev: boolean) => C
 export type ModifyBabelRC = (babelrc: BabelRC) => BabelRC
 export type OnServerListening = <S>(server: S) => void
 export type OnPreBuild = () => void
@@ -19,17 +19,17 @@ export type OnPostRender = () => void
 export type Wrapper = <R>(props: any) => R
 
 export interface PluginFactory {
-  modifyBundlerConfig: ModifyBundlerConfig
-  modifyBabelRc: ModifyBabelRC
-  onServerListening: OnServerListening
-  onPreBuild: OnPreBuild
-  onPostBuild: OnPostBuild
-  onPreRender: OnPreRender
-  onPostRender: OnPostRender
-  wrapper: Wrapper
+  modifyBundlerConfig?: ModifyBundlerConfig
+  modifyBabelRc?: ModifyBabelRC
+  onServerListening?: OnServerListening
+  onPreBuild?: OnPreBuild
+  onPostBuild?: OnPostBuild
+  onPreRender?: OnPreRender
+  onPostRender?: OnPostRender
+  wrapper?: Wrapper
 }
 
-export class Plugin {
+export class Plugin<C = any> implements PluginFactory {
   public static runPluginsMethod(
     plugins: Plugin[]
   ): (method: keyof Plugin, ...args: any[]) => void {
@@ -52,20 +52,17 @@ export class Plugin {
       plugins.map(p => get(p, prop)).filter(m => m)
   }
 
-  public readonly modifyBundlerConfig: ModifyBundlerConfig
-  public readonly modifyBabelRc: ModifyBabelRC
-  public readonly onServerListening: OnServerListening
-  public readonly onPreBuild: OnPreBuild | null
-  public readonly onPostBuild: OnPostBuild | null
-  public readonly onPreRender: OnPreRender | null
-  public readonly onPostRender: OnPostRender | null
-  public readonly wrapper: Wrapper
+  public readonly modifyBundlerConfig?: ModifyBundlerConfig<C>
+  public readonly modifyBabelRc?: ModifyBabelRC
+  public readonly onServerListening?: OnServerListening
+  public readonly onPreBuild?: OnPreBuild
+  public readonly onPostBuild?: OnPostBuild
+  public readonly onPreRender?: OnPreRender
+  public readonly onPostRender?: OnPostRender
+  public readonly wrapper?: Wrapper
 
   constructor(p: PluginFactory) {
-    this.modifyBundlerConfig = (config: any, dev: boolean) => {
-      return isFn(p.modifyBundlerConfig) && p.modifyBundlerConfig(config, dev)
-    }
-
+    this.modifyBundlerConfig = p.modifyBundlerConfig
     this.modifyBabelRc = p.modifyBabelRc
     this.onServerListening = p.onServerListening
     this.onPreBuild = p.onPreBuild
@@ -76,6 +73,6 @@ export class Plugin {
   }
 }
 
-export function createPlugin(factory: PluginFactory): Plugin {
+export function createPlugin<C = any>(factory: PluginFactory): Plugin<C> {
   return new Plugin(factory)
 }

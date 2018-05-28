@@ -7,6 +7,7 @@ import htmlWebpackPlugin from 'html-webpack-plugin'
 import manifestPlugin from 'webpack-manifest-plugin'
 import UglifyJs from 'uglifyjs-webpack-plugin'
 import matter from 'remark-frontmatter'
+import merge from 'deepmerge'
 
 import { Config as ConfigObj } from '../../commands/args'
 import { plugin as mdastPlugin } from '../../utils/plugin-mdast'
@@ -18,24 +19,20 @@ const INLINE_LIMIT = 10000
 
 interface HappypackLoaderParams {
   id: string
-  plugins?: any[]
+  opts?: BabelRC
 }
 
 const happypackLoader = (babelrc: any) => ({
   id,
-  plugins,
+  opts = {},
 }: HappypackLoaderParams) => [
   {
     id,
-    threads: 2,
     verbose: false,
     loaders: [
       {
         loader: require.resolve('babel-loader'),
-        query: {
-          ...babelrc,
-          plugins,
-        },
+        query: merge(babelrc, opts),
       },
     ],
   },
@@ -46,15 +43,16 @@ const setupHappypack = (config: Config, babelrc: any) => {
 
   const jsx = loader({
     id: 'jsx',
-    plugins: babelrc.plugins.concat([
-      require.resolve('react-hot-loader/babel'),
-      require.resolve('babel-plugin-react-docgen'),
-    ]),
+    opts: {
+      plugins: [
+        require.resolve('react-hot-loader/babel'),
+        require.resolve('babel-plugin-react-docgen'),
+      ],
+    },
   })
 
   const mdx = loader({
     id: 'mdx',
-    plugins: babelrc.plugins,
   })
 
   config.plugin('happypack-jsx').use(HappyPack, jsx)
@@ -179,7 +177,17 @@ export const createConfig = (babelrc: BabelRC) => (
     )
 
   config.resolve.extensions
-    .merge(['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx', '.mdx'])
+    .merge([
+      '.web.js',
+      '.mjs',
+      '.js',
+      '.json',
+      '.web.jsx',
+      '.jsx',
+      '.mdx',
+      '.ts',
+      '.tsx',
+    ])
     .end()
     .modules.add('node_modules')
     .add(srcPath)

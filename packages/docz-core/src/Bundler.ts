@@ -1,6 +1,8 @@
 import { Plugin } from './Plugin'
 import { Config as Args } from './commands/args'
 
+import { isFn } from './utils/helpers'
+
 export interface Server {
   close: () => void
   on: (event: string, cb: (server: any) => void) => void
@@ -48,11 +50,13 @@ export class Bundler<C = any> {
   }
 
   private reduceWithPlugins(dev: boolean): any {
-    return (config: C, plugin: Plugin) =>
-      plugin.modifyBundlerConfig(config, dev) || config
+    return (config: C, { modifyBundlerConfig }: Plugin) =>
+      modifyBundlerConfig && isFn(modifyBundlerConfig)
+        ? modifyBundlerConfig(config, dev)
+        : config
   }
 
-  private mountConfig(config: C): C {
+  private mountConfig(config: C): any {
     const { plugins, env } = this.args
     const dev = env === 'development'
 

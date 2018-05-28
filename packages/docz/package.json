@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@sindresorhus/slugify": "^0.3.0",
-    "deepmerge": "^2.1.0",
+    "deepmerge": "^2.1.1",
     "invariant": "^2.2.4",
     "loadable-components": "^2.2.2",
     "pascalcase": "^0.1.1",

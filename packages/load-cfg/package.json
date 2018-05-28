@@ -20,11 +20,11 @@
     "fix:tslint": "tslint --fix --project ."
   },
   "dependencies": {
-    "deepmerge": "^2.1.0",
+    "deepmerge": "^2.1.1",
     "find-up": "^2.1.0"
   },
   "devDependencies": {
     "@types/find-up": "^2.1.1",
-    "@types/node": "^10.1.2"
+    "@types/node": "^10.1.3"
   }
 }

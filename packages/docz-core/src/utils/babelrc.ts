@@ -14,7 +14,7 @@ export const babelrc = (args: Config) => {
 
   return [...(args.plugins || [])].reduce(
     (obj, plugin) =>
-      isFn(plugin.modifyBabelRc)
+      plugin.modifyBabelRc && isFn(plugin.modifyBabelRc)
         ? merge(obj, plugin.modifyBabelRc(config))
         : obj,
     config
