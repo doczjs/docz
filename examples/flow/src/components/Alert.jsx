@@ -2,7 +2,6 @@
 
 import React, { Fragment } from 'react'
 import styled from 'react-emotion'
-import t from 'prop-types'
 
 const kinds = {
   info: '#5352ED',
@@ -17,7 +16,7 @@ type AlertProps = {
   /**
    * Set this to change alert kind
    */
-  kind: Kind
+  kind: Kind,
 }
 
 const AlertStyled = styled('div')`

@@ -67,6 +67,7 @@ const getPropType = (prop: Prop, Tooltip?: TooltipComponent) => {
   const name = prop.flowType ? prop.flowType.name : prop.type.name
   const value = prop.type && prop.type.value
 
+  if (!name) return null
   if (!Tooltip) return name
   if ((!prop.flowType && !value) || (prop.flowType && !prop.flowType.elements))
     return name
@@ -117,6 +118,7 @@ export const PropsTable: SFC<PropsTable> = ({ of: component, components }) => {
             Object.keys(props).map((name: string) => {
               const prop = props[name]
 
+              if (!prop.flowType && !prop.type) return null
               return (
                 <Tr key={name}>
                   <Td>{name}</Td>

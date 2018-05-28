@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "babel-plugin-emotion": "^9.0.1",
-    "flow-bin": "^0.73.0"
+    "flow-bin": "^0.73.0",
+    "flow-typed": "^2.4.0"
   }
 }
