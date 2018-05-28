@@ -8,14 +8,17 @@ export const babelrc = (args: Config) => {
   const config = merge(load('babel', null), {
     babelrc: false,
     cacheDirectory: !args.debug,
-    presets: [require.resolve('babel-preset-react-app')],
+    presets: [
+      [require.resolve('babel-preset-react-app'), { flow: !args.typescript }],
+      ...(args.typescript ? [require.resolve('@babel/preset-typescript')] : []),
+    ],
     plugins: [],
   })
 
   return [...(args.plugins || [])].reduce(
     (obj, plugin) =>
       plugin.modifyBabelRc && isFn(plugin.modifyBabelRc)
-        ? merge(obj, plugin.modifyBabelRc(config))
+        ? plugin.modifyBabelRc(config)
         : obj,
     config
   )

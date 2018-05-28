@@ -8,6 +8,7 @@ export interface Argv {
   /* bundler args */
   env: string
   debug: boolean
+  typescript: boolean
   protocol: string
   host: string
   port: number
@@ -50,6 +51,11 @@ export const args = (yargs: any) => {
   yargs.positional('theme', {
     type: 'string',
     default: 'docz-theme-default',
+  })
+  yargs.positional('typescript', {
+    alias: 'ts',
+    type: 'boolean',
+    default: false,
   })
   yargs.positional('debug', {
     type: 'boolean',

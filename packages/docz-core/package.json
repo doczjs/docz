@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@babel/core": "7.0.0-beta.49",
+    "@babel/preset-typescript": "^7.0.0-beta.49",
     "@babel/runtime": "^7.0.0-beta.49",
     "@mdx-js/loader": "^0.9.0",
     "@mdx-js/mdx": "^0.9.0",
@@ -50,6 +51,7 @@
     "lodash.get": "^4.4.2",
     "prettier": "^1.13.0",
     "react-dev-utils": "^5.0.1",
+    "react-docgen-typescript-loader": "^2.1.0",
     "react-hot-loader": "4.2.0",
     "remark-frontmatter": "^1.2.0",
     "remark-parse": "^5.0.0",

@@ -40,7 +40,7 @@ export type TooltipComponent = React.ComponentType<{
 const getValue = (value: string) => value.replace(/\'/g, '')
 
 const getPropType = (prop: Prop, Tooltip?: TooltipComponent) => {
-  const name = prop.type.name.toUpperCase()
+  const name = prop.type.name
 
   if (!Tooltip || !prop.type.value) return name
 

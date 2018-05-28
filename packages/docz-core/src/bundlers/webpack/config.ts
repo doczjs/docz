@@ -9,7 +9,7 @@ import UglifyJs from 'uglifyjs-webpack-plugin'
 import matter from 'remark-frontmatter'
 import merge from 'deepmerge'
 
-import { Config as ConfigObj } from '../../commands/args'
+import { Config as Args } from '../../commands/args'
 import { plugin as mdastPlugin } from '../../utils/plugin-mdast'
 import { plugin as hastPlugin } from '../../utils/plugin-hast'
 import { BabelRC } from '../../Plugin'
@@ -17,50 +17,71 @@ import { Env } from './'
 
 const INLINE_LIMIT = 10000
 
-interface HappypackLoaderParams {
-  id: string
-  opts?: BabelRC
-}
+const uglify = new UglifyJs({
+  parallel: true,
+  cache: true,
+  sourceMap: true,
+  uglifyOptions: {
+    parse: {
+      ecma: 8,
+    },
+    compress: {
+      ecma: 5,
+      warnings: false,
+      comparisons: false,
+    },
+    mangle: {
+      safari10: true,
+    },
+    output: {
+      ecma: 5,
+      comments: false,
+      ascii_only: true,
+    },
+  },
+})
 
-const happypackLoader = (babelrc: any) => ({
-  id,
-  opts = {},
-}: HappypackLoaderParams) => [
-  {
-    id,
-    verbose: false,
+const setupHappypack = (config: Config, args: Args, babelrc: any) => {
+  const babelLoader: any = {
+    loader: require.resolve('babel-loader'),
+    options: merge(babelrc, {
+      plugins: [require.resolve('react-hot-loader/babel')],
+    }),
+  }
+
+  const jsx = {
+    id: 'jsx',
+    verbose: args.debug,
+    loaders: [babelLoader],
+  }
+
+  if (!args.typescript) {
+    babelLoader.options.plugins.push(
+      require.resolve('babel-plugin-react-docgen')
+    )
+  } else {
+    jsx.loaders.push({
+      loader: require.resolve('react-docgen-typescript-loader'),
+    })
+  }
+
+  const mdx = {
+    id: 'mdx',
+    verbose: args.debug,
     loaders: [
       {
         loader: require.resolve('babel-loader'),
-        query: merge(babelrc, opts),
+        options: babelrc,
       },
     ],
-  },
-]
+  }
 
-const setupHappypack = (config: Config, babelrc: any) => {
-  const loader = happypackLoader(babelrc)
-
-  const jsx = loader({
-    id: 'jsx',
-    opts: {
-      plugins: [
-        require.resolve('react-hot-loader/babel'),
-        require.resolve('babel-plugin-react-docgen'),
-      ],
-    },
-  })
-
-  const mdx = loader({
-    id: 'mdx',
-  })
-
-  config.plugin('happypack-jsx').use(HappyPack, jsx)
-  config.plugin('happypack-mdx').use(HappyPack, mdx)
+  config.plugin('happypack-jsx').use(HappyPack, [jsx])
+  config.plugin('happypack-mdx').use(HappyPack, [mdx])
 }
 
 export const createConfig = (babelrc: BabelRC) => (
-  args: ConfigObj,
+  args: Args,
   env: Env
 ): Config => {
   const { paths, debug } = args
@@ -121,40 +142,11 @@ export const createConfig = (babelrc: BabelRC) => (
         chunks: 'all',
         name: 'vendors',
       },
+      ...(isProd && {
+        minimizer: [uglify],
+      }),
     },
   })
-
-  if (isProd) {
-    config.merge({
-      optimization: {
-        minimizer: [
-          new UglifyJs({
-            uglifyOptions: {
-              parse: {
-                ecma: 8,
-              },
-              compress: {
-                ecma: 5,
-                warnings: false,
-                comparisons: false,
-              },
-              mangle: {
-                safari10: true,
-              },
-              output: {
-                ecma: 5,
-                comments: false,
-                ascii_only: true,
-              },
-            },
-            parallel: true,
-            cache: true,
-            sourceMap: true,
-          }),
-        ],
-      },
-    })
-  }
 
   /**
    * entries
@@ -185,8 +177,7 @@ export const createConfig = (babelrc: BabelRC) => (
       '.web.jsx',
       '.jsx',
       '.mdx',
-      '.ts',
-      '.tsx',
+      ...(args.typescript ? ['.ts', '.tsx'] : []),
     ])
     .end()
     .modules.add('node_modules')
@@ -212,11 +203,22 @@ export const createConfig = (babelrc: BabelRC) => (
     .use('happypack-jsx')
     .loader('happypack/loader?id=jsx')
 
+  if (args.typescript) {
+    config.module
+      .rule('ts')
+      .test(/\.ts?x$/)
+      .include.add(srcPath)
+      .end()
+      .exclude.add(/node_modules/)
+      .end()
+      .use('happypack-jsx')
+      .loader('happypack/loader?id=jsx')
+  }
+
   config.module
     .rule('mdx')
     .test(/\.md?x$/)
     .include.add(srcPath)
-    .add(paths.docz)
     .end()
     .exclude.add(/node_modules/)
     .end()
@@ -275,7 +277,7 @@ export const createConfig = (babelrc: BabelRC) => (
    * plugins
    */
 
-  setupHappypack(config, babelrc)
+  setupHappypack(config, args, babelrc)
 
   config.plugin('assets-plugin').use(manifestPlugin, [
     {
