@@ -1,1 +1,0 @@
-export { withProps } from './withProps'
