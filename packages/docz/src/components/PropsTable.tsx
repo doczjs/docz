@@ -6,6 +6,18 @@ export interface EnumValue {
   computed: boolean
 }
 
+export interface FlowTypeElement {
+  name: string
+  value: string
+}
+
+export interface FlowTypeArgs {
+  name: string
+  type: {
+    name: string
+  }
+}
+
 export interface Prop {
   required: boolean
   description?: string
@@ -15,6 +27,18 @@ export interface Prop {
   }
   defaultValue?: {
     value: string
+  }
+  flowType?: {
+    elements: FlowTypeElement[]
+    name: string
+    raw: string
+    type?: string
+    signature?: {
+      arguments: FlowTypeArgs[]
+      return: {
+        name: string
+      }
+    }
   }
 }
 
@@ -40,12 +64,17 @@ export type TooltipComponent = React.ComponentType<{
 const getValue = (value: string) => value.replace(/\'/g, '')
 
 const getPropType = (prop: Prop, Tooltip?: TooltipComponent) => {
-  const name = prop.type.name
+  const name = prop.flowType ? prop.flowType.name : prop.type.name
+  const value = prop.type && prop.type.value
 
-  if (!Tooltip || !prop.type.value) return name
+  if (!Tooltip) return name
+  if ((!prop.flowType && !value) || (prop.flowType && !prop.flowType.elements))
+    return name
 
-  return (
-    <Tooltip text={prop.type.value.map(val => getValue(val.value)).join(' | ')}>
+  return prop.flowType ? (
+    <Tooltip text={prop.flowType.raw}>{name}</Tooltip>
+  ) : (
+    <Tooltip text={value && value.map(val => getValue(val.value)).join(' | ')}>
       {name}
     </Tooltip>
   )
