@@ -1,5 +1,3 @@
-import './styles/prism-theme'
-
 import * as React from 'react'
 import { theme, DocPreview, ThemeConfig } from 'docz'
 import { ThemeProvider } from 'emotion-theming'
