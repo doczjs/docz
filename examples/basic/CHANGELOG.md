@@ -1,0 +1,32 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+<a name="0.1.0"></a>
+# 0.1.0 (2018-05-29)
+
+
+### Bug Fixes
+
+* **docz-core:** config watch for directory operations ([43fa7ab](https://github.com/doczjs/docz/commit/43fa7ab))
+* **docz-core:** create plugin to fix paragraph parse on mdx ([42b4f05](https://github.com/doczjs/docz/commit/42b4f05))
+* **docz-core:** packages splitting ([d2e74ee](https://github.com/doczjs/docz/commit/d2e74ee))
+* **docz-example-basic:** package name ([dec5713](https://github.com/doczjs/docz/commit/dec5713))
+
+
+### Features
+
+* **docz:** add groups feature ([9652b30](https://github.com/doczjs/docz/commit/9652b30))
+* add basic monorepo structure ([5a977ed](https://github.com/doczjs/docz/commit/5a977ed))
+* **docz:** add components parser ([a4127d9](https://github.com/doczjs/docz/commit/a4127d9))
+* **docz:** add custom routes for docs ([8458d91](https://github.com/doczjs/docz/commit/8458d91))
+* **docz-core:** add build command ([ef7abd2](https://github.com/doczjs/docz/commit/ef7abd2))
+* **docz-core:** add hot reload ([9ebe65d](https://github.com/doczjs/docz/commit/9ebe65d))
+* **docz-core:** add playground code parse section ([6bbf158](https://github.com/doczjs/docz/commit/6bbf158))
+* **docz-core:** set babel on the fly ([672be49](https://github.com/doczjs/docz/commit/672be49))
+* add component props parse feature ([987627d](https://github.com/doczjs/docz/commit/987627d))
+* add support for highlight code sections ([19bf7ea](https://github.com/doczjs/docz/commit/19bf7ea))
+* **docz-core:** use websockets instead of generate json to process entries ([e0773a0](https://github.com/doczjs/docz/commit/e0773a0))
+* **docz-theme-default:** start logic to create theme feature ([900cf2b](https://github.com/doczjs/docz/commit/900cf2b))
+* refac to use mdx ([04b59e5](https://github.com/doczjs/docz/commit/04b59e5))

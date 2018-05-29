@@ -1,6 +1,6 @@
 {
   "name": "docz-theme-default",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
@@ -13,11 +13,15 @@
   ],
   "scripts": {
     "dev": "libundler watch --ts -e all",
-    "build": "libundler build --ts -e all --c --sm"
+    "build": "libundler build --ts -e all --c --sm",
+    "fix": "run-s fix:*",
+    "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
+    "fix:tslint": "tslint --fix --project .",
+    "tslint": "tslint --project ."
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "docz": "^0.0.1",
+    "docz": "^0.1.0",
     "emotion": "^9.1.3",
     "emotion-normalize": "^7.0.1",
     "emotion-theming": "^9.1.2",

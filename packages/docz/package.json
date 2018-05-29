@@ -1,6 +1,6 @@
 {
   "name": "docz",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
@@ -16,9 +16,10 @@
   ],
   "scripts": {
     "dev": "libundler watch --ts",
-    "build": "libundler build --ts --c",
+    "build": "libundler build --ts --c --sm",
+    "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
-    "fix:tslint": "yarn run tslint --fix",
+    "fix:tslint": "tslint --fix --project .",
     "tslint": "tslint --project ."
   },
   "dependencies": {
