@@ -10,6 +10,7 @@
     "docz": "./bin/index.js"
   },
   "files": [
+    "bin/",
     "dist/",
     "package.json",
     "README.md"
