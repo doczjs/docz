@@ -24,6 +24,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
+    "docz-core": "0.1.0",
     "@sindresorhus/slugify": "^0.3.0",
     "deepmerge": "^2.1.1",
     "invariant": "^2.2.4",
