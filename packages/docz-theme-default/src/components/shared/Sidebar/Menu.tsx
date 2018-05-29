@@ -27,9 +27,6 @@ const Icon = styled<IconProps, 'div'>('div')`
   }
 `
 
-export const isActive = (match: any, location: any) =>
-  match && match.url === location.pathname
-
 export interface MenuProps {
   menu: string
   docs: Entry[]
@@ -55,9 +52,7 @@ export const Menu: SFC<MenuProps> = ({ menu, docs }) => (
             <dl>
               {docs.map(doc => (
                 <dt key={doc.id}>
-                  <Link isActive={isActive} to={doc.slug}>
-                    {doc.name}
-                  </Link>
+                  <Link to={doc.slug}>{doc.name}</Link>
                 </dt>
               ))}
             </dl>

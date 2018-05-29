@@ -2,7 +2,7 @@ import React from 'react'
 import { Docs, Link, Entry, ThemeConfig } from 'docz'
 import styled from 'react-emotion'
 
-import { Menu, isActive } from './Menu'
+import { Menu } from './Menu'
 import logo from '../../../images/docz.svg'
 
 const Wrapper = styled('div')`
@@ -101,7 +101,7 @@ export const Sidebar = () => (
           </ThemeConfig>
           <Menus>
             {docsWithoutMenu.map(doc => (
-              <Link key={doc.id} to={doc.slug} isActive={isActive}>
+              <Link key={doc.id} to={doc.slug}>
                 {doc.name}
               </Link>
             ))}
