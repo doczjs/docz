@@ -196,7 +196,7 @@ export const createConfig = (babelrc: BabelRC) => (
 
   config.module
     .rule('js')
-    .test(/\.js?x$/)
+    .test(/\.(js|jsx|mjs)$/)
     .include.add(srcPath)
     .add(paths.docz)
     .end()
@@ -208,7 +208,7 @@ export const createConfig = (babelrc: BabelRC) => (
   if (args.typescript) {
     config.module
       .rule('ts')
-      .test(/\.ts?x$/)
+      .test(/\.(ts|tsx)$/)
       .include.add(srcPath)
       .end()
       .exclude.add(/node_modules/)
