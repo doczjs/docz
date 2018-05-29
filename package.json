@@ -4,7 +4,12 @@
   "scripts": {
     "clean": "lerna clean",
     "bs": "lerna bootstrap",
-    "build": "lerna run build"
+    "packages": "run-s packages:*",
+    "packages:fix": "lerna run fix",
+    "packages:lint": "lerna run tslint",
+    "packages:build": "lerna run build --ignore docz-example-*",
+    "prerelease": "yarn run packages",
+    "release": "lerna publish --conventional-commits"
   },
   "devDependencies": {
     "del": "^3.0.0",
