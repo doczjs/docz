@@ -2,14 +2,13 @@ import * as fs from 'fs'
 import * as path from 'path'
 import findup from 'find-up'
 import merge from 'deepmerge'
+import esm from 'esm'
 
 export const finds = (name: string): string[] => [
   `${name}.json`,
   `.${name}rc`,
   `${name}rc.js`,
   `${name}rc.json`,
-  `${name}rc.yml`,
-  `${name}rc.yaml`,
   `${name}.config.js`,
   `${name}.config.json`,
 ]
@@ -20,6 +19,12 @@ export const loadFile = (
   noCache?: boolean
 ) => {
   let file
+  const require = esm(module, {
+    cache: !noCache,
+    cjs: {
+      cache: !noCache,
+    },
+  })
 
   if (noCache && filepath) {
     delete require.cache[path.resolve(filepath)]
@@ -28,9 +33,12 @@ export const loadFile = (
   try {
     const isJS = path.extname(filepath) === '.js'
 
-    file = isJS
-      ? require(filepath)
-      : JSON.parse(fs.readFileSync(filepath, 'utf-8'))
+    if (isJS) {
+      const required = require(filepath)
+      file = required.default || required
+    } else {
+      file = JSON.parse(fs.readFileSync(filepath, 'utf-8'))
+    }
   } catch (err) {
     file = defaultFile
   }

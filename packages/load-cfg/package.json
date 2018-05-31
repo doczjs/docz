@@ -21,6 +21,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
+    "esm": "^3.0.41",
     "deepmerge": "^2.1.1",
     "find-up": "^2.1.0"
   },
