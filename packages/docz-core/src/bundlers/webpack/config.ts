@@ -1,21 +1,15 @@
 import * as path from 'path'
 import webpackBarPlugin from 'webpackbar'
 import Config from 'webpack-chain'
-import HappyPack from 'happypack'
 import friendlyErrors from 'friendly-errors-webpack-plugin'
 import htmlWebpackPlugin from 'html-webpack-plugin'
 import manifestPlugin from 'webpack-manifest-plugin'
 import UglifyJs from 'uglifyjs-webpack-plugin'
-import matter from 'remark-frontmatter'
-import merge from 'deepmerge'
 
 import { BabelRC } from '../../utils/babelrc'
-import { plugin as mdastPlugin } from '../../utils/plugin-mdast'
-import { plugin as hastPlugin } from '../../utils/plugin-hast'
 import { Config as Args } from '../../commands/args'
+import * as loaders from './loaders'
 import { Env } from './'
-
-const INLINE_LIMIT = 10000
 
 const uglify = new UglifyJs({
   parallel: true,
@@ -40,47 +34,6 @@ const uglify = new UglifyJs({
     },
   },
 })
-
-const setupHappypack = (config: Config, args: Args, babelrc: any) => {
-  const babelLoader: any = {
-    loader: require.resolve('babel-loader'),
-    options: merge(babelrc, {
-      plugins: [require.resolve('react-hot-loader/babel')],
-    }),
-  }
-
-  const jsx = {
-    id: 'jsx',
-    verbose: args.debug,
-    loaders: [babelLoader],
-  }
-
-  if (args.propsParser && !args.typescript) {
-    babelLoader.options.plugins.push(
-      require.resolve('babel-plugin-react-docgen')
-    )
-  }
-
-  if (args.propsParser && args.typescript) {
-    jsx.loaders.push({
-      loader: require.resolve('react-docgen-typescript-loader'),
-    })
-  }
-
-  const mdx = {
-    id: 'mdx',
-    verbose: args.debug,
-    loaders: [
-      {
-        loader: require.resolve('babel-loader'),
-        options: babelrc,
-      },
-    ],
-  }
-
-  config.plugin('happypack-jsx').use(HappyPack, [jsx])
-  config.plugin('happypack-mdx').use(HappyPack, [mdx])
-}
 
 export const createConfig = (babelrc: BabelRC) => (
   args: Args,
@@ -194,92 +147,18 @@ export const createConfig = (babelrc: BabelRC) => (
    * loaders
    */
 
-  config.module
-    .rule('js')
-    .test(/\.(js|jsx|mjs)$/)
-    .include.add(srcPath)
-    .add(paths.docz)
-    .end()
-    .exclude.add(/node_modules/)
-    .end()
-    .use('happypack-jsx')
-    .loader('happypack/loader?id=jsx')
-
-  if (args.typescript) {
-    config.module
-      .rule('ts')
-      .test(/\.(ts|tsx)$/)
-      .include.add(srcPath)
-      .end()
-      .exclude.add(/node_modules/)
-      .end()
-      .use('happypack-jsx')
-      .loader('happypack/loader?id=jsx')
-  }
-
-  config.module
-    .rule('mdx')
-    .test(/\.md?x$/)
-    .include.add(srcPath)
-    .end()
-    .exclude.add(/node_modules/)
-    .end()
-    .use('happypack-mdx')
-    .loader('happypack/loader?id=mdx')
-    .end()
-    .use('mdx-loader')
-    .loader(require.resolve('@mdx-js/loader'))
-    .options({
-      type: 'yaml',
-      marker: '-',
-      mdPlugins: args.mdPlugins.concat([matter, mdastPlugin]),
-      hastPlugins: args.hastPlugins.concat([hastPlugin]),
-    })
-
-  config.module
-    .rule('images')
-    .test(/\.(png|jpe?g|gif)(\?.*)?$/)
-    .use('url-loader')
-    .loader(require.resolve('url-loader'))
-    .options({
-      limit: INLINE_LIMIT,
-      name: `static/img/[name].[hash:8].[ext]`,
-    })
-
-  config.module
-    .rule('svg')
-    .test(/\.(svg)(\?.*)?$/)
-    .use('file-loader')
-    .loader(require.resolve('file-loader'))
-    .options({
-      name: `static/img/[name].[hash:8].[ext]`,
-    })
-
-  config.module
-    .rule('media')
-    .test(/\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/)
-    .use('url-loader')
-    .loader(require.resolve('url-loader'))
-    .options({
-      limit: INLINE_LIMIT,
-      name: `static/media/[name].[hash:8].[ext]`,
-    })
-
-  config.module
-    .rule('fonts')
-    .test(/\.(woff2?|eot|ttf|otf)(\?.*)?$/i)
-    .use('url-loader')
-    .loader(require.resolve('url-loader'))
-    .options({
-      limit: INLINE_LIMIT,
-      name: `static/fonts/[name].[hash:8].[ext]`,
-    })
+  loaders.js(config, args)
+  loaders.mdx(config, args)
+  args.typescript && loaders.ts(config, args)
+  loaders.setupHappypack(config, args, babelrc)
+  loaders.images(config)
+  loaders.svg(config)
+  loaders.media(config)
+  loaders.fonts(config)
 
   /**
    * plugins
    */
-
-  setupHappypack(config, args, babelrc)
 
   config.plugin('assets-plugin').use(manifestPlugin, [
     {
