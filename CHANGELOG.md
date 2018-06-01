@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.1.1-beta.5"></a>
+## [0.1.1-beta.5](https://github.com/doczjs/docz/compare/v0.1.1-beta.4...v0.1.1-beta.5) (2018-06-01)
+
+
+### Bug Fixes
+
+* **docz:** link component ([7626982](https://github.com/doczjs/docz/commit/7626982))
+* **load-cfg:** add namedExports options ([d36194d](https://github.com/doczjs/docz/commit/d36194d))
+
+
+### Features
+
+* **load-cfg:** add esm module loader ([12a7610](https://github.com/doczjs/docz/commit/12a7610))
+
+
+
+
 <a name="0.1.1-beta.4"></a>
 ## [0.1.1-beta.4](https://github.com/doczjs/docz/compare/v0.1.1-beta.3...v0.1.1-beta.4) (2018-05-29)
 
