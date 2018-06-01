@@ -62,11 +62,8 @@ export function theme(
     imports,
     config = {},
   }) => {
-    const value = {
-      entries,
-      imports,
-      config: merge(defaultConfig, config),
-    }
+    const newConfig = merge(defaultConfig, config)
+    const value = { entries, imports, config: newConfig }
 
     return (
       <dataContext.Provider value={value}>
