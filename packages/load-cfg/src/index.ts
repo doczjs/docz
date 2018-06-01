@@ -20,9 +20,11 @@ export const loadFile = (
 ) => {
   let file
   const require = esm(module, {
+    mode: 'all',
     cache: !noCache,
     cjs: {
       cache: !noCache,
+      namedExports: true,
     },
   })
 
