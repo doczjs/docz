@@ -1,6 +1,6 @@
 {
   "name": "docz-theme-default",
-  "version": "0.1.1-beta.5",
+  "version": "0.1.1-beta.6",
   "license": "MIT",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "docz": "^0.1.1-beta.5",
+    "docz": "^0.1.1-beta.6",
     "emotion": "^9.1.3",
     "emotion-normalize": "^7.0.1",
     "emotion-theming": "^9.1.2",
