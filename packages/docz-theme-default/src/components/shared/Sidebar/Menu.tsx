@@ -52,7 +52,7 @@ export const Menu: SFC<MenuProps> = ({ menu, docs }) => (
             <dl>
               {docs.map(doc => (
                 <dt key={doc.id}>
-                  <Link to={doc.slug}>{doc.name}</Link>
+                  <Link to={doc.route}>{doc.name}</Link>
                 </dt>
               ))}
             </dl>

@@ -101,7 +101,7 @@ export const Sidebar = () => (
           </ThemeConfig>
           <Menus>
             {docsWithoutMenu.map(doc => (
-              <Link key={doc.id} to={doc.slug}>
+              <Link key={doc.id} to={doc.route}>
                 {doc.name}
               </Link>
             ))}
