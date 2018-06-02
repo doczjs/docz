@@ -36,11 +36,6 @@
     "react-lightweight-tooltip": "^1.0.0",
     "react-powerplug": "^0.1.5"
   },
-  "peerDependencies": {
-    "docz": "^0.0.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2"
-  },
   "devDependencies": {
     "@types/classnames": "^2.2.3",
     "@types/prismjs": "^1.9.0",
