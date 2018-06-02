@@ -37,6 +37,7 @@
     "connect-history-api-fallback": "^1.5.0",
     "deepmerge": "^2.1.1",
     "detect-port": "^1.2.3",
+    "docz-theme-default": "^0.1.1-beta.10",
     "express": "^4.16.3",
     "fast-glob": "^2.2.2",
     "file-loader": "^1.1.11",
