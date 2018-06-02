@@ -12,37 +12,32 @@
     "README.md"
   ],
   "scripts": {
-    "dev": "libundler watch --ts -e all",
-    "build": "libundler build --ts -e all --c --sm",
+    "dev": "libundler watch --ts",
+    "build": "libundler build --ts --c --sm",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
     "fix:tslint": "tslint --fix --project .",
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "classnames": "^2.2.5",
     "docz": "^0.1.1",
     "emotion": "^9.1.3",
-    "emotion-normalize": "^7.0.1",
     "emotion-theming": "^9.1.2",
     "fast-deep-equal": "^2.0.1",
-    "history": "^4.7.2",
-    "polished": "^1.9.2",
     "prismjs": "^1.14.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-emotion": "^9.1.3",
     "react-feather": "^1.1.0",
     "react-lightweight-tooltip": "^1.0.0",
-    "react-powerplug": "^0.1.5"
+    "react-powerplug": "^1.0.0-alpha.7"
   },
   "peerDependencies": {
-    "docz": "^0.0.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "docz": "^0.1.1",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.3",
     "@types/prismjs": "^1.9.0",
     "babel-plugin-emotion": "^9.1.0",
     "rollup-plugin-svg": "^1.0.1"

@@ -1,4 +1,3 @@
-import { darken } from 'polished'
 import styled from 'react-emotion'
 
 export const Table = styled('table')`
@@ -16,7 +15,7 @@ export const Table = styled('table')`
   color: ${p => p.theme.colors.grayDark};
 
   & thead {
-    color: ${p => darken(0.2, p.theme.colors.grayDark)};
+    color: ${p => p.theme.colors.grayDark};
     background: ${p => p.theme.colors.grayLight};
   }
 
