@@ -1,9 +1,8 @@
 import 'prismjs/components/prism-jsx'
 
 import React, { PureComponent } from 'react'
-import cx from 'classnames'
 import prism from 'prismjs'
-import styled from 'react-emotion'
+import styled, { cx } from 'react-emotion'
 
 const PreStyled = styled('pre')`
   border: 1px solid ${p => p.theme.colors.border};

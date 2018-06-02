@@ -22,11 +22,11 @@
   },
   "dependencies": {
     "deepmerge": "^2.1.1",
-    "esm": "^3.0.41",
+    "esm": "^3.0.44",
     "find-up": "^2.1.0"
   },
   "devDependencies": {
     "@types/find-up": "^2.1.1",
-    "@types/node": "^10.1.3"
+    "@types/node": "^10.3.0"
   }
 }
