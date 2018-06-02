@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.1.1-beta.8"></a>
+## [0.1.1-beta.8](https://github.com/doczjs/docz/compare/v0.1.1-beta.7...v0.1.1-beta.8) (2018-06-02)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** remove peerDependencies ([f878dd8](https://github.com/doczjs/docz/commit/f878dd8))
+
+
+
+
 <a name="0.1.1-beta.7"></a>
 ## [0.1.1-beta.7](https://github.com/doczjs/docz/compare/v0.1.1-beta.6...v0.1.1-beta.7) (2018-06-02)
 
