@@ -1,13 +1,13 @@
 {
   "name": "docz-example-typescript",
-  "version": "0.1.1-beta.6",
+  "version": "0.1.1",
   "license": "MIT",
   "scripts": {
     "dev": "docz dev",
     "build": "docz build"
   },
   "dependencies": {
-    "docz": "^0.1.1-beta.6",
+    "docz": "^0.1.1",
     "emotion": "^9.1.3",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",

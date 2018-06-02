@@ -1,6 +1,6 @@
 {
   "name": "docz",
-  "version": "0.1.1-beta.6",
+  "version": "0.1.1",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
@@ -26,8 +26,8 @@
   "dependencies": {
     "@sindresorhus/slugify": "^0.3.0",
     "deepmerge": "^2.1.1",
-    "docz-core": "^0.1.1-beta.5",
-    "docz-theme-default": "^0.1.1-beta.6",
+    "docz-core": "^0.1.1",
+    "docz-theme-default": "^0.1.1",
     "invariant": "^2.2.4",
     "loadable-components": "^2.2.2",
     "pascalcase": "^0.1.1",
