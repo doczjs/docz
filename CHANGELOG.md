@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.1.1-beta.9"></a>
+## [0.1.1-beta.9](https://github.com/doczjs/docz/compare/v0.1.1-beta.8...v0.1.1-beta.9) (2018-06-02)
+
+
+
+
+**Note:** Version bump only for package undefined
+
 <a name="0.1.1-beta.8"></a>
 ## [0.1.1-beta.8](https://github.com/doczjs/docz/compare/v0.1.1-beta.7...v0.1.1-beta.8) (2018-06-02)
 
