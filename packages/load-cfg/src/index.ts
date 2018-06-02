@@ -25,6 +25,7 @@ export const loadFile = (
     cjs: {
       cache: !noCache,
       namedExports: true,
+      vars: true,
     },
   })
 
