@@ -2,7 +2,7 @@ import * as React from 'react'
 import { SFC } from 'react'
 import { Entry, Link } from 'docz'
 import { Toggle } from 'react-powerplug'
-import { ChevronDown } from 'react-feather'
+import ChevronDown from 'react-feather/dist/icons/chevron-down'
 import styled from 'react-emotion'
 
 const Wrapper = styled('div')`
