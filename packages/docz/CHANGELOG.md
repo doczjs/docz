@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.1.1-beta.11"></a>
+## [0.1.1-beta.11](https://github.com/doczjs/docz/compare/v0.1.1-beta.10...v0.1.1-beta.11) (2018-06-02)
+
+
+### Bug Fixes
+
+* cycle dependencies ([14866b8](https://github.com/doczjs/docz/commit/14866b8))
+
+
+
+
 <a name="0.1.1-beta.10"></a>
 ## [0.1.1-beta.10](https://github.com/doczjs/docz/compare/v0.1.1-beta.9...v0.1.1-beta.10) (2018-06-02)
 
