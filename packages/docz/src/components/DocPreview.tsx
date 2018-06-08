@@ -3,7 +3,7 @@ import { SFC } from 'react'
 import loadable from 'loadable-components'
 import { Switch, Route, RouteComponentProps } from 'react-router-dom'
 
-import { dataContext, Entry } from '../theme'
+import { dataContext, Entry, ImportMap } from '../theme'
 import { RenderComponent } from './Playground'
 
 export type PageProps = RouteComponentProps<any> & {
@@ -11,6 +11,7 @@ export type PageProps = RouteComponentProps<any> & {
 }
 
 export interface ComponentsMap {
+  loading?: React.ComponentType
   page?: React.ComponentType<PageProps>
   render?: RenderComponent
   h1?: React.ComponentType<any>
@@ -25,12 +26,22 @@ export interface ComponentsMap {
   [key: string]: any
 }
 
+const DefaultLoading: SFC = () => null
+
+const loadImport = (imports: ImportMap, components: ComponentsMap) => (
+  path: string
+) => async () => {
+  const { default: Component } = await imports[path]()
+  return (props: any) => <Component {...props} components={components} />
+}
+
 export interface DocPreviewProps {
   components: ComponentsMap
 }
 
-export const DocPreview: SFC<DocPreviewProps> = ({ components }) => {
+export const DocPreview: SFC<DocPreviewProps> = ({ components = {} }) => {
   const Page = components.page
+  const LoadingComponent = components.loading || DefaultLoading
 
   return (
     <dataContext.Consumer>
@@ -38,9 +49,9 @@ export const DocPreview: SFC<DocPreviewProps> = ({ components }) => {
         <Switch>
           {Object.keys(imports).map(path => {
             const entry = entries && entries[path]
-            const AsyncComponent = loadable(async () => {
-              const { default: Component } = await imports[path]()
-              return props => <Component {...props} components={components} />
+            const load = loadImport(imports, components)
+            const AsyncComponent = loadable(load(path), {
+              LoadingComponent,
             })
 
             return (
