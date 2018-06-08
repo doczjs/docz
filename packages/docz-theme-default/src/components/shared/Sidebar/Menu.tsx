@@ -14,11 +14,13 @@ interface IconProps {
   opened: boolean
 }
 
-const Icon = styled<IconProps, 'div'>('div')`
+const iconRotate = (p: IconProps) => (p.opened ? '-180deg' : '0deg')
+
+const Icon = styled.div`
   position: absolute;
   top: 50%;
   right: 20px;
-  transform: translateY(-50%) rotate(${p => (p.opened ? '-180deg' : '0deg')});
+  transform: translateY(-50%) rotate(${iconRotate});
   transform-origin: 50% 50%;
   transition: transform 0.3s;
 
