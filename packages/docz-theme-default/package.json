@@ -21,16 +21,17 @@
   },
   "dependencies": {
     "docz": "^0.1.2-beta.0",
-    "emotion": "^9.1.3",
-    "emotion-theming": "^9.1.2",
+    "emotion": "^9.2.1",
+    "emotion-theming": "^9.2.1",
     "fast-deep-equal": "^2.0.1",
     "prismjs": "^1.14.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "react-emotion": "^9.1.3",
+    "react-emotion": "^9.2.1",
     "react-feather": "^1.1.0",
     "react-lightweight-tooltip": "^1.0.0",
-    "react-powerplug": "^1.0.0-alpha.7"
+    "react-powerplug": "^1.0.0-alpha.7",
+    "react-spinners": "^0.3.2"
   },
   "peerDependencies": {
     "docz": "^0.1.1",
@@ -39,7 +40,7 @@
   },
   "devDependencies": {
     "@types/prismjs": "^1.9.0",
-    "babel-plugin-emotion": "^9.1.0",
+    "babel-plugin-emotion": "^9.2.0",
     "rollup-plugin-svg": "^1.0.1"
   }
 }
