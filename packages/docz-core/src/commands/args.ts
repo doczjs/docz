@@ -3,10 +3,10 @@ import { Plugin } from '../Plugin'
 
 export interface Argv {
   /* io args */
+  base: string
   src: string
   files: string
   /* bundler args */
-  env: string
   debug: boolean
   typescript: boolean
   propsParser: boolean
@@ -32,6 +32,10 @@ export interface Config extends Argv {
 }
 
 export const args = (yargs: any) => {
+  yargs.positional('base', {
+    type: 'string',
+    default: '/',
+  })
   yargs.positional('source', {
     alias: 'src',
     type: 'string',

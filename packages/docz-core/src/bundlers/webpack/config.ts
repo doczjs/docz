@@ -69,7 +69,7 @@ export const createConfig = (babelrc: BabelRC) => (
     output
       .filename('static/js/[name].[chunkhash:8].js')
       .sourceMapFilename('static/js/[name].[chunkhash:8].js.map')
-      .publicPath(paths.servedPath)
+      .publicPath(paths.servedPath(args.base))
 
   const outputDev = (output: Config.Output) =>
     output
@@ -197,6 +197,12 @@ export const createConfig = (babelrc: BabelRC) => (
     ])
     cfg.plugin('friendly-errors').use(friendlyErrors)
   })
+
+  config.plugin('injections').use(require('webpack/lib/DefinePlugin'), [
+    {
+      BASE_URL: JSON.stringify(args.base),
+    },
+  ])
 
   config.performance.hints(false)
   return config

@@ -5,6 +5,8 @@ import merge from 'deepmerge'
 
 import { ComponentsMap } from './components/DocPreview'
 
+declare var BASE_URL: string
+
 export type MSXComponent = CT<{
   components: ComponentsMap
 }>
@@ -67,7 +69,7 @@ export function theme(
 
     return (
       <dataContext.Provider value={value}>
-        <BrowserRouter>
+        <BrowserRouter basename={BASE_URL}>
           <Wrapper>
             <WrappedComponent />
           </Wrapper>
