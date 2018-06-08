@@ -23,6 +23,7 @@ const Theme = () => (
               h5: components.H5,
               h6: components.H6,
               ul: components.List,
+              loading: components.Loading,
               table: components.Table,
               pre: components.Pre,
               tooltip: components.Tooltip,
