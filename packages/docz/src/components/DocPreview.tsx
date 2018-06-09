@@ -7,7 +7,7 @@ import { dataContext, Entry, ImportMap } from '../theme'
 import { RenderComponent } from './Playground'
 
 export type PageProps = RouteComponentProps<any> & {
-  doc?: Entry
+  doc: Entry
 }
 
 export interface ComponentsMap {
