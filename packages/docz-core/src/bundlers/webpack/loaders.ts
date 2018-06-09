@@ -7,6 +7,7 @@ import Config from 'webpack-chain'
 import { plugin as mdastPlugin } from '../../utils/plugin-mdast'
 import { plugin as hastPlugin } from '../../utils/plugin-hast'
 import { Config as Args } from '../../commands/args'
+import * as paths from '../../config/paths'
 
 export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
   const babelLoader: any = {
@@ -50,7 +51,6 @@ export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
 }
 
 export const js = (config: Config, args: Args) => {
-  const { paths } = args
   const srcPath = path.resolve(paths.root, args.src)
 
   config.module
@@ -66,7 +66,6 @@ export const js = (config: Config, args: Args) => {
 }
 
 export const ts = (config: Config, args: Args) => {
-  const { paths } = args
   const srcPath = path.resolve(paths.root, args.src)
 
   config.module
@@ -81,7 +80,7 @@ export const ts = (config: Config, args: Args) => {
 }
 
 export const mdx = (config: Config, args: Args) => {
-  const { paths, mdPlugins, hastPlugins } = args
+  const { mdPlugins, hastPlugins } = args
   const srcPath = path.resolve(paths.root, args.src)
 
   config.module

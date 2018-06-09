@@ -1,4 +1,3 @@
-import { Paths } from '../config/paths'
 import { Plugin } from '../Plugin'
 
 export interface Argv {
@@ -27,7 +26,6 @@ export interface ThemeConfig {
 }
 
 export interface Config extends Argv {
-  paths: Paths
   plugins?: Plugin[]
   mdPlugins: any[]
   hastPlugins: any[]

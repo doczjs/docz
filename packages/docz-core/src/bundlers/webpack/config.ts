@@ -6,8 +6,9 @@ import htmlWebpackPlugin from 'html-webpack-plugin'
 import manifestPlugin from 'webpack-manifest-plugin'
 import UglifyJs from 'uglifyjs-webpack-plugin'
 
-import { BabelRC } from '../../utils/babelrc'
 import { Config as Args } from '../../commands/args'
+import { BabelRC } from '../../utils/babelrc'
+import * as paths from '../../config/paths'
 import * as loaders from './loaders'
 import { Env } from './'
 
@@ -39,7 +40,7 @@ export const createConfig = (babelrc: BabelRC) => (
   args: Args,
   env: Env
 ): Config => {
-  const { paths, debug } = args
+  const { debug } = args
 
   const config = new Config()
   const isProd = env === 'production'
