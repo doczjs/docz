@@ -13,6 +13,7 @@ export type PageProps = RouteComponentProps<any> & {
 export interface ComponentsMap {
   loading?: React.ComponentType
   page?: React.ComponentType<PageProps>
+  notFound?: React.ComponentType<RouteComponentProps<any>>
   render?: RenderComponent
   h1?: React.ComponentType<any>
   h2?: React.ComponentType<any>
@@ -41,6 +42,7 @@ export interface DocPreviewProps {
 
 export const DocPreview: SFC<DocPreviewProps> = ({ components = {} }) => {
   const Page = components.page
+  const NotFound = components.notFound
   const LoadingComponent = components.loading || DefaultLoading
 
   return (
@@ -73,6 +75,7 @@ export const DocPreview: SFC<DocPreviewProps> = ({ components = {} }) => {
               )
             )
           })}
+          {NotFound && <Route component={NotFound} />}
         </Switch>
       )}
     </dataContext.Consumer>
