@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.1.2-beta.1"></a>
+## [0.1.2-beta.1](https://github.com/doczjs/docz/compare/v0.1.2-beta.0...v0.1.2-beta.1) (2018-06-09)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** emotion typings ([270e38c](https://github.com/doczjs/docz/commit/270e38c))
+
+
+### Features
+
+* **docz-theme-default:** add Loading component for DocPreview ([97859e2](https://github.com/doczjs/docz/commit/97859e2))
+
+
+
+
 <a name="0.1.2-beta.0"></a>
 ## [0.1.2-beta.0](https://github.com/doczjs/docz/compare/v0.1.1...v0.1.2-beta.0) (2018-06-02)
 

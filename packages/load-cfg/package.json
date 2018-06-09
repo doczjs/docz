@@ -1,6 +1,6 @@
 {
   "name": "load-cfg",
-  "version": "0.1.2-beta.0",
+  "version": "0.1.2-beta.1",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",

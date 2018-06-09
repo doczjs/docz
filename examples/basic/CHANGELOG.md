@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.1.2-beta.1"></a>
+## [0.1.2-beta.1](https://github.com/doczjs/docz/compare/v0.1.2-beta.0...v0.1.2-beta.1) (2018-06-09)
+
+
+
+
+**Note:** Version bump only for package docz-example-basic
+
 <a name="0.1.2-beta.0"></a>
 ## [0.1.2-beta.0](https://github.com/doczjs/docz/compare/v0.1.1...v0.1.2-beta.0) (2018-06-02)
 

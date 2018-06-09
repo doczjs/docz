@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.1.2-beta.1"></a>
+## [0.1.2-beta.1](https://github.com/doczjs/docz/compare/v0.1.2-beta.0...v0.1.2-beta.1) (2018-06-09)
+
+
+### Features
+
+* **docz-core:** add base config argument ([20f29c2](https://github.com/doczjs/docz/commit/20f29c2))
+* **docz-core:** add dest config property ([d6c5506](https://github.com/doczjs/docz/commit/d6c5506))
+* **docz-core:** add modifyBundlerConfig configuration property ([ec04bee](https://github.com/doczjs/docz/commit/ec04bee))
+* **docz-core:** use html template as component ([b7a2dc0](https://github.com/doczjs/docz/commit/b7a2dc0))
+
+
+
+
 <a name="0.1.2-beta.0"></a>
 ## [0.1.2-beta.0](https://github.com/doczjs/docz/compare/v0.1.1...v0.1.2-beta.0) (2018-06-02)
 
