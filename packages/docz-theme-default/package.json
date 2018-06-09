@@ -31,7 +31,8 @@
     "react-feather": "^1.1.0",
     "react-lightweight-tooltip": "^1.0.0",
     "react-powerplug": "^1.0.0-alpha.7",
-    "react-spinners": "^0.3.2"
+    "react-spinners": "^0.3.2",
+    "prop-types": "15.6.1"
   },
   "peerDependencies": {
     "docz": "^0.1.1",
