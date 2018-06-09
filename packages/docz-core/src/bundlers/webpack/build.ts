@@ -1,5 +1,4 @@
 import * as fs from 'fs-extra'
-import * as path from 'path'
 import chalk from 'chalk'
 import logger from 'signale'
 import webpack, { Configuration } from 'webpack'
@@ -116,8 +115,7 @@ const onError = (err: Error) => {
 }
 
 export const build = (args: Args) => async (config: Configuration) => {
-  const base = paths.servedPath(args.base)
-  const dist = path.join(paths.getDist(args.dest), base)
+  const dist = paths.getDist(args.dest)
 
   try {
     await fs.ensureDir(dist)

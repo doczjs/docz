@@ -82,7 +82,7 @@ export const createConfig = (babelrc: BabelRC) => (
 
   config.output
     .pathinfo(true)
-    .path(isProd ? path.join(dist, base) : dist)
+    .path(dist)
     .when(isProd, outputProd, outputDev)
     .crossOriginLoading('anonymous')
 
