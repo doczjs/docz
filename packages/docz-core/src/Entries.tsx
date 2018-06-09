@@ -1,20 +1,23 @@
+import * as React from 'react'
 import * as fs from 'fs-extra'
 import * as glob from 'fast-glob'
 import * as path from 'path'
+import { renderToString } from 'react-dom/server'
 
 import * as paths from './config/paths'
-import { touch, compiled, readIfExist } from './utils/fs'
+import { touch, compiled } from './utils/fs'
 
 import { Entry, parseMdx } from './Entry'
 import { Plugin } from './Plugin'
 import { Config } from './commands/args'
+import { Html } from './components/Html'
 
 const fromTemplates = (file: string) => path.join(paths.templates, file)
-const fromDocz = (file: string) => path.join(paths.docz, file)
 
 const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
   const { plugins, title, description, theme } = config
   const props = Plugin.propsOfPlugins(plugins)
+  const html = renderToString(<Html title={title} description={description} />)
 
   const wrappers = props('wrapper')
   const onPreRenders = props('onPreRender')
@@ -22,9 +25,6 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
 
   const root = await compiled(fromTemplates('root.tpl.js'))
   const js = await compiled(fromTemplates('index.tpl.js'))
-  const html = await compiled(fromTemplates('index.tpl.html'))
-  const head = await readIfExist(fromDocz('_head.html'))
-  const scripts = await readIfExist(fromDocz('_scripts.html'))
 
   const rawRootJs = root({
     theme,
@@ -38,16 +38,9 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
     onPostRenders,
   })
 
-  const rawIndexHtml = html({
-    title,
-    description,
-    head: head ? head.trimRight() : '',
-    scripts: scripts ? scripts.trimRight() : '',
-  })
-
   await touch(paths.rootJs, rawRootJs)
   await touch(paths.indexJs, rawIndexJs)
-  await touch(paths.indexHtml, rawIndexHtml)
+  await touch(paths.indexHtml, `<!DOCTYPE html>${html}`)
 }
 
 const writeImports = async (map: EntryMap): Promise<void> => {

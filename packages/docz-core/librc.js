@@ -6,6 +6,7 @@ module.exports = {
     'react-dev-utils/FileSizeReporter',
     'react-dev-utils/formatWebpackMessages',
     'react-dev-utils/printBuildError',
+    'react-dom/server',
   ]),
   plugins: [
     copy([
