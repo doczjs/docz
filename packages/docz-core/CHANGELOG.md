@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.1.2-beta.5"></a>
+## [0.1.2-beta.5](https://github.com/doczjs/docz/compare/v0.1.2-beta.4...v0.1.2-beta.5) (2018-06-09)
+
+
+### Bug Fixes
+
+* **docz-core:** build when base prop ([6001171](https://github.com/doczjs/docz/commit/6001171))
+
+
+
+
 <a name="0.1.2-beta.1"></a>
 ## [0.1.2-beta.1](https://github.com/doczjs/docz/compare/v0.1.2-beta.0...v0.1.2-beta.1) (2018-06-09)
 
