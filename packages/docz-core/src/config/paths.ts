@@ -24,7 +24,8 @@ export interface Paths {
   servedPath: (base: string) => string
   docz: string
   app: string
-  dist: string
+  getDist: (dest: string) => string
+  distPublic: (dest: string) => string
   importsJs: string
   rootJs: string
   indexJs: string
@@ -41,8 +42,9 @@ export const servedPath = (base: string) => ensureSlash(base, true)
 export const docz = resolveApp('.docz')
 export const app = path.resolve(docz, 'app/')
 export const appPublic = path.resolve(docz, 'public/')
-export const dist = path.resolve(docz, 'dist/')
-export const distPublic = path.resolve(dist, 'public/')
+
+export const getDist = (dest: string) => path.join(root, dest)
+export const distPublic = (dest: string) => path.join(dest, 'public/')
 
 export const importsJs = path.resolve(app, 'imports.js')
 export const rootJs = path.resolve(app, 'root.jsx')

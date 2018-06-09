@@ -15,8 +15,8 @@ export const bundler = (args: Args, env: Env): Bundler<CFG> => {
 
   return new Bundler({
     args,
-    build,
     config,
+    build: build(args),
     server: server(args),
   })
 }

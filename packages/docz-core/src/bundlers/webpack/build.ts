@@ -1,4 +1,5 @@
 import * as fs from 'fs-extra'
+import * as path from 'path'
 import chalk from 'chalk'
 import logger from 'signale'
 import webpack, { Configuration } from 'webpack'
@@ -6,6 +7,7 @@ import FSR from 'react-dev-utils/FileSizeReporter'
 import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages'
 import printBuildError from 'react-dev-utils/printBuildError'
 
+import { Config as Args } from '../../commands/args'
 import * as paths from '../../config/paths'
 
 process.env.BABEL_ENV = process.env.BABEL_ENV || 'production'
@@ -20,9 +22,9 @@ const hasCiEnvVar = () =>
   (typeof process.env.CI !== 'string' ||
     process.env.CI.toLowerCase() !== 'false')
 
-const copyPublicFolder = async (): Promise<void> => {
+const copyPublicFolder = async (dest: string): Promise<void> => {
   if (await fs.pathExists(paths.appPublic)) {
-    await fs.copySync(paths.appPublic, paths.distPublic, {
+    await fs.copySync(paths.appPublic, paths.distPublic(dest), {
       dereference: true,
       filter: file => file !== paths.indexHtml,
     })
@@ -75,7 +77,10 @@ const builder = async (config: Configuration, previousFileSizes: any) => {
   })
 }
 
-const onSuccess = ({ stats, previousFileSizes, warnings }: any) => {
+const onSuccess = (
+  dist: string,
+  { stats, previousFileSizes, warnings }: any
+) => {
   if (warnings.length) {
     logger.warn('Compiled with warnings.\n')
     logger.warn(warnings.join('\n\n'))
@@ -97,7 +102,7 @@ const onSuccess = ({ stats, previousFileSizes, warnings }: any) => {
   printFileSizesAfterBuild(
     stats,
     previousFileSizes,
-    paths.dist,
+    dist,
     WARN_AFTER_BUNDLE_GZIP_SIZE,
     WARN_AFTER_CHUNK_GZIP_SIZE
   )
@@ -110,15 +115,19 @@ const onError = (err: Error) => {
   process.exit(1)
 }
 
-export const build = async (config: Configuration) => {
-  try {
-    const previousFileSizes = await measureFileSizesBeforeBuild(paths.dist)
+export const build = (args: Args) => async (config: Configuration) => {
+  const base = paths.servedPath(args.base)
+  const dist = path.join(paths.getDist(args.dest), base)
 
-    await fs.emptyDir(paths.dist)
-    await copyPublicFolder()
+  try {
+    await fs.ensureDir(dist)
+    const previousFileSizes = await measureFileSizesBeforeBuild(dist)
+
+    await fs.emptyDir(dist)
+    await copyPublicFolder(dist)
 
     const result = await builder(config, previousFileSizes)
-    onSuccess(result)
+    onSuccess(dist, result)
   } catch (err) {
     onError(err)
   }

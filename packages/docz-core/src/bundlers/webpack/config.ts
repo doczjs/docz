@@ -41,9 +41,11 @@ export const createConfig = (babelrc: BabelRC) => (
 ): Config => {
   const { paths, debug } = args
 
-  const srcPath = path.resolve(paths.root, args.src)
-  const isProd = env === 'production'
   const config = new Config()
+  const isProd = env === 'production'
+  const base = paths.servedPath(args.base)
+  const dist = paths.getDist(args.dest)
+  const srcPath = path.resolve(paths.root, args.src)
 
   /**
    * general
@@ -69,7 +71,7 @@ export const createConfig = (babelrc: BabelRC) => (
     output
       .filename('static/js/[name].[chunkhash:8].js')
       .sourceMapFilename('static/js/[name].[chunkhash:8].js.map')
-      .publicPath(paths.servedPath(args.base))
+      .publicPath(base)
 
   const outputDev = (output: Config.Output) =>
     output
@@ -79,7 +81,7 @@ export const createConfig = (babelrc: BabelRC) => (
 
   config.output
     .pathinfo(true)
-    .path(paths.dist)
+    .path(isProd ? path.join(dist, base) : dist)
     .when(isProd, outputProd, outputDev)
     .crossOriginLoading('anonymous')
 
@@ -200,7 +202,7 @@ export const createConfig = (babelrc: BabelRC) => (
 
   config.plugin('injections').use(require('webpack/lib/DefinePlugin'), [
     {
-      BASE_URL: JSON.stringify(args.base),
+      BASE_URL: JSON.stringify(base),
     },
   ])
 

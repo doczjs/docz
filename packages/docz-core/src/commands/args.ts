@@ -6,6 +6,7 @@ export interface Argv {
   base: string
   src: string
   files: string
+  dest: string
   /* bundler args */
   debug: boolean
   typescript: boolean
@@ -44,6 +45,11 @@ export const args = (yargs: any) => {
   yargs.positional('files', {
     type: 'string',
     default: '**/*.mdx',
+  })
+  yargs.positional('dest', {
+    alias: 'd',
+    type: 'string',
+    default: '.docz/dist',
   })
   yargs.positional('title', {
     type: 'string',
