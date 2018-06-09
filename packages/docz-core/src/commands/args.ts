@@ -22,14 +22,17 @@ export interface Argv {
   theme: string
 }
 
+export interface ThemeConfig {
+  [key: string]: any
+}
+
 export interface Config extends Argv {
   paths: Paths
   plugins?: Plugin[]
   mdPlugins: any[]
   hastPlugins: any[]
-  themeConfig?: {
-    [key: string]: any
-  }
+  themeConfig: ThemeConfig
+  modifyBundlerConfig<C>(config: C, dev: boolean): C
 }
 
 export const args = (yargs: any) => {

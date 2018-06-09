@@ -15,6 +15,7 @@ export const loadConfig = (args: Config): Config => {
     mdPlugins: [],
     hastPlugins: [],
     themeConfig: {},
+    modifyBundlerConfig: (config: any) => config,
   })
 
   const reduce = Plugin.reduceFromPlugins<Config>(config.plugins)

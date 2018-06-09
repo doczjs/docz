@@ -20,6 +20,8 @@ export interface BundlerConstructor<Config> {
   build: BuildFn<Config>
 }
 
+const IS_PROD = process.env.NODE_ENV === 'production'
+
 export class Bundler<C = any> {
   private readonly args: Args
   private config: C
@@ -36,7 +38,8 @@ export class Bundler<C = any> {
   }
 
   public getConfig(): C {
-    return this.mountConfig(this.config)
+    const config = this.args.modifyBundlerConfig(this.config, !IS_PROD)
+    return this.mountConfig(config)
   }
 
   public async createServer(config: C): Promise<BundlerServer> {
@@ -48,10 +51,9 @@ export class Bundler<C = any> {
   }
 
   private mountConfig(config: C): any {
-    const { plugins, env } = this.args
-    const dev = env === 'development'
+    const { plugins } = this.args
     const reduce = Plugin.reduceFromPlugins<C>(plugins)
 
-    return reduce('modifyBundlerConfig', config, dev)
+    return reduce('modifyBundlerConfig', config, !IS_PROD)
   }
 }
