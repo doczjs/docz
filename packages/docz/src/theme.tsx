@@ -50,37 +50,38 @@ const initialContext: DataContext = {
 
 export const dataContext = React.createContext(initialContext)
 
+const DefaultWrapper: SFC = ({ children }) => <Fragment>{children}</Fragment>
+
 export interface ThemeProps extends DataContext {
   wrapper?: CT
   children(WrappedComponent: CT): JSX.Element
 }
 
-const DefaultWrapper: SFC = ({ children }) => <Fragment>{children}</Fragment>
+export type ThemeReturn = (WrappedComponent: CT) => CT<ThemeProps>
 
-export function theme(
-  WrappedComponent: CT,
-  defaultConfig?: ThemeConfig
-): CT<ThemeProps> {
-  const Theme: CT<ThemeProps> = ({
-    wrapper: Wrapper = DefaultWrapper,
-    entries,
-    imports,
-    config = {},
-  }) => {
-    const newConfig = merge(defaultConfig, config)
-    const value = { entries, imports, config: newConfig }
+export function theme(defaultConfig?: ThemeConfig): ThemeReturn {
+  return WrappedComponent => {
+    const Theme: CT<ThemeProps> = ({
+      wrapper: Wrapper = DefaultWrapper,
+      entries,
+      imports,
+      config = {},
+    }) => {
+      const newConfig = merge(defaultConfig, config)
+      const value = { entries, imports, config: newConfig }
 
-    return (
-      <dataContext.Provider value={value}>
-        <BrowserRouter basename={BASE_URL}>
-          <Wrapper>
-            <WrappedComponent />
-          </Wrapper>
-        </BrowserRouter>
-      </dataContext.Provider>
-    )
+      return (
+        <dataContext.Provider value={value}>
+          <BrowserRouter basename={BASE_URL}>
+            <Wrapper>
+              <WrappedComponent />
+            </Wrapper>
+          </BrowserRouter>
+        </dataContext.Provider>
+      )
+    }
+
+    Theme.displayName = 'DoczTheme'
+    return Theme
   }
-
-  Theme.displayName = 'DoczTheme'
-  return Theme
 }
