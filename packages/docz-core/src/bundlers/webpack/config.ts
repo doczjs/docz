@@ -140,6 +140,7 @@ export const createConfig = (babelrc: BabelRC) => (
     .end()
     .modules.add('node_modules')
     .add(srcPath)
+    .add(paths.root)
 
   config.resolveLoader
     .set('symlinks', true)
