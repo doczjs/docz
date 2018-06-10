@@ -12,7 +12,6 @@ export type OnPreBuild = () => void
 export type OnPostBuild = () => void
 export type OnPreRender = () => void
 export type OnPostRender = () => void
-export type Wrapper = <R>(props: any) => R
 
 export interface PluginFactory {
   setConfig?: SetConfig
@@ -23,7 +22,6 @@ export interface PluginFactory {
   onPostBuild?: OnPostBuild
   onPreRender?: OnPreRender
   onPostRender?: OnPostRender
-  wrapper?: Wrapper
 }
 
 export class Plugin<C = any> implements PluginFactory {
@@ -68,7 +66,6 @@ export class Plugin<C = any> implements PluginFactory {
   public readonly onPostBuild?: OnPostBuild
   public readonly onPreRender?: OnPreRender
   public readonly onPostRender?: OnPostRender
-  public readonly wrapper?: Wrapper
 
   constructor(p: PluginFactory) {
     this.setConfig = p.setConfig
@@ -79,7 +76,6 @@ export class Plugin<C = any> implements PluginFactory {
     this.onPostBuild = p.onPostBuild
     this.onPreRender = p.onPreRender
     this.onPostRender = p.onPostRender
-    this.wrapper = p.wrapper
   }
 }
 

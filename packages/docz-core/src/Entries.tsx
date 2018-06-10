@@ -19,7 +19,6 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
   const props = Plugin.propsOfPlugins(plugins)
   const html = renderToString(<Html title={title} description={description} />)
 
-  const wrappers = props('wrapper')
   const onPreRenders = props('onPreRender')
   const onPostRenders = props('onPostRender')
 
@@ -28,8 +27,8 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
 
   const rawRootJs = root({
     theme,
-    wrappers,
     isProd: !dev,
+    wrapper: config.wrapper,
     websocketUrl: `ws://${config.websocketHost}:${config.websocketPort}`,
   })
 

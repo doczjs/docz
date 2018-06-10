@@ -1,20 +1,11 @@
 import React from 'react'
 import { hot } from 'react-hot-loader'
 import Theme from '<%- theme %>'
+<% if (wrapper) {%>import Wrapper from '<%- wrapper %>'<%}%>
 <% if (isProd) {%>import config from './config.json'<%}%>
 <% if (isProd) {%>import entries from './entries.json'<%}%>
 
 <% if (!isProd) {%>const socket = new WebSocket(`<%- websocketUrl %>`)<%}%>
-const _wrappers = [<% if (wrappers) {%><%- wrappers %><%}%>]
-
-const recursiveWrappers = ([Wrapper, ...rest], props) => (
-  <Wrapper {...props}>
-    {rest.length ? recursiveWrappers(rest, props) : props.children}
-  </Wrapper>
-)
-
-const Wrapper = props =>
-  _wrappers.length ? recursiveWrappers(_wrappers, props) : props.children
 
 <% if (!isProd) {%>
 class Root extends React.Component {
@@ -39,7 +30,7 @@ class Root extends React.Component {
 
   render() {
     const { imports } = this.props
-    return <Theme {...this.state} imports={imports} wrapper={Wrapper} />
+    return <Theme {...this.state} imports={imports} <% if (wrapper) {%>wrapper={Wrapper}<%}%>/>
   }
 }
 <%} else {%>
@@ -48,7 +39,7 @@ const Root = ({ imports }) => (
     imports={imports}
     config={config}
     entries={entries}
-    wrapper={Wrapper}
+    <% if (wrapper) {%>wrapper={Wrapper}<%}%>
   />
 )
 <%}%>

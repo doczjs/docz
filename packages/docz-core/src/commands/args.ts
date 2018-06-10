@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { Plugin } from '../Plugin'
 
 export interface Argv {
@@ -30,6 +31,7 @@ export interface Config extends Argv {
   mdPlugins: any[]
   hastPlugins: any[]
   themeConfig: ThemeConfig
+  wrapper?: React.ComponentType<any>
   modifyBundlerConfig<C>(config: C, dev: boolean): C
 }
 

@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Fragment, SFC } from 'react'
 import { ComponentType as CT } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import merge from 'deepmerge'
@@ -50,16 +51,18 @@ const initialContext: DataContext = {
 export const dataContext = React.createContext(initialContext)
 
 export interface ThemeProps extends DataContext {
-  wrapper: CT
+  wrapper?: CT
   children(WrappedComponent: CT): JSX.Element
 }
+
+const DefaultWrapper: SFC = ({ children }) => <Fragment>{children}</Fragment>
 
 export function theme(
   WrappedComponent: CT,
   defaultConfig?: ThemeConfig
 ): CT<ThemeProps> {
   const Theme: CT<ThemeProps> = ({
-    wrapper: Wrapper,
+    wrapper: Wrapper = DefaultWrapper,
     entries,
     imports,
     config = {},
