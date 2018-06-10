@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { Plugin } from '../Plugin'
 
 export interface Argv {
@@ -20,6 +19,8 @@ export interface Argv {
   title: string
   description: string
   theme: string
+  wrapper?: string
+  indexHtml?: string
 }
 
 export interface ThemeConfig {
@@ -31,7 +32,6 @@ export interface Config extends Argv {
   mdPlugins: any[]
   hastPlugins: any[]
   themeConfig: ThemeConfig
-  wrapper?: React.ComponentType<any>
   modifyBundlerConfig<C>(config: C, dev: boolean): C
 }
 
@@ -74,6 +74,12 @@ export const args = (yargs: any) => {
   yargs.positional('propsParser', {
     type: 'boolean',
     default: true,
+  })
+  yargs.positional('wrapper', {
+    type: 'string',
+  })
+  yargs.positional('indexHtml', {
+    type: 'string',
   })
   yargs.positional('debug', {
     type: 'boolean',

@@ -1,8 +1,6 @@
-import * as React from 'react'
 import * as fs from 'fs-extra'
 import * as glob from 'fast-glob'
 import * as path from 'path'
-import { renderToString } from 'react-dom/server'
 
 import * as paths from './config/paths'
 import { touch, compiled } from './utils/fs'
@@ -10,20 +8,22 @@ import { touch, compiled } from './utils/fs'
 import { Entry, parseMdx } from './Entry'
 import { Plugin } from './Plugin'
 import { Config } from './commands/args'
-import { Html } from './components/Html'
 
 const fromTemplates = (file: string) => path.join(paths.templates, file)
 
+const getHtmlFilepath = (indexHtml: string | undefined) =>
+  indexHtml ? path.join(paths.root, indexHtml) : fromTemplates('index.tpl.html')
+
 const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
-  const { plugins, title, description, theme } = config
+  const { plugins, title, description, theme, indexHtml } = config
   const props = Plugin.propsOfPlugins(plugins)
-  const html = renderToString(<Html title={title} description={description} />)
 
   const onPreRenders = props('onPreRender')
   const onPostRenders = props('onPostRender')
 
   const root = await compiled(fromTemplates('root.tpl.js'))
   const js = await compiled(fromTemplates('index.tpl.js'))
+  const html = await compiled(getHtmlFilepath(indexHtml))
 
   const rawRootJs = root({
     theme,
@@ -37,9 +37,14 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
     onPostRenders,
   })
 
+  const rawIndexHtml = html({
+    title,
+    description,
+  })
+
   await touch(paths.rootJs, rawRootJs)
   await touch(paths.indexJs, rawIndexJs)
-  await touch(paths.indexHtml, `<!DOCTYPE html>${html}`)
+  await touch(paths.indexHtml, rawIndexHtml)
 }
 
 const writeImports = async (map: EntryMap): Promise<void> => {
