@@ -22,23 +22,18 @@ export const parseMdx = (file: string): Promise<string> => {
   return parser.run(parser.parse(raw))
 }
 
-const getFromParsedData = (value: string) => (ast: any) => {
+const getParsedData = (ast: any) => {
   const node = find(ast, (node: any) => is('yaml', node))
-  return get(node, `data.parsedValue.${value}`)
+  return get(node, `data.parsedValue`)
 }
-
-const getName = getFromParsedData('name')
-const getRoute = getFromParsedData('route')
-const getMenu = getFromParsedData('menu')
-const getOrder = getFromParsedData('order')
-const getSettings = getFromParsedData('settings')
 
 export class Entry {
   readonly [key: string]: any
 
   public static async check(file: string): Promise<boolean | null> {
     const ast = await parseMdx(file)
-    return Boolean(getName(ast))
+    const parsed = getParsedData(ast)
+    return Boolean(parsed && parsed.name)
   }
 
   public id: string
@@ -46,21 +41,24 @@ export class Entry {
   public slug: string
   public route: string
   public name: string
-  public menu: string | null
   public order: number
-  public settings: any
+  public menu: string | null
+  public settings: {
+    [key: string]: any
+  }
 
   constructor(ast: any, file: string, src: string) {
     const filepath = this.getFilepath(file, src)
+    const parsed = getParsedData(ast)
 
     this.id = ulid()
     this.filepath = filepath
     this.slug = this.slugify(filepath)
-    this.route = this.getRoute(ast)
-    this.name = getName(ast)
-    this.menu = getMenu(ast)
-    this.order = parseInt(getOrder(ast), 10) || 0
-    this.settings = getSettings(ast) || {}
+    this.route = this.getRoute(parsed)
+    this.name = parsed.name
+    this.order = parsed.order || 0
+    this.menu = parsed.menu
+    this.settings = parsed
   }
 
   private getFilepath(file: string, src: string): string {
@@ -75,7 +73,7 @@ export class Entry {
     return slugify(fileWithoutExt)
   }
 
-  private getRoute(ast: any): string {
-    return getRoute(ast) || `/${this.slug}`
+  private getRoute(parsed: any): string {
+    return parsed && parsed.route ? parsed.route : `/${this.slug}`
   }
 }

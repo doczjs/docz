@@ -48,6 +48,7 @@ export const Docs: React.SFC<DocsProps> = ({ children }) => {
         const menus = getMenusFromEntries(entriesArr).sort((a, b) =>
           sortBy(a, b)
         )
+
         const docs = entriesArr
           .sort((a, b) => sortBy(a.name, b.name))
           .sort((a, b) => b.order - a.order)

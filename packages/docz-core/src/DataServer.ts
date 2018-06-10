@@ -32,7 +32,7 @@ export class DataServer {
 
     const handleConnection = async (socket: WS) => {
       const update = this.updateEntries(entries, socket)
-      const map = await entries.getMap()
+      const map = await entries.get()
 
       watcher.on('change', async () => update(this.config))
       watcher.on('unlink', async () => update(this.config))
@@ -89,7 +89,7 @@ export class DataServer {
   ): (config: Config) => Promise<void> {
     return async config => {
       if (isSocketOpened(socket)) {
-        const map = await entries.getMap()
+        const map = await entries.get()
 
         await Entries.writeImports(map)
         socket.send(this.entriesData(map))

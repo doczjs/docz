@@ -4,6 +4,7 @@ import * as path from 'path'
 
 import * as paths from './config/paths'
 import { touch, compiled } from './utils/fs'
+import { mapToObj } from './utils/helpers'
 
 import { Entry, parseMdx } from './Entry'
 import { Plugin } from './Plugin'
@@ -49,7 +50,9 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
 
 const writeImports = async (map: EntryMap): Promise<void> => {
   const imports = await compiled(fromTemplates('imports.tpl.js'))
-  await touch(paths.importsJs, imports({ entries: Object.values(map) }))
+  const rawImportsJs = imports({ entries: Object.values(map) })
+
+  await touch(paths.importsJs, rawImportsJs)
 }
 
 const writeData = async (map: EntryMap, config: Config): Promise<void> => {
@@ -63,7 +66,18 @@ const writeData = async (map: EntryMap, config: Config): Promise<void> => {
   await touch(paths.configJson, JSON.stringify(configObj, null, 2))
 }
 
-export type EntryMap = Record<string, Entry>
+export interface EntryObj {
+  id: string
+  filepath: string
+  slug: string
+  name: string
+  route: string
+  order: number
+  menu: string | null
+  [key: string]: any
+}
+
+export type EntryMap = Record<string, EntryObj>
 
 export class Entries {
   public static async writeApp(config: Config, dev?: boolean): Promise<void> {
@@ -79,19 +93,15 @@ export class Entries {
     await writeData(map, config)
   }
 
-  public all: EntryMap
-  public getMap: () => Promise<EntryMap>
+  public all: Map<string, EntryObj>
+  public get: () => Promise<EntryMap>
 
   constructor(config: Config) {
-    this.all = {}
-
-    this.getMap = async () => {
-      this.all = await this.get(config)
-      return this.all
-    }
+    this.all = new Map()
+    this.get = async () => this.getMap(config)
   }
 
-  private async get(config: Config): Promise<EntryMap> {
+  private async getMap(config: Config): Promise<EntryMap> {
     const { src, files: pattern } = config
 
     const ignoreGlob = '!node_modules'
@@ -103,18 +113,22 @@ export class Entries {
 
     const createEntry = async (file: string) => {
       const ast = await parseMdx(file)
-      return new Entry(ast, file, src)
+      const { settings, ...entry } = new Entry(ast, file, src)
+
+      return {
+        ...settings,
+        ...entry,
+      }
     }
 
-    const filesToReduce = await Promise.all(
-      files.filter(isEntry).map(createEntry)
-    )
+    const map = new Map()
+    const entries = await Promise.all(files.filter(isEntry).map(createEntry))
 
-    const reducer = (obj: EntryMap, entry: Entry) => ({
-      ...obj,
-      [entry.filepath]: entry,
-    })
+    for (const entry of entries) {
+      map.set(entry.filepath, entry)
+    }
 
-    return filesToReduce.reduce(reducer, {})
+    this.all = map
+    return mapToObj(map)
   }
 }

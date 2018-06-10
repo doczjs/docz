@@ -10,7 +10,7 @@
     "packages:build": "lerna run build --ignore docz-example-*",
     "prerelease": "yarn run packages",
     "release": "lerna publish --conventional-commits",
-    "release:beta": "yarn release --npm-tag=beta --cd-version=prerelease --preid=beta"
+    "release:beta": "yarn release --npm-tag=beta --preid=beta"
   },
   "devDependencies": {
     "del": "^3.0.0",

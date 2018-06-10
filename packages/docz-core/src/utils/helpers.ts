@@ -38,3 +38,9 @@ export function isArrEqual(arr: any[] | null, to: any[] | null): boolean {
 
   return equals
 }
+
+export const mapToObj = (map: Map<any, any>) =>
+  Array.from(map.entries()).reduce(
+    (obj, [key, value]) => ({ ...obj, [`${key}`]: value }),
+    {}
+  )

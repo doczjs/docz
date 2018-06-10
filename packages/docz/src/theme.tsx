@@ -22,11 +22,9 @@ export interface Entry {
   slug: string
   route: string
   name: string
-  menu: string | null
   order: number
-  settings: {
-    [key: string]: any
-  }
+  menu: string | null
+  [key: string]: any
 }
 
 export interface ThemeConfig {

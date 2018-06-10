@@ -12,7 +12,7 @@ export const build = async (args: Config) => {
   const config = loadConfig(args)
   const bundler = webpack(config, 'production')
   const entries = new Entries(config)
-  const map = await entries.getMap()
+  const map = await entries.get()
   const run = Plugin.runPluginsMethod(config.plugins)
 
   await fs.remove(paths.app)

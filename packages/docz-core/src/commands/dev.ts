@@ -17,7 +17,7 @@ export const dev = async (args: Config) => {
   const config = loadConfig(args)
   const bundler = webpack(config, 'development')
   const entries = new Entries(config)
-  const map = await entries.getMap()
+  const map = await entries.get()
   const server = await bundler.createServer(bundler.getConfig())
   const app = await server.start()
 
