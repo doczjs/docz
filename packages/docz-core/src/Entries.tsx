@@ -6,7 +6,7 @@ import * as paths from './config/paths'
 import { touch, compiled } from './utils/fs'
 import { mapToObj } from './utils/helpers'
 
-import { Entry, parseMdx } from './Entry'
+import { Entry, EntryObj, parseMdx } from './Entry'
 import { Plugin } from './Plugin'
 import { Config } from './commands/args'
 
@@ -64,17 +64,6 @@ const writeData = async (map: EntryMap, config: Config): Promise<void> => {
 
   await touch(paths.entriesJson, JSON.stringify(map, null, 2))
   await touch(paths.configJson, JSON.stringify(configObj, null, 2))
-}
-
-export interface EntryObj {
-  id: string
-  filepath: string
-  slug: string
-  name: string
-  route: string
-  order: number
-  menu: string | null
-  [key: string]: any
 }
 
 export type EntryMap = Record<string, EntryObj>

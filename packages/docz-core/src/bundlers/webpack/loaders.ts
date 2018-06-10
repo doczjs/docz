@@ -2,6 +2,8 @@ import * as path from 'path'
 import HappyPack from 'happypack'
 import merge from 'deepmerge'
 import matter from 'remark-frontmatter'
+import slug from 'rehype-slug'
+import headings from 'rehype-autolink-headings'
 
 import Config from 'webpack-chain'
 import { plugin as mdastPlugin } from '../../utils/plugin-mdast'
@@ -99,7 +101,7 @@ export const mdx = (config: Config, args: Args) => {
       type: 'yaml',
       marker: '-',
       mdPlugins: mdPlugins.concat([matter, mdastPlugin]),
-      hastPlugins: hastPlugins.concat([hastPlugin]),
+      hastPlugins: hastPlugins.concat([hastPlugin, slug, headings]),
     })
 }
 

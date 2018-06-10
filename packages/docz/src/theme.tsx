@@ -16,6 +16,12 @@ export interface MSXImport {
   default: MSXComponent
 }
 
+export interface Heading {
+  depth: number
+  slug: string
+  value: string
+}
+
 export interface Entry {
   id: string
   filepath: string
@@ -24,6 +30,7 @@ export interface Entry {
   name: string
   order: number
   menu: string | null
+  headings: Heading[]
   [key: string]: any
 }
 

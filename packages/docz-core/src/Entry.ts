@@ -4,11 +4,14 @@ import vfile from 'to-vfile'
 import unified from 'unified'
 import remark from 'remark-parse'
 import matter from 'remark-frontmatter'
+import slug from 'remark-slug'
 import parseFrontmatter from 'remark-parse-yaml'
 import slugify from '@sindresorhus/slugify'
 import find from 'unist-util-find'
 import is from 'unist-util-is'
+import visit from 'unist-util-visit'
 import get from 'lodash.get'
+import humanize from 'humanize-string'
 
 import * as paths from './config/paths'
 
@@ -18,6 +21,7 @@ export const parseMdx = (file: string): Promise<string> => {
     .use(remark, { type: 'yaml', marker: '-' })
     .use(matter)
     .use(parseFrontmatter)
+    .use(slug)
 
   return parser.run(parser.parse(raw))
 }
@@ -25,6 +29,41 @@ export const parseMdx = (file: string): Promise<string> => {
 const getParsedData = (ast: any) => {
   const node = find(ast, (node: any) => is('yaml', node))
   return get(node, `data.parsedValue`)
+}
+
+export interface Heading {
+  depth: number
+  slug: string
+  value: string
+}
+
+const getHeadings = (ast: any): Heading[] => {
+  const headings: Heading[] = []
+
+  visit(ast, 'heading', (node: any) => {
+    const slug = get(node, 'data.id')
+    const depth = get(node, 'depth')
+
+    headings.push({
+      depth,
+      slug,
+      value: humanize(slug),
+    })
+  })
+
+  return headings
+}
+
+export interface EntryObj {
+  id: string
+  filepath: string
+  slug: string
+  name: string
+  route: string
+  order: number
+  menu: string | null
+  headings: Heading[]
+  [key: string]: any
 }
 
 export class Entry {
@@ -43,6 +82,7 @@ export class Entry {
   public name: string
   public order: number
   public menu: string | null
+  public headings: Heading[]
   public settings: {
     [key: string]: any
   }
@@ -58,6 +98,7 @@ export class Entry {
     this.name = parsed.name
     this.order = parsed.order || 0
     this.menu = parsed.menu
+    this.headings = getHeadings(ast)
     this.settings = parsed
   }
 
