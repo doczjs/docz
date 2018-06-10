@@ -36,9 +36,9 @@
 
 ## 🤔 &nbsp; Why?
 
-The open source world with your tools that make developer's life easier and the creation of styleguides and design system are growing and evolving so fast. New and impressive things arising every day. Tools that can possibility to bring this evolution to us are really necessary nowadays. We can't create barriers or loose time with tasks that should be trivials for us.
+The open source world with your tools that make developer's life easier and the creation of styleguides and design system are growing and evolving so fast. New and impressive things arising every day. Tools that can possibly bring this evolution to us are really necessary nowadays. We can't create barriers or loose time with tasks that should be trivials for us.
 
-To break barriers and facilitating the creation of tools that's Docz arose. Document our things is one of the most important and painfull process that exist when you're creating someting new. We loose a lot our precious time with unnescessary setups to can build someting that can represent and express what we want with our own style.
+To break barriers and facilitate the creation of tools Docz arose. Documenting our things is one of the most important and painfull process that exists when you're creating someting new. We loose a lot our precious time with unnecessary setups to be able to build someting that can represent and express what we want with our own style.
 
 ## 📚 &nbsp; About
 
@@ -58,13 +58,13 @@ To break barriers and facilitating the creation of tools that's Docz arose. Docu
 
 ## 📟 &nbsp; Install and Usage
 
-Be easy is one of our core principles. So, to getting started with docz is something really easy and quick. First of all, you need to install docz on your project using some package manager
+Be easy is one of our core principles. So, getting started with docz is something really easy and quick. First of all, you need to install docz on your project using some package manager
 
 ```bash
 $ yarn add docz --dev
 ```
 
-Then create some `.mdx` anywhere file inside your project:
+Then create some `.mdx` file anywhere inside your project:
 
 ```markdown
 ---
@@ -92,7 +92,7 @@ Now just run your dev server
 $ yarn docz dev
 ```
 
-That's it! You're have a badass documentation now 👊
+That's it! You have a badass documentation now 👊
 
 ![](https://cdn-std.dprcdn.net/files/acc_649651/AmFJ2k)
 
