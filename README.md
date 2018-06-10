@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-  <img src="https://cdn-std.dprcdn.net/files/acc_649651/78jM8k">
+  <img src="https://cdn-std.dprcdn.net/files/acc_649651/OnwqVu">
 </p>
 
 <p align="center">
