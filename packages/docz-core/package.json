@@ -1,6 +1,6 @@
 {
   "name": "docz-core",
-  "version": "0.1.2-beta.5",
+  "version": "0.2.0-beta.0",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",

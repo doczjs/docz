@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.0-beta.0"></a>
+# [0.2.0-beta.0](https://github.com/doczjs/docz/compare/v0.1.2-beta.6...v0.2.0-beta.0) (2018-06-10)
+
+
+### Features
+
+* **docz-core:** add indexHtml property on project configuration ([6bb5167](https://github.com/doczjs/docz/commit/6bb5167))
+
+
+
+
 <a name="0.1.2-beta.6"></a>
 ## [0.1.2-beta.6](https://github.com/doczjs/docz/compare/v0.1.2-beta.5...v0.1.2-beta.6) (2018-06-09)
 
