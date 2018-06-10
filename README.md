@@ -23,21 +23,9 @@
   <a href="https://docz.site/plugins" target="_blank">Plugins</a>
 </p>
 
-## Introduction
+---
 
-The open source world with your tools that make developer's life easier and the creation of styleguides and design system are growing and evolving so fast. New and impressive things arising every day. Tools that can possibility to bring this evolution to us are really necessary nowadays. We can't create barriers or loose time with tasks that should be trivials for us.
-
-To break barriers and facilitating the creation of tools that's Docz arose. Document our things is one of the most important and painfull process that exist when you're creating someting new. We loose a lot our precious time with unnescessary setups to can build someting that can represent and express what we want with our own style.
-
-## More info
-
-- [Getting Started](http://www.docz.site/introduction/getting-started)
-- [Writing MDX](http://www.docz.site/introduction/writing-mdx)
-- [Documenting your Things](http://www.docz.site/introduction/documenting-your-things)
-- [Customizing](http://www.docz.site/introduction/customizing)
-- [Deploying your docs](http://www.docz.site/introduction/deploying-your-docs)
-
-## Features
+## 🎩 &nbsp; Features
 
 - 🧘 **Zero config and easy.** Don't worry about complex configurations steps.
 - ⚡️ **Blazing Fast.** Hot reload fully support with Wepack 4 and automatic code splitting.
@@ -46,7 +34,29 @@ To break barriers and facilitating the creation of tools that's Docz arose. Docu
 - 🎛 **Pluggable.** With plugins you can manipulate a lot of things throught the docz flow and data.
 - 🔐 **Typescript Support.** We have a fully support for your typings.
 
-## Usage
+## 🤔 &nbsp; Why?
+
+The open source world with your tools that make developer's life easier and the creation of styleguides and design system are growing and evolving so fast. New and impressive things arising every day. Tools that can possibility to bring this evolution to us are really necessary nowadays. We can't create barriers or loose time with tasks that should be trivials for us.
+
+To break barriers and facilitating the creation of tools that's Docz arose. Document our things is one of the most important and painfull process that exist when you're creating someting new. We loose a lot our precious time with unnescessary setups to can build someting that can represent and express what we want with our own style.
+
+## 📚 &nbsp; About
+
+- [Introduction](http://www.docz.site/introduction)
+  - [Getting Started](http://www.docz.site/introduction/getting-started)
+  - [Writing MDX](http://www.docz.site/introduction/writing-mdx)
+  - [Documenting your Things](http://www.docz.site/introduction/documenting-your-things)
+  - [Customizing](http://www.docz.site/introduction/customizing)
+  - [Deploying your docs](http://www.docz.site/introduction/deploying-your-docs)
+- [Documentation](http://www.docz.site/documentation)
+  - [Project Configuration](http://www.docz.site/documentation/project-configuration)
+  - [Components API](http://www.docz.site/documentation/components-api)
+  - [Creating Themes](http://www.docz.site/documentation/creating-themes)
+  - [CreatingPlugins](http://www.docz.site/documentation/creating-plugins)
+- [Themes](http://www.docz.site/themes)
+- [Plugins](http://www.docz.site/plugins)
+
+## 📟 &nbsp; Install and Usage
 
 Be easy is one of our core principles. So, to getting started with docz is something really easy and quick. First of all, you need to install docz on your project using some package manager
 
@@ -88,7 +98,7 @@ That's it! You're have a badass documentation now 👊
 
 Any doubt? Check [our docs](http://docz.site) to see more about Docz!
 
-## Contributions
+## 🤝 &nbsp; Contributions
 
 Contributions, issues and feature requests are very welcome. If you are using this package and fixed a bug for yourself, please consider submitting a PR!
 Also you can ping me at [Twitter](https://twitter.com/pedronauck)
