@@ -16,11 +16,11 @@
 ---
 
 <p align="center">
-  <a href="https://docz.site" target="_blank">Home</a> |
-  <a href="https://docz.site/introduction" target="_blank">Introduction</a> |
-  <a href="https://docz.site/documentation" target="_blank">Documentation</a> |
-  <a href="https://docz.site/themes" target="_blank">Themes</a> |
-  <a href="https://docz.site/plugins" target="_blank">Plugins</a>
+  <a href="http://docz.site" target="_blank">Home</a> |
+  <a href="http://docz.site/introduction" target="_blank">Introduction</a> |
+  <a href="http://docz.site/documentation" target="_blank">Documentation</a> |
+  <a href="http://docz.site/themes" target="_blank">Themes</a> |
+  <a href="http://docz.site/plugins" target="_blank">Plugins</a>
 </p>
 
 ---
