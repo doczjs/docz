@@ -89,7 +89,6 @@ export const PropsTable: SFC<PropsTable> = ({ of: component, components }) => {
     return null
   }
 
-  const H2 = components.h2 || 'h2'
   const Table = components.table || 'table'
   const Thead = components.thead || 'thead'
   const Tr = components.tr || 'tr'
@@ -100,7 +99,6 @@ export const PropsTable: SFC<PropsTable> = ({ of: component, components }) => {
 
   return (
     <Fragment>
-      <H2>Properties</H2>
       <Table className="PropsTable">
         <Thead>
           <Tr>

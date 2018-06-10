@@ -17,6 +17,10 @@ export const base = (config: any) => {
       box-sizing: border-box;
     }
 
+    .icon-link {
+      display: none;
+    }
+
     ::-moz-selection {
       ${selection(config.colors.link)}
     }

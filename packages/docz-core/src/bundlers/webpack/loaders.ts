@@ -100,6 +100,22 @@ export const mdx = (config: Config, args: Args) => {
     .options({
       type: 'yaml',
       marker: '-',
+      properties: {
+        'aria-hidden': true,
+      },
+      content: {
+        type: 'element',
+        tagName: 'span',
+        properties: {
+          className: ['icon-link'],
+        },
+        children: [
+          {
+            type: 'text',
+            value: '#',
+          },
+        ],
+      },
       mdPlugins: mdPlugins.concat([matter, mdastPlugin]),
       hastPlugins: hastPlugins.concat([hastPlugin, slug, headings]),
     })
