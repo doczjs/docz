@@ -28,17 +28,17 @@
 ## 🎩 &nbsp; Features
 
 - 🧘 **Zero config and easy.** Don't worry about complex configurations steps.
-- ⚡️ **Blazing Fast.** Hot reload fully support with Wepack 4 and automatic code splitting.
-- 💅 **Easy to customize.** Create and use fully customizable themes.
+- ⚡️ **Blazing Fast.** Full hot reload support with Wepack 4 and automatic code splitting.
+- 💅 **Easy to customize.** Create and use real customizable themes.
 - 📝 **MDX Based.** Write markdown with all power of components.
-- 🎛 **Pluggable.** With plugins you can manipulate a lot of things throught the docz flow and data.
-- 🔐 **Typescript Support.** We have a fully support for your typings.
+- 🎛 **Pluggable.** With plugins, you can manipulate a lot of things through the docz flow and data.
+- 🔐 **Typescript Support.** We have a full support for your type definitions.
 
 ## 🤔 &nbsp; Why?
 
-The open source world with your tools that make developer's life easier and the creation of styleguides and design system are growing and evolving so fast. New and impressive things arising every day. Tools that can possibility to bring this evolution to us are really necessary nowadays. We can't create barriers or loose time with tasks that should be trivials for us.
+The open source world with tools that make developer's life easier, the creation of styleguides and design system are growing and evolving so fast. New and impressive things arising every day. Tools that allow us to evolve together are really necessary nowadays. We can't create barriers or lose time with tasks that should be trivial for us.
 
-To break barriers and facilitating the creation of tools that's Docz arose. Document our things is one of the most important and painfull process that exist when you're creating someting new. We loose a lot our precious time with unnescessary setups to can build someting that can represent and express what we want with our own style.
+To break barriers and facilitating the creation of tools that's Docz arose. Document our things is one of the most important and painful processes that exist when you're creating something new. We lose a lot of our precious time with unnecessary setups to can build something that can represent and express what we want with our own style.
 
 ## 📚 &nbsp; About
 
@@ -58,13 +58,13 @@ To break barriers and facilitating the creation of tools that's Docz arose. Docu
 
 ## 📟 &nbsp; Install and Usage
 
-Be easy is one of our core principles. So, to getting started with docz is something really easy and quick. First of all, you need to install docz on your project using some package manager
+Simplicity is one of our core principles. So, getting started with docz is something really easy and quick. First of all, you need to install docz on your project using some package manager
 
 ```bash
 $ yarn add docz --dev
 ```
 
-Then create some `.mdx` anywhere file inside your project:
+Then create some `.mdx` anywhere inside your project:
 
 ```markdown
 ---
@@ -86,13 +86,13 @@ import Button from './'
 </Playground>
 ```
 
-Now just run your dev server
+Now just run your dev server:
 
 ```bash
 $ yarn docz dev
 ```
 
-That's it! You're have a badass documentation now 👊
+That's it! You have a real badass documentation now 👊
 
 ![](https://cdn-std.dprcdn.net/files/acc_649651/AmFJ2k)
 
