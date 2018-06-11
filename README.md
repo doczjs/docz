@@ -38,7 +38,7 @@
 
 The open source world with your tools that make developer's life easier and the creation of styleguides and design system are growing and evolving so fast. New and impressive things arising every day. Tools that can possibly bring this evolution to us are really necessary nowadays. We can't create barriers or loose time with tasks that should be trivials for us.
 
-To break barriers and facilitate the creation of tools Docz arose. Documenting our things is one of the most important and painfull process that exists when you're creating someting new. We loose a lot our precious time with unnecessary setups to be able to build someting that can represent and express what we want with our own style.
+To break barriers and facilitate the creation of tools Docz arose. Documenting our things is one of the most important and painfull processes that exist when you're creating someting new. We loose a lot our precious time with unnecessary setups to be able to build someting that can represent and express what we want with our own style.
 
 ## 📚 &nbsp; About
 
