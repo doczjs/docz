@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/pedronauck/docz/compare/v0.2.0-beta.2...v0.2.0) (2018-06-11)
+
+
+### Bug Fixes
+
+* readme image ([470b235](https://github.com/pedronauck/docz/commit/470b235))
+* readme links ([61de7cd](https://github.com/pedronauck/docz/commit/61de7cd))
+* readme links ([f7b1120](https://github.com/pedronauck/docz/commit/f7b1120))
+
+
+
+
 <a name="0.2.0-beta.2"></a>
 # [0.2.0-beta.2](https://github.com/doczjs/docz/compare/v0.2.0-beta.1...v0.2.0-beta.2) (2018-06-10)
 
