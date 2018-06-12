@@ -43,7 +43,7 @@ export const args = (yargs: any) => {
   yargs.positional('source', {
     alias: 'src',
     type: 'string',
-    default: 'src/',
+    default: './',
   })
   yargs.positional('files', {
     type: 'string',
