@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.1"></a>
+## [0.2.1](https://github.com/pedronauck/docz/compare/v0.2.0...v0.2.1) (2018-06-12)
+
+
+### Bug Fixes
+
+* playground component destructuring bug ([#4](https://github.com/pedronauck/docz/issues/4)) ([f9026cf](https://github.com/pedronauck/docz/commit/f9026cf))
+
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/pedronauck/docz/compare/v0.2.0-beta.2...v0.2.0) (2018-06-11)
 
