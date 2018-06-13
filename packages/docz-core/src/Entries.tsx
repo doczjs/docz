@@ -114,6 +114,9 @@ export class Entries {
     const entries = await Promise.all(files.filter(isEntry).map(createEntry))
 
     for (const entry of entries) {
+      if (process.platform === "win32") {
+        entry.filepath = entry.filepath.split('\\').join('/')
+      }
       map.set(entry.filepath, entry)
     }
 
