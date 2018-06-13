@@ -8877,6 +8877,19 @@ webpack-hot-client@^3.0.0:
     webpack-log "^1.1.1"
     ws "^4.0.0"
 
+webpack-hot-client@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.npmjs.org/webpack-hot-client/-/webpack-hot-client-4.0.3.tgz#d96cef0f199ded606fd7396e0a32e3d03bf79280"
+  dependencies:
+    "@webpack-contrib/schema-utils" "^1.0.0-beta.0"
+    json-stringify-safe "^5.0.1"
+    loglevelnext "^1.0.2"
+    merge-options "^1.0.1"
+    strip-ansi "^4.0.0"
+    uuid "^3.1.0"
+    webpack-log "^1.1.1"
+    ws "^4.0.0"
+
 webpack-log@^1.0.1, webpack-log@^1.1.1, webpack-log@^1.1.2:
   version "1.2.0"
   resolved "https://registry.npmjs.org/webpack-log/-/webpack-log-1.2.0.tgz#a4b34cda6b22b518dbb0ab32e567962d5c72a43d"
