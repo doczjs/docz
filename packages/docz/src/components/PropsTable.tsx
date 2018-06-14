@@ -91,7 +91,7 @@ const extractTypeDescribedValue = (type: PropType): string => {
   // shape
   if (typeof value === 'object' && name === 'shape') {
     // show only keys due to a recursive limitation
-    return Object.keys(value).join(' | ')
+    return `{ ${Object.keys(value).join(', ')} }`
   }
 
   // untreated
