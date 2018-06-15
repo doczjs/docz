@@ -18,15 +18,18 @@ export interface FlowTypeArgs {
   }
 }
 
+export interface PropType {
+  name: string
+  value?: any
+}
+
 export interface Prop {
   required: boolean
   description?: string
-  type: {
-    name: string
-    value?: EnumValue[]
-  }
+  type: PropType
   defaultValue?: {
     value: string
+    computed: boolean
   }
   flowType?: {
     elements: FlowTypeElement[]
@@ -61,7 +64,39 @@ export type TooltipComponent = React.ComponentType<{
   children: React.ReactNode
 }>
 
-const getValue = (value: string) => value.replace(/\'/g, '')
+const extractTypeDescribedValue = (type: PropType): string => {
+  const { name, value } = type
+
+  // instanceOf, computed shape, uknown enum
+  if (typeof value === 'string') {
+    return value
+  }
+
+  // oneOf, oneOfType
+  if (Array.isArray(value)) {
+    return value.map(valueType => {
+      if (valueType.name === 'custom') {
+        return `custom(${valueType.raw})`
+      } 
+
+      return valueType.name || valueType.value
+    }).join(' | ')
+  }
+
+  // arrayOf, objectOf
+  if (typeof value === 'object' && name !== 'shape') {
+    return value.name
+  }
+
+  // shape
+  if (typeof value === 'object' && name === 'shape') {
+    // show only keys due to a recursive limitation
+    return `{ ${Object.keys(value).join(', ')} }`
+  }
+
+  // untreated
+  return ''
+}
 
 const getPropType = (prop: Prop, Tooltip?: TooltipComponent) => {
   const name = prop.flowType ? prop.flowType.name : prop.type.name
@@ -75,7 +110,7 @@ const getPropType = (prop: Prop, Tooltip?: TooltipComponent) => {
   return prop.flowType ? (
     <Tooltip text={prop.flowType.raw}>{name}</Tooltip>
   ) : (
-    <Tooltip text={value && value.map(val => getValue(val.value)).join(' | ')}>
+    <Tooltip text={extractTypeDescribedValue(prop.type)}>
       {name}
     </Tooltip>
   )
