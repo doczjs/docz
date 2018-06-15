@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.5"></a>
+## [0.2.5](https://github.com/pedronauck/docz/compare/v0.2.4...v0.2.5) (2018-06-15)
+
+
+### Bug Fixes
+
+* **docz:** add extractTypeDescribedValue to PropsTable ([#38](https://github.com/pedronauck/docz/issues/38)) ([cca862c](https://github.com/pedronauck/docz/commit/cca862c))
+* **docz:** PropsTable component ([48638cc](https://github.com/pedronauck/docz/commit/48638cc))
+
+
+
+
 <a name="0.2.4"></a>
 ## [0.2.4](https://github.com/pedronauck/docz/compare/v0.2.3...v0.2.4) (2018-06-13)
 
