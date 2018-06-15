@@ -35,7 +35,6 @@
     "react-spinners": "^0.3.2"
   },
   "peerDependencies": {
-    "docz": "^0.1.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
   },
