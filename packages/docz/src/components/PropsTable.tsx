@@ -74,13 +74,12 @@ const extractTypeDescribedValue = (type: PropType): string => {
 
   // oneOf, oneOfType
   if (Array.isArray(value)) {
-    return value.map(valueType => {
-      if (valueType.name === 'custom') {
-        return `custom(${valueType.raw})`
-      } 
-
+    const values = value.map(valueType => {
+      if (valueType.name === 'custom') return `custom(${valueType.raw})`
       return valueType.name || valueType.value
-    }).join(' | ')
+    })
+
+    return values.join(' | ')
   }
 
   // arrayOf, objectOf
@@ -110,9 +109,7 @@ const getPropType = (prop: Prop, Tooltip?: TooltipComponent) => {
   return prop.flowType ? (
     <Tooltip text={prop.flowType.raw}>{name}</Tooltip>
   ) : (
-    <Tooltip text={extractTypeDescribedValue(prop.type)}>
-      {name}
-    </Tooltip>
+    <Tooltip text={extractTypeDescribedValue(prop.type)}>{name}</Tooltip>
   )
 }
 
@@ -158,7 +155,8 @@ export const PropsTable: SFC<PropsTable> = ({ of: component, components }) => {
                   <Td>{getPropType(prop, Tooltip)}</Td>
                   <Td>{String(prop.required)}</Td>
                   <Td>
-                    {prop.defaultValue && getValue(prop.defaultValue.value)}
+                    {prop.defaultValue &&
+                      prop.defaultValue.value.replace(/\'/g, '')}
                   </Td>
                   <Td>{prop.description && prop.description}</Td>
                 </Tr>
