@@ -1,3 +1,5 @@
+import { doczPluginVue } from 'docz-plugin-vue'
+
 export default {
-  plugins: ['docz-plugin-vue'],
+  plugins: [doczPluginVue()],
 }
