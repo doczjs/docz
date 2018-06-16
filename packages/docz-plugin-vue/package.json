@@ -31,6 +31,10 @@
     "vuera": "^0.2.1"
   },
   "devDependencies": {
+    "vue": "^2.5.16",
+    "vue-loader": "^15.2.4",
+    "vue-template-compiler": "^2.5.16",
+    "css-loader": "^0.28.11",
     "typescript": "^2.9.1"
   }
 }

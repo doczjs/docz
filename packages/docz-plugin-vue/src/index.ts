@@ -1,4 +1,5 @@
 import { createPlugin } from 'docz-core'
+import { VueLoaderPlugin } from 'vue-loader'
 
 interface BabelRC {
   presets?: any[]
@@ -20,11 +21,20 @@ export const doczPluginVue = () =>
       babelrc.babelrc = true
       return babelrc
     }) as ModifyBabelRC,
+
     modifyBundlerConfig: (config => {
       config.module.rules.push({
         test: /\.vue$/,
         use: 'vue-loader',
       })
+
+      config.module.rules.push({
+        test: /\.css$/,
+        use: ['vue-style-loader', 'css-loader'],
+      })
+
+      config.plugins.push(new VueLoaderPlugin())
+
       return config
     }) as ModifyBundlerConfig,
   })
