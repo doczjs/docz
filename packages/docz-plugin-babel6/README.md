@@ -6,6 +6,6 @@ By default and by some performance issues, Docz use Babel@7. If you want to use 
 import { babel } from 'docz-plugin-babel6'
 
 export default {
-  plugins: [babel6]
+  plugins: [babel6()]
 }
 ```
