@@ -1,8 +1,6 @@
 # docz-plugin-babel6
 
-By default and by some performance issues, Docz use Babel@7. If you want to using some older version of babel use this plugin:
-
-Just import and use on your `doczrc.js`:
+By default and by some performance issues, Docz use Babel@7. If you want to use older versions of babel import this plugin and use on your `doczrc.js`:
 
 ```js
 import { babel } from 'docz-plugin-babel6'
