@@ -57,6 +57,10 @@ To break barriers and facilitate the creation of tools was the purpose that Docz
 - [Themes](http://www.docz.site/themes)
 - [Plugins](http://www.docz.site/plugins)
 
+## 🚧 &nbsp; Tips, tricks and warnings
+
+- [Use with Babel@6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6)
+
 ## 📟 &nbsp; Install and Usage
 
 Simplicity is one of our core principles. So, getting started with docz is something really easy and quick. First of all, you need to install docz on your project using some package manager
