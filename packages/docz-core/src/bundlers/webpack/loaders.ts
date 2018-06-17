@@ -13,6 +13,7 @@ import * as paths from '../../config/paths'
 
 export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
   const babelLoader: any = {
+    cacheDirectory: true,
     loader: require.resolve('babel-loader'),
     options: merge(babelrc, {
       plugins: [require.resolve('react-hot-loader/babel')],
