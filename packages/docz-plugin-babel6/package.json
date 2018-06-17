@@ -1,0 +1,31 @@
+{
+  "name": "docz-plugin-babel6",
+  "version": "0.2.4",
+  "main": "dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "module": "dist/index.m.js",
+  "typings": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "files": [
+    "dist/",
+    "package.json",
+    "README.md"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dev": "libundler watch --ts -e all",
+    "build": "libundler build --ts -e all --c",
+    "fix": "run-s fix:*",
+    "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
+    "fix:tslint": "tslint --fix --project .",
+    "tslint": "tslint --project ."
+  },
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-react-app": "^3.1.1",
+    "docz-core": "^0.2.4",
+    "happypack": "^5.0.0",
+    "ts-loader": "^4.4.1"
+  }
+}
