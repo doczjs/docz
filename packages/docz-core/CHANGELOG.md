@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.6"></a>
+## [0.2.6](https://github.com/pedronauck/docz/compare/v0.2.5...v0.2.6) (2018-06-17)
+
+
+### Bug Fixes
+
+* **docz-core:** change filepath entry for windows ([#31](https://github.com/pedronauck/docz/issues/31)) ([14bf0e2](https://github.com/pedronauck/docz/commit/14bf0e2))
+
+
+
+
 <a name="0.2.4"></a>
 ## [0.2.4](https://github.com/pedronauck/docz/compare/v0.2.3...v0.2.4) (2018-06-13)
 
