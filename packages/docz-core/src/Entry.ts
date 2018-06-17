@@ -104,11 +104,13 @@ export class Entry {
 
   private getFilepath(file: string, src: string): string {
     const srcPath = path.resolve(paths.root, src)
-    const srcPathRelative = path.relative(srcPath, file)
-    if (process.platform === "win32") {
-      return srcPathRelative.split('\\').join('/')
+    const relativePath = path.relative(srcPath, file)
+
+    if (process.platform === 'win32') {
+      return relativePath.split('\\').join('/')
     }
-    return srcPathRelative
+
+    return relativePath
   }
 
   private slugify(filepath: string): string {
