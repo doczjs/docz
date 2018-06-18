@@ -102,7 +102,6 @@ export const prismTheme = `
     padding-right: 5px;
   }
 
-
   .token.statement,
   .token.regex,
   .token.atrule {
