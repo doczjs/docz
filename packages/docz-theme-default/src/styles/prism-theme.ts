@@ -98,6 +98,10 @@ export const prismTheme = `
     color: #ac9739;
   }
 
+  .attr-value {
+    padding-right: 5px;
+  }
+
   .token.statement,
   .token.regex,
   .token.atrule {
