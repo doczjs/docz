@@ -9,7 +9,7 @@ const modifyHappypackLoader = (plugin: any) => {
   plugin.config.loaders[0].loader = require.resolve('babel-loader')
 }
 
-export const babel = () =>
+export const babel6 = () =>
   createPlugin({
     modifyBabelRc: (babelrc: BabelRC) => {
       if (!babelrc.presets) return babelrc
