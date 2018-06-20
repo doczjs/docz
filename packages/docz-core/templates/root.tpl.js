@@ -30,15 +30,24 @@ class Root extends React.Component {
 
   render() {
     const { imports } = this.props
-    return <Theme {...this.state} imports={imports} <% if (wrapper) {%>wrapper={Wrapper}<%}%>/>
+
+    return (
+      <Theme
+        {...this.state}
+        imports={imports}
+        hashRouter={<%- hashRouter %>}
+        <% if (wrapper) {%>wrapper={Wrapper}<%}%>
+      />
+    )
   }
 }
 <%} else {%>
 const Root = ({ imports }) => (
   <Theme
-    imports={imports}
     config={config}
     entries={entries}
+    imports={imports}
+    hashRouter={<%- hashRouter %>}
     <% if (wrapper) {%>wrapper={Wrapper}<%}%>
   />
 )

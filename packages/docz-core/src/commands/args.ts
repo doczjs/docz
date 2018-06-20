@@ -28,7 +28,8 @@ export interface ThemeConfig {
 }
 
 export interface Config extends Argv {
-  plugins?: Plugin[]
+  hashRouter: boolean
+  plugins: Plugin[]
   mdPlugins: any[]
   hastPlugins: any[]
   themeConfig: ThemeConfig
