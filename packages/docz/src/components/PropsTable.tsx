@@ -67,7 +67,7 @@ export type TooltipComponent = React.ComponentType<{
 const extractTypeDescribedValue = (type: PropType): string => {
   const { name, value } = type
 
-  // instanceOf, computed shape, uknown enum
+  // instanceOf, computed shape, unknown enum
   if (typeof value === 'string') {
     return value
   }
