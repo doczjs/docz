@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Fragment, SFC } from 'react'
 import { ComponentType as CT } from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter, BrowserRouter } from 'react-router-dom'
 import merge from 'deepmerge'
 
 import { ComponentsMap } from './components/DocPreview'
@@ -59,6 +59,7 @@ const DefaultWrapper: SFC = ({ children }) => <Fragment>{children}</Fragment>
 
 export interface ThemeProps extends DataContext {
   wrapper?: CT
+  hashRouter?: boolean
   children(WrappedComponent: CT): JSX.Element
 }
 
@@ -71,17 +72,19 @@ export function theme(defaultConfig?: ThemeConfig): ThemeReturn {
       entries,
       imports,
       config = {},
+      hashRouter = false,
     }) => {
       const newConfig = merge(defaultConfig, config)
       const value = { entries, imports, config: newConfig }
+      const Router = hashRouter ? HashRouter : BrowserRouter
 
       return (
         <dataContext.Provider value={value}>
-          <BrowserRouter basename={BASE_URL}>
+          <Router basename={BASE_URL}>
             <Wrapper>
               <WrappedComponent />
             </Wrapper>
-          </BrowserRouter>
+          </Router>
         </dataContext.Provider>
       )
     }

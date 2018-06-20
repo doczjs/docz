@@ -11,6 +11,7 @@ export const loadConfig = (args: Config): Config => {
   const config = load('docz', {
     ...args,
     paths,
+    hashRouter: false,
     plugins: [],
     mdPlugins: [],
     hastPlugins: [],
