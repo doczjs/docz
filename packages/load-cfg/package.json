@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@types/find-up": "^2.1.1",
-    "@types/node": "^10.3.2"
+    "@types/node": "^10.3.2",
+    "libundler": "^1.7.1"
   }
 }
