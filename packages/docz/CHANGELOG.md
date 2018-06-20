@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.7"></a>
+## [0.2.7](https://github.com/pedronauck/docz/compare/v0.2.6...v0.2.7) (2018-06-20)
+
+
+### Bug Fixes
+
+* **docz:** typo ([#63](https://github.com/pedronauck/docz/issues/63)) ([6af5db2](https://github.com/pedronauck/docz/commit/6af5db2))
+
+
+
+
 <a name="0.2.6"></a>
 ## [0.2.6](https://github.com/pedronauck/docz/compare/v0.2.5...v0.2.6) (2018-06-17)
 
