@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="https://img.shields.io/npm/v/docz.svg" alt="">
-  <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="">
-  <img src="https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square" alt="">
-  <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="">
+  <img src="https://cdn-std.dprcdn.net/files/acc_649651/OnwqVu">
 </p>
 
 <p align="center">
-  <img src="https://cdn-std.dprcdn.net/files/acc_649651/OnwqVu">
+  <img src="https://img.shields.io/npm/v/docz.svg" alt="">
+  <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="">
+  <img src="https://img.shields.io/npm/dt/docz.svg" alt="">
+  <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="">
 </p>
 
 <p align="center">
