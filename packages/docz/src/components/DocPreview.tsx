@@ -2,7 +2,7 @@ import * as React from 'react'
 import { SFC } from 'react'
 import loadable from 'loadable-components'
 import { Switch, Route, RouteComponentProps } from 'react-router-dom'
-import ErrorBoundary from './ErrorBoundary'
+import { ErrorBoundary } from './ErrorBoundary'
 
 import { dataContext, Entry, ImportMap } from '../theme'
 import { RenderComponent } from './Playground'

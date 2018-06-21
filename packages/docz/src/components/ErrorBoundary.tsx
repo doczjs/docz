@@ -1,7 +1,7 @@
 // Adapted from https://github.com/bvaughn/react-error-boundary/blob/master/src/ErrorBoundary.js
 
 import * as React from 'react'
-import * as DefaultErrorReporter from './ErrorReporter'
+import { ErrorReporter as DefaultErrorReporter } from './ErrorReporter'
 
 interface ErrorInfo {
   componentStack: string
@@ -24,7 +24,7 @@ const defaultProps = {
   ErrorReporter: DefaultErrorReporter,
 }
 
-class ErrorBoundary extends React.Component<
+export class ErrorBoundary extends React.Component<
   ErrorBoundaryProps,
   ErrorBoundaryState
 > {
@@ -64,5 +64,3 @@ class ErrorBoundary extends React.Component<
     return children
   }
 }
-
-export default ErrorBoundary

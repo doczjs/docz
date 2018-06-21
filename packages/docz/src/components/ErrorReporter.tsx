@@ -10,7 +10,10 @@ export interface ErrorReporterProps {
   errorInfo: ErrorInfo
 }
 
-const ErrorReporter: SFC<ErrorReporterProps> = ({ error, errorInfo }) => {
+export const ErrorReporter: SFC<ErrorReporterProps> = ({
+  error,
+  errorInfo,
+}) => {
   return (
     <div>
       <p>An error occurred while rendering this component:</p>
@@ -19,5 +22,3 @@ const ErrorReporter: SFC<ErrorReporterProps> = ({ error, errorInfo }) => {
     </div>
   )
 }
-
-export default ErrorReporter
