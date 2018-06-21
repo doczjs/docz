@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.7"></a>
+## [0.2.7](https://github.com/pedronauck/docz/compare/v0.2.6...v0.2.7) (2018-06-20)
+
+
+### Bug Fixes
+
+* **docz-plugin-babel6:** documentation for babel plugin ([#60](https://github.com/pedronauck/docz/issues/60)) ([8a14e2a](https://github.com/pedronauck/docz/commit/8a14e2a))
+* **docz-plugin-babel6:** readme typo ([b77e986](https://github.com/pedronauck/docz/commit/b77e986))
+* **docz-plugin-babel6:** typo ([d2f92b7](https://github.com/pedronauck/docz/commit/d2f92b7))
+
+
+
+
 <a name="0.2.6"></a>
 ## [0.2.6](https://github.com/pedronauck/docz/compare/v0.2.5...v0.2.6) (2018-06-17)
 
