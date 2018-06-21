@@ -67,8 +67,6 @@ const ButtonStyled = styled('button')`
   border-radius: 3px;
 `
 
-const Button: SFC<ButtonProps> = ({ children, ...props }) => (
+export const Button: SFC<ButtonProps> = ({ children, ...props }) => (
   <ButtonStyled {...props}>{children}</ButtonStyled>
 )
-
-export default Button

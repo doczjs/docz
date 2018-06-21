@@ -27,8 +27,6 @@ const AlertStyled = styled('div')`
   background: ${({ kind = 'info' }) => kinds[kind]};
 `
 
-const Alert = ({ kind = 'info', ...props }: AlertProps) => (
+export const Alert = ({ kind = 'info', ...props }: AlertProps) => (
   <AlertStyled {...props} kind={kind} />
 )
-
-export default Alert
