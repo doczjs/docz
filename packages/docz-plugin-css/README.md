@@ -55,7 +55,7 @@ export default {
 }
 ```
 
-## Using CSS Modules
+### Using CSS Modules
 
 To use css modules, just turn on `cssmodules` property on your project configuration:
 
