@@ -1,7 +1,8 @@
 <p align="center">
   <img src="https://img.shields.io/npm/v/docz.svg" alt="">
   <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="">
-  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="">
+  <img src="https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square" alt="">
+  <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="">
 </p>
 
 <p align="center">
