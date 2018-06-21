@@ -10,12 +10,18 @@
     "packages:build": "lerna run build --ignore docz-example-*",
     "prerelease": "yarn run packages",
     "release": "lerna publish --conventional-commits",
-    "release:beta": "yarn release --npm-tag=beta --preid=beta"
+    "release:beta": "yarn release --npm-tag=beta --preid=beta",
+    "precommit": "lint-staged"
   },
   "devDependencies": {
+    "@commitlint/cli": "^7.0.0",
+    "@commitlint/config-conventional": "^7.0.1",
+    "@commitlint/config-lerna-scopes": "^7.0.0",
     "del": "^3.0.0",
+    "husky": "^1.0.0-rc.9",
     "lerna": "^2.11.0",
     "libundler": "^1.7.1",
+    "lint-staged": "^7.2.0",
     "npm-run-all": "^4.1.3",
     "prettier": "^1.13.5",
     "trash-cli": "^1.4.0",
@@ -26,5 +32,23 @@
   "workspaces": [
     "packages/*",
     "examples/*"
-  ]
+  ],
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional",
+      "@commitlint/config-lerna-scopes"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,md,mdx}": [
+      "yarn packages:fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn packages:lint",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
 }
