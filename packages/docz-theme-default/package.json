@@ -23,6 +23,7 @@
     "docz": "^0.2.7",
     "emotion": "^9.2.1",
     "emotion-theming": "^9.2.1",
+    "facepaint": "^1.2.1",
     "fast-deep-equal": "^2.0.1",
     "prismjs": "^1.14.0",
     "prop-types": "15.6.1",
