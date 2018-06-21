@@ -1,15 +1,28 @@
 import React from 'react'
 import { Docs, Link, Entry, ThemeConfig } from 'docz'
 import styled from 'react-emotion'
+import { Toggle } from 'react-powerplug'
+import ChevronDown from 'react-feather/dist/icons/chevron-down'
 
 import { Menu } from './Menu'
 import logo from '../../../images/docz.svg'
 
+interface Wrapper {
+  opened: boolean
+}
+
+const wrapperToggle = (p: Wrapper) => (p.opened ? '-90%' : '0')
+
 const Wrapper = styled('div')`
   display: flex;
+  position: relative;
   flex-direction: column;
   height: 100%;
   background: ${p => p.theme.colors.grayLight};
+  transition: transform 0.3s, background 0.3s;
+  transform: translateX(${wrapperToggle});
+  z-index: 99;
+
   ${p => p.theme.styles.sidebar};
 
   a {
@@ -82,41 +95,85 @@ const Footer = styled('div')`
   }
 `
 
-export const Sidebar = () => (
-  <Docs>
-    {({ docs, menus }) => {
-      const docsWithoutMenu = docs.filter((doc: Entry) => !doc.menu)
-      const fromMenu = (menu: string) => docs.filter(doc => doc.menu === menu)
+const ToggleBlock = styled('div')`
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+`
 
+interface IconProps {
+  opened: boolean
+}
+
+const iconRotate = (p: IconProps) => (p.opened ? '-90deg' : '90deg')
+
+const Icon = styled('div')`
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%) rotate(${iconRotate});
+  transform-origin: 50% 50%;
+  transition: transform 0.3s;
+
+  & svg {
+    display: block;
+    margin: auto;
+    stroke: ${p => p.theme.colors.main};
+  }
+`
+
+export const Sidebar = () => (
+  <Toggle initial={false}>
+    {({ on, toggle }: any) => {
+      const handleToggle = (ev: React.SyntheticEvent<any>) => {
+        ev.preventDefault()
+        toggle()
+      }
       return (
-        <Wrapper>
-          <ThemeConfig>
-            {({ title, logo }) =>
-              logo ? (
-                <LogoImg src={logo.src} width={logo.width} alt={title} />
-              ) : (
-                <LogoText>{title}</LogoText>
-              )
-            }
-          </ThemeConfig>
-          <Menus>
-            {docsWithoutMenu.map(doc => (
-              <Link key={doc.id} to={doc.route}>
-                {doc.name}
-              </Link>
-            ))}
-            {menus.map(menu => (
-              <Menu key={menu} menu={menu} docs={fromMenu(menu)} />
-            ))}
-          </Menus>
-          <Footer>
-            Built with
-            <a href="#" target="_blank">
-              <img src={logo} width={40} alt="Docz" />
-            </a>
-          </Footer>
-        </Wrapper>
+        <Docs>
+          {({ docs, menus }) => {
+            const docsWithoutMenu = docs.filter((doc: Entry) => !doc.menu)
+            const fromMenu = (menu: string) => docs.filter(doc => doc.menu === menu)
+
+            return (
+              <Wrapper opened={on}>
+                <ToggleBlock onClick={handleToggle}>
+                  <Icon opened={on}>
+                    <ChevronDown size={15} />
+                  </Icon>
+                </ToggleBlock>
+                <ThemeConfig>
+                  {({ title, logo }) =>
+                    logo ? (
+                      <LogoImg src={logo.src} width={logo.width} alt={title} />
+                    ) : (
+                      <LogoText>{title}</LogoText>
+                    )
+                  }
+                </ThemeConfig>
+                <Menus>
+                  {docsWithoutMenu.map(doc => (
+                    <Link key={doc.id} to={doc.route}>
+                      {doc.name}
+                    </Link>
+                  ))}
+                  {menus.map(menu => (
+                    <Menu key={menu} menu={menu} docs={fromMenu(menu)} />
+                  ))}
+                </Menus>
+                <Footer>
+                  Built with
+                  <a href="#" target="_blank">
+                    <img src={logo} width={40} alt="Docz" />
+                  </a>
+                </Footer>
+              </Wrapper>
+            )
+          }}
+        </Docs>
       )
     }}
-  </Docs>
+  </Toggle>
 )
