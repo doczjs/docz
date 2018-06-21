@@ -53,7 +53,7 @@ export class Plugin<C = any> implements PluginFactory {
     return (method, initial, ...args) => {
       return [...(plugins || [])].reduce((obj: any, plugin) => {
         const fn = get(plugin, method)
-        return fn && isFn(fn) ? fn(obj) : obj
+        return fn && isFn(fn) ? fn(obj, ...args) : obj
       }, initial)
     }
   }
