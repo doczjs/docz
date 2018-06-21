@@ -11,12 +11,14 @@
     "prerelease": "yarn run packages",
     "release": "lerna publish --conventional-commits",
     "release:beta": "yarn release --npm-tag=beta --preid=beta",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "commit": "git-cz"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.0.0",
     "@commitlint/config-conventional": "^7.0.1",
     "@commitlint/config-lerna-scopes": "^7.0.0",
+    "commitizen": "^2.10.1",
     "del": "^3.0.0",
     "husky": "^1.0.0-rc.9",
     "lerna": "^2.11.0",
