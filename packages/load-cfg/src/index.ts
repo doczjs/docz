@@ -43,7 +43,7 @@ export const loadFile = (
       file = JSON.parse(fs.readFileSync(filepath, 'utf-8'))
     }
   } catch (err) {
-    console.warn('There was an error loading your doczrc.js config:')
+    console.warn('There was an error loading your config:')
     throw err
   }
 
