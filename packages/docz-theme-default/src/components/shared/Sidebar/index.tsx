@@ -18,7 +18,7 @@ const Wrapper = styled('div')`
   position: relative;
   flex-direction: column;
   height: 100%;
-  background: ${p => p.theme.colors.grayLight};
+  background: ${p => wrapperToggle(p) !== '0' ? p.theme.colors.white : p.theme.colors.grayLight};
   transition: transform 0.3s, background 0.3s;
   transform: translateX(${wrapperToggle});
   z-index: 99;
