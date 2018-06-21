@@ -1,6 +1,19 @@
 {
   "private": true,
   "license": "MIT",
+  "author": {
+    "name": "Pedro Nauck",
+    "email": "pedronauck@gmail.com",
+    "url": "https://github.com/pedronauck"
+  },
+  "homepage": "https://docz.site",
+  "bugs": {
+    "url": "https://github.com/pedronauck/docz/issues"
+  },
+  "repository":{
+    "type" : "git",
+    "url" : "https://github.com/pedronauck/docz.git"
+  },
   "scripts": {
     "clean": "lerna clean",
     "bs": "lerna bootstrap",
@@ -12,12 +25,15 @@
     "release": "lerna publish --conventional-commits",
     "release:beta": "yarn release --npm-tag=beta --preid=beta",
     "precommit": "lint-staged",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.0.0",
     "@commitlint/config-conventional": "^7.0.1",
     "@commitlint/config-lerna-scopes": "^7.0.0",
+    "all-contributors-cli": "^5.2.0",
     "commitizen": "^2.10.1",
     "del": "^3.0.0",
     "husky": "^1.0.0-rc.9",
