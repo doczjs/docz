@@ -45,6 +45,7 @@
     "@types/deepmerge": "^2.1.0",
     "@types/react": "^16.3.17",
     "@types/react-dom": "^16.0.6",
-    "@types/react-router-dom": "^4.2.7"
+    "@types/react-router-dom": "^4.2.7",
+    "libundler": "^1.7.1"
   }
 }
