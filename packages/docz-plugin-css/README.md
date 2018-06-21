@@ -4,6 +4,13 @@ Docz plugin to parse css files inside your documents
 
 ![](https://cdn-std.dprcdn.net/files/acc_649651/4Q4QBN)
 
+## Examples
+
+- [PostCSS](https://github.com/pedronauck/docz/tree/master/examples/css-postcss)
+- [Less](https://github.com/pedronauck/docz/tree/master/examples/css-less)
+- [Sass](https://github.com/pedronauck/docz/tree/master/examples/css-sass)
+- [Stylus](https://github.com/pedronauck/docz/tree/master/examples/css-stylus)
+
 ## Instalation
 
 First of all, install plugin:
@@ -47,6 +54,49 @@ export default {
   ]
 }
 ```
+
+### Using CSS Modules
+
+To use css modules, just turn on `cssmodules` property on your project configuration:
+
+```js
+// doczrc.js
+import { css } from 'docz-plugin-css'
+
+export default {
+  plugins: [
+    css({
+      preprocessor: 'sass',
+      cssmodules: true
+    })
+  ]
+}
+```
+
+After that, to import styles from css modules, just use `.module.{preprocessor-ext}` on your files
+
+```markdown
+---
+name: Button
+----
+
+import { Playground } from 'docz'
+
+import { Button } from './Button'
+import { styles } from './styles.module.css'
+
+# Button
+
+Example of Button component with custom class!
+
+<Playground>
+  <Button className={styles.custom}>
+    Click me
+  </Button>
+</Playground>
+```
+
+If you don't pass `.module` in front of the preprocessor extension, bundler will don't parse your css as cssmodule!
 
 ### Multiple pre-processor
 
