@@ -43,7 +43,8 @@ export const loadFile = (
       file = JSON.parse(fs.readFileSync(filepath, 'utf-8'))
     }
   } catch (err) {
-    file = defaultFile
+    console.warn('There was an error loading your config:')
+    throw err
   }
 
   return file

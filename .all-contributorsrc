@@ -1,0 +1,70 @@
+{
+  "projectName": "docz",
+  "projectOwner": "pedronauck",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "badgeTemplate": "",
+  "files": [
+    "README.md",
+    "CONTRIBUTING.md"
+  ],
+  "imageSize": 60,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "pedronauck",
+      "name": "Pedro Nauck",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/2029172?v=4",
+      "profile": "https://github.com/pedronauck",
+      "contributions": [
+        "question",
+        "bug",
+        "code",
+        "doc",
+        "ideas",
+        "plugin",
+        "review",
+        "test"
+      ]
+    },
+    {
+      "login": "renatorib",
+      "name": "Renato Ribeiro",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3277185?v=4",
+      "profile": "http://twitter.com/renatorib_",
+      "contributions": [
+        "code",
+        "doc",
+        "bug"
+      ]
+    },
+    {
+      "login": "marceloavf",
+      "name": "Marcelo Formentão",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/5435657?v=4",
+      "profile": "https://github.com/marceloavf",
+      "contributions": [
+        "code",
+        "bug"
+      ]
+    },
+    {
+      "login": "Swapnull",
+      "name": "Martyn Rushton",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/4456346?v=4",
+      "profile": "http://swapnull.co.uk",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "good-idea",
+      "name": "Joseph Thomas",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/11514928?v=4",
+      "profile": "https://www.good-idea.studio",
+      "contributions": [
+        "code"
+      ]
+    }
+  ]
+}

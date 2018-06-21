@@ -1,7 +1,8 @@
 <p align="center">
   <img src="https://img.shields.io/npm/v/docz.svg" alt="">
   <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="">
-  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="">
+  <img src="https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square" alt="">
+  <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="">
 </p>
 
 <p align="center">
@@ -105,5 +106,15 @@ Any doubt? Check [our docs](http://docz.site) to see more about Docz!
 
 ## 🤝 &nbsp; Contributions
 
-Contributions, issues and feature requests are very welcome. If you are using this package and fixed a bug for yourself, please consider submitting a PR!
-Also you can ping me at [Twitter](https://twitter.com/pedronauck)
+Contributions, issues and feature requests are very welcome.
+Please make sure to read the [Contributing Guide](/CONTRIBUTING.md) before making a pull request.
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars3.githubusercontent.com/u/2029172?v=4" width="60px;"/><br /><sub><b>Pedro Nauck</b></sub>](https://github.com/pedronauck)<br />[💬](#question-pedronauck "Answering Questions") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Apedronauck "Bug reports") [💻](https://github.com/pedronauck/docz/commits?author=pedronauck "Code") [📖](https://github.com/pedronauck/docz/commits?author=pedronauck "Documentation") [🤔](#ideas-pedronauck "Ideas, Planning, & Feedback") [🔌](#plugin-pedronauck "Plugin/utility libraries") [👀](#review-pedronauck "Reviewed Pull Requests") [⚠️](https://github.com/pedronauck/docz/commits?author=pedronauck "Tests") | [<img src="https://avatars2.githubusercontent.com/u/3277185?v=4" width="60px;"/><br /><sub><b>Renato Ribeiro</b></sub>](http://twitter.com/renatorib_)<br />[💻](https://github.com/pedronauck/docz/commits?author=renatorib "Code") [📖](https://github.com/pedronauck/docz/commits?author=renatorib "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Arenatorib "Bug reports") | [<img src="https://avatars3.githubusercontent.com/u/5435657?v=4" width="60px;"/><br /><sub><b>Marcelo Formentão</b></sub>](https://github.com/marceloavf)<br />[💻](https://github.com/pedronauck/docz/commits?author=marceloavf "Code") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Amarceloavf "Bug reports") | [<img src="https://avatars0.githubusercontent.com/u/4456346?v=4" width="60px;"/><br /><sub><b>Martyn Rushton</b></sub>](http://swapnull.co.uk)<br />[💻](https://github.com/pedronauck/docz/commits?author=Swapnull "Code") | [<img src="https://avatars3.githubusercontent.com/u/11514928?v=4" width="60px;"/><br /><sub><b>Joseph Thomas</b></sub>](https://www.good-idea.studio)<br />[💻](https://github.com/pedronauck/docz/commits?author=good-idea "Code") |
+| :---: | :---: | :---: | :---: | :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->

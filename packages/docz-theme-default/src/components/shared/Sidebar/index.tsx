@@ -111,7 +111,7 @@ export const Sidebar = () => (
           </Menus>
           <Footer>
             Built with
-            <a href="#" target="_blank">
+            <a href="https://docz.site" target="_blank">
               <img src={logo} width={40} alt="Docz" />
             </a>
           </Footer>

@@ -1,6 +1,6 @@
 {
   "name": "docz-theme-default",
-  "version": "0.2.7",
+  "version": "0.2.9",
   "license": "MIT",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
@@ -20,23 +20,23 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "docz": "^0.2.7",
-    "emotion": "^9.2.1",
-    "emotion-theming": "^9.2.1",
+    "docz": "^0.2.9",
+    "emotion": "^9.2.3",
+    "emotion-theming": "^9.2.3",
     "fast-deep-equal": "^2.0.1",
-    "prismjs": "^1.14.0",
-    "prop-types": "15.6.1",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-emotion": "^9.2.1",
+    "prismjs": "^1.15.0",
+    "prop-types": "15.6.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-emotion": "^9.2.3",
     "react-feather": "^1.1.0",
     "react-lightweight-tooltip": "^1.0.0",
-    "react-powerplug": "^1.0.0-alpha.7",
+    "react-powerplug": "^0.1.6",
     "react-spinners": "^0.3.2"
   },
   "peerDependencies": {
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0"
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
   },
   "devDependencies": {
     "@types/prismjs": "^1.9.0",

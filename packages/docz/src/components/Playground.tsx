@@ -1,32 +1,27 @@
 import * as React from 'react'
-import { Fragment, ComponentType, SFC } from 'react'
+import { SFC } from 'react'
+import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 
 import { isFn } from './Docs'
-
-export type RenderComponent = ComponentType<{
-  component: JSX.Element
-  code: string
-}>
+import { ComponentsMap } from './DocPreview'
 
 export interface PlaygroundProps {
-  __code: string
+  __code: (components: ComponentsMap) => any
   children: any
-  components: any
+  components: ComponentsMap
 }
 
-const DefaultRender: RenderComponent = ({ component, code }) => (
-  <Fragment>
-    {component}
-    {code}
-  </Fragment>
-)
-
-export const Playground: SFC<PlaygroundProps> = ({
-  components: { render: Render = DefaultRender } = {},
+const BasePlayground: SFC<PlaygroundProps> = ({
+  components,
   children,
   __code,
 }) => {
-  return (
-    <Render component={isFn(children) ? children() : children} code={__code} />
-  )
+  return components && components.render ? (
+    <components.render
+      component={isFn(children) ? children() : children}
+      code={__code(components)}
+    />
+  ) : null
 }
+
+export const Playground = withMDXComponents(BasePlayground)

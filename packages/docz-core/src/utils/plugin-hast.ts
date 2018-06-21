@@ -9,7 +9,6 @@ const componentName = (value: any) => {
 }
 
 const isPlayground = (name: string) => name === 'Playground'
-const isPropsTable = (name: string) => name === 'PropsTable'
 
 const addCodeProp = async (node: any) => {
   const name = componentName(node.value)
@@ -19,7 +18,7 @@ const addCodeProp = async (node: any) => {
     const formatted = await format(nodeToString(node))
     const code = formatted.slice(1, Infinity)
 
-    const codeComponent = `(
+    const codeComponent = `components && (
       <components.pre className="react-prism language-jsx">
         <code>{\`${code}\`}</code>
       </components.pre>
@@ -27,24 +26,14 @@ const addCodeProp = async (node: any) => {
 
     node.value = node.value.replace(
       tagOpen,
-      `<${name} __code={${codeComponent}}`
+      `<${name} __code={(components) => ${codeComponent}}`
     )
-  }
-}
-
-const addComponentsProp = (node: any) => {
-  const name = componentName(node.value)
-
-  if (isPlayground(name) || isPropsTable(name)) {
-    const tagOpen = new RegExp(`^\\<${name}`)
-    node.value = node.value.replace(tagOpen, `<${name} components={components}`)
   }
 }
 
 export const plugin = () => (tree: any, file: any) => {
   async function visitor(node: any): Promise<void> {
     await addCodeProp(node)
-    addComponentsProp(node)
   }
 
   const nodes = [
