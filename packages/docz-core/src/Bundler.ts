@@ -38,8 +38,8 @@ export class Bundler<C = any> {
   }
 
   public getConfig(): C {
-    const config = this.args.modifyBundlerConfig(this.config, !IS_PROD)
-    return this.mountConfig(config)
+    const config = this.mountConfig(this.config)
+    return this.args.modifyBundlerConfig(config, !IS_PROD)
   }
 
   public async createServer(config: C): Promise<BundlerServer> {
