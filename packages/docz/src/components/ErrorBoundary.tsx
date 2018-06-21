@@ -3,67 +3,62 @@
 import * as React from 'react'
 import * as DefaultErrorReporter from './ErrorReporter'
 
-type ErrorInfo = {
-  componentStack: string,
+interface ErrorInfo {
+  componentStack: string
 }
 
 type ErrorBoundaryProps = {
-  ErrorReporter?: React.ComponentClass<any>,
-  onError?: (error: Error, componentStack: string) => void,
+  ErrorReporter?: React.ComponentClass<any>
+  onError?: (error: Error, componentStack: string) => void
 } & Partial<DefaultProps>
 
 export interface ErrorBoundaryState {
-  error: Error | null,
-  errorInfo: ErrorInfo | null,
+  error: Error | null
+  errorInfo: ErrorInfo | null
 }
 
 type DefaultProps = Readonly<typeof defaultProps>
 
 const defaultProps = {
   onError: () => {},
-  ErrorReporter: DefaultErrorReporter
+  ErrorReporter: DefaultErrorReporter,
 }
 
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  static defaultProps = defaultProps
+class ErrorBoundary extends React.Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
+  public static defaultProps = defaultProps
 
-  state = {
+  public state = {
     error: null,
-    errorInfo: null
+    errorInfo: null,
   }
 
-	componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-		this.setState({ error, errorInfo }, () => {
-			if (typeof this.props.onError === 'function') {
-			try {
-				this.props.onError.call(this, error, errorInfo ? errorInfo.componentStack : '')
-			} catch (onErrorError) {
-				console.warn('The supplied onError function threw and error:')
-				console.warn(onErrorError)
-			}
-		}
-		})
+  public componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+    this.setState({ error, errorInfo }, () => {
+      if (typeof this.props.onError === 'function') {
+        try {
+          this.props.onError.call(
+            this,
+            error,
+            errorInfo ? errorInfo.componentStack : ''
+          )
+        } catch (onErrorError) {
+          console.warn('The supplied onError function threw and error:')
+          console.warn(onErrorError)
+        }
+      }
+    })
   }
 
-  render() {
-    const { children } = this.props
-    const { error  } = this.state
+  public render() {
+    const { children, ErrorReporter } = this.props
+    const { error, errorInfo } = this.state
 
     if (error !== null) {
       console.log(error)
-      return (
-        <div>
-          <p>An error occurred while rendering this component:</p>
-          {/* <p>{error.message}</p>
-          <pre>{errorInfo.componentStack}</pre> */}
-        </div>
-      )
-      // return (
-      //   <ErrorReporter
-      //     error={error}
-      //     errorInfo={errorInfo}
-      //   />
-      // )
+      return <ErrorReporter error={error} errorInfo={errorInfo} />
     }
 
     return children

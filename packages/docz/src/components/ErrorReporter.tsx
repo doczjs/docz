@@ -1,9 +1,8 @@
-
 import * as React from 'react'
 import { SFC } from 'react'
 
-type ErrorInfo = {
-  componentStack: string,
+interface ErrorInfo {
+  componentStack: string
 }
 
 export interface ErrorReporterProps {
@@ -11,9 +10,7 @@ export interface ErrorReporterProps {
   errorInfo: ErrorInfo
 }
 
-const ErrorReporter: SFC<ErrorReporterProps> = ({
-  error, errorInfo
-}) => {
+const ErrorReporter: SFC<ErrorReporterProps> = ({ error, errorInfo }) => {
   return (
     <div>
       <p>An error occurred while rendering this component:</p>
