@@ -14,6 +14,12 @@
   dependencies:
     "@babel/highlight" "7.0.0-beta.49"
 
+"@babel/code-frame@7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.0.0-beta.51.tgz#bd71d9b192af978df915829d39d4094456439a0c"
+  dependencies:
+    "@babel/highlight" "7.0.0-beta.51"
+
 "@babel/core@7.0.0-beta.42":
   version "7.0.0-beta.42"
   resolved "https://registry.npmjs.org/@babel/core/-/core-7.0.0-beta.42.tgz#b3a838fddbd19663369a0b4892189fd8d3f82001"
@@ -34,7 +40,27 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/core@7.0.0-beta.49", "@babel/core@^7.0.0-beta.49":
+"@babel/core@7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/core/-/core-7.0.0-beta.51.tgz#0e54bd6b638736b2ae593c31a47f0969e2b2b96d"
+  dependencies:
+    "@babel/code-frame" "7.0.0-beta.51"
+    "@babel/generator" "7.0.0-beta.51"
+    "@babel/helpers" "7.0.0-beta.51"
+    "@babel/parser" "7.0.0-beta.51"
+    "@babel/template" "7.0.0-beta.51"
+    "@babel/traverse" "7.0.0-beta.51"
+    "@babel/types" "7.0.0-beta.51"
+    convert-source-map "^1.1.0"
+    debug "^3.1.0"
+    json5 "^0.5.0"
+    lodash "^4.17.5"
+    micromatch "^3.1.10"
+    resolve "^1.3.2"
+    semver "^5.4.1"
+    source-map "^0.5.0"
+
+"@babel/core@^7.0.0-beta.49":
   version "7.0.0-beta.49"
   resolved "https://registry.npmjs.org/@babel/core/-/core-7.0.0-beta.49.tgz#73de2081dd652489489f0cb4aa97829a1133314e"
   dependencies:
@@ -69,6 +95,16 @@
   resolved "https://registry.npmjs.org/@babel/generator/-/generator-7.0.0-beta.49.tgz#e9cffda913996accec793bbc25ab91bc19d0bf7a"
   dependencies:
     "@babel/types" "7.0.0-beta.49"
+    jsesc "^2.5.1"
+    lodash "^4.17.5"
+    source-map "^0.5.0"
+    trim-right "^1.0.1"
+
+"@babel/generator@7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/generator/-/generator-7.0.0-beta.51.tgz#6c7575ffde761d07485e04baedc0392c6d9e30f6"
+  dependencies:
+    "@babel/types" "7.0.0-beta.51"
     jsesc "^2.5.1"
     lodash "^4.17.5"
     source-map "^0.5.0"
@@ -133,6 +169,14 @@
     "@babel/template" "7.0.0-beta.49"
     "@babel/types" "7.0.0-beta.49"
 
+"@babel/helper-function-name@7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/helper-function-name/-/helper-function-name-7.0.0-beta.51.tgz#21b4874a227cf99ecafcc30a90302da5a2640561"
+  dependencies:
+    "@babel/helper-get-function-arity" "7.0.0-beta.51"
+    "@babel/template" "7.0.0-beta.51"
+    "@babel/types" "7.0.0-beta.51"
+
 "@babel/helper-get-function-arity@7.0.0-beta.42":
   version "7.0.0-beta.42"
   resolved "https://registry.npmjs.org/@babel/helper-get-function-arity/-/helper-get-function-arity-7.0.0-beta.42.tgz#ad072e32f912c033053fc80478169aeadc22191e"
@@ -144,6 +188,12 @@
   resolved "https://registry.npmjs.org/@babel/helper-get-function-arity/-/helper-get-function-arity-7.0.0-beta.49.tgz#cf5023f32d2ad92d087374939cec0951bcb51441"
   dependencies:
     "@babel/types" "7.0.0-beta.49"
+
+"@babel/helper-get-function-arity@7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/helper-get-function-arity/-/helper-get-function-arity-7.0.0-beta.51.tgz#3281b2d045af95c172ce91b20825d85ea4676411"
+  dependencies:
+    "@babel/types" "7.0.0-beta.51"
 
 "@babel/helper-hoist-variables@7.0.0-beta.42":
   version "7.0.0-beta.42"
@@ -193,9 +243,9 @@
   version "7.0.0-beta.42"
   resolved "https://registry.npmjs.org/@babel/helper-plugin-utils/-/helper-plugin-utils-7.0.0-beta.42.tgz#9aa8b3e5dc72abea6b4f686712a7363cb29ea057"
 
-"@babel/helper-plugin-utils@7.0.0-beta.49":
-  version "7.0.0-beta.49"
-  resolved "https://registry.npmjs.org/@babel/helper-plugin-utils/-/helper-plugin-utils-7.0.0-beta.49.tgz#0e9fcbb834f878bb365d2a8ea90eee21ba3ccd23"
+"@babel/helper-plugin-utils@7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/helper-plugin-utils/-/helper-plugin-utils-7.0.0-beta.51.tgz#0f6a5f2b6d1c6444413f8fab60940d79b63c2031"
 
 "@babel/helper-regex@7.0.0-beta.42":
   version "7.0.0-beta.42"
@@ -242,6 +292,12 @@
   dependencies:
     "@babel/types" "7.0.0-beta.49"
 
+"@babel/helper-split-export-declaration@7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/helper-split-export-declaration/-/helper-split-export-declaration-7.0.0-beta.51.tgz#8a6c3f66c4d265352fc077484f9f6e80a51ab978"
+  dependencies:
+    "@babel/types" "7.0.0-beta.51"
+
 "@babel/helper-wrap-function@7.0.0-beta.42":
   version "7.0.0-beta.42"
   resolved "https://registry.npmjs.org/@babel/helper-wrap-function/-/helper-wrap-function-7.0.0-beta.42.tgz#5ffc6576902aa2a10fe6666e063bd45029c36db3"
@@ -267,6 +323,14 @@
     "@babel/traverse" "7.0.0-beta.49"
     "@babel/types" "7.0.0-beta.49"
 
+"@babel/helpers@7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/helpers/-/helpers-7.0.0-beta.51.tgz#95272be2ab4634d6820425f8925031a928918397"
+  dependencies:
+    "@babel/template" "7.0.0-beta.51"
+    "@babel/traverse" "7.0.0-beta.51"
+    "@babel/types" "7.0.0-beta.51"
+
 "@babel/highlight@7.0.0-beta.42":
   version "7.0.0-beta.42"
   resolved "https://registry.npmjs.org/@babel/highlight/-/highlight-7.0.0-beta.42.tgz#a502a1c0d6f99b2b0e81d468a1b0c0e81e3f3623"
@@ -283,9 +347,21 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
+"@babel/highlight@7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/highlight/-/highlight-7.0.0-beta.51.tgz#e8844ae25a1595ccfd42b89623b4376ca06d225d"
+  dependencies:
+    chalk "^2.0.0"
+    esutils "^2.0.2"
+    js-tokens "^3.0.0"
+
 "@babel/parser@7.0.0-beta.49":
   version "7.0.0-beta.49"
   resolved "https://registry.npmjs.org/@babel/parser/-/parser-7.0.0-beta.49.tgz#944d0c5ba2812bb159edbd226743afd265179bdc"
+
+"@babel/parser@7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/parser/-/parser-7.0.0-beta.51.tgz#27cec2df409df60af58270ed8f6aa55409ea86f6"
 
 "@babel/plugin-proposal-async-generator-functions@7.0.0-beta.42":
   version "7.0.0-beta.42"
@@ -353,11 +429,11 @@
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.42"
 
-"@babel/plugin-syntax-flow@7.0.0-beta.49":
-  version "7.0.0-beta.49"
-  resolved "https://registry.npmjs.org/@babel/plugin-syntax-flow/-/plugin-syntax-flow-7.0.0-beta.49.tgz#5b3f0b65ca9660534535643b82530fb1d58e63ee"
+"@babel/plugin-syntax-flow@7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/plugin-syntax-flow/-/plugin-syntax-flow-7.0.0-beta.51.tgz#de0883134406f90f958b64073e9749880229de56"
   dependencies:
-    "@babel/helper-plugin-utils" "7.0.0-beta.49"
+    "@babel/helper-plugin-utils" "7.0.0-beta.51"
 
 "@babel/plugin-syntax-jsx@7.0.0-beta.42":
   version "7.0.0-beta.42"
@@ -377,11 +453,11 @@
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.42"
 
-"@babel/plugin-syntax-typescript@7.0.0-beta.49":
-  version "7.0.0-beta.49"
-  resolved "https://registry.npmjs.org/@babel/plugin-syntax-typescript/-/plugin-syntax-typescript-7.0.0-beta.49.tgz#332b6d17c28904981465f69f111646ef7a5ede10"
+"@babel/plugin-syntax-typescript@7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/plugin-syntax-typescript/-/plugin-syntax-typescript-7.0.0-beta.51.tgz#a2f2701ff65d006268cbc84ad1bb8eeab638b0c4"
   dependencies:
-    "@babel/helper-plugin-utils" "7.0.0-beta.49"
+    "@babel/helper-plugin-utils" "7.0.0-beta.51"
 
 "@babel/plugin-transform-arrow-functions@7.0.0-beta.42":
   version "7.0.0-beta.42"
@@ -463,12 +539,12 @@
     "@babel/helper-plugin-utils" "7.0.0-beta.42"
     "@babel/plugin-syntax-flow" "7.0.0-beta.42"
 
-"@babel/plugin-transform-flow-strip-types@7.0.0-beta.49":
-  version "7.0.0-beta.49"
-  resolved "https://registry.npmjs.org/@babel/plugin-transform-flow-strip-types/-/plugin-transform-flow-strip-types-7.0.0-beta.49.tgz#f02a26528e94b2c1d11d9573b63ee5782d4f2af9"
+"@babel/plugin-transform-flow-strip-types@7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-flow-strip-types/-/plugin-transform-flow-strip-types-7.0.0-beta.51.tgz#67d434459f7a7b26a9f2a6855bc12e67894e47a6"
   dependencies:
-    "@babel/helper-plugin-utils" "7.0.0-beta.49"
-    "@babel/plugin-syntax-flow" "7.0.0-beta.49"
+    "@babel/helper-plugin-utils" "7.0.0-beta.51"
+    "@babel/plugin-syntax-flow" "7.0.0-beta.51"
 
 "@babel/plugin-transform-for-of@7.0.0-beta.42":
   version "7.0.0-beta.42"
@@ -619,12 +695,12 @@
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.42"
 
-"@babel/plugin-transform-typescript@7.0.0-beta.49":
-  version "7.0.0-beta.49"
-  resolved "https://registry.npmjs.org/@babel/plugin-transform-typescript/-/plugin-transform-typescript-7.0.0-beta.49.tgz#1f81fb756e033df6c396b2fffc1ba573a97c8a19"
+"@babel/plugin-transform-typescript@7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-typescript/-/plugin-transform-typescript-7.0.0-beta.51.tgz#1d9e5ba7bf93fe37483cc321dbc9a7ebba5ff35b"
   dependencies:
-    "@babel/helper-plugin-utils" "7.0.0-beta.49"
-    "@babel/plugin-syntax-typescript" "7.0.0-beta.49"
+    "@babel/helper-plugin-utils" "7.0.0-beta.51"
+    "@babel/plugin-syntax-typescript" "7.0.0-beta.51"
 
 "@babel/plugin-transform-unicode-regex@7.0.0-beta.42":
   version "7.0.0-beta.42"
@@ -685,12 +761,12 @@
     "@babel/helper-plugin-utils" "7.0.0-beta.42"
     "@babel/plugin-transform-flow-strip-types" "7.0.0-beta.42"
 
-"@babel/preset-flow@^7.0.0-beta.49":
-  version "7.0.0-beta.49"
-  resolved "https://registry.npmjs.org/@babel/preset-flow/-/preset-flow-7.0.0-beta.49.tgz#10cbee1a60db207120a4443c54c0ca5f734eb390"
+"@babel/preset-flow@^7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/preset-flow/-/preset-flow-7.0.0-beta.51.tgz#5f92cb981afad0f221a1b7a403ce082d378012db"
   dependencies:
-    "@babel/helper-plugin-utils" "7.0.0-beta.49"
-    "@babel/plugin-transform-flow-strip-types" "7.0.0-beta.49"
+    "@babel/helper-plugin-utils" "7.0.0-beta.51"
+    "@babel/plugin-transform-flow-strip-types" "7.0.0-beta.51"
 
 "@babel/preset-react@7.0.0-beta.42":
   version "7.0.0-beta.42"
@@ -703,18 +779,18 @@
     "@babel/plugin-transform-react-jsx-self" "7.0.0-beta.42"
     "@babel/plugin-transform-react-jsx-source" "7.0.0-beta.42"
 
-"@babel/preset-typescript@^7.0.0-beta.49":
-  version "7.0.0-beta.49"
-  resolved "https://registry.npmjs.org/@babel/preset-typescript/-/preset-typescript-7.0.0-beta.49.tgz#20a3c4a2f815efe7416f756b433c0fd9907a47ad"
+"@babel/preset-typescript@^7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/preset-typescript/-/preset-typescript-7.0.0-beta.51.tgz#95510b2b1493c6b210a499b73e80cd8a9e2f8ad1"
   dependencies:
-    "@babel/helper-plugin-utils" "7.0.0-beta.49"
-    "@babel/plugin-transform-typescript" "7.0.0-beta.49"
+    "@babel/helper-plugin-utils" "7.0.0-beta.51"
+    "@babel/plugin-transform-typescript" "7.0.0-beta.51"
 
-"@babel/runtime@7.0.0-beta.49", "@babel/runtime@^7.0.0-beta.49":
-  version "7.0.0-beta.49"
-  resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.0.0-beta.49.tgz#03b3bf07eb982072c8e851dd2ddd5110282e61bf"
+"@babel/runtime@^7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.0.0-beta.51.tgz#48b8ed18307034c6620f643514650ca2ccc0165a"
   dependencies:
-    core-js "^2.5.6"
+    core-js "^2.5.7"
     regenerator-runtime "^0.11.1"
 
 "@babel/template@7.0.0-beta.42":
@@ -733,6 +809,15 @@
     "@babel/code-frame" "7.0.0-beta.49"
     "@babel/parser" "7.0.0-beta.49"
     "@babel/types" "7.0.0-beta.49"
+    lodash "^4.17.5"
+
+"@babel/template@7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/template/-/template-7.0.0-beta.51.tgz#9602a40aebcf357ae9677e2532ef5fc810f5fbff"
+  dependencies:
+    "@babel/code-frame" "7.0.0-beta.51"
+    "@babel/parser" "7.0.0-beta.51"
+    "@babel/types" "7.0.0-beta.51"
     lodash "^4.17.5"
 
 "@babel/traverse@7.0.0-beta.42":
@@ -760,6 +845,21 @@
     "@babel/helper-split-export-declaration" "7.0.0-beta.49"
     "@babel/parser" "7.0.0-beta.49"
     "@babel/types" "7.0.0-beta.49"
+    debug "^3.1.0"
+    globals "^11.1.0"
+    invariant "^2.2.0"
+    lodash "^4.17.5"
+
+"@babel/traverse@7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/traverse/-/traverse-7.0.0-beta.51.tgz#981daf2cec347a6231d3aa1d9e1803b03aaaa4a8"
+  dependencies:
+    "@babel/code-frame" "7.0.0-beta.51"
+    "@babel/generator" "7.0.0-beta.51"
+    "@babel/helper-function-name" "7.0.0-beta.51"
+    "@babel/helper-split-export-declaration" "7.0.0-beta.51"
+    "@babel/parser" "7.0.0-beta.51"
+    "@babel/types" "7.0.0-beta.51"
     debug "^3.1.0"
     globals "^11.1.0"
     invariant "^2.2.0"
@@ -797,6 +897,14 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
+"@babel/types@7.0.0-beta.51":
+  version "7.0.0-beta.51"
+  resolved "https://registry.npmjs.org/@babel/types/-/types-7.0.0-beta.51.tgz#d802b7b543b5836c778aa691797abf00f3d97ea9"
+  dependencies:
+    esutils "^2.0.2"
+    lodash "^4.17.5"
+    to-fast-properties "^2.0.0"
+
 "@emotion/babel-utils@^0.5.3":
   version "0.5.3"
   resolved "https://registry.npmjs.org/@emotion/babel-utils/-/babel-utils-0.5.3.tgz#6be6dd7a480fdbdfb6cbba7f4f6d9361744b8d6e"
@@ -823,15 +931,15 @@
   version "0.6.3"
   resolved "https://registry.npmjs.org/@emotion/unitless/-/unitless-0.6.3.tgz#65682e68a82701c70eefb38d7f941a2c0bfa90de"
 
-"@mdx-js/loader@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.npmjs.org/@mdx-js/loader/-/loader-0.10.0.tgz#16bad42fe2dba1c36e199bfc89c751afe734f856"
+"@mdx-js/loader@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.npmjs.org/@mdx-js/loader/-/loader-0.11.0.tgz#ad1197e2fcc67f31a91a4aa92c181b01b94b6605"
   dependencies:
-    "@mdx-js/tag" "^0.10.0"
+    "@mdx-js/tag" "^0.11.0"
 
-"@mdx-js/mdx@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.npmjs.org/@mdx-js/mdx/-/mdx-0.10.0.tgz#f24012e7fe1a8dbe3505399b0b07dda09ca48212"
+"@mdx-js/mdx@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.npmjs.org/@mdx-js/mdx/-/mdx-0.10.1.tgz#5c24679cf90fc80e16a8164de4fc9274a5657d78"
   dependencies:
     "@mdx-js/mdxast" "^0.10.0"
     mdast-util-to-hast "^3.0.0"
@@ -846,9 +954,9 @@
   dependencies:
     unist-util-visit "^1.3.0"
 
-"@mdx-js/tag@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.npmjs.org/@mdx-js/tag/-/tag-0.10.0.tgz#4d95853fdfbeb4c07cbfaa9cc32ab798454fdfb0"
+"@mdx-js/tag@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.npmjs.org/@mdx-js/tag/-/tag-0.11.0.tgz#d4e3f4e384e862302908e10c23dc1959da5ca91b"
   dependencies:
     prop-types "^15.6.1"
 
@@ -1029,13 +1137,13 @@
   version "10.0.0"
   resolved "https://registry.npmjs.org/@types/node/-/node-10.0.0.tgz#c40f8e07dce607d3ef25a626b93a6a7cdcf97881"
 
-"@types/node@10.3.2", "@types/node@^10.3.2":
-  version "10.3.2"
-  resolved "https://registry.npmjs.org/@types/node/-/node-10.3.2.tgz#3840ec6c12556fdda6e0e6d036df853101d732a4"
+"@types/node@10.3.4", "@types/node@^10.3.4":
+  version "10.3.4"
+  resolved "https://registry.npmjs.org/@types/node/-/node-10.3.4.tgz#c74e8aec19e555df44609b8057311052a2c84d9e"
 
-"@types/prettier@^1.13.0":
-  version "1.13.0"
-  resolved "https://registry.npmjs.org/@types/prettier/-/prettier-1.13.0.tgz#18f3b5e27cdb55b0708b833c69ed5aa025249b9c"
+"@types/prettier@^1.13.1":
+  version "1.13.1"
+  resolved "https://registry.npmjs.org/@types/prettier/-/prettier-1.13.1.tgz#5dd359398de96863a0629156f382913a06ebe013"
 
 "@types/prismjs@^1.9.0":
   version "1.9.0"
@@ -1069,9 +1177,9 @@
   dependencies:
     csstype "^2.2.0"
 
-"@types/react@^16.3.17":
-  version "16.3.17"
-  resolved "https://registry.npmjs.org/@types/react/-/react-16.3.17.tgz#d59d1a632570b0713946ed9c2949d994773633c5"
+"@types/react@^16.4.1":
+  version "16.4.1"
+  resolved "https://registry.npmjs.org/@types/react/-/react-16.4.1.tgz#c53bbfb4a78933db587da085ac60dbf5fcf73f8f"
   dependencies:
     csstype "^2.2.0"
 
@@ -1117,9 +1225,9 @@
     "@types/uglify-js" "*"
     source-map "^0.6.0"
 
-"@types/webpack@^4.4.0":
-  version "4.4.0"
-  resolved "https://registry.npmjs.org/@types/webpack/-/webpack-4.4.0.tgz#c0551b772be241d786c0548812dd75a932f8efb4"
+"@types/webpack@^4.4.2":
+  version "4.4.2"
+  resolved "https://registry.npmjs.org/@types/webpack/-/webpack-4.4.2.tgz#44213e0dca0924544a2831ee42de2750124ef9b5"
   dependencies:
     "@types/node" "*"
     "@types/tapable" "*"
@@ -1843,13 +1951,13 @@ babel-plugin-macros@^2.0.0:
   dependencies:
     cosmiconfig "^4.0.0"
 
-babel-plugin-react-docgen@^1.9.0:
-  version "1.9.0"
-  resolved "https://registry.npmjs.org/babel-plugin-react-docgen/-/babel-plugin-react-docgen-1.9.0.tgz#2e79aeed2f93b53a172398f93324fdcf9f02e01f"
+babel-plugin-react-docgen@^2.0.0-rc.1:
+  version "2.0.0-rc.1"
+  resolved "https://registry.npmjs.org/babel-plugin-react-docgen/-/babel-plugin-react-docgen-2.0.0-rc.1.tgz#2538ecff4102c9e4e4087dbb90bcc76a8db3658f"
   dependencies:
-    babel-types "^6.24.1"
-    lodash "^4.17.0"
-    react-docgen "^3.0.0-beta11"
+    babel-types "^6.26.0"
+    lodash "^4.17.10"
+    react-docgen "^3.0.0-beta12"
 
 babel-plugin-syntax-async-functions@^6.8.0:
   version "6.13.0"
@@ -2772,7 +2880,7 @@ charenc@~0.0.1:
   version "0.0.2"
   resolved "https://registry.npmjs.org/charenc/-/charenc-0.0.2.tgz#c0a1d2f3a7092e03774bfa83f14c0fc5790a8667"
 
-chokidar@^2.0.2, chokidar@^2.0.3:
+chokidar@^2.0.2:
   version "2.0.3"
   resolved "https://registry.npmjs.org/chokidar/-/chokidar-2.0.3.tgz#dcbd4f6cbb2a55b4799ba8a840ac527e5f4b1176"
   dependencies:
@@ -2789,6 +2897,25 @@ chokidar@^2.0.2, chokidar@^2.0.3:
     upath "^1.0.0"
   optionalDependencies:
     fsevents "^1.1.2"
+
+chokidar@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.npmjs.org/chokidar/-/chokidar-2.0.4.tgz#356ff4e2b0e8e43e322d18a372460bbcf3accd26"
+  dependencies:
+    anymatch "^2.0.0"
+    async-each "^1.0.0"
+    braces "^2.3.0"
+    glob-parent "^3.1.0"
+    inherits "^2.0.1"
+    is-binary-path "^1.0.0"
+    is-glob "^4.0.0"
+    lodash.debounce "^4.0.8"
+    normalize-path "^2.1.1"
+    path-is-absolute "^1.0.0"
+    readdirp "^2.0.0"
+    upath "^1.0.5"
+  optionalDependencies:
+    fsevents "^1.2.2"
 
 chownr@^1.0.1:
   version "1.0.1"
@@ -3236,9 +3363,13 @@ core-js@^2.4.0:
   version "2.5.5"
   resolved "https://registry.npmjs.org/core-js/-/core-js-2.5.5.tgz#b14dde936c640c0579a6b50cabcc132dd6127e3b"
 
-core-js@^2.4.1, core-js@^2.5.0, core-js@^2.5.6:
+core-js@^2.4.1, core-js@^2.5.0:
   version "2.5.6"
   resolved "https://registry.npmjs.org/core-js/-/core-js-2.5.6.tgz#0fe6d45bf3cac3ac364a9d72de7576f4eb221b9d"
+
+core-js@^2.5.7:
+  version "2.5.7"
+  resolved "https://registry.npmjs.org/core-js/-/core-js-2.5.7.tgz#f972608ff0cead68b841a16a932d0b183791814e"
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -3299,6 +3430,12 @@ create-ecdh@^4.0.0:
 create-emotion-styled@^9.2.1:
   version "9.2.1"
   resolved "https://registry.npmjs.org/create-emotion-styled/-/create-emotion-styled-9.2.1.tgz#73eb9ac73e5c915d8035942bde7e8e012ed7e97b"
+  dependencies:
+    "@emotion/is-prop-valid" "^0.6.1"
+
+create-emotion-styled@^9.2.3:
+  version "9.2.3"
+  resolved "https://registry.npmjs.org/create-emotion-styled/-/create-emotion-styled-9.2.3.tgz#17fb13b3ae4c165ea6e5a11356ab8b9ca1dad9c5"
   dependencies:
     "@emotion/is-prop-valid" "^0.6.1"
 
@@ -3787,15 +3924,22 @@ emojis-list@^2.0.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/emojis-list/-/emojis-list-2.1.0.tgz#4daa4d9db00f9819880c79fa457ae5b09a1fd389"
 
-emotion-theming@^9.2.1:
-  version "9.2.1"
-  resolved "https://registry.npmjs.org/emotion-theming/-/emotion-theming-9.2.1.tgz#a25963f3afe267c77539606ec2bdf721bda31d9c"
+emotion-theming@^9.2.3:
+  version "9.2.3"
+  resolved "https://registry.npmjs.org/emotion-theming/-/emotion-theming-9.2.3.tgz#a851f66615aeb8a7a02891e201da3b56fddf9a46"
   dependencies:
     hoist-non-react-statics "^2.3.1"
 
-emotion@^9.1.1, emotion@^9.2.1:
+emotion@^9.1.1:
   version "9.2.1"
   resolved "https://registry.npmjs.org/emotion/-/emotion-9.2.1.tgz#d2aa77b22945d9f40ea9b5ac6bdac42cec35610a"
+  dependencies:
+    babel-plugin-emotion "^9.2.0"
+    create-emotion "^9.2.1"
+
+emotion@^9.2.3:
+  version "9.2.3"
+  resolved "https://registry.npmjs.org/emotion/-/emotion-9.2.3.tgz#c93b9a222df92e6281036afa02b3b5b8cfb9e049"
   dependencies:
     babel-plugin-emotion "^9.2.0"
     create-emotion "^9.2.1"
@@ -3968,9 +4112,9 @@ eslint@^4.1.1:
     table "4.0.2"
     text-table "~0.2.0"
 
-esm@^3.0.48:
-  version "3.0.48"
-  resolved "https://registry.npmjs.org/esm/-/esm-3.0.48.tgz#24bf3834428b44cac7d953bb5b196d2e4ec0d815"
+esm@^3.0.52:
+  version "3.0.52"
+  resolved "https://registry.npmjs.org/esm/-/esm-3.0.52.tgz#a3ada5b2811548a5824f448d372c5b35388cf771"
 
 espree@^3.5.4:
   version "3.5.4"
@@ -4346,6 +4490,12 @@ find-up@^2.0.0, find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
+find-up@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/find-up/-/find-up-3.0.0.tgz#49169f1d7993430646da61ecc5ae355c21c97b73"
+  dependencies:
+    locate-path "^3.0.0"
+
 flat-cache@^1.2.1:
   version "1.3.0"
   resolved "https://registry.npmjs.org/flat-cache/-/flat-cache-1.3.0.tgz#d3030b32b38154f4e3b7e9c709f490f7ef97c481"
@@ -4508,6 +4658,13 @@ fsevents@^1.1.2:
   dependencies:
     nan "^2.9.2"
     node-pre-gyp "^0.9.0"
+
+fsevents@^1.2.2:
+  version "1.2.4"
+  resolved "https://registry.npmjs.org/fsevents/-/fsevents-1.2.4.tgz#f41dcb1af2582af3692da36fc55cbd8e1041c426"
+  dependencies:
+    nan "^2.9.2"
+    node-pre-gyp "^0.10.0"
 
 fstream-ignore@^1.0.5:
   version "1.0.5"
@@ -5037,7 +5194,7 @@ http-errors@1.6.2:
     setprototypeof "1.0.3"
     statuses ">= 1.3.1 < 2"
 
-http-errors@^1.2.8, http-errors@^1.6.1, http-errors@~1.6.1, http-errors@~1.6.2:
+http-errors@^1.2.8, http-errors@^1.6.1, http-errors@^1.6.3, http-errors@~1.6.1, http-errors@~1.6.2:
   version "1.6.3"
   resolved "https://registry.npmjs.org/http-errors/-/http-errors-1.6.3.tgz#8b55680bb4be283a0b5bf4ea2e38580be1d9320d"
   dependencies:
@@ -5710,21 +5867,21 @@ koa-mount@^3.0.0:
     debug "^2.6.1"
     koa-compose "^3.2.1"
 
-koa-send@^4.1.3:
-  version "4.1.3"
-  resolved "https://registry.npmjs.org/koa-send/-/koa-send-4.1.3.tgz#0822207bbf5253a414c8f1765ebc29fa41353cb6"
-  dependencies:
-    debug "^2.6.3"
-    http-errors "^1.6.1"
-    mz "^2.6.0"
-    resolve-path "^1.4.0"
-
-koa-static@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.npmjs.org/koa-static/-/koa-static-4.0.3.tgz#5f93ad00fb1905db9ce46667c0e8bb7d22abfcd8"
+koa-send@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/koa-send/-/koa-send-5.0.0.tgz#5e8441e07ef55737734d7ced25b842e50646e7eb"
   dependencies:
     debug "^3.1.0"
-    koa-send "^4.1.3"
+    http-errors "^1.6.3"
+    mz "^2.7.0"
+    resolve-path "^1.4.0"
+
+koa-static@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/koa-static/-/koa-static-5.0.0.tgz#5e92fc96b537ad5219f425319c95b64772776943"
+  dependencies:
+    debug "^3.1.0"
+    koa-send "^5.0.0"
 
 koa-webpack@^4.0.0:
   version "4.0.0"
@@ -5949,6 +6106,13 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
+locate-path@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/locate-path/-/locate-path-3.0.0.tgz#dbec3b3ab759758071b58fe59fc41871af21400e"
+  dependencies:
+    p-locate "^3.0.0"
+    path-exists "^3.0.0"
+
 lodash._reinterpolate@~3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
@@ -5956,6 +6120,10 @@ lodash._reinterpolate@~3.0.0:
 lodash.assign@^4.0.3, lodash.assign@^4.0.6:
   version "4.2.0"
   resolved "https://registry.npmjs.org/lodash.assign/-/lodash.assign-4.2.0.tgz#0d99f3ccd7a6d261d19bdaeb9245005d285808e7"
+
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
 
 lodash.deburr@^4.1.0:
   version "4.1.0"
@@ -5998,7 +6166,7 @@ lodash.toarray@^4.4.0:
   version "4.4.0"
   resolved "https://registry.npmjs.org/lodash.toarray/-/lodash.toarray-4.4.0.tgz#24c4bfcd6b2fba38bfd0594db1179d8e9b656561"
 
-"lodash@>=3.5 <5", lodash@^4.14.0, lodash@^4.17.0, lodash@^4.17.3, lodash@^4.17.5, lodash@^4.2.0:
+"lodash@>=3.5 <5", lodash@^4.14.0, lodash@^4.17.10, lodash@^4.17.3, lodash@^4.17.5, lodash@^4.2.0:
   version "4.17.10"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
@@ -6454,7 +6622,7 @@ mute-stream@0.0.7:
   version "0.0.7"
   resolved "https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
 
-mz@^2.6.0:
+mz@^2.6.0, mz@^2.7.0:
   version "2.7.0"
   resolved "https://registry.npmjs.org/mz/-/mz-2.7.0.tgz#95008057a56cafadc2bc63dde7f9ff6955948e32"
   dependencies:
@@ -6597,6 +6765,21 @@ node-libs-browser@^2.0.0:
     url "^0.11.0"
     util "^0.10.3"
     vm-browserify "0.0.4"
+
+node-pre-gyp@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.npmjs.org/node-pre-gyp/-/node-pre-gyp-0.10.0.tgz#6e4ef5bb5c5203c6552448828c852c40111aac46"
+  dependencies:
+    detect-libc "^1.0.2"
+    mkdirp "^0.5.1"
+    needle "^2.2.0"
+    nopt "^4.0.1"
+    npm-packlist "^1.1.6"
+    npmlog "^4.0.2"
+    rc "^1.1.7"
+    rimraf "^2.6.1"
+    semver "^5.3.0"
+    tar "^4"
 
 node-pre-gyp@^0.6.4:
   version "0.6.39"
@@ -6886,11 +7069,23 @@ p-limit@^1.1.0:
   dependencies:
     p-try "^1.0.0"
 
+p-limit@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/p-limit/-/p-limit-2.0.0.tgz#e624ed54ee8c460a778b3c9f3670496ff8a57aec"
+  dependencies:
+    p-try "^2.0.0"
+
 p-locate@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/p-locate/-/p-locate-2.0.0.tgz#20a0103b222a70c8fd39cc2e580680f3dde5ec43"
   dependencies:
     p-limit "^1.1.0"
+
+p-locate@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/p-locate/-/p-locate-3.0.0.tgz#322d69a05c0264b25997d9f40cd8a891ab0064a4"
+  dependencies:
+    p-limit "^2.0.0"
 
 p-map@^1.1.1, p-map@^1.2.0:
   version "1.2.0"
@@ -6905,6 +7100,10 @@ p-timeout@^1.1.1:
 p-try@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/p-try/-/p-try-1.0.0.tgz#cbc79cdbaf8fd4228e13f621f2b1a237c1b207b3"
+
+p-try@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/p-try/-/p-try-2.0.0.tgz#85080bb87c64688fa47996fe8f7dfbe8211760b1"
 
 package-json@^2.0.0:
   version "2.4.0"
@@ -7175,9 +7374,9 @@ pretty-time@^1.0.0:
     is-number "^5.0.0"
     nanoseconds "^1.0.0"
 
-prismjs@^1.14.0:
-  version "1.14.0"
-  resolved "https://registry.npmjs.org/prismjs/-/prismjs-1.14.0.tgz#bbccfdb8be5d850d26453933cb50122ca0362ae0"
+prismjs@^1.15.0:
+  version "1.15.0"
+  resolved "https://registry.npmjs.org/prismjs/-/prismjs-1.15.0.tgz#8801d332e472091ba8def94976c8877ad60398d9"
   optionalDependencies:
     clipboard "^2.0.0"
 
@@ -7215,7 +7414,14 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@15.6.1, prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.6.1:
+prop-types@15.6.2, prop-types@^15.6.2:
+  version "15.6.2"
+  resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
+  dependencies:
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
+
+prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.6.1:
   version "15.6.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
   dependencies:
@@ -7374,18 +7580,18 @@ react-dev-utils@^5.0.1:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-react-docgen-typescript-loader@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/react-docgen-typescript-loader/-/react-docgen-typescript-loader-2.1.0.tgz#f3a069bf6f3657b976d17d62b1580b204f264597"
+react-docgen-typescript-loader@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.npmjs.org/react-docgen-typescript-loader/-/react-docgen-typescript-loader-2.1.1.tgz#8ba68dcc0d913c1fe82b2dfb8a837b02a23df74e"
   dependencies:
     ajv "^6.5.0"
-    react-docgen-typescript "^1.5.0"
+    react-docgen-typescript "^1.6.0"
 
-react-docgen-typescript@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.npmjs.org/react-docgen-typescript/-/react-docgen-typescript-1.5.0.tgz#64f5dd5ff6540c7095433189a7e0e78441041d93"
+react-docgen-typescript@^1.6.0:
+  version "1.6.1"
+  resolved "https://registry.npmjs.org/react-docgen-typescript/-/react-docgen-typescript-1.6.1.tgz#9734ffc0fecce7a58627a3cc26dc67cad908974d"
 
-react-docgen@^3.0.0-beta11:
+react-docgen@^3.0.0-beta12:
   version "3.0.0-beta9"
   resolved "https://registry.npmjs.org/react-docgen/-/react-docgen-3.0.0-beta9.tgz#6be987e640786ecb10ce2dd22157a022c8285e95"
   dependencies:
@@ -7397,21 +7603,28 @@ react-docgen@^3.0.0-beta11:
     node-dir "^0.1.10"
     recast "^0.12.6"
 
-react-dom@^16.4.0:
-  version "16.4.0"
-  resolved "https://registry.npmjs.org/react-dom/-/react-dom-16.4.0.tgz#099f067dd5827ce36a29eaf9a6cdc7cbf6216b1e"
+react-dom@^16.4.1:
+  version "16.4.1"
+  resolved "https://registry.npmjs.org/react-dom/-/react-dom-16.4.1.tgz#7f8b0223b3a5fbe205116c56deb85de32685dad6"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-emotion@^9.1.1, react-emotion@^9.2.1:
+react-emotion@^9.1.1:
   version "9.2.1"
   resolved "https://registry.npmjs.org/react-emotion/-/react-emotion-9.2.1.tgz#4f8a2ae6d8281baba6e27d95644003cb07843fb0"
   dependencies:
     babel-plugin-emotion "^9.2.0"
     create-emotion-styled "^9.2.1"
+
+react-emotion@^9.2.3:
+  version "9.2.3"
+  resolved "https://registry.npmjs.org/react-emotion/-/react-emotion-9.2.3.tgz#03c3b9dc9ad282c2d50b8137f3a6f72eee5095f3"
+  dependencies:
+    babel-plugin-emotion "^9.2.0"
+    create-emotion-styled "^9.2.3"
 
 react-error-overlay@^4.0.0:
   version "4.0.0"
@@ -7421,9 +7634,9 @@ react-feather@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/react-feather/-/react-feather-1.1.0.tgz#f0aa692497de952237ca1f3b118ebcb5427152e1"
 
-react-hot-loader@4.3.0:
-  version "4.3.0"
-  resolved "https://registry.npmjs.org/react-hot-loader/-/react-hot-loader-4.3.0.tgz#3d417797acd6f78bd0291ee225828f5dd78a3829"
+react-hot-loader@4.3.3:
+  version "4.3.3"
+  resolved "https://registry.npmjs.org/react-hot-loader/-/react-hot-loader-4.3.3.tgz#37409a3341c7787563d0972007ba02521f82f5d5"
   dependencies:
     fast-levenshtein "^2.0.6"
     global "^4.3.0"
@@ -7440,11 +7653,9 @@ react-lightweight-tooltip@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/react-lightweight-tooltip/-/react-lightweight-tooltip-1.0.0.tgz#1fb96831b88de21a4d73d02148aae3d8d0aea9bc"
 
-react-powerplug@^1.0.0-alpha.7:
-  version "1.0.0-alpha.7"
-  resolved "https://registry.npmjs.org/react-powerplug/-/react-powerplug-1.0.0-alpha.7.tgz#aaba5d773fdd655e1e48cae37b9251d9d72a44a4"
-  dependencies:
-    "@babel/runtime" "7.0.0-beta.49"
+react-powerplug@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.npmjs.org/react-powerplug/-/react-powerplug-0.1.6.tgz#054f25fd45f8c26a1f75ca02f62d07d12b712035"
 
 react-router-dom@^4.3.1:
   version "4.3.1"
@@ -7478,9 +7689,9 @@ react-spinners@^0.3.2:
     react-emotion "^9.1.1"
     recompose "0.26.0"
 
-react@^16.4.0:
-  version "16.4.0"
-  resolved "https://registry.npmjs.org/react/-/react-16.4.0.tgz#402c2db83335336fba1962c08b98c6272617d585"
+react@^16.4.1:
+  version "16.4.1"
+  resolved "https://registry.npmjs.org/react/-/react-16.4.1.tgz#de51ba5764b5dbcd1f9079037b862bd26b82fe32"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -7990,6 +8201,12 @@ resolve@^1.3.2, resolve@^1.6.0, resolve@^1.7.1:
   dependencies:
     path-parse "^1.0.5"
 
+resolve@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.npmjs.org/resolve/-/resolve-1.8.1.tgz#82f1ec19a423ac1fbd080b0bab06ba36e84a7a26"
+  dependencies:
+    path-parse "^1.0.5"
+
 restore-cursor@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/restore-cursor/-/restore-cursor-2.0.0.tgz#9f7ee287f82fd326d4fd162923d62129eee0dfaf"
@@ -8304,9 +8521,9 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
-signale@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/signale/-/signale-1.1.0.tgz#b2f6d20f09df83c07fe18a968260b628f9d3f0f8"
+signale@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.npmjs.org/signale/-/signale-1.2.1.tgz#fbd4b952603ea3315dbe9e88f4f482f336cee828"
   dependencies:
     chalk "^2.3.2"
     figures "^2.0.0"
@@ -8858,9 +9075,9 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-to-vfile@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/to-vfile/-/to-vfile-4.0.0.tgz#465ade5fc2b9e97e6c80b854d378a5d0f4b5d04a"
+to-vfile@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/to-vfile/-/to-vfile-5.0.0.tgz#46248d86d931fa9061a6e3411922be8d8b09fc2f"
   dependencies:
     is-buffer "^2.0.0"
     vfile "^3.0.0"
@@ -9011,9 +9228,13 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@2.9.1, typescript@^2.9.1:
+typescript@2.9.1:
   version "2.9.1"
   resolved "https://registry.npmjs.org/typescript/-/typescript-2.9.1.tgz#fdb19d2c67a15d11995fd15640e373e09ab09961"
+
+typescript@^2.9.2:
+  version "2.9.2"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-2.9.2.tgz#1cbf61d05d6b96269244eb6a3bce4bd914e0f00c"
 
 ua-parser-js@^0.7.9:
   version "0.7.17"
@@ -9046,9 +9267,22 @@ uglify-to-browserify@~1.0.0:
   version "1.0.2"
   resolved "https://registry.npmjs.org/uglify-to-browserify/-/uglify-to-browserify-1.0.2.tgz#6e0924d6bda6b5afe349e39a6d632850a0f882b7"
 
-uglifyjs-webpack-plugin@^1.2.4, uglifyjs-webpack-plugin@^1.2.5:
+uglifyjs-webpack-plugin@^1.2.4:
   version "1.2.5"
   resolved "https://registry.npmjs.org/uglifyjs-webpack-plugin/-/uglifyjs-webpack-plugin-1.2.5.tgz#2ef8387c8f1a903ec5e44fa36f9f3cbdcea67641"
+  dependencies:
+    cacache "^10.0.4"
+    find-cache-dir "^1.0.0"
+    schema-utils "^0.4.5"
+    serialize-javascript "^1.4.0"
+    source-map "^0.6.1"
+    uglify-es "^3.3.4"
+    webpack-sources "^1.1.0"
+    worker-farm "^1.5.2"
+
+uglifyjs-webpack-plugin@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.npmjs.org/uglifyjs-webpack-plugin/-/uglifyjs-webpack-plugin-1.2.6.tgz#f4bb44f02431e82b301d8d4624330a6a35729381"
   dependencies:
     cacache "^10.0.4"
     find-cache-dir "^1.0.0"
@@ -9264,6 +9498,10 @@ unzipper@^0.8.11:
 upath@^1.0.0:
   version "1.0.5"
   resolved "https://registry.npmjs.org/upath/-/upath-1.0.5.tgz#02cab9ecebe95bbec6d5fc2566325725ab6d1a73"
+
+upath@^1.0.5:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/upath/-/upath-1.1.0.tgz#35256597e46a581db4793d0ce47fa9aebfc9fabd"
 
 update-notifier@^1.0.2:
   version "1.0.3"
