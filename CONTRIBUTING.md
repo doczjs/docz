@@ -53,35 +53,37 @@ $ yarn packages
 
 ## Developing
 
-There just few things that you need to know if you want to start to develop on docz
+There's just few things that you need to know to start developing on docz
 
 ### Project structure
 
-There's a lot of packages on [packages](https://github.com/pedronauck/docz/tree/master/packages) folder that are so necessary to docz run, but basically has just two packages that you need to know more about:
+There's a lot of [packages](https://github.com/pedronauck/docz/tree/master/packages) that are necessary to run docz, but basically has just two that you need to know more about:
 
 #### **[docz-core](https://github.com/pedronauck/docz/tree/master/packages/docz)**
-- This is the core of docz, all build process, server process and parses belongs to here!
-- If you break this package, you'll break all packages! Please, be carefull.
-- All cli commands are built here and imported on `docz` package on `./bin` script
-- Do not create and use not relative to client here, just node scripts!
+- This is the core of docz. All build algorithms, server process and parses belongs to here.
+- If you break this package, probably you'll break all packages! Please, be carefull.
+- All cli commands are built here and imported on `docz` package using `./bin` script.
+- Do not create scripts that's running on browser here, just node scripts.
 
 #### **[docz](https://github.com/pedronauck/docz/tree/master/packages/docz)**
 - Main and top level package.
-- It's not have any node script unless the `./bin` script using `docz-core` and `yargs` to build the cli tool.
-- Just built-ins components are built in this package
-- This package shouldn't have any component style, just logic!
+- Scripts that's running on browser belongs to this package
+- Built-ins components are built here, most specifically on [this folder](https://github.com/pedronauck/docz/tree/master/packages/docz/src/components)
+- This package shouldn't have any component style, just boilerplate and logic!
 
 ### Watching projects
 
-To speed up your develop process, you can split your terminal by open the packages that you need to develop and run `yarn dev` in each window. This will build the package in dev mode. So, after that, you can use any splitted window to run `yarn dev` too in some example package to see it in action, like that:
+To speed up your develop process:
+- Split your terminal openning the packages that you need to develop and running `yarn dev` in each window.
+- After that, use any of this splitted window to run `yarn dev` in some [example](https://github.com/pedronauck/docz/tree/master/examples) to run it, like that:
 
 ![](https://cdn-std.dprcdn.net/files/acc_649651/MdH4FL)
 
-Above you watching `docz`, `docz-core` and `docz-theme-default` and running `docz-example-basic`. So, any modification that is made on any package will reflect on basic example on the fly!
+Now you're watching `docz`, `docz-core` and `docz-theme-default` and running `docz-example-basic`. So, any modificationmade on any package will reflect on basic example on the fly!
 
 ### Creating plugins
 
-If you see that has some plugin that you can create and don't have this plugin on `packages/` folder, please contact-me before to we talk about make this plugin official!
+If has some plugin that you want to create, please contact-me before to talk about the possibility to make this plugin official!
 
 ## Contributors
 
