@@ -58,7 +58,7 @@ const getScale = ({ scale = 'normal' }: ButtonProps) => scales[scale]
 const getKind = ({ kind = 'primary', outline = false }: ButtonProps) =>
   kinds(outline)[kind]
 
-const ButtonStyled = styled<ButtonProps, 'button'>('button')`
+const ButtonStyled = styled('button')`
   ${getKind};
   ${getScale};
   cursor: pointer;
