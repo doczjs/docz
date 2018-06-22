@@ -1,6 +1,6 @@
 {
   "name": "docz-plugin-css",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
@@ -24,7 +24,7 @@
     "autoprefixer": "^8.6.3",
     "css-loader": "^0.28.11",
     "deepmerge": "^2.1.1",
-    "docz-core": "^0.2.10",
+    "docz-core": "^0.2.11",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "loader-utils": "^1.1.0",

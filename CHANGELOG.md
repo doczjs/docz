@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.11"></a>
+## [0.2.11](https://github.com/pedronauck/docz/compare/v0.2.10...v0.2.11) (2018-06-22)
+
+
+### Bug Fixes
+
+* **docz-core:** node env for production ([615aa1f](https://github.com/pedronauck/docz/commit/615aa1f))
+* **docz-plugin-css:** production build ([1a66d8a](https://github.com/pedronauck/docz/commit/1a66d8a))
+* **docz-theme-default:** use webfontloader instead of css import ([5973969](https://github.com/pedronauck/docz/commit/5973969))
+* some changes on css examples ([058660f](https://github.com/pedronauck/docz/commit/058660f))
+
+
+
+
 <a name="0.2.10"></a>
 ## [0.2.10](https://github.com/pedronauck/docz/compare/v0.2.9...v0.2.10) (2018-06-21)
 
