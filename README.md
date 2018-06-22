@@ -61,6 +61,7 @@ To break barriers and facilitate the creation of tools was the purpose that Docz
 ## 🚧 &nbsp; Tips, tricks and warnings
 
 - [Use with Babel@6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6)
+- [Use PostCSS, Sass, Less or Stylus on Docz](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-css)
 
 ## 📟 &nbsp; Install and Usage
 
