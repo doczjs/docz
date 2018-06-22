@@ -1,5 +1,5 @@
-import logger from 'signale'
 import * as fs from 'fs-extra'
+import logger from 'signale'
 import detectPort from 'detect-port'
 
 import * as paths from '../config/paths'

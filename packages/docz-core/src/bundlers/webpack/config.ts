@@ -92,7 +92,7 @@ export const createConfig = (babelrc: BabelRC) => (
 
   config.merge({
     optimization: {
-      nodeEnv: 'dev',
+      nodeEnv: env,
       namedModules: true,
       noEmitOnErrors: true,
       runtimeChunk: true,
@@ -101,6 +101,7 @@ export const createConfig = (babelrc: BabelRC) => (
         name: 'vendors',
       },
       ...(isProd && {
+        minimize: true,
         minimizer: [uglify],
       }),
     },
