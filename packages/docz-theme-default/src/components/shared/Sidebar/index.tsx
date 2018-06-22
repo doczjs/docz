@@ -2,16 +2,35 @@ import React from 'react'
 import { Docs, Link, Entry, ThemeConfig } from 'docz'
 import styled from 'react-emotion'
 import { Toggle } from 'react-powerplug'
-import ChevronDown from 'react-feather/dist/icons/chevron-down'
 
 import { Menu } from './Menu'
 import logo from '../../../images/docz.svg'
+
 
 interface Wrapper {
   opened: boolean
 }
 
+interface IconProps {
+  opened: boolean
+}
+
+interface ToggleBlockProps {
+  opened: boolean
+}
+
+interface ToggleBackgroundProps {
+  opened: boolean
+}
+
 const wrapperToggle = (p: Wrapper) => (p.opened ? '-90%' : '0')
+const IconFirst = (p: IconProps) => (p.opened ? '0px' : '12px')
+const IconMiddle = (p: IconProps) => (p.opened ? '1' : '0')
+const IconLast = (p: IconProps) => (p.opened ? '0px' : '-4px')
+const IconRotate = (p: IconProps) => (p.opened ? '0deg' : '45deg')
+const toggleBlockTranslateX = (p: ToggleBlockProps) => (p.opened ? '10px' : '-6px')
+const toggleBlockTranslateY = (p: ToggleBlockProps) => (p.opened ? '4px' : '0px')
+const toggleBackgroundAppear = (p: ToggleBackgroundProps) => (p.opened ? 'none' : 'block')
 
 const Wrapper = styled('div')`
   ${p => p.theme.mq({
@@ -104,46 +123,53 @@ const ToggleBlock = styled('div')`
   })};
   position: absolute;
   width: 32px;
-  height: 32px;
+  height: 36px;
   top: 0;
   right: 0;
   cursor: pointer;
+  transform: translateX(${toggleBlockTranslateX}) translateY(${toggleBlockTranslateY});
+  transition: transform 0.3s;
 `
 
-interface ToggleBackgroundProps {
-  opened: boolean
-}
-
-const ToggleBackgroundAppear = (p: ToggleBackgroundProps) => (p.opened ? 'none' : 'block')
-
 const ToggleBackground = styled('div')`
-  display: ${ToggleBackgroundAppear};
   content: '';
-  background-color: rgba(0, 0, 0, .2);
+  display: ${toggleBackgroundAppear};
   position: fixed;
+  background-color: rgba(0, 0, 0, .2);
   width: 100%;
   height: 100%;
   top: 0; bottom: 0; left: 0; right: 0;
+  cursor: pointer;
   z-index: 99;
 `
 
-interface IconProps {
-  opened: boolean
-}
-
-const iconRotate = (p: IconProps) => (p.opened ? '-90deg' : '90deg')
-
 const Icon = styled('div')`
   position: relative;
-  top: 50%;
-  transform: translateY(-50%) rotate(${iconRotate});
-  transform-origin: 50% 50%;
-  transition: transform 0.3s;
+  width: 28px;
+  height: 32px;
+  margin: auto;
 
-  & svg {
+  & .icon__line {
+    content: '';
     display: block;
-    margin: auto;
-    stroke: ${p => p.theme.colors.main};
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0; right: 0;
+    background: ${p => p.theme.colors.main};
+    transition: transform 0.3s, opacity 0.3s;
+    & :nth-child(1) {
+      top: 10px;
+      transform: translateY(${IconFirst}) rotate(${IconRotate});
+    }
+    & :nth-child(2) {
+      top: 18px;
+      opacity: ${IconMiddle}
+    }
+    & :nth-child(3) {
+      top: 26px;
+      transform: translateY(${IconLast}) rotate(-${IconRotate});
+    }
   }
 `
 
@@ -164,9 +190,11 @@ export const Sidebar = () => (
             return (
               <React.Fragment>
                 <Wrapper opened={on}>
-                  <ToggleBlock onClick={handleToggle}>
+                  <ToggleBlock opened={on} onClick={handleToggle}>
                     <Icon opened={on}>
-                      <ChevronDown size={15} />
+                      <span className="icon__line"></span>
+                      <span className="icon__line"></span>
+                      <span className="icon__line"></span>
                     </Icon>
                   </ToggleBlock>
                   <ThemeConfig>
