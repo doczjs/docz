@@ -15,7 +15,7 @@ const wrapperToggle = (p: Wrapper) => (p.opened ? '-90%' : '0')
 
 const Wrapper = styled('div')`
   ${p => p.theme.mq({
-    position: ['absolute', 'absolute', 'relative']
+    position: ['absolute', 'absolute', 'absolute', 'relative']
   })};
   display: flex;
   flex-direction: column;
@@ -99,12 +99,32 @@ const Footer = styled('div')`
 `
 
 const ToggleBlock = styled('div')`
+  ${p => p.theme.mq({
+    display: ['block', 'block', 'block', 'none']
+  })};
   position: absolute;
   width: 32px;
   height: 32px;
   top: 0;
   right: 0;
   cursor: pointer;
+`
+
+interface ToggleBackgroundProps {
+  opened: boolean
+}
+
+const ToggleBackgroundAppear = (p: ToggleBackgroundProps) => (p.opened ? 'none' : 'block')
+
+const ToggleBackground = styled('div')`
+  display: ${ToggleBackgroundAppear};
+  content: '';
+  background-color: rgba(0, 0, 0, .2);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0; bottom: 0; left: 0; right: 0;
+  z-index: 99;
 `
 
 interface IconProps {
@@ -142,38 +162,41 @@ export const Sidebar = () => (
               docs.filter(doc => doc.menu === menu)
 
             return (
-              <Wrapper opened={on}>
-                <ToggleBlock onClick={handleToggle}>
-                  <Icon opened={on}>
-                    <ChevronDown size={15} />
-                  </Icon>
-                </ToggleBlock>
-                <ThemeConfig>
-                  {({ title, logo }) =>
-                    logo ? (
-                      <LogoImg src={logo.src} width={logo.width} alt={title} />
-                    ) : (
-                      <LogoText>{title}</LogoText>
-                    )
-                  }
-                </ThemeConfig>
-                <Menus>
-                  {docsWithoutMenu.map(doc => (
-                    <Link key={doc.id} to={doc.route}>
-                      {doc.name}
-                    </Link>
-                  ))}
-                  {menus.map(menu => (
-                    <Menu key={menu} menu={menu} docs={fromMenu(menu)} />
-                  ))}
-                </Menus>
-                <Footer>
-                  Built with
-                  <a href="#" target="_blank">
-                    <img src={logo} width={40} alt="Docz" />
-                  </a>
-                </Footer>
-              </Wrapper>
+              <React.Fragment>
+                <Wrapper opened={on}>
+                  <ToggleBlock onClick={handleToggle}>
+                    <Icon opened={on}>
+                      <ChevronDown size={15} />
+                    </Icon>
+                  </ToggleBlock>
+                  <ThemeConfig>
+                    {({ title, logo }) =>
+                      logo ? (
+                        <LogoImg src={logo.src} width={logo.width} alt={title} />
+                      ) : (
+                        <LogoText>{title}</LogoText>
+                      )
+                    }
+                  </ThemeConfig>
+                  <Menus>
+                    {docsWithoutMenu.map(doc => (
+                      <Link key={doc.id} to={doc.route}>
+                        {doc.name}
+                      </Link>
+                    ))}
+                    {menus.map(menu => (
+                      <Menu key={menu} menu={menu} docs={fromMenu(menu)} />
+                    ))}
+                  </Menus>
+                  <Footer>
+                    Built with
+                    <a href="#" target="_blank">
+                      <img src={logo} width={40} alt="Docz" />
+                    </a>
+                  </Footer>
+                </Wrapper>
+                <ToggleBackground opened={on} onClick={handleToggle}/>
+              </React.Fragment>
             )
           }}
         </Docs>
