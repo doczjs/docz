@@ -19,17 +19,17 @@ export const doczPluginVue = () =>
       return babelrc
     },
 
-    modifyBundlerConfig: (config) => {
+    modifyBundlerConfig: config => {
       config.module.rules.push({
         test: /\.vue$/,
         use: 'vue-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       })
 
       config.module.rules.push({
         test: /\.css$/,
         use: ['vue-style-loader', 'css-loader'],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       })
 
       config.plugins.push(new VueLoaderPlugin())
