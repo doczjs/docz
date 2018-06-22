@@ -62,7 +62,10 @@ const loaders = {
     }),
 
   sass: (opts: Opts = {}) =>
-    getStyleLoaders(require.resolve('sass-loader'), opts),
+    getStyleLoaders(
+      require.resolve('sass-loader'),
+      merge(opts, { indentedSyntax: false })
+    ),
 
   less: (opts: Opts = {}) =>
     getStyleLoaders(require.resolve('less-loader'), opts),
@@ -122,6 +125,7 @@ export const css = (opts: CSSPluginOptions) =>
       )
 
       if (!dev) {
+        const test = tests[opts.preprocessor || 'postcss']
         const minimizer = config.optimization.minimizer || []
         const splitChunks = { ...config.optimization.splitChunks }
 
@@ -132,8 +136,8 @@ export const css = (opts: CSSPluginOptions) =>
         config.optimization.splitChunks = merge(splitChunks, {
           cacheGroups: {
             styles: {
+              test: (m: any) => test.test(m.type),
               name: 'styles',
-              test: (m: any) => /css-extract/.test(m.type),
               chunks: 'all',
               enforce: true,
             },
@@ -142,8 +146,7 @@ export const css = (opts: CSSPluginOptions) =>
 
         config.plugins.push(
           new MiniCssExtractPlugin({
-            filename: '[name].[hash].css',
-            chunkFilename: '[id].[hash].css',
+            filename: 'static/css/[name].[hash].css',
           })
         )
       }
