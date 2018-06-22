@@ -65,7 +65,7 @@ type ButtonProps = {
   children: Node,
 }
 
-const Button = ({
+export const Button = ({
   scale = 'normal',
   kind = 'primary',
   outline = false,
@@ -75,5 +75,3 @@ const Button = ({
     {children}
   </ButtonStyled>
 )
-
-export default Button

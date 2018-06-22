@@ -1,10 +1,6 @@
 import * as colors from './colors'
 
 export const styles = {
-  inject: `
-    @import url('https://fonts.googleapis.com/css?family=Inconsolata');
-    @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700');
-  `,
   body: {
     fontFamily: "'Source Sans Pro', Helvetica, sans-serif",
     fontSize: '16px',

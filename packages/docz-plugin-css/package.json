@@ -1,0 +1,44 @@
+{
+  "name": "docz-plugin-css",
+  "version": "0.2.11",
+  "main": "dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "module": "dist/index.m.js",
+  "typings": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "files": [
+    "dist/",
+    "package.json",
+    "README.md"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dev": "libundler watch --ts",
+    "build": "libundler build --ts --c",
+    "fix": "run-s fix:*",
+    "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
+    "fix:tslint": "tslint --fix --project .",
+    "tslint": "tslint --project ."
+  },
+  "dependencies": {
+    "autoprefixer": "^8.6.3",
+    "css-loader": "^0.28.11",
+    "deepmerge": "^2.1.1",
+    "docz-core": "^0.2.11",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
+    "loader-utils": "^1.1.0",
+    "mini-css-extract-plugin": "^0.4.0",
+    "node-sass": "^4.9.0",
+    "optimize-css-assets-webpack-plugin": "^4.0.2",
+    "postcss": "^6.0.23",
+    "postcss-flexbugs-fixes": "^3.3.1",
+    "postcss-loader": "^2.1.5",
+    "sass-loader": "^7.0.3",
+    "style-loader": "^0.21.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "webpack": "^4.12.0",
+    "webpack-chain": "^4.8.0"
+  }
+}

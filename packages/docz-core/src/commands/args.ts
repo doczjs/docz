@@ -1,4 +1,5 @@
 import { Plugin } from '../Plugin'
+import { BabelRC } from '../utils/babelrc'
 
 export interface Argv {
   /* io args */
@@ -28,11 +29,13 @@ export interface ThemeConfig {
 }
 
 export interface Config extends Argv {
-  plugins?: Plugin[]
+  hashRouter: boolean
+  plugins: Plugin[]
   mdPlugins: any[]
   hastPlugins: any[]
   themeConfig: ThemeConfig
   modifyBundlerConfig<C>(config: C, dev: boolean): C
+  modifyBabelRc(babelrc: BabelRC): BabelRC
 }
 
 export const args = (yargs: any) => {

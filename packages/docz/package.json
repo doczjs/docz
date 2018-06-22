@@ -1,6 +1,6 @@
 {
   "name": "docz",
-  "version": "0.2.6",
+  "version": "0.2.11",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
@@ -24,26 +24,27 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
+    "@mdx-js/tag": "^0.11.0",
     "@sindresorhus/slugify": "^0.3.0",
     "deepmerge": "^2.1.1",
-    "docz-core": "^0.2.6",
-    "docz-theme-default": "^0.2.6",
+    "docz-core": "^0.2.11",
+    "docz-theme-default": "^0.2.11",
     "invariant": "^2.2.4",
     "loadable-components": "^2.2.2",
     "pascalcase": "^0.1.1",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
     "react-router-dom": "^4.3.1",
     "yargs": "^11.0.0"
   },
   "peerDependencies": {
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0"
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.20",
     "@types/deepmerge": "^2.1.0",
-    "@types/react": "^16.3.17",
+    "@types/react": "^16.4.1",
     "@types/react-dom": "^16.0.6",
     "@types/react-router-dom": "^4.2.7"
   }

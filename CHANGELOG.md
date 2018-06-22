@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.11"></a>
+## [0.2.11](https://github.com/pedronauck/docz/compare/v0.2.10...v0.2.11) (2018-06-22)
+
+
+### Bug Fixes
+
+* **docz-core:** node env for production ([615aa1f](https://github.com/pedronauck/docz/commit/615aa1f))
+* **docz-plugin-css:** production build ([1a66d8a](https://github.com/pedronauck/docz/commit/1a66d8a))
+* **docz-theme-default:** use webfontloader instead of css import ([5973969](https://github.com/pedronauck/docz/commit/5973969))
+* some changes on css examples ([058660f](https://github.com/pedronauck/docz/commit/058660f))
+
+
+
+
+<a name="0.2.10"></a>
+## [0.2.10](https://github.com/pedronauck/docz/compare/v0.2.9...v0.2.10) (2018-06-21)
+
+
+### Features
+
+* **docz-plugin-css:** add initial version ([#78](https://github.com/pedronauck/docz/issues/78)) ([299372e](https://github.com/pedronauck/docz/commit/299372e))
+
+
+
+
+<a name="0.2.9"></a>
+## [0.2.9](https://github.com/pedronauck/docz/compare/v0.2.8...v0.2.9) (2018-06-21)
+
+
+
+
+**Note:** Version bump only for package undefined
+
+<a name="0.2.8"></a>
+## [0.2.8](https://github.com/pedronauck/docz/compare/v0.2.7...v0.2.8) (2018-06-21)
+
+
+### Bug Fixes
+
+* **docz-core:** typescript resolve extensions ([689b057](https://github.com/pedronauck/docz/commit/689b057))
+
+
+
+
+<a name="0.2.7"></a>
+## [0.2.7](https://github.com/pedronauck/docz/compare/v0.2.6...v0.2.7) (2018-06-20)
+
+
+### Bug Fixes
+
+* **docz:** typo ([#63](https://github.com/pedronauck/docz/issues/63)) ([6af5db2](https://github.com/pedronauck/docz/commit/6af5db2))
+* **docz-plugin-babel6:** documentation for babel plugin ([#60](https://github.com/pedronauck/docz/issues/60)) ([8a14e2a](https://github.com/pedronauck/docz/commit/8a14e2a))
+* **docz-plugin-babel6:** readme typo ([b77e986](https://github.com/pedronauck/docz/commit/b77e986))
+* **docz-plugin-babel6:** typo ([d2f92b7](https://github.com/pedronauck/docz/commit/d2f92b7))
+* **docz-theme-default:** improve spacing on jsx attributes ([#54](https://github.com/pedronauck/docz/issues/54)) ([49fe0b8](https://github.com/pedronauck/docz/commit/49fe0b8))
+
+
+
+
 <a name="0.2.6"></a>
 ## [0.2.6](https://github.com/pedronauck/docz/compare/v0.2.5...v0.2.6) (2018-06-17)
 

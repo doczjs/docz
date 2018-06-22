@@ -27,9 +27,10 @@ export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
   }
 
   if (args.propsParser && !args.typescript) {
-    babelLoader.options.plugins.push(
-      require.resolve('babel-plugin-react-docgen')
-    )
+    babelLoader.options.plugins.push([
+      require.resolve('babel-plugin-react-docgen'),
+      { resolver: 'findAllExportedComponentDefinitions' },
+    ])
   }
 
   if (args.propsParser && args.typescript) {

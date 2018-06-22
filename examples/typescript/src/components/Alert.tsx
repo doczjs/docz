@@ -19,16 +19,14 @@ export interface AlertProps {
   kind: 'info' | 'positive' | 'negative' | 'warning'
 }
 
-const AlertStyled = styled<AlertProps, 'div'>('div')`
+const AlertStyled = styled('div')`
   padding: 15px 20px;
   background: white;
   border-radius: 3px;
   color: white;
-  background: ${({ kind = 'info' }) => kinds[kind]};
+  background: ${({ kind = 'info' }: AlertProps) => kinds[kind]};
 `
 
-const Alert: SFC<AlertProps> = ({ kind, ...props }) => (
+export const Alert: SFC<AlertProps> = ({ kind, ...props }) => (
   <AlertStyled {...props} kind={kind} />
 )
-
-export default Alert

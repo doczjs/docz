@@ -8,6 +8,9 @@ import { Entries } from '../Entries'
 import { Config } from './args'
 import { Plugin } from '../Plugin'
 
+process.env.BABEL_ENV = process.env.BABEL_ENV || 'production'
+process.env.NODE_ENV = process.env.NODE_ENV || 'production'
+
 export const build = async (args: Config) => {
   const config = loadConfig(args)
   const bundler = webpack(config, 'production')

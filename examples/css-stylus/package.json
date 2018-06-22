@@ -1,0 +1,20 @@
+{
+  "name": "docz-example-css-stylus",
+  "version": "0.2.11",
+  "license": "MIT",
+  "scripts": {
+    "dev": "docz dev",
+    "build": "docz build"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "docz": "^0.2.11",
+    "docz-core": "^0.2.11",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "devDependencies": {
+    "docz-plugin-css": "^0.2.11"
+  }
+}

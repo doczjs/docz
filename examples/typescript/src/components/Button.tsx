@@ -58,7 +58,7 @@ const getScale = ({ scale = 'normal' }: ButtonProps) => scales[scale]
 const getKind = ({ kind = 'primary', outline = false }: ButtonProps) =>
   kinds(outline)[kind]
 
-const ButtonStyled = styled<ButtonProps, 'button'>('button')`
+const ButtonStyled = styled('button')`
   ${getKind};
   ${getScale};
   cursor: pointer;
@@ -67,8 +67,6 @@ const ButtonStyled = styled<ButtonProps, 'button'>('button')`
   border-radius: 3px;
 `
 
-const Button: SFC<ButtonProps> = ({ children, ...props }) => (
+export const Button: SFC<ButtonProps> = ({ children, ...props }) => (
   <ButtonStyled {...props}>{children}</ButtonStyled>
 )
-
-export default Button

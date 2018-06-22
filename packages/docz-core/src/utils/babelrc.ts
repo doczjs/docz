@@ -23,6 +23,5 @@ export const babelrc = (args: Config): BabelRC => {
   })
 
   const reduce = Plugin.reduceFromPlugins<BabelRC>(args.plugins)
-
-  return reduce('modifyBabelRc', config)
+  return reduce('modifyBabelRc', args.modifyBabelRc(config))
 }

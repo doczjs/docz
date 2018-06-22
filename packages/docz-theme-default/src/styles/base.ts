@@ -9,9 +9,7 @@ const selection = (color: string) => css`
 export const base = (config: any) => {
   injectGlobal`
     @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css');
-
     ${css(config.prismTheme)};
-    ${css(config.styles.inject)};
 
     *, *:before, *:after {
       box-sizing: border-box;

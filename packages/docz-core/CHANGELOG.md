@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.11"></a>
+## [0.2.11](https://github.com/pedronauck/docz/compare/v0.2.10...v0.2.11) (2018-06-22)
+
+
+### Bug Fixes
+
+* **docz-core:** node env for production ([615aa1f](https://github.com/pedronauck/docz/commit/615aa1f))
+
+
+
+
+<a name="0.2.10"></a>
+## [0.2.10](https://github.com/pedronauck/docz/compare/v0.2.9...v0.2.10) (2018-06-21)
+
+
+### Features
+
+* **docz-plugin-css:** add initial version ([#78](https://github.com/pedronauck/docz/issues/78)) ([299372e](https://github.com/pedronauck/docz/commit/299372e))
+
+
+
+
+<a name="0.2.9"></a>
+## [0.2.9](https://github.com/pedronauck/docz/compare/v0.2.8...v0.2.9) (2018-06-21)
+
+
+
+
+**Note:** Version bump only for package docz-core
+
+<a name="0.2.8"></a>
+## [0.2.8](https://github.com/pedronauck/docz/compare/v0.2.7...v0.2.8) (2018-06-21)
+
+
+### Bug Fixes
+
+* **docz-core:** typescript resolve extensions ([689b057](https://github.com/pedronauck/docz/commit/689b057))
+
+
+
+
+<a name="0.2.7"></a>
+## [0.2.7](https://github.com/pedronauck/docz/compare/v0.2.6...v0.2.7) (2018-06-20)
+
+
+
+
+**Note:** Version bump only for package docz-core
+
 <a name="0.2.6"></a>
 ## [0.2.6](https://github.com/pedronauck/docz/compare/v0.2.5...v0.2.6) (2018-06-17)
 

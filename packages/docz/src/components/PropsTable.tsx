@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Fragment, SFC, ComponentType } from 'react'
+import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 
 export interface EnumValue {
   value: string
@@ -67,7 +68,7 @@ export type TooltipComponent = React.ComponentType<{
 const extractTypeDescribedValue = (type: PropType): string => {
   const { name, value } = type
 
-  // instanceOf, computed shape, uknown enum
+  // instanceOf, computed shape, unknown enum
   if (typeof value === 'string') {
     return value
   }
@@ -113,7 +114,7 @@ const getPropType = (prop: Prop, Tooltip?: TooltipComponent) => {
   )
 }
 
-export const PropsTable: SFC<PropsTable> = ({ of: component, components }) => {
+const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
   const info = component.__docgenInfo
   const props = info && info.props
 
@@ -167,3 +168,5 @@ export const PropsTable: SFC<PropsTable> = ({ of: component, components }) => {
     </Fragment>
   )
 }
+
+export const PropsTable = withMDXComponents(BasePropsTable)

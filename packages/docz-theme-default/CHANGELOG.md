@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.11"></a>
+## [0.2.11](https://github.com/pedronauck/docz/compare/v0.2.10...v0.2.11) (2018-06-22)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** use webfontloader instead of css import ([5973969](https://github.com/pedronauck/docz/commit/5973969))
+
+
+
+
+<a name="0.2.10"></a>
+## [0.2.10](https://github.com/pedronauck/docz/compare/v0.2.9...v0.2.10) (2018-06-21)
+
+
+
+
+**Note:** Version bump only for package docz-theme-default
+
+<a name="0.2.9"></a>
+## [0.2.9](https://github.com/pedronauck/docz/compare/v0.2.8...v0.2.9) (2018-06-21)
+
+
+
+
+**Note:** Version bump only for package docz-theme-default
+
+<a name="0.2.8"></a>
+## [0.2.8](https://github.com/pedronauck/docz/compare/v0.2.7...v0.2.8) (2018-06-21)
+
+
+
+
+**Note:** Version bump only for package docz-theme-default
+
+<a name="0.2.7"></a>
+## [0.2.7](https://github.com/pedronauck/docz/compare/v0.2.6...v0.2.7) (2018-06-20)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** improve spacing on jsx attributes ([#54](https://github.com/pedronauck/docz/issues/54)) ([49fe0b8](https://github.com/pedronauck/docz/commit/49fe0b8))
+
+
+
+
 <a name="0.2.6"></a>
 ## [0.2.6](https://github.com/pedronauck/docz/compare/v0.2.5...v0.2.6) (2018-06-17)
 

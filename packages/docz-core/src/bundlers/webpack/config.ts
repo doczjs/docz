@@ -92,7 +92,7 @@ export const createConfig = (babelrc: BabelRC) => (
 
   config.merge({
     optimization: {
-      nodeEnv: 'dev',
+      nodeEnv: env,
       namedModules: true,
       noEmitOnErrors: true,
       runtimeChunk: true,
@@ -101,6 +101,7 @@ export const createConfig = (babelrc: BabelRC) => (
         name: 'vendors',
       },
       ...(isProd && {
+        minimize: true,
         minimizer: [uglify],
       }),
     },
@@ -126,19 +127,30 @@ export const createConfig = (babelrc: BabelRC) => (
       path.dirname(require.resolve('@babel/runtime/package.json'))
     )
 
-  config.resolve.extensions
-    .merge([
-      '.web.js',
-      '.mjs',
-      '.js',
-      '.json',
-      '.web.jsx',
-      '.jsx',
-      '.mdx',
-      ...(args.typescript ? ['.ts', '.tsx'] : []),
-    ])
-    .end()
-    .modules.add('node_modules')
+  const addExtensions = (resolve: any) => {
+    resolve.extensions
+      .add('.web.js')
+      .add('.mjs')
+      .add('.js')
+      .add('.json')
+      .add('.web.jsx')
+      .add('.jsx')
+      .add('.mdx')
+      .end()
+
+    if (args.typescript) {
+      resolve.extensions
+        .prepend('.ts')
+        .prepend('.tsx')
+        .end()
+    }
+  }
+
+  addExtensions(config.resolve)
+  addExtensions(config.resolveLoader)
+
+  config.resolve.modules
+    .add('node_modules')
     .add(srcPath)
     .add(paths.root)
 
