@@ -14,14 +14,17 @@ interface Wrapper {
 const wrapperToggle = (p: Wrapper) => (p.opened ? '-90%' : '0')
 
 const Wrapper = styled('div')`
+  ${p => p.theme.mq({
+    position: ['absolute', 'absolute', 'relative']
+  })};
   display: flex;
-  position: relative;
   flex-direction: column;
   height: 100%;
-  background: ${p => wrapperToggle(p) !== '0' ? p.theme.colors.white : p.theme.colors.grayLight};
+  background: ${p =>
+    wrapperToggle(p) !== '0' ? p.theme.colors.white : p.theme.colors.grayLight};
   transition: transform 0.3s, background 0.3s;
   transform: translateX(${wrapperToggle});
-  z-index: 99;
+  z-index: 100;
 
   ${p => p.theme.styles.sidebar};
 
@@ -135,7 +138,8 @@ export const Sidebar = () => (
         <Docs>
           {({ docs, menus }) => {
             const docsWithoutMenu = docs.filter((doc: Entry) => !doc.menu)
-            const fromMenu = (menu: string) => docs.filter(doc => doc.menu === menu)
+            const fromMenu = (menu: string) =>
+              docs.filter(doc => doc.menu === menu)
 
             return (
               <Wrapper opened={on}>
