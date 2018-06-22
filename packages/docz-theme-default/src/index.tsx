@@ -1,10 +1,15 @@
+import './styles/global'
+
 import * as React from 'react'
 import { theme, DocPreview, ThemeConfig } from 'docz'
 import { ThemeProvider } from 'emotion-theming'
+import webfont from 'webfontloader'
 
 import { config } from './config'
 import { Sidebar, Main } from './components/shared'
 import * as components from './components/ui'
+import * as modes from './styles/modes'
+import * as prismThemes from './styles/prism'
 
 const Theme = () => (
   <ThemeConfig>
@@ -24,6 +29,9 @@ const Theme = () => (
               h5: components.H5,
               h6: components.H6,
               ul: components.List,
+              p: components.Paragraph,
+              a: components.Link,
+              inlineCode: components.InlineCode,
               loading: components.Loading,
               table: components.Table,
               pre: components.Pre,
@@ -36,4 +44,16 @@ const Theme = () => (
   </ThemeConfig>
 )
 
-export default theme(config)(Theme)
+webfont.load({
+  google: {
+    families: ['Inconsolata', 'Source Sans Pro:300,400,600,700'],
+  },
+})
+
+const transform = ({ mode, ...config }: any) => ({
+  ...config,
+  prismTheme: (prismThemes as any)[mode],
+  colors: (modes as any)[mode],
+})
+
+export default theme(config, transform)(Theme)

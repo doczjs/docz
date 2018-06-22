@@ -1,4 +1,4 @@
-export const prismTheme = `
+export const theme = `
   code[class*="language-"],
   pre[class*="language-"] {
     direction: ltr;
@@ -32,14 +32,7 @@ export const prismTheme = `
 
   /* Code blocks */
   pre[class*="language-"] {
-    padding: 2rem;
-    margin: 0;
     overflow: auto;
-  }
-
-  /* Inline code */
-  :not(pre) > code[class*="language-"] {
-    padding: .1rem;
   }
 
   .token.comment,
@@ -96,10 +89,6 @@ export const prismTheme = `
   .token.directive,
   .token.unit {
     color: #ac9739;
-  }
-
-  .attr-value {
-    padding-right: 5px;
   }
 
   .token.statement,

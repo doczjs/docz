@@ -3,7 +3,6 @@ import { Component } from 'react'
 import styled from 'react-emotion'
 import equals from 'fast-deep-equal'
 import { base } from '../../../styles/base'
-import webfont from 'webfontloader'
 
 const Wrapper = styled('div')`
   display: flex;
@@ -13,13 +12,6 @@ const Wrapper = styled('div')`
 interface MainProps {
   config: any
 }
-
-const loadfonts = () =>
-  webfont.load({
-    google: {
-      families: ['Inconsolata', 'Source Sans Pro:300,400,600,700'],
-    },
-  })
 
 export class Main extends Component<MainProps> {
   public componentDidUpdate(prevProps: MainProps): void {
@@ -32,7 +24,6 @@ export class Main extends Component<MainProps> {
 
   public componentDidMount(): void {
     base(this.props.config)
-    loadfonts()
   }
 
   public render(): React.ReactNode {

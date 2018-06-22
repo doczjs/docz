@@ -25,7 +25,7 @@ const Icon = styled.div`
   transition: transform 0.3s;
 
   & svg {
-    stroke: ${p => p.theme.colors.main};
+    stroke: ${p => p.theme.colors.text};
   }
 `
 

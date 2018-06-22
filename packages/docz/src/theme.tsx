@@ -63,9 +63,13 @@ export interface ThemeProps extends DataContext {
   children(WrappedComponent: CT): JSX.Element
 }
 
+export type TransformFn = (config: ThemeConfig) => ThemeConfig
 export type ThemeReturn = (WrappedComponent: CT) => CT<ThemeProps>
 
-export function theme(defaultConfig?: ThemeConfig): ThemeReturn {
+export function theme(
+  defaultConfig?: ThemeConfig,
+  transform?: TransformFn
+): ThemeReturn {
   return WrappedComponent => {
     const Theme: CT<ThemeProps> = ({
       wrapper: Wrapper = DefaultWrapper,
@@ -74,9 +78,13 @@ export function theme(defaultConfig?: ThemeConfig): ThemeReturn {
       config = {},
       hashRouter = false,
     }) => {
-      const newConfig = merge(defaultConfig, config)
-      const value = { entries, imports, config: newConfig }
       const Router = hashRouter ? HashRouter : BrowserRouter
+      const newConfig = merge(defaultConfig, config)
+      const value = {
+        entries,
+        imports,
+        config: transform ? transform(newConfig) : newConfig,
+      }
 
       return (
         <dataContext.Provider value={value}>

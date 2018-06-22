@@ -1,5 +1,3 @@
-import * as colors from './colors'
-
 export const styles = {
   body: {
     fontFamily: "'Source Sans Pro', Helvetica, sans-serif",
@@ -48,6 +46,13 @@ export const styles = {
   playground: {
     padding: '2rem',
   },
+  code: {
+    margin: '0 3px',
+    padding: '4px 6px',
+    borderRadius: '3px',
+    fontFamily: "'Inconsolata', monospace",
+    fontSize: 16,
+  },
   pre: {
     fontFamily: "'Inconsolata', monospace",
     fontSize: 16,
@@ -55,27 +60,5 @@ export const styles = {
   table: {
     fontFamily: "'Inconsolata', monospace",
     fontSize: 16,
-  },
-  tooltip: {
-    wrapper: {
-      color: colors.primary,
-    },
-    content: {
-      backgroundColor: colors.main,
-      color: colors.grayLight,
-    },
-    tooltip: {
-      display: 'flex',
-      alignItems: 'center',
-      width: 220,
-      maxWidth: 220,
-      padding: 5,
-      backgroundColor: colors.main,
-      borderRadius: '3px',
-      fontSize: 16,
-    },
-    arrow: {
-      borderTop: `solid ${colors.main} 5px`,
-    },
   },
 }
