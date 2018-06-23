@@ -5,8 +5,8 @@
   <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="">
 </p>
 
-<p align="center">
-  <img src="https://cdn-std.dprcdn.net/files/acc_649651/OnwqVu">
+<p align="center" style="margin-bottom: -20px">
+  <img src="https://cdn-std.dprcdn.net/files/acc_649651/ilOByk">
 </p>
 
 ---
