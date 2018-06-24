@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Fragment, SFC, ComponentType } from 'react'
 import { Switch, Route, RouteComponentProps } from 'react-router-dom'
+import { ErrorBoundary } from './ErrorBoundary'
 import { MDXProvider } from '@mdx-js/tag'
 import loadable from 'loadable-components'
 
@@ -72,40 +73,42 @@ export const DocPreview: SFC<DocPreviewProps> = ({
   const LoadingComponent = components.loading
 
   return (
-    <MDXProvider components={components}>
-      <dataContext.Consumer>
-        {({ imports, entries }) => (
-          <Switch>
-            {Object.keys(imports).map(path => {
-              const entry = entries && entries[path]
-              const load = loadImport(imports, components)
-              const AsyncComponent = loadable(load(path), {
-                LoadingComponent,
-              })
+    <ErrorBoundary>
+      <MDXProvider components={components}>
+        <dataContext.Consumer>
+          {({ imports, entries }) => (
+            <Switch>
+              {Object.keys(imports).map(path => {
+                const entry = entries && entries[path]
+                const load = loadImport(imports, components)
+                const AsyncComponent = loadable(load(path), {
+                  LoadingComponent,
+                })
 
-              return (
-                entry && (
-                  <Route
-                    exact
-                    key={entry.id}
-                    path={entry.route}
-                    render={props =>
-                      Page ? (
-                        <Page {...props} doc={entry}>
-                          <AsyncComponent />
-                        </Page>
-                      ) : (
-                        <AsyncComponent {...props} />
-                      )
-                    }
-                  />
+                return (
+                  entry && (
+                    <Route
+                      exact
+                      key={entry.id}
+                      path={entry.route}
+                      render={props =>
+                        Page ? (
+                          <Page {...props} doc={entry}>
+                            <AsyncComponent />
+                          </Page>
+                        ) : (
+                          <AsyncComponent {...props} />
+                        )
+                      }
+                    />
+                  )
                 )
-              )
-            })}
-            {NotFound && <Route component={NotFound} />}
-          </Switch>
-        )}
-      </dataContext.Consumer>
-    </MDXProvider>
+              })}
+              {NotFound && <Route component={NotFound} />}
+            </Switch>
+          )}
+        </dataContext.Consumer>
+      </MDXProvider>
+    </ErrorBoundary>
   )
 }
