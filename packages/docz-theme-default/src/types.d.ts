@@ -9,30 +9,29 @@ declare module '*.svg' {
   export default content
 }
 
-declare module "facepaint" {
-
+declare module 'facepaint' {
   interface Styles {
-    [ruleOrSelector: string]: string | number | Styles;
+    [ruleOrSelector: string]: string | number | Styles
   }
 
   interface MqStyles {
-    [ruleOrSelector: string]: string | string[] | number | number[] | Styles;
+    [ruleOrSelector: string]: string | string[] | number | number[] | Styles
   }
 
-  type Mq = (styles: object) => Styles;
+  type Mq = (styles: object) => Styles
 
   interface FacepaintSettings {
-    literal?: boolean;
-    overlap?: boolean;
+    literal?: boolean
+    overlap?: boolean
   }
 
   type Facepaint = (
     /** media queries to be applied across */
     mediaQueries: [string, string, string],
     settings?: FacepaintSettings
-  ) => Mq;
+  ) => Mq
 
-  const facepaint: Facepaint;
+  const facepaint: Facepaint
 
-  export = facepaint;
+  export = facepaint
 }

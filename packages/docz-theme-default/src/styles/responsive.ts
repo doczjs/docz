@@ -9,5 +9,5 @@ export const breakpoints = {
 export const mq = facepaint([
   `@media(min-width: ${breakpoints.mobile}px)`,
   `@media(min-width: ${breakpoints.tablet}px)`,
-  `@media(min-width: ${breakpoints.desktop}px)`
+  `@media(min-width: ${breakpoints.desktop}px)`,
 ])
