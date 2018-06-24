@@ -32,9 +32,10 @@ const Icon = styled.div`
 export interface MenuProps {
   menu: string
   docs: Entry[]
+  sidebarToggle: (ev: React.SyntheticEvent<any>) => void
 }
 
-export const Menu: SFC<MenuProps> = ({ menu, docs }) => (
+export const Menu: SFC<MenuProps> = ({ menu, docs, sidebarToggle }) => (
   <Toggle initial={false}>
     {({ on, toggle }: any) => {
       const handleToggle = (ev: React.SyntheticEvent<any>) => {
@@ -54,7 +55,7 @@ export const Menu: SFC<MenuProps> = ({ menu, docs }) => (
             <dl>
               {docs.map(doc => (
                 <dt key={doc.id}>
-                  <Link to={doc.route}>{doc.name}</Link>
+                  <Link onClick={sidebarToggle} to={doc.route}>{doc.name}</Link>
                 </dt>
               ))}
             </dl>

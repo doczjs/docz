@@ -185,8 +185,7 @@ const Icon = styled('div')`
 export const Sidebar = () => (
   <Toggle initial={false}>
     {({ on, toggle }: any) => {
-      const handleToggle = (ev: React.SyntheticEvent<any>) => {
-        ev.preventDefault()
+      const handleSidebarToggle = (ev: React.SyntheticEvent<any>) => {
         toggle()
       }
       return (
@@ -199,7 +198,7 @@ export const Sidebar = () => (
             return (
               <React.Fragment>
                 <Wrapper opened={on}>
-                  <ToggleBlock opened={on} onClick={handleToggle}>
+                  <ToggleBlock opened={on} onClick={handleSidebarToggle}>
                     <Icon opened={on}>
                       <span className="icon__line" />
                       <span className="icon__line" />
@@ -221,12 +220,12 @@ export const Sidebar = () => (
                   </ThemeConfig>
                   <Menus>
                     {docsWithoutMenu.map(doc => (
-                      <Link key={doc.id} to={doc.route}>
+                      <Link key={doc.id} to={doc.route} onClick={handleSidebarToggle}>
                         {doc.name}
                       </Link>
                     ))}
                     {menus.map(menu => (
-                      <Menu key={menu} menu={menu} docs={fromMenu(menu)} />
+                      <Menu key={menu} sidebarToggle={handleSidebarToggle} menu={menu} docs={fromMenu(menu)} />
                     ))}
                   </Menus>
                   <Footer>
@@ -236,7 +235,7 @@ export const Sidebar = () => (
                     </a>
                   </Footer>
                 </Wrapper>
-                <ToggleBackground opened={on} onClick={handleToggle} />
+                <ToggleBackground opened={on} onClick={handleSidebarToggle} />
               </React.Fragment>
             )
           }}
