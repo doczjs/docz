@@ -1,6 +1,6 @@
 {
   "name": "docz-theme-default",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "license": "MIT",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
@@ -20,7 +20,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "docz": "^0.3.1",
+    "docz": "^0.3.2",
     "emotion": "^9.2.3",
     "emotion-theming": "^9.2.3",
     "facepaint": "^1.2.1",
