@@ -1,7 +1,9 @@
 import styled from 'react-emotion'
 
 export const Link = styled('a')`
-  &, &:visited, &:active {
+  &,
+  &:visited,
+  &:active {
     text-decoration: none;
     color: ${p => p.theme.colors.link};
   }
