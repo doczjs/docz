@@ -4,6 +4,7 @@ import * as React from 'react'
 import { theme, DocPreview, ThemeConfig } from 'docz'
 import { ThemeProvider } from 'emotion-theming'
 import webfont from 'webfontloader'
+import ReactBreakpoints from 'react-breakpoints'
 
 import { config } from './config'
 import { Sidebar, Main } from './components/shared'
@@ -15,30 +16,32 @@ const Theme = () => (
   <ThemeConfig>
     {config => (
       <ThemeProvider theme={config}>
-        <Main config={config}>
-          <Sidebar />
-          <DocPreview
-            components={{
-              page: components.Page,
-              notFound: components.NotFound,
-              render: components.Render,
-              h1: components.H1,
-              h2: components.H2,
-              h3: components.H3,
-              h4: components.H4,
-              h5: components.H5,
-              h6: components.H6,
-              ul: components.List,
-              p: components.Paragraph,
-              a: components.Link,
-              inlineCode: components.InlineCode,
-              loading: components.Loading,
-              table: components.Table,
-              pre: components.Pre,
-              tooltip: components.Tooltip,
-            }}
-          />
-        </Main>
+        <ReactBreakpoints breakpoints={config.breakpoints}>
+          <Main config={config}>
+            <Sidebar />
+            <DocPreview
+              components={{
+                page: components.Page,
+                notFound: components.NotFound,
+                render: components.Render,
+                h1: components.H1,
+                h2: components.H2,
+                h3: components.H3,
+                h4: components.H4,
+                h5: components.H5,
+                h6: components.H6,
+                ul: components.List,
+                p: components.Paragraph,
+                a: components.Link,
+                inlineCode: components.InlineCode,
+                loading: components.Loading,
+                table: components.Table,
+                pre: components.Pre,
+                tooltip: components.Tooltip,
+              }}
+            />
+          </Main>
+        </ReactBreakpoints>
       </ThemeProvider>
     )}
   </ThemeConfig>
