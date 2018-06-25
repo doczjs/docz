@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Fragment, SFC, ComponentType } from 'react'
 import { Switch, Route, RouteComponentProps } from 'react-router-dom'
-import { MDXProvider } from '@mdx-js/tag'
+import * as mdxtag from '@mdx-js/tag'
 import loadable from 'loadable-components'
 
 import { dataContext, Entry, ImportMap } from '../theme'
@@ -72,7 +72,7 @@ export const DocPreview: SFC<DocPreviewProps> = ({
   const LoadingComponent = components.loading
 
   return (
-    <MDXProvider components={components}>
+    <mdxtag.MDXProvider components={components}>
       <dataContext.Consumer>
         {({ imports, entries }) => (
           <Switch>
@@ -106,6 +106,6 @@ export const DocPreview: SFC<DocPreviewProps> = ({
           </Switch>
         )}
       </dataContext.Consumer>
-    </MDXProvider>
+    </mdxtag.MDXProvider>
   )
 }
