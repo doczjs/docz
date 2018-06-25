@@ -1,6 +1,6 @@
 {
   "name": "docz-theme-default",
-  "version": "0.2.11",
+  "version": "0.3.0",
   "license": "MIT",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
@@ -20,13 +20,16 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "docz": "^0.2.11",
+    "docz": "^0.3.0",
     "emotion": "^9.2.3",
     "emotion-theming": "^9.2.3",
+    "facepaint": "^1.2.1",
     "fast-deep-equal": "^2.0.1",
     "prismjs": "^1.15.0",
     "prop-types": "15.6.2",
     "react": "^16.4.1",
+    "react-adopt": "^0.6.0",
+    "react-breakpoints": "^3.0.0",
     "react-dom": "^16.4.1",
     "react-emotion": "^9.2.3",
     "react-feather": "^1.1.0",

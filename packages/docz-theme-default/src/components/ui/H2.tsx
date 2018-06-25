@@ -2,7 +2,8 @@ import styled from 'react-emotion'
 
 export const H2 = styled('h2')`
   position: relative;
-  ${p => p.theme.styles.h2};
+  margin: 50px 0 20px;
+  ${p => p.theme.mq(p.theme.styles.h2)};
 
   .icon-link {
     position: absolute;

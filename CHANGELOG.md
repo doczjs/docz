@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/pedronauck/docz/compare/v0.3.0-beta.0...v0.3.0) (2018-06-25)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** prettier format ([cb5643d](https://github.com/pedronauck/docz/commit/cb5643d))
+
+
+
+
+<a name="0.3.0-beta.0"></a>
+# [0.3.0-beta.0](https://github.com/pedronauck/docz/compare/v0.2.11...v0.3.0-beta.0) (2018-06-25)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** change background based on toggle ([2241f8b](https://github.com/pedronauck/docz/commit/2241f8b))
+* **docz-theme-default:** change chevronDown to burguer icon with animation ([8649938](https://github.com/pedronauck/docz/commit/8649938))
+* **docz-theme-default:** include breakpoints as const ([43490bb](https://github.com/pedronauck/docz/commit/43490bb))
+* **docz-theme-default:** lint code ([7c97a41](https://github.com/pedronauck/docz/commit/7c97a41))
+* **docz-theme-default:** made container responsive ([ddf078d](https://github.com/pedronauck/docz/commit/ddf078d))
+* **docz-theme-default:** responsive position for wrapper ([bb56449](https://github.com/pedronauck/docz/commit/bb56449))
+* **docz-theme-default:** sidebar toggle for links and sub-links ([9cd6321](https://github.com/pedronauck/docz/commit/9cd6321))
+
+
+### Features
+
+* **docz-theme-default:** add dark mode 🌚 ([#81](https://github.com/pedronauck/docz/issues/81)) ([964cf4d](https://github.com/pedronauck/docz/commit/964cf4d))
+* **docz-theme-default:** include breakpoints reactive on sidebar ([d3911b4](https://github.com/pedronauck/docz/commit/d3911b4))
+* **docz-theme-default:** include media queries facepaint ([5f78734](https://github.com/pedronauck/docz/commit/5f78734))
+* **docz-theme-default:** include toggle to sidebar ([a94e517](https://github.com/pedronauck/docz/commit/a94e517))
+* **docz-theme-default:** include ToggleBackground ([cac7ecd](https://github.com/pedronauck/docz/commit/cac7ecd))
+* **docz-theme-default:** table responsive ([0580a77](https://github.com/pedronauck/docz/commit/0580a77))
+
+
+
+
 <a name="0.2.11"></a>
 ## [0.2.11](https://github.com/pedronauck/docz/compare/v0.2.10...v0.2.11) (2018-06-22)
 

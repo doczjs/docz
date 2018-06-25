@@ -16,7 +16,7 @@ interface IconProps {
 
 const iconRotate = (p: IconProps) => (p.opened ? '-180deg' : '0deg')
 
-const Icon = styled.div`
+const Icon = styled('div')`
   position: absolute;
   top: 50%;
   right: 20px;
@@ -25,16 +25,17 @@ const Icon = styled.div`
   transition: transform 0.3s;
 
   & svg {
-    stroke: ${p => p.theme.colors.main};
+    stroke: ${p => p.theme.colors.text};
   }
 `
 
 export interface MenuProps {
   menu: string
   docs: Entry[]
+  sidebarToggle: (ev: React.SyntheticEvent<any>) => void
 }
 
-export const Menu: SFC<MenuProps> = ({ menu, docs }) => (
+export const Menu: SFC<MenuProps> = ({ menu, docs, sidebarToggle }) => (
   <Toggle initial={false}>
     {({ on, toggle }: any) => {
       const handleToggle = (ev: React.SyntheticEvent<any>) => {
@@ -54,7 +55,9 @@ export const Menu: SFC<MenuProps> = ({ menu, docs }) => (
             <dl>
               {docs.map(doc => (
                 <dt key={doc.id}>
-                  <Link to={doc.route}>{doc.name}</Link>
+                  <Link onClick={sidebarToggle} to={doc.route}>
+                    {doc.name}
+                  </Link>
                 </dt>
               ))}
             </dl>

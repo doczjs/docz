@@ -1,15 +1,44 @@
 import React from 'react'
-import { Docs, Link, Entry, ThemeConfig } from 'docz'
+import { Docs, Link, Entry, ThemeConfig, DocsRenderProps } from 'docz'
+import { Toggle } from 'react-powerplug'
+import { Media } from 'react-breakpoints'
+import { adopt } from 'react-adopt'
 import styled from 'react-emotion'
 
 import { Menu } from './Menu'
-import logo from '../../../images/docz.svg'
+import { Docz } from './Docz'
+import { Hamburguer } from './Hamburguer'
+
+interface Wrapper {
+  opened: boolean
+  desktop: boolean
+  theme?: any
+}
+
+interface OpenProps {
+  opened: boolean
+}
+
+const toggle = (p: Wrapper) => (p.opened && !p.desktop ? '-90%' : '0')
+const background = (p: Wrapper) =>
+  toggle(p) !== '0' ? 'transparent' : p.theme.colors.sidebarBg
 
 const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
+  padding: 20px;
+  width: 300px;
   height: 100%;
-  background: ${p => p.theme.colors.grayLight};
+  background: ${background};
+  transition: transform 0.2s, background 0.3s;
+  transform: translateX(${toggle});
+  z-index: 100;
+
+  ${p =>
+    p.theme.mq({
+      position: ['absolute', 'absolute', 'absolute', 'relative'],
+    })};
+
   ${p => p.theme.styles.sidebar};
 
   a {
@@ -17,12 +46,13 @@ const Wrapper = styled('div')`
     display: block;
     padding: 6px 16px;
     font-weight: 600;
-    color: ${p => p.theme.colors.main};
+    color: ${p => p.theme.colors.sidebarText};
+    text-decoration: none;
   }
 
   a:hover,
   a:visited {
-    color: ${p => p.theme.colors.main};
+    color: ${p => p.theme.colors.sidebarText};
   }
 
   a:hover,
@@ -51,6 +81,7 @@ const LogoText = styled('h1')`
   margin: 24px 16px 64px;
   padding: 0;
   font-size: 32px;
+  color: ${p => p.theme.colors.text};
 
   &:before {
     position: absolute;
@@ -73,50 +104,110 @@ const Footer = styled('div')`
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  color: ${p => p.theme.colors.grayDark};
-  border-top: 1px dashed ${p => p.theme.colors.gray};
+  color: ${p => p.theme.colors.footerText};
+  border-top: 1px dashed ${p => p.theme.colors.border};
 
-  a {
+  & > a {
     padding: 0;
     margin-left: 5px;
   }
 `
 
+const ToggleBackground = styled('div')`
+  content: '';
+  display: ${(p: OpenProps) => (p.opened ? 'none' : 'block')};
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  cursor: pointer;
+  z-index: 99;
+`
+
+const FooterLogo = styled(Docz)`
+  fill: ${p => p.theme.colors.footerText};
+`
+
+interface RenderProps {
+  docs: DocsRenderProps
+  media: {
+    breakpoints: any
+    currentBreakpoint: string
+  }
+  toggle: {
+    on: boolean
+    toggle: () => void
+  }
+  config: {
+    title: string
+    logo: { src: string; width: any }
+  }
+}
+
+const Composed = adopt<RenderProps>({
+  docs: <Docs />,
+  media: <Media />,
+  toggle: <Toggle initial={true} />,
+  config: <ThemeConfig />,
+})
+
 export const Sidebar = () => (
-  <Docs>
-    {({ docs, menus }) => {
+  <Composed>
+    {(props: RenderProps) => {
+      const {
+        media: { currentBreakpoint },
+        toggle: { on, toggle },
+        docs: { docs, menus },
+        config: { title, logo },
+      } = props
+
+      const isDesktop = currentBreakpoint === 'desktop' ? true : false
       const docsWithoutMenu = docs.filter((doc: Entry) => !doc.menu)
       const fromMenu = (menu: string) => docs.filter(doc => doc.menu === menu)
 
+      const handleSidebarToggle = (ev: React.SyntheticEvent<any>) => {
+        if (isDesktop) return
+        toggle()
+      }
+
       return (
-        <Wrapper>
-          <ThemeConfig>
-            {({ title, logo }) =>
-              logo ? (
-                <LogoImg src={logo.src} width={logo.width} alt={title} />
-              ) : (
-                <LogoText>{title}</LogoText>
-              )
-            }
-          </ThemeConfig>
-          <Menus>
-            {docsWithoutMenu.map(doc => (
-              <Link key={doc.id} to={doc.route}>
-                {doc.name}
-              </Link>
-            ))}
-            {menus.map(menu => (
-              <Menu key={menu} menu={menu} docs={fromMenu(menu)} />
-            ))}
-          </Menus>
-          <Footer>
-            Built with
-            <a href="https://docz.site" target="_blank">
-              <img src={logo} width={40} alt="Docz" />
-            </a>
-          </Footer>
-        </Wrapper>
+        <React.Fragment>
+          <Wrapper opened={on} desktop={isDesktop}>
+            <Hamburguer opened={on} onClick={handleSidebarToggle} />
+            {logo ? (
+              <LogoImg src={logo.src} width={logo.width} alt={title} />
+            ) : (
+              <LogoText>{title}</LogoText>
+            )}
+            <Menus>
+              {docsWithoutMenu.map(doc => (
+                <Link key={doc.id} to={doc.route} onClick={handleSidebarToggle}>
+                  {doc.name}
+                </Link>
+              ))}
+              {menus.map(menu => (
+                <Menu
+                  key={menu}
+                  sidebarToggle={handleSidebarToggle}
+                  menu={menu}
+                  docs={fromMenu(menu)}
+                />
+              ))}
+            </Menus>
+            <Footer>
+              Built with
+              <a href="https://docz.site" target="_blank">
+                <FooterLogo width={40} />
+              </a>
+            </Footer>
+          </Wrapper>
+          <ToggleBackground opened={on} onClick={handleSidebarToggle} />
+        </React.Fragment>
       )
     }}
-  </Docs>
+  </Composed>
 )
