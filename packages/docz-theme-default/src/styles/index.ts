@@ -11,6 +11,7 @@ export const styles = {
   container: {
     padding: '50px 50px 100px',
     width: 960,
+    maxWidth: '100%',
   },
   h1: {
     margin: '30px 0',

@@ -16,6 +16,11 @@ const Code = styled('div')`
   & pre[class*='language-'] {
     margin: 0;
     border-radius: 0 0 5px 5px;
+
+    ${p =>
+      p.theme.mq({
+        overflowY: ['hidden', 'hidden', 'hidden', 'initial'],
+      })};
   }
 `
 

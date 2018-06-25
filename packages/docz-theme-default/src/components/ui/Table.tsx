@@ -14,6 +14,12 @@ export const Table = styled('table')`
   font-size: 14px;
   color: ${p => p.theme.colors.tableColor};
 
+  ${p =>
+    p.theme.mq({
+      overflowY: ['hidden', 'hidden', 'hidden', 'initial'],
+      display: ['block', 'block', 'block', 'table'],
+    })};
+
   & thead {
     color: ${p => p.theme.colors.theadColor};
     background: ${p => p.theme.colors.theadBg};
@@ -23,6 +29,34 @@ export const Table = styled('table')`
     text-align: left;
     font-weight: 400;
     padding: 20px 20px;
+
+    &:nth-child(1) {
+      ${p =>
+        p.theme.mq({
+          width: ['20%', '20%', '20%', 'auto'],
+        })};
+    }
+
+    &:nth-child(2) {
+      ${p =>
+        p.theme.mq({
+          width: ['10%', '10%', '10%', 'auto'],
+        })};
+    }
+
+    &:nth-child(3) {
+      ${p =>
+        p.theme.mq({
+          width: ['10%', '10%', '10%', 'auto'],
+        })};
+    }
+
+    &:nth-child(4) {
+      ${p =>
+        p.theme.mq({
+          width: ['20%', '20%', '20%', 'auto'],
+        })};
+    }
   }
 
   & tbody td {
