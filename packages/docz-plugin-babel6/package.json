@@ -1,6 +1,6 @@
 {
   "name": "docz-plugin-babel6",
-  "version": "0.2.11",
+  "version": "0.3.1",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
@@ -24,7 +24,7 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-preset-react-app": "^3.1.1",
-    "docz-core": "^0.2.11",
+    "docz-core": "^0.3.1",
     "happypack": "^5.0.0",
     "ts-loader": "^4.4.1"
   }
