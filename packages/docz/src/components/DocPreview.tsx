@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Fragment, SFC, ComponentType } from 'react'
 import { Switch, Route, RouteComponentProps } from 'react-router-dom'
-import * as mdxtag from '@mdx-js/tag'
+import { default as mdxtag } from '@mdx-js/tag'
 import loadable from 'loadable-components'
 
 import { dataContext, Entry, ImportMap } from '../theme'
