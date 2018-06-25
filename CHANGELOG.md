@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/pedronauck/docz/compare/v0.3.0-beta.0...v0.3.0) (2018-06-25)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** prettier format ([cb5643d](https://github.com/pedronauck/docz/commit/cb5643d))
+
+
+
+
 <a name="0.3.0-beta.0"></a>
 # [0.3.0-beta.0](https://github.com/pedronauck/docz/compare/v0.2.11...v0.3.0-beta.0) (2018-06-25)
 
