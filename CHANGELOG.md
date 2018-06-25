@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.2"></a>
+## [0.3.2](https://github.com/pedronauck/docz/compare/v0.3.1...v0.3.2) (2018-06-25)
+
+
+### Bug Fixes
+
+* **docz:** mdxtag import ([4ed20bf](https://github.com/pedronauck/docz/commit/4ed20bf))
+
+
+
+
+<a name="0.3.1"></a>
+## [0.3.1](https://github.com/pedronauck/docz/compare/v0.2.11...v0.3.1) (2018-06-25)
+
+
+### Bug Fixes
+
+* **docz:** mdx provider import ([ded8cbb](https://github.com/pedronauck/docz/commit/ded8cbb))
+* use docz-theme-default as docz-core dependency ([1a2fb67](https://github.com/pedronauck/docz/commit/1a2fb67))
+
+
+### Features
+
+* **docz-default-theme:** dark mode and responsiveness ([#87](https://github.com/pedronauck/docz/issues/87)) ([a4db115](https://github.com/pedronauck/docz/commit/a4db115)), closes [#81](https://github.com/pedronauck/docz/issues/81)
+
+
+
+
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/pedronauck/docz/compare/v0.3.0-beta.0...v0.3.0) (2018-06-25)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** prettier format ([cb5643d](https://github.com/pedronauck/docz/commit/cb5643d))
+
+
+
+
 <a name="0.3.0-beta.0"></a>
 # [0.3.0-beta.0](https://github.com/pedronauck/docz/compare/v0.2.11...v0.3.0-beta.0) (2018-06-25)
 

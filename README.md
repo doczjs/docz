@@ -5,14 +5,8 @@
   <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="">
 </p>
 
-<p align="center">
-  <img src="https://cdn-std.dprcdn.net/files/acc_649651/OnwqVu">
-</p>
-
-<p align="center">
-  <a href="http://docz.site" target="_blank">
-    <img src="https://cdn-std.dprcdn.net/files/acc_649651/XG4L5H" alt="Docz video">
-  </a>
+<p align="center" style="margin-bottom: -20px">
+  <img src="https://cdn-std.dprcdn.net/files/acc_649651/ilOByk">
 </p>
 
 ---
@@ -27,6 +21,12 @@
 
 ---
 
+<p align="center">
+  <a href="http://docz.site" target="_blank">
+    <img src="https://cdn-std.dprcdn.net/files/acc_649651/XG4L5H" alt="Docz video">
+  </a>
+</p>
+
 ## 🎩 &nbsp; Features
 
 - 🧘 **Zero config and easy.** Don't worry about complex configurations steps.
@@ -35,6 +35,10 @@
 - 📝 **MDX Based.** Write markdown with all power of components.
 - 🎛 **Pluggable.** With plugins, you can manipulate a lot of things through the docz flow and data.
 - 🔐 **Typescript Support.** We have a full support for your type definitions.
+
+## 🚧 &nbsp; Warning!
+
+> Due to performance issues docz uses Babel@7 and Webpack@4. So, if you're using some older version of this packages you'll probably get some errors! If you need to use Babel@6 you can try [docz-plugin-babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6), but about Webpack@4 we can't do anything!
 
 ## 🤔 &nbsp; Why?
 
@@ -58,10 +62,23 @@ To break barriers and facilitate the creation of tools was the purpose that Docz
 - [Themes](http://www.docz.site/themes)
 - [Plugins](http://www.docz.site/plugins)
 
-## 🚧 &nbsp; Tips, tricks and warnings
+## 🗃 &nbsp; Examples
 
-- [Use with Babel@6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6)
-- [Use PostCSS, Sass, Less or Stylus on Docz](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-css)
+| name | description |
+| -------------------------------------------- | -------------------------------------------- |
+| [basic](https://github.com/pedronauck/docz/tree/master/examples/basic) | Some basic example |
+| [using typescript](https://github.com/pedronauck/docz/tree/master/examples/typescript) | Using docz with Typescript |
+| [using flow](https://github.com/pedronauck/docz/tree/master/examples/flow) | Using docz with Flow |
+| [using babel@6](https://github.com/pedronauck/docz/tree/master/examples/babel6) | Using docz with Babel@6 |
+| [with sass](https://github.com/pedronauck/docz/tree/master/examples/sass) | Using docz parsing css with Sass |
+| [with less](https://github.com/pedronauck/docz/tree/master/examples/less) | Using docz parsing css with Less |
+| [with postcss](https://github.com/pedronauck/docz/tree/master/examples/postcss) | Using docz parsing css with PostCSS |
+| [with stylus](https://github.com/pedronauck/docz/tree/master/examples/stylus) | Using docz parsing css with Stylus |
+
+## 🎛 &nbsp; Plugins
+
+ - **[docz-plugin-babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6):** Use this plugin to use older babel version
+- **[docz-plugin-css](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-css):** Plugin to parse css files inside your documents
 
 ## 📟 &nbsp; Install and Usage
 

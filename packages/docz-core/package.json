@@ -1,6 +1,6 @@
 {
   "name": "docz-core",
-  "version": "0.2.11",
+  "version": "0.3.2",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
@@ -37,6 +37,7 @@
     "connect-history-api-fallback": "^1.5.0",
     "deepmerge": "^2.1.1",
     "detect-port": "^1.2.3",
+    "docz-theme-default": "^0.3.2",
     "express": "^4.16.3",
     "fast-glob": "^2.2.2",
     "file-loader": "^1.1.11",
