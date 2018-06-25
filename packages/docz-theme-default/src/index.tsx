@@ -8,6 +8,7 @@ import ReactBreakpoints from 'react-breakpoints'
 
 import { config } from './config'
 import { Sidebar, Main } from './components/shared'
+import { mq, breakpoints } from './styles/responsive'
 import * as components from './components/ui'
 import * as modes from './styles/modes'
 import * as prismThemes from './styles/prism'
@@ -15,8 +16,8 @@ import * as prismThemes from './styles/prism'
 const Theme = () => (
   <ThemeConfig>
     {config => (
-      <ThemeProvider theme={config}>
-        <ReactBreakpoints breakpoints={config.breakpoints}>
+      <ThemeProvider theme={{ ...config, mq, breakpoints }}>
+        <ReactBreakpoints breakpoints={breakpoints}>
           <Main config={config}>
             <Sidebar />
             <DocPreview

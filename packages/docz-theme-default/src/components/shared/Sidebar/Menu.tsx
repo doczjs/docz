@@ -16,7 +16,7 @@ interface IconProps {
 
 const iconRotate = (p: IconProps) => (p.opened ? '-180deg' : '0deg')
 
-const Icon = styled.div`
+const Icon = styled('div')`
   position: absolute;
   top: 50%;
   right: 20px;

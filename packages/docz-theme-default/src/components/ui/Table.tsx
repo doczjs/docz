@@ -70,5 +70,5 @@ export const Table = styled('table')`
     border-top: 1px solid ${p => p.theme.colors.border};
   }
 
-  ${p => p.theme.styles.table};
+  ${p => p.theme.mq(p.theme.styles.table)};
 `

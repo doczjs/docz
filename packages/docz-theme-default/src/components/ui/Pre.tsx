@@ -7,12 +7,11 @@ import styled, { cx } from 'react-emotion'
 
 const PreStyled = styled('pre')`
   border: 1px solid ${p => p.theme.colors.border};
-  padding: 2em;
   margin: 2em 0;
   border-radius: 5px;
   background: ${p => p.theme.colors.preBg};
   ${p => p.theme.prismTheme};
-  ${p => p.theme.styles.pre};
+  ${p => p.theme.mq(p.theme.styles.pre)};
 `
 
 interface PreProps {

@@ -9187,6 +9187,14 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-adopt@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.npmjs.org/react-adopt/-/react-adopt-0.6.0.tgz#e5ff903a655d3082217f82bc9d5033a4b64fafad"
+  dependencies:
+    hoist-non-react-statics "^2.5.0"
+    react "^16.3.2"
+    react-display-name "^0.2.4"
+
 react-breakpoints@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-breakpoints/-/react-breakpoints-3.0.0.tgz#b57d18dc7ad73a7c00c1949e689360af9cac6759"
@@ -9217,6 +9225,10 @@ react-dev-utils@^5.0.1:
     sockjs-client "1.1.4"
     strip-ansi "3.0.1"
     text-table "0.2.0"
+
+react-display-name@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.npmjs.org/react-display-name/-/react-display-name-0.2.4.tgz#e2a670b81d79a2204335510c01246f4c92ff12cf"
 
 react-docgen-typescript-loader@^2.1.1:
   version "2.1.1"
@@ -9327,7 +9339,7 @@ react-spinners@^0.3.2:
     react-emotion "^9.1.1"
     recompose "0.26.0"
 
-react@^16.4.1:
+react@^16.3.2, react@^16.4.1:
   version "16.4.1"
   resolved "https://registry.npmjs.org/react/-/react-16.4.1.tgz#de51ba5764b5dbcd1f9079037b862bd26b82fe32"
   dependencies:

@@ -8,7 +8,7 @@ const Playground = styled('div')`
   border: 1px solid ${p => p.theme.colors.border};
   border-bottom: 0;
   border-radius: 5px 5px 0 0;
-  ${p => p.theme.styles.playground};
+  ${p => p.theme.mq(p.theme.styles.playground)};
 `
 
 const Code = styled('div')`

@@ -5,7 +5,9 @@ import styled from 'react-emotion'
 
 export const Container = styled('div')`
   margin: 0 auto;
-  ${p => p.theme.styles.container};
+  width: 960px;
+  max-width: 100%;
+  ${p => p.theme.mq(p.theme.styles.container)};
 `
 
 const Wrapper = styled('div')`

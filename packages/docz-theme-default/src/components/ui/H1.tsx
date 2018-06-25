@@ -3,7 +3,9 @@ import styled from 'react-emotion'
 export const H1 = styled('h1')`
   position: relative;
   display: table;
-  ${p => p.theme.styles.h1};
+  margin: 30px 0;
+  font-weight: 600;
+  ${p => p.theme.mq(p.theme.styles.h1)};
 
   &:before {
     position: absolute;
