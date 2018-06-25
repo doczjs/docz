@@ -3,13 +3,13 @@ import { Docs, Link, Entry, ThemeConfig } from 'docz'
 import styled from 'react-emotion'
 
 import { Menu } from './Menu'
-import logo from '../../../images/docz.svg'
+import { Docz } from './Docz'
 
 const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: ${p => p.theme.colors.grayLight};
+  background: ${p => p.theme.colors.sidebarBg};
   ${p => p.theme.styles.sidebar};
 
   a {
@@ -17,12 +17,13 @@ const Wrapper = styled('div')`
     display: block;
     padding: 6px 16px;
     font-weight: 600;
-    color: ${p => p.theme.colors.main};
+    color: ${p => p.theme.colors.sidebarText};
+    text-decoration: none;
   }
 
   a:hover,
   a:visited {
-    color: ${p => p.theme.colors.main};
+    color: ${p => p.theme.colors.sidebarText};
   }
 
   a:hover,
@@ -51,6 +52,7 @@ const LogoText = styled('h1')`
   margin: 24px 16px 64px;
   padding: 0;
   font-size: 32px;
+  color: ${p => p.theme.colors.text};
 
   &:before {
     position: absolute;
@@ -73,13 +75,17 @@ const Footer = styled('div')`
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  color: ${p => p.theme.colors.grayDark};
-  border-top: 1px dashed ${p => p.theme.colors.gray};
+  color: ${p => p.theme.colors.footerText};
+  border-top: 1px dashed ${p => p.theme.colors.border};
 
-  a {
+  & > a {
     padding: 0;
     margin-left: 5px;
   }
+`
+
+const FooterLogo = styled(Docz)`
+  fill: ${p => p.theme.colors.footerText};
 `
 
 export const Sidebar = () => (
@@ -112,7 +118,7 @@ export const Sidebar = () => (
           <Footer>
             Built with
             <a href="https://docz.site" target="_blank">
-              <img src={logo} width={40} alt="Docz" />
+              <FooterLogo width={40} />
             </a>
           </Footer>
         </Wrapper>

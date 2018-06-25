@@ -12,6 +12,8 @@ const Wrapper = styled('div')`
   flex: 1;
   height: 100%;
   overflow-y: auto;
+  color: ${p => p.theme.colors.text};
+  background: ${p => p.theme.colors.background};
 `
 
 export const Page: SFC<PageProps> = ({ children, ...props }) => (

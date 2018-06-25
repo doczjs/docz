@@ -12,11 +12,11 @@ export const Table = styled('table')`
   border-style: hidden;
   border-radius: 5px;
   font-size: 14px;
-  color: ${p => p.theme.colors.grayDark};
+  color: ${p => p.theme.colors.tableColor};
 
   & thead {
-    color: ${p => p.theme.colors.grayDark};
-    background: ${p => p.theme.colors.grayLight};
+    color: ${p => p.theme.colors.theadColor};
+    background: ${p => p.theme.colors.theadBg};
   }
 
   & thead th {
