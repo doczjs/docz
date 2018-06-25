@@ -55,7 +55,9 @@ export const Menu: SFC<MenuProps> = ({ menu, docs, sidebarToggle }) => (
             <dl>
               {docs.map(doc => (
                 <dt key={doc.id}>
-                  <Link onClick={sidebarToggle} to={doc.route}>{doc.name}</Link>
+                  <Link onClick={sidebarToggle} to={doc.route}>
+                    {doc.name}
+                  </Link>
                 </dt>
               ))}
             </dl>

@@ -2,12 +2,14 @@ import React from 'react'
 import { Docs, Link, Entry, ThemeConfig } from 'docz'
 import styled from 'react-emotion'
 import { Toggle } from 'react-powerplug'
+import { Media } from 'react-breakpoints'
 
 import { Menu } from './Menu'
 import logo from '../../../images/docz.svg'
 
 interface Wrapper {
   opened: boolean
+  desktop: boolean
 }
 
 interface IconProps {
@@ -22,7 +24,7 @@ interface ToggleBackgroundProps {
   opened: boolean
 }
 
-const wrapperToggle = (p: Wrapper) => (p.opened ? '-90%' : '0')
+const wrapperToggle = (p: Wrapper) => (p.opened && !p.desktop ? '-90%' : '0')
 const IconFirst = (p: IconProps) => (p.opened ? '0px' : '12px')
 const IconMiddle = (p: IconProps) => (p.opened ? '1' : '0')
 const IconLast = (p: IconProps) => (p.opened ? '0px' : '-4px')
@@ -183,64 +185,84 @@ const Icon = styled('div')`
 `
 
 export const Sidebar = () => (
-  <Toggle initial={false}>
-    {({ on, toggle }: any) => {
-      const handleSidebarToggle = (ev: React.SyntheticEvent<any>) => {
-        toggle()
-      }
+  <Media>
+    {({ currentBreakpoint }: any) => {
       return (
-        <Docs>
-          {({ docs, menus }) => {
-            const docsWithoutMenu = docs.filter((doc: Entry) => !doc.menu)
-            const fromMenu = (menu: string) =>
-              docs.filter(doc => doc.menu === menu)
-
+        <Toggle initial={true}>
+          {({ on, toggle }: any) => {
+            const isDesktop = currentBreakpoint === 'desktop' ? true : false
+            const handleSidebarToggle = (ev: React.SyntheticEvent<any>) => {
+              if (isDesktop) return
+              toggle()
+            }
             return (
-              <React.Fragment>
-                <Wrapper opened={on}>
-                  <ToggleBlock opened={on} onClick={handleSidebarToggle}>
-                    <Icon opened={on}>
-                      <span className="icon__line" />
-                      <span className="icon__line" />
-                      <span className="icon__line" />
-                    </Icon>
-                  </ToggleBlock>
-                  <ThemeConfig>
-                    {({ title, logo }) =>
-                      logo ? (
-                        <LogoImg
-                          src={logo.src}
-                          width={logo.width}
-                          alt={title}
-                        />
-                      ) : (
-                        <LogoText>{title}</LogoText>
-                      )
-                    }
-                  </ThemeConfig>
-                  <Menus>
-                    {docsWithoutMenu.map(doc => (
-                      <Link key={doc.id} to={doc.route} onClick={handleSidebarToggle}>
-                        {doc.name}
-                      </Link>
-                    ))}
-                    {menus.map(menu => (
-                      <Menu key={menu} sidebarToggle={handleSidebarToggle} menu={menu} docs={fromMenu(menu)} />
-                    ))}
-                  </Menus>
-                  <Footer>
-                    Built with
-                    <a href="#" target="_blank">
-                      <img src={logo} width={40} alt="Docz" />
-                    </a>
-                  </Footer>
-                </Wrapper>
-                <ToggleBackground opened={on} onClick={handleSidebarToggle} />
-              </React.Fragment>
+              <Docs>
+                {({ docs, menus }) => {
+                  const docsWithoutMenu = docs.filter((doc: Entry) => !doc.menu)
+                  const fromMenu = (menu: string) =>
+                    docs.filter(doc => doc.menu === menu)
+
+                  return (
+                    <React.Fragment>
+                      <Wrapper opened={on} desktop={isDesktop}>
+                        <ToggleBlock opened={on} onClick={handleSidebarToggle}>
+                          <Icon opened={on}>
+                            <span className="icon__line" />
+                            <span className="icon__line" />
+                            <span className="icon__line" />
+                          </Icon>
+                        </ToggleBlock>
+                        <ThemeConfig>
+                          {({ title, logo }) =>
+                            logo ? (
+                              <LogoImg
+                                src={logo.src}
+                                width={logo.width}
+                                alt={title}
+                              />
+                            ) : (
+                              <LogoText>{title}</LogoText>
+                            )
+                          }
+                        </ThemeConfig>
+                        <Menus>
+                          {docsWithoutMenu.map(doc => (
+                            <Link
+                              key={doc.id}
+                              to={doc.route}
+                              onClick={handleSidebarToggle}
+                            >
+                              {doc.name}
+                            </Link>
+                          ))}
+                          {menus.map(menu => (
+                            <Menu
+                              key={menu}
+                              sidebarToggle={handleSidebarToggle}
+                              menu={menu}
+                              docs={fromMenu(menu)}
+                            />
+                          ))}
+                        </Menus>
+                        <Footer>
+                          Built with
+                          <a href="#" target="_blank">
+                            <img src={logo} width={40} alt="Docz" />
+                          </a>
+                        </Footer>
+                      </Wrapper>
+                      <ToggleBackground
+                        opened={on}
+                        onClick={handleSidebarToggle}
+                      />
+                    </React.Fragment>
+                  )
+                }}
+              </Docs>
             )
           }}
-        </Docs>
+        </Toggle>
       )
     }}
-  </Toggle>
+  </Media>
 )

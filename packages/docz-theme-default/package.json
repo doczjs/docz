@@ -28,6 +28,7 @@
     "prismjs": "^1.14.0",
     "prop-types": "15.6.1",
     "react": "^16.4.0",
+    "react-breakpoints": "^3.0.0",
     "react-dom": "^16.4.0",
     "react-emotion": "^9.2.1",
     "react-feather": "^1.1.0",
