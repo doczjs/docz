@@ -18,10 +18,6 @@ injectGlobal`
     overflow: hidden;
   }
 
-  body {
-    color: transparent;
-  }
-
   html, body, #root {
     height: 100vh;
     min-height: 100vh;
