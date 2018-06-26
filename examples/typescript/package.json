@@ -1,19 +1,19 @@
 {
   "name": "docz-example-typescript",
-  "version": "0.3.0",
+  "version": "0.3.3",
   "license": "MIT",
   "scripts": {
     "dev": "docz dev",
     "build": "docz build"
   },
   "dependencies": {
-    "docz": "^0.3.0",
-    "emotion": "^9.2.3",
+    "docz": "^0.3.3",
+    "emotion": "^9.2.4",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-emotion": "^9.2.3"
+    "react-emotion": "^9.2.4"
   },
   "devDependencies": {
-    "babel-plugin-emotion": "^9.2.0"
+    "babel-plugin-emotion": "^9.2.4"
   }
 }
