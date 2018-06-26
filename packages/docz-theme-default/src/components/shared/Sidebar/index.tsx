@@ -33,6 +33,7 @@ const Wrapper = styled('div')`
   transition: transform 0.2s, background 0.3s;
   transform: translateX(${toggle});
   z-index: 100;
+  overflow: auto;
 
   ${p =>
     p.theme.mq({
