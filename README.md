@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://opencollective.com/docz" target="_blank"><img src="https://cdn-std.dprcdn.net/files/acc_649651/Q5nVhT" height="80" alt="Open Collective"></a>
-  <a href="https://www.patreon.com/pedronauck" target="_blank"><img src="https://cdn-std.dprcdn.net/files/acc_649651/plrSCT" height="80" alt="Patreon">
+  <a href="https://www.patreon.com/pedronauck" target="_blank"><img src="https://cdn-std.dprcdn.net/files/acc_649651/plrSCT" height="80" alt="Patreon"></a>
 </p>
 
 <p align="center" style="margin-bottom: -20px">
