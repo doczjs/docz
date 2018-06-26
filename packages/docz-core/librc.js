@@ -1,5 +1,14 @@
-const copy = require('rollup-plugin-cpy')
 const pkg = require('./package.json')
+const fs = require('fs-extra')
+const cpy = require('cpy')
+
+const copy = (files, dest) => ({
+  name: 'copy',
+  onwrite: () => {
+    fs.ensureDirSync(dest)
+    cpy(files, dest)
+  },
+})
 
 module.exports = {
   external: Object.keys(pkg.dependencies).concat([
@@ -8,12 +17,5 @@ module.exports = {
     'react-dev-utils/printBuildError',
     'react-dom/server',
   ]),
-  plugins: [
-    copy([
-      {
-        files: 'templates/*.{js,html,json}',
-        dest: 'dist/templates',
-      },
-    ]),
-  ],
+  plugins: [copy('templates/*.{js,html,json}', 'dist/templates')],
 }
