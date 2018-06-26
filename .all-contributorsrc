@@ -17,14 +17,10 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/2029172?v=4",
       "profile": "https://github.com/pedronauck",
       "contributions": [
-        "question",
-        "bug",
         "code",
         "doc",
-        "ideas",
-        "plugin",
-        "review",
-        "test"
+        "bug",
+        "review"
       ]
     },
     {
@@ -46,24 +42,6 @@
       "contributions": [
         "code",
         "bug"
-      ]
-    },
-    {
-      "login": "Swapnull",
-      "name": "Martyn Rushton",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/4456346?v=4",
-      "profile": "http://swapnull.co.uk",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "good-idea",
-      "name": "Joseph Thomas",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/11514928?v=4",
-      "profile": "https://www.good-idea.studio",
-      "contributions": [
-        "code"
       ]
     }
   ]
