@@ -1,0 +1,14 @@
+{
+  "name": "docz-example-vue",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "docz dev",
+    "build": "docz build"
+  },
+  "dependencies": {
+    "docz": "^0.3.2",
+    "docz-core": "^0.3.2",
+    "docz-plugin-vue": "^0.1.0"
+  }
+}
