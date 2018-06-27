@@ -29,9 +29,13 @@
 - 🎛 **Pluggable.** With plugins, you can manipulate a lot of things through the docz flow and data.
 - 🔐 **Typescript Support.** We have a full support for your type definitions.
 
-## 🚧 &nbsp; Warning!
+## 🚀 &nbsp; Roadmap
 
-> Due to performance issues docz uses Babel@7 and Webpack@4. So, if you're using some older version of this packages you'll probably get some errors! If you need to use Babel@6 you can try [docz-plugin-babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6), but about Webpack@4 we can't do anything!
+We still have a *long road to go*, this is just the beginning. We want a lot **your feedback** about which features do you'd like to see in docz in the future. So, instead of open an issue to give us some idea, check our roadmap!
+
+<a href="http://feedback.docz.site/roadmap" target="_blank">
+  <img src="https://cdn-std.dprcdn.net/files/acc_649651/ogSCYY" alt="Docz Roadmap" width="300">
+</a>
 
 ## 🤔 &nbsp; Why?
 
@@ -72,6 +76,10 @@ To break barriers and facilitate the creation of tools was the purpose that Docz
 
  - **[docz-plugin-babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6):** Use this plugin to use older babel version
 - **[docz-plugin-css](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-css):** Plugin to parse css files inside your documents
+
+## 🚧 &nbsp; Warning!
+
+> Due to performance issues docz uses Babel@7 and Webpack@4. So, if you're using some older version of this packages you'll probably get some errors! If you need to use Babel@6 you can try [docz-plugin-babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6), but about Webpack@4 we can't do anything!
 
 ## 📟 &nbsp; Install and Usage
 
