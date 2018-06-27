@@ -10,9 +10,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * remove color transparent on body ([#93](https://github.com/pedronauck/docz/issues/93)) ([a1942ef](https://github.com/pedronauck/docz/commit/a1942ef))
-* remove color transparent on body ([#93](https://github.com/pedronauck/docz/issues/93)) ([32a7815](https://github.com/pedronauck/docz/commit/32a7815))
 * unclosed tag in README.md ([#89](https://github.com/pedronauck/docz/issues/89)) ([0552351](https://github.com/pedronauck/docz/commit/0552351))
-* unclosed tag in README.md ([#89](https://github.com/pedronauck/docz/issues/89)) ([d126b7b](https://github.com/pedronauck/docz/commit/d126b7b))
 
 
 
