@@ -31,7 +31,7 @@
 
 ## 🚀 &nbsp; Roadmap
 
-We still have a *long road to go*, this is just the beginning. We want a lot **your feedback** about which features do you'd like to see in docz in the future. So, instead of open an issue to give us some idea, check our roadmap!
+We still have a *long road to go*, this is just the beginning. So to further improve docz we've created a roadmap that you can see the next features and improvements and **give your feedback about**:
 
 <a href="http://feedback.docz.site/roadmap" target="_blank">
   <img src="https://cdn-std.dprcdn.net/files/acc_649651/ogSCYY" alt="Docz Roadmap" width="300">
