@@ -21,6 +21,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
+    "@types/deepmerge": "^2.1.0",
     "autoprefixer": "^8.6.3",
     "css-loader": "^0.28.11",
     "deepmerge": "^2.1.1",
@@ -33,6 +34,7 @@
     "optimize-css-assets-webpack-plugin": "^4.0.2",
     "postcss": "^6.0.23",
     "postcss-flexbugs-fixes": "^3.3.1",
+    "postcss-import": "^11.1.0",
     "postcss-loader": "^2.1.5",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
