@@ -54,6 +54,7 @@ const loaders = {
     getStyleLoaders(require.resolve('postcss-loader'), {
       plugins: () =>
         opts.plugins.concat([
+          require('postcss-import'),
           require('postcss-flexbugs-fixes'),
           require('autoprefixer')({
             flexbox: 'no-2009',
