@@ -96,6 +96,7 @@ const LogoText = styled('h1')`
 
 const Menus = styled('nav')`
   flex: 1;
+  overflow-y: auto;
 `
 
 const Footer = styled('div')`
