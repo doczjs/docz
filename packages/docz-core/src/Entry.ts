@@ -91,6 +91,10 @@ export class Entry {
     const filepath = this.getFilepath(file, src)
     const parsed = getParsedData(ast)
 
+    if (!parsed) {
+      throw new Error(`${filepath} does not contain a name`)
+    }
+
     this.id = ulid()
     this.filepath = filepath
     this.slug = this.slugify(filepath)
