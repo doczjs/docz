@@ -29,9 +29,13 @@
 - 🎛 **Pluggable.** With plugins, you can manipulate a lot of things through the docz flow and data.
 - 🔐 **Typescript Support.** We have a full support for your type definitions.
 
-## 🚧 &nbsp; Warning!
+## 🚀 &nbsp; Roadmap
 
-> Due to performance issues docz uses Babel@7 and Webpack@4. So, if you're using some older version of this packages you'll probably get some errors! If you need to use Babel@6 you can try [docz-plugin-babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6), but about Webpack@4 we can't do anything!
+We still have a *long road to go*, this is just the beginning. So to further improve docz we've created a roadmap that you can see the next features and improvements and **give your feedback about**:
+
+<a href="http://feedback.docz.site/roadmap" target="_blank">
+  <img src="https://cdn-std.dprcdn.net/files/acc_649651/ogSCYY" alt="Docz Roadmap" width="300">
+</a>
 
 ## 🤔 &nbsp; Why?
 
@@ -63,15 +67,19 @@ To break barriers and facilitate the creation of tools was the purpose that Docz
 | [using typescript](https://github.com/pedronauck/docz/tree/master/examples/typescript) | Using docz with Typescript |
 | [using flow](https://github.com/pedronauck/docz/tree/master/examples/flow) | Using docz with Flow |
 | [using babel@6](https://github.com/pedronauck/docz/tree/master/examples/babel6) | Using docz with Babel@6 |
-| [with sass](https://github.com/pedronauck/docz/tree/master/examples/sass) | Using docz parsing css with Sass |
-| [with less](https://github.com/pedronauck/docz/tree/master/examples/less) | Using docz parsing css with Less |
-| [with postcss](https://github.com/pedronauck/docz/tree/master/examples/postcss) | Using docz parsing css with PostCSS |
-| [with stylus](https://github.com/pedronauck/docz/tree/master/examples/stylus) | Using docz parsing css with Stylus |
+| [with sass](https://github.com/pedronauck/docz/tree/master/examples/css-sass) | Using docz parsing css with Sass |
+| [with less](https://github.com/pedronauck/docz/tree/master/examples/css-less) | Using docz parsing css with Less |
+| [with postcss](https://github.com/pedronauck/docz/tree/master/examples/css-postcss) | Using docz parsing css with PostCSS |
+| [with stylus](https://github.com/pedronauck/docz/tree/master/examples/css-stylus) | Using docz parsing css with Stylus |
 
 ## 🎛 &nbsp; Plugins
 
  - **[docz-plugin-babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6):** Use this plugin to use older babel version
 - **[docz-plugin-css](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-css):** Plugin to parse css files inside your documents
+
+## 🚧 &nbsp; Warning!
+
+> Due to performance issues docz uses Babel@7 and Webpack@4. So, if you're using some older version of this packages you'll probably get some errors! If you need to use Babel@6 you can try [docz-plugin-babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6), but about Webpack@4 we can't do anything!
 
 ## 📟 &nbsp; Install and Usage
 
