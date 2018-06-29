@@ -1,6 +1,6 @@
 {
   "name": "docz",
-  "version": "0.3.0",
+  "version": "0.3.4",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
@@ -27,8 +27,8 @@
     "@mdx-js/tag": "^0.11.0",
     "@sindresorhus/slugify": "^0.3.0",
     "deepmerge": "^2.1.1",
-    "docz-core": "^0.2.11",
-    "docz-theme-default": "^0.3.0",
+    "docz-core": "^0.3.4",
+    "docz-theme-default": "^0.3.4",
     "invariant": "^2.2.4",
     "loadable-components": "^2.2.2",
     "pascalcase": "^0.1.1",
@@ -42,9 +42,9 @@
     "react-dom": "^16.3.0"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.5.20",
+    "@types/bluebird": "^3.5.21",
     "@types/deepmerge": "^2.1.0",
-    "@types/react": "^16.4.1",
+    "@types/react": "^16.4.2",
     "@types/react-dom": "^16.0.6",
     "@types/react-router-dom": "^4.2.7"
   }

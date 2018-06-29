@@ -1,7 +1,6 @@
 ---
 name: "\U0001F41B Bug report"
 about: "Something is broken? \U0001F528"
-
 ---
 
 ## Bug Report
