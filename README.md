@@ -67,10 +67,10 @@ To break barriers and facilitate the creation of tools was the purpose that Docz
 | [using typescript](https://github.com/pedronauck/docz/tree/master/examples/typescript) | Using docz with Typescript |
 | [using flow](https://github.com/pedronauck/docz/tree/master/examples/flow) | Using docz with Flow |
 | [using babel@6](https://github.com/pedronauck/docz/tree/master/examples/babel6) | Using docz with Babel@6 |
-| [with sass](https://github.com/pedronauck/docz/tree/master/examples/sass) | Using docz parsing css with Sass |
-| [with less](https://github.com/pedronauck/docz/tree/master/examples/less) | Using docz parsing css with Less |
-| [with postcss](https://github.com/pedronauck/docz/tree/master/examples/postcss) | Using docz parsing css with PostCSS |
-| [with stylus](https://github.com/pedronauck/docz/tree/master/examples/stylus) | Using docz parsing css with Stylus |
+| [with sass](https://github.com/pedronauck/docz/tree/master/examples/css-sass) | Using docz parsing css with Sass |
+| [with less](https://github.com/pedronauck/docz/tree/master/examples/css-less) | Using docz parsing css with Less |
+| [with postcss](https://github.com/pedronauck/docz/tree/master/examples/css-postcss) | Using docz parsing css with PostCSS |
+| [with stylus](https://github.com/pedronauck/docz/tree/master/examples/css-stylus) | Using docz parsing css with Stylus |
 
 ## 🎛 &nbsp; Plugins
 
