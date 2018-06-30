@@ -1,6 +1,7 @@
 import * as fs from 'fs-extra'
 import logger from 'signale'
 import detectPort from 'detect-port'
+import friendlyErrors from 'friendly-errors-webpack-plugin'
 
 import * as paths from '../config/paths'
 import { Config } from './args'
@@ -21,7 +22,26 @@ export const dev = async (args: Config) => {
   const server = await bundler.createServer(bundler.getConfig())
   const app = await server.start()
 
-  app.on('listening', async ({ server }) => {
+  app.on('listening', async ({ server, options }) => {
+    const bundlerConfig = bundler.getConfig()
+    if (
+      bundlerConfig.plugins &&
+      bundlerConfig.mode === 'development' &&
+      !args.debug
+    ) {
+      const friendlyErrorsPlugin: typeof friendlyErrors = bundlerConfig.plugins
+        .filter((p: object): boolean => p instanceof friendlyErrors)
+        .find(e => !!e)
+      if (friendlyErrorsPlugin) {
+        const protocol = options.https ? 'https' : 'http'
+        friendlyErrorsPlugin.compilationSuccessInfo.messages.push(
+          `Your application is running at ${protocol}://${options.host}:${
+            options.port
+          }`
+        )
+      }
+    }
+
     const port = await detectPort(config.websocketPort)
     const run = Plugin.runPluginsMethod(config.plugins)
     const newConfig = { ...config, websocketPort: port }
