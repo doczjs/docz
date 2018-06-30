@@ -1,11 +1,12 @@
 import React from 'react'
-import { Docs, Link, Entry, ThemeConfig, DocsRenderProps } from 'docz'
+import { Docs, Entry, ThemeConfig, DocsRenderProps } from 'docz'
 import { Toggle } from 'react-powerplug'
 import { Media } from 'react-breakpoints'
 import { adopt } from 'react-adopt'
 import styled from 'react-emotion'
 
 import { Menu } from './Menu'
+import { Link } from './Link'
 import { Docz } from './Docz'
 import { Hamburguer } from './Hamburguer'
 
@@ -27,6 +28,7 @@ const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
   width: 300px;
+  min-width: 300px;
   height: 100%;
   background: ${background};
   transition: transform 0.2s, background 0.3s;
@@ -40,26 +42,6 @@ const Wrapper = styled('div')`
     })};
 
   ${p => p.theme.styles.sidebar};
-
-  a {
-    position: relative;
-    display: block;
-    padding: 6px 16px;
-    font-weight: 600;
-    color: ${p => p.theme.colors.sidebarText};
-    text-decoration: none;
-  }
-
-  a:hover,
-  a:visited {
-    color: ${p => p.theme.colors.sidebarText};
-  }
-
-  a:hover,
-  a.active {
-    color: ${p => p.theme.colors.primary};
-    font-weight: 600;
-  }
 
   dl {
     padding: 0;
@@ -117,11 +99,12 @@ const Footer = styled('div')`
   font-size: 14px;
   color: ${p => p.theme.colors.footerText};
   border-top: 1px dashed ${p => p.theme.colors.border};
+`
 
-  & > a {
-    padding: 0;
-    margin-left: 5px;
-  }
+const FooterLink = styled('a')`
+  padding: 0;
+  margin: 0;
+  margin-left: 5px;
 `
 
 const ToggleBackground = styled('div')`
@@ -196,7 +179,12 @@ export const Sidebar = () => (
             )}
             <Menus>
               {docsWithoutMenu.map(doc => (
-                <Link key={doc.id} to={doc.route} onClick={handleSidebarToggle}>
+                <Link
+                  key={doc.id}
+                  to={doc.route}
+                  onClick={handleSidebarToggle}
+                  doc={doc}
+                >
                   {doc.name}
                 </Link>
               ))}
@@ -211,9 +199,9 @@ export const Sidebar = () => (
             </Menus>
             <Footer>
               Built with
-              <a href="https://docz.site" target="_blank">
+              <FooterLink href="https://docz.site" target="_blank">
                 <FooterLogo width={40} />
-              </a>
+              </FooterLink>
             </Footer>
           </Wrapper>
           <ToggleBackground opened={on} onClick={handleSidebarToggle} />

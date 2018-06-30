@@ -12,13 +12,14 @@ const Wrapper = styled('div')`
 
 const Title = styled('h1')`
   margin: 0;
-  font-size: 48px;
+  font-size: 42px;
+  font-weight: 400;
   color: ${p => p.theme.colors.primary};
 `
 
 const Subtitle = styled('p')`
   margin: 0;
-  font-size: 22px;
+  font-size: 18px;
 `
 
 export const NotFound = () => (

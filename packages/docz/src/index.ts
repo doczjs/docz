@@ -1,7 +1,7 @@
 export { theme, Entry } from './theme'
 export { DocPreview, PageProps, RenderComponent } from './components/DocPreview'
 export { Docs, DocsRenderProps } from './components/Docs'
-export { Link } from './components/Link'
+export { Link, LinkProps } from './components/Link'
 export { Playground } from './components/Playground'
 export { PropsTable } from './components/PropsTable'
 export { ThemeConfig } from './components/ThemeConfig'

@@ -1,13 +1,19 @@
 import * as React from 'react'
 import { SFC } from 'react'
-import { Entry, Link } from 'docz'
+import { Entry } from 'docz'
 import { Toggle } from 'react-powerplug'
 import ChevronDown from 'react-feather/dist/icons/chevron-down'
 import styled from 'react-emotion'
 
+import { Link, linkStyle } from './Link'
+
 const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
+`
+
+export const MenuLink = styled('a')`
+  ${linkStyle};
 `
 
 interface IconProps {
@@ -45,17 +51,17 @@ export const Menu: SFC<MenuProps> = ({ menu, docs, sidebarToggle }) => (
 
       return (
         <Wrapper>
-          <a href="#" onClick={handleToggle}>
+          <MenuLink href="#" onClick={handleToggle}>
             {menu}
             <Icon opened={on}>
               <ChevronDown size={15} />
             </Icon>
-          </a>
+          </MenuLink>
           {on && (
             <dl>
               {docs.map(doc => (
                 <dt key={doc.id}>
-                  <Link onClick={sidebarToggle} to={doc.route}>
+                  <Link onClick={sidebarToggle} to={doc.route} doc={doc}>
                     {doc.name}
                   </Link>
                 </dt>
