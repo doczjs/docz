@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/pedronauck/docz/compare/v0.3.4...v0.4.0) (2018-06-30)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** add overflow auto to nav ([4cdbcfd](https://github.com/pedronauck/docz/commit/4cdbcfd))
+
+
+### Features
+
+* **docz-theme-default:** add automatic table of content ([#106](https://github.com/pedronauck/docz/issues/106)) ([6ce9e84](https://github.com/pedronauck/docz/commit/6ce9e84))
+
+
+
+
 <a name="0.3.4"></a>
 ## [0.3.4](https://github.com/pedronauck/docz/compare/v0.3.3...v0.3.4) (2018-06-26)
 
