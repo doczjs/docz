@@ -26,7 +26,6 @@ const background = (p: Wrapper) =>
 const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
-  padding: 20px;
   width: 300px;
   height: 100%;
   background: ${background};
@@ -36,6 +35,7 @@ const Wrapper = styled('div')`
 
   ${p =>
     p.theme.mq({
+      padding: [10, 20],
       position: ['absolute', 'absolute', 'absolute', 'relative'],
     })};
 
@@ -71,9 +71,16 @@ const Wrapper = styled('div')`
   }
 `
 
+const logoMarginBottom = (p: any) =>
+  p.theme.mq({
+    marginBottom: ['30px', '64px'],
+  })
+
 const LogoImg = styled('img')`
-  margin: 24px 16px 64px;
+  margin: 24px 16px 0;
   padding: 0;
+
+  ${logoMarginBottom};
 `
 
 const LogoText = styled('h1')`
@@ -82,6 +89,8 @@ const LogoText = styled('h1')`
   padding: 0;
   font-size: 32px;
   color: ${p => p.theme.colors.text};
+
+  ${logoMarginBottom};
 
   &:before {
     position: absolute;
@@ -97,6 +106,7 @@ const LogoText = styled('h1')`
 const Menus = styled('nav')`
   flex: 1;
   overflow-y: auto;
+  margin-bottom: 10px;
 `
 
 const Footer = styled('div')`
