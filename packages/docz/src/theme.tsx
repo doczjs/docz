@@ -4,6 +4,7 @@ import { ComponentType as CT } from 'react'
 import { HashRouter, BrowserRouter } from 'react-router-dom'
 import merge from 'deepmerge'
 
+import { ErrorBoundary } from './components/ErrorBoundary'
 import { ComponentsMap } from './components/DocPreview'
 
 declare var BASE_URL: string
@@ -87,13 +88,15 @@ export function theme(
       }
 
       return (
-        <dataContext.Provider value={value}>
-          <Router basename={BASE_URL}>
-            <Wrapper>
-              <WrappedComponent />
-            </Wrapper>
-          </Router>
-        </dataContext.Provider>
+        <ErrorBoundary>
+          <dataContext.Provider value={value}>
+            <Router basename={BASE_URL}>
+              <Wrapper>
+                <WrappedComponent />
+              </Wrapper>
+            </Router>
+          </dataContext.Provider>
+        </ErrorBoundary>
       )
     }
 
