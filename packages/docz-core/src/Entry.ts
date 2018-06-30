@@ -26,9 +26,13 @@ export const parseMdx = (file: string): Promise<string> => {
   return parser.run(parser.parse(raw))
 }
 
-const getParsedData = (ast: any) => {
+interface ParsedData {
+  [key: string]: any
+}
+
+const getParsedData = (ast: any): ParsedData => {
   const node = find(ast, (node: any) => is('yaml', node))
-  return get(node, `data.parsedValue`)
+  return get(node, `data.parsedValue`) || {}
 }
 
 export interface Heading {
@@ -90,18 +94,15 @@ export class Entry {
   constructor(ast: any, file: string, src: string) {
     const filepath = this.getFilepath(file, src)
     const parsed = getParsedData(ast)
-
-    if (!parsed) {
-      throw new Error(`${filepath} does not contain a name`)
-    }
+    const name = this.getName(filepath, parsed)
 
     this.id = ulid()
     this.filepath = filepath
     this.slug = this.slugify(filepath)
     this.route = this.getRoute(parsed)
-    this.name = parsed.name
+    this.name = name
     this.order = parsed.order || 0
-    this.menu = parsed.menu
+    this.menu = parsed.menu || null
     this.headings = getHeadings(ast)
     this.settings = parsed
   }
@@ -115,6 +116,11 @@ export class Entry {
     }
 
     return relativePath
+  }
+
+  private getName(filepath: string, parsed: ParsedData): string {
+    const filename = humanize(path.parse(filepath).name)
+    return parsed && parsed.name ? parsed.name : filename
   }
 
   private slugify(filepath: string): string {

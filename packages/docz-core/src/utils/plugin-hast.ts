@@ -1,5 +1,6 @@
 import is from 'unist-util-is'
 import nodeToString from 'hast-util-to-string'
+import strip from 'strip-indent'
 
 import { format } from '../utils/format'
 
@@ -7,6 +8,11 @@ const componentName = (value: any) => {
   const match = value.match(/^\<\\?(\w+)/)
   return match && match[1]
 }
+
+const removePlayground = (code: string) =>
+  code
+    .replace(/^(\<Playground\>)|(\<Playground.+\>)$/g, '')
+    .replace(/\<\/Playground\>/g, '')
 
 const isPlayground = (name: string) => name === 'Playground'
 
@@ -17,10 +23,11 @@ const addCodeProp = async (node: any) => {
   if (isPlayground(name)) {
     const formatted = await format(nodeToString(node))
     const code = formatted.slice(1, Infinity)
+    const child = strip(removePlayground(code)).trim()
 
     const codeComponent = `components && (
       <components.pre className="react-prism language-jsx">
-        <code>{\`${code}\`}</code>
+        <code>{\`${child}\`}</code>
       </components.pre>
     )`
 
