@@ -65,6 +65,7 @@
     "remark-slug": "^5.0.0",
     "resolve": "^1.8.1",
     "signale": "^1.2.1",
+    "strip-indent": "^2.0.0",
     "to-vfile": "^5.0.0",
     "uglifyjs-webpack-plugin": "^1.2.7",
     "ulid": "^2.3.0",
