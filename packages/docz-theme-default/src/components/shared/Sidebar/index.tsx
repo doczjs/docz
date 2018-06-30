@@ -27,6 +27,7 @@ const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
   width: 300px;
+  min-width: 300px;
   height: 100%;
   background: ${background};
   transition: transform 0.2s, background 0.3s;
