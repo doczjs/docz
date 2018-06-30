@@ -228,6 +228,7 @@ export const createConfig = (babelrc: BabelRC) => (
   config.plugin('injections').use(require('webpack/lib/DefinePlugin'), [
     {
       BASE_URL: JSON.stringify(base),
+      NODE_ENV: JSON.stringify(env),
     },
   ])
 
