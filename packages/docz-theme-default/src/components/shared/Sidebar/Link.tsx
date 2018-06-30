@@ -88,12 +88,12 @@ interface LinkProps extends BaseLinkProps {
   doc: Entry
 }
 
-export const Link: SFC<LinkProps> = ({ doc, ...props }) => {
+export const Link: SFC<LinkProps> = ({ doc, onClick, ...props }) => {
   const active = isActive(doc, location)
 
   return (
     <LinkWrapper active={active}>
-      <LinkStyled {...props} />
+      <LinkStyled {...props} onClick={onClick} />
       {active && (
         <Submenu>
           {doc.headings.map(
@@ -102,6 +102,7 @@ export const Link: SFC<LinkProps> = ({ doc, ...props }) => {
               heading.depth < 3 && (
                 <SmallLink
                   key={heading.slug}
+                  onClick={onClick}
                   to={{ pathname: doc.route, hash: heading.slug }}
                   isActive={isSmallLinkActive(heading.slug)}
                 >
