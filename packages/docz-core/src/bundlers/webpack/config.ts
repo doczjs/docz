@@ -40,7 +40,7 @@ export const createConfig = (babelrc: BabelRC) => (
   args: Args,
   env: Env
 ): Config => {
-  const { debug, host, port, protocol } = args
+  const { debug } = args
 
   const config = new Config()
   const isProd = env === 'production'
@@ -203,9 +203,6 @@ export const createConfig = (babelrc: BabelRC) => (
     },
   ])
 
-  const isLocalhost = host === '127.0.0.1' || host === '0.0.0.0'
-  const hostname = isLocalhost ? 'localhost' : host
-
   config.when(!debug && !isProd, cfg => {
     cfg.plugin('webpackbar').use(webpackBarPlugin, [
       {
@@ -217,9 +214,7 @@ export const createConfig = (babelrc: BabelRC) => (
     cfg.plugin('friendly-errors').use(friendlyErrors, [
       {
         compilationSuccessInfo: {
-          messages: [
-            `Your application is running at ${protocol}://${hostname}:${port}`,
-          ],
+          messages: [],
         },
       },
     ])
