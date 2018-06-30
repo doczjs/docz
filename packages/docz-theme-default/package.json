@@ -35,6 +35,7 @@
     "react-feather": "^1.1.0",
     "react-lightweight-tooltip": "^1.0.0",
     "react-powerplug": "^0.1.6",
+    "react-router-hash-link": "^1.2.0",
     "react-spinners": "^0.3.2",
     "webfontloader": "^1.6.28"
   },
