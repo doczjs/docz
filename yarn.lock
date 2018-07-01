@@ -1096,15 +1096,15 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
-"@mdx-js/loader@^0.11.1":
-  version "0.11.1"
-  resolved "https://registry.npmjs.org/@mdx-js/loader/-/loader-0.11.1.tgz#fe2a0238fddbc20a32df3d58f03250264d622fa4"
+"@mdx-js/loader@^0.13.0-0":
+  version "0.13.0-0"
+  resolved "https://registry.npmjs.org/@mdx-js/loader/-/loader-0.13.0-0.tgz#8240d06b46c8ac8d9006b501249ad40641940214"
   dependencies:
     "@mdx-js/tag" "^0.11.0"
 
-"@mdx-js/mdx@^0.11.1":
-  version "0.11.1"
-  resolved "https://registry.npmjs.org/@mdx-js/mdx/-/mdx-0.11.1.tgz#2ca1f2a4287cbc603a7bcb77667d5f099b1da66c"
+"@mdx-js/mdx@^0.13.0-0":
+  version "0.13.0-0"
+  resolved "https://registry.npmjs.org/@mdx-js/mdx/-/mdx-0.13.0-0.tgz#e754a069a5727259df7817548bd1005257613286"
   dependencies:
     "@mdx-js/mdxast" "^0.10.0"
     mdast-util-to-hast "^3.0.0"
@@ -1308,9 +1308,9 @@
   version "10.0.0"
   resolved "https://registry.npmjs.org/@types/node/-/node-10.0.0.tgz#c40f8e07dce607d3ef25a626b93a6a7cdcf97881"
 
-"@types/node@10.3.6", "@types/node@^10.3.6":
-  version "10.3.6"
-  resolved "https://registry.npmjs.org/@types/node/-/node-10.3.6.tgz#ea8aab9439b59f40d19ec5f13b44642344872b11"
+"@types/node@10.5.1", "@types/node@^10.5.1":
+  version "10.5.1"
+  resolved "https://registry.npmjs.org/@types/node/-/node-10.5.1.tgz#d578446f4abff5c0b49ade9b4e5274f6badaadfc"
 
 "@types/prettier@^1.13.1":
   version "1.13.1"
@@ -1348,9 +1348,9 @@
   dependencies:
     csstype "^2.2.0"
 
-"@types/react@^16.4.2":
-  version "16.4.2"
-  resolved "https://registry.npmjs.org/@types/react/-/react-16.4.2.tgz#f1a9cf1ee85221530def2ac26aee20f910a9dac8"
+"@types/react@^16.4.6":
+  version "16.4.6"
+  resolved "https://registry.npmjs.org/@types/react/-/react-16.4.6.tgz#5024957c6bcef4f02823accf5974faba2e54fada"
   dependencies:
     csstype "^2.2.0"
 
@@ -1396,9 +1396,9 @@
     "@types/uglify-js" "*"
     source-map "^0.6.0"
 
-"@types/webpack@^4.4.3":
-  version "4.4.3"
-  resolved "https://registry.npmjs.org/@types/webpack/-/webpack-4.4.3.tgz#9424101def0d720747b3c059bf0f7eff2ea57b31"
+"@types/webpack@^4.4.4":
+  version "4.4.4"
+  resolved "https://registry.npmjs.org/@types/webpack/-/webpack-4.4.4.tgz#f001a0a43cf5b433d57a1a22366fe1939d648957"
   dependencies:
     "@types/node" "*"
     "@types/tapable" "*"
@@ -1939,15 +1939,15 @@ autoprefixer@^6.3.1:
     postcss "^5.2.16"
     postcss-value-parser "^3.2.3"
 
-autoprefixer@^8.6.3:
-  version "8.6.3"
-  resolved "https://registry.npmjs.org/autoprefixer/-/autoprefixer-8.6.3.tgz#1d38a129e6a4582a565b6570d16f2d7d3de9cbf9"
+autoprefixer@^8.6.4:
+  version "8.6.4"
+  resolved "https://registry.npmjs.org/autoprefixer/-/autoprefixer-8.6.4.tgz#6bf501de426a3b95973f5d237dbcc9181e9904d2"
   dependencies:
     browserslist "^3.2.8"
-    caniuse-lite "^1.0.30000856"
+    caniuse-lite "^1.0.30000859"
     normalize-range "^0.1.2"
     num2fraction "^1.2.2"
-    postcss "^6.0.22"
+    postcss "^6.0.23"
     postcss-value-parser "^3.2.3"
 
 aws-sign2@~0.6.0:
@@ -3078,13 +3078,17 @@ caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
   version "1.0.30000856"
   resolved "https://registry.npmjs.org/caniuse-db/-/caniuse-db-1.0.30000856.tgz#fbebb99abe15a5654fc7747ebb5315bdfde3358f"
 
-caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000844, caniuse-lite@^1.0.30000856:
+caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000844:
   version "1.0.30000856"
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30000856.tgz#ecc16978135a6f219b138991eb62009d25ee8daa"
 
 caniuse-lite@^1.0.30000830:
   version "1.0.30000832"
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30000832.tgz#22a277f1d623774cc9aea2f7c1a65cb1603c63b8"
+
+caniuse-lite@^1.0.30000859:
+  version "1.0.30000861"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30000861.tgz#a32bb9607c34e4639b497ff37de746fc8a160410"
 
 capture-stack-trace@^1.0.0:
   version "1.0.0"
@@ -4168,6 +4172,12 @@ decamelize@^1.0.0, decamelize@^1.1.0, decamelize@^1.1.1, decamelize@^1.1.2:
   version "1.2.0"
   resolved "https://registry.npmjs.org/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
 
+decamelize@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/decamelize/-/decamelize-2.0.0.tgz#656d7bbc8094c4c788ea53c5840908c9c7d063c7"
+  dependencies:
+    xregexp "4.0.0"
+
 decode-uri-component@^0.2.0:
   version "0.2.0"
   resolved "https://registry.npmjs.org/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
@@ -4538,6 +4548,14 @@ enhanced-resolve@^4.0.0:
     memory-fs "^0.4.0"
     tapable "^1.0.0"
 
+enhanced-resolve@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npmjs.org/enhanced-resolve/-/enhanced-resolve-4.1.0.tgz#41c7e0bfdfe74ac1ffe1e57ad6a5c6c9f3742a7f"
+  dependencies:
+    graceful-fs "^4.1.2"
+    memory-fs "^0.4.0"
+    tapable "^1.0.0"
+
 entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
@@ -4682,9 +4700,9 @@ eslint@^4.1.1:
     table "4.0.2"
     text-table "~0.2.0"
 
-esm@^3.0.55:
-  version "3.0.55"
-  resolved "https://registry.npmjs.org/esm/-/esm-3.0.55.tgz#db784239760c60b919785953eb3c01cfbc9745d4"
+esm@^3.0.58:
+  version "3.0.58"
+  resolved "https://registry.npmjs.org/esm/-/esm-3.0.58.tgz#692bfd7c0dfe02b300d527761d55349c116a5f6c"
 
 espree@^3.5.4:
   version "3.5.4"
@@ -7720,10 +7738,11 @@ min-document@^2.19.0:
   dependencies:
     dom-walk "^0.1.0"
 
-mini-css-extract-plugin@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/mini-css-extract-plugin/-/mini-css-extract-plugin-0.4.0.tgz#ff3bf08bee96e618e177c16ca6131bfecef707f9"
+mini-css-extract-plugin@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.npmjs.org/mini-css-extract-plugin/-/mini-css-extract-plugin-0.4.1.tgz#d2bcf77bb2596b8e4bd9257e43d3f9164c2e86cb"
   dependencies:
+    "@webpack-contrib/schema-utils" "^1.0.0-beta.0"
     loader-utils "^1.1.0"
     webpack-sources "^1.1.0"
 
@@ -8349,9 +8368,9 @@ optimist@^0.6.1:
     minimist "~0.0.1"
     wordwrap "~0.0.2"
 
-optimize-css-assets-webpack-plugin@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.npmjs.org/optimize-css-assets-webpack-plugin/-/optimize-css-assets-webpack-plugin-4.0.2.tgz#813d511d20fe5d9a605458441ed97074d79c1122"
+optimize-css-assets-webpack-plugin@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.npmjs.org/optimize-css-assets-webpack-plugin/-/optimize-css-assets-webpack-plugin-4.0.3.tgz#4f714e276b279700892c4a6202b7e22812d6f683"
   dependencies:
     cssnano "^3.10.0"
     last-call-webpack-plugin "^3.0.0"
@@ -8999,7 +9018,7 @@ postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0
     source-map "^0.5.6"
     supports-color "^3.2.3"
 
-postcss@^6.0.0, postcss@^6.0.1, postcss@^6.0.22:
+postcss@^6.0.0, postcss@^6.0.1:
   version "6.0.22"
   resolved "https://registry.npmjs.org/postcss/-/postcss-6.0.22.tgz#e23b78314905c3b90cbd61702121e7a78848f2a3"
   dependencies:
@@ -9027,9 +9046,9 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.npmjs.org/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier@^1.13.6:
-  version "1.13.6"
-  resolved "https://registry.npmjs.org/prettier/-/prettier-1.13.6.tgz#00ae0b777ad92f81a9e7a1df2f0470b6dab0cb44"
+prettier@^1.13.7:
+  version "1.13.7"
+  resolved "https://registry.npmjs.org/prettier/-/prettier-1.13.7.tgz#850f3b8af784a49a6ea2d2eaa7ed1428a34b7281"
 
 pretty-error@^2.0.2, pretty-error@^2.1.1:
   version "2.1.1"
@@ -11151,9 +11170,9 @@ trough@^1.0.0:
   dependencies:
     glob "^6.0.4"
 
-ts-loader@^4.4.1:
-  version "4.4.1"
-  resolved "https://registry.npmjs.org/ts-loader/-/ts-loader-4.4.1.tgz#c93a46eea430ebce1f790dfe438caefb8670d365"
+ts-loader@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.npmjs.org/ts-loader/-/ts-loader-4.4.2.tgz#778d4464b24436873c78f7f9e914d88194c2a248"
   dependencies:
     chalk "^2.3.0"
     enhanced-resolve "^4.0.0"
@@ -11784,9 +11803,9 @@ webpack-hot-client@^3.0.0:
     webpack-log "^1.1.1"
     ws "^4.0.0"
 
-webpack-hot-client@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.npmjs.org/webpack-hot-client/-/webpack-hot-client-4.0.3.tgz#d96cef0f199ded606fd7396e0a32e3d03bf79280"
+webpack-hot-client@^4.0.4:
+  version "4.0.4"
+  resolved "https://registry.npmjs.org/webpack-hot-client/-/webpack-hot-client-4.0.4.tgz#e19aa9c4d503ba8132ebf45d3d38ce33f89ae315"
   dependencies:
     "@webpack-contrib/schema-utils" "^1.0.0-beta.0"
     json-stringify-safe "^5.0.1"
@@ -11850,9 +11869,9 @@ webpack-sources@^1.0.1, webpack-sources@^1.1.0:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.12.1:
-  version "4.12.1"
-  resolved "https://registry.npmjs.org/webpack/-/webpack-4.12.1.tgz#9108078c67fdd72c2609cea22af87d7aed2acb08"
+webpack@^4.14.0:
+  version "4.14.0"
+  resolved "https://registry.npmjs.org/webpack/-/webpack-4.14.0.tgz#bbcc40dbf9a34129491b431574189d3802972243"
   dependencies:
     "@webassemblyjs/ast" "1.5.12"
     "@webassemblyjs/helper-module-context" "1.5.12"
@@ -11864,7 +11883,7 @@ webpack@^4.12.1:
     ajv "^6.1.0"
     ajv-keywords "^3.1.0"
     chrome-trace-event "^1.0.0"
-    enhanced-resolve "^4.0.0"
+    enhanced-resolve "^4.1.0"
     eslint-scope "^3.7.1"
     json-parse-better-errors "^1.0.2"
     loader-runner "^2.3.0"
@@ -12085,6 +12104,10 @@ xdg-trashdir@^2.1.1:
     user-home "^2.0.0"
     xdg-basedir "^2.0.0"
 
+xregexp@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/xregexp/-/xregexp-4.0.0.tgz#e698189de49dd2a18cc5687b05e17c8e43943020"
+
 xtend@^4.0.0, xtend@^4.0.1, xtend@~4.0.1:
   version "4.0.1"
   resolved "https://registry.npmjs.org/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
@@ -12093,7 +12116,7 @@ y18n@^3.2.1:
   version "3.2.1"
   resolved "https://registry.npmjs.org/y18n/-/y18n-3.2.1.tgz#6d15fba884c08679c0d77e88e7759e811e07fa41"
 
-y18n@^4.0.0:
+"y18n@^3.2.1 || ^4.0.0", y18n@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/y18n/-/y18n-4.0.0.tgz#95ef94f85ecc81d007c264e190a120f0a3c8566b"
 
@@ -12108,6 +12131,12 @@ yallist@^3.0.0, yallist@^3.0.2:
 yargs-parser@^10.0.0:
   version "10.0.0"
   resolved "https://registry.npmjs.org/yargs-parser/-/yargs-parser-10.0.0.tgz#c737c93de2567657750cb1f2c00be639fd19c994"
+  dependencies:
+    camelcase "^4.1.0"
+
+yargs-parser@^10.1.0:
+  version "10.1.0"
+  resolved "https://registry.npmjs.org/yargs-parser/-/yargs-parser-10.1.0.tgz#7202265b89f7e9e9f2e5765e0fe735a905edbaa8"
   dependencies:
     camelcase "^4.1.0"
 
@@ -12175,6 +12204,23 @@ yargs@^11.0.0:
     which-module "^2.0.0"
     y18n "^3.2.1"
     yargs-parser "^9.0.2"
+
+yargs@^12.0.1:
+  version "12.0.1"
+  resolved "https://registry.npmjs.org/yargs/-/yargs-12.0.1.tgz#6432e56123bb4e7c3562115401e98374060261c2"
+  dependencies:
+    cliui "^4.0.0"
+    decamelize "^2.0.0"
+    find-up "^3.0.0"
+    get-caller-file "^1.0.1"
+    os-locale "^2.0.0"
+    require-directory "^2.1.1"
+    require-main-filename "^1.0.1"
+    set-blocking "^2.0.0"
+    string-width "^2.0.0"
+    which-module "^2.0.0"
+    y18n "^3.2.1 || ^4.0.0"
+    yargs-parser "^10.1.0"
 
 yargs@^4.2.0:
   version "4.8.1"

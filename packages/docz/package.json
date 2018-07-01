@@ -35,7 +35,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-router-dom": "^4.3.1",
-    "yargs": "^11.0.0"
+    "yargs": "^12.0.1"
   },
   "peerDependencies": {
     "react": "^16.3.0",
@@ -44,7 +44,7 @@
   "devDependencies": {
     "@types/bluebird": "^3.5.21",
     "@types/deepmerge": "^2.1.0",
-    "@types/react": "^16.4.2",
+    "@types/react": "^16.4.6",
     "@types/react-dom": "^16.0.6",
     "@types/react-router-dom": "^4.2.7"
   }
