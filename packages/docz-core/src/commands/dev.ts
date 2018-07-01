@@ -15,16 +15,17 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
 export const dev = async (args: Config) => {
   const config = loadConfig(args)
-  const bundler = webpack(config, 'development')
+  const port = await detectPort(config.port)
+  const bundler = webpack({ ...config, port }, 'development')
   const entries = new Entries(config)
   const map = await entries.get()
   const server = await bundler.createServer(bundler.getConfig())
   const app = await server.start()
 
-  app.on('listening', async ({ server }) => {
-    const port = await detectPort(config.websocketPort)
+  app.on('listening', async ({ server, options }) => {
+    const websocketPort = await detectPort(config.websocketPort)
     const run = Plugin.runPluginsMethod(config.plugins)
-    const newConfig = { ...config, websocketPort: port }
+    const newConfig = { ...config, websocketPort }
     const dataServer = new DataServer({ server, config: newConfig })
 
     try {
@@ -35,7 +36,7 @@ export const dev = async (args: Config) => {
       await Entries.writeApp(newConfig, true)
       await Entries.writeImports(map)
 
-      logger.info(`Setup entries socket on port ${port}`)
+      logger.info(`Setup entries socket on port ${websocketPort}`)
       await dataServer.processEntries(entries)
       await dataServer.processThemeConfig()
       await run('onServerListening', server)
