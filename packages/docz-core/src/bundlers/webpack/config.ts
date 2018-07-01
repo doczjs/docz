@@ -218,7 +218,7 @@ export const createConfig = (babelrc: BabelRC) => (
       {
         compilationSuccessInfo: {
           messages: [
-            `You application is running at ${protocol}://${hostname}:${port}`,
+            `Your application is running at ${protocol}://${hostname}:${port}`,
           ],
         },
       },
