@@ -1,5 +1,18 @@
+import * as fs from 'fs-extra'
+import humanize from 'humanize-string'
+import titleize from 'titleize'
+
 import { Plugin } from '../Plugin'
 import { BabelRC } from '../utils/babelrc'
+import * as paths from '../config/paths'
+
+const removeScope = (name: string) => name.replace(/^@.*\//, '')
+const getInitialTitle = () => {
+  const pkg = fs.readJsonSync(paths.packageJson, { throws: false })
+  const name = pkg ? pkg.name : 'MyDoc'
+
+  return titleize(humanize(removeScope(name)))
+}
 
 export interface Argv {
   /* io args */
@@ -59,7 +72,7 @@ export const args = (yargs: any) => {
   })
   yargs.positional('title', {
     type: 'string',
-    default: 'MyDoc',
+    default: getInitialTitle(),
   })
   yargs.positional('description', {
     type: 'string',
