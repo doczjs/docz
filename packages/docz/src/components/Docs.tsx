@@ -51,7 +51,7 @@ export const Docs: React.SFC<DocsProps> = ({ children }) => {
 
         const docs = entriesArr
           .sort((a, b) => sortBy(a.name, b.name))
-          .sort((a, b) => b.order - a.order)
+          .sort((a, b) => a.order - b.order)
 
         return Children.only(
           children({
