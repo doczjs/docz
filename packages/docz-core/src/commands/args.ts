@@ -9,7 +9,7 @@ import * as paths from '../config/paths'
 const removeScope = (name: string) => name.replace(/^@.*\//, '')
 const getInitialTitle = () => {
   const pkg = fs.readJsonSync(paths.packageJson, { throws: false })
-  const name = pkg ? pkg.name : 'MyDoc'
+  const name = pkg && pkg.name ? pkg.name : 'MyDoc'
 
   return titleize(humanize(removeScope(name)))
 }
