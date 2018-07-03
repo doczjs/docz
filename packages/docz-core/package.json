@@ -1,6 +1,6 @@
 {
   "name": "docz-core",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
@@ -50,7 +50,7 @@
     "koa-connect": "^2.0.1",
     "koa-mount": "^3.0.0",
     "koa-static": "^5.0.0",
-    "load-cfg": "^0.5.0",
+    "load-cfg": "^0.5.1",
     "lodash.get": "^4.4.2",
     "prettier": "^1.13.7",
     "react-dev-utils": "^5.0.1",

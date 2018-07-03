@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.1"></a>
+## [0.5.1](https://github.com/pedronauck/docz/compare/v0.3.4...v0.5.1) (2018-07-03)
+
+
+### Features
+
+* **docz-core:** add ordering property for config ([efd215e](https://github.com/pedronauck/docz/commit/efd215e))
+* **docz-theme-default:** add automatic table of content ([#106](https://github.com/pedronauck/docz/issues/106)) ([6ce9e84](https://github.com/pedronauck/docz/commit/6ce9e84))
+* **docz-theme-default:** add sidebar search ([7886e75](https://github.com/pedronauck/docz/commit/7886e75))
+
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/pedronauck/docz/compare/v0.3.4...v0.5.0) (2018-07-03)
 

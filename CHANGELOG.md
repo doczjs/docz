@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.1"></a>
+## [0.5.1](https://github.com/pedronauck/docz/compare/v0.3.4...v0.5.1) (2018-07-03)
+
+
+### Bug Fixes
+
+* broken links to examples ([#101](https://github.com/pedronauck/docz/issues/101)) ([26458f2](https://github.com/pedronauck/docz/commit/26458f2))
+* **docz-core:** add a fallback name on Entry ([ec38139](https://github.com/pedronauck/docz/commit/ec38139))
+* **docz-core:** app running port message ([4aec595](https://github.com/pedronauck/docz/commit/4aec595))
+* CHANGELOG.md ([8be3724](https://github.com/pedronauck/docz/commit/8be3724))
+* **docz-core:** check name on package json ([6cdbebc](https://github.com/pedronauck/docz/commit/6cdbebc))
+* **docz-theme-default:** add overflow auto to nav ([4cdbcfd](https://github.com/pedronauck/docz/commit/4cdbcfd))
+
+
+### Features
+
+* **docz-core:** add ordering property for config ([efd215e](https://github.com/pedronauck/docz/commit/efd215e))
+* **docz-core:** read name from package.json to populate initial title ([1eeb049](https://github.com/pedronauck/docz/commit/1eeb049))
+* **docz-theme-default:** add automatic table of content ([#106](https://github.com/pedronauck/docz/issues/106)) ([6ce9e84](https://github.com/pedronauck/docz/commit/6ce9e84))
+* **docz-theme-default:** add sidebar search ([7886e75](https://github.com/pedronauck/docz/commit/7886e75))
+
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/pedronauck/docz/compare/v0.3.4...v0.5.0) (2018-07-03)
 
