@@ -8,11 +8,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 ### Bug Fixes
-
-* broken links to examples ([#101](https://github.com/pedronauck/docz/issues/101)) ([26458f2](https://github.com/pedronauck/docz/commit/26458f2))
-* **docz-core:** add a fallback name on Entry ([ec38139](https://github.com/pedronauck/docz/commit/ec38139))
 * **docz-core:** app running port message ([1b94114](https://github.com/pedronauck/docz/commit/1b94114))
-* **docz-theme-default:** add overflow auto to nav ([4cdbcfd](https://github.com/pedronauck/docz/commit/4cdbcfd))
 
 
 ### Features
