@@ -36,7 +36,7 @@ export const Docs: React.SFC<DocsProps> = ({ children }) => {
 
   return (
     <dataContext.Consumer>
-      {({ entries }) => {
+      {({ entries, config }) => {
         if (!entries || !children) return null
         if (!isFn(children)) {
           throw new Error(
@@ -51,7 +51,12 @@ export const Docs: React.SFC<DocsProps> = ({ children }) => {
 
         const docs = entriesArr
           .sort((a, b) => sortBy(a.name, b.name))
-          .sort((a, b) => b.order - a.order)
+          .sort(
+            (a, b) =>
+              config.ordering === 'descending'
+                ? b.order - a.order
+                : a.order - b.order
+          )
 
         return Children.only(
           children({

@@ -80,6 +80,7 @@ export class DataServer {
       ...config.themeConfig,
       title: config.title,
       description: config.description,
+      ordering: config.ordering,
     })
   }
 
