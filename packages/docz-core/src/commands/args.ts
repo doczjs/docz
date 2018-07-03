@@ -33,6 +33,7 @@ export interface Argv {
   title: string
   description: string
   theme: string
+  ordering: 'ascending' | 'descending'
   wrapper?: string
   indexHtml?: string
 }
@@ -96,6 +97,10 @@ export const args = (yargs: any) => {
   })
   yargs.positional('indexHtml', {
     type: 'string',
+  })
+  yargs.positional('ordering', {
+    type: 'string',
+    default: 'descending',
   })
   yargs.positional('debug', {
     type: 'boolean',
