@@ -25,7 +25,7 @@ const iconRotate = (p: IconProps) => (p.opened ? '-180deg' : '0deg')
 const Icon = styled('div')`
   position: absolute;
   top: 50%;
-  right: 20px;
+  right: 0;
   transform: translateY(-50%) rotate(${iconRotate});
   transform-origin: 50% 50%;
   transition: transform 0.3s;
@@ -39,11 +39,18 @@ export interface MenuProps {
   menu: string
   docs: Entry[]
   sidebarToggle: (ev: React.SyntheticEvent<any>) => void
+  collapseAll: boolean
 }
 
-export const Menu: SFC<MenuProps> = ({ menu, docs, sidebarToggle }) => (
+export const Menu: SFC<MenuProps> = ({
+  menu,
+  docs,
+  sidebarToggle,
+  collapseAll,
+}) => (
   <Toggle initial={false}>
     {({ on, toggle }: any) => {
+      const show = collapseAll || on
       const handleToggle = (ev: React.SyntheticEvent<any>) => {
         ev.preventDefault()
         toggle()
@@ -53,11 +60,11 @@ export const Menu: SFC<MenuProps> = ({ menu, docs, sidebarToggle }) => (
         <Wrapper>
           <MenuLink href="#" onClick={handleToggle}>
             {menu}
-            <Icon opened={on}>
+            <Icon opened={show}>
               <ChevronDown size={15} />
             </Icon>
           </MenuLink>
-          {on && (
+          {show && (
             <dl>
               {docs.map(doc => (
                 <dt key={doc.id}>

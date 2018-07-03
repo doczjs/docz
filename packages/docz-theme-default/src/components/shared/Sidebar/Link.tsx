@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { SFC } from 'react'
 import { Link as BaseLink, LinkProps as BaseLinkProps, Entry } from 'docz'
-import { NavHashLink } from 'react-router-hash-link'
 
 import styled, { css } from 'react-emotion'
 
@@ -36,20 +35,29 @@ interface LinkWrapperProps {
 }
 
 const activeWrapper = (p: LinkWrapperProps) => css`
+  padding-left: 16px;
+
   &:after {
-    position: absolute;
-    display: block;
-    content: '';
-    top: 0;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: ${p.theme.colors.border};
+    width: 1px;
   }
 `
 
 const LinkWrapper = styled('div')`
   position: relative;
+  transition: padding 0.2s;
+
+  &:after {
+    position: absolute;
+    display: block;
+    content: '';
+    top: 3px;
+    left: 16px;
+    width: 0;
+    height: calc(100% - 10px);
+    background: ${p => p.theme.colors.border};
+    transition: width 0.2s;
+  }
+
   ${(p: LinkWrapperProps) => p.active && activeWrapper(p)};
 `
 
@@ -57,9 +65,9 @@ const isActive = (doc: Entry, location: any) => {
   return doc.route === location.pathname
 }
 
-const SmallLink = styled(NavHashLink)`
+const SmallLink = styled(BaseLink)`
   font-size: 14px;
-  padding: 0 0 5px 26px;
+  padding: 0 0 5px 16px;
   text-decoration: none;
   opacity: 0.5;
   transition: opacity 0.2s;
