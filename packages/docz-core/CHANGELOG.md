@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/pedronauck/docz/compare/v0.3.4...v0.5.0) (2018-07-03)
+
+
+### Bug Fixes
+
+* **docz-core:** add a fallback name on Entry ([ec38139](https://github.com/pedronauck/docz/commit/ec38139))
+* **docz-core:** app running port message ([1b94114](https://github.com/pedronauck/docz/commit/1b94114))
+
+
+### Features
+
+* **docz-core:** add ordering property for config ([a6c307d](https://github.com/pedronauck/docz/commit/a6c307d))
+* **docz-core:** read name from package.json to populate initial title ([4f10a6d](https://github.com/pedronauck/docz/commit/4f10a6d))
+
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/pedronauck/docz/compare/v0.3.4...v0.4.0) (2018-06-30)
 
