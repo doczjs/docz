@@ -11,7 +11,7 @@
   <img src="https://img.shields.io/npm/v/docz.svg" alt="">
   <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="">
   <img src="https://img.shields.io/npm/dt/docz.svg" alt="">
-  <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="">
+  <a href="https://discord.gg/YQE4MbD"><img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" alt="Chat"></a>
 </p>
 
 <p align="center">
