@@ -1,14 +1,16 @@
-import React from 'react'
+import * as React from 'react'
 import { Docs, Entry, ThemeConfig, DocsRenderProps } from 'docz'
-import { Toggle } from 'react-powerplug'
+import { Toggle, State } from 'react-powerplug'
 import { Media } from 'react-breakpoints'
 import { adopt } from 'react-adopt'
 import styled from 'react-emotion'
+import Fuse from 'fuse.js'
 
 import { Menu } from './Menu'
 import { Link } from './Link'
 import { Docz } from './Docz'
 import { Hamburguer } from './Hamburguer'
+import { Search } from './Search'
 
 interface Wrapper {
   opened: boolean
@@ -37,7 +39,6 @@ const Wrapper = styled('div')`
 
   ${p =>
     p.theme.mq({
-      padding: [10, 20],
       position: ['absolute', 'absolute', 'absolute', 'relative'],
     })};
 
@@ -45,7 +46,7 @@ const Wrapper = styled('div')`
 
   dl {
     padding: 0;
-    margin: 0 0 0 20px;
+    margin: 0 0 0 16px;
   }
 
   dl a {
@@ -55,11 +56,11 @@ const Wrapper = styled('div')`
 
 const logoMarginBottom = (p: any) =>
   p.theme.mq({
-    marginBottom: ['30px', '64px'],
+    marginBottom: ['30px', '45px'],
   })
 
 const LogoImg = styled('img')`
-  margin: 24px 16px 0;
+  margin: 30px;
   padding: 0;
 
   ${logoMarginBottom};
@@ -67,9 +68,9 @@ const LogoImg = styled('img')`
 
 const LogoText = styled('h1')`
   position: relative;
-  margin: 24px 16px 64px;
+  margin: 30px;
   padding: 0;
-  font-size: 32px;
+  font-size: 26px;
   color: ${p => p.theme.colors.text};
 
   ${logoMarginBottom};
@@ -89,6 +90,12 @@ const Menus = styled('nav')`
   flex: 1;
   overflow-y: auto;
   margin-bottom: 10px;
+
+  ${p =>
+    p.theme.mq({
+      paddingLeft: [10, 20],
+      paddingRight: [10, 20],
+    })};
 `
 
 const Footer = styled('div')`
@@ -126,46 +133,124 @@ const FooterLogo = styled(Docz)`
   fill: ${p => p.theme.colors.footerText};
 `
 
-interface RenderProps {
-  docs: DocsRenderProps
-  media: {
-    breakpoints: any
-    currentBreakpoint: string
-  }
-  toggle: {
-    on: boolean
-    toggle: () => void
-  }
-  config: {
-    title: string
-    logo: { src: string; width: any }
+interface Media {
+  breakpoints: any
+  currentBreakpoint: string
+}
+
+interface Toggle {
+  on: boolean
+  toggle: () => void
+}
+
+interface Config {
+  title: string
+  logo: { src: string; width: any }
+}
+
+interface State {
+  setState: (state: any) => void
+  state: {
+    docs?: Entry[] | null
+    searching?: boolean
   }
 }
 
-const Composed = adopt<RenderProps>({
+interface MapperProps {
+  docs: DocsRenderProps
+  media: Media
+  toggle: Toggle
+  config: Config
+  state: State
+}
+
+type EnhancedProps = DocsRenderProps &
+  Toggle &
+  State & {
+    media: Media
+    config: Config
+  }
+
+const getSearch = (docs: Entry[]) => (val: string): Entry[] => {
+  const options = {
+    shouldSort: true,
+    threshold: 0.4,
+    location: 0,
+    distance: 100,
+    maxPatternLength: 32,
+    minMatchCharLength: 1,
+    keys: ['name'],
+  }
+
+  const fuse = new Fuse(docs, options)
+  return fuse.search(val)
+}
+
+const getMenusFromDocs = (docs: Entry[]): string[] => {
+  return Array.from(
+    new Set(
+      docs.reduce(
+        (arr: string[], doc: Entry): string[] =>
+          doc.menu ? arr.concat([doc.menu]) : arr,
+        []
+      )
+    )
+  )
+}
+
+const mapper = {
   docs: <Docs />,
   media: <Media />,
   toggle: <Toggle initial={true} />,
   config: <ThemeConfig />,
+  state: ({ docs, render }: any) => (
+    <State initial={{ docs: null, searching: false }}>{render}</State>
+  ),
+}
+
+const mapProps = ({ docs, media, toggle, config, state }: MapperProps) => ({
+  ...docs,
+  ...toggle,
+  ...state,
+  media,
+  config,
 })
+
+const Composed = adopt<EnhancedProps>(mapper, mapProps)
 
 export const Sidebar = () => (
   <Composed>
-    {(props: RenderProps) => {
-      const {
-        media: { currentBreakpoint },
-        toggle: { on, toggle },
-        docs: { docs, menus },
-        config: { title, logo },
-      } = props
+    {({
+      docs: initialDocs,
+      media,
+      config,
+      toggle,
+      on,
+      state,
+      setState,
+    }: EnhancedProps) => {
+      const isDesktop = media.currentBreakpoint === 'desktop' ? true : false
+      const title = config.title
+      const logo = config.logo
 
-      const isDesktop = currentBreakpoint === 'desktop' ? true : false
+      const docs = state.docs || initialDocs
+      const search = getSearch(docs)
+      const menus = getMenusFromDocs(docs)
       const docsWithoutMenu = docs.filter((doc: Entry) => !doc.menu)
       const fromMenu = (menu: string) => docs.filter(doc => doc.menu === menu)
 
+      const handleSearchDocs = (val: string) => {
+        const isEmpty = val.length === 0
+
+        setState({
+          docs: isEmpty ? initialDocs : search(val),
+          searching: !isEmpty,
+        })
+      }
+
       const handleSidebarToggle = (ev: React.SyntheticEvent<any>) => {
         if (isDesktop) return
-        toggle()
+        toggle && toggle()
       }
 
       return (
@@ -177,6 +262,7 @@ export const Sidebar = () => (
             ) : (
               <LogoText>{title}</LogoText>
             )}
+            <Search showing={isDesktop || !on} onSearch={handleSearchDocs} />
             <Menus>
               {docsWithoutMenu.map(doc => (
                 <Link
@@ -191,9 +277,10 @@ export const Sidebar = () => (
               {menus.map(menu => (
                 <Menu
                   key={menu}
-                  sidebarToggle={handleSidebarToggle}
                   menu={menu}
                   docs={fromMenu(menu)}
+                  sidebarToggle={handleSidebarToggle}
+                  collapseAll={Boolean(state.searching)}
                 />
               ))}
             </Menus>

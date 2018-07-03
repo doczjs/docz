@@ -1,11 +1,11 @@
 declare module 'react-feather'
 declare module 'react-powerplug'
-declare module 'react-router-hash-link'
 declare module 'react-lightweight-tooltip'
 declare module 'react-feather/dist/icons/chevron-down'
-declare module 'react-spinners'
+declare module 'react-feather/dist/icons/search'
 declare module 'webfontloader'
 declare module 'react-breakpoints'
+declare module 'fuse.js'
 
 declare module '*.svg' {
   const content: any
