@@ -24,10 +24,10 @@
       ]
     },
     {
-      "login": "renatorib",
-      "name": "Renato Ribeiro",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/3277185?v=4",
-      "profile": "http://twitter.com/renatorib_",
+      "login": "marceloavf",
+      "name": "Marcelo Formentão",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/5435657?v=4",
+      "profile": "https://github.com/marceloavf",
       "contributions": [
         "code",
         "doc",
@@ -35,12 +35,24 @@
       ]
     },
     {
-      "login": "marceloavf",
-      "name": "Marcelo Formentão",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/5435657?v=4",
-      "profile": "https://github.com/marceloavf",
+      "login": "nicholasess",
+      "name": "Nicholas Eduardo",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3238901?s=460&v=4",
+      "profile": "https://github.com/nicholasess",
       "contributions": [
         "code",
+        "doc",
+        "bug"
+      ]
+    },
+    {
+      "login": "renatorib",
+      "name": "Renato Ribeiro",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3277185?v=4",
+      "profile": "http://twitter.com/renatorib_",
+      "contributions": [
+        "code",
+        "doc",
         "bug"
       ]
     }
