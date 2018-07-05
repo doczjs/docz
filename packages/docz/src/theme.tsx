@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Fragment, SFC } from 'react'
 import { ComponentType as CT } from 'react'
 import { HashRouter, BrowserRouter } from 'react-router-dom'
+import createReactContext from 'create-react-context'
 import merge from 'deepmerge'
 
 import { ErrorBoundary } from './components/ErrorBoundary'
@@ -54,7 +55,7 @@ const initialContext: DataContext = {
   imports: {},
 }
 
-export const dataContext = React.createContext(initialContext)
+export const dataContext = createReactContext(initialContext)
 
 const DefaultWrapper: SFC = ({ children }) => <Fragment>{children}</Fragment>
 

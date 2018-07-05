@@ -3878,6 +3878,13 @@ create-react-context@0.2.1:
     fbjs "^0.8.0"
     gud "^1.0.0"
 
+create-react-context@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/create-react-context/-/create-react-context-0.2.2.tgz#9836542f9aaa22868cd7d4a6f82667df38019dca"
+  dependencies:
+    fbjs "^0.8.0"
+    gud "^1.0.0"
+
 cross-env@^5.1.6:
   version "5.1.6"
   resolved "https://registry.npmjs.org/cross-env/-/cross-env-5.1.6.tgz#0dc05caf945b24e4b9e3b12871fe0e858d08b38d"
