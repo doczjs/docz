@@ -99,8 +99,6 @@ export class Entries {
       Array.isArray(pattern) ? [...pattern, ignoreGlob] : [pattern, ignoreGlob]
     )
 
-    const isEntry = async (file: string) => Entry.check(file)
-
     const createEntry = async (file: string) => {
       const ast = await parseMdx(file)
       const { settings, ...entry } = new Entry(ast, file, src)
@@ -112,7 +110,7 @@ export class Entries {
     }
 
     const map = new Map()
-    const entries = await Promise.all(files.filter(isEntry).map(createEntry))
+    const entries = await Promise.all(files.map(createEntry))
 
     for (const entry of entries) {
       map.set(entry.filepath, entry)

@@ -73,12 +73,6 @@ export interface EntryObj {
 export class Entry {
   readonly [key: string]: any
 
-  public static async check(file: string): Promise<boolean | null> {
-    const ast = await parseMdx(file)
-    const parsed = getParsedData(ast)
-    return Boolean(parsed && parsed.name)
-  }
-
   public id: string
   public filepath: string
   public slug: string
