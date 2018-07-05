@@ -1,6 +1,11 @@
 import * as React from 'react'
-import { SFC } from 'react'
-import { Link as BaseLink, LinkProps as BaseLinkProps, Entry } from 'docz'
+import { Component } from 'react'
+import {
+  Link as BaseLink,
+  LinkProps as BaseLinkProps,
+  Entry,
+  ThemeConfig,
+} from 'docz'
 
 import styled, { css } from 'react-emotion'
 
@@ -23,10 +28,6 @@ export const linkStyle = (p: any) => css`
     color: ${p.theme.colors.primary};
     font-weight: 600;
   }
-`
-
-const LinkStyled = styled(BaseLink)`
-  ${linkStyle};
 `
 
 interface LinkWrapperProps {
@@ -60,10 +61,6 @@ const LinkWrapper = styled('div')`
 
   ${(p: LinkWrapperProps) => p.active && activeWrapper(p)};
 `
-
-const isActive = (doc: Entry, location: any) => {
-  return doc.route === location.pathname
-}
 
 const SmallLink = styled(BaseLink)`
   position: relative;
@@ -114,30 +111,80 @@ interface LinkProps extends BaseLinkProps {
   doc: Entry
 }
 
-export const Link: SFC<LinkProps> = ({ doc, onClick, ...props }) => {
-  const active = isActive(doc, location)
+interface LinkState {
+  active: boolean
+}
 
-  return (
-    <LinkWrapper active={active}>
-      <LinkStyled {...props} onClick={onClick} />
-      {active && (
-        <Submenu>
-          {doc.headings.map(
-            heading =>
-              heading.depth > 1 &&
-              heading.depth < 3 && (
-                <SmallLink
-                  key={heading.slug}
-                  onClick={onClick}
-                  to={{ pathname: doc.route, hash: heading.slug }}
-                  isActive={isSmallLinkActive(heading.slug)}
-                >
-                  {heading.value}
-                </SmallLink>
-              )
+export class Link extends Component<LinkProps, LinkState> {
+  public $el: HTMLElement | null
+  public state: LinkState = {
+    active: false,
+  }
+
+  constructor(props: LinkProps) {
+    super(props)
+    this.$el = null
+  }
+
+  public checkActive = (): boolean => {
+    if (this.$el) {
+      const classes = this.$el.classList
+      return classes.contains('active')
+    }
+
+    return false
+  }
+
+  public updateActive = (prevActive: boolean): void => {
+    const active = this.checkActive()
+    if (prevActive !== active) this.setState({ active })
+  }
+
+  public componentDidUpdate(prevProps: LinkProps, prevState: LinkState): void {
+    this.updateActive(prevState.active)
+  }
+
+  public componentDidMount(): void {
+    this.updateActive(this.state.active)
+  }
+
+  public render(): React.ReactNode {
+    const { doc, onClick, ...props } = this.props
+    const { active } = this.state
+
+    return (
+      <LinkWrapper active={active}>
+        <ThemeConfig>
+          {theme => (
+            <BaseLink
+              {...props}
+              className={linkStyle({ theme })}
+              onClick={onClick}
+              innerRef={(node: any) => {
+                this.$el = node
+              }}
+            />
           )}
-        </Submenu>
-      )}
-    </LinkWrapper>
-  )
+        </ThemeConfig>
+        {active && (
+          <Submenu>
+            {doc.headings.map(
+              heading =>
+                heading.depth > 1 &&
+                heading.depth < 3 && (
+                  <SmallLink
+                    key={heading.slug}
+                    onClick={onClick}
+                    to={{ pathname: doc.route, hash: heading.slug }}
+                    isActive={isSmallLinkActive(heading.slug)}
+                  >
+                    {heading.value}
+                  </SmallLink>
+                )
+            )}
+          </Submenu>
+        )}
+      </LinkWrapper>
+    )
+  }
 }
