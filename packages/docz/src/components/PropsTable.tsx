@@ -138,7 +138,7 @@ const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
             <Th className="PropsTable--property">Property</Th>
             <Th className="PropsTable--type">Type</Th>
             <Th className="PropsTable--required">Required</Th>
-            <Th className="PropsTable--description">Default</Th>
+            <Th className="PropsTable--default">Default</Th>
             <Th width="40%" className="PropsTable--description">
               Description
             </Th>
