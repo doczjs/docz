@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.3"></a>
+## [0.5.3](https://github.com/pedronauck/docz/compare/v0.5.2...v0.5.3) (2018-07-05)
+
+
+
+
+**Note:** Version bump only for package docz-example-css-less
+
 <a name="0.5.2"></a>
 ## [0.5.2](https://github.com/pedronauck/docz/compare/v0.5.1...v0.5.2) (2018-07-05)
 
