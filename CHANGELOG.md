@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.2"></a>
+## [0.5.2](https://github.com/pedronauck/docz/compare/v0.5.1...v0.5.2) (2018-07-05)
+
+
+### Bug Fixes
+
+* props table css class ([#116](https://github.com/pedronauck/docz/issues/116)) ([065473c](https://github.com/pedronauck/docz/commit/065473c))
+* **docz-core:** remove unnescessary Entry.check ([1871db8](https://github.com/pedronauck/docz/commit/1871db8))
+
+
+
+
 <a name="0.5.1"></a>
 ## [0.5.1](https://github.com/pedronauck/docz/compare/v0.3.4...v0.5.1) (2018-07-03)
 
