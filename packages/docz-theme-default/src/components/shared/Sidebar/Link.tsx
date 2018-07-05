@@ -35,7 +35,7 @@ interface LinkWrapperProps {
 }
 
 const activeWrapper = (p: LinkWrapperProps) => css`
-  padding-left: 16px;
+  padding-left: 0;
 
   &:after {
     width: 1px;
@@ -50,10 +50,10 @@ const LinkWrapper = styled('div')`
     position: absolute;
     display: block;
     content: '';
-    top: 3px;
+    top: 30px;
     left: 16px;
     width: 0;
-    height: calc(100% - 10px);
+    height: calc(100% - 36px);
     background: ${p => p.theme.colors.border};
     transition: width 0.2s;
   }
@@ -66,6 +66,7 @@ const isActive = (doc: Entry, location: any) => {
 }
 
 const SmallLink = styled(BaseLink)`
+  position: relative;
   font-size: 14px;
   padding: 0 0 5px 16px;
   text-decoration: none;
@@ -81,12 +82,29 @@ const SmallLink = styled(BaseLink)`
   &.active {
     opacity: 1;
   }
+
+  &:before {
+    z-index: 1;
+    position: absolute;
+    display: block;
+    content: '';
+    top: 0;
+    left: 2px;
+    width: 0;
+    height: 20px;
+    background: ${p => p.theme.colors.primary};
+    transition: width 0.2s;
+  }
+
+  &.active:before {
+    width: 2px;
+  }
 `
 
 const Submenu = styled('div')`
   display: flex;
   flex-direction: column;
-  margin: 5px 0;
+  margin: 5px 0 0 14px;
 `
 
 const isSmallLinkActive = (slug: string) => (m: any, location: any) =>
