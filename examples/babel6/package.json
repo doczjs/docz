@@ -1,14 +1,14 @@
 {
   "name": "docz-example-babel6",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "license": "MIT",
   "scripts": {
     "dev": "docz dev",
     "build": "docz build"
   },
   "dependencies": {
-    "docz": "^0.5.3",
-    "docz-core": "^0.5.2",
+    "docz": "^0.5.4",
+    "docz-core": "^0.5.4",
     "emotion": "^9.2.5",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
@@ -17,6 +17,6 @@
   },
   "devDependencies": {
     "babel-plugin-emotion": "^9.2.5",
-    "docz-plugin-babel6": "^0.5.2"
+    "docz-plugin-babel6": "^0.5.4"
   }
 }
