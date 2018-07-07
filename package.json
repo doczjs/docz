@@ -36,7 +36,7 @@
     "all-contributors-cli": "^5.2.1",
     "commitizen": "^2.10.1",
     "del": "^3.0.0",
-    "husky": "^1.0.0-rc.9",
+    "husky": "^1.0.0-rc.12",
     "lerna": "^2.11.0",
     "libundler": "^1.7.1",
     "lint-staged": "^7.2.0",

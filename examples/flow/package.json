@@ -7,17 +7,17 @@
     "build": "docz build"
   },
   "dependencies": {
-    "@babel/preset-flow": "^7.0.0-beta.51",
+    "@babel/preset-flow": "^7.0.0-beta.52",
     "docz": "^0.5.3",
-    "emotion": "^9.2.4",
+    "emotion": "^9.2.5",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-emotion": "^9.2.4"
+    "react-emotion": "^9.2.5"
   },
   "devDependencies": {
-    "babel-plugin-emotion": "^9.2.4",
-    "flow-bin": "^0.75.0",
-    "flow-typed": "^2.4.0"
+    "babel-plugin-emotion": "^9.2.5",
+    "flow-bin": "^0.76.0",
+    "flow-typed": "^2.5.1"
   }
 }
