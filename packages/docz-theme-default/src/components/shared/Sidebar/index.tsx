@@ -99,7 +99,7 @@ const Menus = styled('nav')`
 `
 
 const Footer = styled('div')`
-  padding: 10px 0 0;
+  padding: 10px 0;
   display: flex;
   align-items: center;
   justify-content: center;
