@@ -103,6 +103,7 @@ export class DataServer {
       title: this.config.title,
       description: this.config.description,
       themeConfig: this.config.themeConfig,
+      ordering: this.config.ordering,
     }
 
     return () => {
