@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.5"></a>
+## [0.5.5](https://github.com/pedronauck/docz/compare/v0.5.4...v0.5.5) (2018-07-07)
+
+
+### Bug Fixes
+
+* **docz-core:** add ordering to initial config data object ([2926ade](https://github.com/pedronauck/docz/commit/2926ade))
+
+
+
+
 <a name="0.5.4"></a>
 ## [0.5.4](https://github.com/pedronauck/docz/compare/v0.5.3...v0.5.4) (2018-07-07)
 
