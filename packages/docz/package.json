@@ -1,6 +1,6 @@
 {
   "name": "docz",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
@@ -29,7 +29,7 @@
     "create-react-context": "^0.2.2",
     "deepmerge": "^2.1.1",
     "docz-core": "^0.5.7",
-    "docz-theme-default": "^0.5.7",
+    "docz-theme-default": "^0.5.8",
     "invariant": "^2.2.4",
     "loadable-components": "^2.2.2",
     "pascalcase": "^0.1.1",
