@@ -48,8 +48,8 @@ export interface Config extends Argv {
   mdPlugins: any[]
   hastPlugins: any[]
   themeConfig: ThemeConfig
-  modifyBundlerConfig<C>(config: C, dev: boolean): C
-  modifyBabelRc(babelrc: BabelRC): BabelRC
+  modifyBundlerConfig<C>(config: C, dev: boolean, args: Config): C
+  modifyBabelRc(babelrc: BabelRC, args: Config): BabelRC
 }
 
 export const args = (yargs: any) => {

@@ -38,7 +38,7 @@ export class Bundler<C = any> {
 
   public getConfig(): C {
     const config = this.mountConfig(this.config)
-    return this.args.modifyBundlerConfig(config, !this.isProd())
+    return this.args.modifyBundlerConfig(config, !this.isProd(), this.args)
   }
 
   public async createServer(config: C): Promise<BundlerServer> {
@@ -53,7 +53,7 @@ export class Bundler<C = any> {
     const { plugins } = this.args
     const reduce = Plugin.reduceFromPlugins<C>(plugins)
 
-    return reduce('modifyBundlerConfig', config, !this.isProd())
+    return reduce('modifyBundlerConfig', config, !this.isProd(), this.args)
   }
 
   private isProd(): boolean {

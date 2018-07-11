@@ -5,8 +5,12 @@ import { isFn } from './utils/helpers'
 import { BabelRC } from './utils/babelrc'
 
 export type SetConfig = (config: Config) => Config
-export type ModifyBundlerConfig<C = any> = (config: C, dev: boolean) => C
-export type ModifyBabelRC = (babelrc: BabelRC) => BabelRC
+export type ModifyBundlerConfig<C = any> = (
+  config: C,
+  dev: boolean,
+  args: Config
+) => C
+export type ModifyBabelRC = (babelrc: BabelRC, args: Config) => BabelRC
 export type OnServerListening = <S>(server: S) => void
 export type OnPreBuild = () => void
 export type OnPostBuild = () => void
