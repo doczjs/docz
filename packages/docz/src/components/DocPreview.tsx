@@ -16,6 +16,8 @@ const DefaultLoading: SFC = () => null
 export type RenderComponent = ComponentType<{
   component: JSX.Element
   code: any
+  className?: string
+  style?: any
 }>
 
 export const DefaultRender: RenderComponent = ({ component, code }) => (

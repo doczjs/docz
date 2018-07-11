@@ -24,9 +24,16 @@ const Code = styled('div')`
   }
 `
 
-export const Render: RenderComponent = ({ component, code }) => (
+export const Render: RenderComponent = ({
+  component,
+  code,
+  className,
+  style,
+}) => (
   <Fragment>
-    <Playground>{component}</Playground>
+    <Playground className={className} style={style}>
+      {component}
+    </Playground>
     <Code>{code}</Code>
   </Fragment>
 )
