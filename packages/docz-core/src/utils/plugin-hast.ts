@@ -2,19 +2,28 @@ import is from 'unist-util-is'
 import nodeToString from 'hast-util-to-string'
 import strip from 'strip-indent'
 
-import { format } from '../utils/format'
+import { codeFromNode } from './code-from-node'
+import { format } from './format'
 
 const componentName = (value: any) => {
   const match = value.match(/^\<\\?(\w+)/)
   return match && match[1]
 }
 
-const removePlayground = (code: string) =>
-  code
-    .replace(/^(\<Playground\>)|(\<Playground.+\>)$/g, '')
-    .replace(/\<\/Playground\>/g, '')
-
 const isPlayground = (name: string) => name === 'Playground'
+
+const isOpenTag = (p: any) =>
+  p.isJSXOpeningElement() && isPlayground(p.node.name.name)
+
+const isClosetag = (p: any) =>
+  p.isJSXClosingElement() && isPlayground(p.node.name.name)
+
+const removePlayground = (code: string) => {
+  const open = codeFromNode(isOpenTag)
+  const close = codeFromNode(isClosetag)
+
+  return code.replace(open(code), '').replace(close(code), '')
+}
 
 const addCodeProp = async (node: any) => {
   const name = componentName(node.value)
@@ -25,7 +34,7 @@ const addCodeProp = async (node: any) => {
     const code = formatted.slice(1, Infinity)
     const child = strip(removePlayground(code)).trim()
 
-    const codeComponent = `components && (
+    const codeComponent = `(components) => components && (
       <components.pre className="react-prism language-jsx">
         <code>{\`${child}\`}</code>
       </components.pre>
@@ -33,7 +42,7 @@ const addCodeProp = async (node: any) => {
 
     node.value = node.value.replace(
       tagOpen,
-      `<${name} __code={(components) => ${codeComponent}}`
+      `<${name} __code={${codeComponent}}`
     )
   }
 }
