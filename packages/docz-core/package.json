@@ -77,9 +77,9 @@
     "url-loader": "^1.0.1",
     "webpack": "^4.15.1",
     "webpack-chain": "^4.8.0",
-    "webpack-hot-client": "^4.0.4",
+    "webpack-hot-client": "^4.1.1",
     "webpack-manifest-plugin": "^2.0.3",
-    "webpack-serve": "^1.0.4",
+    "webpack-serve": "^2.0.2",
     "webpackbar": "^2.6.1",
     "ws": "^5.2.1",
     "yargs": "^12.0.1"
@@ -100,7 +100,7 @@
     "@types/webpack": "^4.4.5",
     "@types/webpack-chain": "^4.8.0",
     "@types/ws": "^5.1.2",
-    "@types/yargs": "^11.0.0",
+    "@types/yargs": "^11.1.0",
     "tslint": "^5.10.0",
     "tslint-config-prettier": "^1.13.0",
     "typescript": "^2.9.2"
