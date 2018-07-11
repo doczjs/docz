@@ -69,13 +69,10 @@ export type TransformFn = (config: ThemeConfig) => ThemeConfig
 export type ThemeReturn = (WrappedComponent: CT) => CT<ThemeProps>
 
 export function theme(
-  initialConfig?: ThemeConfig,
+  initialConfig: ThemeConfig,
   transform?: TransformFn
 ): ThemeReturn {
   return WrappedComponent => {
-    const cfg = initialConfig || {}
-    const newConfig = transform ? transform(cfg) : cfg
-
     const Theme: CT<ThemeProps> = ({
       wrapper: Wrapper = DefaultWrapper,
       entries,
@@ -84,10 +81,11 @@ export function theme(
       hashRouter = false,
     }) => {
       const Router = hashRouter ? HashRouter : BrowserRouter
+      const newConfig = merge(initialConfig, config)
       const value = {
         entries,
         imports,
-        config: merge(newConfig, config),
+        config: transform ? transform(newConfig) : newConfig,
       }
 
       return (

@@ -54,10 +54,17 @@ webfont.load({
   },
 })
 
-const transform = ({ mode, ...config }: any) => ({
-  ...config,
-  prismTheme: (prismThemes as any)[mode],
-  colors: (modes as any)[mode],
-})
+const transform = ({ mode, ...config }: any) => {
+  const selectedMode: any = (modes as any)[mode]
+
+  return {
+    ...config,
+    prismTheme: (prismThemes as any)[mode],
+    colors: {
+      ...selectedMode,
+      ...config.colors,
+    },
+  }
+}
 
 export default theme(config, transform)(Theme)
