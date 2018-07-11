@@ -51,7 +51,7 @@ const config = {
     width: null,
   },
   /**
-   * Colors
+   * Colors (depends on select mode)
    */
   colors: {
     white: '#FFFFFF',
@@ -63,6 +63,23 @@ const config = {
     dark: '#13161F',
     blue: '#0B5FFF',
     skyBlue: '#1FB6FF',
+    /** properties bellow depends on mode select */
+    primary: colors.blue,
+    text: colors.dark,
+    link: colors.blue,
+    footerText: colors.grayDark,
+    sidebarBg: colors.grayExtraLight,
+    sidebarText: colors.dark,
+    background: colors.white,
+    border: colors.grayLight,
+    theadColor: colors.gray,
+    theadBg: colors.grayExtraLight,
+    tableColor: colors.dark,
+    tooltipBg: colors.dark,
+    tooltipColor: colors.grayExtraLight,
+    codeBg: colors.grayExtraLight,
+    codeColor: colors.gray,
+    preBg: colors.grayExtraLight,
   },
   /**
    * Styles
