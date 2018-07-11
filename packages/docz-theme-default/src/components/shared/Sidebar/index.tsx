@@ -93,8 +93,17 @@ const Menus = styled('nav')`
 
   ${p =>
     p.theme.mq({
-      paddingLeft: [10, 20],
-      paddingRight: [10, 20],
+      padding: ['0 10px', '0 20px'],
+    })};
+`
+
+const Empty = styled('div')`
+  flex: 1;
+  opacity: 0.6;
+
+  ${p =>
+    p.theme.mq({
+      padding: ['0 20px', '0 30px'],
     })};
 `
 
@@ -263,27 +272,31 @@ export const Sidebar = () => (
               <LogoText>{title}</LogoText>
             )}
             <Search showing={isDesktop || !on} onSearch={handleSearchDocs} />
-            <Menus>
-              {docsWithoutMenu.map(doc => (
-                <Link
-                  key={doc.id}
-                  to={doc.route}
-                  onClick={handleSidebarToggle}
-                  doc={doc}
-                >
-                  {doc.name}
-                </Link>
-              ))}
-              {menus.map(menu => (
-                <Menu
-                  key={menu}
-                  menu={menu}
-                  docs={fromMenu(menu)}
-                  sidebarToggle={handleSidebarToggle}
-                  collapseAll={Boolean(state.searching)}
-                />
-              ))}
-            </Menus>
+            {docs.length < 1 ? (
+              <Empty>No document find.</Empty>
+            ) : (
+              <Menus>
+                {docsWithoutMenu.map(doc => (
+                  <Link
+                    key={doc.id}
+                    to={doc.route}
+                    onClick={handleSidebarToggle}
+                    doc={doc}
+                  >
+                    {doc.name}
+                  </Link>
+                ))}
+                {menus.map(menu => (
+                  <Menu
+                    key={menu}
+                    menu={menu}
+                    docs={fromMenu(menu)}
+                    sidebarToggle={handleSidebarToggle}
+                    collapseAll={Boolean(state.searching)}
+                  />
+                ))}
+              </Menus>
+            )}
             <Footer>
               Built with
               <FooterLink href="https://docz.site" target="_blank">

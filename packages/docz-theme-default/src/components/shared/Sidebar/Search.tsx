@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { SFC } from 'react'
-import { Value } from 'react-powerplug'
 import styled from 'react-emotion'
 import SearchIcon from 'react-feather/dist/icons/search'
 
@@ -42,20 +41,12 @@ interface SearchProps {
 export const Search: SFC<SearchProps> = ({ onSearch, showing }) => (
   <Wrapper showing={showing}>
     <Icon />
-    <Value>
-      {({ value, setValue }: any) => (
-        <Input
-          type="text"
-          value={value}
-          placeholder="Search here..."
-          onChange={ev => {
-            const value = ev.target.value
-
-            setValue(value)
-            onSearch && onSearch(value)
-          }}
-        />
-      )}
-    </Value>
+    <Input
+      type="text"
+      placeholder="Search here..."
+      onChange={ev => {
+        onSearch && onSearch(ev.target.value)
+      }}
+    />
   </Wrapper>
 )
