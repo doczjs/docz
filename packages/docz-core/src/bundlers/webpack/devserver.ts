@@ -2,6 +2,7 @@ import * as path from 'path'
 import { Configuration } from 'webpack'
 import convert from 'koa-connect'
 import history from 'connect-history-api-fallback'
+import serveWaitpage from 'webpack-serve-waitpage'
 
 import { Config } from '../../commands/args'
 
@@ -22,7 +23,7 @@ export const devServerConfig = (args: Config, config: Configuration) => {
       reload: false,
       logLevel: logLevel('error'),
     },
-    add: (app: any) => {
+    add: (app: any, middleware: any, options: any) => {
       app.use(
         convert(
           history({
@@ -30,6 +31,8 @@ export const devServerConfig = (args: Config, config: Configuration) => {
           })
         )
       )
+
+      app.use(serveWaitpage(options, { title: args.title }))
     },
   }
 }

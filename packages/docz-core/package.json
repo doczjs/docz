@@ -80,6 +80,7 @@
     "webpack-hot-client": "^4.1.1",
     "webpack-manifest-plugin": "^2.0.3",
     "webpack-serve": "^2.0.2",
+    "webpack-serve-waitpage": "^1.0.0",
     "webpackbar": "^2.6.1",
     "ws": "^5.2.1",
     "yargs": "^12.0.1"

@@ -4467,6 +4467,10 @@ ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
 
+ejs@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.npmjs.org/ejs/-/ejs-2.6.1.tgz#498ec0d495655abc6f23cd61868d926464071aa0"
+
 electron-to-chromium@^1.2.7, electron-to-chromium@^1.3.47:
   version "1.3.49"
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.3.49.tgz#651384b0d81f078a96639b2b36975141b7915004"
@@ -11797,6 +11801,12 @@ webpack-manifest-plugin@^2.0.3:
     fs-extra "^0.30.0"
     lodash ">=3.5 <5"
     tapable "^1.0.0"
+
+webpack-serve-waitpage@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/webpack-serve-waitpage/-/webpack-serve-waitpage-1.0.0.tgz#182ad1a4a43af4a5db384e0befcd2ed5e3f98287"
+  dependencies:
+    ejs "^2.6.1"
 
 webpack-serve@^2.0.2:
   version "2.0.2"
