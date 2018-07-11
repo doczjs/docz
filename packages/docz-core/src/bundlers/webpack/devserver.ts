@@ -1,28 +1,24 @@
 import * as path from 'path'
-import { Compiler, Configuration } from 'webpack'
+import { Configuration } from 'webpack'
 import convert from 'koa-connect'
 import history from 'connect-history-api-fallback'
 
 import { Config } from '../../commands/args'
 
-export const devServerConfig = (
-  args: Config,
-  compiler: Compiler,
-  config: Configuration
-) => {
+export const devServerConfig = (args: Config, config: Configuration) => {
   const nonExistentDir = path.resolve(__dirname, 'non-existent')
   const logLevel = (level: string) => (args.debug ? 'debug' : level)
 
   return {
-    compiler,
+    config,
     host: args.host,
     port: args.port,
     content: [nonExistentDir],
     logLevel: logLevel('error'),
-    dev: {
+    devMiddleware: {
       logLevel: logLevel('silent'),
     },
-    hot: {
+    hotClient: {
       reload: false,
       logLevel: logLevel('error'),
     },

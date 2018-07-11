@@ -2,8 +2,9 @@ import { Plugin } from './Plugin'
 import { Config as Args } from './commands/args'
 
 export interface Server {
-  close: () => void
+  app: any
   on: (event: string, cb: (server: any) => void) => void
+  close: () => void
 }
 
 export interface BundlerServer {
