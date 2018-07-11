@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.6"></a>
+## [0.5.6](https://github.com/pedronauck/docz/compare/v0.5.5...v0.5.6) (2018-07-11)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** sidebar search ([8fd77ec](https://github.com/pedronauck/docz/commit/8fd77ec))
+
+
+### Features
+
+* **docz:** add classname and style props for Playground ([1b64ed3](https://github.com/pedronauck/docz/commit/1b64ed3))
+
+
+
+
 <a name="0.5.5"></a>
 ## [0.5.5](https://github.com/pedronauck/docz/compare/v0.5.4...v0.5.5) (2018-07-07)
 
