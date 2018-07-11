@@ -27,7 +27,7 @@ export const babel = () =>
 
       return babelrc
     },
-    modifyBundlerConfig: config => {
+    modifyBundlerConfig: (config, dev, args) => {
       const happypackJsx = config.plugins.findIndex(findHappypackJsx)
       const happypackMdx = config.plugins.findIndex(findHappypackMdx)
       const tsxRule = config.module.rules.find(findTsxRule)
@@ -35,6 +35,8 @@ export const babel = () =>
 
       modifyHappypackLoader(config.plugins[happypackJsx])
       modifyHappypackLoader(config.plugins[happypackMdx])
+
+      console.log(args)
 
       if (tsxRule) {
         config.module.rules[tsxIdx] = {
@@ -52,6 +54,13 @@ export const babel = () =>
                   happyPackMode: true,
                 },
               },
+              ...(args.propsParser
+                ? [
+                    {
+                      loader: require.resolve('react-docgen-typescript-loader'),
+                    },
+                  ]
+                : []),
             ],
           })
         )
