@@ -41,7 +41,7 @@ We still have a *long road to go*, this is just the beginning. So to further imp
 
 The open source world with tools that make developers' life easier and the creation of styleguides and design systems are growing and evolving so fast. New and impressive things are arising every day. Today, tools that allow us to evolve together are really necessary. We can not create barriers or lose time with tasks that should be trivial for us.
 
-To break barriers and facilitate the creation of tools was the purpose that Docz arose. Documenting our things is one of the most important and painful processes that exist when you're creating something new. We lose a lot of our precious time with unnecessary setups to be able to build something that can represent and express what we want with our own style.
+To break barriers and facilitate the creation of tools was the purpose that **docz** arose. Documenting our things is one of the most important and painful processes that exist when you're creating something new. We lose a lot of our precious time with unnecessary setups to be able to build something that can represent and express what we want with our own style.
 
 ## 👉🏻 &nbsp; More info on [our website](https://docz.site)
 
@@ -79,11 +79,11 @@ To break barriers and facilitate the creation of tools was the purpose that Docz
 
 ## 🚧 &nbsp; Warning!
 
-> Due to performance issues docz uses Babel@7 and Webpack@4. So, if you're using some older version of this packages you'll probably get some errors! If you need to use Babel@6 you can try [docz-plugin-babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6), but about Webpack@4 we can't do anything!
+> Due to performance issues **docz** uses Babel@7 and Webpack@4. So, if you're using some older version of this packages you'll probably get some errors! If you need to use Babel@6 you can try [docz-plugin-babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6), but about Webpack@4 we can't do anything!
 
 ## 📟 &nbsp; Install and Usage
 
-Simplicity is one of our core principles. Therefore, getting started with docz is something really easy and quick. First of all, you will need to install docz on your project using some package managers
+Simplicity is one of our core principles. Therefore, getting started with **docz** is something really easy and quick. First of all, you will need to install **docz** on your project using some package managers
 
 ```bash
 $ yarn add docz --dev
@@ -121,7 +121,7 @@ That's it! You have a real badass documentation now 👊
 
 ![](https://cdn-std.dprcdn.net/files/acc_649651/yTWGC3)
 
-Any doubt? Check [our docs](http://docz.site) to see more about Docz!
+Any doubt? Check [our docs](http://docz.site) to see more about **docz**!
 
 ## 🤝 &nbsp; Contributions
 
