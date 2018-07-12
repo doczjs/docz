@@ -31,7 +31,7 @@
 
 ## 🚀 &nbsp; Roadmap
 
-We still have a *long road to go*, this is just the beginning. So to further improve docz we've created a roadmap that you can see the next features and improvements and **give your feedback about**:
+We still have a *long road to go*, this is just the beginning. So to further improve **docz** we've created a roadmap so that you can see the next features and improvements and **give your feedback about**:
 
 <a href="http://feedback.docz.site/roadmap" target="_blank">
   <img src="https://cdn-std.dprcdn.net/files/acc_649651/ogSCYY" alt="Docz Roadmap" width="300">
@@ -39,9 +39,9 @@ We still have a *long road to go*, this is just the beginning. So to further imp
 
 ## 🤔 &nbsp; Why?
 
-The open source world with tools that make developers life easier and the creation of styleguides and design systems are growing and evolving so fast. New and impressive things are arising every day. Tools that allow us to evolve together are really necessary nowadays. We can't create barriers or lose time with tasks that should be trivial for us.
+The open source world with tools that make developers' life easier and the creation of styleguides and design systems are growing and evolving so fast. New and impressive things are arising every day. Today, tools that allow us to evolve together are really necessary. We can not create barriers or lose time with tasks that should be trivial for us.
 
-To break barriers and facilitate the creation of tools was the purpose that Docz arose. Document our things is one of the most important and painful process that exist when you're creating something new. We lose a lot of our precious time with unnecessary setups to be able to build something that can represent and express what we want with our own style.
+To break barriers and facilitate the creation of tools was the purpose that Docz arose. Documenting our things is one of the most important and painful processes that exist when you're creating something new. We lose a lot of our precious time with unnecessary setups to be able to build something that can represent and express what we want with our own style.
 
 ## 👉🏻 &nbsp; More info on [our website](https://docz.site)
 
@@ -83,7 +83,7 @@ To break barriers and facilitate the creation of tools was the purpose that Docz
 
 ## 📟 &nbsp; Install and Usage
 
-Simplicity is one of our core principles. So, getting started with docz is something really easy and quick. First of all, you need to install docz on your project using some package manager
+Simplicity is one of our core principles. Therefore, getting started with docz is something really easy and quick. First of all, you will need to install docz on your project using some package managers
 
 ```bash
 $ yarn add docz --dev
