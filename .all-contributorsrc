@@ -55,6 +55,17 @@
         "doc",
         "bug"
       ]
+    },
+    {
+      "login": "jaburcodes",
+      "name": "Guilherme Jabur",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/13947203?v=4",
+      "profile": "https://github.com/jaburcodes",
+      "contributions": [
+        "code",
+        "doc",
+        "bug"
+      ]
     }
   ]
 }
