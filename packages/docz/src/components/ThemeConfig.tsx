@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { SFC, Children } from 'react'
+import { ReactNode, SFC, Children } from 'react'
 
 import { dataContext, ThemeConfig as Config } from '../theme'
 
 export interface ThemeConfigProps {
-  children?: (config: Config) => React.ReactNode
+  children?: (config: Config) => ReactNode
 }
 
 export const ThemeConfig: SFC<ThemeConfigProps> = ({ children }) => {
