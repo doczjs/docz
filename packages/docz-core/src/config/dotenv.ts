@@ -7,16 +7,11 @@ const resolveApp = (relativePath: any) => path.resolve(appDir, relativePath)
 const dotenv = resolveApp('.env')
 
 const NODE_ENV = process.env.NODE_ENV
-// if (!NODE_ENV) {
-//   throw new Error(
-//     'The NODE_ENV environment variable is required but was not specified.'
-//   )
-// }
 
 // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
 const dotenvFiles = [
-  `$dotenv}.${NODE_ENV}.local`,
-  `$dotenv}.${NODE_ENV}`,
+  `${dotenv}.${NODE_ENV}.local`,
+  `${dotenv}.${NODE_ENV}`,
   // Don't include `.env.local` for `test` environment
   // since normally you expect tests to produce the same
   // results for everyone
@@ -35,8 +30,6 @@ dotenvFiles.forEach(dotenvFile => {
 })
 
 // We support resolving modules according to `NODE_PATH`.
-// This lets you use absolute paths in imports inside large monorepos:
-// https://github.com/facebook/create-react-app/issues/253.
 // It works similar to `NODE_PATH` in Node itself:
 // https://nodejs.org/api/modules.html#modules_loading_from_the_global_folders
 // Note that unlike in Node, only *relative* paths from `NODE_PATH` are honored.

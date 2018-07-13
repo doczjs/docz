@@ -9,9 +9,9 @@ import UglifyJs from 'uglifyjs-webpack-plugin'
 import { Config as Args } from '../../commands/args'
 import { BabelRC } from '../../utils/babelrc'
 import * as paths from '../../config/paths'
+import { getClientEnvironment } from '../../config/dotenv'
 import * as loaders from './loaders'
 import { Env } from './'
-import { getClientEnvironment } from './dotenv'
 
 const uglify = new UglifyJs({
   parallel: true,
