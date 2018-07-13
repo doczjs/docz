@@ -6,19 +6,19 @@ import { isFn } from './Docs'
 import { ComponentsMap } from './DocPreview'
 
 export interface PlaygroundProps {
-  __code: (components: ComponentsMap) => any
-  children: any
   components: ComponentsMap
   className?: string
   style?: any
+  children: any
+  __code: (components: ComponentsMap) => any
 }
 
 const BasePlayground: SFC<PlaygroundProps> = ({
   components,
-  children,
-  __code,
   className,
   style,
+  children,
+  __code,
 }) => {
   return components && components.render ? (
     <components.render
