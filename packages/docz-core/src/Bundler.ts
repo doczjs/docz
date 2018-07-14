@@ -1,5 +1,8 @@
 import { Plugin } from './Plugin'
-import { Config as Args } from './commands/args'
+
+import { Config as Args, Env } from './commands/args'
+import { babelrc, BabelRC } from './utils/babelrc'
+import * as paths from './config/paths'
 
 export interface Server {
   app: any
@@ -11,19 +14,24 @@ export interface BundlerServer {
   start(): Promise<Server>
 }
 
+export type ConfigFn<C> = (babelrc: BabelRC) => C
 export type ServerFn<C> = (config: C) => BundlerServer | Promise<BundlerServer>
-export type BuildFn<C> = (config: C) => void
+export type BuildFn<C> = (config: C, dist: string) => void
 
 export interface BundlerConstructor<Config> {
   args: Args
-  config: Config
+  config: ConfigFn<Config>
   server: ServerFn<Config>
   build: BuildFn<Config>
 }
 
-export class Bundler<C = any> {
+export interface ConfigObj {
+  [key: string]: any
+}
+
+export class Bundler<C = ConfigObj> {
   private readonly args: Args
-  private config: C
+  private config: ConfigFn<C>
   private server: ServerFn<C>
   private builder: BuildFn<C>
 
@@ -36,8 +44,10 @@ export class Bundler<C = any> {
     this.builder = build
   }
 
-  public getConfig(): C {
-    const config = this.mountConfig(this.config)
+  public getConfig(env: Env): C {
+    const babelConfig = babelrc(this.args, env)
+    const config = this.mountConfig(this.config(babelConfig))
+
     return this.args.modifyBundlerConfig(config, !this.isProd(), this.args)
   }
 
@@ -46,7 +56,8 @@ export class Bundler<C = any> {
   }
 
   public async build(config: C): Promise<void> {
-    await this.builder(config)
+    const dist = paths.getDist(this.args.dest)
+    await this.builder(config, dist)
   }
 
   private mountConfig(config: C): any {

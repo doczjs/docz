@@ -38,6 +38,8 @@ export interface Argv {
   indexHtml?: string
 }
 
+export type Env = 'production' | 'development'
+
 export interface ThemeConfig {
   [key: string]: any
 }

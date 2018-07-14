@@ -1,7 +1,7 @@
 import * as fs from 'fs-extra'
 import chalk from 'chalk'
 import logger from 'signale'
-import webpack, { Configuration } from 'webpack'
+import webpack, { Configuration as CFG } from 'webpack'
 import FSR from 'react-dev-utils/FileSizeReporter'
 import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages'
 import printBuildError from 'react-dev-utils/printBuildError'
@@ -30,7 +30,7 @@ const copyPublicFolder = async (dest: string): Promise<void> => {
   }
 }
 
-const compile = (config: Configuration) =>
+const compile = (config: CFG) =>
   new Promise((resolve, reject) => {
     let compiler
     try {
@@ -45,7 +45,7 @@ const compile = (config: Configuration) =>
       })
   })
 
-const builder = async (config: Configuration, previousFileSizes: any) => {
+const builder = async (config: CFG, previousFileSizes: any) => {
   logger.start('Creating an optimized production build...')
 
   return new Promise(async (resolve, reject) => {
@@ -114,9 +114,7 @@ const onError = (err: Error) => {
   process.exit(1)
 }
 
-export const build = (args: Args) => async (config: Configuration) => {
-  const dist = paths.getDist(args.dest)
-
+export const build = (args: Args) => async (config: CFG, dist: string) => {
   try {
     await fs.ensureDir(dist)
     const previousFileSizes = await measureFileSizesBeforeBuild(dist)
