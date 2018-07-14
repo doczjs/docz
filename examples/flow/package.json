@@ -7,7 +7,7 @@
     "build": "docz build"
   },
   "dependencies": {
-    "@babel/preset-flow": "^7.0.0-beta.52",
+    "@babel/preset-flow": "^7.0.0-beta.53",
     "docz": "^0.5.8",
     "emotion": "^9.2.5",
     "prop-types": "^15.6.2",

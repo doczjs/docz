@@ -25,7 +25,7 @@
     "css-loader": "^1.0.0",
     "deepmerge": "^2.1.1",
     "docz-core": "^0.5.7",
-    "less": "^3.6.0",
+    "less": "^3.7.1",
     "less-loader": "^4.1.0",
     "loader-utils": "^1.1.0",
     "mini-css-extract-plugin": "^0.4.1",
@@ -38,7 +38,7 @@
     "style-loader": "^0.21.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "webpack": "^4.15.1",
+    "webpack": "^4.16.0",
     "webpack-chain": "^4.8.0"
   }
 }
