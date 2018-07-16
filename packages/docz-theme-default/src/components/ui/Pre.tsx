@@ -6,6 +6,7 @@ import prism from 'prismjs'
 import styled, { cx } from 'react-emotion'
 
 const PreStyled = styled('pre')`
+  overflow-y: hidden;
   border: 1px solid ${p => p.theme.colors.border};
   margin: 2em 0;
   border-radius: 5px;
