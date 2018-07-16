@@ -21,8 +21,8 @@
   },
   "dependencies": {
     "docz": "^0.5.8",
-    "emotion": "^9.2.5",
-    "emotion-theming": "^9.2.5",
+    "emotion": "^9.2.6",
+    "emotion-theming": "^9.2.6",
     "facepaint": "^1.2.1",
     "fast-deep-equal": "^2.0.1",
     "fuse.js": "^3.2.1",
@@ -33,7 +33,7 @@
     "react-breakpoints": "^3.0.0",
     "react-content-loader": "^3.1.2",
     "react-dom": "^16.2.0",
-    "react-emotion": "^9.2.5",
+    "react-emotion": "^9.2.6",
     "react-feather": "^1.1.1",
     "react-lightweight-tooltip": "^1.0.0",
     "react-powerplug": "^1.0.0-rc.1",
@@ -47,7 +47,7 @@
     "@types/prismjs": "^1.9.0",
     "@types/react": "^16.4.6",
     "@types/react-dom": "^16.0.6",
-    "babel-plugin-emotion": "^9.2.5",
+    "babel-plugin-emotion": "^9.2.6",
     "rollup-plugin-svg": "^1.0.1"
   }
 }
