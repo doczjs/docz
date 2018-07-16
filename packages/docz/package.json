@@ -24,7 +24,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@mdx-js/tag": "^0.13.1-1",
+    "@mdx-js/tag": "^0.14.0",
     "@sindresorhus/slugify": "^0.3.0",
     "create-react-context": "^0.2.2",
     "deepmerge": "^2.1.1",
@@ -44,7 +44,7 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.5.21",
+    "@types/bluebird": "^3.5.22",
     "@types/deepmerge": "^2.1.0",
     "@types/react": "^16.4.6",
     "@types/react-dom": "^16.0.6",

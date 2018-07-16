@@ -1,36 +1,21 @@
 import * as path from 'path'
 import HappyPack from 'happypack'
-import merge from 'deepmerge'
-import matter from 'remark-frontmatter'
-import slug from 'rehype-slug'
-import headings from 'rehype-autolink-headings'
 
 import Config from 'webpack-chain'
-import { plugin as mdastPlugin } from '../../utils/plugin-mdast'
-import { plugin as hastPlugin } from '../../utils/plugin-hast'
 import { Config as Args } from '../../commands/args'
 import * as paths from '../../config/paths'
+import * as mdxConfig from '../../config/mdx'
 
 export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
-  const babelLoader: any = {
-    cacheDirectory: true,
-    loader: require.resolve('babel-loader'),
-    options: merge(babelrc, {
-      plugins: [require.resolve('react-hot-loader/babel')],
-    }),
-  }
-
   const jsx = {
     id: 'jsx',
     verbose: args.debug,
-    loaders: [babelLoader],
-  }
-
-  if (args.propsParser && !args.typescript) {
-    babelLoader.options.plugins.push([
-      require.resolve('babel-plugin-react-docgen'),
-      { resolver: 'findAllExportedComponentDefinitions' },
-    ])
+    loaders: [
+      {
+        loader: require.resolve('babel-loader'),
+        options: babelrc,
+      },
+    ] as any[],
   }
 
   if (args.propsParser && args.typescript) {
@@ -45,7 +30,12 @@ export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
     loaders: [
       {
         loader: require.resolve('babel-loader'),
-        options: babelrc,
+        options: {
+          ...babelrc,
+          plugins: babelrc.plugins
+            .filter((p: string) => /react\-hot\-loader\/babel/.test(p))
+            .filter((p: string) => /babel\-plugin\-react\-docgen/.test(p)),
+        },
       },
     ],
   }
@@ -100,26 +90,9 @@ export const mdx = (config: Config, args: Args) => {
     .use('mdx-loader')
     .loader(require.resolve('@mdx-js/loader'))
     .options({
-      type: 'yaml',
-      marker: '-',
-      properties: {
-        'aria-hidden': true,
-      },
-      content: {
-        type: 'element',
-        tagName: 'span',
-        properties: {
-          className: ['icon-link'],
-        },
-        children: [
-          {
-            type: 'text',
-            value: '#',
-          },
-        ],
-      },
-      mdPlugins: mdPlugins.concat([matter, mdastPlugin]),
-      hastPlugins: hastPlugins.concat([hastPlugin, slug, headings]),
+      ...mdxConfig.config,
+      mdPlugins: mdPlugins.concat(mdxConfig.remarkPlugins),
+      hastPlugins: hastPlugins.concat(mdxConfig.rehypePlugins),
     })
 }
 
