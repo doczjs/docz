@@ -15,8 +15,8 @@
   <img src="https://opencollective.com/docz/backers/badge.svg" alt="Backers on Open Collective">
   <img src="https://opencollective.com/docz/sponsors/badge.svg" alt="Sponsors on Open Collective">
 </p>
- 
- 
+
+
 <p align="center">
   <a href="http://docz.site" target="_blank">
     <img src="https://cdn-std.dprcdn.net/files/acc_649651/e0MVXU" alt="Docz video">
@@ -131,9 +131,9 @@ Any doubt? Check [our docs](http://docz.site) to see more about **docz**!
 Contributions, issues and feature requests are very welcome.
 Please make sure to read the [Contributing Guide](/CONTRIBUTING.md) before making a pull request.
 
-## 💪🏻 &nbsp; Contributors
+## 💭 &nbsp; Needing Help?
 
-Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+If you need some help you can chat with us on [our Discord server](https://discord.gg/Qec87en), you have a great team to help you:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
@@ -141,22 +141,19 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
 | :---: | :---: | :---: | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-
-## Credits
-
-### Contributors
+## 💪🏻 &nbsp; Contributors
 
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
 
 <a href="graphs/contributors"><img src="https://opencollective.com/docz/contributors.svg?width=890&button=false" /></a>
 
-### Backers
+### 🙏🏻 &nbsp; Backers
 
 Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/docz#backer)]
 
-<a href="https://opencollective.com/docz#backers" target="_blank"><img src="https://opencollective.com/docz/backers.svg?width=890”></a>
+<a href="https://opencollective.com/docz#backers" target="_blank"><img src="https://opencollective.com/docz/backers.svg?width=890"></a>
 
-### Sponsors
+### 🙌🏻 &nbsp; Sponsors
 
 Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/docz#sponsor)]
 
