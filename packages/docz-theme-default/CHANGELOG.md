@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.9"></a>
+## [0.5.9](https://github.com/pedronauck/docz/compare/v0.5.8...v0.5.9) (2018-07-16)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** add overflow config on Pre component ([#146](https://github.com/pedronauck/docz/issues/146)) ([9d4ce59](https://github.com/pedronauck/docz/commit/9d4ce59))
+
+
+
+
 <a name="0.5.8"></a>
 ## [0.5.8](https://github.com/pedronauck/docz/compare/v0.5.7...v0.5.8) (2018-07-11)
 
