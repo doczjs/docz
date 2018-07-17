@@ -1,6 +1,8 @@
 {
   "name": "docz-plugin-css",
   "version": "0.5.9",
+  "description": "This package makes it possible to use preprocessors and css modules on docz",
+  "license": "MIT",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
@@ -11,7 +13,6 @@
     "package.json",
     "README.md"
   ],
-  "license": "MIT",
   "scripts": {
     "dev": "libundler watch --ts",
     "build": "libundler build --ts --c",
