@@ -67,8 +67,13 @@ export interface DocPreviewProps {
 }
 
 export const DocPreview: SFC<DocPreviewProps> = ({
-  components = defaultComponents,
+  components: themeComponents = {},
 }) => {
+  const components = {
+    ...defaultComponents,
+    ...themeComponents,
+  }
+
   const Page = components.page
   const NotFound = components.notFound
   const LoadingComponent = components.loading
