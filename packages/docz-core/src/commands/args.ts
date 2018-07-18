@@ -7,12 +7,15 @@ import { BabelRC } from '../utils/babelrc'
 import * as paths from '../config/paths'
 
 const removeScope = (name: string) => name.replace(/^@.*\//, '')
-const getInitialTitle = () => {
+const getInitialTitle = (): string => {
   const pkg = fs.readJsonSync(paths.packageJson, { throws: false })
   const name = pkg && pkg.name ? pkg.name : 'MyDoc'
 
   return titleize(humanize(removeScope(name)))
 }
+
+export type Env = 'production' | 'development'
+export type ThemeConfig = Record<string, any>
 
 export interface Argv {
   /* io args */
@@ -36,12 +39,6 @@ export interface Argv {
   ordering: 'ascending' | 'descending'
   wrapper?: string
   indexHtml?: string
-}
-
-export type Env = 'production' | 'development'
-
-export interface ThemeConfig {
-  [key: string]: any
 }
 
 export interface Config extends Argv {

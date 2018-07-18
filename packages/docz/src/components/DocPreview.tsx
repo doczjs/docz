@@ -27,20 +27,6 @@ export const DefaultRender: RenderComponent = ({ component, code }) => (
   </Fragment>
 )
 
-const loadImport = (imports: ImportMap, components: ComponentsMap) => (
-  path: string
-) => async (): Promise<SFC<any>> => {
-  const { default: Component } = await imports[path]()
-  return props => <Component {...props} components={components} />
-}
-
-const defaultComponents: ComponentsMap = {
-  loading: DefaultLoading,
-  render: DefaultRender,
-  page: Identity,
-  notFound: Identity,
-}
-
 export interface ComponentsMap {
   loading?: ComponentType
   page?: ComponentType<PageProps>
@@ -60,6 +46,20 @@ export interface ComponentsMap {
   code?: ComponentType<any> | string
   inlineCode?: ComponentType<any> | string
   [key: string]: any
+}
+
+const loadImport = (imports: ImportMap, components: ComponentsMap) => (
+  path: string
+) => async (): Promise<SFC<any>> => {
+  const { default: Component } = await imports[path]()
+  return props => <Component {...props} components={components} />
+}
+
+const defaultComponents: ComponentsMap = {
+  loading: DefaultLoading,
+  render: DefaultRender,
+  page: Identity,
+  notFound: Identity,
 }
 
 export interface DocPreviewProps {

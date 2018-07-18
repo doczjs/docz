@@ -4,6 +4,7 @@ import { CSSProperties, Component, SFC } from 'react'
 export interface StylesMap {
   [s: string]: CSSProperties
 }
+
 const styles: StylesMap = {
   wrapper: {
     overflowY: 'auto',
