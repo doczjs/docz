@@ -10,13 +10,20 @@ export interface Server {
   close: () => void
 }
 
+export interface ServerHooks {
+  onCreateApp<A>(app: A): void
+  OnServerListening<S>(server: S): void
+}
+
 export interface BundlerServer {
   start(): Promise<Server>
 }
 
 export type ConfigFn<C> = (babelrc: BabelRC) => C
-export type ServerFn<C> = (config: C) => BundlerServer | Promise<BundlerServer>
 export type BuildFn<C> = (config: C, dist: string) => void
+
+export type ServerFnReturn = BundlerServer | Promise<BundlerServer>
+export type ServerFn<C> = (config: C, hooks: ServerHooks) => ServerFnReturn
 
 export interface BundlerConstructor<Config> {
   args: Args
@@ -52,7 +59,17 @@ export class Bundler<C = ConfigObj> {
   }
 
   public async createServer(config: C): Promise<BundlerServer> {
-    return this.server(config)
+    const run = Plugin.runPluginsMethod(this.args.plugins)
+    const hooks = {
+      onCreateApp<A>(app: A): void {
+        run('onCreateApp', app)
+      },
+      OnServerListening<S>(server: S): void {
+        run('onServerListening', server)
+      },
+    }
+
+    return this.server(config, hooks)
   }
 
   public async build(config: C): Promise<void> {

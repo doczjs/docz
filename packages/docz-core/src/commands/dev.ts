@@ -10,7 +10,6 @@ import { Config, Env } from './args'
 import { DataServer } from '../DataServer'
 import { webpack } from '../bundlers'
 import { Entries } from '../Entries'
-import { Plugin } from '../Plugin'
 import { loadConfig } from '../utils/load-config'
 
 const env = process.env.NODE_ENV as Env
@@ -25,7 +24,6 @@ export const dev = async (args: Config) => {
   const server = await bundler.createServer(bundler.getConfig(env))
   const { app } = await server.start()
 
-  const run = Plugin.runPluginsMethod(config.plugins)
   const newConfig = { ...config, websocketPort }
   const dataServer = new DataServer({
     server: app.server,
@@ -43,7 +41,6 @@ export const dev = async (args: Config) => {
     logger.info(`Setup entries websockets server on port ${websocketPort}`)
     await dataServer.processEntries(entries)
     await dataServer.processThemeConfig()
-    await run('onServerListening', server)
   } catch (err) {
     logger.fatal('Failed to process your server:', err)
     process.exit(1)
