@@ -72,17 +72,16 @@ export const createConfig = (args: Args, env: Env) => (
       .filename('static/js/[name].[hash].js')
       .sourceMapFilename('static/js/[name].[hash].js.map')
       .chunkFilename('static/js/[name].[chunkhash:8].js')
-      .publicPath(base)
 
   const outputDev = (output: Config.Output) =>
     output
       .filename('static/js/[name].js')
       .sourceMapFilename('static/js/[name].js.map')
-      .publicPath('/')
 
   config.output
     .pathinfo(true)
     .path(dist)
+    .publicPath(isProd ? base : '/')
     .when(isProd, outputProd, outputDev)
     .crossOriginLoading('anonymous')
 
@@ -150,13 +149,19 @@ export const createConfig = (args: Args, env: Env) => (
   addExtensions(config.resolveLoader)
 
   config.resolve.modules
+    // prioritize our own
+    .add(paths.ownNodeModules)
+    .add(paths.appNodeModules)
     .add('node_modules')
     .add(srcPath)
     .add(paths.root)
 
   config.resolveLoader
     .set('symlinks', true)
-    .modules.add('node_modules')
+    .modules // prioritize our own
+    .add(paths.ownNodeModules)
+    .add(paths.appNodeModules)
+    .add('node_modules')
     .add(paths.root)
 
   /**
