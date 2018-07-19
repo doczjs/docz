@@ -10,8 +10,8 @@ export type PageProps = RouteComponentProps<any> & {
   doc: Entry
 }
 
-const Identity: SFC<any> = ({ children }) => children
-const DefaultLoading: SFC = () => null
+const Identity: SFC<any> = ({ children }) => <Fragment>{children}</Fragment>
+const DefaultLoading: SFC = () => <Fragment>Loading</Fragment>
 
 export type RenderComponent = ComponentType<{
   component: JSX.Element
@@ -26,6 +26,9 @@ export const DefaultRender: RenderComponent = ({ component, code }) => (
     {code}
   </Fragment>
 )
+
+export type NotFoundComponent = ComponentType<RouteComponentProps<any>>
+const DefaultNotFound: NotFoundComponent = () => <Fragment>Not found</Fragment>
 
 export interface ComponentsMap {
   loading?: ComponentType
@@ -58,8 +61,8 @@ const loadImport = (imports: ImportMap, components: ComponentsMap) => (
 const defaultComponents: ComponentsMap = {
   loading: DefaultLoading,
   render: DefaultRender,
+  notFound: DefaultNotFound,
   page: Identity,
-  notFound: Identity,
 }
 
 export interface DocPreviewProps {
