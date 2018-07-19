@@ -6992,6 +6992,12 @@ koa-mount@^3.0.0:
     debug "^2.6.1"
     koa-compose "^3.2.1"
 
+koa-range@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/koa-range/-/koa-range-0.3.0.tgz#3588e3496473a839a1bd264d2a42b1d85bd7feac"
+  dependencies:
+    stream-slice "^0.1.2"
+
 koa-send@^5.0.0:
   version "5.0.0"
   resolved "https://registry.npmjs.org/koa-send/-/koa-send-5.0.0.tgz#5e8441e07ef55737734d7ced25b842e50646e7eb"
@@ -10890,6 +10896,10 @@ stream-http@^2.7.2:
 stream-shift@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/stream-shift/-/stream-shift-1.0.0.tgz#d5c752825e5367e786f78e18e445ea223a155952"
+
+stream-slice@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.npmjs.org/stream-slice/-/stream-slice-0.1.2.tgz#2dc4f4e1b936fb13f3eb39a2def1932798d07a4b"
 
 string-argv@^0.0.2:
   version "0.0.2"

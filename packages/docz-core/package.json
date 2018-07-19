@@ -54,6 +54,7 @@
     "koa": "^2.5.2",
     "koa-connect": "^2.0.1",
     "koa-mount": "^3.0.0",
+    "koa-range": "^0.3.0",
     "koa-static": "^5.0.0",
     "load-cfg": "^0.5.9",
     "lodash.get": "^4.4.2",
