@@ -8,6 +8,8 @@ const Wrapper = styled('div')`
   flex-direction: column;
   width: 100%;
   height: 100%;
+  color: ${p => p.theme.colors.text};
+  background: ${p => p.theme.colors.background};
 `
 
 const Title = styled('h1')`
