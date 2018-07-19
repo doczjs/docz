@@ -1,5 +1,5 @@
-process.env.BABEL_ENV = process.env.BABEL_ENV || 'production'
-process.env.NODE_ENV = process.env.NODE_ENV || 'production'
+process.env.BABEL_ENV = 'production'
+process.env.NODE_ENV = 'production'
 
 import * as fs from 'fs-extra'
 import logger from 'signale'
