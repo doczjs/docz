@@ -6,7 +6,6 @@ import FSR from 'react-dev-utils/FileSizeReporter'
 import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages'
 import printBuildError from 'react-dev-utils/printBuildError'
 
-import { Config as Args } from '../../commands/args'
 import * as paths from '../../config/paths'
 
 process.env.BABEL_ENV = process.env.BABEL_ENV || 'production'
@@ -114,7 +113,7 @@ const onError = (err: Error) => {
   process.exit(1)
 }
 
-export const build = (args: Args) => async (config: CFG, dist: string) => {
+export const build = async (config: CFG, dist: string) => {
   try {
     await fs.ensureDir(dist)
     const previousFileSizes = await measureFileSizesBeforeBuild(dist)

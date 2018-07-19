@@ -10,7 +10,7 @@ import { build } from './build'
 export const bundler = (args: Args, env: Env): Bundler<CFG> =>
   new Bundler({
     args,
+    build,
     config: createConfig(args, env),
-    build: build(args),
     server: server(args),
   })
