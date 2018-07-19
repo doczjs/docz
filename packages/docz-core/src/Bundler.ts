@@ -1,3 +1,6 @@
+import * as path from 'path'
+import logger from 'signale'
+
 import { Plugin } from './Plugin'
 
 import { Config as Args, Env } from './commands/args'
@@ -74,6 +77,16 @@ export class Bundler<C = ConfigObj> {
 
   public async build(config: C): Promise<void> {
     const dist = paths.getDist(this.args.dest)
+
+    if (paths.root === path.resolve(dist)) {
+      logger.fatal(
+        new Error(
+          'Unexpected option: "dest" cannot be set to the current working directory.'
+        )
+      )
+      process.exit(1)
+    }
+
     await this.builder(config, dist)
   }
 
