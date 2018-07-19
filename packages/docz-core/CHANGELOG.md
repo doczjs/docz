@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/pedronauck/docz/compare/v0.5.9...v0.6.0) (2018-07-19)
+
+
+### Bug Fixes
+
+* **docz-core:** add error when dest is working directory ([b1c87b5](https://github.com/pedronauck/docz/commit/b1c87b5))
+* **docz-core:** process.env vars for scripts ([f6b6260](https://github.com/pedronauck/docz/commit/f6b6260))
+* **docz-core:** serve static files from public ([c866856](https://github.com/pedronauck/docz/commit/c866856))
+
+
+### Features
+
+* **docz-core:** add onCreateApp plugin method ([13c07e7](https://github.com/pedronauck/docz/commit/13c07e7))
+
+
+
+
 <a name="0.5.9"></a>
 ## [0.5.9](https://github.com/pedronauck/docz/compare/v0.5.8...v0.5.9) (2018-07-16)
 

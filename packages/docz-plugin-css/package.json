@@ -1,6 +1,6 @@
 {
   "name": "docz-plugin-css",
-  "version": "0.5.9",
+  "version": "0.6.0",
   "description": "This package makes it possible to use preprocessors and css modules on docz",
   "license": "MIT",
   "main": "dist/index.js",
@@ -25,7 +25,7 @@
     "autoprefixer": "^8.6.5",
     "css-loader": "^1.0.0",
     "deepmerge": "^2.1.1",
-    "docz-core": "^0.5.9",
+    "docz-core": "^0.6.0",
     "less": "^3.7.1",
     "less-loader": "^4.1.0",
     "loader-utils": "^1.1.0",
