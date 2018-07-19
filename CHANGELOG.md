@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.6.1"></a>
+## [0.6.1](https://github.com/pedronauck/docz/compare/v0.6.0...v0.6.1) (2018-07-19)
+
+
+### Bug Fixes
+
+* **docz:** default DocPreview components ([ff7cf32](https://github.com/pedronauck/docz/commit/ff7cf32))
+* **docz-theme-default:** add background and color on NotFound ([f0bd532](https://github.com/pedronauck/docz/commit/f0bd532))
+
+
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/pedronauck/docz/compare/v0.5.9...v0.6.0) (2018-07-19)
 
