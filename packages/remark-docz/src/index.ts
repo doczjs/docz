@@ -67,7 +67,7 @@ const mergeNodeWithoutCloseTag = (tree: any, node: any, idx: any) => {
 }
 
 // turns `html` nodes into `jsx` nodes
-export const plugin = () => (tree: any) => {
+export default () => (tree: any) => {
   visit(tree, 'html', visitor)
 
   function visitor(node: any, idx: any): void {
