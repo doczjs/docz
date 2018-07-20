@@ -18,7 +18,7 @@ const Wrapper = styled('div')`
   background: ${p => p.theme.colors.background};
 `
 
-export const Page: SFC<PageProps> = ({ children, ...props }) => (
+export const Page: SFC<PageProps> = ({ children }) => (
   <Wrapper>
     <Container>{children}</Container>
   </Wrapper>
