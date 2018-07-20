@@ -56,9 +56,9 @@ export class Bundler<C = ConfigObj> {
 
   public getConfig(env: Env): C {
     const babelConfig = babelrc(this.args, env)
-    const config = this.mountConfig(this.config(babelConfig))
+    const config = this.mountConfig(this.config(babelConfig), env)
 
-    return this.args.modifyBundlerConfig(config, !this.isProd(), this.args)
+    return this.args.modifyBundlerConfig(config, !this.isProd(env), this.args)
   }
 
   public async createServer(config: C): Promise<BundlerServer> {
@@ -90,14 +90,14 @@ export class Bundler<C = ConfigObj> {
     await this.builder(config, dist)
   }
 
-  private mountConfig(config: C): any {
+  private mountConfig(config: C, env: Env): any {
     const { plugins } = this.args
     const reduce = Plugin.reduceFromPlugins<C>(plugins)
 
-    return reduce('modifyBundlerConfig', config, !this.isProd(), this.args)
+    return reduce('modifyBundlerConfig', config, !this.isProd(env), this.args)
   }
 
-  private isProd(): boolean {
-    return process.env.NODE_ENV === 'production'
+  private isProd(env: Env): boolean {
+    return env === 'production'
   }
 }

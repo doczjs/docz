@@ -5,20 +5,15 @@ import webpack, { Configuration as CFG } from 'webpack'
 import FSR from 'react-dev-utils/FileSizeReporter'
 import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages'
 import printBuildError from 'react-dev-utils/printBuildError'
+import envDotProp from 'env-dot-prop'
 
 import * as paths from '../../config/paths'
-
-process.env.BABEL_ENV = process.env.BABEL_ENV || 'production'
-process.env.NODE_ENV = process.env.NODE_ENV || 'production'
 
 const { measureFileSizesBeforeBuild, printFileSizesAfterBuild } = FSR
 const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024
 const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024
 
-const hasCiEnvVar = () =>
-  process.env.CI &&
-  (typeof process.env.CI !== 'string' ||
-    process.env.CI.toLowerCase() !== 'false')
+const hasCiEnvVar = () => envDotProp.get('ci', false, { parse: true })
 
 const copyPublicFolder = async (dest: string): Promise<void> => {
   if (await fs.pathExists(paths.appPublic)) {

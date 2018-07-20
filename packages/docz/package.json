@@ -32,6 +32,7 @@
     "deepmerge": "^2.1.1",
     "docz-core": "^0.6.0",
     "docz-theme-default": "^0.6.1",
+    "env-dot-prop": "^1.0.2",
     "invariant": "^2.2.4",
     "loadable-components": "^2.2.2",
     "pascalcase": "^0.1.1",

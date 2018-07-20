@@ -1,20 +1,17 @@
-process.env.BABEL_ENV = 'development'
-process.env.NODE_ENV = 'development'
-
 import * as fs from 'fs-extra'
 import logger from 'signale'
 import detectPort from 'detect-port'
+import envDotProp from 'env-dot-prop'
 
 import * as paths from '../config/paths'
-import { Config, Env } from './args'
+import { Config } from './args'
 import { DataServer } from '../DataServer'
 import { webpack } from '../bundlers'
 import { Entries } from '../Entries'
 import { loadConfig } from '../utils/load-config'
 
-const env = process.env.NODE_ENV as Env
-
 export const dev = async (args: Config) => {
+  const env = envDotProp.get('node.env')
   const config = loadConfig(args)
   const port = await detectPort(config.port)
   const websocketPort = await detectPort(config.websocketPort)
