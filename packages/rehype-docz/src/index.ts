@@ -47,7 +47,7 @@ const addCodeProp = async (node: any) => {
   }
 }
 
-export const plugin = () => (tree: any, file: any) => {
+export default () => (tree: any, file: any) => {
   async function visitor(node: any): Promise<void> {
     await addCodeProp(node)
   }
