@@ -1,9 +1,8 @@
 import matter from 'remark-frontmatter'
 import slug from 'rehype-slug'
 import headings from 'rehype-autolink-headings'
-
-import { plugin as mdastPlugin } from '../utils/plugin-mdast'
-import { plugin as hastPlugin } from '../utils/plugin-hast'
+import remarkDocz from 'remark-docz'
+import rehypeDocz from 'rehype-docz'
 
 export const config = {
   type: 'yaml',
@@ -26,5 +25,5 @@ export const config = {
   },
 }
 
-export const remarkPlugins = [matter, mdastPlugin]
-export const rehypePlugins = [hastPlugin, slug, headings]
+export const remarkPlugins = [matter, remarkDocz]
+export const rehypePlugins = [rehypeDocz, slug, headings]
