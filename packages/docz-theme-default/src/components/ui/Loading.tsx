@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { ThemeConfig } from 'docz'
 import styled, { css, keyframes } from 'react-emotion'
 
 const Wrapper = styled('div')`
@@ -84,11 +83,7 @@ const Spinner = ({ size = 60 }) => (
 )
 
 export const Loading = () => (
-  <ThemeConfig>
-    {config => (
-      <Wrapper>
-        <Spinner />
-      </Wrapper>
-    )}
-  </ThemeConfig>
+  <Wrapper>
+    <Spinner />
+  </Wrapper>
 )

@@ -5,7 +5,7 @@ declare module 'react-feather/dist/icons/chevron-down'
 declare module 'react-feather/dist/icons/search'
 declare module 'webfontloader'
 declare module 'react-breakpoints'
-declare module 'fuse.js'
+declare module 'match-sorter'
 
 declare module '*.svg' {
   const content: any

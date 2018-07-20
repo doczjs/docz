@@ -4,27 +4,34 @@ import { Toggle, State } from 'react-powerplug'
 import { Media } from 'react-breakpoints'
 import { adopt } from 'react-adopt'
 import styled from 'react-emotion'
-import Fuse from 'fuse.js'
+import match from 'match-sorter'
+
+import { Logo } from '../Logo'
+import { Search } from '../Search'
 
 import { Menu } from './Menu'
 import { Link } from './Link'
 import { Docz } from './Docz'
 import { Hamburguer } from './Hamburguer'
-import { Search } from './Search'
 
-interface Wrapper {
+interface WrapperProps {
   opened: boolean
   desktop: boolean
   theme?: any
 }
 
-interface OpenProps {
-  opened: boolean
-}
+const toggle = (p: WrapperProps) => (p.opened && !p.desktop ? '-90%' : '0')
 
-const toggle = (p: Wrapper) => (p.opened && !p.desktop ? '-90%' : '0')
-const background = (p: Wrapper) =>
+const background = (p: WrapperProps) =>
   toggle(p) !== '0' ? 'transparent' : p.theme.colors.sidebarBg
+
+const border = (p: WrapperProps) =>
+  p.desktop ? `1px solid ${p.theme.colors.border}` : 'none'
+
+const position = (p: WrapperProps) =>
+  p.theme.mq({
+    position: ['absolute', 'absolute', 'absolute', 'relative'],
+  })
 
 const Wrapper = styled('div')`
   display: flex;
@@ -33,14 +40,12 @@ const Wrapper = styled('div')`
   min-width: 300px;
   height: 100%;
   background: ${background};
+  border-right: ${border};
   transition: transform 0.2s, background 0.3s;
   transform: translateX(${toggle});
   z-index: 100;
 
-  ${p =>
-    p.theme.mq({
-      position: ['absolute', 'absolute', 'absolute', 'relative'],
-    })};
+  ${position};
 
   ${p => p.theme.styles.sidebar};
 
@@ -51,38 +56,6 @@ const Wrapper = styled('div')`
 
   dl a {
     font-weight: 400;
-  }
-`
-
-const logoMarginBottom = (p: any) =>
-  p.theme.mq({
-    marginBottom: ['30px', '45px'],
-  })
-
-const LogoImg = styled('img')`
-  margin: 30px;
-  padding: 0;
-
-  ${logoMarginBottom};
-`
-
-const LogoText = styled('h1')`
-  position: relative;
-  margin: 30px;
-  padding: 0;
-  font-size: 26px;
-  color: ${p => p.theme.colors.text};
-
-  ${logoMarginBottom};
-
-  &:before {
-    position: absolute;
-    content: '';
-    bottom: 0;
-    left: 0;
-    width: 15%;
-    height: 3px;
-    background: ${p => p.theme.colors.primary};
   }
 `
 
@@ -122,6 +95,10 @@ const FooterLink = styled('a')`
   margin: 0;
   margin-left: 5px;
 `
+
+interface OpenProps {
+  opened: boolean
+}
 
 const ToggleBackground = styled('div')`
   content: '';
@@ -180,21 +157,6 @@ type EnhancedProps = DocsRenderProps &
     config: Config
   }
 
-const getSearch = (docs: Entry[]) => (val: string): Entry[] => {
-  const options = {
-    shouldSort: true,
-    threshold: 0.4,
-    location: 0,
-    distance: 100,
-    maxPatternLength: 32,
-    minMatchCharLength: 1,
-    keys: ['name'],
-  }
-
-  const fuse = new Fuse(docs, options)
-  return fuse.search(val)
-}
-
 const getMenusFromDocs = (docs: Entry[]): string[] => {
   return Array.from(
     new Set(
@@ -208,13 +170,11 @@ const getMenusFromDocs = (docs: Entry[]): string[] => {
 }
 
 const mapper = {
+  config: <ThemeConfig />,
   docs: <Docs />,
   media: <Media />,
+  state: <State initial={{ docs: null, searching: false }} />,
   toggle: <Toggle initial={true} />,
-  config: <ThemeConfig />,
-  state: ({ docs, render }: any) => (
-    <State initial={{ docs: null, searching: false }}>{render}</State>
-  ),
 }
 
 const mapProps = ({ docs, media, toggle, config, state }: MapperProps) => ({
@@ -243,10 +203,11 @@ export const Sidebar = () => (
       const logo = config.logo
 
       const docs = state.docs || initialDocs
-      const search = getSearch(docs)
       const menus = getMenusFromDocs(docs)
       const docsWithoutMenu = docs.filter((doc: Entry) => !doc.menu)
+
       const fromMenu = (menu: string) => docs.filter(doc => doc.menu === menu)
+      const search = (val: string) => match(docs, val, { keys: ['name'] })
 
       const handleSearchDocs = (val: string) => {
         const isEmpty = val.length === 0
@@ -266,11 +227,7 @@ export const Sidebar = () => (
         <React.Fragment>
           <Wrapper opened={on} desktop={isDesktop}>
             <Hamburguer opened={on} onClick={handleSidebarToggle} />
-            {logo ? (
-              <LogoImg src={logo.src} width={logo.width} alt={title} />
-            ) : (
-              <LogoText>{title}</LogoText>
-            )}
+            <Logo logo={logo} title={title} />
             <Search showing={isDesktop || !on} onSearch={handleSearchDocs} />
             {docs.length < 1 ? (
               <Empty>No document find.</Empty>
