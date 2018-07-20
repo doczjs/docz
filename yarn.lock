@@ -3154,6 +3154,10 @@ caniuse-lite@^1.0.30000864:
   version "1.0.30000864"
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30000864.tgz#7a08c78da670f23c06f11aa918831b8f2dd60ddc"
 
+capitalize@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/capitalize/-/capitalize-1.0.0.tgz#dc802c580aee101929020d2ca14b4ca8a0ae44be"
+
 capture-stack-trace@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/capture-stack-trace/-/capture-stack-trace-1.0.0.tgz#4a6fa07399c26bba47f0b2496b4d0fb408c5550d"
