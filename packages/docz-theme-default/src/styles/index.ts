@@ -5,8 +5,6 @@ export const styles = {
     lineHeight: 1.5,
   },
   container: {
-    width: 960,
-    maxWidth: '100%',
     padding: ['20px 30px', '50px 50px 100px'],
   },
   h1: {
