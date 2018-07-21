@@ -5,8 +5,8 @@ import { Toggle } from 'react-powerplug'
 import { Button as BaseButton } from './Button'
 
 type AnimatedButtonProps = React.ButtonHTMLAttributes<any> & {
-  swap: React.ReactNode
   as?: React.ComponentType<React.ButtonHTMLAttributes<any>>
+  swap?: React.ReactNode
 }
 
 export const ButtonSwap: SFC<AnimatedButtonProps> = ({
@@ -18,10 +18,11 @@ export const ButtonSwap: SFC<AnimatedButtonProps> = ({
 }) => (
   <Toggle>
     {({ toggle, on }: any) => {
+      const hasSwap = Boolean(swap)
       const handleClick = (ev: any) => {
-        toggle()
+        hasSwap && toggle()
         onClick && onClick(ev)
-        setTimeout(toggle, 500)
+        hasSwap && setTimeout(toggle, 500)
       }
 
       return (
