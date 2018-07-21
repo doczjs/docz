@@ -21,6 +21,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
+    "copy-text-to-clipboard": "^1.0.4",
     "docz": "^0.6.2",
     "emotion": "^9.2.6",
     "emotion-theming": "^9.2.6",
