@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { SFC, Component, Fragment } from 'react'
 import { ThemeConfig } from 'docz'
-import styled, { css, cx } from 'react-emotion'
+import styled, { cx } from 'react-emotion'
 import rgba from 'polished/lib/color/rgba'
-import Check from 'react-feather/dist/icons/check'
+import BaseCheck from 'react-feather/dist/icons/check'
 import SyntaxHighlighter from 'react-syntax-highlighter/prism-light'
 import Clipboard from 'react-feather/dist/icons/clipboard'
 import copy from 'copy-text-to-clipboard'
@@ -72,27 +72,20 @@ export const ActionButton = styled(ButtonSwap)`
   }
 `
 
-export const ClipboardAction: SFC<{ content: string }> = ({ content }) => {
-  const check = (
-    <Check
-      width={17}
-      className={css`
-        stroke: #00b894;
-      `}
-    />
-  )
+const Check = styled(BaseCheck)`
+  stroke: ${p => p.theme.colors.primary};
+`
 
-  return (
-    <ActionButton
-      as={ButtonLink}
-      title="Copy to clipboard"
-      onClick={() => copy(content)}
-      swap={check}
-    >
-      <Clipboard width={15} />
-    </ActionButton>
-  )
-}
+export const ClipboardAction: SFC<{ content: string }> = ({ content }) => (
+  <ActionButton
+    as={ButtonLink}
+    title="Copy to clipboard"
+    onClick={() => copy(content)}
+    swap={<Check width={17} />}
+  >
+    <Clipboard width={15} />
+  </ActionButton>
+)
 
 const Nullable: SFC = ({ children }) => <Fragment>{children}</Fragment>
 

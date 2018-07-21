@@ -55,6 +55,7 @@ const transform = ({ mode, ...config }: any) => {
 
   return {
     ...config,
+    mode,
     prismTheme: (prismThemes as any)[mode],
     colors: {
       ...selectedMode,
