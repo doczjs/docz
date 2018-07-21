@@ -9557,6 +9557,10 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+re-resizable@^4.7.1:
+  version "4.7.1"
+  resolved "https://registry.npmjs.org/re-resizable/-/re-resizable-4.7.1.tgz#3eca5bb94a6059d14311786cfd2d430bc9f7fba0"
+
 react-adopt@^0.6.0:
   version "0.6.0"
   resolved "https://registry.npmjs.org/react-adopt/-/react-adopt-0.6.0.tgz#e5ff903a655d3082217f82bc9d5033a4b64fafad"
