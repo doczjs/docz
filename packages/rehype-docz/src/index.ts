@@ -42,7 +42,7 @@ const addCodeProp = async (node: any) => {
 
     node.value = node.value.replace(
       tagOpen,
-      `<${name} __code={${codeComponent}}`
+      `<${name} __code={${codeComponent}} __rawCode={\`${child}\`}`
     )
   }
 }
