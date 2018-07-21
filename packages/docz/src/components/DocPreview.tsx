@@ -14,10 +14,12 @@ const Identity: SFC<any> = ({ children }) => <Fragment>{children}</Fragment>
 const DefaultLoading: SFC = () => <Fragment>Loading</Fragment>
 
 export type RenderComponent = ComponentType<{
-  component: JSX.Element
-  code: any
   className?: string
   style?: any
+  components: ComponentsMap
+  component: JSX.Element
+  code: (components: ComponentsMap) => any
+  rawCode: string
 }>
 
 export const DefaultRender: RenderComponent = ({ component, code }) => (
