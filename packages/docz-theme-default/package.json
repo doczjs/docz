@@ -26,7 +26,7 @@
     "emotion-theming": "^9.2.6",
     "facepaint": "^1.2.1",
     "match-sorter": "^2.2.3",
-    "prismjs": "^1.15.0",
+    "polished": "^1.9.3",
     "prop-types": "15.6.2",
     "react": "^16.2.0",
     "react-adopt": "^0.6.0",
@@ -36,6 +36,7 @@
     "react-feather": "^1.1.1",
     "react-lightweight-tooltip": "^1.0.0",
     "react-powerplug": "^1.0.0-rc.1",
+    "react-syntax-highlighter": "^8.0.1",
     "webfontloader": "^1.6.28"
   },
   "peerDependencies": {
@@ -43,7 +44,6 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
-    "@types/prismjs": "^1.9.0",
     "@types/react": "^16.4.6",
     "@types/react-dom": "^16.0.6",
     "babel-plugin-emotion": "^9.2.6",

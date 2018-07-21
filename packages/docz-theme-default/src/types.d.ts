@@ -1,11 +1,12 @@
-declare module 'react-feather'
-declare module 'react-powerplug'
-declare module 'react-lightweight-tooltip'
+declare module 'react-breakpoints'
 declare module 'react-feather/dist/icons/chevron-down'
 declare module 'react-feather/dist/icons/search'
-declare module 'webfontloader'
-declare module 'react-breakpoints'
+declare module 'react-lightweight-tooltip'
+declare module 'react-powerplug'
+declare module 'react-syntax-highlighter/prism-light'
 declare module 'match-sorter'
+declare module 'polished/lib/color/rgba'
+declare module 'webfontloader'
 
 declare module '*.svg' {
   const content: any
