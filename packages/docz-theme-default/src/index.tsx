@@ -46,7 +46,7 @@ const Theme = () => (
 
 webfont.load({
   google: {
-    families: ['Inconsolata', 'Source Sans Pro:300,400,600,700'],
+    families: ['Source Code Pro', 'Source Sans Pro:300,400,600,700'],
   },
 })
 
