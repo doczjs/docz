@@ -3,9 +3,9 @@ import { SFC, Component, Fragment } from 'react'
 import { ThemeConfig } from 'docz'
 import styled, { css, cx } from 'react-emotion'
 import rgba from 'polished/lib/color/rgba'
-import Clipboard from 'react-feather/dist/icons/clipboard'
 import Check from 'react-feather/dist/icons/check'
 import SyntaxHighlighter from 'react-syntax-highlighter/prism-light'
+import Clipboard from 'react-feather/dist/icons/clipboard'
 import copy from 'copy-text-to-clipboard'
 
 import { ButtonSwap } from './ButtonSwap'
@@ -55,10 +55,12 @@ const Wrapper = styled('div')`
 const Actions = styled('div')`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 10px;
 `
 
-const CopyButton = styled(ButtonSwap)`
-  padding: 7px 10px;
+export const ActionButton = styled(ButtonSwap)`
+  padding: 4px;
   background: transparent;
   font-size: 12px;
   text-transform: uppercase;
@@ -69,6 +71,28 @@ const CopyButton = styled(ButtonSwap)`
     color: ${p => rgba(p.theme.colors.text, 0.7)};
   }
 `
+
+export const ClipboardAction: SFC<{ content: string }> = ({ content }) => {
+  const check = (
+    <Check
+      width={17}
+      className={css`
+        stroke: #00b894;
+      `}
+    />
+  )
+
+  return (
+    <ActionButton
+      as={ButtonLink}
+      title="Copy to clipboard"
+      onClick={() => copy(content)}
+      swap={check}
+    >
+      <Clipboard width={15} />
+    </ActionButton>
+  )
+}
 
 const Nullable: SFC = ({ children }) => <Fragment>{children}</Fragment>
 
@@ -82,21 +106,13 @@ const linesStyle = (colors: any) => ({
 interface PreProps {
   children: any
   className?: string
+  actions?: React.ReactNode
 }
 
 export class Pre extends Component<PreProps> {
   public render(): JSX.Element {
-    const { children, className } = this.props
+    const { children, className, actions } = this.props
     const content = getChildren(children)
-
-    const check = (
-      <Check
-        width={17}
-        className={css`
-          stroke: #00b894;
-        `}
-      />
-    )
 
     return (
       <ThemeConfig>
@@ -114,14 +130,7 @@ export class Pre extends Component<PreProps> {
               {getChildren(content)}
             </SyntaxHighlighter>
             <Actions>
-              <CopyButton
-                as={ButtonLink}
-                title="Copy to clipboard"
-                onClick={() => copy(content)}
-                swap={check}
-              >
-                <Clipboard width={15} />
-              </CopyButton>
+              {actions || <ClipboardAction content={content} />}
             </Actions>
           </Wrapper>
         )}
