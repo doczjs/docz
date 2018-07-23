@@ -11,14 +11,14 @@ const Wrapper = styled('div')`
   position: absolute;
   top: 10px;
   left: 50%;
-  height: 50px;
   margin-bottom: 5px;
   transform: translateX(-50%);
 `
 
 const Buttons = styled('div')`
   display: flex;
-  background: white;
+  background: ${p => p.theme.colors.background};
+  border: 1px solid ${p => p.theme.colors.border};
   border-radius: 3px;
   padding: 3px 5px;
 `
