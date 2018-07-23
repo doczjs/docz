@@ -22,12 +22,12 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "babylon": "^6.18.0",
     "babel-traverse": "^6.26.0",
-    "unist-util-is": "^2.1.2",
+    "babylon": "^6.18.0",
     "hast-util-to-string": "^1.0.1",
-    "strip-indent": "^2.0.0",
     "prettier": "^1.13.7",
-    "signale": "^1.2.1"
+    "signale": "^1.2.1",
+    "strip-indent": "^2.0.0",
+    "unist-util-is": "^2.1.2"
   }
 }

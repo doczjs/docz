@@ -6100,7 +6100,7 @@ hosted-git-info@^2.1.4, hosted-git-info@^2.5.0:
   version "2.6.0"
   resolved "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.6.0.tgz#23235b29ab230c576aab0d4f13fc046b0b038222"
 
-hotkeys-js@^3.3.1:
+hotkeys-js@^3.3.5:
   version "3.3.5"
   resolved "https://registry.npmjs.org/hotkeys-js/-/hotkeys-js-3.3.5.tgz#6c40e81f3720ead83d808db49d010380bd72c6f1"
 
@@ -9659,12 +9659,6 @@ react-error-overlay@^4.0.0:
 react-feather@^1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/react-feather/-/react-feather-1.1.1.tgz#dd59143af457601e68f2cd3bf32c0d94d30f89e7"
-
-react-hot-keys@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/react-hot-keys/-/react-hot-keys-1.2.0.tgz#1ac434bfeb8da8b4955f0260e54dffe167c8b39e"
-  dependencies:
-    hotkeys-js "^3.3.1"
 
 react-hot-loader@4.3.3:
   version "4.3.3"

@@ -13,14 +13,17 @@ export type PageProps = RouteComponentProps<any> & {
 const Identity: SFC<any> = ({ children }) => <Fragment>{children}</Fragment>
 const DefaultLoading: SFC = () => <Fragment>Loading</Fragment>
 
-export type RenderComponent = ComponentType<{
+export interface RenderComponentProps {
   className?: string
   style?: any
   components: ComponentsMap
   component: JSX.Element
+  position: number
   code: (components: ComponentsMap) => any
   rawCode: string
-}>
+}
+
+export type RenderComponent = ComponentType<RenderComponentProps>
 
 export const DefaultRender: RenderComponent = ({ component, code }) => (
   <Fragment>

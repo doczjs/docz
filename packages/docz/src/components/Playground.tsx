@@ -9,6 +9,7 @@ export interface PlaygroundProps {
   className?: string
   style?: any
   components: ComponentsMap
+  __position: number
   __code: (components: ComponentsMap) => any
   __rawCode: string
   children: any
@@ -19,6 +20,7 @@ const BasePlayground: SFC<PlaygroundProps> = ({
   className,
   style,
   children,
+  __position,
   __code,
   __rawCode,
 }) => {
@@ -28,6 +30,7 @@ const BasePlayground: SFC<PlaygroundProps> = ({
       style={style}
       components={components}
       component={isFn(children) ? children() : children}
+      position={__position}
       code={__code(components)}
       rawCode={__rawCode}
     />
