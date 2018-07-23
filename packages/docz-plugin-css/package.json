@@ -22,7 +22,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "autoprefixer": "^8.6.5",
+    "autoprefixer": "^9.0.1",
     "css-loader": "^1.0.0",
     "deepmerge": "^2.1.1",
     "docz-core": "^0.6.2",
@@ -32,8 +32,8 @@
     "mini-css-extract-plugin": "^0.4.1",
     "node-sass": "^4.9.2",
     "optimize-css-assets-webpack-plugin": "^5.0.0",
-    "postcss": "^6.0.23",
-    "postcss-flexbugs-fixes": "^3.3.1",
+    "postcss": "^7.0.1",
+    "postcss-flexbugs-fixes": "^4.0.0",
     "postcss-loader": "^2.1.6",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",

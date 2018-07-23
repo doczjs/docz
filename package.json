@@ -33,7 +33,7 @@
     "@commitlint/cli": "^7.0.0",
     "@commitlint/config-conventional": "^7.0.1",
     "@commitlint/config-lerna-scopes": "^7.0.0",
-    "all-contributors-cli": "^5.2.1",
+    "all-contributors-cli": "^5.3.0",
     "commitizen": "^2.10.1",
     "del": "^3.0.0",
     "husky": "^1.0.0-rc.12",
@@ -44,7 +44,7 @@
     "prettier": "^1.13.7",
     "trash-cli": "^1.4.0",
     "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.13.0",
+    "tslint-config-prettier": "^1.14.0",
     "typescript": "^2.9.2"
   },
   "workspaces": [

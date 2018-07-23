@@ -1093,15 +1093,15 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
-"@mdx-js/loader@^0.14.0":
-  version "0.14.0"
-  resolved "https://registry.npmjs.org/@mdx-js/loader/-/loader-0.14.0.tgz#09dd1dd10b95f5b31081164194783b5e0a7e387f"
+"@mdx-js/loader@^0.14.1":
+  version "0.14.1"
+  resolved "https://registry.npmjs.org/@mdx-js/loader/-/loader-0.14.1.tgz#975e69cabda1f8f389db28fc7cf533592b364d89"
   dependencies:
     "@mdx-js/tag" "^0.14.0"
 
-"@mdx-js/mdx@^0.14.0":
-  version "0.14.0"
-  resolved "https://registry.npmjs.org/@mdx-js/mdx/-/mdx-0.14.0.tgz#899805ce4becb2bab653bc759e18d25bc144430f"
+"@mdx-js/mdx@^0.14.1":
+  version "0.14.1"
+  resolved "https://registry.npmjs.org/@mdx-js/mdx/-/mdx-0.14.1.tgz#11d627d4317a2385e3838a9ed4db2f180031017a"
   dependencies:
     "@mdx-js/mdxast" "^0.10.0"
     mdast-util-to-hast "^3.0.0"
@@ -1121,6 +1121,14 @@
   resolved "https://registry.npmjs.org/@mdx-js/tag/-/tag-0.14.0.tgz#4c47ac25b1d34babf00f3ed97599397bdbfc3d9c"
   dependencies:
     create-react-context "^0.2.2"
+    prop-types "^15.6.1"
+
+"@mdx-js/tag@^0.14.1":
+  version "0.14.1"
+  resolved "https://registry.npmjs.org/@mdx-js/tag/-/tag-0.14.1.tgz#f2ac14bcd1b71aef92d2f056094786905015dfdf"
+  dependencies:
+    create-react-context "^0.2.2"
+    hoist-non-react-statics "^2.5.5"
     prop-types "^15.6.1"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
@@ -1378,9 +1386,9 @@
     "@types/node" "*"
     "@types/react" "*"
 
-"@types/react-router-dom@^4.2.7":
-  version "4.2.7"
-  resolved "https://registry.npmjs.org/@types/react-router-dom/-/react-router-dom-4.2.7.tgz#9d36bfe175f916dd8d7b6b0237feed6cce376b4c"
+"@types/react-router-dom@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.npmjs.org/@types/react-router-dom/-/react-router-dom-4.3.0.tgz#c91796d02deb3a5b24bc1c5db4a255df0d18b8b5"
   dependencies:
     "@types/history" "*"
     "@types/react" "*"
@@ -1463,9 +1471,9 @@
     "@types/events" "*"
     "@types/node" "*"
 
-"@types/yargs@^11.1.0":
-  version "11.1.0"
-  resolved "https://registry.npmjs.org/@types/yargs/-/yargs-11.1.0.tgz#923caa0cca53745d83f139eeff4fa7906c52ebce"
+"@types/yargs@^11.1.1":
+  version "11.1.1"
+  resolved "https://registry.npmjs.org/@types/yargs/-/yargs-11.1.1.tgz#2e724257167fd6b615dbe4e54301e65fe597433f"
 
 "@webassemblyjs/ast@1.5.13":
   version "1.5.13"
@@ -1745,9 +1753,9 @@ align-text@^0.1.1, align-text@^0.1.3:
     longest "^1.0.1"
     repeat-string "^1.5.2"
 
-all-contributors-cli@^5.2.1:
-  version "5.2.1"
-  resolved "https://registry.npmjs.org/all-contributors-cli/-/all-contributors-cli-5.2.1.tgz#24309dcdfd5570161b8254baba18dc94fcb1abde"
+all-contributors-cli@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.npmjs.org/all-contributors-cli/-/all-contributors-cli-5.3.0.tgz#ce648246968bb06c5ae8038ad0e8d24fb176b07c"
   dependencies:
     async "^2.0.0-rc.1"
     chalk "^2.3.0"
@@ -1999,15 +2007,15 @@ atob@^2.0.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/atob/-/atob-2.1.0.tgz#ab2b150e51d7b122b9efc8d7340c06b6c41076bc"
 
-autoprefixer@^8.6.5:
-  version "8.6.5"
-  resolved "https://registry.npmjs.org/autoprefixer/-/autoprefixer-8.6.5.tgz#343f3d193ed568b3208e00117a1b96eb691d4ee9"
+autoprefixer@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.npmjs.org/autoprefixer/-/autoprefixer-9.0.1.tgz#b5b74aba3fa60b4f1403729e46a6a1246f16818f"
   dependencies:
-    browserslist "^3.2.8"
-    caniuse-lite "^1.0.30000864"
+    browserslist "^4.0.1"
+    caniuse-lite "^1.0.30000865"
     normalize-range "^0.1.2"
     num2fraction "^1.2.2"
-    postcss "^6.0.23"
+    postcss "^7.0.1"
     postcss-value-parser "^3.2.3"
 
 aws-sign2@~0.6.0:
@@ -2957,14 +2965,7 @@ browserslist@^3.0.0:
     caniuse-lite "^1.0.30000830"
     electron-to-chromium "^1.3.42"
 
-browserslist@^3.2.8:
-  version "3.2.8"
-  resolved "https://registry.npmjs.org/browserslist/-/browserslist-3.2.8.tgz#b0005361d6471f0f5952797a76fc985f1f978fc6"
-  dependencies:
-    caniuse-lite "^1.0.30000844"
-    electron-to-chromium "^1.3.47"
-
-browserslist@^4.0.0:
+browserslist@^4.0.0, browserslist@^4.0.1:
   version "4.0.1"
   resolved "https://registry.npmjs.org/browserslist/-/browserslist-4.0.1.tgz#61c05ce2a5843c7d96166408bc23d58b5416e818"
   dependencies:
@@ -3138,17 +3139,13 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000865:
   version "1.0.30000865"
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30000865.tgz#70026616e8afe6e1442f8bb4e1092987d81a2f25"
 
-caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000844:
+caniuse-lite@^1.0.30000792:
   version "1.0.30000856"
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30000856.tgz#ecc16978135a6f219b138991eb62009d25ee8daa"
 
 caniuse-lite@^1.0.30000830:
   version "1.0.30000832"
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30000832.tgz#22a277f1d623774cc9aea2f7c1a65cb1603c63b8"
-
-caniuse-lite@^1.0.30000864:
-  version "1.0.30000864"
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30000864.tgz#7a08c78da670f23c06f11aa918831b8f2dd60ddc"
 
 capitalize@^1.0.0:
   version "1.0.0"
@@ -4577,10 +4574,6 @@ electron-to-chromium@^1.3.42:
   version "1.3.44"
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.3.44.tgz#ef6b150a60d523082388cadad88085ecd2fd4684"
 
-electron-to-chromium@^1.3.47:
-  version "1.3.49"
-  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.3.49.tgz#651384b0d81f078a96639b2b36975141b7915004"
-
 electron-to-chromium@^1.3.52:
   version "1.3.52"
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.3.52.tgz#d2d9f1270ba4a3b967b831c40ef71fb4d9ab5ce0"
@@ -4832,9 +4825,9 @@ eslint@^4.1.1:
     table "4.0.2"
     text-table "~0.2.0"
 
-esm@^3.0.71:
-  version "3.0.71"
-  resolved "https://registry.npmjs.org/esm/-/esm-3.0.71.tgz#3824987412d7d8fd7782d2381e990a621519a993"
+esm@^3.0.72:
+  version "3.0.72"
+  resolved "https://registry.npmjs.org/esm/-/esm-3.0.72.tgz#8f71b3f54b978bbbcbb9788f7f3569a36578c136"
 
 espree@^3.5.4:
   version "3.5.4"
@@ -5310,9 +5303,9 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-flow-bin@^0.76.0:
-  version "0.76.0"
-  resolved "https://registry.npmjs.org/flow-bin/-/flow-bin-0.76.0.tgz#eb00036991c3abc106743fcbc7ee321f02aa4faa"
+flow-bin@^0.77.0:
+  version "0.77.0"
+  resolved "https://registry.npmjs.org/flow-bin/-/flow-bin-0.77.0.tgz#4e5c93929f289a0c28e08fb361a9734944a11297"
 
 flow-typed@^2.5.1:
   version "2.5.1"
@@ -5460,9 +5453,9 @@ fs-extra@^5.0.0:
     jsonfile "^4.0.0"
     universalify "^0.1.0"
 
-fs-extra@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.npmjs.org/fs-extra/-/fs-extra-6.0.1.tgz#8abc128f7946e310135ddc93b98bddb410e7a34b"
+fs-extra@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.npmjs.org/fs-extra/-/fs-extra-7.0.0.tgz#8cc3f47ce07ef7b3593a11b9fb245f7e34c041d6"
   dependencies:
     graceful-fs "^4.1.2"
     jsonfile "^4.0.0"
@@ -6086,6 +6079,10 @@ hoist-non-react-statics@2.5.0, hoist-non-react-statics@^2.3.1, hoist-non-react-s
   version "2.5.0"
   resolved "https://registry.npmjs.org/hoist-non-react-statics/-/hoist-non-react-statics-2.5.0.tgz#d2ca2dfc19c5a91c5a6615ce8e564ef0347e2a40"
 
+hoist-non-react-statics@^2.5.5:
+  version "2.5.5"
+  resolved "https://registry.npmjs.org/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
+
 home-or-tmp@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/home-or-tmp/-/home-or-tmp-2.0.0.tgz#e36c3f2d2cae7d746a857e38d18d5f32a7882db8"
@@ -6102,6 +6099,10 @@ homedir-polyfill@^1.0.0, homedir-polyfill@^1.0.1:
 hosted-git-info@^2.1.4, hosted-git-info@^2.5.0:
   version "2.6.0"
   resolved "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.6.0.tgz#23235b29ab230c576aab0d4f13fc046b0b038222"
+
+hotkeys-js@^3.3.1:
+  version "3.3.5"
+  resolved "https://registry.npmjs.org/hotkeys-js/-/hotkeys-js-3.3.5.tgz#6c40e81f3720ead83d808db49d010380bd72c6f1"
 
 hsl-regex@^1.0.0:
   version "1.0.0"
@@ -9070,11 +9071,11 @@ postcss-discard-overridden@^4.0.0:
   dependencies:
     postcss "^6.0.0"
 
-postcss-flexbugs-fixes@^3.3.1:
-  version "3.3.1"
-  resolved "https://registry.npmjs.org/postcss-flexbugs-fixes/-/postcss-flexbugs-fixes-3.3.1.tgz#0783cc7212850ef707f97f8bc8b6fb624e00c75d"
+postcss-flexbugs-fixes@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/postcss-flexbugs-fixes/-/postcss-flexbugs-fixes-4.0.0.tgz#e6f4c21222404b97a762eabf9ff64bf2e3e333e8"
   dependencies:
-    postcss "^6.0.1"
+    postcss "^7.0.0"
 
 postcss-load-config@^2.0.0:
   version "2.0.0"
@@ -9318,6 +9319,14 @@ postcss@^6.0.0, postcss@^6.0.1:
 postcss@^6.0.23:
   version "6.0.23"
   resolved "https://registry.npmjs.org/postcss/-/postcss-6.0.23.tgz#61c82cc328ac60e677645f979054eb98bc0e3324"
+  dependencies:
+    chalk "^2.4.1"
+    source-map "^0.6.1"
+    supports-color "^5.4.0"
+
+postcss@^7.0.0, postcss@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.npmjs.org/postcss/-/postcss-7.0.1.tgz#db20ca4fc90aa56809674eea75864148c66b67fa"
   dependencies:
     chalk "^2.4.1"
     source-map "^0.6.1"
@@ -9650,6 +9659,12 @@ react-error-overlay@^4.0.0:
 react-feather@^1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/react-feather/-/react-feather-1.1.1.tgz#dd59143af457601e68f2cd3bf32c0d94d30f89e7"
+
+react-hot-keys@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/react-hot-keys/-/react-hot-keys-1.2.0.tgz#1ac434bfeb8da8b4955f0260e54dffe167c8b39e"
+  dependencies:
+    hotkeys-js "^3.3.1"
 
 react-hot-loader@4.3.3:
   version "4.3.3"
@@ -10011,9 +10026,9 @@ regjsparser@^0.2.1:
   dependencies:
     jsesc "~0.5.0"
 
-rehype-autolink-headings@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.npmjs.org/rehype-autolink-headings/-/rehype-autolink-headings-2.0.2.tgz#48c7161b1a1020e942c758eb6b2c55cb1bc504d0"
+rehype-autolink-headings@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.npmjs.org/rehype-autolink-headings/-/rehype-autolink-headings-2.0.3.tgz#b23d02937019b8e33566362fc1541df42e99b0e5"
   dependencies:
     extend "^3.0.1"
     hast-util-has-property "^1.0.0"
@@ -11481,9 +11496,9 @@ tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.9.0"
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.9.0.tgz#e37a86fda8cbbaf23a057f473c9f4dc64e5fc2e8"
 
-tslint-config-prettier@^1.13.0:
-  version "1.13.0"
-  resolved "https://registry.npmjs.org/tslint-config-prettier/-/tslint-config-prettier-1.13.0.tgz#189e821931ad89e0364e4e292d5c44a14e90ecd6"
+tslint-config-prettier@^1.14.0:
+  version "1.14.0"
+  resolved "https://registry.npmjs.org/tslint-config-prettier/-/tslint-config-prettier-1.14.0.tgz#860b36634e53f4c70c64c51ff3ef7fd9bbab7676"
 
 tslint@^5.10.0:
   version "5.10.0"
@@ -12142,9 +12157,9 @@ webpack-manifest-plugin@^2.0.3:
     lodash ">=3.5 <5"
     tapable "^1.0.0"
 
-webpack-serve-waitpage@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/webpack-serve-waitpage/-/webpack-serve-waitpage-1.0.0.tgz#182ad1a4a43af4a5db384e0befcd2ed5e3f98287"
+webpack-serve-waitpage@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/webpack-serve-waitpage/-/webpack-serve-waitpage-1.0.1.tgz#8aee5bf8aafcf997c72a74fc48ae1c495001fde9"
   dependencies:
     ejs "^2.6.1"
 
@@ -12388,9 +12403,9 @@ ws@^4.0.0:
     async-limiter "~1.0.0"
     safe-buffer "~5.1.0"
 
-ws@^5.2.2:
-  version "5.2.2"
-  resolved "https://registry.npmjs.org/ws/-/ws-5.2.2.tgz#dffef14866b8e8dc9133582514d1befaf96e980f"
+ws@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.npmjs.org/ws/-/ws-6.0.0.tgz#eaa494aded00ac4289d455bac8d84c7c651cef35"
   dependencies:
     async-limiter "~1.0.0"
 

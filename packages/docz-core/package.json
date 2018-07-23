@@ -25,8 +25,8 @@
     "@babel/core": "7.0.0-beta.54",
     "@babel/preset-typescript": "^7.0.0-beta.54",
     "@babel/runtime": "^7.0.0-beta.54",
-    "@mdx-js/loader": "^0.14.0",
-    "@mdx-js/mdx": "^0.14.0",
+    "@mdx-js/loader": "^0.14.1",
+    "@mdx-js/mdx": "^0.14.1",
     "@mdx-js/mdxast": "^0.10.0",
     "@sindresorhus/slugify": "^0.3.0",
     "art-template": "^4.12.2",
@@ -46,7 +46,7 @@
     "fast-glob": "^2.2.2",
     "file-loader": "^1.1.11",
     "friendly-errors-webpack-plugin": "^1.7.0",
-    "fs-extra": "^6.0.1",
+    "fs-extra": "^7.0.0",
     "happypack": "^5.0.0",
     "html-webpack-plugin": "^3.2.0",
     "humanize-string": "^1.0.2",
@@ -61,8 +61,8 @@
     "react-dev-utils": "^5.0.1",
     "react-docgen-typescript-loader": "^2.1.1",
     "react-hot-loader": "4.3.3",
+    "rehype-autolink-headings": "^2.0.3",
     "rehype-docz": "^0.6.2",
-    "rehype-autolink-headings": "^2.0.2",
     "rehype-slug": "^2.0.1",
     "remark-docz": "^0.6.2",
     "remark-frontmatter": "^1.2.0",
@@ -85,9 +85,9 @@
     "webpack-hot-client": "^4.1.1",
     "webpack-manifest-plugin": "^2.0.3",
     "webpack-serve": "^2.0.2",
-    "webpack-serve-waitpage": "^1.0.0",
+    "webpack-serve-waitpage": "^1.0.1",
     "webpackbar": "^2.6.1",
-    "ws": "^5.2.2",
+    "ws": "^6.0.0",
     "yargs": "^12.0.1"
   },
   "devDependencies": {
@@ -107,9 +107,9 @@
     "@types/webpack": "^4.4.7",
     "@types/webpack-chain": "^4.8.0",
     "@types/ws": "^5.1.2",
-    "@types/yargs": "^11.1.0",
+    "@types/yargs": "^11.1.1",
     "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.13.0",
+    "tslint-config-prettier": "^1.14.0",
     "typescript": "^2.9.2"
   }
 }
