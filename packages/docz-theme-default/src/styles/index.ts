@@ -13,9 +13,9 @@ export const styles = {
     fontWeight: 600,
   },
   h2: {
-    margin: ['25px 0 20px', '50px 0 20px'],
+    margin: ['30px 0 20px', '50px 0 20px'],
     lineHeight: ['1.2em', '1.5em'],
-    fontSize: [30, 32],
+    fontSize: [28, 32],
     fontWeight: 400,
   },
   h3: {
@@ -56,6 +56,7 @@ export const styles = {
     lineHeight: 1.8,
   },
   table: {
+    marginBottom: [20, 40],
     fontFamily: '"Source Code Pro", monospace',
     fontSize: 14,
   },
