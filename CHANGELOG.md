@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/pedronauck/docz/compare/v0.6.2...v0.7.0) (2018-07-23)
+
+
+### Bug Fixes
+
+* **docz:** humanize prop types on PropTable ([c1f4c6f](https://github.com/pedronauck/docz/commit/c1f4c6f))
+* **docz-plugin-css:** css modules applied logic ([c5fa378](https://github.com/pedronauck/docz/commit/c5fa378))
+* **docz-theme-default:** not found page ([fb1ac49](https://github.com/pedronauck/docz/commit/fb1ac49))
+* **docz-theme-default:** resize bar style ([df0ae82](https://github.com/pedronauck/docz/commit/df0ae82))
+
+
+### Features
+
+* **docz:** add rawCode for Playground ([70d4735](https://github.com/pedronauck/docz/commit/70d4735))
+* **docz-theme-default:** add close on esc on playground fullscreen ([4ebf202](https://github.com/pedronauck/docz/commit/4ebf202))
+* **docz-theme-default:** add copy to clipboard on pre ([78149ad](https://github.com/pedronauck/docz/commit/78149ad))
+* **docz-theme-default:** add fullpage support for docs ([af88d0e](https://github.com/pedronauck/docz/commit/af88d0e))
+* **docz-theme-default:** add line numbers on Playground ([204f1bb](https://github.com/pedronauck/docz/commit/204f1bb))
+* **docz-theme-default:** add resize bar for fullscreen playground ([392009f](https://github.com/pedronauck/docz/commit/392009f))
+* **docz-theme-default:** add responsive mode for playground ([e04452e](https://github.com/pedronauck/docz/commit/e04452e))
+
+
+
+
 <a name="0.6.2"></a>
 ## [0.6.2](https://github.com/pedronauck/docz/compare/v0.6.1...v0.6.2) (2018-07-20)
 
