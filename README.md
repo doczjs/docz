@@ -19,7 +19,7 @@
 
 <p align="center">
   <a href="http://docz.site" target="_blank">
-    <img src="https://cdn-std.dprcdn.net/files/acc_649651/e0MVXU" alt="Docz video">
+    <img src="https://cdn-std.dprcdn.net/files/acc_649651/lvs55S" alt="Docz video">
   </a>
 </p>
 
@@ -122,7 +122,7 @@ $ yarn docz dev
 
 That's it! You have a real badass documentation now 👊
 
-![](https://cdn-std.dprcdn.net/files/acc_649651/yTWGC3)
+![](https://cdn-std.dprcdn.net/files/acc_649651/7RRXv)
 
 Any doubt? Check [our docs](http://docz.site) to see more about **docz**!
 
