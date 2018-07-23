@@ -4,29 +4,34 @@ import { RenderComponent } from 'docz'
 import { Toggle } from 'react-powerplug'
 import lighten from 'polished/lib/color/lighten'
 import darken from 'polished/lib/color/darken'
-import Resizable from 're-resizable'
 import Maximize from 'react-feather/dist/icons/maximize'
 import Minimize from 'react-feather/dist/icons/minimize'
+import Resizable from 're-resizable'
+import Hotkeys from 'react-hot-keys'
 import styled, { css } from 'react-emotion'
 
 import { Pre as PreBase, ActionButton, ClipboardAction } from './Pre'
 
-const HANDLE_WIDTH = 24
+const HANDLE_WIDTH = 20
 
 interface WrapperProps {
   full: boolean
 }
 
+const whenFull = (on: any, off: any) => (p: WrapperProps) => (p.full ? on : off)
+
 const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
-  z-index: ${(p: WrapperProps) => (p.full ? 99999 : 0)};
-  position: ${(p: WrapperProps) => (p.full ? 'fixed' : 'initial')};
+  z-index: ${whenFull(99999, 0)};
+  position: ${whenFull('fixed', 'initial')};
   top: 0;
   left: 0;
-  height: ${(p: WrapperProps) => (p.full ? '100vh' : '100%')};
-  width: ${(p: WrapperProps) =>
-    p.full ? '100vw' : `calc(100% - ${HANDLE_WIDTH - 4}px)`};
+  padding: ${whenFull('20px', '0')};
+  margin: 0 0 30px;
+  height: ${whenFull('100vh', '100%')};
+  width: ${whenFull('100vw', `calc(100% - ${HANDLE_WIDTH - 10}px)`)};
+  background: ${whenFull('rgba(0,0,0,0.5)', 'transparent')};
 `
 
 const Playground = styled('div')`
@@ -39,7 +44,7 @@ const Playground = styled('div')`
 
 const Pre = styled(PreBase)`
   margin: 0;
-  border-radius: ${(p: WrapperProps) => (p.full ? 0 : '0 0 4px 4px')};
+  border-radius: 0 0 4px 4px;
   border-top: 0;
 `
 
@@ -95,30 +100,33 @@ export const Render: RenderComponent = ({
         </Fragment>
       )
 
+      const resizableEnable = {
+        top: false,
+        right: true,
+        bottom: false,
+        left: false,
+        topRight: false,
+        bottomRight: false,
+        bottomLeft: false,
+        topLeft: false,
+      }
+
       return (
         <Resizable
           minWidth={320}
           maxWidth="100%"
-          enable={{
-            top: false,
-            right: true,
-            bottom: false,
-            left: false,
-            topRight: false,
-            bottomRight: false,
-            bottomLeft: false,
-            topLeft: false,
-          }}
+          enable={resizableEnable}
+          handleComponent={{ right: Handle }}
         >
-          <Wrapper full={on}>
-            <Playground className={className} style={style}>
-              {component}
-            </Playground>
-            <Pre actions={actions} full={on}>
-              {rawCode}
-            </Pre>
-            {!on && <Handle />}
-          </Wrapper>
+          <Hotkeys keyName="esc" onKeyUp={() => on && toggle()}>
+            <Wrapper full={on}>
+              <Playground className={className} style={style}>
+                {component}
+              </Playground>
+              <Pre actions={actions}>{rawCode}</Pre>
+              {/* {!on && <Handle />} */}
+            </Wrapper>
+          </Hotkeys>
         </Resizable>
       )
     }}

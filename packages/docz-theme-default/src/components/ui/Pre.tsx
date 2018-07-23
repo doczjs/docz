@@ -11,11 +11,13 @@ import copy from 'copy-text-to-clipboard'
 import { ButtonSwap } from './ButtonSwap'
 import { ButtonLink } from './Button'
 
+const TOP_PADDING = '25px'
+
 const PrismTheme = styled('pre')`
   ${p => p.theme.prismTheme};
   ${p => p.theme.mq(p.theme.styles.pre)};
   overflow-y: hidden;
-  padding: 30px;
+  padding: ${TOP_PADDING} 20px;
   margin: 0;
   flex: 1;
 `
@@ -46,7 +48,7 @@ const Wrapper = styled('div')`
 
   .react-syntax-highlighter-line-number {
     display: block;
-    padding: 0 15px;
+    padding: 0 10px;
     opacity: 0.3;
     text-align: right;
   }
@@ -56,7 +58,7 @@ const Actions = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  padding: 5px 10px;
 `
 
 export const ActionButton = styled(ButtonSwap)`
@@ -90,7 +92,7 @@ export const ClipboardAction: SFC<{ content: string }> = ({ content }) => (
 const Nullable: SFC = ({ children }) => <Fragment>{children}</Fragment>
 
 const linesStyle = (colors: any) => ({
-  padding: '30px 0',
+  padding: `${TOP_PADDING} 0`,
   borderRight: `1px solid ${colors.border}`,
   background: rgba(colors.background, 0.5),
   left: 0,
@@ -115,7 +117,6 @@ export class Pre extends Component<PreProps> {
               language="javascript"
               showLineNumbers
               useInlineStyles={false}
-              lineProps={{ class: 'helo' }}
               lineNumberContainerStyle={linesStyle(config.colors)}
               PreTag={Nullable}
               CodeTag={getCode(children)}

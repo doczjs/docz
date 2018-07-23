@@ -36,6 +36,7 @@
     "react-dom": "^16.2.0",
     "react-emotion": "^9.2.6",
     "react-feather": "^1.1.1",
+    "react-hot-keys": "^1.2.0",
     "react-lightweight-tooltip": "^1.0.0",
     "react-powerplug": "^1.0.0-rc.1",
     "react-syntax-highlighter": "^8.0.1",
