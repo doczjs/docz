@@ -96,7 +96,6 @@ const applyRule = (
 
   return {
     test: tests[preprocessor],
-    exclude: [/node_modules/],
     use: loader(cssoptions, dev),
   }
 }
