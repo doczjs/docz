@@ -1,13 +1,13 @@
 {
   "name": "docz-example-basic",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "license": "MIT",
   "scripts": {
     "dev": "docz dev",
     "build": "docz build"
   },
   "dependencies": {
-    "docz": "^0.7.0",
+    "docz": "^0.7.1",
     "docz-core": "^0.7.0",
     "emotion": "^9.2.6",
     "prop-types": "^15.6.2",

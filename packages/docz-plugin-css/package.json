@@ -1,6 +1,6 @@
 {
   "name": "docz-plugin-css",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "This package makes it possible to use preprocessors and css modules on docz",
   "license": "MIT",
   "main": "dist/index.js",
