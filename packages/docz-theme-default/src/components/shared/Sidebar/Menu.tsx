@@ -72,7 +72,7 @@ export class Menu extends Component<MenuProps, MenuState> {
     this.checkActiveLink()
   }
 
-  public render(): JSX.Element {
+  public render(): React.ReactNode {
     const { menu, docs, sidebarToggle, collapseAll } = this.props
     const show = collapseAll || this.state.opened
     const handleToggle = (ev: React.SyntheticEvent<any>) => {
@@ -81,30 +81,32 @@ export class Menu extends Component<MenuProps, MenuState> {
     }
 
     return (
-      <Wrapper>
-        <MenuLink href="#" onClick={handleToggle}>
-          {menu}
-          <Icon opened={show}>
-            <ChevronDown size={15} />
-          </Icon>
-        </MenuLink>
-        <List opened={show}>
-          {docs.map(doc => (
-            <dt key={doc.id}>
-              <Link
-                onClick={sidebarToggle}
-                to={doc.route}
-                doc={doc}
-                ref={(node: any) => {
-                  this.$els = this.$els.concat([node])
-                }}
-              >
-                {doc.name}
-              </Link>
-            </dt>
-          ))}
-        </List>
-      </Wrapper>
+      docs.length > 0 && (
+        <Wrapper>
+          <MenuLink href="#" onClick={handleToggle}>
+            {menu}
+            <Icon opened={show}>
+              <ChevronDown size={15} />
+            </Icon>
+          </MenuLink>
+          <List opened={show}>
+            {docs.map(doc => (
+              <dt key={doc.id}>
+                <Link
+                  onClick={sidebarToggle}
+                  to={doc.route}
+                  doc={doc}
+                  ref={(node: any) => {
+                    this.$els = this.$els.concat([node])
+                  }}
+                >
+                  {doc.name}
+                </Link>
+              </dt>
+            ))}
+          </List>
+        </Wrapper>
+      )
     )
   }
 

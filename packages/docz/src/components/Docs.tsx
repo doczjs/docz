@@ -1,17 +1,18 @@
 import * as React from 'react'
 import { Children } from 'react'
+import sort from 'array-sort'
 
 import { dataContext, Entry } from '../theme'
 
 export const isFn = (value: any): boolean => typeof value === 'function'
 
-const sortBy = (a: any, b: any) => {
-  if (a < b) return -1
-  if (a > b) return 1
+const sortBy = (a: any, b: any, reverse?: boolean) => {
+  if (a < b) return reverse ? 1 : -1
+  if (a > b) return reverse ? -1 : 1
   return 0
 }
 
-const getMenusFromEntries = (entries: Entry[]) =>
+const menuFromEntries = (entries: Entry[]) =>
   Array.from(
     new Set(
       entries.reduce(
@@ -44,19 +45,16 @@ export const Docs: React.SFC<DocsProps> = ({ children }) => {
           )
         }
 
-        const entriesArr = Object.values(entries)
-        const menus = getMenusFromEntries(entriesArr).sort((a, b) =>
-          sortBy(a, b)
-        )
+        const arr = Object.values(entries)
+        const menusArr = menuFromEntries(arr)
+        const menus = sort(menusArr, (a: Entry, b: Entry) => sortBy(a, b))
+        const descending = config.ordering === 'descending'
 
-        const docs = entriesArr
-          .sort((a, b) => sortBy(a.name, b.name))
-          .sort(
-            (a, b) =>
-              config.ordering === 'descending'
-                ? b.order - a.order
-                : a.order - b.order
-          )
+        const docs: Entry[] = sort(
+          arr,
+          (a: Entry, b: Entry) => sortBy(a.order, b.order, descending),
+          (a: Entry, b: Entry) => sortBy(a.name, b.name)
+        )
 
         return Children.only(
           children({

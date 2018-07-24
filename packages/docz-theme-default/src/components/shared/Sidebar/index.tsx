@@ -157,18 +157,6 @@ type EnhancedProps = DocsRenderProps &
     config: Config
   }
 
-const getMenusFromDocs = (docs: Entry[]): string[] => {
-  return Array.from(
-    new Set(
-      docs.reduce(
-        (arr: string[], doc: Entry): string[] =>
-          doc.menu ? arr.concat([doc.menu]) : arr,
-        []
-      )
-    )
-  )
-}
-
 const mapper = {
   config: <ThemeConfig />,
   docs: <Docs />,
@@ -190,6 +178,7 @@ const Composed = adopt<EnhancedProps>(mapper, mapProps)
 export const Sidebar = () => (
   <Composed>
     {({
+      menus,
       docs: initialDocs,
       media,
       config,
@@ -203,7 +192,6 @@ export const Sidebar = () => (
       const logo = config.logo
 
       const docs = state.docs || initialDocs
-      const menus = getMenusFromDocs(docs)
       const docsWithoutMenu = docs.filter((doc: Entry) => !doc.menu)
 
       const fromMenu = (menu: string) => docs.filter(doc => doc.menu === menu)

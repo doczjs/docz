@@ -28,6 +28,7 @@
   "dependencies": {
     "@mdx-js/tag": "^0.14.1",
     "@sindresorhus/slugify": "^0.3.0",
+    "array-sort": "^1.0.0",
     "capitalize": "^1.0.0",
     "create-react-context": "^0.2.2",
     "deepmerge": "^2.1.1",
