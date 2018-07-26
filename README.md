@@ -145,7 +145,7 @@ If you need some help you can chat with us on [our Discord server](https://disco
 
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
 
-<a href="graphs/contributors"><img src="https://opencollective.com/docz/contributors.svg?width=890&button=false" /></a>
+<a href="https://github.com/pedronauck/docz/graphs/contributors"><img src="https://opencollective.com/docz/contributors.svg?width=890&button=false" /></a>
 
 ### 🙏🏻 &nbsp; Backers
 
