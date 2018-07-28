@@ -30,6 +30,7 @@
     "lodash.get": "^4.4.2",
     "match-sorter": "^2.2.3",
     "polished": "^1.9.3",
+    "pretty": "^2.0.0",
     "prop-types": "15.6.2",
     "re-resizable": "^4.7.1",
     "react": "^16.2.0",

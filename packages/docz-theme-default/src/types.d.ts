@@ -16,6 +16,9 @@ declare module 'react-syntax-highlighter/prism-light'
 declare module 're-resizable'
 declare module 'match-sorter'
 declare module 'polished/lib/color/rgba'
+declare module 'polished/lib/color/lighten'
+declare module 'polished/lib/color/darken'
+declare module 'pretty'
 declare module 'webfontloader'
 
 declare module '*.svg' {

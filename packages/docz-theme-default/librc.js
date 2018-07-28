@@ -13,6 +13,7 @@ const inline = [
 const external = Object.keys(pkg.dependencies)
   .filter(dep => inline.indexOf(dep) === -1)
   .concat([
+    'react-dom/server',
     'polished/lib/colors/rgba',
     'react-syntax-highlighter/prism',
     'react-feather/dist/icons/search',

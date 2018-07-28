@@ -78,8 +78,16 @@ const Check = styled(BaseCheck)`
   stroke: ${p => p.theme.colors.primary};
 `
 
-export const ClipboardAction: SFC<{ content: string }> = ({ content }) => (
+interface ClipboardActionProps {
+  content: string
+}
+
+export const ClipboardAction: SFC<ClipboardActionProps> = ({
+  content,
+  ...props
+}) => (
   <ActionButton
+    {...props}
     as={ButtonLink}
     title="Copy to clipboard"
     onClick={() => copy(content)}
@@ -92,7 +100,7 @@ export const ClipboardAction: SFC<{ content: string }> = ({ content }) => (
 const Nullable: SFC = ({ children }) => <Fragment>{children}</Fragment>
 
 const linesStyle = (colors: any) => ({
-  padding: `${TOP_PADDING} 0`,
+  padding: `${TOP_PADDING} 3px`,
   borderRight: `1px solid ${colors.border}`,
   background: rgba(colors.background, 0.5),
   left: 0,
