@@ -16,6 +16,8 @@ const getTypeStr = (type: PropType | FlowType): any => {
       return type.value
         ? type.value.map((t: any) => `${getTypeStr(t)}`).join(' │ ')
         : type.raw
+    case 'array':
+      return type.raw
     case 'arrayof':
       return `Array<${getTypeStr(type.value)}>`
     case 'custom':
