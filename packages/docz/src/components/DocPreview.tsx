@@ -23,8 +23,7 @@ export interface RenderComponentProps {
   components: ComponentsMap
   component: JSX.Element
   position: number
-  code: (components: ComponentsMap) => any
-  rawCode: string
+  code: string
 }
 
 export type RenderComponent = ComponentType<RenderComponentProps>
