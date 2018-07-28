@@ -27,6 +27,7 @@
     "emotion-theming": "^9.2.6",
     "facepaint": "^1.2.1",
     "hotkeys-js": "^3.3.5",
+    "lodash.get": "^4.4.2",
     "match-sorter": "^2.2.3",
     "polished": "^1.9.3",
     "prop-types": "15.6.2",
@@ -47,6 +48,7 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
+    "@types/lodash.get": "^4.4.4",
     "@types/react": "^16.4.6",
     "@types/react-dom": "^16.0.6",
     "babel-plugin-emotion": "^9.2.6",

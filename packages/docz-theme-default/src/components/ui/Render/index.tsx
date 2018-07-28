@@ -6,6 +6,7 @@ import Minimize from 'react-feather/dist/icons/minimize'
 import Resizable from 're-resizable'
 import hotkeys from 'hotkeys-js'
 import styled from 'react-emotion'
+import getIn from 'lodash.get'
 
 import { ResizeBar } from './ResizeBar'
 import { Handle, HANDLE_SIZE } from './Handle'
@@ -41,6 +42,7 @@ const Wrapper = styled('div')`
 `
 
 const Playground = styled('div')`
+  overflow-y: hidden;
   flex: 1;
   background: ${p => p.theme.colors.background};
   border: 1px solid ${p => p.theme.colors.border};
@@ -60,9 +62,9 @@ const remove = (pos: number): void => storage.remove(pos.toString())
 const set = (pos: number, size: string): void =>
   storage.set(pos.toString(), size)
 
-const parseSize = (position: number) => (key: string) => {
+const parse = (position: number, key: string, defaultValue: any) => {
   const obj = JSON.parse(get(position))
-  return obj ? obj[key] : '100%'
+  return obj ? getIn(obj, key) : defaultValue
 }
 
 export interface RenderState {
@@ -73,9 +75,9 @@ export interface RenderState {
 
 export class Render extends Component<RenderComponentProps, RenderState> {
   public state: RenderState = {
-    fullscreen: Boolean(get(this.props.position)),
-    width: parseSize(this.props.position)('width'),
-    height: parseSize(this.props.position)('height'),
+    fullscreen: parse(this.props.position, 'fullscreen', false),
+    width: parse(this.props.position, 'width', '100%'),
+    height: parse(this.props.position, 'height', '100%'),
   }
 
   public componentDidMount(): void {
@@ -176,8 +178,6 @@ export class Render extends Component<RenderComponentProps, RenderState> {
     }
   }
 
-  private isFullscreen = (position: number) => Boolean(get(position))
-
   private setSize = () => {
     const { fullscreen, ...state } = this.state
     set(this.props.position, JSON.stringify(state))
@@ -190,15 +190,10 @@ export class Render extends Component<RenderComponentProps, RenderState> {
     if (fullscreen) remove(position)
     else this.setSize()
 
-    const isFull = this.isFullscreen(position)
-    const parse = parseSize(position)
-    const width = parse('width')
-    const height = parse('height')
-
     this.setState({
-      fullscreen: isFull,
-      width,
-      height,
+      fullscreen: parse(position, 'fullscreen', false),
+      width: parse(position, 'width', '100%'),
+      height: parse(position, 'height', '100%'),
     })
   }
 
