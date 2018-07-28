@@ -33,12 +33,9 @@ export const Handle = styled('div')`
   display: block;
   width: ${whenHorizontal(HANDLE_SIZE, 'calc(100% + 5px)')};
   height: ${handleHeight};
-  border: 1px solid ${p => p.theme.colors.border};
+  border: 1px solid ${p => lighten(0.03, p.theme.colors.border)};
   border-radius: ${whenHorizontal('0 4px 4px 0', '0 0 4px 4px')};
-  background: ${p =>
-    p.theme.mode === 'light'
-      ? lighten(0.1, p.theme.colors.border)
-      : darken(0.1, p.theme.colors.border)};
+  background: ${p => darken(0.01, p.theme.colors.preBg)};
 
   ${whenHorizontal(
     `
@@ -52,10 +49,20 @@ export const Handle = styled('div')`
   )};
 
   &:after {
-    ${p => line(p.theme.colors.border, 'calc(50% + 3px)', p.horizontal)};
+    ${p =>
+      line(
+        lighten(0.06, p.theme.colors.border),
+        'calc(50% + 3px)',
+        p.horizontal
+      )};
   }
 
   &:before {
-    ${p => line(p.theme.colors.border, 'calc(50% - 3px)', p.horizontal)};
+    ${p =>
+      line(
+        lighten(0.06, p.theme.colors.border),
+        'calc(50% - 3px)',
+        p.horizontal
+      )};
   }
 `

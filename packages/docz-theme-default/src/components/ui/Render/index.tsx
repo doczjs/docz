@@ -66,8 +66,8 @@ const Actions = styled('div')`
   padding: 0 5px;
   background: ${p =>
     p.theme.mode === 'light'
-      ? lighten(0.03, p.theme.colors.border)
-      : darken(0.05, p.theme.colors.border)};
+      ? lighten(0.13, p.theme.colors.border)
+      : darken(0.04, p.theme.colors.border)};
   border-left: 1px solid ${p => p.theme.colors.border};
   border-bottom: 1px solid ${p => p.theme.colors.border};
 `
