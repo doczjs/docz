@@ -26,7 +26,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@mdx-js/tag": "^0.14.1",
+    "@mdx-js/tag": "^0.15.0-1",
     "@sindresorhus/slugify": "^0.3.0",
     "array-sort": "^1.0.0",
     "capitalize": "^1.0.0",
@@ -50,9 +50,9 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.5.22",
+    "@types/bluebird": "^3.5.23",
     "@types/deepmerge": "^2.1.0",
-    "@types/react": "^16.4.6",
+    "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.6",
     "@types/react-router-dom": "^4.3.0"
   }
