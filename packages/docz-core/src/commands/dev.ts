@@ -18,7 +18,8 @@ export const dev = async (args: Config) => {
   const entries = new Entries(config)
 
   const bundler = webpack({ ...config, port }, env)
-  const server = await bundler.createServer(bundler.getConfig(env))
+  const bundlerConfig = await bundler.getConfig(env)
+  const server = await bundler.createServer(bundlerConfig)
   const { app } = await server.start()
 
   const newConfig = { ...config, websocketPort }

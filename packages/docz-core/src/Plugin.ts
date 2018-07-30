@@ -2,7 +2,7 @@ import get from 'lodash.get'
 
 import { Config } from './commands/args'
 import { isFn } from './utils/helpers'
-import { BabelRC } from './utils/babelrc'
+import { BabelRC } from './utils/babel-config'
 
 export type SetConfig = (config: Config) => Config
 export type ModifyBundlerConfig<C = any> = (

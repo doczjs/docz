@@ -4,7 +4,7 @@ import titleize from 'titleize'
 import envDotProp from 'env-dot-prop'
 
 import { Plugin } from '../Plugin'
-import { BabelRC } from '../utils/babelrc'
+import { BabelRC } from '../utils/babel-config'
 import * as paths from '../config/paths'
 
 const getEnv = (val: string, defaultValue: any = null): any =>

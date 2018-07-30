@@ -4,7 +4,7 @@ import logger from 'signale'
 import { Plugin } from './Plugin'
 
 import { Config as Args, Env } from './commands/args'
-import { babelrc, BabelRC } from './utils/babelrc'
+import { getBabelConfig, BabelRC } from './utils/babel-config'
 import * as paths from './config/paths'
 
 export interface Server {
@@ -54,8 +54,8 @@ export class Bundler<C = ConfigObj> {
     this.builder = build
   }
 
-  public getConfig(env: Env): C {
-    const babelConfig = babelrc(this.args, env)
+  public async getConfig(env: Env): Promise<C> {
+    const babelConfig = await getBabelConfig(this.args, env)
     const config = this.mountConfig(this.config(babelConfig), env)
 
     return this.args.modifyBundlerConfig(config, !this.isProd(env), this.args)
