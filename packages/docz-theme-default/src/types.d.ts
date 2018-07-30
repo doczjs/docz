@@ -21,11 +21,6 @@ declare module 'polished/lib/color/darken'
 declare module 'pretty'
 declare module 'webfontloader'
 
-declare module '*.svg' {
-  const content: any
-  export default content
-}
-
 declare module 'facepaint' {
   interface Styles {
     [key: string]: string | number | Styles
