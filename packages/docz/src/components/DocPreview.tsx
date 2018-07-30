@@ -95,7 +95,7 @@ export const DocPreview: SFC<DocPreviewProps> = ({
                 loading: LoadingComponent,
                 render(loaded, props): React.ReactNode {
                   const Component = withMDXComponents(loaded.default)
-                  return <Component {...props} />
+                  return <Component {...props} doc={entry} />
                 },
               })
 
