@@ -35,7 +35,7 @@ export const NotFound = () => (
         <Wrapper>
           <Title>Page Not Found</Title>
           <Subtitle>
-            Check if you haven't changed the document route or delete it!
+            Check if you haven't changed the document route or deleted it!
           </Subtitle>
         </Wrapper>
       </Main>
