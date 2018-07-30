@@ -10,6 +10,7 @@ import UglifyJs from 'uglifyjs-webpack-plugin'
 import { Config as Args, Env } from '../../commands/args'
 import { BabelRC } from '../../utils/babel-config'
 import * as paths from '../../config/paths'
+import { getClientEnvironment } from '../../config/dotenv'
 import * as loaders from './loaders'
 
 const uglify = new UglifyJs({
@@ -235,6 +236,7 @@ export const createConfig = (args: Args, env: Env) => (
 
   config.plugin('injections').use(require('webpack/lib/DefinePlugin'), [
     {
+      ...getClientEnvironment(base).stringified,
       BASE_URL: JSON.stringify(base),
       NODE_ENV: JSON.stringify(env),
       'process.env': {
