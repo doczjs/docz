@@ -237,6 +237,11 @@ export const createConfig = (args: Args, env: Env) => (
     {
       BASE_URL: JSON.stringify(base),
       NODE_ENV: JSON.stringify(env),
+      'process.env': {
+        WEBPACK_SERVE_OVERLAY_WS_URL: JSON.stringify(
+          `ws://${args.hotHost}:${args.hotPort}`
+        ),
+      },
     },
   ])
 

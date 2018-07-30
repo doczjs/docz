@@ -30,13 +30,14 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
   const root = await compiled(fromTemplates('root.tpl.js'))
   const js = await compiled(fromTemplates('index.tpl.js'))
   const html = await compiled(getHtmlFilepath(indexHtml))
+  const websocketUrl = `ws://${config.websocketHost}:${config.websocketPort}`
 
   const rawRootJs = root({
     theme,
     isProd: !dev,
     wrapper: config.wrapper,
     hashRouter: config.hashRouter,
-    websocketUrl: `ws://${config.websocketHost}:${config.websocketPort}`,
+    websocketUrl,
   })
 
   const rawIndexJs = js({

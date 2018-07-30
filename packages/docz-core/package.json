@@ -86,6 +86,7 @@
     "webpack-hot-client": "^4.1.1",
     "webpack-manifest-plugin": "^2.0.3",
     "webpack-serve": "^2.0.2",
+    "webpack-serve-overlay": "^0.2.2",
     "webpack-serve-waitpage": "^1.0.1",
     "webpackbar": "^2.6.1",
     "ws": "^6.0.0",

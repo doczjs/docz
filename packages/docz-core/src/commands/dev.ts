@@ -15,14 +15,19 @@ export const dev = async (args: Config) => {
   const config = loadConfig(args)
   const port = await detectPort(config.port)
   const websocketPort = await detectPort(config.websocketPort)
+  const hotPort = await detectPort(config.hotPort)
   const entries = new Entries(config)
 
-  const bundler = webpack({ ...config, port }, env)
+  envDotProp.set(
+    'webpack.server.overlay.ws.url',
+    `ws://${config.hotHost}:${hotPort}`
+  )
+
+  const newConfig = { ...config, websocketPort, hotPort, port }
+  const bundler = webpack(newConfig, env)
   const bundlerConfig = await bundler.getConfig(env)
   const server = await bundler.createServer(bundlerConfig)
   const { app } = await server.start()
-
-  const newConfig = { ...config, websocketPort }
   const dataServer = new DataServer({
     server: app.server,
     config: newConfig,
