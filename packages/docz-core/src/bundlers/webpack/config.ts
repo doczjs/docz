@@ -1,4 +1,5 @@
 import * as path from 'path'
+import { Configuration } from 'webpack'
 import webpackBarPlugin from 'webpackbar'
 import Config from 'webpack-chain'
 import friendlyErrors from 'friendly-errors-webpack-plugin'
@@ -6,12 +7,11 @@ import htmlWebpackPlugin from 'html-webpack-plugin'
 import manifestPlugin from 'webpack-manifest-plugin'
 import UglifyJs from 'uglifyjs-webpack-plugin'
 
-import { Config as Args } from '../../commands/args'
+import { Config as Args, Env } from '../../commands/args'
 import { BabelRC } from '../../utils/babelrc'
 import * as paths from '../../config/paths'
 import { getClientEnvironment } from '../../config/dotenv'
 import * as loaders from './loaders'
-import { Env } from './'
 
 const uglify = new UglifyJs({
   parallel: true,
@@ -37,10 +37,9 @@ const uglify = new UglifyJs({
   },
 })
 
-export const createConfig = (babelrc: BabelRC) => (
-  args: Args,
-  env: Env
-): Config => {
+export const createConfig = (args: Args, env: Env) => (
+  babelrc: BabelRC
+): Configuration => {
   const { debug, host, port, protocol } = args
 
   const config = new Config()
@@ -71,19 +70,19 @@ export const createConfig = (babelrc: BabelRC) => (
    */
   const outputProd = (output: Config.Output) =>
     output
-      .filename('static/js/[name].[chunkhash:8].js')
-      .sourceMapFilename('static/js/[name].[chunkhash:8].js.map')
-      .publicPath(base)
+      .filename('static/js/[name].[hash].js')
+      .sourceMapFilename('static/js/[name].[hash].js.map')
+      .chunkFilename('static/js/[name].[chunkhash:8].js')
 
   const outputDev = (output: Config.Output) =>
     output
       .filename('static/js/[name].js')
       .sourceMapFilename('static/js/[name].js.map')
-      .publicPath('/')
 
   config.output
     .pathinfo(true)
     .path(dist)
+    .publicPath(isProd ? base : '/')
     .when(isProd, outputProd, outputDev)
     .crossOriginLoading('anonymous')
 
@@ -151,13 +150,19 @@ export const createConfig = (babelrc: BabelRC) => (
   addExtensions(config.resolveLoader)
 
   config.resolve.modules
+    // prioritize our own
+    .add(paths.ownNodeModules)
+    .add(paths.appNodeModules)
     .add('node_modules')
     .add(srcPath)
     .add(paths.root)
 
   config.resolveLoader
     .set('symlinks', true)
-    .modules.add('node_modules')
+    .modules // prioritize our own
+    .add(paths.ownNodeModules)
+    .add(paths.appNodeModules)
+    .add('node_modules')
     .add(paths.root)
 
   /**
@@ -235,5 +240,5 @@ export const createConfig = (babelrc: BabelRC) => (
   ])
 
   config.performance.hints(false)
-  return config
+  return config.toConfig() as Configuration
 }

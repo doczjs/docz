@@ -15,6 +15,11 @@ const fromTemplates = (file: string) => path.join(paths.templates, file)
 const getHtmlFilepath = (indexHtml: string | undefined) =>
   indexHtml ? path.join(paths.root, indexHtml) : fromTemplates('index.tpl.html')
 
+const getPublicUrl = (config: Config, dev: boolean): string => {
+  const prefix = config.base === '/' ? '' : config.base
+  return dev ? prefix : `${prefix}/public`
+}
+
 const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
   const { plugins, title, description, theme, indexHtml } = config
   const props = Plugin.propsOfPlugins(plugins)
@@ -42,6 +47,7 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
   const rawIndexHtml = html({
     title,
     description,
+    publicUrl: getPublicUrl(config, dev),
   })
 
   await touch(paths.rootJs, rawRootJs)

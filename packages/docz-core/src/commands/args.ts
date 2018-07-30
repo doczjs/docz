@@ -1,18 +1,25 @@
 import * as fs from 'fs-extra'
 import humanize from 'humanize-string'
 import titleize from 'titleize'
+import envDotProp from 'env-dot-prop'
 
 import { Plugin } from '../Plugin'
 import { BabelRC } from '../utils/babelrc'
 import * as paths from '../config/paths'
 
+const getEnv = (val: string, defaultValue: any = null): any =>
+  envDotProp.get(val, defaultValue, { parse: true })
+
 const removeScope = (name: string) => name.replace(/^@.*\//, '')
-const getInitialTitle = () => {
+const getInitialTitle = (): string => {
   const pkg = fs.readJsonSync(paths.packageJson, { throws: false })
   const name = pkg && pkg.name ? pkg.name : 'MyDoc'
 
   return titleize(humanize(removeScope(name)))
 }
+
+export type Env = 'production' | 'development'
+export type ThemeConfig = Record<string, any>
 
 export interface Argv {
   /* io args */
@@ -36,10 +43,6 @@ export interface Argv {
   ordering: 'ascending' | 'descending'
   wrapper?: string
   indexHtml?: string
-}
-
-export interface ThemeConfig {
-  [key: string]: any
 }
 
 export interface Config extends Argv {
@@ -104,27 +107,27 @@ export const args = (yargs: any) => {
   })
   yargs.positional('debug', {
     type: 'boolean',
-    default: process.env.DEBUG || false,
+    default: getEnv('debug', false),
   })
   yargs.positional('protocol', {
     type: 'string',
-    default: process.env.HTTPS === 'true' ? 'https' : 'http',
+    default: getEnv('https') ? 'https' : 'http',
   })
   yargs.positional('host', {
     type: 'string',
-    default: process.env.HOST || '127.0.0.1',
+    default: getEnv('host', '127.0.0.1'),
   })
   yargs.positional('port', {
     alias: 'p',
     type: 'number',
-    default: process.env.PORT || 3000,
+    default: getEnv('port', 3000),
   })
   yargs.positional('websocketHost', {
     type: 'string',
-    default: process.env.WEBSOCKET_HOST || '127.0.0.1',
+    default: getEnv('websocket.host', '127.0.0.1'),
   })
   yargs.positional('websocketPort', {
     type: 'number',
-    default: process.env.WEBSOCKET_PORT || 8089,
+    default: getEnv('websocket.port', 8089),
   })
 }

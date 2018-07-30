@@ -1,6 +1,8 @@
 {
   "name": "docz-plugin-css",
-  "version": "0.5.7",
+  "version": "0.8.0",
+  "description": "This package makes it possible to use preprocessors and css modules on docz",
+  "license": "MIT",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
@@ -11,7 +13,6 @@
     "package.json",
     "README.md"
   ],
-  "license": "MIT",
   "scripts": {
     "dev": "libundler watch --ts",
     "build": "libundler build --ts --c",
@@ -21,24 +22,24 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "autoprefixer": "^8.6.5",
+    "autoprefixer": "^9.0.1",
     "css-loader": "^1.0.0",
     "deepmerge": "^2.1.1",
-    "docz-core": "^0.5.7",
-    "less": "^3.6.0",
+    "docz-core": "^0.8.0",
+    "less": "^3.7.1",
     "less-loader": "^4.1.0",
     "loader-utils": "^1.1.0",
     "mini-css-extract-plugin": "^0.4.1",
     "node-sass": "^4.9.2",
-    "optimize-css-assets-webpack-plugin": "^4.0.3",
-    "postcss": "^6.0.23",
-    "postcss-flexbugs-fixes": "^3.3.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.0",
+    "postcss": "^7.0.1",
+    "postcss-flexbugs-fixes": "^4.0.0",
     "postcss-loader": "^2.1.6",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "webpack": "^4.15.1",
+    "webpack": "^4.16.1",
     "webpack-chain": "^4.8.0"
   }
 }

@@ -1,6 +1,9 @@
 import * as React from 'react'
 import { Fragment, SFC, ComponentType } from 'react'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
+import capitalize from 'capitalize'
+
+import { humanize } from '../utils/humanize-prop'
 
 export interface EnumValue {
   value: string
@@ -22,6 +25,20 @@ export interface FlowTypeArgs {
 export interface PropType {
   name: string
   value?: any
+  raw?: any
+}
+
+export interface FlowType extends PropType {
+  elements: FlowTypeElement[]
+  name: string
+  raw: string
+  type?: string
+  signature?: {
+    arguments: FlowTypeArgs[]
+    return: {
+      name: string
+    }
+  }
 }
 
 export interface Prop {
@@ -32,18 +49,7 @@ export interface Prop {
     value: string
     computed: boolean
   }
-  flowType?: {
-    elements: FlowTypeElement[]
-    name: string
-    raw: string
-    type?: string
-    signature?: {
-      arguments: FlowTypeArgs[]
-      return: {
-        name: string
-      }
-    }
-  }
+  flowType?: FlowType
 }
 
 export type ComponentWithDocGenInfo = ComponentType & {
@@ -65,52 +71,21 @@ export type TooltipComponent = React.ComponentType<{
   children: React.ReactNode
 }>
 
-const extractTypeDescribedValue = (type: PropType): string => {
-  const { name, value } = type
-
-  // instanceOf, computed shape, unknown enum
-  if (typeof value === 'string') {
-    return value
-  }
-
-  // oneOf, oneOfType
-  if (Array.isArray(value)) {
-    const values = value.map(valueType => {
-      if (valueType.name === 'custom') return `custom(${valueType.raw})`
-      return valueType.name || valueType.value
-    })
-
-    return values.join(' | ')
-  }
-
-  // arrayOf, objectOf
-  if (typeof value === 'object' && name !== 'shape') {
-    return value.name
-  }
-
-  // shape
-  if (typeof value === 'object' && name === 'shape') {
-    // show only keys due to a recursive limitation
-    return `{ ${Object.keys(value).join(', ')} }`
-  }
-
-  // untreated
-  return ''
-}
-
 const getPropType = (prop: Prop, Tooltip?: TooltipComponent) => {
-  const name = prop.flowType ? prop.flowType.name : prop.type.name
+  const propName = prop.flowType ? prop.flowType.name : prop.type.name
+  const isEnum = propName.startsWith('"')
+  const name = capitalize(isEnum ? 'enum' : propName)
   const value = prop.type && prop.type.value
 
   if (!name) return null
   if (!Tooltip) return name
-  if ((!prop.flowType && !value) || (prop.flowType && !prop.flowType.elements))
-    return name
+  if (!prop.flowType && !isEnum && !value) return name
+  if (prop.flowType && !prop.flowType.elements) return name
 
   return prop.flowType ? (
-    <Tooltip text={prop.flowType.raw}>{name}</Tooltip>
+    <Tooltip text={humanize(prop.flowType)}>{name}</Tooltip>
   ) : (
-    <Tooltip text={extractTypeDescribedValue(prop.type)}>{name}</Tooltip>
+    <Tooltip text={humanize(prop.type)}>{name}</Tooltip>
   )
 }
 

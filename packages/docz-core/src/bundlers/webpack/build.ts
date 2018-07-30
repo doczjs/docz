@@ -1,25 +1,19 @@
 import * as fs from 'fs-extra'
 import chalk from 'chalk'
 import logger from 'signale'
-import webpack, { Configuration } from 'webpack'
+import webpack, { Configuration as CFG } from 'webpack'
 import FSR from 'react-dev-utils/FileSizeReporter'
 import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages'
 import printBuildError from 'react-dev-utils/printBuildError'
+import envDotProp from 'env-dot-prop'
 
-import { Config as Args } from '../../commands/args'
 import * as paths from '../../config/paths'
-
-process.env.BABEL_ENV = process.env.BABEL_ENV || 'production'
-process.env.NODE_ENV = process.env.NODE_ENV || 'production'
 
 const { measureFileSizesBeforeBuild, printFileSizesAfterBuild } = FSR
 const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024
 const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024
 
-const hasCiEnvVar = () =>
-  process.env.CI &&
-  (typeof process.env.CI !== 'string' ||
-    process.env.CI.toLowerCase() !== 'false')
+const hasCiEnvVar = () => envDotProp.get('ci', false, { parse: true })
 
 const copyPublicFolder = async (dest: string): Promise<void> => {
   if (await fs.pathExists(paths.appPublic)) {
@@ -30,7 +24,7 @@ const copyPublicFolder = async (dest: string): Promise<void> => {
   }
 }
 
-const compile = (config: Configuration) =>
+const compile = (config: CFG) =>
   new Promise((resolve, reject) => {
     let compiler
     try {
@@ -45,7 +39,7 @@ const compile = (config: Configuration) =>
       })
   })
 
-const builder = async (config: Configuration, previousFileSizes: any) => {
+const builder = async (config: CFG, previousFileSizes: any) => {
   logger.start('Creating an optimized production build...')
 
   return new Promise(async (resolve, reject) => {
@@ -114,9 +108,7 @@ const onError = (err: Error) => {
   process.exit(1)
 }
 
-export const build = (args: Args) => async (config: Configuration) => {
-  const dist = paths.getDist(args.dest)
-
+export const build = async (config: CFG, dist: string) => {
   try {
     await fs.ensureDir(dist)
     const previousFileSizes = await measureFileSizesBeforeBuild(dist)

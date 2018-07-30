@@ -107,6 +107,15 @@ const Submenu = styled('div')`
 const isSmallLinkActive = (slug: string) => (m: any, location: any) =>
   slug === location.hash.slice(1, Infinity)
 
+export const getActiveFromClass = (el: HTMLElement | null) => {
+  if (el) {
+    const classes = el.classList
+    return classes.contains('active')
+  }
+
+  return false
+}
+
 interface LinkProps extends BaseLinkProps {
   doc: Entry
 }
@@ -126,17 +135,8 @@ export class Link extends Component<LinkProps, LinkState> {
     this.$el = null
   }
 
-  public checkActive = (): boolean => {
-    if (this.$el) {
-      const classes = this.$el.classList
-      return classes.contains('active')
-    }
-
-    return false
-  }
-
   public updateActive = (prevActive: boolean): void => {
-    const active = this.checkActive()
+    const active = getActiveFromClass(this.$el)
     if (prevActive !== active) this.setState({ active })
   }
 

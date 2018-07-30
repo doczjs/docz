@@ -1,33 +1,43 @@
 import * as React from 'react'
-import { SFC } from 'react'
+import { ComponentType, SFC } from 'react'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 
 import { isFn } from './Docs'
-import { ComponentsMap } from './DocPreview'
+import { ComponentsMap, Identity } from './DocPreview'
 
 export interface PlaygroundProps {
-  __code: (components: ComponentsMap) => any
-  children: any
   components: ComponentsMap
   className?: string
   style?: any
+  wrapper?: ComponentType<any>
+  children: any
+  __position: number
+  __code: string
 }
 
 const BasePlayground: SFC<PlaygroundProps> = ({
   components,
-  children,
-  __code,
   className,
   style,
+  wrapper: Wrapper = Identity,
+  children,
+  __position,
+  __code,
 }) => {
-  return components && components.render ? (
-    <components.render
-      className={className}
-      style={style}
-      component={isFn(children) ? children() : children}
-      code={__code(components)}
-    />
-  ) : null
+  if (!components || !components.render) return null
+
+  return (
+    <Wrapper>
+      <components.render
+        className={className}
+        style={style}
+        components={components}
+        component={isFn(children) ? children() : children}
+        position={__position}
+        code={__code}
+      />
+    </Wrapper>
+  )
 }
 
 export const Playground = withMDXComponents(BasePlayground)

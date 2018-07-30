@@ -12,11 +12,14 @@
   <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="">
   <img src="https://img.shields.io/npm/dt/docz.svg" alt="">
   <a href="https://discord.gg/YQE4MbD"><img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" alt="Chat"></a>
+  <img src="https://opencollective.com/docz/backers/badge.svg" alt="Backers on Open Collective">
+  <img src="https://opencollective.com/docz/sponsors/badge.svg" alt="Sponsors on Open Collective">
 </p>
+
 
 <p align="center">
   <a href="http://docz.site" target="_blank">
-    <img src="https://cdn-std.dprcdn.net/files/acc_649651/e0MVXU" alt="Docz video">
+    <img src="https://cdn-std.dprcdn.net/files/acc_649651/lvs55S" alt="Docz video">
   </a>
 </p>
 
@@ -119,7 +122,7 @@ $ yarn docz dev
 
 That's it! You have a real badass documentation now 👊
 
-![](https://cdn-std.dprcdn.net/files/acc_649651/yTWGC3)
+![](https://cdn-std.dprcdn.net/files/acc_649651/7RRXv)
 
 Any doubt? Check [our docs](http://docz.site) to see more about **docz**!
 
@@ -128,12 +131,31 @@ Any doubt? Check [our docs](http://docz.site) to see more about **docz**!
 Contributions, issues and feature requests are very welcome.
 Please make sure to read the [Contributing Guide](/CONTRIBUTING.md) before making a pull request.
 
-## 💪🏻 &nbsp; Contributors
+## 💭 &nbsp; Needing Help?
 
-Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+If you need some help you can chat with us on [our Discord server](https://discord.gg/Qec87en), you have a great team to help you:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars3.githubusercontent.com/u/2029172?v=4" width="60px;"/><br /><sub><b>Pedro Nauck</b></sub>](https://github.com/pedronauck)<br />[💻](https://github.com/pedronauck/docz/commits?author=pedronauck "Code") [📖](https://github.com/pedronauck/docz/commits?author=pedronauck "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Apedronauck "Bug reports") [👀](#review-pedronauck "Reviewed Pull Requests") | [<img src="https://avatars3.githubusercontent.com/u/5435657?v=4" width="60px;"/><br /><sub><b>Marcelo Formentão</b></sub>](https://github.com/marceloavf)<br />[💻](https://github.com/pedronauck/docz/commits?author=marceloavf "Code") [📖](https://github.com/pedronauck/docz/commits?author=marceloavf "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Amarceloavf "Bug reports") | [<img src="https://avatars0.githubusercontent.com/u/3238901?s=460&v=4" width="60px;"/><br /><sub><b>Nicholas Eduardo</b></sub>](https://github.com/nicholasess)<br />[💻](https://github.com/pedronauck/docz/commits?author=nicholasess "Code") [📖](https://github.com/pedronauck/docz/commits?author=nicholasess "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Anicholasess "Bug reports") | [<img src="https://avatars2.githubusercontent.com/u/3277185?v=4" width="60px;"/><br /><sub><b>Renato Ribeiro</b></sub>](http://twitter.com/renatorib_)<br />[💻](https://github.com/pedronauck/docz/commits?author=renatorib "Code") [📖](https://github.com/pedronauck/docz/commits?author=renatorib "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Arenatorib "Bug reports") |
-| :---: | :---: | :---: | :---: |
+| [<img src="https://avatars3.githubusercontent.com/u/2029172?v=4" width="60px;"/><br /><sub><b>Pedro Nauck</b></sub>](https://github.com/pedronauck)<br />[💻](https://github.com/pedronauck/docz/commits?author=pedronauck "Code") [📖](https://github.com/pedronauck/docz/commits?author=pedronauck "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Apedronauck "Bug reports") [👀](#review-pedronauck "Reviewed Pull Requests") | [<img src="https://avatars3.githubusercontent.com/u/5435657?v=4" width="60px;"/><br /><sub><b>Marcelo Formentão</b></sub>](https://github.com/marceloavf)<br />[💻](https://github.com/pedronauck/docz/commits?author=marceloavf "Code") [📖](https://github.com/pedronauck/docz/commits?author=marceloavf "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Amarceloavf "Bug reports") | [<img src="https://avatars0.githubusercontent.com/u/3238901?s=460&v=4" width="60px;"/><br /><sub><b>Nicholas Eduardo</b></sub>](https://github.com/nicholasess)<br />[💻](https://github.com/pedronauck/docz/commits?author=nicholasess "Code") [📖](https://github.com/pedronauck/docz/commits?author=nicholasess "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Anicholasess "Bug reports") | [<img src="https://avatars2.githubusercontent.com/u/3277185?v=4" width="60px;"/><br /><sub><b>Renato Ribeiro</b></sub>](http://twitter.com/renatorib_)<br />[💻](https://github.com/pedronauck/docz/commits?author=renatorib "Code") [📖](https://github.com/pedronauck/docz/commits?author=renatorib "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Arenatorib "Bug reports") | [<img src="https://avatars0.githubusercontent.com/u/13947203?v=4" width="60px;"/><br /><sub><b>Guilherme Jabur</b></sub>](https://github.com/jaburcodes)<br />[💻](https://github.com/pedronauck/docz/commits?author=jaburcodes "Code") [📖](https://github.com/pedronauck/docz/commits?author=jaburcodes "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Ajaburcodes "Bug reports") |
+| :---: | :---: | :---: | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+## 💪🏻 &nbsp; Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+
+<a href="https://github.com/pedronauck/docz/graphs/contributors"><img src="https://opencollective.com/docz/contributors.svg?width=890&button=false" /></a>
+
+### 🙏🏻 &nbsp; Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/docz#backer)]
+
+<a href="https://opencollective.com/docz#backers" target="_blank"><img src="https://opencollective.com/docz/backers.svg?width=890"></a>
+
+### 🙌🏻 &nbsp; Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/docz#sponsor)]
+
+<a href="https://opencollective.com/docz/sponsor/0/website" target="_blank"><img src="https://opencollective.com/docz/sponsor/0/avatar.svg"></a>
+

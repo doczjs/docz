@@ -5,8 +5,6 @@ export const styles = {
     lineHeight: 1.5,
   },
   container: {
-    width: 960,
-    maxWidth: '100%',
     padding: ['20px 30px', '50px 50px 100px'],
   },
   h1: {
@@ -15,9 +13,9 @@ export const styles = {
     fontWeight: 600,
   },
   h2: {
-    margin: ['25px 0 20px', '50px 0 20px'],
+    margin: ['30px 0 20px', '50px 0 20px'],
     lineHeight: ['1.2em', '1.5em'],
-    fontSize: [30, 32],
+    fontSize: [28, 32],
     fontWeight: 400,
   },
   h3: {
@@ -48,16 +46,18 @@ export const styles = {
     margin: '0 3px',
     padding: '4px 6px',
     borderRadius: '3px',
-    fontFamily: "'Inconsolata', monospace",
-    fontSize: 16,
+    fontFamily: '"Source Code Pro", monospace',
+    fontSize: 14,
   },
   pre: {
-    padding: ['1.5em', '2em'],
-    fontFamily: "'Inconsolata', monospace",
-    fontSize: 16,
+    margin: '30px 0',
+    fontFamily: '"Source Code Pro", monospace',
+    fontSize: 14,
+    lineHeight: 1.8,
   },
   table: {
-    fontFamily: "'Inconsolata', monospace",
-    fontSize: 16,
+    marginBottom: [20, 40],
+    fontFamily: '"Source Code Pro", monospace',
+    fontSize: 14,
   },
 }

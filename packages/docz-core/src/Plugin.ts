@@ -11,6 +11,7 @@ export type ModifyBundlerConfig<C = any> = (
   args: Config
 ) => C
 export type ModifyBabelRC = (babelrc: BabelRC, args: Config) => BabelRC
+export type onCreateApp = <A>(app: A) => void
 export type OnServerListening = <S>(server: S) => void
 export type OnPreBuild = () => void
 export type OnPostBuild = () => void
@@ -21,6 +22,7 @@ export interface PluginFactory {
   setConfig?: SetConfig
   modifyBundlerConfig?: ModifyBundlerConfig
   modifyBabelRc?: ModifyBabelRC
+  onCreateApp?: onCreateApp
   onServerListening?: OnServerListening
   onPreBuild?: OnPreBuild
   onPostBuild?: OnPostBuild
@@ -65,6 +67,7 @@ export class Plugin<C = any> implements PluginFactory {
   public readonly setConfig?: SetConfig
   public readonly modifyBundlerConfig?: ModifyBundlerConfig<C>
   public readonly modifyBabelRc?: ModifyBabelRC
+  public readonly onCreateApp?: onCreateApp
   public readonly onServerListening?: OnServerListening
   public readonly onPreBuild?: OnPreBuild
   public readonly onPostBuild?: OnPostBuild
@@ -75,6 +78,7 @@ export class Plugin<C = any> implements PluginFactory {
     this.setConfig = p.setConfig
     this.modifyBundlerConfig = p.modifyBundlerConfig
     this.modifyBabelRc = p.modifyBabelRc
+    this.onCreateApp = p.onCreateApp
     this.onServerListening = p.onServerListening
     this.onPreBuild = p.onPreBuild
     this.onPostBuild = p.onPostBuild

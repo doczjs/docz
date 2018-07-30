@@ -2,7 +2,7 @@
 
 Default theme for [docz](https://docz.site)
 
-![](https://cdn-std.dprcdn.net/files/acc_649651/rvJgRu)
+![](https://cdn-std.dprcdn.net/files/acc_649651/xZt5zr)
 
 ## Dark Mode
 

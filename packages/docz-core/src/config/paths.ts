@@ -16,16 +16,23 @@ const ensureSlash = (filepath: any, needsSlash: boolean) => {
 
 export const root = fs.realpathSync(process.cwd())
 const resolveApp = (to: string) => path.resolve(root, to)
+const resolveOwn = (to: string) => path.resolve(__dirname, '../', to)
 
 export interface Paths {
   root: string
   templates: string
   packageJson: string
   servedPath: (base: string) => string
+
   docz: string
   app: string
+  appPublic: string
+  appNodeModules: string
+  ownNodeModules: string
+
   getDist: (dest: string) => string
   distPublic: (dest: string) => string
+
   importsJs: string
   rootJs: string
   indexJs: string
@@ -42,6 +49,8 @@ export const servedPath = (base: string) => ensureSlash(base, true)
 export const docz = resolveApp('.docz')
 export const app = path.resolve(docz, 'app/')
 export const appPublic = path.resolve(docz, 'public/')
+export const appNodeModules = resolveApp('node_modules')
+export const ownNodeModules = resolveOwn('node_modules')
 
 export const getDist = (dest: string) => path.join(root, dest)
 export const distPublic = (dest: string) => path.join(dest, 'public/')

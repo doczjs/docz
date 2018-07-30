@@ -3,6 +3,96 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/pedronauck/docz/compare/v0.7.1...v0.8.0) (2018-07-28)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** get fullscreen from localstorage ([0f8aa56](https://github.com/pedronauck/docz/commit/0f8aa56))
+
+
+### Features
+
+* **docz-theme-default:** add html output on playground ([be7a749](https://github.com/pedronauck/docz/commit/be7a749))
+
+
+
+
+<a name="0.7.1"></a>
+## [0.7.1](https://github.com/pedronauck/docz/compare/v0.7.0...v0.7.1) (2018-07-24)
+
+
+### Bug Fixes
+
+* **docz:** sort algorithm off docs and menus ([dad83ce](https://github.com/pedronauck/docz/commit/dad83ce))
+
+
+
+
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/pedronauck/docz/compare/v0.6.2...v0.7.0) (2018-07-23)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** not found page ([fb1ac49](https://github.com/pedronauck/docz/commit/fb1ac49))
+* **docz-theme-default:** resize bar style ([df0ae82](https://github.com/pedronauck/docz/commit/df0ae82))
+
+
+### Features
+
+* **docz-theme-default:** add close on esc on playground fullscreen ([4ebf202](https://github.com/pedronauck/docz/commit/4ebf202))
+* **docz-theme-default:** add copy to clipboard on pre ([78149ad](https://github.com/pedronauck/docz/commit/78149ad))
+* **docz-theme-default:** add fullpage support for docs ([af88d0e](https://github.com/pedronauck/docz/commit/af88d0e))
+* **docz-theme-default:** add line numbers on Playground ([204f1bb](https://github.com/pedronauck/docz/commit/204f1bb))
+* **docz-theme-default:** add resize bar for fullscreen playground ([392009f](https://github.com/pedronauck/docz/commit/392009f))
+* **docz-theme-default:** add responsive mode for playground ([e04452e](https://github.com/pedronauck/docz/commit/e04452e))
+
+
+
+
+<a name="0.6.2"></a>
+## [0.6.2](https://github.com/pedronauck/docz/compare/v0.6.1...v0.6.2) (2018-07-20)
+
+
+
+
+**Note:** Version bump only for package docz-theme-default
+
+<a name="0.6.1"></a>
+## [0.6.1](https://github.com/pedronauck/docz/compare/v0.6.0...v0.6.1) (2018-07-19)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** add background and color on NotFound ([f0bd532](https://github.com/pedronauck/docz/commit/f0bd532))
+
+
+
+
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/pedronauck/docz/compare/v0.5.9...v0.6.0) (2018-07-19)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** open menu if has some link active ([8399aad](https://github.com/pedronauck/docz/commit/8399aad))
+
+
+
+
+<a name="0.5.9"></a>
+## [0.5.9](https://github.com/pedronauck/docz/compare/v0.5.8...v0.5.9) (2018-07-16)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** add overflow config on Pre component ([#146](https://github.com/pedronauck/docz/issues/146)) ([9d4ce59](https://github.com/pedronauck/docz/commit/9d4ce59))
+
+
+
+
 <a name="0.5.8"></a>
 ## [0.5.8](https://github.com/pedronauck/docz/compare/v0.5.7...v0.5.8) (2018-07-11)
 

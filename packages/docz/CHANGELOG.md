@@ -3,6 +3,87 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/pedronauck/docz/compare/v0.7.1...v0.8.0) (2018-07-28)
+
+
+### Bug Fixes
+
+* **docz:** humanize array type of flow (fix [#167](https://github.com/pedronauck/docz/issues/167)) ([18798bc](https://github.com/pedronauck/docz/commit/18798bc))
+
+
+
+
+<a name="0.7.1"></a>
+## [0.7.1](https://github.com/pedronauck/docz/compare/v0.7.0...v0.7.1) (2018-07-24)
+
+
+### Bug Fixes
+
+* **docz:** add wrapper prop on Playground ([566aaf8](https://github.com/pedronauck/docz/commit/566aaf8))
+* **docz:** sort algorithm off docs and menus ([dad83ce](https://github.com/pedronauck/docz/commit/dad83ce))
+
+
+
+
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/pedronauck/docz/compare/v0.6.2...v0.7.0) (2018-07-23)
+
+
+### Bug Fixes
+
+* **docz:** humanize prop types on PropTable ([c1f4c6f](https://github.com/pedronauck/docz/commit/c1f4c6f))
+
+
+### Features
+
+* **docz:** add rawCode for Playground ([70d4735](https://github.com/pedronauck/docz/commit/70d4735))
+* **docz-theme-default:** add resize bar for fullscreen playground ([392009f](https://github.com/pedronauck/docz/commit/392009f))
+
+
+
+
+<a name="0.6.2"></a>
+## [0.6.2](https://github.com/pedronauck/docz/compare/v0.6.1...v0.6.2) (2018-07-20)
+
+
+### Bug Fixes
+
+* **docz-core:** set env vars for commands ([29f0098](https://github.com/pedronauck/docz/commit/29f0098))
+
+
+
+
+<a name="0.6.1"></a>
+## [0.6.1](https://github.com/pedronauck/docz/compare/v0.6.0...v0.6.1) (2018-07-19)
+
+
+### Bug Fixes
+
+* **docz:** default DocPreview components ([ff7cf32](https://github.com/pedronauck/docz/commit/ff7cf32))
+
+
+
+
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/pedronauck/docz/compare/v0.5.9...v0.6.0) (2018-07-19)
+
+
+### Bug Fixes
+
+* **docz:** prevent default components object with no render ([4535aef](https://github.com/pedronauck/docz/commit/4535aef))
+
+
+
+
+<a name="0.5.9"></a>
+## [0.5.9](https://github.com/pedronauck/docz/compare/v0.5.8...v0.5.9) (2018-07-16)
+
+
+
+
+**Note:** Version bump only for package docz
+
 <a name="0.5.8"></a>
 ## [0.5.8](https://github.com/pedronauck/docz/compare/v0.5.7...v0.5.8) (2018-07-11)
 

@@ -10,15 +10,23 @@ export type PageProps = RouteComponentProps<any> & {
   doc: Entry
 }
 
-const Identity: SFC<any> = ({ children }) => children
-const DefaultLoading: SFC = () => null
+export const Identity: SFC<any> = ({ children }) => (
+  <Fragment>{children}</Fragment>
+)
 
-export type RenderComponent = ComponentType<{
-  component: JSX.Element
-  code: any
+const DefaultLoading: SFC = () => <Fragment>Loading</Fragment>
+
+export interface RenderComponentProps {
   className?: string
   style?: any
-}>
+  wrapper?: ComponentType<any>
+  components: ComponentsMap
+  component: JSX.Element
+  position: number
+  code: string
+}
+
+export type RenderComponent = ComponentType<RenderComponentProps>
 
 export const DefaultRender: RenderComponent = ({ component, code }) => (
   <Fragment>
@@ -27,19 +35,8 @@ export const DefaultRender: RenderComponent = ({ component, code }) => (
   </Fragment>
 )
 
-const loadImport = (imports: ImportMap, components: ComponentsMap) => (
-  path: string
-) => async (): Promise<SFC<any>> => {
-  const { default: Component } = await imports[path]()
-  return props => <Component {...props} components={components} />
-}
-
-const defaultComponents: ComponentsMap = {
-  loading: DefaultLoading,
-  render: DefaultRender,
-  page: Identity,
-  notFound: Identity,
-}
+export type NotFoundComponent = ComponentType<RouteComponentProps<any>>
+const DefaultNotFound: NotFoundComponent = () => <Fragment>Not found</Fragment>
 
 export interface ComponentsMap {
   loading?: ComponentType
@@ -62,13 +59,32 @@ export interface ComponentsMap {
   [key: string]: any
 }
 
+const loadImport = (imports: ImportMap, components: ComponentsMap) => (
+  path: string
+) => async (): Promise<SFC<any>> => {
+  const { default: Component } = await imports[path]()
+  return props => <Component {...props} components={components} />
+}
+
+const defaultComponents: ComponentsMap = {
+  loading: DefaultLoading,
+  render: DefaultRender,
+  notFound: DefaultNotFound,
+  page: Identity,
+}
+
 export interface DocPreviewProps {
   components: ComponentsMap
 }
 
 export const DocPreview: SFC<DocPreviewProps> = ({
-  components = defaultComponents,
+  components: themeComponents = {},
 }) => {
+  const components = {
+    ...defaultComponents,
+    ...themeComponents,
+  }
+
   const Page = components.page
   const NotFound = components.notFound
   const LoadingComponent = components.loading

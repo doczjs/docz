@@ -1,12 +1,23 @@
 import * as path from 'path'
+import * as fs from 'fs-extra'
+import * as Koa from 'koa'
 import { Configuration } from 'webpack'
+import mount from 'koa-mount'
+import range from 'koa-range'
 import convert from 'koa-connect'
+import serveStatic from 'koa-static'
 import history from 'connect-history-api-fallback'
 import serveWaitpage from 'webpack-serve-waitpage'
 
+import * as paths from '../../config/paths'
 import { Config } from '../../commands/args'
+import { ServerHooks } from '../../Bundler'
 
-export const devServerConfig = (args: Config, config: Configuration) => {
+export const devServerConfig = (
+  args: Config,
+  config: Configuration,
+  hooks: ServerHooks
+) => {
   const nonExistentDir = path.resolve(__dirname, 'non-existent')
   const logLevel = (level: string) => (args.debug ? 'debug' : level)
 
@@ -23,7 +34,16 @@ export const devServerConfig = (args: Config, config: Configuration) => {
       reload: false,
       logLevel: logLevel('error'),
     },
-    add: (app: any, middleware: any, options: any) => {
+    add: (app: Koa, middleware: any, options: any) => {
+      middleware.webpack()
+      middleware.content()
+
+      app.use(range)
+
+      if (fs.existsSync(paths.appPublic)) {
+        app.use(mount(args.base, serveStatic(paths.appPublic)))
+      }
+
       app.use(
         convert(
           history({
@@ -33,6 +53,7 @@ export const devServerConfig = (args: Config, config: Configuration) => {
       )
 
       app.use(serveWaitpage(options, { title: args.title }))
+      hooks.onCreateApp<Koa>(app)
     },
   }
 }

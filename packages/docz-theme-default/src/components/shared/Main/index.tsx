@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { Component } from 'react'
+import { injectGlobal } from 'emotion'
 import styled from 'react-emotion'
-import equals from 'fast-deep-equal'
-import { base } from '../../../styles/base'
 
 const Wrapper = styled('div')`
   display: flex;
@@ -13,17 +12,28 @@ interface MainProps {
   config: any
 }
 
+const base = (body: any) =>
+  injectGlobal`
+    body {
+      font-family: ${body.fontFamily};
+      font-size: ${body.fontSize};
+      line-height: ${body.lineHeight};
+    }
+  `
+
 export class Main extends Component<MainProps> {
   public componentDidUpdate(prevProps: MainProps): void {
     const { config } = this.props
+    const prevBody = prevProps.config.styles.body
+    const body = config.styles.body
 
-    if (!equals(prevProps.config, config)) {
-      base(config)
+    if (body && prevBody !== body) {
+      base(config.styles.body)
     }
   }
 
   public componentDidMount(): void {
-    base(this.props.config)
+    base(this.props.config.styles.body)
   }
 
   public render(): React.ReactNode {

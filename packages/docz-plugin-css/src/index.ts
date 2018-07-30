@@ -9,15 +9,12 @@ import { getLocalIdent } from './get-local-ident'
  * Tests
  */
 
-const tests: Record<string, RegExp> = {
-  postcss: /\.css$/,
-  'module-postcss': /\.module\.css$/,
-  sass: /\.s(a|c)ss$/,
-  'module-sass': /\.module\.s(a|c)ss$/,
-  less: /\.less$/,
-  'module-less': /\.module\.less$/,
-  stylus: /\.styl(us)?$/,
-  'module-stylus': /\.module\.styl(us)?$/,
+type PreProcessor = 'postcss' | 'sass' | 'less' | 'stylus'
+const tests: Record<PreProcessor, RegExp> = {
+  postcss: /(\.module)?\.css$/,
+  sass: /(\.module)?\.s(a|c)ss$/,
+  less: /(\.module)?\.less$/,
+  stylus: /(\.module)?\.styl(us)?$/,
 }
 
 /**
@@ -88,11 +85,6 @@ const applyRule = (
 ) => {
   const { preprocessor = 'postcss', cssOpts, loaderOpts } = opts
 
-  const regexp = tests[preprocessor]
-  const modulesRegexp = tests[`module-${preprocessor}`]
-  const test = cssmodules ? modulesRegexp : regexp
-  const exclude = [/node_modules/]
-
   const loaderfn = loaders[preprocessor]
   const loader = loaderfn(loaderOpts)
   const cssoptions = merge(cssOpts, {
@@ -103,8 +95,7 @@ const applyRule = (
   })
 
   return {
-    test,
-    exclude: cssmodules ? exclude : exclude.concat([modulesRegexp]),
+    test: tests[preprocessor],
     use: loader(cssoptions, dev),
   }
 }
@@ -119,10 +110,7 @@ export interface CSSPluginOptions {
 export const css = (opts: CSSPluginOptions) =>
   createPlugin({
     modifyBundlerConfig: (config, dev) => {
-      config.module.rules.push(
-        applyRule(opts, false, dev),
-        applyRule(opts, opts.cssmodules, dev)
-      )
+      config.module.rules.push(applyRule(opts, opts.cssmodules, dev))
 
       if (!dev) {
         const test = tests[opts.preprocessor || 'postcss']

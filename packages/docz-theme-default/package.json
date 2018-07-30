@@ -1,6 +1,7 @@
 {
   "name": "docz-theme-default",
-  "version": "0.5.8",
+  "version": "0.8.0",
+  "description": "The default theme of docz",
   "license": "MIT",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
@@ -20,23 +21,27 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "docz": "^0.5.8",
-    "emotion": "^9.2.5",
-    "emotion-theming": "^9.2.5",
+    "copy-text-to-clipboard": "^1.0.4",
+    "docz": "^0.8.0",
+    "emotion": "^9.2.6",
+    "emotion-theming": "^9.2.6",
     "facepaint": "^1.2.1",
-    "fast-deep-equal": "^2.0.1",
-    "fuse.js": "^3.2.1",
-    "prismjs": "^1.15.0",
+    "hotkeys-js": "^3.3.5",
+    "lodash.get": "^4.4.2",
+    "match-sorter": "^2.2.3",
+    "polished": "^1.9.3",
+    "pretty": "^2.0.0",
     "prop-types": "15.6.2",
+    "re-resizable": "^4.7.1",
     "react": "^16.2.0",
     "react-adopt": "^0.6.0",
     "react-breakpoints": "^3.0.0",
-    "react-content-loader": "^3.1.2",
     "react-dom": "^16.2.0",
-    "react-emotion": "^9.2.5",
+    "react-emotion": "^9.2.6",
     "react-feather": "^1.1.1",
     "react-lightweight-tooltip": "^1.0.0",
     "react-powerplug": "^1.0.0-rc.1",
+    "react-syntax-highlighter": "^8.0.1",
     "webfontloader": "^1.6.28"
   },
   "peerDependencies": {
@@ -44,10 +49,10 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
-    "@types/prismjs": "^1.9.0",
+    "@types/lodash.get": "^4.4.4",
     "@types/react": "^16.4.6",
     "@types/react-dom": "^16.0.6",
-    "babel-plugin-emotion": "^9.2.5",
+    "babel-plugin-emotion": "^9.2.6",
     "rollup-plugin-svg": "^1.0.1"
   }
 }

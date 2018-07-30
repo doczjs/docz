@@ -25,7 +25,7 @@ const removePlayground = (code: string) => {
   return code.replace(open(code), '').replace(close(code), '')
 }
 
-const addCodeProp = async (node: any) => {
+const addCodeProp = async (node: any, idx: number) => {
   const name = componentName(node.value)
   const tagOpen = new RegExp(`^\\<${name}`)
 
@@ -34,26 +34,16 @@ const addCodeProp = async (node: any) => {
     const code = formatted.slice(1, Infinity)
     const child = strip(removePlayground(code)).trim()
 
-    const codeComponent = `(components) => components && (
-      <components.pre className="react-prism language-jsx">
-        <code>{\`${child}\`}</code>
-      </components.pre>
-    )`
-
     node.value = node.value.replace(
       tagOpen,
-      `<${name} __code={${codeComponent}}`
+      `<${name} __position={${idx}} __code={\`${child}\`}`
     )
   }
 }
 
-export const plugin = () => (tree: any, file: any) => {
-  async function visitor(node: any): Promise<void> {
-    await addCodeProp(node)
-  }
-
+export default () => (tree: any) => {
   const nodes = [
-    tree.children.filter((node: any) => is('jsx', node)).map(visitor),
+    tree.children.filter((node: any) => is('jsx', node)).map(addCodeProp),
   ]
 
   return Promise.all(nodes).then(() => tree)

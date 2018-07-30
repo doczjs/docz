@@ -36,8 +36,6 @@ export const babel = () =>
       modifyHappypackLoader(config.plugins[happypackJsx])
       modifyHappypackLoader(config.plugins[happypackMdx])
 
-      console.log(args)
-
       if (tsxRule) {
         config.module.rules[tsxIdx] = {
           ...tsxRule,

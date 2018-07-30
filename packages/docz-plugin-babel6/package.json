@@ -1,6 +1,8 @@
 {
   "name": "docz-plugin-babel6",
-  "version": "0.5.7",
+  "version": "0.8.0",
+  "description": "This package makes it possible to use babel6 with docz",
+  "license": "MIT",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
@@ -11,7 +13,6 @@
     "package.json",
     "README.md"
   ],
-  "license": "MIT",
   "scripts": {
     "dev": "libundler watch --ts -e all",
     "build": "libundler build --ts -e all --c",
@@ -24,7 +25,8 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-react-app": "^3.1.2",
-    "docz-core": "^0.5.7",
+    "babel-runtime": "^6.26.0",
+    "docz-core": "^0.8.0",
     "happypack": "^5.0.0",
     "react-docgen-typescript-loader": "^2.1.1",
     "ts-loader": "^4.4.2"

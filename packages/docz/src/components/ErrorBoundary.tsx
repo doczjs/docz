@@ -1,7 +1,11 @@
 import * as React from 'react'
-import { Component, SFC } from 'react'
+import { CSSProperties, Component, SFC } from 'react'
 
-const styles: any = {
+export interface StylesMap {
+  [s: string]: CSSProperties
+}
+
+const styles: StylesMap = {
   wrapper: {
     overflowY: 'auto',
     padding: 50,

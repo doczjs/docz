@@ -1,49 +1,147 @@
-import 'prismjs'
-import 'prismjs/components/prism-jsx'
-
-import React, { PureComponent } from 'react'
-import prism from 'prismjs'
+import * as React from 'react'
+import { SFC, Component, Fragment } from 'react'
+import { ThemeConfig } from 'docz'
 import styled, { cx } from 'react-emotion'
+import rgba from 'polished/lib/color/rgba'
+import lighten from 'polished/lib/color/lighten'
+import darken from 'polished/lib/color/darken'
+import BaseCheck from 'react-feather/dist/icons/check'
+import SyntaxHighlighter from 'react-syntax-highlighter/prism-light'
+import Clipboard from 'react-feather/dist/icons/clipboard'
+import copy from 'copy-text-to-clipboard'
 
-const PreStyled = styled('pre')`
-  border: 1px solid ${p => p.theme.colors.border};
-  margin: 2em 0;
-  border-radius: 5px;
-  background: ${p => p.theme.colors.preBg};
+import { ButtonSwap } from './ButtonSwap'
+import { ButtonLink } from './Button'
+
+const TOP_PADDING = '25px'
+
+const PrismTheme = styled('pre')`
   ${p => p.theme.prismTheme};
   ${p => p.theme.mq(p.theme.styles.pre)};
+  overflow-y: hidden;
+  padding: ${TOP_PADDING} 20px;
+  margin: 0;
+  flex: 1;
 `
 
-interface PreProps {
-  className: string
-  children: any
+const getChildren = (children: any) => {
+  return children && typeof children !== 'string'
+    ? children.props.children
+    : children
 }
 
-export class Pre extends PureComponent<PreProps> {
-  private el: any
+const getLanguage = (children: any) => {
+  if (typeof children === 'string') return 'language-jsx'
+  return children.props.props.className
+}
 
+const getCode = (content: any): SFC => ({ children }) => {
+  const className = cx('react-prism', getLanguage(content))
+  return <PrismTheme className={className}>{children}</PrismTheme>
+}
+
+const Wrapper = styled('div')`
+  display: flex;
+  position: relative;
+  border: 1px solid ${p => p.theme.colors.border};
+  border-radius: 5px;
+  background: ${p => darken(0.01, p.theme.colors.preBg)};
+  ${p => p.theme.mq(p.theme.styles.pre)};
+
+  .react-syntax-highlighter-line-number {
+    display: block;
+    padding: 0 10px;
+    opacity: 0.3;
+    text-align: right;
+  }
+`
+
+const Actions = styled('div')`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 10px;
+`
+
+export const ActionButton = styled(ButtonSwap)`
+  padding: 4px;
+  background: transparent;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: ${p => rgba(p.theme.colors.text, 0.4)};
+  transition: color 0.3s;
+
+  &:hover {
+    color: ${p => rgba(p.theme.colors.text, 0.7)};
+  }
+`
+
+const Check = styled(BaseCheck)`
+  stroke: ${p => p.theme.colors.primary};
+`
+
+interface ClipboardActionProps {
+  content: string
+}
+
+export const ClipboardAction: SFC<ClipboardActionProps> = ({
+  content,
+  ...props
+}) => (
+  <ActionButton
+    {...props}
+    as={ButtonLink}
+    title="Copy to clipboard"
+    onClick={() => copy(content)}
+    swap={<Check width={17} />}
+  >
+    <Clipboard width={15} />
+  </ActionButton>
+)
+
+const Nullable: SFC = ({ children }) => <Fragment>{children}</Fragment>
+
+const linesStyle = (config: any) => ({
+  padding: `${TOP_PADDING} 3px`,
+  borderRight: `1px solid ${config.colors.border}`,
+  background:
+    config.mode === 'light'
+      ? lighten(0.13, config.colors.border)
+      : darken(0.04, config.colors.border),
+  left: 0,
+})
+
+interface PreProps {
+  children: any
+  className?: string
+  actions?: React.ReactNode
+}
+
+export class Pre extends Component<PreProps> {
   public render(): JSX.Element {
-    const { children } = this.props
-    const childrenProps = children.props.props
-    const childrenClassName = childrenProps && childrenProps.className
-    const className = cx('react-prism', this.props.className, childrenClassName)
+    const { children, className, actions } = this.props
+    const content = getChildren(children)
 
     return (
-      <PreStyled innerRef={ref => (this.el = ref)} className={className}>
-        <code>{children.props.children}</code>
-      </PreStyled>
+      <ThemeConfig>
+        {config => (
+          <Wrapper className={className}>
+            <SyntaxHighlighter
+              language="javascript"
+              showLineNumbers
+              useInlineStyles={false}
+              lineNumberContainerStyle={linesStyle(config)}
+              PreTag={Nullable}
+              CodeTag={getCode(children)}
+            >
+              {getChildren(content)}
+            </SyntaxHighlighter>
+            <Actions>
+              {actions || <ClipboardAction content={content} />}
+            </Actions>
+          </Wrapper>
+        )}
+      </ThemeConfig>
     )
-  }
-
-  public componentDidMount(): void {
-    this.highlightCode()
-  }
-
-  public componentDidUpdate(): void {
-    this.highlightCode()
-  }
-
-  private highlightCode(): void {
-    prism.highlightElement(this.el)
   }
 }
