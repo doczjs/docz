@@ -7,11 +7,11 @@ import htmlWebpackPlugin from 'html-webpack-plugin'
 import manifestPlugin from 'webpack-manifest-plugin'
 import UglifyJs from 'uglifyjs-webpack-plugin'
 
+import * as loaders from './loaders'
+import * as paths from '../../config/paths'
+import { getClientEnvironment } from '../../config/env'
 import { Config as Args, Env } from '../../commands/args'
 import { BabelRC } from '../../utils/babel-config'
-import * as paths from '../../config/paths'
-import { getClientEnvironment } from '../../config/dotenv'
-import * as loaders from './loaders'
 
 const uglify = new UglifyJs({
   parallel: true,
@@ -239,11 +239,6 @@ export const createConfig = (args: Args, env: Env) => (
       ...getClientEnvironment(base).stringified,
       BASE_URL: JSON.stringify(base),
       NODE_ENV: JSON.stringify(env),
-      'process.env': {
-        WEBPACK_SERVE_OVERLAY_WS_URL: JSON.stringify(
-          `ws://${args.hotHost}:${args.hotPort}`
-        ),
-      },
     },
   ])
 

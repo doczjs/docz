@@ -15,8 +15,8 @@ const ensureSlash = (filepath: any, needsSlash: boolean) => {
 }
 
 export const root = fs.realpathSync(process.cwd())
-const resolveApp = (to: string) => path.resolve(root, to)
-const resolveOwn = (to: string) => path.resolve(__dirname, '../', to)
+export const resolveApp = (to: string) => path.resolve(root, to)
+export const resolveOwn = (to: string) => path.resolve(__dirname, '../', to)
 
 export interface Paths {
   root: string

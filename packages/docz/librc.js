@@ -1,7 +1,7 @@
+const pkg = require('./package.json')
+
 module.exports = {
-  commonjs: {
-    namedExports: {
-      '../../node_modules/@mdx-js/tag/dist/index.js': ['MDXProvider'],
-    },
-  },
+  external: Object.keys(pkg.dependencies).concat([
+    '@mdx-js/tag/dist/mdx-provider',
+  ]),
 }
