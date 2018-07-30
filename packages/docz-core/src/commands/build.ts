@@ -24,7 +24,7 @@ export const build = async (args: Config) => {
 
   try {
     await run('onPreBuild')
-    await bundler.build(bundler.getConfig(env))
+    await bundler.build(await bundler.getConfig(env))
     await run('onPostBuild')
   } catch (err) {
     logger.fatal(err)

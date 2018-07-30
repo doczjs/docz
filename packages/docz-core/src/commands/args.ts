@@ -4,7 +4,7 @@ import titleize from 'titleize'
 import envDotProp from 'env-dot-prop'
 
 import { Plugin } from '../Plugin'
-import { BabelRC } from '../utils/babelrc'
+import { BabelRC } from '../utils/babel-config'
 import * as paths from '../config/paths'
 
 const getEnv = (val: string, defaultValue: any = null): any =>
@@ -36,6 +36,8 @@ export interface Argv {
   port: number
   websocketPort: number
   websocketHost: string
+  hotPort: number
+  hotHost: string
   /* template args */
   title: string
   description: string
@@ -121,6 +123,14 @@ export const args = (yargs: any) => {
     alias: 'p',
     type: 'number',
     default: getEnv('port', 3000),
+  })
+  yargs.positional('hotHost', {
+    type: 'string',
+    default: getEnv('hot.host', '127.0.0.1'),
+  })
+  yargs.positional('hotPort', {
+    type: 'number',
+    default: getEnv('hot.port', 8090),
   })
   yargs.positional('websocketHost', {
     type: 'string',

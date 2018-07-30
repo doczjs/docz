@@ -77,8 +77,9 @@ To break barriers and facilitate the creation of tools was the purpose that **do
 
 ## 🎛 &nbsp; Plugins
 
- - **[docz-plugin-babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6):** Use this plugin to use older babel version
-- **[docz-plugin-css](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-css):** Plugin to parse css files inside your documents
+ - **[babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6):** Use this plugin to use older babel version
+- **[css](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-css):** Parse css files inside your documents
+- **[svgr](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-css):** Allow you to parse svg using svgr
 
 ## 🚧 &nbsp; Warning!
 

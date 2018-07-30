@@ -1,10 +1,11 @@
 import * as React from 'react'
 import { Fragment, SFC, ComponentType } from 'react'
 import { Switch, Route, RouteComponentProps } from 'react-router-dom'
-import { default as mdxtag } from '@mdx-js/tag'
-import loadable from 'loadable-components'
+import { MDXProvider } from '@mdx-js/tag'
+import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
+import Loadable from 'react-loadable'
 
-import { dataContext, Entry, ImportMap } from '../theme'
+import { dataContext, Entry } from '../theme'
 
 export type PageProps = RouteComponentProps<any> & {
   doc: Entry
@@ -59,13 +60,6 @@ export interface ComponentsMap {
   [key: string]: any
 }
 
-const loadImport = (imports: ImportMap, components: ComponentsMap) => (
-  path: string
-) => async (): Promise<SFC<any>> => {
-  const { default: Component } = await imports[path]()
-  return props => <Component {...props} components={components} />
-}
-
 const defaultComponents: ComponentsMap = {
   loading: DefaultLoading,
   render: DefaultRender,
@@ -85,20 +79,24 @@ export const DocPreview: SFC<DocPreviewProps> = ({
     ...themeComponents,
   }
 
-  const Page = components.page
-  const NotFound = components.notFound
-  const LoadingComponent = components.loading
+  const Page: any = components.page
+  const NotFound: any = components.notFound
+  const LoadingComponent: any = components.loading
 
   return (
-    <mdxtag.MDXProvider components={components}>
+    <MDXProvider components={components}>
       <dataContext.Consumer>
         {({ imports, entries }) => (
           <Switch>
             {Object.keys(imports).map(path => {
               const entry = entries && entries[path]
-              const load = loadImport(imports, components)
-              const AsyncComponent = loadable(load(path), {
-                LoadingComponent,
+              const AsyncComponent: any = Loadable({
+                loader: imports[path],
+                loading: LoadingComponent,
+                render(loaded, props): React.ReactNode {
+                  const Component = withMDXComponents(loaded.default)
+                  return <Component {...props} doc={entry} />
+                },
               })
 
               return (
@@ -124,6 +122,6 @@ export const DocPreview: SFC<DocPreviewProps> = ({
           </Switch>
         )}
       </dataContext.Consumer>
-    </mdxtag.MDXProvider>
+    </MDXProvider>
   )
 }

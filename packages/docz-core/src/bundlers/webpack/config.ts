@@ -8,7 +8,7 @@ import manifestPlugin from 'webpack-manifest-plugin'
 import UglifyJs from 'uglifyjs-webpack-plugin'
 
 import { Config as Args, Env } from '../../commands/args'
-import { BabelRC } from '../../utils/babelrc'
+import { BabelRC } from '../../utils/babel-config'
 import * as paths from '../../config/paths'
 import { getClientEnvironment } from '../../config/dotenv'
 import * as loaders from './loaders'
@@ -127,27 +127,29 @@ export const createConfig = (args: Args, env: Env) => (
       path.dirname(require.resolve('@babel/runtime/package.json'))
     )
 
-  const addExtensions = (resolve: any) => {
-    resolve.extensions
-      .add('.web.js')
-      .add('.mjs')
-      .add('.js')
-      .add('.json')
-      .add('.web.jsx')
-      .add('.jsx')
-      .add('.mdx')
+  config.when(isProd, cfg =>
+    cfg.resolve.alias.set(
+      'webpack-hot-client/client',
+      require.resolve('webpack-hot-client/client')
+    )
+  )
+
+  config.resolve.extensions
+    .add('.web.js')
+    .add('.mjs')
+    .add('.js')
+    .add('.json')
+    .add('.web.jsx')
+    .add('.jsx')
+    .add('.mdx')
+    .end()
+
+  if (args.typescript) {
+    config.resolve.extensions
+      .prepend('.ts')
+      .prepend('.tsx')
       .end()
-
-    if (args.typescript) {
-      resolve.extensions
-        .prepend('.ts')
-        .prepend('.tsx')
-        .end()
-    }
   }
-
-  addExtensions(config.resolve)
-  addExtensions(config.resolveLoader)
 
   config.resolve.modules
     // prioritize our own
@@ -171,12 +173,13 @@ export const createConfig = (args: Args, env: Env) => (
 
   loaders.js(config, args)
   loaders.mdx(config, args)
-  args.typescript && loaders.ts(config, args)
-  loaders.setupHappypack(config, args, babelrc)
   loaders.images(config)
   loaders.svg(config)
   loaders.media(config)
   loaders.fonts(config)
+
+  args.typescript && loaders.ts(config, args)
+  loaders.setupHappypack(config, args, babelrc)
 
   /**
    * plugins
@@ -233,9 +236,14 @@ export const createConfig = (args: Args, env: Env) => (
 
   config.plugin('injections').use(require('webpack/lib/DefinePlugin'), [
     {
+      ...getClientEnvironment(base).stringified,
       BASE_URL: JSON.stringify(base),
       NODE_ENV: JSON.stringify(env),
-      ...getClientEnvironment(base).stringified,
+      'process.env': {
+        WEBPACK_SERVE_OVERLAY_WS_URL: JSON.stringify(
+          `ws://${args.hotHost}:${args.hotPort}`
+        ),
+      },
     },
   ])
 

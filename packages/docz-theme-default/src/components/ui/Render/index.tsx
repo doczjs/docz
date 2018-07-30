@@ -276,6 +276,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
   }
 
   private handleSetSize = (width: string, height: string) => {
-    this.setState({ width, height }, () => this.setSize(false))
+    const fullscreen = parse(this.props.position, 'fullscreen', false)
+    this.setState({ width, height }, () => this.setSize(fullscreen))
   }
 }

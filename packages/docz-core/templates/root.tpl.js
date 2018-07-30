@@ -9,9 +9,12 @@ import Theme from '<%- theme %>'
 
 <% if (!isProd) {%>
 class Root extends React.Component {
-  state = {
-    config: {},
-    entries: {},
+  constructor(props, ctx) {
+    super(props, ctx)
+    this.state = {
+      entries: {},
+      config: {},
+    }
   }
 
   async componentDidMount() {
