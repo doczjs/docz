@@ -1,31 +1,39 @@
 import * as React from 'react'
 import { SFC } from 'react'
+import { Media } from 'react-breakpoints'
+import darken from 'polished/lib/color/darken'
 import styled from 'react-emotion'
-
-const margin = (p: any) =>
-  p.theme.mq({
-    margin: ['30px', '40px 30px'],
-  })
 
 const LogoImg = styled('img')`
   padding: 0;
-  ${margin};
+  margin: 20px 24px;
 `
+
+interface LogoTextProps {
+  showBg: boolean
+  theme?: any
+}
 
 const LogoText = styled('h1')`
   position: relative;
-  padding: 0;
-  font-size: 26px;
+  display: block;
+  padding: 24px 24px 24px 30px;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
   color: ${p => p.theme.colors.text};
-  ${margin};
+  background: ${(p: LogoTextProps) =>
+    p.showBg ? darken(0.02, p.theme.colors.sidebarBg) : 'transparent'};
 
   &:before {
-    position: absolute;
     content: '';
-    bottom: 0;
+    display: block;
+    position: absolute;
+    top: 0;
     left: 0;
-    width: 15%;
-    height: 3px;
+    width: 4px;
+    height: 100%;
     background: ${p => p.theme.colors.primary};
   }
 `
@@ -38,10 +46,14 @@ interface LogoProps {
   }
 }
 
-export const Logo: SFC<LogoProps> = ({ logo, title }) => {
-  return logo ? (
-    <LogoImg src={logo.src} width={logo.width} alt={title} />
-  ) : (
-    <LogoText>{title}</LogoText>
-  )
-}
+export const Logo: SFC<LogoProps> = ({ logo, title }) => (
+  <Media>
+    {({ currentBreakpoint }: any) =>
+      logo ? (
+        <LogoImg src={logo.src} width={logo.width} alt={title} />
+      ) : (
+        <LogoText showBg={currentBreakpoint === 'desktop'}>{title}</LogoText>
+      )
+    }
+  </Media>
+)

@@ -36,8 +36,8 @@ const position = (p: WrapperProps) =>
 const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
-  width: 300px;
-  min-width: 300px;
+  width: 280px;
+  min-width: 280px;
   height: 100%;
   background: ${background};
   border-right: ${border};
@@ -63,11 +63,6 @@ const Menus = styled('nav')`
   flex: 1;
   overflow-y: auto;
   margin-bottom: 10px;
-
-  ${p =>
-    p.theme.mq({
-      padding: ['0 10px', '0 20px'],
-    })};
 `
 
 const Empty = styled('div')`

@@ -9,10 +9,42 @@ import {
 
 import styled, { css } from 'react-emotion'
 
+interface WrapperProps {
+  active: boolean
+  theme?: any
+}
+
+const activeWrapper = (p: WrapperProps) => css`
+  padding-left: 0;
+
+  &:after {
+    width: 1px;
+  }
+`
+
+const Wrapper = styled('div')`
+  position: relative;
+  transition: padding 0.2s;
+
+  &:after {
+    position: absolute;
+    display: block;
+    content: '';
+    top: 30px;
+    left: 24px;
+    width: 0;
+    height: calc(100% - 36px);
+    background: ${p => p.theme.colors.border};
+    transition: width 0.2s;
+  }
+
+  ${(p: WrapperProps) => p.active && activeWrapper(p)};
+`
+
 export const linkStyle = (p: any) => css`
   position: relative;
   display: block;
-  margin: 6px 16px;
+  margin: 6px 24px;
   font-weight: 600;
   color: ${p.theme.colors.sidebarText};
   text-decoration: none;
@@ -30,36 +62,10 @@ export const linkStyle = (p: any) => css`
   }
 `
 
-interface LinkWrapperProps {
-  active: boolean
-  theme?: any
-}
-
-const activeWrapper = (p: LinkWrapperProps) => css`
-  padding-left: 0;
-
-  &:after {
-    width: 1px;
-  }
-`
-
-const LinkWrapper = styled('div')`
-  position: relative;
-  transition: padding 0.2s;
-
-  &:after {
-    position: absolute;
-    display: block;
-    content: '';
-    top: 30px;
-    left: 16px;
-    width: 0;
-    height: calc(100% - 36px);
-    background: ${p => p.theme.colors.border};
-    transition: width 0.2s;
-  }
-
-  ${(p: LinkWrapperProps) => p.active && activeWrapper(p)};
+const Submenu = styled('div')`
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0 0 24px;
 `
 
 const SmallLink = styled(BaseLink)`
@@ -86,7 +92,7 @@ const SmallLink = styled(BaseLink)`
     display: block;
     content: '';
     top: 0;
-    left: 2px;
+    left: 0;
     width: 0;
     height: 20px;
     background: ${p => p.theme.colors.primary};
@@ -96,12 +102,6 @@ const SmallLink = styled(BaseLink)`
   &.active:before {
     width: 2px;
   }
-`
-
-const Submenu = styled('div')`
-  display: flex;
-  flex-direction: column;
-  margin: 5px 0 0 14px;
 `
 
 const isSmallLinkActive = (slug: string) => (m: any, location: any) =>
@@ -151,9 +151,10 @@ export class Link extends Component<LinkProps, LinkState> {
   public render(): React.ReactNode {
     const { doc, onClick, ...props } = this.props
     const { active } = this.state
+    const headings = doc.headings.filter(({ depth }) => depth > 1 && depth < 3)
 
     return (
-      <LinkWrapper active={active}>
+      <Wrapper active={active}>
         <ThemeConfig>
           {theme => (
             <BaseLink
@@ -166,25 +167,22 @@ export class Link extends Component<LinkProps, LinkState> {
             />
           )}
         </ThemeConfig>
-        {active && (
-          <Submenu>
-            {doc.headings.map(
-              heading =>
-                heading.depth > 1 &&
-                heading.depth < 3 && (
-                  <SmallLink
-                    key={heading.slug}
-                    onClick={onClick}
-                    to={{ pathname: doc.route, hash: heading.slug }}
-                    isActive={isSmallLinkActive(heading.slug)}
-                  >
-                    {heading.value}
-                  </SmallLink>
-                )
-            )}
-          </Submenu>
-        )}
-      </LinkWrapper>
+        {active &&
+          headings.length > 0 && (
+            <Submenu>
+              {headings.map(heading => (
+                <SmallLink
+                  key={heading.slug}
+                  onClick={onClick}
+                  to={{ pathname: doc.route, hash: heading.slug }}
+                  isActive={isSmallLinkActive(heading.slug)}
+                >
+                  {heading.value}
+                </SmallLink>
+              ))}
+            </Submenu>
+          )}
+      </Wrapper>
     )
   }
 }

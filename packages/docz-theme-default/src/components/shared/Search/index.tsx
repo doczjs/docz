@@ -10,8 +10,8 @@ interface WrapperProps {
 const Wrapper = styled('div')`
   display: flex;
   align-items: center;
-  padding: 5px 30px;
-  margin-bottom: 30px;
+  padding: 5px 24px;
+  margin-bottom: 20px;
   border-top: 1px solid ${p => p.theme.colors.border};
   border-bottom: 1px solid ${p => p.theme.colors.border};
   opacity: ${(p: WrapperProps) => (p.showing ? 1 : 0)};
@@ -29,7 +29,7 @@ const Input = styled('input')`
   padding: 10px;
   background: transparent;
   border: none;
-  font-size: 14px;
+  font-size: 16px;
   color: ${p => p.theme.colors.sidebarText};
 `
 
