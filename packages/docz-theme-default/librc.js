@@ -8,6 +8,7 @@ const external = Object.keys(pkg.dependencies).concat([
   'polished/lib/color/darken',
   'react-syntax-highlighter/prism',
   'react-syntax-highlighter/prism-light',
+  'react-feather/dist/icons/edit-2',
   'react-feather/dist/icons/chevron-down',
   'react-feather/dist/icons/search',
   'react-feather/dist/icons/clipboard',
