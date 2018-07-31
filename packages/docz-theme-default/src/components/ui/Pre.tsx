@@ -13,7 +13,7 @@ import copy from 'copy-text-to-clipboard'
 import { ButtonSwap } from './ButtonSwap'
 import { ButtonLink } from './Button'
 
-const TOP_PADDING = '25px'
+const TOP_PADDING = '15px'
 
 const PrismTheme = styled('pre')`
   ${p => p.theme.prismTheme};
