@@ -14,8 +14,8 @@ export const dev = async (args: Config) => {
   const env = envDotProp.get('node.env')
   const config = loadConfig(args)
   const port = await detectPort(config.port)
-  const websocketPort = await detectPort(config.websocketPort)
   const hotPort = await detectPort(config.hotPort)
+  const websocketPort = await detectPort(config.websocketPort)
   const entries = new Entries(config)
 
   envDotProp.set(

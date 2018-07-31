@@ -61,6 +61,7 @@ const getHeadings = (ast: any): Heading[] => {
 export interface EntryObj {
   id: string
   filepath: string
+  link: string | null
   slug: string
   name: string
   route: string
@@ -75,6 +76,7 @@ export class Entry {
 
   public id: string
   public filepath: string
+  public link: string | null
   public slug: string
   public route: string
   public name: string
@@ -92,6 +94,7 @@ export class Entry {
 
     this.id = ulid()
     this.filepath = filepath
+    this.link = null
     this.slug = this.slugify(filepath)
     this.route = this.getRoute(parsed)
     this.name = name
@@ -101,15 +104,19 @@ export class Entry {
     this.settings = parsed
   }
 
+  public setLink(url: string): void {
+    this.link = `${url}/${this.filepath}`
+  }
+
   private getFilepath(file: string, src: string): string {
     const srcPath = path.resolve(paths.root, src)
-    const relativePath = path.relative(srcPath, file)
+    const filepath = path.relative(srcPath, file)
 
     if (process.platform === 'win32') {
-      return relativePath.split('\\').join('/')
+      return filepath.split('\\').join('/')
     }
 
-    return relativePath
+    return filepath
   }
 
   private getName(filepath: string, parsed: ParsedData): string {
