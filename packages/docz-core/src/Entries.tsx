@@ -1,6 +1,6 @@
+import * as path from 'path'
 import * as fs from 'fs-extra'
 import * as glob from 'fast-glob'
-import * as path from 'path'
 
 import * as paths from './config/paths'
 import { touch, compiled } from './utils/fs'
@@ -9,6 +9,7 @@ import { mapToObj } from './utils/helpers'
 import { Entry, EntryObj, parseMdx } from './Entry'
 import { Plugin } from './Plugin'
 import { Config } from './commands/args'
+import { repoInfo } from './utils/repo-info'
 
 const fromTemplates = (file: string) => path.join(paths.templates, file)
 
@@ -30,13 +31,14 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
   const root = await compiled(fromTemplates('root.tpl.js'))
   const js = await compiled(fromTemplates('index.tpl.js'))
   const html = await compiled(getHtmlFilepath(indexHtml))
+  const websocketUrl = `ws://${config.websocketHost}:${config.websocketPort}`
 
   const rawRootJs = root({
     theme,
     isProd: !dev,
     wrapper: config.wrapper,
     hashRouter: config.hashRouter,
-    websocketUrl: `ws://${config.websocketHost}:${config.websocketPort}`,
+    websocketUrl,
   })
 
   const rawIndexJs = js({
@@ -91,8 +93,10 @@ export class Entries {
 
   public all: Map<string, EntryObj>
   public get: () => Promise<EntryMap>
+  public repoUrl: string | null
 
   constructor(config: Config) {
+    this.repoUrl = repoInfo()
     this.all = new Map()
     this.get = async () => this.getMap(config)
   }
@@ -107,11 +111,14 @@ export class Entries {
 
     const createEntry = async (file: string) => {
       const ast = await parseMdx(file)
-      const { settings, ...entry } = new Entry(ast, file, src)
+      const entry = new Entry(ast, file, src)
+
+      if (this.repoUrl) entry.setLink(this.repoUrl)
+      const { settings, ...rest } = entry
 
       return {
         ...settings,
-        ...entry,
+        ...rest,
       }
     }
 

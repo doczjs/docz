@@ -1,6 +1,7 @@
 declare module 'copy-text-to-clipboard'
 declare module 'hotkeys-js'
 declare module 'react-breakpoints'
+declare module 'react-feather/dist/icons/edit-2'
 declare module 'react-feather/dist/icons/chevron-down'
 declare module 'react-feather/dist/icons/search'
 declare module 'react-feather/dist/icons/clipboard'
@@ -16,12 +17,10 @@ declare module 'react-syntax-highlighter/prism-light'
 declare module 're-resizable'
 declare module 'match-sorter'
 declare module 'polished/lib/color/rgba'
+declare module 'polished/lib/color/lighten'
+declare module 'polished/lib/color/darken'
+declare module 'pretty'
 declare module 'webfontloader'
-
-declare module '*.svg' {
-  const content: any
-  export default content
-}
 
 declare module 'facepaint' {
   interface Styles {

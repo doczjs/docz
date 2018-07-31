@@ -4,7 +4,7 @@ import * as paths from '../config/paths'
 import { Config } from '../commands/args'
 import { Plugin } from '../Plugin'
 import { omit } from './helpers'
-import { BabelRC } from './babelrc'
+import { BabelRC } from './babel-config'
 
 const toOmit = ['_', '$0', 'version', 'help']
 

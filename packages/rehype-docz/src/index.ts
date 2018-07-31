@@ -34,15 +34,9 @@ const addCodeProp = async (node: any, idx: number) => {
     const code = formatted.slice(1, Infinity)
     const child = strip(removePlayground(code)).trim()
 
-    const codeComponent = `(components) => components && (
-      <components.pre className="react-prism language-jsx">
-        <code>{\`${child}\`}</code>
-      </components.pre>
-    )`
-
     node.value = node.value.replace(
       tagOpen,
-      `<${name} __position={${idx}} __code={${codeComponent}} __rawCode={\`${child}\`}`
+      `<${name} __position={${idx}} __code={\`${child}\`}`
     )
   }
 }

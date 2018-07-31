@@ -1,6 +1,6 @@
 {
   "name": "docz-theme-default",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "The default theme of docz",
   "license": "MIT",
   "main": "dist/index.js",
@@ -22,13 +22,15 @@
   },
   "dependencies": {
     "copy-text-to-clipboard": "^1.0.4",
-    "docz": "^0.7.1",
+    "docz": "^0.8.0",
     "emotion": "^9.2.6",
     "emotion-theming": "^9.2.6",
     "facepaint": "^1.2.1",
     "hotkeys-js": "^3.3.5",
+    "lodash.get": "^4.4.2",
     "match-sorter": "^2.2.3",
     "polished": "^1.9.3",
+    "pretty": "^2.0.0",
     "prop-types": "15.6.2",
     "re-resizable": "^4.7.1",
     "react": "^16.2.0",
@@ -47,7 +49,8 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
-    "@types/react": "^16.4.6",
+    "@types/lodash.get": "^4.4.4",
+    "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.6",
     "babel-plugin-emotion": "^9.2.6",
     "rollup-plugin-svg": "^1.0.1"

@@ -12,8 +12,7 @@ export interface PlaygroundProps {
   wrapper?: ComponentType<any>
   children: any
   __position: number
-  __code: (components: ComponentsMap) => any
-  __rawCode: string
+  __code: string
 }
 
 const BasePlayground: SFC<PlaygroundProps> = ({
@@ -24,9 +23,10 @@ const BasePlayground: SFC<PlaygroundProps> = ({
   children,
   __position,
   __code,
-  __rawCode,
 }) => {
-  return components && components.render ? (
+  if (!components || !components.render) return null
+
+  return (
     <Wrapper>
       <components.render
         className={className}
@@ -34,11 +34,10 @@ const BasePlayground: SFC<PlaygroundProps> = ({
         components={components}
         component={isFn(children) ? children() : children}
         position={__position}
-        code={__code(components)}
-        rawCode={__rawCode}
+        code={__code}
       />
     </Wrapper>
-  ) : null
+  )
 }
 
 export const Playground = withMDXComponents(BasePlayground)

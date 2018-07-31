@@ -3,6 +3,8 @@ import { SFC, Component, Fragment } from 'react'
 import { ThemeConfig } from 'docz'
 import styled, { cx } from 'react-emotion'
 import rgba from 'polished/lib/color/rgba'
+import lighten from 'polished/lib/color/lighten'
+import darken from 'polished/lib/color/darken'
 import BaseCheck from 'react-feather/dist/icons/check'
 import SyntaxHighlighter from 'react-syntax-highlighter/prism-light'
 import Clipboard from 'react-feather/dist/icons/clipboard'
@@ -11,7 +13,7 @@ import copy from 'copy-text-to-clipboard'
 import { ButtonSwap } from './ButtonSwap'
 import { ButtonLink } from './Button'
 
-const TOP_PADDING = '25px'
+const TOP_PADDING = '15px'
 
 const PrismTheme = styled('pre')`
   ${p => p.theme.prismTheme};
@@ -43,7 +45,7 @@ const Wrapper = styled('div')`
   position: relative;
   border: 1px solid ${p => p.theme.colors.border};
   border-radius: 5px;
-  background: ${p => p.theme.colors.preBg};
+  background: ${p => darken(0.01, p.theme.colors.preBg)};
   ${p => p.theme.mq(p.theme.styles.pre)};
 
   .react-syntax-highlighter-line-number {
@@ -78,8 +80,16 @@ const Check = styled(BaseCheck)`
   stroke: ${p => p.theme.colors.primary};
 `
 
-export const ClipboardAction: SFC<{ content: string }> = ({ content }) => (
+interface ClipboardActionProps {
+  content: string
+}
+
+export const ClipboardAction: SFC<ClipboardActionProps> = ({
+  content,
+  ...props
+}) => (
   <ActionButton
+    {...props}
     as={ButtonLink}
     title="Copy to clipboard"
     onClick={() => copy(content)}
@@ -91,10 +101,13 @@ export const ClipboardAction: SFC<{ content: string }> = ({ content }) => (
 
 const Nullable: SFC = ({ children }) => <Fragment>{children}</Fragment>
 
-const linesStyle = (colors: any) => ({
-  padding: `${TOP_PADDING} 0`,
-  borderRight: `1px solid ${colors.border}`,
-  background: rgba(colors.background, 0.5),
+const linesStyle = (config: any) => ({
+  padding: `${TOP_PADDING} 3px`,
+  borderRight: `1px solid ${config.colors.border}`,
+  background:
+    config.mode === 'light'
+      ? lighten(0.13, config.colors.border)
+      : darken(0.04, config.colors.border),
   left: 0,
 })
 
@@ -117,7 +130,7 @@ export class Pre extends Component<PreProps> {
               language="javascript"
               showLineNumbers
               useInlineStyles={false}
-              lineNumberContainerStyle={linesStyle(config.colors)}
+              lineNumberContainerStyle={linesStyle(config)}
               PreTag={Nullable}
               CodeTag={getCode(children)}
             >

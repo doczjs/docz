@@ -1,11 +1,17 @@
 import * as React from 'react'
 import { Component, Fragment } from 'react'
+import { renderToStaticMarkup } from 'react-dom/server'
 import { RenderComponentProps } from 'docz'
+import styled, { css } from 'react-emotion'
+import lighten from 'polished/lib/color/lighten'
+import darken from 'polished/lib/color/darken'
+import rgba from 'polished/lib/color/rgba'
+import Resizable from 're-resizable'
 import Maximize from 'react-feather/dist/icons/maximize'
 import Minimize from 'react-feather/dist/icons/minimize'
-import Resizable from 're-resizable'
 import hotkeys from 'hotkeys-js'
-import styled from 'react-emotion'
+import getIn from 'lodash.get'
+import pretty from 'pretty'
 
 import { ResizeBar } from './ResizeBar'
 import { Handle, HANDLE_SIZE } from './Handle'
@@ -41,6 +47,7 @@ const Wrapper = styled('div')`
 `
 
 const Playground = styled('div')`
+  overflow-y: hidden;
   flex: 1;
   background: ${p => p.theme.colors.background};
   border: 1px solid ${p => p.theme.colors.border};
@@ -54,28 +61,78 @@ const Pre = styled(PreBase)`
   border-top: 0;
 `
 
+const Actions = styled('div')`
+  display: flex;
+  padding: 0 5px;
+  background: ${p =>
+    p.theme.mode === 'light'
+      ? lighten(0.13, p.theme.colors.border)
+      : darken(0.04, p.theme.colors.border)};
+  border-left: 1px solid ${p => p.theme.colors.border};
+  border-bottom: 1px solid ${p => p.theme.colors.border};
+`
+
+const actionClass = (p: any) => css`
+  padding: 3px 10px;
+  border-left: 1px solid ${p.theme.colors.border};
+`
+
+const Action = styled(ActionButton)`
+  ${actionClass};
+`
+
+const Clipboard = styled(ClipboardAction)`
+  ${actionClass};
+`
+
+const Tabs = styled('div')`
+  flex: 1;
+  display: flex;
+  align-items: center;
+`
+
+interface TabProps {
+  active: boolean
+  theme?: any
+}
+
+const Tab = styled('button')`
+  position: relative;
+  cursor: pointer;
+  display: block;
+  outline: none;
+  height: 100%;
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: ${(p: TabProps) => rgba(p.theme.colors.text, p.active ? 0.8 : 0.4)};
+  transition: color 0.3s;
+`
+
 const storage = localStorage()
 const get = (pos: number): any => storage.get(pos.toString())
 const remove = (pos: number): void => storage.remove(pos.toString())
 const set = (pos: number, size: string): void =>
   storage.set(pos.toString(), size)
 
-const parseSize = (position: number) => (key: string) => {
+const parse = (position: number, key: string, defaultValue: any) => {
   const obj = JSON.parse(get(position))
-  return obj ? obj[key] : '100%'
+  return obj ? getIn(obj, key) : defaultValue
 }
 
 export interface RenderState {
   fullscreen: boolean
   width: string
   height: string
+  showing: 'jsx' | 'html'
 }
 
 export class Render extends Component<RenderComponentProps, RenderState> {
   public state: RenderState = {
-    fullscreen: Boolean(get(this.props.position)),
-    width: parseSize(this.props.position)('width'),
-    height: parseSize(this.props.position)('height'),
+    fullscreen: parse(this.props.position, 'fullscreen', false),
+    width: parse(this.props.position, 'width', '100%'),
+    height: parse(this.props.position, 'height', '100%'),
+    showing: parse(this.props.position, 'showing', 'jsx'),
   }
 
   public componentDidMount(): void {
@@ -89,19 +146,30 @@ export class Render extends Component<RenderComponentProps, RenderState> {
   }
 
   get actions(): JSX.Element {
-    const { rawCode } = this.props
-    const { fullscreen } = this.state
+    const { code } = this.props
+    const { showing, fullscreen } = this.state
+
+    const showJsx = this.handleShow('jsx')
+    const showHtml = this.handleShow('html')
 
     return (
-      <Fragment>
-        <ActionButton
+      <Actions>
+        <Tabs>
+          <Tab active={showing === 'jsx'} onClick={showJsx}>
+            JSX
+          </Tab>
+          <Tab active={showing === 'html'} onClick={showHtml}>
+            HTML
+          </Tab>
+        </Tabs>
+        <Clipboard content={code} />
+        <Action
           onClick={this.handleToggle}
           title={fullscreen ? 'Minimize' : 'Maximize'}
         >
           {fullscreen ? <Minimize width={15} /> : <Maximize width={15} />}
-        </ActionButton>
-        <ClipboardAction content={rawCode} />
-      </Fragment>
+        </Action>
+      </Actions>
     )
   }
 
@@ -144,8 +212,8 @@ export class Render extends Component<RenderComponentProps, RenderState> {
   }
 
   public render(): JSX.Element {
-    const { className, style, component, rawCode } = this.props
-    const { fullscreen } = this.state
+    const { className, style, component, code } = this.props
+    const { showing, fullscreen } = this.state
 
     return (
       <Overlay full={fullscreen}>
@@ -155,7 +223,12 @@ export class Render extends Component<RenderComponentProps, RenderState> {
             <Playground className={className} style={style}>
               {component}
             </Playground>
-            <Pre actions={this.actions}>{rawCode}</Pre>
+            {this.actions}
+            <Pre actions={<Fragment />}>
+              {showing === 'jsx'
+                ? code
+                : pretty(renderToStaticMarkup(component))}
+            </Pre>
           </Wrapper>
         </Resizable>
       </Overlay>
@@ -176,11 +249,8 @@ export class Render extends Component<RenderComponentProps, RenderState> {
     }
   }
 
-  private isFullscreen = (position: number) => Boolean(get(position))
-
-  private setSize = () => {
-    const { fullscreen, ...state } = this.state
-    set(this.props.position, JSON.stringify(state))
+  private setSize = (fullscreen: boolean) => {
+    set(this.props.position, JSON.stringify({ ...this.state, fullscreen }))
   }
 
   private handleToggle = () => {
@@ -188,18 +258,17 @@ export class Render extends Component<RenderComponentProps, RenderState> {
     const { fullscreen } = this.state
 
     if (fullscreen) remove(position)
-    else this.setSize()
-
-    const isFull = this.isFullscreen(position)
-    const parse = parseSize(position)
-    const width = parse('width')
-    const height = parse('height')
+    else this.setSize(true)
 
     this.setState({
-      fullscreen: isFull,
-      width,
-      height,
+      fullscreen: parse(position, 'fullscreen', false),
+      width: parse(position, 'width', '100%'),
+      height: parse(position, 'height', '100%'),
     })
+  }
+
+  private handleShow = (showing: 'jsx' | 'html') => () => {
+    this.setState({ showing })
   }
 
   private closeOnEsc = () => {
@@ -207,6 +276,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
   }
 
   private handleSetSize = (width: string, height: string) => {
-    this.setState({ width, height }, () => this.setSize())
+    const fullscreen = parse(this.props.position, 'fullscreen', false)
+    this.setState({ width, height }, () => this.setSize(fullscreen))
   }
 }

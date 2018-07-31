@@ -1,6 +1,6 @@
 {
   "name": "docz",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "It's has never been so easy to documents your things!",
   "license": "MIT",
   "main": "dist/index.js",
@@ -26,21 +26,21 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@mdx-js/tag": "^0.14.1",
+    "@mdx-js/tag": "^0.15.0-1",
     "@sindresorhus/slugify": "^0.3.0",
     "array-sort": "^1.0.0",
     "capitalize": "^1.0.0",
     "create-react-context": "^0.2.2",
     "deepmerge": "^2.1.1",
-    "docz-core": "^0.7.0",
-    "docz-theme-default": "^0.7.1",
-    "env-dot-prop": "^1.0.2",
+    "docz-core": "^0.8.0",
+    "docz-theme-default": "^0.8.0",
     "invariant": "^2.2.4",
-    "loadable-components": "^2.2.2",
     "pascalcase": "^0.1.1",
     "prop-types": "^15.6.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-loadable": "^5.4.0",
+    "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-router-hash-link": "^1.2.0",
     "yargs": "^12.0.1"
@@ -50,10 +50,11 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.5.22",
+    "@types/bluebird": "^3.5.23",
     "@types/deepmerge": "^2.1.0",
-    "@types/react": "^16.4.6",
+    "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.6",
+    "@types/react-loadable": "^5.4.0",
     "@types/react-router-dom": "^4.3.0"
   }
 }

@@ -3,7 +3,7 @@ import * as colors from './colors'
 export const light = {
   ...colors,
   primary: colors.blue,
-  text: colors.dark,
+  text: colors.grayDark,
   link: colors.blue,
   footerText: colors.grayDark,
   sidebarBg: colors.grayExtraLight,

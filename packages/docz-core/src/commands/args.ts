@@ -4,10 +4,11 @@ import titleize from 'titleize'
 import envDotProp from 'env-dot-prop'
 
 import { Plugin } from '../Plugin'
-import { BabelRC } from '../utils/babelrc'
+import { BabelRC } from '../utils/babel-config'
+import { setEnv } from '../config/env'
 import * as paths from '../config/paths'
 
-const getEnv = (val: string, defaultValue: any = null): any =>
+const getEnv = (val: string | string[], defaultValue: any = null): any =>
   envDotProp.get(val, defaultValue, { parse: true })
 
 const removeScope = (name: string) => name.replace(/^@.*\//, '')
@@ -16,6 +17,11 @@ const getInitialTitle = (): string => {
   const name = pkg && pkg.name ? pkg.name : 'MyDoc'
 
   return titleize(humanize(removeScope(name)))
+}
+
+const getInitialDescription = (): string => {
+  const pkg = fs.readJsonSync(paths.packageJson, { throws: false })
+  return pkg && pkg.description ? pkg.description : 'My awesome app using docz'
 }
 
 export type Env = 'production' | 'development'
@@ -36,6 +42,8 @@ export interface Argv {
   port: number
   websocketPort: number
   websocketHost: string
+  hotPort: number
+  hotHost: string
   /* template args */
   title: string
   description: string
@@ -55,79 +63,90 @@ export interface Config extends Argv {
   modifyBabelRc(babelrc: BabelRC, args: Config): BabelRC
 }
 
-export const args = (yargs: any) => {
+export const args = (env: Env) => (yargs: any) => {
+  setEnv(env)
   yargs.positional('base', {
     type: 'string',
-    default: '/',
+    default: getEnv('docz.base', '/'),
   })
   yargs.positional('source', {
     alias: 'src',
     type: 'string',
-    default: './',
+    default: getEnv('docz.source', './'),
   })
   yargs.positional('files', {
     type: 'string',
-    default: '**/*.mdx',
+    default: getEnv('docz.files', '**/*.mdx'),
   })
   yargs.positional('dest', {
     alias: 'd',
     type: 'string',
-    default: '.docz/dist',
+    default: getEnv('docz.dest', '.docz/dist'),
   })
   yargs.positional('title', {
     type: 'string',
-    default: getInitialTitle(),
+    default: getEnv('docz.title', getInitialTitle()),
   })
   yargs.positional('description', {
     type: 'string',
-    default: 'My awesome app using Docz',
+    default: getEnv('docz.description', getInitialDescription()),
   })
   yargs.positional('theme', {
     type: 'string',
-    default: 'docz-theme-default',
+    default: getEnv('docz.theme', 'docz-theme-default'),
   })
   yargs.positional('typescript', {
     alias: 'ts',
     type: 'boolean',
-    default: false,
+    default: getEnv('docz.typescript', false),
   })
   yargs.positional('propsParser', {
     type: 'boolean',
-    default: true,
+    default: getEnv('docz.props.parser', true),
   })
   yargs.positional('wrapper', {
     type: 'string',
+    default: getEnv('docz.wrapper', null),
   })
   yargs.positional('indexHtml', {
     type: 'string',
+    default: getEnv('docz.index.html', null),
   })
   yargs.positional('ordering', {
     type: 'string',
-    default: 'descending',
+    default: getEnv('docz.ordering', 'descending'),
   })
   yargs.positional('debug', {
     type: 'boolean',
-    default: getEnv('debug', false),
+    default: getEnv('docz.debug', false),
   })
   yargs.positional('protocol', {
     type: 'string',
-    default: getEnv('https') ? 'https' : 'http',
+    default: getEnv('docz.https', true) ? 'https' : 'http',
   })
   yargs.positional('host', {
     type: 'string',
-    default: getEnv('host', '127.0.0.1'),
+    default: getEnv('docz.host', '127.0.0.1'),
   })
   yargs.positional('port', {
     alias: 'p',
     type: 'number',
-    default: getEnv('port', 3000),
+    default: getEnv('docz.port', 3000),
+  })
+  yargs.positional('hotHost', {
+    type: 'string',
+    default: getEnv('docz.hot.host', '127.0.0.1'),
+  })
+  yargs.positional('hotPort', {
+    type: 'number',
+    default: getEnv('docz.hot.port', 8088),
   })
   yargs.positional('websocketHost', {
     type: 'string',
-    default: getEnv('websocket.host', '127.0.0.1'),
+    default: getEnv('docz.websocket.host', '127.0.0.1'),
   })
   yargs.positional('websocketPort', {
     type: 'number',
-    default: getEnv('websocket.port', 8089),
+    default: getEnv('docz.websocket.port', 8089),
   })
 }

@@ -33,6 +33,8 @@ export const devServerConfig = (
     hotClient: {
       reload: false,
       logLevel: logLevel('error'),
+      host: args.hotHost,
+      port: args.hotPort,
     },
     add: (app: Koa, middleware: any, options: any) => {
       middleware.webpack()
