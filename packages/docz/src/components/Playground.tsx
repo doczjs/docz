@@ -27,16 +27,14 @@ const BasePlayground: SFC<PlaygroundProps> = ({
   if (!components || !components.render) return null
 
   return (
-    <Wrapper>
-      <components.render
-        className={className}
-        style={style}
-        components={components}
-        component={isFn(children) ? children() : children}
-        position={__position}
-        code={__code}
-      />
-    </Wrapper>
+    <components.render
+      className={className}
+      style={style}
+      components={components}
+      component={<Wrapper>{isFn(children) ? children() : children}</Wrapper>}
+      position={__position}
+      code={__code}
+    />
   )
 }
 
