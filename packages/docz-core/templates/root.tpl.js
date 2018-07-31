@@ -18,12 +18,12 @@ class Root extends React.Component {
     socket.onmessage = ev => {
       const message = JSON.parse(ev.data)
 
-      if (message.type === 'docz.entries') {
-        this.setState({ entries: message.data })
+      if (message.type === 'PARSE_ENTRIES') {
+        this.setState({ entries: message.payload })
       }
 
-      if (message.type === 'docz.config') {
-        this.setState({ config: message.data })
+      if (message.type === 'PARSE_CONFIG') {
+        this.setState({ config: message.payload })
       }
     }
   }

@@ -1,117 +1,40 @@
-import { load, finds } from 'load-cfg'
-import chokidar from 'chokidar'
 import WS from 'ws'
 
-import { Config } from './commands/args'
-import { Entries, EntryMap } from './Entries'
+export type Send = (type: string, payload: any) => void
 
-const isSocketOpened = (socket: WS) => socket.readyState === WS.OPEN
+const send = (socket: WS) => (type: string, payload: any) => {
+  socket.send(JSON.stringify({ type, payload }))
+}
 
-export interface DataServerOpts {
-  server: any
-  config: Config
+interface Action {
+  onStart: (send: Send, socket: WS) => void
+  onClose?: () => void
+  onError?: () => void
 }
 
 export class DataServer {
   private server: WS.Server
-  private config: Config
+  private actions: Set<Action>
 
-  constructor({ server, config }: DataServerOpts) {
-    this.config = config
-    this.server = new WS.Server({
-      server,
-      port: config.websocketPort,
-      host: config.websocketHost,
-    })
+  constructor(server: any, port: number, host: string) {
+    this.actions = new Set()
+    this.server = new WS.Server({ server, port, host })
   }
 
-  public async processEntries(entries: Entries): Promise<void> {
-    const watcher = chokidar.watch(this.config.files, {
-      ignored: /(^|[\/\\])\../,
-    })
-
-    const handleConnection = async (socket: WS) => {
-      const update = this.updateEntries(entries, socket)
-      const map = await entries.get()
-
-      watcher.on('change', async () => update(this.config))
-      watcher.on('unlink', async () => update(this.config))
-      watcher.on('raw', async (event: string, path: string, details: any) => {
-        if (details.event === 'moved' && details.type === 'directory') {
-          await update(this.config)
-        }
-      })
-
-      socket.send(this.entriesData(map))
-      await Entries.writeImports(map)
-    }
-
-    this.server.on('connection', handleConnection)
-    this.server.on('close', () => watcher.close())
+  public dispatch(action: Action): void {
+    this.actions.add(action)
   }
 
-  public async processThemeConfig(): Promise<void> {
-    const watcher = chokidar.watch(finds('docz'))
-
-    const handleConnection = async (socket: WS) => {
-      const update = this.updateConfig(socket)
-
-      watcher.on('add', () => update())
-      watcher.on('change', () => update())
-      watcher.on('unlink', () => update())
-
-      update()
-    }
-
-    this.server.on('connection', handleConnection)
-    this.server.on('close', () => watcher.close())
+  public init(): void {
+    this.server.on('connection', socket => this.handleConnection(socket))
+    this.server.on('close', () => this.handleClose())
   }
 
-  private dataObj(type: string, data: any): string {
-    return JSON.stringify({ type, data })
+  private async handleConnection(socket: WS): Promise<void> {
+    this.actions.forEach(async ({ onStart }) => onStart(send(socket), socket))
   }
 
-  private entriesData(entries: EntryMap): string {
-    return this.dataObj('docz.entries', entries)
-  }
-
-  private configData(config: Config): string {
-    return this.dataObj('docz.config', {
-      ...config.themeConfig,
-      title: config.title,
-      description: config.description,
-      ordering: config.ordering,
-    })
-  }
-
-  private updateEntries(
-    entries: Entries,
-    socket: WS
-  ): (config: Config) => Promise<void> {
-    return async config => {
-      if (isSocketOpened(socket)) {
-        const map = await entries.get()
-
-        await Entries.writeImports(map)
-        socket.send(this.entriesData(map))
-      }
-    }
-  }
-
-  private updateConfig(socket: WS): () => void {
-    const initialConfig = {
-      title: this.config.title,
-      description: this.config.description,
-      themeConfig: this.config.themeConfig,
-      ordering: this.config.ordering,
-    }
-
-    return () => {
-      const config = load('docz', initialConfig, true)
-
-      if (isSocketOpened(socket)) {
-        socket.send(this.configData(config))
-      }
-    }
+  private async handleClose(): Promise<void> {
+    this.actions.forEach(async ({ onClose }) => onClose && onClose())
   }
 }
