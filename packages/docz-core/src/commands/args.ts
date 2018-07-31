@@ -139,7 +139,7 @@ export const args = (env: Env) => (yargs: any) => {
   })
   yargs.positional('hotPort', {
     type: 'number',
-    default: getEnv('docz.hot.port', 8088),
+    default: getEnv('docz.hot.port', 60757),
   })
   yargs.positional('websocketHost', {
     type: 'string',
@@ -147,6 +147,6 @@ export const args = (env: Env) => (yargs: any) => {
   })
   yargs.positional('websocketPort', {
     type: 'number',
-    default: getEnv('docz.websocket.port', 8089),
+    default: getEnv('docz.websocket.port', 60505),
   })
 }
