@@ -13,13 +13,13 @@ export const styles = {
     fontWeight: 600,
   },
   h2: {
-    margin: ['30px 0 20px', '50px 0 20px'],
+    margin: ['20px 0 20px', '35px 0 20px'],
     lineHeight: ['1.2em', '1.5em'],
     fontSize: [28, 32],
     fontWeight: 400,
   },
   h3: {
-    margin: '30px 0 20px',
+    margin: '25px 0 10px',
     fontSize: [22, 24],
     fontWeight: 400,
   },

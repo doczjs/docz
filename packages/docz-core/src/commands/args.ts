@@ -72,7 +72,7 @@ export const args = (env: Env) => (yargs: any) => {
   yargs.positional('source', {
     alias: 'src',
     type: 'string',
-    default: getEnv('docz.source', '/'),
+    default: getEnv('docz.source', './'),
   })
   yargs.positional('files', {
     type: 'string',
@@ -139,7 +139,7 @@ export const args = (env: Env) => (yargs: any) => {
   })
   yargs.positional('hotPort', {
     type: 'number',
-    default: getEnv('docz.hot.port', 8089),
+    default: getEnv('docz.hot.port', 8088),
   })
   yargs.positional('websocketHost', {
     type: 'string',
@@ -147,6 +147,6 @@ export const args = (env: Env) => (yargs: any) => {
   })
   yargs.positional('websocketPort', {
     type: 'number',
-    default: getEnv('docz.websocket.port', 8090),
+    default: getEnv('docz.websocket.port', 8089),
   })
 }

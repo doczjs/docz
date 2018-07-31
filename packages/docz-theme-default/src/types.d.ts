@@ -1,6 +1,7 @@
 declare module 'copy-text-to-clipboard'
 declare module 'hotkeys-js'
 declare module 'react-breakpoints'
+declare module 'react-feather/dist/icons/edit-2'
 declare module 'react-feather/dist/icons/chevron-down'
 declare module 'react-feather/dist/icons/search'
 declare module 'react-feather/dist/icons/clipboard'

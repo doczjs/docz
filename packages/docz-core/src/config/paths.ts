@@ -28,6 +28,7 @@ export interface Paths {
   app: string
   appPublic: string
   appNodeModules: string
+  appPackageJson: string
   ownNodeModules: string
 
   getDist: (dest: string) => string
@@ -50,6 +51,7 @@ export const docz = resolveApp('.docz')
 export const app = path.resolve(docz, 'app/')
 export const appPublic = path.resolve(docz, 'public/')
 export const appNodeModules = resolveApp('node_modules')
+export const appPackageJson = resolveApp('package.json')
 export const ownNodeModules = resolveOwn('node_modules')
 
 export const getDist = (dest: string) => path.join(root, dest)
