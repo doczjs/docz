@@ -11,15 +11,15 @@ const Wrapper = styled('div')`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  color: ${p => p.theme.colors.text};
-  background: ${p => p.theme.colors.background};
+  color: ${p => p.theme.docz.colors.text};
+  background: ${p => p.theme.docz.colors.background};
 `
 
 const Title = styled('h1')`
   margin: 0;
   font-size: 42px;
   font-weight: 400;
-  color: ${p => p.theme.colors.primary};
+  color: ${p => p.theme.docz.colors.primary};
 `
 
 const Subtitle = styled('p')`

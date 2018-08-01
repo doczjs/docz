@@ -49,10 +49,10 @@ const Wrapper = styled('div')`
 const Playground = styled('div')`
   overflow-y: hidden;
   flex: 1;
-  background: ${p => p.theme.colors.background};
-  border: 1px solid ${p => p.theme.colors.border};
+  background: ${p => p.theme.docz.colors.background};
+  border: 1px solid ${p => p.theme.docz.colors.border};
   border-radius: 4px 4px 0 0;
-  ${p => p.theme.mq(p.theme.styles.playground)};
+  ${p => p.theme.docz.mq(p.theme.docz.styles.playground)};
 `
 
 const Pre = styled(PreBase)`
@@ -65,16 +65,16 @@ const Actions = styled('div')`
   display: flex;
   padding: 0 5px;
   background: ${p =>
-    p.theme.mode === 'light'
-      ? lighten(0.13, p.theme.colors.border)
-      : darken(0.04, p.theme.colors.border)};
-  border-left: 1px solid ${p => p.theme.colors.border};
-  border-bottom: 1px solid ${p => p.theme.colors.border};
+    p.theme.docz.mode === 'light'
+      ? lighten(0.13, p.theme.docz.colors.border)
+      : darken(0.04, p.theme.docz.colors.border)};
+  border-left: 1px solid ${p => p.theme.docz.colors.border};
+  border-bottom: 1px solid ${p => p.theme.docz.colors.border};
 `
 
 const actionClass = (p: any) => css`
   padding: 3px 10px;
-  border-left: 1px solid ${p.theme.colors.border};
+  border-left: 1px solid ${p.theme.docz.colors.border};
 `
 
 const Action = styled(ActionButton)`
@@ -105,7 +105,8 @@ const Tab = styled('button')`
   background: none;
   border: none;
   font-size: 14px;
-  color: ${(p: TabProps) => rgba(p.theme.colors.text, p.active ? 0.8 : 0.4)};
+  color: ${(p: TabProps) =>
+    rgba(p.theme.docz.colors.text, p.active ? 0.8 : 0.4)};
   transition: color 0.3s;
 `
 

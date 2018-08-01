@@ -23,21 +23,21 @@ interface WrapperProps {
 const toggle = (p: WrapperProps) => (p.opened && !p.desktop ? '-90%' : '0')
 
 const background = (p: WrapperProps) =>
-  toggle(p) !== '0' ? 'transparent' : p.theme.colors.sidebarBg
+  toggle(p) !== '0' ? 'transparent' : p.theme.docz.colors.sidebarBg
 
 const border = (p: WrapperProps) =>
-  p.desktop ? `1px solid ${p.theme.colors.border}` : 'none'
+  p.desktop ? `1px solid ${p.theme.docz.colors.border}` : 'none'
 
 const position = (p: WrapperProps) =>
-  p.theme.mq({
+  p.theme.docz.mq({
     position: ['absolute', 'absolute', 'absolute', 'relative'],
   })
 
 const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
-  width: 300px;
-  min-width: 300px;
+  width: 280px;
+  min-width: 280px;
   height: 100%;
   background: ${background};
   border-right: ${border};
@@ -47,7 +47,7 @@ const Wrapper = styled('div')`
 
   ${position};
 
-  ${p => p.theme.styles.sidebar};
+  ${p => p.theme.docz.styles.sidebar};
 
   dl {
     padding: 0;
@@ -63,11 +63,6 @@ const Menus = styled('nav')`
   flex: 1;
   overflow-y: auto;
   margin-bottom: 10px;
-
-  ${p =>
-    p.theme.mq({
-      padding: ['0 10px', '0 20px'],
-    })};
 `
 
 const Empty = styled('div')`
@@ -75,7 +70,7 @@ const Empty = styled('div')`
   opacity: 0.6;
 
   ${p =>
-    p.theme.mq({
+    p.theme.docz.mq({
       padding: ['0 20px', '0 30px'],
     })};
 `
@@ -86,8 +81,8 @@ const Footer = styled('div')`
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  color: ${p => p.theme.colors.footerText};
-  border-top: 1px dashed ${p => p.theme.colors.border};
+  color: ${p => p.theme.docz.colors.footerText};
+  border-top: 1px dashed ${p => p.theme.docz.colors.border};
 `
 
 const FooterLink = styled('a')`
@@ -116,7 +111,7 @@ const ToggleBackground = styled('div')`
 `
 
 const FooterLogo = styled(Docz)`
-  fill: ${p => p.theme.colors.footerText};
+  fill: ${p => p.theme.docz.colors.footerText};
 `
 
 interface Media {

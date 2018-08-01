@@ -16,8 +16,8 @@ import { ButtonLink } from './Button'
 const TOP_PADDING = '15px'
 
 const PrismTheme = styled('pre')`
-  ${p => p.theme.prismTheme};
-  ${p => p.theme.mq(p.theme.styles.pre)};
+  ${p => p.theme.docz.prismTheme};
+  ${p => p.theme.docz.mq(p.theme.docz.styles.pre)};
   overflow-y: hidden;
   padding: ${TOP_PADDING} 20px;
   margin: 0;
@@ -43,10 +43,10 @@ const getCode = (content: any): SFC => ({ children }) => {
 const Wrapper = styled('div')`
   display: flex;
   position: relative;
-  border: 1px solid ${p => p.theme.colors.border};
+  border: 1px solid ${p => p.theme.docz.colors.border};
   border-radius: 5px;
-  background: ${p => darken(0.01, p.theme.colors.preBg)};
-  ${p => p.theme.mq(p.theme.styles.pre)};
+  background: ${p => darken(0.01, p.theme.docz.colors.preBg)};
+  ${p => p.theme.docz.mq(p.theme.docz.styles.pre)};
 
   .react-syntax-highlighter-line-number {
     display: block;
@@ -68,16 +68,16 @@ export const ActionButton = styled(ButtonSwap)`
   background: transparent;
   font-size: 12px;
   text-transform: uppercase;
-  color: ${p => rgba(p.theme.colors.text, 0.4)};
+  color: ${p => rgba(p.theme.docz.colors.text, 0.4)};
   transition: color 0.3s;
 
   &:hover {
-    color: ${p => rgba(p.theme.colors.text, 0.7)};
+    color: ${p => rgba(p.theme.docz.colors.text, 0.7)};
   }
 `
 
 const Check = styled(BaseCheck)`
-  stroke: ${p => p.theme.colors.primary};
+  stroke: ${p => p.theme.docz.colors.primary};
 `
 
 interface ClipboardActionProps {
@@ -101,13 +101,13 @@ export const ClipboardAction: SFC<ClipboardActionProps> = ({
 
 const Nullable: SFC = ({ children }) => <Fragment>{children}</Fragment>
 
-const linesStyle = (config: any) => ({
+const linesStyle = ({ mode, colors }: any) => ({
   padding: `${TOP_PADDING} 3px`,
-  borderRight: `1px solid ${config.colors.border}`,
+  borderRight: `1px solid ${colors.border}`,
   background:
-    config.mode === 'light'
-      ? lighten(0.13, config.colors.border)
-      : darken(0.04, config.colors.border),
+    mode === 'light'
+      ? lighten(0.13, colors.border)
+      : darken(0.04, colors.border),
   left: 0,
 })
 

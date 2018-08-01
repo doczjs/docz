@@ -1,6 +1,6 @@
 {
   "name": "rehype-docz",
-  "version": "0.8.0",
+  "version": "0.9.0-beta.0",
   "description": "Rehype plugin used by docz",
   "license": "MIT",
   "main": "dist/index.js",

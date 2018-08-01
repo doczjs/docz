@@ -26,7 +26,7 @@ const IconLine = styled('span')`
   height: 2px;
   left: 0;
   right: 0;
-  background: ${p => p.theme.colors.text};
+  background: ${p => p.theme.docz.colors.text};
   transition: transform 0.3s, opacity 0.3s;
 
   &:nth-child(1) {
@@ -50,6 +50,7 @@ const translateY = (p: OpenProps) => (p.opened ? '4px' : '0px')
 
 const ToggleButton = styled('button')`
   cursor: pointer;
+  z-index: 99;
   position: absolute;
   display: flex;
   align-items: center;
@@ -63,11 +64,12 @@ const ToggleButton = styled('button')`
   transition: transform 0.3s;
   outline: none;
   border: none;
-  background: ${p => (!p.opened ? 'transparent' : p.theme.colors.background)};
+  background: ${p =>
+    !p.opened ? 'transparent' : p.theme.docz.colors.background};
   border-radius: 3px;
 
   ${p =>
-    p.theme.mq({
+    p.theme.docz.mq({
       display: ['block', 'block', 'block', 'none'],
     })};
 `

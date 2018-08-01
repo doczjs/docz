@@ -22,12 +22,12 @@ const spinnerClass = (delay: number = 0) => css`
 `
 
 const Lines = styled('path')`
-  stroke: ${p => p.theme.colors.primary};
+  stroke: ${p => p.theme.docz.colors.primary};
   stroke-width: 3px;
 `
 
 const Path = styled('path')`
-  fill: ${p => p.theme.colors.primary};
+  fill: ${p => p.theme.docz.colors.primary};
 `
 
 const Spinner = ({ size = 60 }) => (

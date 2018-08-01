@@ -9,33 +9,12 @@ import {
 
 import styled, { css } from 'react-emotion'
 
-export const linkStyle = (p: any) => css`
-  position: relative;
-  display: block;
-  margin: 6px 16px;
-  font-weight: 600;
-  color: ${p.theme.colors.sidebarText};
-  text-decoration: none;
-  transition: color 0.2s;
-
-  &:hover,
-  &:visited {
-    color: ${p.theme.colors.sidebarText};
-  }
-
-  &:hover,
-  &.active {
-    color: ${p.theme.colors.primary};
-    font-weight: 600;
-  }
-`
-
-interface LinkWrapperProps {
+interface WrapperProps {
   active: boolean
   theme?: any
 }
 
-const activeWrapper = (p: LinkWrapperProps) => css`
+const activeWrapper = (p: WrapperProps) => css`
   padding-left: 0;
 
   &:after {
@@ -43,7 +22,7 @@ const activeWrapper = (p: LinkWrapperProps) => css`
   }
 `
 
-const LinkWrapper = styled('div')`
+const Wrapper = styled('div')`
   position: relative;
   transition: padding 0.2s;
 
@@ -52,14 +31,41 @@ const LinkWrapper = styled('div')`
     display: block;
     content: '';
     top: 30px;
-    left: 16px;
+    left: 24px;
     width: 0;
     height: calc(100% - 36px);
-    background: ${p => p.theme.colors.border};
+    background: ${p => p.theme.docz.colors.border};
     transition: width 0.2s;
   }
 
-  ${(p: LinkWrapperProps) => p.active && activeWrapper(p)};
+  ${(p: WrapperProps) => p.active && activeWrapper(p)};
+`
+
+export const linkStyle = (colors: any) => css`
+  position: relative;
+  display: block;
+  margin: 6px 24px;
+  font-weight: 600;
+  color: ${colors.sidebarText};
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover,
+  &:visited {
+    color: ${colors.sidebarText};
+  }
+
+  &:hover,
+  &.active {
+    color: ${colors.primary};
+    font-weight: 600;
+  }
+`
+
+const Submenu = styled('div')`
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0 0 24px;
 `
 
 const SmallLink = styled(BaseLink)`
@@ -73,7 +79,7 @@ const SmallLink = styled(BaseLink)`
   &,
   &:visited,
   &.active {
-    color: ${p => p.theme.colors.sidebarText};
+    color: ${p => p.theme.docz.colors.sidebarText};
   }
 
   &.active {
@@ -86,22 +92,16 @@ const SmallLink = styled(BaseLink)`
     display: block;
     content: '';
     top: 0;
-    left: 2px;
+    left: 0;
     width: 0;
     height: 20px;
-    background: ${p => p.theme.colors.primary};
+    background: ${p => p.theme.docz.colors.primary};
     transition: width 0.2s;
   }
 
   &.active:before {
     width: 2px;
   }
-`
-
-const Submenu = styled('div')`
-  display: flex;
-  flex-direction: column;
-  margin: 5px 0 0 14px;
 `
 
 const isSmallLinkActive = (slug: string) => (m: any, location: any) =>
@@ -151,14 +151,15 @@ export class Link extends Component<LinkProps, LinkState> {
   public render(): React.ReactNode {
     const { doc, onClick, ...props } = this.props
     const { active } = this.state
+    const headings = doc.headings.filter(({ depth }) => depth > 1 && depth < 3)
 
     return (
-      <LinkWrapper active={active}>
+      <Wrapper active={active}>
         <ThemeConfig>
           {theme => (
             <BaseLink
               {...props}
-              className={linkStyle({ theme })}
+              className={linkStyle(theme.colors)}
               onClick={onClick}
               innerRef={(node: any) => {
                 this.$el = node
@@ -166,25 +167,22 @@ export class Link extends Component<LinkProps, LinkState> {
             />
           )}
         </ThemeConfig>
-        {active && (
-          <Submenu>
-            {doc.headings.map(
-              heading =>
-                heading.depth > 1 &&
-                heading.depth < 3 && (
-                  <SmallLink
-                    key={heading.slug}
-                    onClick={onClick}
-                    to={{ pathname: doc.route, hash: heading.slug }}
-                    isActive={isSmallLinkActive(heading.slug)}
-                  >
-                    {heading.value}
-                  </SmallLink>
-                )
-            )}
-          </Submenu>
-        )}
-      </LinkWrapper>
+        {active &&
+          headings.length > 0 && (
+            <Submenu>
+              {headings.map(heading => (
+                <SmallLink
+                  key={heading.slug}
+                  onClick={onClick}
+                  to={{ pathname: doc.route, hash: heading.slug }}
+                  isActive={isSmallLinkActive(heading.slug)}
+                >
+                  {heading.value}
+                </SmallLink>
+              ))}
+            </Submenu>
+          )}
+      </Wrapper>
     )
   }
 }

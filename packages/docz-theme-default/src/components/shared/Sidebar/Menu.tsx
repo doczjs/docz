@@ -40,7 +40,7 @@ const Icon = styled('div')`
   transition: transform 0.3s;
 
   & svg {
-    stroke: ${p => p.theme.colors.text};
+    stroke: ${p => p.theme.docz.colors.text};
   }
 `
 

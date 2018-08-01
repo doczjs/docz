@@ -10,15 +10,15 @@ interface WrapperProps {
 const Wrapper = styled('div')`
   display: flex;
   align-items: center;
-  padding: 5px 30px;
-  margin-bottom: 30px;
-  border-top: 1px solid ${p => p.theme.colors.border};
-  border-bottom: 1px solid ${p => p.theme.colors.border};
+  padding: 5px 24px;
+  margin-bottom: 20px;
+  border-top: 1px solid ${p => p.theme.docz.colors.border};
+  border-bottom: 1px solid ${p => p.theme.docz.colors.border};
   opacity: ${(p: WrapperProps) => (p.showing ? 1 : 0)};
 `
 
 const Icon = styled(SearchIcon)`
-  stroke: ${p => p.theme.colors.sidebarText};
+  stroke: ${p => p.theme.docz.colors.sidebarText};
   width: 20px;
   opacity: 0.5;
 `
@@ -29,8 +29,8 @@ const Input = styled('input')`
   padding: 10px;
   background: transparent;
   border: none;
-  font-size: 14px;
-  color: ${p => p.theme.colors.sidebarText};
+  font-size: 16px;
+  color: ${p => p.theme.docz.colors.sidebarText};
 `
 
 interface SearchProps {

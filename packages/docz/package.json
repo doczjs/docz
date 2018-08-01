@@ -1,6 +1,6 @@
 {
   "name": "docz",
-  "version": "0.8.0",
+  "version": "0.9.0-beta.1",
   "description": "It's has never been so easy to documents your things!",
   "license": "MIT",
   "main": "dist/index.js",
@@ -32,8 +32,8 @@
     "capitalize": "^1.0.0",
     "create-react-context": "^0.2.2",
     "deepmerge": "^2.1.1",
-    "docz-core": "^0.8.0",
-    "docz-theme-default": "^0.8.0",
+    "docz-core": "^0.9.0-beta.1",
+    "docz-theme-default": "^0.9.0-beta.1",
     "invariant": "^2.2.4",
     "pascalcase": "^0.1.1",
     "prop-types": "^15.6.2",
