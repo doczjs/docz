@@ -127,13 +127,6 @@ export const createConfig = (args: Args, env: Env) => (
       path.dirname(require.resolve('@babel/runtime/package.json'))
     )
 
-  config.when(isProd, cfg =>
-    cfg.resolve.alias.set(
-      'webpack-hot-client/client',
-      require.resolve('webpack-hot-client/client')
-    )
-  )
-
   config.resolve.extensions
     .add('.web.js')
     .add('.mjs')
