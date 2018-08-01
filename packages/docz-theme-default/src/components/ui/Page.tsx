@@ -12,15 +12,15 @@ const Wrapper = styled('div')`
   flex: 1;
   height: 100%;
   overflow-y: auto;
-  color: ${p => p.theme.colors.text};
-  background: ${p => p.theme.colors.background};
+  color: ${p => p.theme.docz.colors.text};
+  background: ${p => p.theme.docz.colors.background};
 `
 
 export const Container = styled('div')`
   position: relative;
   margin: 0 auto;
   max-width: 100%;
-  ${p => p.theme.mq(p.theme.styles.container)};
+  ${p => p.theme.docz.mq(p.theme.docz.styles.container)};
 `
 
 const EditPage = styled(ButtonLink.withComponent('a'))`
@@ -31,21 +31,21 @@ const EditPage = styled(ButtonLink.withComponent('a'))`
   padding: 2px 8px;
   margin: 8px;
   border-radius: 3px;
-  border: 1px solid ${p => p.theme.colors.border};
+  border: 1px solid ${p => p.theme.docz.colors.border};
   opacity: 0.7;
   transition: opacity 0.4s;
   font-size: 14px;
-  color: ${p => p.theme.colors.text};
+  color: ${p => p.theme.docz.colors.text};
   text-decoration: none;
   text-transform: uppercase;
 
   &:hover {
     opacity: 1;
-    background: ${p => lighten(0.1, p.theme.colors.border)};
+    background: ${p => lighten(0.1, p.theme.docz.colors.border)};
   }
 
   ${p =>
-    p.theme.mq({
+    p.theme.docz.mq({
       top: [0, -60, 10],
       right: [0, 0, 32],
     })};

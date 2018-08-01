@@ -34,30 +34,30 @@ const Wrapper = styled('div')`
     left: 24px;
     width: 0;
     height: calc(100% - 36px);
-    background: ${p => p.theme.colors.border};
+    background: ${p => p.theme.docz.colors.border};
     transition: width 0.2s;
   }
 
   ${(p: WrapperProps) => p.active && activeWrapper(p)};
 `
 
-export const linkStyle = (p: any) => css`
+export const linkStyle = (colors: any) => css`
   position: relative;
   display: block;
   margin: 6px 24px;
   font-weight: 600;
-  color: ${p.theme.colors.sidebarText};
+  color: ${colors.sidebarText};
   text-decoration: none;
   transition: color 0.2s;
 
   &:hover,
   &:visited {
-    color: ${p.theme.colors.sidebarText};
+    color: ${colors.sidebarText};
   }
 
   &:hover,
   &.active {
-    color: ${p.theme.colors.primary};
+    color: ${colors.primary};
     font-weight: 600;
   }
 `
@@ -79,7 +79,7 @@ const SmallLink = styled(BaseLink)`
   &,
   &:visited,
   &.active {
-    color: ${p => p.theme.colors.sidebarText};
+    color: ${p => p.theme.docz.colors.sidebarText};
   }
 
   &.active {
@@ -95,7 +95,7 @@ const SmallLink = styled(BaseLink)`
     left: 0;
     width: 0;
     height: 20px;
-    background: ${p => p.theme.colors.primary};
+    background: ${p => p.theme.docz.colors.primary};
     transition: width 0.2s;
   }
 
@@ -159,7 +159,7 @@ export class Link extends Component<LinkProps, LinkState> {
           {theme => (
             <BaseLink
               {...props}
-              className={linkStyle({ theme })}
+              className={linkStyle(theme.colors)}
               onClick={onClick}
               innerRef={(node: any) => {
                 this.$el = node

@@ -12,13 +12,13 @@ const Wrapper = styled('div')`
   align-items: center;
   padding: 5px 24px;
   margin-bottom: 20px;
-  border-top: 1px solid ${p => p.theme.colors.border};
-  border-bottom: 1px solid ${p => p.theme.colors.border};
+  border-top: 1px solid ${p => p.theme.docz.colors.border};
+  border-bottom: 1px solid ${p => p.theme.docz.colors.border};
   opacity: ${(p: WrapperProps) => (p.showing ? 1 : 0)};
 `
 
 const Icon = styled(SearchIcon)`
-  stroke: ${p => p.theme.colors.sidebarText};
+  stroke: ${p => p.theme.docz.colors.sidebarText};
   width: 20px;
   opacity: 0.5;
 `
@@ -30,7 +30,7 @@ const Input = styled('input')`
   background: transparent;
   border: none;
   font-size: 16px;
-  color: ${p => p.theme.colors.sidebarText};
+  color: ${p => p.theme.docz.colors.sidebarText};
 `
 
 interface SearchProps {

@@ -17,8 +17,8 @@ const Wrapper = styled('div')`
 
 const Buttons = styled('div')`
   display: flex;
-  background: ${p => p.theme.colors.background};
-  border: 1px solid ${p => p.theme.colors.border};
+  background: ${p => p.theme.docz.colors.background};
+  border: 1px solid ${p => p.theme.docz.colors.border};
   border-radius: 3px;
   padding: 3px 5px;
 `

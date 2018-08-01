@@ -18,9 +18,9 @@ const line = (position: string) => (p: HandleProps) => css`
   left: ${p.horizontal ? position : '50%'};
   width: ${p.horizontal ? '2px' : '25px'};
   height: ${p.horizontal ? '25px' : '2px'};
-  background: ${p.theme.mode === 'light'
-    ? darken(0.05, p.theme.colors.border)
-    : lighten(0.06, p.theme.colors.border)};
+  background: ${p.theme.docz.mode === 'light'
+    ? darken(0.05, p.theme.docz.colors.border)
+    : lighten(0.06, p.theme.docz.colors.border)};
   transform: translate(-50%, -50%);
 `
 
@@ -36,9 +36,9 @@ export const Handle = styled('div')`
   display: block;
   width: ${whenHorizontal(HANDLE_SIZE, 'calc(100% + 5px)')};
   height: ${handleHeight};
-  border: 1px solid ${p => lighten(0.03, p.theme.colors.border)};
+  border: 1px solid ${p => lighten(0.03, p.theme.docz.colors.border)};
   border-radius: ${whenHorizontal('0 4px 4px 0', '0 0 4px 4px')};
-  background: ${p => darken(0.01, p.theme.colors.preBg)};
+  background: ${p => darken(0.01, p.theme.docz.colors.preBg)};
 
   ${whenHorizontal(
     `

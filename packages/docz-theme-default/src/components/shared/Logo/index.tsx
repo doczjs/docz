@@ -22,9 +22,9 @@ const LogoText = styled('h1')`
   font-size: 24px;
   font-weight: 600;
   letter-spacing: -0.015em;
-  color: ${p => p.theme.colors.text};
+  color: ${p => p.theme.docz.colors.text};
   background: ${(p: LogoTextProps) =>
-    p.showBg ? darken(0.02, p.theme.colors.sidebarBg) : 'transparent'};
+    p.showBg ? darken(0.02, p.theme.docz.colors.sidebarBg) : 'transparent'};
 `
 
 interface LogoProps {
