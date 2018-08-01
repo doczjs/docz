@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.9.0-beta.0"></a>
+# [0.9.0-beta.0](https://github.com/pedronauck/docz/compare/v0.8.0...v0.9.0-beta.0) (2018-08-01)
+
+
+### Bug Fixes
+
+* **docz:** add playground wrapper just around children ([66abfe8](https://github.com/pedronauck/docz/commit/66abfe8))
+
+
+### Features
+
+* **docz-core:** support env files to set configuration ([#171](https://github.com/pedronauck/docz/issues/171)) ([259b72d](https://github.com/pedronauck/docz/commit/259b72d)), closes [#140](https://github.com/pedronauck/docz/issues/140)
+
+
+
+
 <a name="0.8.0"></a>
 # [0.8.0](https://github.com/pedronauck/docz/compare/v0.7.1...v0.8.0) (2018-07-28)
 

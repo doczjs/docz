@@ -7,14 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [0.9.0-beta.0](https://github.com/pedronauck/docz/compare/v0.8.0...v0.9.0-beta.0) (2018-08-01)
 
 
+### Features
 
-
-**Note:** Version bump only for package remark-docz
-
-<a name="0.7.0"></a>
-# [0.7.0](https://github.com/pedronauck/docz/compare/v0.6.2...v0.7.0) (2018-07-23)
-
-
-
-
-**Note:** Version bump only for package remark-docz
+* **docz-plugin-svgr:** add initial version of plugin ([1ac1ea8](https://github.com/pedronauck/docz/commit/1ac1ea8))
