@@ -25,17 +25,6 @@ const LogoText = styled('h1')`
   color: ${p => p.theme.colors.text};
   background: ${(p: LogoTextProps) =>
     p.showBg ? darken(0.02, p.theme.colors.sidebarBg) : 'transparent'};
-
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: ${p => p.theme.colors.primary};
-  }
 `
 
 interface LogoProps {
