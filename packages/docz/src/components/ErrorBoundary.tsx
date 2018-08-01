@@ -41,7 +41,9 @@ const ErrorReporter: SFC<ErrorBoundaryRP> = ({ error, componentStack }) => (
       <h2 style={styles.subtitle}>Stack trace</h2>
       {componentStack && (
         <p style={styles.stack}>
-          {componentStack.split('\n').map(str => <div>{str}</div>)}
+          {componentStack.split('\n').map(str => (
+            <div>{str}</div>
+          ))}
         </p>
       )}
     </div>

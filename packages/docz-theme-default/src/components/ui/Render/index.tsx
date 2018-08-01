@@ -105,7 +105,8 @@ const Tab = styled('button')`
   background: none;
   border: none;
   font-size: 14px;
-  color: ${(p: TabProps) => rgba(p.theme.docz.colors.text, p.active ? 0.8 : 0.4)};
+  color: ${(p: TabProps) =>
+    rgba(p.theme.docz.colors.text, p.active ? 0.8 : 0.4)};
   transition: color 0.3s;
 `
 
