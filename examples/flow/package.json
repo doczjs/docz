@@ -1,6 +1,6 @@
 {
   "name": "docz-example-flow",
-  "version": "0.9.0-beta.0",
+  "version": "0.9.0-beta.1",
   "license": "MIT",
   "scripts": {
     "dev": "docz dev",
@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@babel/preset-flow": "^7.0.0-beta.55",
-    "docz": "^0.9.0-beta.0",
+    "docz": "^0.9.0-beta.1",
     "emotion": "^9.2.6",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
