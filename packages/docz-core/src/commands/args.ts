@@ -1,7 +1,8 @@
 import * as fs from 'fs-extra'
+import envDotProp from 'env-dot-prop'
 import humanize from 'humanize-string'
 import titleize from 'titleize'
-import envDotProp from 'env-dot-prop'
+import get from 'lodash.get'
 
 import { Plugin } from '../Plugin'
 import { BabelRC } from '../utils/babel-config'
@@ -12,17 +13,13 @@ const getEnv = (val: string | string[], defaultValue: any = null): any =>
   envDotProp.get(val, defaultValue, { parse: true })
 
 const removeScope = (name: string) => name.replace(/^@.*\//, '')
-const getInitialTitle = (): string => {
-  const pkg = fs.readJsonSync(paths.packageJson, { throws: false })
-  const name = pkg && pkg.name ? pkg.name : 'MyDoc'
-
+const getInitialTitle = (pkg: any): string => {
+  const name = get(pkg, 'name') || 'MyDoc'
   return titleize(humanize(removeScope(name)))
 }
 
-const getInitialDescription = (): string => {
-  const pkg = fs.readJsonSync(paths.packageJson, { throws: false })
-  return pkg && pkg.description ? pkg.description : 'My awesome app using docz'
-}
+const getInitialDescription = (pkg: any): string =>
+  get(pkg, 'description') || 'My awesome app using docz'
 
 export type Env = 'production' | 'development'
 export type ThemeConfig = Record<string, any>
@@ -64,6 +61,8 @@ export interface Config extends Argv {
 }
 
 export const args = (env: Env) => (yargs: any) => {
+  const pkg = fs.readJsonSync(paths.appPackageJson, { throws: false })
+
   setEnv(env)
   yargs.positional('base', {
     type: 'string',
@@ -85,11 +84,11 @@ export const args = (env: Env) => (yargs: any) => {
   })
   yargs.positional('title', {
     type: 'string',
-    default: getEnv('docz.title', getInitialTitle()),
+    default: getEnv('docz.title', getInitialTitle(pkg)),
   })
   yargs.positional('description', {
     type: 'string',
-    default: getEnv('docz.description', getInitialDescription()),
+    default: getEnv('docz.description', getInitialDescription(pkg)),
   })
   yargs.positional('theme', {
     type: 'string',
@@ -139,7 +138,7 @@ export const args = (env: Env) => (yargs: any) => {
   })
   yargs.positional('hotPort', {
     type: 'number',
-    default: getEnv('docz.hot.port', 8088),
+    default: getEnv('docz.hot.port', 60757),
   })
   yargs.positional('websocketHost', {
     type: 'string',
@@ -147,6 +146,6 @@ export const args = (env: Env) => (yargs: any) => {
   })
   yargs.positional('websocketPort', {
     type: 'number',
-    default: getEnv('docz.websocket.port', 8089),
+    default: getEnv('docz.websocket.port', 60505),
   })
 }

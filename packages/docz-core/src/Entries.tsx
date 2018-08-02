@@ -11,7 +11,7 @@ import { Plugin } from './Plugin'
 import { Config } from './commands/args'
 import { repoInfo } from './utils/repo-info'
 
-const fromTemplates = (file: string) => path.join(paths.templates, file)
+export const fromTemplates = (file: string) => path.join(paths.templates, file)
 
 const getHtmlFilepath = (indexHtml: string | undefined) =>
   indexHtml ? path.join(paths.root, indexHtml) : fromTemplates('index.tpl.html')
@@ -57,38 +57,12 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
   await touch(paths.indexHtml, rawIndexHtml)
 }
 
-const writeImports = async (map: EntryMap): Promise<void> => {
-  const imports = await compiled(fromTemplates('imports.tpl.js'))
-  const rawImportsJs = imports({ entries: Object.values(map) })
-
-  await touch(paths.importsJs, rawImportsJs)
-}
-
-const writeData = async (map: EntryMap, config: Config): Promise<void> => {
-  const configObj = {
-    title: config.title,
-    description: config.description,
-    ...config.themeConfig,
-  }
-
-  await touch(paths.entriesJson, JSON.stringify(map, null, 2))
-  await touch(paths.configJson, JSON.stringify(configObj, null, 2))
-}
-
 export type EntryMap = Record<string, EntryObj>
 
 export class Entries {
   public static async writeApp(config: Config, dev?: boolean): Promise<void> {
     await fs.ensureDir(paths.app)
     await writeAppFiles(config, Boolean(dev))
-  }
-
-  public static async writeImports(map: EntryMap): Promise<void> {
-    await writeImports(map)
-  }
-
-  public static async writeData(map: EntryMap, config: Config): Promise<void> {
-    await writeData(map, config)
   }
 
   public all: Map<string, EntryObj>

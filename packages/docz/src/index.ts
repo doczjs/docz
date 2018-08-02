@@ -1,4 +1,5 @@
-export { theme, Entry } from './theme'
+export { theme } from './theme'
+export { Entry } from './state'
 export { Docs, DocsRenderProps } from './components/Docs'
 export { Link, LinkProps } from './components/Link'
 export { Playground } from './components/Playground'

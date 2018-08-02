@@ -2,7 +2,9 @@ import * as React from 'react'
 import { Children } from 'react'
 import sort from 'array-sort'
 
-import { dataContext, Entry } from '../theme'
+import { state, Entry, EntryMap, Config } from '../state'
+import { entriesSelector } from './DocPreview'
+import { configSelector } from './ThemeConfig'
 
 export const isFn = (value: any): boolean => typeof value === 'function'
 
@@ -36,8 +38,8 @@ export const Docs: React.SFC<DocsProps> = ({ children }) => {
   if (typeof children !== 'function') return null
 
   return (
-    <dataContext.Consumer>
-      {({ entries, config }) => {
+    <state.Consumer select={[entriesSelector, configSelector]}>
+      {(entries: EntryMap, config: Config) => {
         if (!entries || !children) return null
         if (!isFn(children)) {
           throw new Error(
@@ -63,6 +65,6 @@ export const Docs: React.SFC<DocsProps> = ({ children }) => {
           })
         )
       }}
-    </dataContext.Consumer>
+    </state.Consumer>
   )
 }

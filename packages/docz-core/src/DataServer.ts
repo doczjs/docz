@@ -1,117 +1,102 @@
-import { load, finds } from 'load-cfg'
-import chokidar from 'chokidar'
 import WS from 'ws'
 
-import { Config } from './commands/args'
-import { Entries, EntryMap } from './Entries'
+import { touch } from './utils/fs'
+import { isFn } from './utils/helpers'
+import * as paths from './config/paths'
+
+export type Send = (type: string, payload: any) => void
+export type On = (type: string) => Promise<any>
 
 const isSocketOpened = (socket: WS) => socket.readyState === WS.OPEN
+const sender = (socket?: WS) => (type: string, payload: any) => {
+  if (socket && isSocketOpened(socket)) {
+    socket.send(JSON.stringify({ type, payload }))
+  }
+}
 
-export interface DataServerOpts {
-  server: any
-  config: Config
+export interface Action {
+  type: string
+  payload: any
+}
+
+export interface Params {
+  state: Record<string, any>
+  setState: (key: string, val: any) => void
+}
+
+export interface State {
+  init: (params: Params) => Promise<any>
+  update: (params: Params) => any
 }
 
 export class DataServer {
-  private server: WS.Server
-  private config: Config
+  private server?: WS.Server
+  private states: Set<State>
+  private state: Map<string, any>
 
-  constructor({ server, config }: DataServerOpts) {
-    this.config = config
-    this.server = new WS.Server({
-      server,
-      port: config.websocketPort,
-      host: config.websocketHost,
-    })
+  constructor(server?: any, port?: number, host?: string) {
+    this.states = new Set()
+    this.state = new Map()
+
+    if (server) {
+      this.server = new WS.Server({ server, port, host })
+    }
   }
 
-  public async processEntries(entries: Entries): Promise<void> {
-    const watcher = chokidar.watch(this.config.files, {
-      ignored: /(^|[\/\\])\../,
-    })
+  public register(states: State[]): DataServer {
+    for (const state of states) this.states.add(state)
+    return this
+  }
 
-    const handleConnection = async (socket: WS) => {
-      const update = this.updateEntries(entries, socket)
-      const map = await entries.get()
+  public async init(): Promise<void> {
+    for (const state of this.states) {
+      state.init &&
+        (await state.init({
+          state: this.getState(),
+          setState: this.setState(),
+        }))
+    }
 
-      watcher.on('change', async () => update(this.config))
-      watcher.on('unlink', async () => update(this.config))
-      watcher.on('raw', async (event: string, path: string, details: any) => {
-        if (details.event === 'moved' && details.type === 'directory') {
-          await update(this.config)
-        }
+    await touch(paths.db, JSON.stringify(this.getState(), null, 2))
+  }
+
+  public async listen(): Promise<void> {
+    if (this.server) {
+      this.server.on('connection', socket => {
+        const close = this.handleConnection(socket)
+        this.server && this.server.on('close', async () => close())
       })
-
-      socket.send(this.entriesData(map))
-      await Entries.writeImports(map)
-    }
-
-    this.server.on('connection', handleConnection)
-    this.server.on('close', () => watcher.close())
-  }
-
-  public async processThemeConfig(): Promise<void> {
-    const watcher = chokidar.watch(finds('docz'))
-
-    const handleConnection = async (socket: WS) => {
-      const update = this.updateConfig(socket)
-
-      watcher.on('add', () => update())
-      watcher.on('change', () => update())
-      watcher.on('unlink', () => update())
-
-      update()
-    }
-
-    this.server.on('connection', handleConnection)
-    this.server.on('close', () => watcher.close())
-  }
-
-  private dataObj(type: string, data: any): string {
-    return JSON.stringify({ type, data })
-  }
-
-  private entriesData(entries: EntryMap): string {
-    return this.dataObj('docz.entries', entries)
-  }
-
-  private configData(config: Config): string {
-    return this.dataObj('docz.config', {
-      ...config.themeConfig,
-      title: config.title,
-      description: config.description,
-      ordering: config.ordering,
-    })
-  }
-
-  private updateEntries(
-    entries: Entries,
-    socket: WS
-  ): (config: Config) => Promise<void> {
-    return async config => {
-      if (isSocketOpened(socket)) {
-        const map = await entries.get()
-
-        await Entries.writeImports(map)
-        socket.send(this.entriesData(map))
-      }
     }
   }
 
-  private updateConfig(socket: WS): () => void {
-    const initialConfig = {
-      title: this.config.title,
-      description: this.config.description,
-      themeConfig: this.config.themeConfig,
-      ordering: this.config.ordering,
+  private handleConnection(socket: WS): () => void {
+    const states = Array.from(this.states).map(
+      async state =>
+        state.update &&
+        state.update({
+          state: this.getState(),
+          setState: this.setState(socket),
+        })
+    )
+
+    return async () => {
+      const fns = await Promise.all(states.filter(Boolean))
+      for (const fn of fns) fn && isFn(fn) && fn()
     }
+  }
 
-    return () => {
-      const config = load('docz', initialConfig, true)
+  private getState(): Record<string, any> {
+    return Array.from(this.state.entries()).reduce((obj, [key, val]) => {
+      return { ...obj, [key]: val }
+    }, {})
+  }
 
-      if (isSocketOpened(socket)) {
-        socket.send(this.configData(config))
-      }
+  private setState(socket?: WS): (key: string, val: any) => void {
+    const send = sender(socket)
+
+    return (key: string, val: any): void => {
+      this.state.set(key, val)
+      send(`state.${key}`, val)
     }
   }
 }
