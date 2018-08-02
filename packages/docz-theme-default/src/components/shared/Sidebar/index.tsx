@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Docs, Entry, ThemeConfig, DocsRenderProps } from 'docz'
+import { Docs, Entry, DocsRenderProps } from 'docz'
 import { Toggle, State } from 'react-powerplug'
 import { Media } from 'react-breakpoints'
 import { adopt } from 'react-adopt'
@@ -68,11 +68,7 @@ const Menus = styled('nav')`
 const Empty = styled('div')`
   flex: 1;
   opacity: 0.6;
-
-  ${p =>
-    p.theme.docz.mq({
-      padding: ['0 20px', '0 30px'],
-    })};
+  padding: 0 24px;
 `
 
 const Footer = styled('div')`
@@ -124,11 +120,6 @@ interface Toggle {
   toggle: () => void
 }
 
-interface Config {
-  title: string
-  logo: { src: string; width: any }
-}
-
 interface State {
   setState: (state: any) => void
   state: {
@@ -141,7 +132,6 @@ interface MapperProps {
   docs: DocsRenderProps
   media: Media
   toggle: Toggle
-  config: Config
   state: State
 }
 
@@ -149,23 +139,20 @@ type EnhancedProps = DocsRenderProps &
   Toggle &
   State & {
     media: Media
-    config: Config
   }
 
 const mapper = {
-  config: <ThemeConfig />,
   docs: <Docs />,
   media: <Media />,
   state: <State initial={{ docs: null, searching: false }} />,
   toggle: <Toggle initial={true} />,
 }
 
-const mapProps = ({ docs, media, toggle, config, state }: MapperProps) => ({
+const mapProps = ({ docs, media, toggle, state }: MapperProps) => ({
   ...docs,
   ...toggle,
   ...state,
   media,
-  config,
 })
 
 const Composed = adopt<EnhancedProps>(mapper, mapProps)
@@ -176,18 +163,14 @@ export const Sidebar = () => (
       menus,
       docs: initialDocs,
       media,
-      config,
       toggle,
       on,
       state,
       setState,
     }: EnhancedProps) => {
-      const isDesktop = media.currentBreakpoint === 'desktop' ? true : false
-      const title = config.title
-      const logo = config.logo
-
       const docs = state.docs || initialDocs
       const docsWithoutMenu = docs.filter((doc: Entry) => !doc.menu)
+      const isDesktop = media.currentBreakpoint === 'desktop' ? true : false
 
       const fromMenu = (menu: string) => docs.filter(doc => doc.menu === menu)
       const search = (val: string) => match(docs, val, { keys: ['name'] })
@@ -210,7 +193,7 @@ export const Sidebar = () => (
         <React.Fragment>
           <Wrapper opened={on} desktop={isDesktop}>
             <Hamburguer opened={on} onClick={handleSidebarToggle} />
-            <Logo logo={logo} title={title} />
+            <Logo showBg={!on} />
             <Search showing={isDesktop || !on} onSearch={handleSearchDocs} />
             {docs.length < 1 ? (
               <Empty>No document find.</Empty>

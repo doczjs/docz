@@ -15,7 +15,7 @@ const Icon = styled('div')`
   position: relative;
   width: 23px;
   height: 32px;
-  transform: translateX(-2px);
+  transform: translateX(-2px) scale(${(p: OpenProps) => (!p.opened ? 0.8 : 1)});
 `
 
 const IconLine = styled('span')`
@@ -30,17 +30,17 @@ const IconLine = styled('span')`
   transition: transform 0.3s, opacity 0.3s;
 
   &:nth-child(1) {
-    top: 0;
+    top: -2px;
     transform: translateY(${IconFirst}) rotate(${IconRotate});
   }
 
   &:nth-child(2) {
-    top: 8px;
+    top: 6px;
     opacity: ${IconMiddle};
   }
 
   &:nth-child(3) {
-    top: 16px;
+    top: 14px;
     transform: translateY(${IconLast}) rotate(-${IconRotate});
   }
 `
@@ -58,15 +58,15 @@ const ToggleButton = styled('button')`
   padding: 5px 6px;
   width: 33px;
   height: 30px;
-  top: ${(p: OpenProps) => (!p.opened ? '4px' : '2px')};
-  right: 0;
+  top: ${(p: OpenProps) => (!p.opened ? '2px' : '2px')};
+  right: ${(p: OpenProps) => (!p.opened ? '-39px' : '0px')};
   transform: translateX(${translateX}) translateY(${translateY});
   transition: transform 0.3s;
   outline: none;
   border: none;
   background: ${p =>
-    !p.opened ? 'transparent' : p.theme.docz.colors.background};
-  border-radius: 3px;
+    !p.opened ? p.theme.docz.colors.sidebarBg : p.theme.docz.colors.background};
+  border-radius: ${p => (p.opened ? '3px' : '0px 3px 3px 0')};
 
   ${p =>
     p.theme.docz.mq({
@@ -80,7 +80,7 @@ interface HamburguerProps extends OpenProps {
 
 export const Hamburguer: SFC<HamburguerProps> = ({ opened, onClick }) => (
   <ToggleButton opened={opened} onClick={onClick}>
-    <Icon>
+    <Icon opened={opened}>
       <IconLine opened={opened} />
       <IconLine opened={opened} />
       <IconLine opened={opened} />

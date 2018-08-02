@@ -1,48 +1,66 @@
 import * as React from 'react'
 import { SFC } from 'react'
 import { Media } from 'react-breakpoints'
-import darken from 'polished/lib/color/darken'
+import { ThemeConfig } from 'docz'
 import styled from 'react-emotion'
 
-const LogoImg = styled('img')`
-  padding: 0;
-  margin: 20px 24px;
-`
-
-interface LogoTextProps {
+interface WrapperProps {
   showBg: boolean
   theme?: any
 }
 
-const LogoText = styled('h1')`
+const Wrapper = styled('div')`
   position: relative;
-  display: block;
-  padding: 24px 24px 24px 30px;
-  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px;
+  background: ${(p: WrapperProps) =>
+    p.showBg ? p.theme.docz.colors.sidebarBg : 'transparent'};
+
+  &:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: calc(100% + 1px);
+    height: ${(p: WrapperProps) => (p.showBg ? '3px' : 0)};
+    background: ${p => p.theme.docz.colors.primary};
+  }
+`
+
+const LogoImg = styled('img')`
+  padding: 0;
+  margin: 5px 0;
+`
+
+const LogoText = styled('h1')`
+  margin: 5px 0;
   font-size: 24px;
   font-weight: 600;
   letter-spacing: -0.015em;
   color: ${p => p.theme.docz.colors.text};
-  background: ${(p: LogoTextProps) =>
-    p.showBg ? darken(0.02, p.theme.docz.colors.sidebarBg) : 'transparent'};
 `
 
 interface LogoProps {
-  title: string
-  logo: {
-    src: string
-    width: number
-  }
+  showBg: boolean
 }
 
-export const Logo: SFC<LogoProps> = ({ logo, title }) => (
+export const Logo: SFC<LogoProps> = ({ showBg }) => (
   <Media>
-    {({ currentBreakpoint }: any) =>
-      logo ? (
-        <LogoImg src={logo.src} width={logo.width} alt={title} />
-      ) : (
-        <LogoText showBg={currentBreakpoint === 'desktop'}>{title}</LogoText>
-      )
-    }
+    {({ currentBreakpoint }: any) => (
+      <ThemeConfig>
+        {({ title, themeConfig: { logo } }) => (
+          <Wrapper showBg={showBg || currentBreakpoint === 'desktop'}>
+            {logo ? (
+              <LogoImg src={logo.src} width={logo.width} alt={title} />
+            ) : (
+              <LogoText>{title}</LogoText>
+            )}
+          </Wrapper>
+        )}
+      </ThemeConfig>
+    )}
   </Media>
 )
