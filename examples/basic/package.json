@@ -11,8 +11,8 @@
     "docz-core": "^0.9.0-beta.1",
     "emotion": "^9.2.6",
     "prop-types": "^15.6.2",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
     "react-emotion": "^9.2.6"
   },
   "devDependencies": {

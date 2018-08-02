@@ -1552,15 +1552,15 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
-"@mdx-js/loader@^0.15.0-1":
-  version "0.15.0-1"
-  resolved "https://registry.npmjs.org/@mdx-js/loader/-/loader-0.15.0-1.tgz#0c0e5899f3ebd803ff122aae64e8685e03260440"
+"@mdx-js/loader@^0.15.0-2":
+  version "0.15.0-2"
+  resolved "https://registry.npmjs.org/@mdx-js/loader/-/loader-0.15.0-2.tgz#733e524ed8518a982e997eea687dc043816c836b"
   dependencies:
-    "@mdx-js/tag" "^0.15.0-1"
+    "@mdx-js/tag" "^0.15.0-2"
 
-"@mdx-js/mdx@^0.15.0-1":
-  version "0.15.0-1"
-  resolved "https://registry.npmjs.org/@mdx-js/mdx/-/mdx-0.15.0-1.tgz#5c34bc7b810ff7f8640558769be227170bca6953"
+"@mdx-js/mdx@^0.15.0-2":
+  version "0.15.0-2"
+  resolved "https://registry.npmjs.org/@mdx-js/mdx/-/mdx-0.15.0-2.tgz#7ca692d3b7640f725e1a63787c464d22a5a2159c"
   dependencies:
     mdast-util-to-hast "^3.0.0"
     remark-parse "^5.0.0"
@@ -1568,15 +1568,15 @@
     unified "^6.1.6"
     unist-util-visit "^1.3.0"
 
-"@mdx-js/mdxast@^0.15.0-1":
-  version "0.15.0-1"
-  resolved "https://registry.npmjs.org/@mdx-js/mdxast/-/mdxast-0.15.0-1.tgz#2c3814adb2ddb6da5468562af0d506c57803a5d8"
+"@mdx-js/mdxast@^0.15.0-2":
+  version "0.15.0-2"
+  resolved "https://registry.npmjs.org/@mdx-js/mdxast/-/mdxast-0.15.0-2.tgz#0c278d180d43c4232ecc333e5beeadf996abf54c"
   dependencies:
     unist-util-visit "^1.3.0"
 
-"@mdx-js/tag@^0.15.0-1":
-  version "0.15.0-1"
-  resolved "https://registry.npmjs.org/@mdx-js/tag/-/tag-0.15.0-1.tgz#77aae264338c856a958c1e2199fd6e16f7a65132"
+"@mdx-js/tag@^0.15.0-2":
+  version "0.15.0-2"
+  resolved "https://registry.npmjs.org/@mdx-js/tag/-/tag-0.15.0-2.tgz#ea38a63b8f3b0ab9fac7c6d6ba4a4045974e143a"
   dependencies:
     create-react-context "^0.2.2"
     hoist-non-react-statics "^2.5.5"
@@ -1677,10 +1677,6 @@
   resolved "https://registry.npmjs.org/@types/accepts/-/accepts-1.3.5.tgz#c34bec115cfc746e04fe5a059df4ce7e7b391575"
   dependencies:
     "@types/node" "*"
-
-"@types/bluebird@^3.5.23":
-  version "3.5.23"
-  resolved "https://registry.npmjs.org/@types/bluebird/-/bluebird-3.5.23.tgz#e805da976b76892b2b2e50eec29e84914c730670"
 
 "@types/body-parser@*":
   version "1.17.0"
@@ -1845,9 +1841,9 @@
   version "10.0.0"
   resolved "https://registry.npmjs.org/@types/node/-/node-10.0.0.tgz#c40f8e07dce607d3ef25a626b93a6a7cdcf97881"
 
-"@types/node@10.5.4", "@types/node@^10.5.4":
-  version "10.5.4"
-  resolved "https://registry.npmjs.org/@types/node/-/node-10.5.4.tgz#6eccc158504357d1da91434d75e86acde94bb10b"
+"@types/node@10.5.5", "@types/node@^10.5.5":
+  version "10.5.5"
+  resolved "https://registry.npmjs.org/@types/node/-/node-10.5.5.tgz#8e84d24e896cd77b0d4f73df274027e3149ec2ba"
 
 "@types/prettier@^1.13.2":
   version "1.13.2"
@@ -1865,13 +1861,6 @@
   dependencies:
     "@types/node" "*"
     "@types/react" "*"
-
-"@types/react-loadable@^5.4.0":
-  version "5.4.0"
-  resolved "https://registry.npmjs.org/@types/react-loadable/-/react-loadable-5.4.0.tgz#7a4f0673de07473525ab27959cf4c2601e25f37f"
-  dependencies:
-    "@types/react" "*"
-    "@types/webpack" "*"
 
 "@types/react-router-dom@^4.3.0":
   version "4.3.0"
@@ -1942,9 +1931,9 @@
     "@types/uglify-js" "*"
     source-map "^0.6.0"
 
-"@types/webpack@^4.4.8":
-  version "4.4.8"
-  resolved "https://registry.npmjs.org/@types/webpack/-/webpack-4.4.8.tgz#3af86780489a355e05f3de26b553537afc026acb"
+"@types/webpack@^4.4.9":
+  version "4.4.9"
+  resolved "https://registry.npmjs.org/@types/webpack/-/webpack-4.4.9.tgz#814721fb4cfaebe553ffdf2ae2c504494ec6613b"
   dependencies:
     "@types/node" "*"
     "@types/tapable" "*"
@@ -4429,6 +4418,13 @@ cpy@^7.0.1:
     globby "^8.0.1"
     nested-error-stacks "^2.0.0"
 
+crc-32@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/crc-32/-/crc-32-1.2.0.tgz#cb2db6e29b88508e32d9dd0ec1693e7b41a18208"
+  dependencies:
+    exit-on-epipe "~1.0.1"
+    printj "~1.1.0"
+
 create-ecdh@^4.0.0:
   version "4.0.1"
   resolved "https://registry.npmjs.org/create-ecdh/-/create-ecdh-4.0.1.tgz#44223dfed533193ba5ba54e0df5709b89acf1f82"
@@ -5553,6 +5549,10 @@ execa@^0.9.0:
 exit-hook@^1.0.0:
   version "1.1.1"
   resolved "https://registry.npmjs.org/exit-hook/-/exit-hook-1.1.1.tgz#f05ca233b48c05d54fff07765df8507e95c02ff8"
+
+exit-on-epipe@~1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/exit-on-epipe/-/exit-on-epipe-1.0.1.tgz#0bdd92e87d5285d267daa8171d0eb06159689692"
 
 expand-brackets@^0.1.4:
   version "0.1.5"
@@ -8128,6 +8128,13 @@ load-json-file@^4.0.0:
     pify "^3.0.0"
     strip-bom "^3.0.0"
 
+loadable-components@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.npmjs.org/loadable-components/-/loadable-components-2.2.2.tgz#0362f5d6d0607f5d9bcc7932c7cdba6f256cbd46"
+  dependencies:
+    babel-plugin-syntax-dynamic-import "^6.18.0"
+    hoist-non-react-statics "^2.5.0"
+
 loader-runner@^2.3.0:
   version "2.3.0"
   resolved "https://registry.npmjs.org/loader-runner/-/loader-runner-2.3.0.tgz#f482aea82d543e07921700d5a46ef26fdac6b8a2"
@@ -9794,9 +9801,9 @@ postcss-discard-overridden@^4.0.0:
   dependencies:
     postcss "^6.0.0"
 
-postcss-flexbugs-fixes@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/postcss-flexbugs-fixes/-/postcss-flexbugs-fixes-4.0.0.tgz#e6f4c21222404b97a762eabf9ff64bf2e3e333e8"
+postcss-flexbugs-fixes@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npmjs.org/postcss-flexbugs-fixes/-/postcss-flexbugs-fixes-4.1.0.tgz#e094a9df1783e2200b7b19f875dcad3b3aff8b20"
   dependencies:
     postcss "^7.0.0"
 
@@ -10055,6 +10062,14 @@ postcss@^7.0.0, postcss@^7.0.1:
     source-map "^0.6.1"
     supports-color "^5.4.0"
 
+postcss@^7.0.2:
+  version "7.0.2"
+  resolved "https://registry.npmjs.org/postcss/-/postcss-7.0.2.tgz#7b5a109de356804e27f95a960bef0e4d5bc9bb18"
+  dependencies:
+    chalk "^2.4.1"
+    source-map "^0.6.1"
+    supports-color "^5.4.0"
+
 prelude-ls@~1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
@@ -10099,6 +10114,10 @@ pretty@^2.0.0:
     condense-newlines "^0.2.1"
     extend-shallow "^2.0.1"
     js-beautify "^1.6.12"
+
+printj@~1.1.0:
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/printj/-/printj-1.1.2.tgz#d90deb2975a8b9f600fb3a1c94e3f4c53c78a222"
 
 prismjs@^1.8.4:
   version "1.15.0"
@@ -10146,7 +10165,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@15.6.2, prop-types@^15.5.0, prop-types@^15.6.2:
+prop-types@15.6.2, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -10383,9 +10402,9 @@ react-docgen@^3.0.0-beta12:
     node-dir "^0.1.10"
     recast "^0.12.6"
 
-react-dom@^16.2.0, react-dom@^16.4.1:
-  version "16.4.1"
-  resolved "https://registry.npmjs.org/react-dom/-/react-dom-16.4.1.tgz#7f8b0223b3a5fbe205116c56deb85de32685dad6"
+react-dom@^16.4.2:
+  version "16.4.2"
+  resolved "https://registry.npmjs.org/react-dom/-/react-dom-16.4.2.tgz#4afed569689f2c561d2b8da0b819669c38a0bda4"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -10418,6 +10437,17 @@ react-hot-loader@4.3.4:
     react-lifecycles-compat "^3.0.4"
     shallowequal "^1.0.2"
 
+react-imported-component@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.npmjs.org/react-imported-component/-/react-imported-component-4.6.2.tgz#0a7f35bf021adf2a1f2a4874ce72418a0995db3d"
+  dependencies:
+    babel-plugin-syntax-dynamic-import "^6.18.0"
+    babel-polyfill "^6.26.0"
+    crc-32 "^1.2.0"
+    detect-node "^2.0.3"
+    prop-types "15.6.2"
+    scan-directory "^1.0.0"
+
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
@@ -10425,12 +10455,6 @@ react-lifecycles-compat@^3.0.4:
 react-lightweight-tooltip@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/react-lightweight-tooltip/-/react-lightweight-tooltip-1.0.0.tgz#1fb96831b88de21a4d73d02148aae3d8d0aea9bc"
-
-react-loadable@^5.4.0:
-  version "5.4.0"
-  resolved "https://registry.npmjs.org/react-loadable/-/react-loadable-5.4.0.tgz#3b6b7d51121a7868fd155be848a36e02084742c9"
-  dependencies:
-    prop-types "^15.5.0"
 
 react-powerplug@^1.0.0-rc.1:
   version "1.0.0-rc.1"
@@ -10477,9 +10501,18 @@ react-syntax-highlighter@^8.0.1:
     prismjs "^1.8.4"
     refractor "^2.4.1"
 
-react@^16.2.0, react@^16.3.2, react@^16.4.1:
+react@^16.3.2:
   version "16.4.1"
   resolved "https://registry.npmjs.org/react/-/react-16.4.1.tgz#de51ba5764b5dbcd1f9079037b862bd26b82fe32"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+
+react@^16.4.2:
+  version "16.4.2"
+  resolved "https://registry.npmjs.org/react/-/react-16.4.2.tgz#2cd90154e3a9d9dd8da2991149fdca3c260e129f"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -11316,15 +11349,16 @@ sass-graph@^2.2.4:
     scss-tokenizer "^0.2.3"
     yargs "^7.0.0"
 
-sass-loader@^7.0.3:
-  version "7.0.3"
-  resolved "https://registry.npmjs.org/sass-loader/-/sass-loader-7.0.3.tgz#6ca10871a1cc7549f8143db5a9958242c4e4ca2a"
+sass-loader@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.npmjs.org/sass-loader/-/sass-loader-7.1.0.tgz#16fd5138cb8b424bf8a759528a1972d72aad069d"
   dependencies:
     clone-deep "^2.0.1"
     loader-utils "^1.0.1"
     lodash.tail "^4.1.1"
     neo-async "^2.5.0"
     pify "^3.0.0"
+    semver "^5.5.0"
 
 sax@0.5.x:
   version "0.5.8"
@@ -11333,6 +11367,10 @@ sax@0.5.x:
 sax@^1.2.4, sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.npmjs.org/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
+
+scan-directory@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/scan-directory/-/scan-directory-1.0.0.tgz#46b6769dbd893d9bd7490ae9dcc43811a38b7fbb"
 
 schema-utils@^0.4.0, schema-utils@^0.4.3, schema-utils@^0.4.4, schema-utils@^0.4.5:
   version "0.4.5"
@@ -12404,6 +12442,10 @@ typescript@^2.9.2:
   version "2.9.2"
   resolved "https://registry.npmjs.org/typescript/-/typescript-2.9.2.tgz#1cbf61d05d6b96269244eb6a3bce4bd914e0f00c"
 
+typescript@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-3.0.1.tgz#43738f29585d3a87575520a4b93ab6026ef11fdb"
+
 ua-parser-js@^0.7.18:
   version "0.7.18"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.18.tgz#a7bfd92f56edfb117083b69e31d2aa8882d4b1ed"
@@ -13011,9 +13053,9 @@ webpack-manifest-plugin@^2.0.3:
     lodash ">=3.5 <5"
     tapable "^1.0.0"
 
-webpack-serve-overlay@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.npmjs.org/webpack-serve-overlay/-/webpack-serve-overlay-0.2.2.tgz#f67857d07b5cb751c84731c531199a32a325b94c"
+webpack-serve-overlay@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/webpack-serve-overlay/-/webpack-serve-overlay-0.3.0.tgz#3ef21ca1dd834f3d106e028a0f8b2ca81f337517"
   dependencies:
     ansi-html "0.0.7"
     html-entities "^1.2.1"
