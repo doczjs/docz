@@ -130,7 +130,7 @@ export class Pre extends Component<PreProps> {
               language="javascript"
               showLineNumbers
               useInlineStyles={false}
-              lineNumberContainerStyle={linesStyle(config)}
+              lineNumberContainerStyle={linesStyle(config.themeConfig)}
               PreTag={Nullable}
               CodeTag={getCode(children)}
             >

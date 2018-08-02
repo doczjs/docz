@@ -41,7 +41,7 @@ const Wrapper = styled('div')`
   ${(p: WrapperProps) => p.active && activeWrapper(p)};
 `
 
-export const linkStyle = (colors: any) => css`
+export const linkStyle = ({ colors }: any) => css`
   position: relative;
   display: block;
   margin: 6px 24px;
@@ -156,10 +156,10 @@ export class Link extends Component<LinkProps, LinkState> {
     return (
       <Wrapper active={active}>
         <ThemeConfig>
-          {theme => (
+          {config => (
             <BaseLink
               {...props}
-              className={linkStyle(theme.colors)}
+              className={linkStyle(config.themeConfig)}
               onClick={onClick}
               innerRef={(node: any) => {
                 this.$el = node

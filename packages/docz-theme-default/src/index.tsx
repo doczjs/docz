@@ -15,7 +15,7 @@ import * as prismThemes from './styles/prism'
 const Theme = () => (
   <ThemeConfig>
     {config => (
-      <ThemeProvider theme={{ docz: { ...config, mq } }}>
+      <ThemeProvider theme={{ docz: { ...config.themeConfig, mq } }}>
         <ReactBreakpoints breakpoints={breakpoints}>
           <DocPreview
             components={{

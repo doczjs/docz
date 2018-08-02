@@ -3,10 +3,10 @@ import { ReactNode, SFC, Children } from 'react'
 import merge from 'deepmerge'
 
 import { themeContext } from '../theme'
-import { state, State, Config } from '../state'
+import { state, State, Config, ThemeConfig as ThemeConfigObj } from '../state'
 
 export interface ThemeConfigProps {
-  children?: (config: any) => ReactNode
+  children?: (config: ThemeConfigObj) => ReactNode
 }
 
 export const configSelector = state.createSelector(
@@ -18,13 +18,19 @@ export const ThemeConfig: SFC<ThemeConfigProps> = ({ children }) => {
 
   return (
     <themeContext.Consumer>
-      {({ initialConfig, transform }) => (
+      {({ themeConfig: initialThemeConfig, transform }) => (
         <state.Consumer select={[configSelector]}>
-          {(config: Config) => {
-            const newConfig = merge(initialConfig, config)
-            const transformed = transform ? transform(newConfig) : newConfig
+          {({ themeConfig, ...config }: Config) => {
+            const newThemeConfig = merge(initialThemeConfig, themeConfig)
 
-            return Children.only(children(transformed))
+            return Children.only(
+              children({
+                ...config,
+                themeConfig: transform
+                  ? transform(newThemeConfig)
+                  : newThemeConfig,
+              })
+            )
           }}
         </state.Consumer>
       )}

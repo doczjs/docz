@@ -7,7 +7,7 @@ import createContext from 'create-react-context'
 
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { DataServer } from './components/DataServer'
-import { state, Database, Config, ImportMap } from './state'
+import { state, Database, ThemeConfig, ImportMap } from './state'
 
 declare var BASE_URL: any
 const DefaultWrapper: SFC = ({ children }) => <Fragment>{children}</Fragment>
@@ -22,17 +22,17 @@ export interface ThemeProps {
 }
 
 export type ThemeReturn = (WrappedComponent: CT) => CT<ThemeProps>
-export type TransformFn = (config: Config) => Config
+export type TransformFn = (config: ThemeConfig) => ThemeConfig
 
 interface ThemeContext {
-  initialConfig?: Config
+  themeConfig?: ThemeConfig
   transform?: TransformFn
 }
 
 export const themeContext = createContext<ThemeContext>({})
 
 export function theme(
-  initialConfig: Config,
+  themeConfig: ThemeConfig,
   transform?: TransformFn
 ): ThemeReturn {
   return WrappedComponent => {
@@ -46,7 +46,7 @@ export function theme(
 
       return (
         <ErrorBoundary>
-          <themeContext.Provider value={{ initialConfig, transform }}>
+          <themeContext.Provider value={{ themeConfig, transform }}>
             <state.Provider initialState={initialState}>
               <DataServer websocketUrl={props.websocketUrl}>
                 <Router basename={BASE_URL}>

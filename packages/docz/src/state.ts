@@ -29,8 +29,16 @@ export interface Entry {
   [key: string]: any
 }
 
-export interface Config {
+export interface ThemeConfig {
   [key: string]: any
+}
+
+export interface Config {
+  title: string
+  description: string
+  ordering: string
+  themeConfig: ThemeConfig
+  version: string | null
 }
 
 export type EntryMap = Record<string, Entry>

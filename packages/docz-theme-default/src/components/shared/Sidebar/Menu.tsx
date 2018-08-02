@@ -22,7 +22,7 @@ const List = styled('dl')`
 `
 
 export const MenuLink = styled('a')`
-  ${linkStyle};
+  ${p => linkStyle(p.theme.docz)};
 `
 
 interface IconProps {
