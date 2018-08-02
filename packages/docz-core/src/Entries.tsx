@@ -42,6 +42,7 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
   })
 
   const rawIndexJs = js({
+    isProd: !dev,
     onPreRenders,
     onPostRenders,
   })
