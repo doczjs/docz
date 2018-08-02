@@ -4,7 +4,7 @@ import detectPort from 'detect-port'
 import envDotProp from 'env-dot-prop'
 
 import * as paths from '../config/paths'
-import * as actions from '../actions'
+import * as states from '../states'
 
 import { Config } from './args'
 import { DataServer } from '../DataServer'
@@ -18,7 +18,6 @@ export const dev = async (args: Config) => {
   const port = await detectPort(config.port)
   const hotPort = await detectPort(config.hotPort)
   const websocketPort = await detectPort(config.websocketPort)
-  const entries = new Entries(config)
 
   envDotProp.set(
     'webpack.server.overlay.ws.url',
@@ -37,17 +36,13 @@ export const dev = async (args: Config) => {
   )
 
   try {
-    logger.info('Removing old app files')
     await fs.remove(paths.app)
-
-    logger.info('Creating boilerplate files')
     await Entries.writeApp(newConfig, true)
-    await Entries.writeImports(await entries.get())
 
-    logger.info(`Setup data server on port ${websocketPort}`)
-    dataServer.dispatch(actions.parseEntries(entries, newConfig))
-    dataServer.dispatch(actions.parseConfig(newConfig))
-    dataServer.init()
+    dataServer.register([states.entries(newConfig), states.config(newConfig)])
+
+    await dataServer.init()
+    await dataServer.listen()
   } catch (err) {
     logger.fatal('Failed to process your server:', err)
     process.exit(1)

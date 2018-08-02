@@ -38,8 +38,7 @@ export interface Paths {
   rootJs: string
   indexJs: string
   indexHtml: string
-  configJson: string
-  entriesJson: string
+  db: string
 }
 
 export const templates = path.join(resolve.sync('docz-core'), '../templates')
@@ -61,5 +60,4 @@ export const importsJs = path.resolve(app, 'imports.js')
 export const rootJs = path.resolve(app, 'root.jsx')
 export const indexJs = path.resolve(app, 'index.jsx')
 export const indexHtml = path.resolve(app, 'index.html')
-export const entriesJson = path.resolve(app, 'entries.json')
-export const configJson = path.resolve(app, 'config.json')
+export const db = path.resolve(app, 'db.json')
