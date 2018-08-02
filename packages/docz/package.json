@@ -34,7 +34,6 @@
     "deepmerge": "^2.1.1",
     "docz-core": "^0.9.0-beta.1",
     "docz-theme-default": "^0.9.0-beta.1",
-    "loadable-components": "^2.2.2",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-copy-write": "^0.7.0",
