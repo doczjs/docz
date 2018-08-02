@@ -45,20 +45,12 @@ export type EntryMap = Record<string, Entry>
 export type ImportMap = Record<string, () => Promise<MSXImport>>
 export type TransformFn = (config: Config) => Config
 
-export interface Database {
+export interface State {
   config: Config
   entries: EntryMap
 }
 
-export interface State {
-  db: Database
-  imports: ImportMap
-}
-
 export const state = createState({
-  imports: {},
-  db: {
-    config: {},
-    entries: {},
-  },
+  config: {},
+  entries: {},
 })

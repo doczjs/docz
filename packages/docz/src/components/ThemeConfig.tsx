@@ -10,7 +10,7 @@ export interface ThemeConfigProps {
 }
 
 export const configSelector = state.createSelector(
-  (state: State) => state.db.config
+  (state: State) => state.config
 )
 
 export const ThemeConfig: SFC<ThemeConfigProps> = ({ children }) => {

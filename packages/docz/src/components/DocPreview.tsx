@@ -1,11 +1,12 @@
 import * as React from 'react'
 import { Fragment, SFC, ComponentType as CT } from 'react'
 import { Switch, Route, RouteComponentProps } from 'react-router-dom'
-import { MDXProvider } from '@mdx-js/tag'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
-import Loadable from 'react-loadable'
+import { MDXProvider } from '@mdx-js/tag'
+import importedComponent from 'react-imported-component'
 
-import { state, State, Entry, EntryMap, ImportMap } from '../state'
+import { state, State, Entry, EntryMap } from '../state'
+import { themeContext } from '../theme'
 
 export type PageProps = RouteComponentProps<any> & {
   doc: Entry
@@ -67,13 +68,7 @@ const defaultComponents: ComponentsMap = {
   page: Identity,
 }
 
-export const importsSelector = state.createSelector(
-  (state: State) => state.imports
-)
-
-export const entriesSelector = state.createSelector(
-  (state: State) => state.db.entries
-)
+export const entriesSelector = state.createSelector((s: State) => s.entries)
 
 export interface DocPreviewProps {
   components: ComponentsMap
@@ -93,43 +88,45 @@ export const DocPreview: SFC<DocPreviewProps> = ({
 
   return (
     <MDXProvider components={components}>
-      <state.Consumer select={[entriesSelector, importsSelector]}>
-        {(entries: EntryMap, imports: ImportMap) => (
-          <Switch>
-            {Object.keys(imports).map(path => {
-              const entry = entries && entries[path]
-              const AsyncComponent: any = Loadable({
-                loader: imports[path],
-                loading: LoadingComponent,
-                render(loaded: any, props): React.ReactNode {
-                  const Component = withMDXComponents(loaded.default)
-                  return <Component {...props} doc={entry} />
-                },
-              })
+      <themeContext.Consumer>
+        {({ imports }) => {
+          if (!imports) return <LoadingComponent />
+          return (
+            <state.Consumer select={[entriesSelector]}>
+              {(entries: EntryMap) => (
+                <Switch>
+                  {Object.keys(imports).map(path => {
+                    const entry = entries && entries[path]
+                    const AsyncComponent = withMDXComponents(
+                      importedComponent(imports[path], { LoadingComponent })
+                    )
 
-              return (
-                entry && (
-                  <Route
-                    exact
-                    key={entry.id}
-                    path={entry.route}
-                    render={props =>
-                      Page ? (
-                        <Page {...props} doc={entry}>
-                          <AsyncComponent />
-                        </Page>
-                      ) : (
-                        <AsyncComponent {...props} />
+                    return (
+                      entry && (
+                        <Route
+                          exact
+                          key={entry.id}
+                          path={entry.route}
+                          render={props =>
+                            Page ? (
+                              <Page {...props} doc={entry}>
+                                <AsyncComponent />
+                              </Page>
+                            ) : (
+                              <AsyncComponent {...props} />
+                            )
+                          }
+                        />
                       )
-                    }
-                  />
-                )
-              )
-            })}
-            {NotFound && <Route component={NotFound} />}
-          </Switch>
-        )}
-      </state.Consumer>
+                    )
+                  })}
+                  {NotFound && <Route component={NotFound} />}
+                </Switch>
+              )}
+            </state.Consumer>
+          )
+        }}
+      </themeContext.Consumer>
     </MDXProvider>
   )
 }

@@ -29,13 +29,13 @@ export class DataServer extends Component<DataServerProps> {
 
       if (message.type === 'state.entries') {
         state.mutate((draft: State) => {
-          if (draft.db) draft.db.entries = message.payload
+          if (draft) draft.entries = message.payload
         })
       }
 
       if (message.type === 'state.config') {
         state.mutate((draft: State) => {
-          if (draft.db) draft.db.config = message.payload
+          if (draft) draft.config = message.payload
         })
       }
     }

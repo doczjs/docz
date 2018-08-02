@@ -1,7 +1,8 @@
 import React from 'react'
 import { hot } from 'react-hot-loader'
 import Theme from '<%- theme %>'
-import imports from './imports'
+
+import { imports } from './imports'
 import db from './db.json'
 
 <% if (wrapper) {%>import Wrapper from '<%- wrapper %>'<%}%>
