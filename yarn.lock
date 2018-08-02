@@ -1853,6 +1853,12 @@
   version "1.13.2"
   resolved "https://registry.npmjs.org/@types/prettier/-/prettier-1.13.2.tgz#ffe96278e712a8d4e467e367a338b05e22872646"
 
+"@types/react-copy-write@^0.7.1":
+  version "0.7.1"
+  resolved "https://registry.npmjs.org/@types/react-copy-write/-/react-copy-write-0.7.1.tgz#46c49987e24aa0b974566cd5a4e3fee701243190"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-dom@^16.0.6":
   version "16.0.6"
   resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-16.0.6.tgz#f1a65a4e7be8ed5d123f8b3b9eacc913e35a1a3c"
@@ -6921,6 +6927,10 @@ image-size@~0.5.0:
   version "0.5.5"
   resolved "https://registry.npmjs.org/image-size/-/image-size-0.5.5.tgz#09dfd4ab9d20e29eb1c3e80b8990378df9e3cb9c"
 
+immer@^1.2.1:
+  version "1.5.0"
+  resolved "https://registry.npmjs.org/immer/-/immer-1.5.0.tgz#1ed9b1b653643fe9276bbc36377613523ea32a39"
+
 import-cwd@^2.0.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/import-cwd/-/import-cwd-2.1.0.tgz#aa6cf36e722761285cb371ec6519f53e2435b0a9"
@@ -10314,6 +10324,14 @@ react-breakpoints@^3.0.0:
     create-react-context "0.2.1"
     hoist-non-react-statics "2.5.0"
     lodash.debounce "4.0.8"
+
+react-copy-write@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.npmjs.org/react-copy-write/-/react-copy-write-0.7.0.tgz#7ce2b61b656aed08ac920a0607d6902a6080f525"
+  dependencies:
+    fbjs "^0.8.16"
+    immer "^1.2.1"
+    invariant "^2.2.4"
 
 react-dev-utils@^5.0.1:
   version "5.0.1"

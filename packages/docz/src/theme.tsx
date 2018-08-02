@@ -1,102 +1,62 @@
+// tslint:disable
 import * as React from 'react'
 import { Fragment, SFC } from 'react'
 import { ComponentType as CT } from 'react'
 import { HashRouter, BrowserRouter } from 'react-router-dom'
-import createReactContext from 'create-react-context'
-import merge from 'deepmerge'
+import createContext from 'create-react-context'
 
 import { ErrorBoundary } from './components/ErrorBoundary'
-import { ComponentsMap } from './components/DocPreview'
+import { DataServer } from './components/DataServer'
+import { state, Database, Config, ImportMap } from './state'
 
-declare var BASE_URL: string
-
-export type MSXComponent = CT<{
-  components: ComponentsMap
-}>
-
-export interface MSXImport {
-  default: MSXComponent
-}
-
-export interface Heading {
-  depth: number
-  slug: string
-  value: string
-}
-
-export interface Entry {
-  id: string
-  filepath: string
-  slug: string
-  route: string
-  name: string
-  order: number
-  menu: string | null
-  headings: Heading[]
-  [key: string]: any
-}
-
-export interface ThemeConfig {
-  [key: string]: any
-}
-
-export type EntryMap = Record<string, Entry>
-export type ImportMap = Record<string, () => Promise<MSXImport>>
-
-export interface DataContext {
-  config: ThemeConfig
-  entries: EntryMap
-  imports: ImportMap
-}
-
-const initialContext: DataContext = {
-  config: {},
-  entries: {},
-  imports: {},
-}
-
-export const dataContext = createReactContext(initialContext)
-
+declare var BASE_URL: any
 const DefaultWrapper: SFC = ({ children }) => <Fragment>{children}</Fragment>
 
-export interface ThemeProps extends DataContext {
+export interface ThemeProps {
+  db: Database
+  imports: ImportMap
   wrapper?: CT
   hashRouter?: boolean
+  websocketUrl?: string
   children(WrappedComponent: CT): JSX.Element
 }
 
-export type TransformFn = (config: ThemeConfig) => ThemeConfig
 export type ThemeReturn = (WrappedComponent: CT) => CT<ThemeProps>
+export type TransformFn = (config: Config) => Config
+
+interface ThemeContext {
+  initialConfig?: Config
+  transform?: TransformFn
+}
+
+export const themeContext = createContext<ThemeContext>({})
 
 export function theme(
-  initialConfig: ThemeConfig,
+  initialConfig: Config,
   transform?: TransformFn
 ): ThemeReturn {
   return WrappedComponent => {
-    const Theme: CT<ThemeProps> = ({
-      wrapper: Wrapper = DefaultWrapper,
-      entries,
-      imports,
-      config = {},
-      hashRouter = false,
-    }) => {
+    const Theme: CT<ThemeProps> = props => {
+      const { wrapper: Wrapper = DefaultWrapper, hashRouter = false } = props
       const Router = hashRouter ? HashRouter : BrowserRouter
-      const newConfig = merge(initialConfig, config)
-      const value = {
-        entries,
-        imports,
-        config: transform ? transform(newConfig) : newConfig,
+      const initialState = {
+        db: props.db,
+        imports: props.imports,
       }
 
       return (
         <ErrorBoundary>
-          <dataContext.Provider value={value}>
-            <Router basename={BASE_URL}>
-              <Wrapper>
-                <WrappedComponent />
-              </Wrapper>
-            </Router>
-          </dataContext.Provider>
+          <themeContext.Provider value={{ initialConfig, transform }}>
+            <state.Provider initialState={initialState}>
+              <DataServer websocketUrl={props.websocketUrl}>
+                <Router basename={BASE_URL}>
+                  <Wrapper>
+                    <WrappedComponent />
+                  </Wrapper>
+                </Router>
+              </DataServer>
+            </state.Provider>
+          </themeContext.Provider>
         </ErrorBoundary>
       )
     }

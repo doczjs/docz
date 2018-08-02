@@ -1,33 +1,54 @@
 import * as React from 'react'
-import { Fragment, SFC, ComponentType } from 'react'
+import { Fragment, SFC, ComponentType as CT } from 'react'
 import { Switch, Route, RouteComponentProps } from 'react-router-dom'
 import { MDXProvider } from '@mdx-js/tag'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 import Loadable from 'react-loadable'
 
-import { dataContext, Entry } from '../theme'
+import { state, State, Entry, EntryMap, ImportMap } from '../state'
 
 export type PageProps = RouteComponentProps<any> & {
   doc: Entry
 }
 
-export const Identity: SFC<any> = ({ children }) => (
-  <Fragment>{children}</Fragment>
-)
-
-const DefaultLoading: SFC = () => <Fragment>Loading</Fragment>
-
 export interface RenderComponentProps {
   className?: string
   style?: any
-  wrapper?: ComponentType<any>
+  wrapper?: CT<any>
   components: ComponentsMap
   component: JSX.Element
   position: number
   code: string
 }
 
-export type RenderComponent = ComponentType<RenderComponentProps>
+export type RenderComponent = CT<RenderComponentProps>
+
+export interface ComponentsMap {
+  loading?: CT
+  page?: CT<PageProps>
+  notFound?: CT<RouteComponentProps<any>>
+  render?: RenderComponent
+  h1?: CT<any> | string
+  h2?: CT<any> | string
+  h3?: CT<any> | string
+  h4?: CT<any> | string
+  h5?: CT<any> | string
+  h6?: CT<any> | string
+  span?: CT<any> | string
+  a?: CT<any> | string
+  ul?: CT<any> | string
+  table?: CT<any> | string
+  pre?: CT<any> | string
+  code?: CT<any> | string
+  inlineCode?: CT<any> | string
+  [key: string]: any
+}
+
+const DefaultLoading: SFC = () => <Fragment>Loading</Fragment>
+
+export const Identity: SFC<any> = ({ children }) => (
+  <Fragment>{children}</Fragment>
+)
 
 export const DefaultRender: RenderComponent = ({ component, code }) => (
   <Fragment>
@@ -36,29 +57,8 @@ export const DefaultRender: RenderComponent = ({ component, code }) => (
   </Fragment>
 )
 
-export type NotFoundComponent = ComponentType<RouteComponentProps<any>>
+export type NotFoundComponent = CT<RouteComponentProps<any>>
 const DefaultNotFound: NotFoundComponent = () => <Fragment>Not found</Fragment>
-
-export interface ComponentsMap {
-  loading?: ComponentType
-  page?: ComponentType<PageProps>
-  notFound?: ComponentType<RouteComponentProps<any>>
-  render?: RenderComponent
-  h1?: ComponentType<any> | string
-  h2?: ComponentType<any> | string
-  h3?: ComponentType<any> | string
-  h4?: ComponentType<any> | string
-  h5?: ComponentType<any> | string
-  h6?: ComponentType<any> | string
-  span?: ComponentType<any> | string
-  a?: ComponentType<any> | string
-  ul?: ComponentType<any> | string
-  table?: ComponentType<any> | string
-  pre?: ComponentType<any> | string
-  code?: ComponentType<any> | string
-  inlineCode?: ComponentType<any> | string
-  [key: string]: any
-}
 
 const defaultComponents: ComponentsMap = {
   loading: DefaultLoading,
@@ -66,6 +66,14 @@ const defaultComponents: ComponentsMap = {
   notFound: DefaultNotFound,
   page: Identity,
 }
+
+export const importsSelector = state.createSelector(
+  (state: State) => state.imports
+)
+
+export const entriesSelector = state.createSelector(
+  (state: State) => state.db.entries
+)
 
 export interface DocPreviewProps {
   components: ComponentsMap
@@ -85,15 +93,15 @@ export const DocPreview: SFC<DocPreviewProps> = ({
 
   return (
     <MDXProvider components={components}>
-      <dataContext.Consumer>
-        {({ imports, entries }) => (
+      <state.Consumer select={[entriesSelector, importsSelector]}>
+        {(entries: EntryMap, imports: ImportMap) => (
           <Switch>
             {Object.keys(imports).map(path => {
               const entry = entries && entries[path]
               const AsyncComponent: any = Loadable({
                 loader: imports[path],
                 loading: LoadingComponent,
-                render(loaded, props): React.ReactNode {
+                render(loaded: any, props): React.ReactNode {
                   const Component = withMDXComponents(loaded.default)
                   return <Component {...props} doc={entry} />
                 },
@@ -121,7 +129,7 @@ export const DocPreview: SFC<DocPreviewProps> = ({
             {NotFound && <Route component={NotFound} />}
           </Switch>
         )}
-      </dataContext.Consumer>
+      </state.Consumer>
     </MDXProvider>
   )
 }
