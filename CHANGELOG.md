@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.9.0"></a>
+# [0.9.0](https://github.com/pedronauck/docz/compare/v0.9.0-beta.1...v0.9.0) (2018-08-02)
+
+
+### Bug Fixes
+
+* **docz:** transform and merge theme config ([999ab73](https://github.com/pedronauck/docz/commit/999ab73))
+* **docz:** using context for imports to prevent disposed hmr ([b37284c](https://github.com/pedronauck/docz/commit/b37284c))
+* **docz-plugin-babel6:** change babel syntax dynamic import when needed ([8cb278a](https://github.com/pedronauck/docz/commit/8cb278a))
+* **docz-plugin-css:** pass default parameter ([389979a](https://github.com/pedronauck/docz/commit/389979a))
+* **docz-theme-default:** support chinese input method ([#182](https://github.com/pedronauck/docz/issues/182)) ([94544a6](https://github.com/pedronauck/docz/commit/94544a6))
+* **docz-theme-default:** table layout adjustment ([e8e8ec8](https://github.com/pedronauck/docz/commit/e8e8ec8))
+* **docz-theme-default:** use docz link when href is internal ([00deef5](https://github.com/pedronauck/docz/commit/00deef5))
+
+
+
+
 <a name="0.9.0-beta.1"></a>
 # [0.9.0-beta.1](https://github.com/pedronauck/docz/compare/v0.9.0-beta.0...v0.9.0-beta.1) (2018-08-01)
 
