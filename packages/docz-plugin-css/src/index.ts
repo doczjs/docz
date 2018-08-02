@@ -83,9 +83,9 @@ const applyRule = (
   cssmodules: boolean | undefined,
   dev: boolean
 ) => {
-  const { preprocessor = 'postcss', cssOpts, loaderOpts } = opts
+  const { preprocessor, cssOpts, loaderOpts } = opts
 
-  const loaderfn = loaders[preprocessor]
+  const loaderfn = loaders[preprocessor as PreProcessor]
   const loader = loaderfn(loaderOpts)
   const cssoptions = merge(cssOpts, {
     importLoaders: 1,
@@ -95,7 +95,7 @@ const applyRule = (
   })
 
   return {
-    test: tests[preprocessor],
+    test: tests[preprocessor as PreProcessor],
     use: loader(cssoptions, dev),
   }
 }
@@ -107,13 +107,18 @@ export interface CSSPluginOptions {
   cssOpts?: Opts
 }
 
-export const css = (opts: CSSPluginOptions) =>
+const defaultOpts: Record<string, any> = {
+  preprocessor: 'postcss',
+  cssmodules: false,
+}
+
+export const css = (opts: CSSPluginOptions = defaultOpts) =>
   createPlugin({
     modifyBundlerConfig: (config, dev) => {
       config.module.rules.push(applyRule(opts, opts.cssmodules, dev))
 
       if (!dev) {
-        const test = tests[opts.preprocessor || 'postcss']
+        const test = tests[opts.preprocessor || ('postcss' as PreProcessor)]
         const minimizer = config.optimization.minimizer || []
         const splitChunks = { ...config.optimization.splitChunks }
 
