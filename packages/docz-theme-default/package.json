@@ -1,6 +1,6 @@
 {
   "name": "docz-theme-default",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "The default theme of docz",
   "license": "MIT",
   "main": "dist/index.js",
@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "copy-text-to-clipboard": "^1.0.4",
-    "docz": "^0.9.0",
+    "docz": "^0.9.1",
     "emotion": "^9.2.6",
     "emotion-theming": "^9.2.6",
     "facepaint": "^1.2.1",
