@@ -3,7 +3,7 @@ import styled from 'react-emotion'
 export const Table = styled('table')`
   width: 100%;
   padding: 0;
-  table-layout: fixed;
+  table-layout: auto;
   box-shadow: 0 0 0 1px ${p => p.theme.docz.colors.border};
   background-color: transparent;
   border-spacing: 0;
