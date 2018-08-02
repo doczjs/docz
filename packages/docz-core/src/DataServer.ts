@@ -49,13 +49,16 @@ export class DataServer {
   }
 
   public async init(): Promise<void> {
-    for (const state of this.states) {
-      state.init &&
-        (await state.init({
-          state: this.getState(),
-          setState: this.setState(),
-        }))
-    }
+    await Promise.all(
+      Array.from(this.states).map(
+        async state =>
+          state.init &&
+          state.init({
+            state: this.getState(),
+            setState: this.setState(),
+          })
+      )
+    )
 
     await touch(paths.db, JSON.stringify(this.getState(), null, 2))
   }

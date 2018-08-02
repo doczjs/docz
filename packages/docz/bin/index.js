@@ -2,7 +2,9 @@
 
 const yargs = require('yargs')
 const { args: defaultArgs, setEnv } = require('docz-core')
-const execCommand = cmd => args => require('docz-core').commands[cmd](args)
+
+const execCommand = cmd => async args =>
+  require('docz-core').commands[cmd](args)
 
 yargs
   .command(
@@ -15,7 +17,10 @@ yargs
     'build',
     'build dir as static site',
     defaultArgs('production'),
-    execCommand('build')
+    async args => {
+      await execCommand('build')(args)
+      process.exit()
+    }
   )
   .demandCommand()
   .help()
