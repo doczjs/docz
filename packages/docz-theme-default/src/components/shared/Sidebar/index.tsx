@@ -134,6 +134,7 @@ interface State {
   state: {
     docs?: Entry[] | null
     searching?: boolean
+    lastVal: string
   }
 }
 
@@ -156,7 +157,7 @@ const mapper = {
   config: <ThemeConfig />,
   docs: <Docs />,
   media: <Media />,
-  state: <State initial={{ docs: null, searching: false }} />,
+  state: <State initial={{ docs: null, searching: false, lastVal: '' }} />,
   toggle: <Toggle initial={true} />,
 }
 
@@ -190,7 +191,14 @@ export const Sidebar = () => (
       const docsWithoutMenu = docs.filter((doc: Entry) => !doc.menu)
 
       const fromMenu = (menu: string) => docs.filter(doc => doc.menu === menu)
-      const search = (val: string) => match(docs, val, { keys: ['name'] })
+      const search = (val: string) => {
+        const change = !val.startsWith(state.lastVal)
+        setState({
+          lastVal: val,
+        })
+        if (change) return match(initialDocs, val, { keys: ['name'] })
+        return match(docs, val, { keys: ['name'] })
+      }
 
       const handleSearchDocs = (val: string) => {
         const isEmpty = val.length === 0
