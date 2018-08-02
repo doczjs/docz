@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.9.2"></a>
+## [0.9.2](https://github.com/pedronauck/docz/compare/v0.9.1...v0.9.2) (2018-08-02)
+
+
+### Bug Fixes
+
+* **docz-core:** add isProd to remove hot client overlay on build ([83f2e36](https://github.com/pedronauck/docz/commit/83f2e36))
+
+
+
+
 <a name="0.9.1"></a>
 ## [0.9.1](https://github.com/pedronauck/docz/compare/v0.9.0...v0.9.1) (2018-08-02)
 
