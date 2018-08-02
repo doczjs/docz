@@ -12,18 +12,29 @@ const modifyHappypackLoader = (plugin: any) => {
 export const babel = () =>
   createPlugin({
     modifyBabelRc: (babelrc: BabelRC) => {
+      const { presets, plugins = [] } = babelrc
       if (!babelrc.presets) return babelrc
 
-      const idx = babelrc.presets.findIndex(preset =>
+      const idx = presets.findIndex(preset =>
         /babel-preset-react-app/.test(preset)
       )
 
-      const tsIdx = babelrc.presets.findIndex(preset =>
+      const tsIdx = presets.findIndex(preset =>
         /@babel\/preset-typescript/.test(preset)
+      )
+
+      const importIdx = plugins.findIndex(plugin =>
+        /@babel\/plugin-syntax-dynamic-import/.test(plugin)
       )
 
       babelrc.presets[idx] = require.resolve('babel-preset-react-app')
       tsIdx > -1 && babelrc.presets.splice(tsIdx, 1)
+
+      if (importIdx > -1) {
+        babelrc.plugins[importIdx] = require.resolve(
+          'babel-plugin-syntax-dynamic-import'
+        )
+      }
 
       return babelrc
     },

@@ -39,7 +39,7 @@ const getPresets = (args: Config, { presets }: BabelRC) => {
  */
 
 const PRESETS_WITH_DYNAMIC = /babel-preset-react-app|next\/babel|razzle/
-const DYNAMIC_IMPORT = /@babel\/plugin-syntax-dynamic-import/
+const DYNAMIC_IMPORT = /(babel-|@babel\/)plugin-syntax-dynamic-import/
 const HOT_LOADER = /react-hot-loader\/babel/
 const DOCGEN = /babel-plugin-react-docgen/
 
