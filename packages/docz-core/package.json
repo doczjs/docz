@@ -1,6 +1,6 @@
 {
   "name": "docz-core",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "All docz core logic of bundle and parsing is included on this package",
   "license": "MIT",
   "main": "dist/index.js",
