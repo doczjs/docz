@@ -23,6 +23,14 @@
   </a>
 </p>
 
+## 🙌🏻 &nbsp; Sponsors
+
+Thanks for all people that support us 🙏🏻
+
+<a href="https://impulso.work" target="_blank">
+  <img src="https://cdn-std.dprcdn.net/files/acc_649651/OosgCe" width="60">
+</a>
+
 ## 🎩 &nbsp; Features
 
 - 🧘 **Zero config and easy.** Don't worry about complex configurations steps.
@@ -42,9 +50,9 @@ We still have a *long road to go*, this is just the beginning. So to further imp
 
 ## 🤔 &nbsp; Why?
 
-The open source world with tools that make developers' life easier and the creation of styleguides and design systems are growing and evolving so fast. New and impressive things are arising every day. Today, tools that allow us to evolve together are really necessary. We can not create barriers or lose time with tasks that should be trivial for us.
+Libraries that make our life easier coming up every day. Styleguides and design system are growing so fast. Today, tools that allow us to be quick and effective in what we are doing are really necessary. We can't lose time with tasks that should be trivial for us. Thinking about that **docz** came out.
 
-To break barriers and facilitate the creation of tools was the purpose that **docz** arose. Documenting our things is one of the most important and painful processes that exist when you're creating something new. We lose a lot of our precious time with unnecessary setups to be able to build something that can represent and express what we want with our own style.
+Documenting our things is one of the most important and heavy processes when you're creating something new. We waste a lot of time with unnecessary setups to build something that can represent and we want with our own style.
 
 ## 👉🏻 &nbsp; More info on [our website](https://docz.site)
 
@@ -62,24 +70,22 @@ To break barriers and facilitate the creation of tools was the purpose that **do
 - [Themes](http://www.docz.site/themes)
 - [Plugins](http://www.docz.site/plugins)
 
-## 🗃 &nbsp; Examples
-
-| name | description |
-| -------------------------------------------- | -------------------------------------------- |
-| [basic](https://github.com/pedronauck/docz/tree/master/examples/basic) | Some basic example |
-| [using typescript](https://github.com/pedronauck/docz/tree/master/examples/typescript) | Using docz with Typescript |
-| [using flow](https://github.com/pedronauck/docz/tree/master/examples/flow) | Using docz with Flow |
-| [using babel@6](https://github.com/pedronauck/docz/tree/master/examples/babel6) | Using docz with Babel@6 |
-| [with sass](https://github.com/pedronauck/docz/tree/master/examples/css-sass) | Using docz parsing css with Sass |
-| [with less](https://github.com/pedronauck/docz/tree/master/examples/css-less) | Using docz parsing css with Less |
-| [with postcss](https://github.com/pedronauck/docz/tree/master/examples/css-postcss) | Using docz parsing css with PostCSS |
-| [with stylus](https://github.com/pedronauck/docz/tree/master/examples/css-stylus) | Using docz parsing css with Stylus |
-
 ## 🎛 &nbsp; Plugins
 
- - **[babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6):** Use this plugin to use older babel version
-- **[css](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-css):** Parse css files inside your documents
-- **[svgr](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-svgr):** Allow you to parse svg using svgr
+- **[css](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-css)** - Parse css files inside your documents
+- **[babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6)** - Use this plugin to use older babel version
+- **[svgr](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-svgr)** - Allow you to parse svg using svgr
+
+## 🗃 &nbsp; Examples
+
+- **[basic](https://github.com/pedronauck/docz/tree/master/examples/basic)** - Some basic example
+- **[babel 6](https://github.com/pedronauck/docz/tree/master/examples/babel6)** - Using docz with Babel@6
+- **[with typescript](https://github.com/pedronauck/docz/tree/master/examples/typescript)** - Using docz with Typescript
+- **[with flow](https://github.com/pedronauck/docz/tree/master/examples/flow)** - Using docz with Flow
+- **[with sass](https://github.com/pedronauck/docz/tree/master/examples/css-sass)** - Using docz parsing css with Sass
+- **[with less](https://github.com/pedronauck/docz/tree/master/examples/css-less)** - Using docz parsing css with Less
+- **[with postcss](https://github.com/pedronauck/docz/tree/master/examples/css-postcss)** - Using docz parsing css with PostCSS
+- **[with stylus](https://github.com/pedronauck/docz/tree/master/examples/css-stylus)** - Using docz parsing css with Stylus
 
 ## 🚧 &nbsp; Warning!
 
@@ -121,7 +127,7 @@ Now just run your dev server:
 $ yarn docz dev
 ```
 
-That's it! You have a real badass documentation now 👊
+That's it! Now you have a real badass documentation 👊
 
 ![](https://cdn-std.dprcdn.net/files/acc_649651/7RRXv)
 
@@ -132,6 +138,12 @@ Any doubt? Check [our docs](http://docz.site) to see more about **docz**!
 Contributions, issues and feature requests are very welcome.
 Please make sure to read the [Contributing Guide](/CONTRIBUTING.md) before making a pull request.
 
+## 💪🏻 &nbsp; Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+
+<a href="https://github.com/pedronauck/docz/graphs/contributors"><img src="https://opencollective.com/docz/contributors.svg?width=890&button=false" /></a>
+
 ## 💭 &nbsp; Needing Help?
 
 If you need some help you can chat with us on [our Discord server](https://discord.gg/Qec87en), you have a great team to help you:
@@ -141,22 +153,3 @@ If you need some help you can chat with us on [our Discord server](https://disco
 | [<img src="https://avatars3.githubusercontent.com/u/2029172?v=4" width="60px;"/><br /><sub><b>Pedro Nauck</b></sub>](https://github.com/pedronauck)<br />[💻](https://github.com/pedronauck/docz/commits?author=pedronauck "Code") [📖](https://github.com/pedronauck/docz/commits?author=pedronauck "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Apedronauck "Bug reports") [👀](#review-pedronauck "Reviewed Pull Requests") | [<img src="https://avatars3.githubusercontent.com/u/5435657?v=4" width="60px;"/><br /><sub><b>Marcelo Formentão</b></sub>](https://github.com/marceloavf)<br />[💻](https://github.com/pedronauck/docz/commits?author=marceloavf "Code") [📖](https://github.com/pedronauck/docz/commits?author=marceloavf "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Amarceloavf "Bug reports") | [<img src="https://avatars0.githubusercontent.com/u/3238901?s=460&v=4" width="60px;"/><br /><sub><b>Nicholas Eduardo</b></sub>](https://github.com/nicholasess)<br />[💻](https://github.com/pedronauck/docz/commits?author=nicholasess "Code") [📖](https://github.com/pedronauck/docz/commits?author=nicholasess "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Anicholasess "Bug reports") | [<img src="https://avatars2.githubusercontent.com/u/3277185?v=4" width="60px;"/><br /><sub><b>Renato Ribeiro</b></sub>](http://twitter.com/renatorib_)<br />[💻](https://github.com/pedronauck/docz/commits?author=renatorib "Code") [📖](https://github.com/pedronauck/docz/commits?author=renatorib "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Arenatorib "Bug reports") | [<img src="https://avatars0.githubusercontent.com/u/13947203?v=4" width="60px;"/><br /><sub><b>Guilherme Jabur</b></sub>](https://github.com/jaburcodes)<br />[💻](https://github.com/pedronauck/docz/commits?author=jaburcodes "Code") [📖](https://github.com/pedronauck/docz/commits?author=jaburcodes "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Ajaburcodes "Bug reports") |
 | :---: | :---: | :---: | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-
-## 💪🏻 &nbsp; Contributors
-
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-
-<a href="https://github.com/pedronauck/docz/graphs/contributors"><img src="https://opencollective.com/docz/contributors.svg?width=890&button=false" /></a>
-
-### 🙏🏻 &nbsp; Backers
-
-Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/docz#backer)]
-
-<a href="https://opencollective.com/docz#backers" target="_blank"><img src="https://opencollective.com/docz/backers.svg?width=890"></a>
-
-### 🙌🏻 &nbsp; Sponsors
-
-Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/docz#sponsor)]
-
-<a href="https://opencollective.com/docz/sponsor/0/website" target="_blank"><img src="https://opencollective.com/docz/sponsor/0/avatar.svg"></a>
-
