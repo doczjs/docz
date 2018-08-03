@@ -71,7 +71,7 @@ export class Entries {
   public repoUrl: string | null
 
   constructor(config: Config) {
-    this.repoUrl = repoInfo()
+    this.repoUrl = repoInfo(config.src)
     this.all = new Map()
     this.get = async () => this.getMap(config)
   }
