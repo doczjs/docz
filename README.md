@@ -79,7 +79,7 @@ To break barriers and facilitate the creation of tools was the purpose that **do
 
  - **[babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6):** Use this plugin to use older babel version
 - **[css](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-css):** Parse css files inside your documents
-- **[svgr](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-css):** Allow you to parse svg using svgr
+- **[svgr](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-svgr):** Allow you to parse svg using svgr
 
 ## 🚧 &nbsp; Warning!
 
