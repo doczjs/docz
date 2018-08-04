@@ -146,7 +146,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
     hotkeys.unbind('esc')
   }
 
-  get currentContent(): string {
+  get showingContent(): string {
     const { code, component } = this.props
     const { showing } = this.state
 
@@ -174,7 +174,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
             HTML
           </Tab>
         </Tabs>
-        <Clipboard content={this.currentContent} />
+        <Clipboard content={this.showingContent} />
         <Action
           onClick={this.handleToggle}
           title={fullscreen ? 'Minimize' : 'Maximize'}
@@ -236,7 +236,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
               {component}
             </Playground>
             {this.actions}
-            <Pre actions={<Fragment />}>{this.currentContent}</Pre>
+            <Pre actions={<Fragment />}>{this.showingContent}</Pre>
           </Wrapper>
         </Resizable>
       </Overlay>
