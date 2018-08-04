@@ -7,22 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ## [0.9.4](https://github.com/pedronauck/docz/compare/v0.9.4-beta.1...v0.9.4) (2018-08-04)
 
 
-
-
-**Note:** Version bump only for package docz-core
-
-<a name="0.9.4-beta.1"></a>
-## [0.9.4-beta.1](https://github.com/pedronauck/docz/compare/v0.9.4-beta.0...v0.9.4-beta.1) (2018-08-04)
-
-
-
-
-**Note:** Version bump only for package docz-core
-
-<a name="0.9.4-beta.0"></a>
-## [0.9.4-beta.0](https://github.com/pedronauck/docz/compare/v0.9.2...v0.9.4-beta.0) (2018-08-04)
-
-
 ### Bug Fixes
 
 * **docz-core:** use of src config in edit button link ([#186](https://github.com/pedronauck/docz/issues/186)) ([553f90c](https://github.com/pedronauck/docz/commit/553f90c))
