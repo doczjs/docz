@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.9.5"></a>
+## [0.9.5](https://github.com/pedronauck/docz/compare/v0.9.4...v0.9.5) (2018-08-04)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** copy html output ([#189](https://github.com/pedronauck/docz/issues/189)) ([2cb834c](https://github.com/pedronauck/docz/commit/2cb834c))
+
+
+
+
 <a name="0.9.4"></a>
 ## [0.9.4](https://github.com/pedronauck/docz/compare/v0.9.4-beta.1...v0.9.4) (2018-08-04)
 
