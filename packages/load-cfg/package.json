@@ -1,6 +1,6 @@
 {
   "name": "load-cfg",
-  "version": "0.9.4-beta.1",
+  "version": "0.9.4",
   "description": "Method that can load project configurations based",
   "license": "MIT",
   "main": "dist/index.js",
