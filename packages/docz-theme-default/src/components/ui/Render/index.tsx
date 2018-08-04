@@ -146,8 +146,19 @@ export class Render extends Component<RenderComponentProps, RenderState> {
     hotkeys.unbind('esc')
   }
 
+  get showingContent(): string {
+    const { code, component } = this.props
+    const { showing } = this.state
+
+    const content = {
+      jsx: () => code,
+      html: () => pretty(renderToStaticMarkup(component)),
+    }
+
+    return content[showing]()
+  }
+
   get actions(): JSX.Element {
-    const { code } = this.props
     const { showing, fullscreen } = this.state
 
     const showJsx = this.handleShow('jsx')
@@ -163,7 +174,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
             HTML
           </Tab>
         </Tabs>
-        <Clipboard content={code} />
+        <Clipboard content={this.showingContent} />
         <Action
           onClick={this.handleToggle}
           title={fullscreen ? 'Minimize' : 'Maximize'}
@@ -213,8 +224,8 @@ export class Render extends Component<RenderComponentProps, RenderState> {
   }
 
   public render(): JSX.Element {
-    const { className, style, component, code } = this.props
-    const { showing, fullscreen } = this.state
+    const { className, style, component } = this.props
+    const { fullscreen } = this.state
 
     return (
       <Overlay full={fullscreen}>
@@ -225,11 +236,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
               {component}
             </Playground>
             {this.actions}
-            <Pre actions={<Fragment />}>
-              {showing === 'jsx'
-                ? code
-                : pretty(renderToStaticMarkup(component))}
-            </Pre>
+            <Pre actions={<Fragment />}>{this.showingContent}</Pre>
           </Wrapper>
         </Resizable>
       </Overlay>
