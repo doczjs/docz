@@ -8,7 +8,7 @@ import * as paths from '../config/paths'
 export const repoInfo = (src: string | './'): string | null => {
   try {
     const project = path.parse(findup.sync('.git')).dir
-    const root = path.join(paths.root, src);
+    const root = path.join(paths.root, src)
     const relative = path.relative(project, root)
     const tree = path.join('/tree/master', relative)
     const pkg = fs.readJsonSync(paths.appPackageJson)
