@@ -95,7 +95,6 @@ export const createConfig = (args: Args, env: Env) => (
       nodeEnv: env,
       namedModules: true,
       noEmitOnErrors: true,
-      runtimeChunk: true,
       splitChunks: {
         chunks: 'all',
         name: 'vendors',
@@ -122,13 +121,7 @@ export const createConfig = (args: Args, env: Env) => (
 
   config.resolve
     .set('symlinks', true)
-    .alias.set(
-      '@babel/runtime',
-      path.dirname(require.resolve('@babel/runtime/package.json'))
-    )
-
-  config.resolve.extensions
-    .add('.web.js')
+    .extensions.add('.web.js')
     .add('.mjs')
     .add('.js')
     .add('.json')
