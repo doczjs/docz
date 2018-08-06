@@ -1,6 +1,10 @@
 <p align="center">
-  <a href="https://opencollective.com/docz" target="_blank"><img src="https://cdn-std.dprcdn.net/files/acc_649651/Q5nVhT" height="80" alt="Open Collective"></a>
-  <a href="https://www.patreon.com/pedronauck" target="_blank"><img src="https://cdn-std.dprcdn.net/files/acc_649651/plrSCT" height="80" alt="Patreon"></a>
+  <a href="https://opencollective.com/docz" target="_blank">
+    <img src="https://cdn-std.dprcdn.net/files/acc_649651/Q5nVhT" height="80" alt="Open Collective">
+  </a>
+  <a href="https://www.patreon.com/pedronauck" target="_blank">
+    <img src="https://cdn-std.dprcdn.net/files/acc_649651/plrSCT" height="80" alt="Patreon">
+  </a>
 </p>
 
 <p align="center" style="margin-bottom: -20px">
@@ -8,12 +12,15 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/npm/v/docz.svg" alt="">
-  <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="">
-  <img src="https://img.shields.io/npm/dt/docz.svg" alt="">
-  <a href="https://discord.gg/YQE4MbD"><img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" alt="Chat"></a>
-  <img src="https://opencollective.com/docz/backers/badge.svg" alt="Backers on Open Collective">
-  <img src="https://opencollective.com/docz/sponsors/badge.svg" alt="Sponsors on Open Collective">
+  <img src="https://badgen.net/npm/v/docz" alt="">
+  <img src="https://badgen.net/badge/license/MIT/blue" alt="">
+  <img src="https://badgen.net/npm/dt/express" alt="">
+  <a href="https://discord.gg/YQE4MbD">
+    <img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" alt="Chat">
+  </a>
+  <a href="https://discord.gg/YQE4MbD">
+    <img src="https://img.shields.io/badge/check-our%20roadmap-5362F5.svg" alt="Chat">
+  </a>
 </p>
 
 
