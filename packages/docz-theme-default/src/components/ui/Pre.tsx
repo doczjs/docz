@@ -9,6 +9,7 @@ import BaseCheck from 'react-feather/dist/icons/check'
 import SyntaxHighlighter from 'react-syntax-highlighter/prism-light'
 import Clipboard from 'react-feather/dist/icons/clipboard'
 import copy from 'copy-text-to-clipboard'
+import get from 'lodash.get'
 
 import { ButtonSwap } from './ButtonSwap'
 import { ButtonLink } from './Button'
@@ -24,15 +25,13 @@ const PrismTheme = styled('pre')`
   flex: 1;
 `
 
-const getChildren = (children: any) => {
-  return children && typeof children !== 'string'
-    ? children.props.children
-    : children
-}
+const getChildren = (children: any) =>
+  children && typeof children !== 'string' ? children.props.children : children
 
 const getLanguage = (children: any) => {
-  if (typeof children === 'string') return 'language-jsx'
-  return children.props.props.className
+  const defaultLanguage = 'language-jsx'
+  if (typeof children === 'string') return defaultLanguage
+  return get(children, 'props.props.className') || defaultLanguage
 }
 
 const getCode = (content: any): SFC => ({ children }) => {
