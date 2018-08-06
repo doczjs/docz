@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.9.6"></a>
+## [0.9.6](https://github.com/pedronauck/docz/compare/v0.9.5...v0.9.6) (2018-08-06)
+
+
+### Bug Fixes
+
+* **docz-core:** remove [@babel](https://github.com/babel)/runtime alias ([0dbd8f0](https://github.com/pedronauck/docz/commit/0dbd8f0))
+
+
+
+
 <a name="0.9.4"></a>
 ## [0.9.4](https://github.com/pedronauck/docz/compare/v0.9.4-beta.1...v0.9.4) (2018-08-04)
 
