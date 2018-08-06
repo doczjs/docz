@@ -1,8 +1,8 @@
 export const styles = {
   body: {
     fontFamily: "'Source Sans Pro', Helvetica, sans-serif",
-    fontSize: '16px',
-    lineHeight: 1.5,
+    fontSize: 16,
+    lineHeight: 1.6,
   },
   container: {
     width: 920,

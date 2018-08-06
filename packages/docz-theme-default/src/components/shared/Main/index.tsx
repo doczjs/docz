@@ -16,9 +16,7 @@ interface MainProps {
 const base = (body: any) =>
   injectGlobal`
     body {
-      font-family: ${body.fontFamily};
-      font-size: ${body.fontSize};
-      line-height: ${body.lineHeight};
+      ${body};
     }
   `
 
