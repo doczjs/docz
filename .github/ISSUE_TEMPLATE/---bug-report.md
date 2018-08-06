@@ -26,7 +26,7 @@ FOR BUGS: Insert debug trace
 
 *A clear and concise description of what you expected to happen..*
 
-**Enviroment**
+**Environment**
 
 * OS: [e.g. OSX 10.13.4, Windows 10]
 * Node/npm version: [e.g. Node 8/npm 5]
