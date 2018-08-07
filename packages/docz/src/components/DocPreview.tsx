@@ -1,12 +1,11 @@
 import * as React from 'react'
 import { Fragment, SFC, ComponentType as CT } from 'react'
 import { Switch, Route, RouteComponentProps } from 'react-router-dom'
-import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 import { MDXProvider } from '@mdx-js/tag'
-import importedComponent from 'react-imported-component'
 
 import { state, State, Entry, EntryMap } from '../state'
 import { themeContext } from '../theme'
+import { AsyncRoute } from './AsyncRoute'
 
 export type PageProps = RouteComponentProps<any> & {
   doc: Entry
@@ -82,7 +81,6 @@ export const DocPreview: SFC<DocPreviewProps> = ({
     ...themeComponents,
   }
 
-  const Page: any = components.page
   const NotFound: any = components.notFound
   const LoadingComponent: any = components.loading
 
@@ -96,28 +94,23 @@ export const DocPreview: SFC<DocPreviewProps> = ({
               {(entries: EntryMap) => (
                 <Switch>
                   {Object.keys(imports).map(path => {
-                    const entry = entries && entries[path]
-                    const AsyncComponent = withMDXComponents(
-                      importedComponent(imports[path], { LoadingComponent })
-                    )
+                    const entry = entries[path]
 
                     return (
-                      entry && (
-                        <Route
-                          exact
-                          key={entry.id}
-                          path={entry.route}
-                          render={props =>
-                            Page ? (
-                              <Page {...props} doc={entry}>
-                                <AsyncComponent />
-                              </Page>
-                            ) : (
-                              <AsyncComponent {...props} />
-                            )
-                          }
-                        />
-                      )
+                      <Route
+                        exact
+                        key={entry.id}
+                        path={entry.route}
+                        render={props => (
+                          <AsyncRoute
+                            {...props}
+                            path={path}
+                            entries={entries}
+                            imports={imports}
+                            components={components}
+                          />
+                        )}
+                      />
                     )
                   })}
                   {NotFound && <Route component={NotFound} />}
