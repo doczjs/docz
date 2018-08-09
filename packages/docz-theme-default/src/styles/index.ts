@@ -53,7 +53,6 @@ export const styles = {
     fontSize: 14,
   },
   pre: {
-    margin: '30px 0',
     fontFamily: '"Source Code Pro", monospace',
     fontSize: 14,
     lineHeight: 1.8,

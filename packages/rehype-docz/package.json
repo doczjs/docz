@@ -22,12 +22,18 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "babel-traverse": "^6.26.0",
-    "babylon": "^6.18.0",
+    "@babel/parser": "^7.0.0-beta.56",
+    "@babel/traverse": "^7.0.0-beta.56",
     "hast-util-to-string": "^1.0.1",
+    "lodash.flatten": "^4.4.0",
+    "lodash.get": "^4.4.2",
     "prettier": "^1.14.0",
     "signale": "^1.2.1",
     "strip-indent": "^2.0.0",
     "unist-util-is": "^2.1.2"
+  },
+  "devDependencies": {
+    "@types/lodash.flatten": "^4.4.4",
+    "@types/lodash.get": "^4.4.4"
   }
 }

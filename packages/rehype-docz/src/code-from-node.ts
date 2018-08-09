@@ -1,11 +1,11 @@
-import * as babylon from 'babylon'
-import traverse from 'babel-traverse'
+import * as parser from '@babel/parser'
+import traverse from '@babel/traverse'
 
 type Condition = (path: any) => boolean
 
 export const codeFromNode = (condition: Condition) => (code: string) => {
   let value = ''
-  const ast = babylon.parse(code, { plugins: ['jsx'] })
+  const ast = parser.parse(code, { plugins: ['jsx'] })
 
   traverse(ast, {
     enter(path: any): void {
