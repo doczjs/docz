@@ -19,6 +19,7 @@ export interface RenderComponentProps {
   component: JSX.Element
   position: number
   code: string
+  scope: Record<string, any>
 }
 
 export type RenderComponent = CT<RenderComponentProps>

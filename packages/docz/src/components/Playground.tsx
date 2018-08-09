@@ -11,6 +11,7 @@ export interface PlaygroundProps {
   style?: any
   wrapper?: ComponentType<any>
   children: any
+  __scope: Record<string, any>
   __position: number
   __code: string
 }
@@ -21,6 +22,7 @@ const BasePlayground: SFC<PlaygroundProps> = ({
   style,
   wrapper: Wrapper = Identity,
   children,
+  __scope,
   __position,
   __code,
 }) => {
@@ -32,6 +34,7 @@ const BasePlayground: SFC<PlaygroundProps> = ({
       style={style}
       components={components}
       component={<Wrapper>{isFn(children) ? children() : children}</Wrapper>}
+      scope={__scope}
       position={__position}
       code={__code}
     />
