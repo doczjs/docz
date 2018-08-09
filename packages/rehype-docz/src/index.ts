@@ -36,10 +36,8 @@ const addCodeProp = (imports: string[]) => async (node: any, idx: number) => {
     const scope = `{${imports.join(',')}}`
     const child = strip(removePlayground(code))
       .trim()
-      .split(`'`)
-      .join(`\\'`)
-      .split('`')
-      .join('\\`')
+      .replace(/'/g, `\\'`)
+      .replace(/`/g, '\\`')
 
     node.value = node.value.replace(
       tagOpen,
