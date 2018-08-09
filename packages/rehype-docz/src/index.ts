@@ -28,11 +28,15 @@ const removePlayground = (code: string) => {
 const addCodeProp = async (node: any, idx: number) => {
   const name = componentName(node.value)
   const tagOpen = new RegExp(`^\\<${name}`)
-
   if (isPlayground(name)) {
     const formatted = await format(nodeToString(node))
     const code = formatted.slice(1, Infinity)
-    const child = strip(removePlayground(code)).trim()
+    const child = strip(removePlayground(code))
+      .trim()
+      .split(`'`)
+      .join(`\\'`)
+      .split('`')
+      .join('\\`')
 
     node.value = node.value.replace(
       tagOpen,
