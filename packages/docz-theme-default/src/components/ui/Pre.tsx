@@ -1,65 +1,92 @@
 import * as React from 'react'
-import { SFC, Component, Fragment } from 'react'
+import { SFC, Component } from 'react'
 import { ThemeConfig } from 'docz'
-import styled, { cx } from 'react-emotion'
+import styled, { injectGlobal } from 'react-emotion'
 import rgba from 'polished/lib/color/rgba'
-import lighten from 'polished/lib/color/lighten'
-import darken from 'polished/lib/color/darken'
 import BaseCheck from 'react-feather/dist/icons/check'
-import SyntaxHighlighter from 'react-syntax-highlighter/prism-light'
 import Clipboard from 'react-feather/dist/icons/clipboard'
+import Codemirror from 'react-codemirror'
 import copy from 'copy-text-to-clipboard'
 import get from 'lodash.get'
 
 import { ButtonSwap } from './ButtonSwap'
 import { ButtonLink } from './Button'
+import * as themes from '../../styles/codemirror'
 
-const TOP_PADDING = '15px'
+// tslint:disable
+declare var require: any
+require('codemirror/mode/markdown/markdown')
+require('codemirror/mode/javascript/javascript')
+require('codemirror/mode/jsx/jsx')
+require('codemirror/mode/css/css')
+require('codemirror/addon/edit/matchbrackets')
 
-const PrismTheme = styled('pre')`
-  ${p => p.theme.docz.prismTheme};
-  ${p => p.theme.docz.mq(p.theme.docz.styles.pre)};
-  overflow-y: hidden;
-  padding: ${TOP_PADDING} 20px;
-  margin: 0;
-  flex: 1;
-`
+injectGlobal(`
+  @import url('https://unpkg.com/codemirror@5.39.2/lib/codemirror.css');
+`)
+
+const getLanguage = (children: any) => {
+  const defaultLanguage = 'jsx'
+  if (typeof children === 'string') return defaultLanguage
+  const language = get(children, 'props.props.className') || defaultLanguage
+  return language.replace('language-', '')
+}
 
 const getChildren = (children: any) =>
   children && typeof children !== 'string' ? children.props.children : children
 
-const getLanguage = (children: any) => {
-  const defaultLanguage = 'language-jsx'
-  if (typeof children === 'string') return defaultLanguage
-  return get(children, 'props.props.className') || defaultLanguage
-}
-
-const getCode = (content: any): SFC => ({ children }) => {
-  const className = cx('react-prism', getLanguage(content))
-  return <PrismTheme className={className}>{children}</PrismTheme>
-}
-
 const Wrapper = styled('div')`
-  display: flex;
+  margin: 30px 0;
   position: relative;
-  border: 1px solid ${p => p.theme.docz.colors.border};
-  border-radius: 5px;
-  background: ${p => darken(0.01, p.theme.docz.colors.preBg)};
-  ${p => p.theme.docz.mq(p.theme.docz.styles.pre)};
+`
 
-  .react-syntax-highlighter-line-number {
-    display: block;
+const Editor = styled(Codemirror)`
+  ${themes.dark()};
+  ${themes.light()};
+  ${p => p.theme.docz.mq(p.theme.docz.styles.pre)};
+  position: relative;
+  border-radius: 5px;
+  border: 1px solid ${p => p.theme.docz.colors.border};
+  overflow-y: auto;
+  flex: 1;
+
+  .CodeMirror {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .CodeMirror pre {
+    ${p => p.theme.docz.mq(p.theme.docz.styles.pre)};
+  }
+
+  .CodeMirror-gutters {
+    left: 1px !important;
+  }
+
+  .CodeMirror-lines {
+    padding: 10px 0;
+  }
+
+  .CodeMirror-line {
     padding: 0 10px;
-    opacity: 0.3;
-    text-align: right;
+  }
+
+  .CodeMirror-linenumber {
+    padding: 0 7px 0 5px;
+    opacity: 0.7;
   }
 `
 
 const Actions = styled('div')`
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 5px 10px;
+  background: transparent;
 `
 
 export const ActionButton = styled(ButtonSwap)`
@@ -98,49 +125,58 @@ export const ClipboardAction: SFC<ClipboardActionProps> = ({
   </ActionButton>
 )
 
-const Nullable: SFC = ({ children }) => <Fragment>{children}</Fragment>
-
-const linesStyle = ({ mode, colors }: any) => ({
-  padding: `${TOP_PADDING} 3px`,
-  borderRight: `1px solid ${colors.border}`,
-  background:
-    mode === 'light'
-      ? lighten(0.13, colors.border)
-      : darken(0.04, colors.border),
-  left: 0,
-})
-
 interface PreProps {
   children: any
   className?: string
+  editorClassName?: string
   actions?: React.ReactNode
+  readOnly?: boolean
+  mode?: string
+  matchBrackets?: boolean
+  indentUnit?: number
+  onChange?: (code: string) => any
 }
 
 export class Pre extends Component<PreProps> {
+  public static defaultProps = {
+    readOnly: true,
+    mode: 'jsx',
+    matchBrackets: true,
+    indentUnit: 2,
+  }
+
   public render(): JSX.Element {
-    const { children, className, actions } = this.props
-    const content = getChildren(children)
+    const { children, actions, onChange, ...props } = this.props
+    const code = getChildren(this.props.children)
+    const language = getLanguage(children)
+    const mode = language || this.props.mode
+
+    const options = {
+      ...props,
+      mode,
+      gutter: true,
+      lineNumbers: true,
+      tabSize: 2,
+      theme: 'docz-light',
+    }
 
     return (
-      <ThemeConfig>
-        {config => (
-          <Wrapper className={className}>
-            <SyntaxHighlighter
-              language="javascript"
-              showLineNumbers
-              useInlineStyles={false}
-              lineNumberContainerStyle={linesStyle(config.themeConfig)}
-              PreTag={Nullable}
-              CodeTag={getCode(children)}
-            >
-              {getChildren(content)}
-            </SyntaxHighlighter>
-            <Actions>
-              {actions || <ClipboardAction content={content} />}
-            </Actions>
-          </Wrapper>
-        )}
-      </ThemeConfig>
+      <Wrapper className={this.props.className}>
+        <ThemeConfig>
+          {config => (
+            <Editor
+              onChange={onChange}
+              className={this.props.editorClassName}
+              value={code}
+              options={{
+                ...options,
+                theme: config.themeConfig.codemirrorTheme,
+              }}
+            />
+          )}
+        </ThemeConfig>
+        <Actions>{actions || <ClipboardAction content={code} />}</Actions>
+      </Wrapper>
     )
   }
 }

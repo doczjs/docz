@@ -11,14 +11,11 @@ const internal = [
 ]
 
 const depsExternal = [
-  're-resizable',
+  '@mdx-js/tag',
   'react-dom/server',
   'polished/lib/color/rgba',
   'polished/lib/color/lighten',
   'polished/lib/color/darken',
-  'react-syntax-highlighter',
-  'react-syntax-highlighter/prism',
-  'react-syntax-highlighter/prism-light',
   'react-feather/dist/icons/edit-2',
   'react-feather/dist/icons/chevron-down',
   'react-feather/dist/icons/search',
@@ -36,7 +33,7 @@ const external = Object.keys(pkg.dependencies)
   .filter(dep => internal.indexOf(dep) === -1)
 
 module.exports = {
+  external,
   sourcemap: false,
   plugins: [svg()],
-  external,
 }

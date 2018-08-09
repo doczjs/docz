@@ -21,6 +21,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
+    "codemirror": "^5.39.2",
     "copy-text-to-clipboard": "^1.0.4",
     "docz": "^0.9.6",
     "emotion": "^9.2.6",
@@ -36,12 +37,13 @@
     "react": "^16.4.2",
     "react-adopt": "^0.6.0",
     "react-breakpoints": "^3.0.0",
+    "react-codemirror": "^1.0.0",
     "react-dom": "^16.4.2",
     "react-emotion": "^9.2.6",
     "react-feather": "^1.1.1",
     "react-lightweight-tooltip": "^1.0.0",
+    "react-live": "^1.11.0",
     "react-powerplug": "^1.0.0-rc.1",
-    "react-syntax-highlighter": "^8.0.1",
     "webfontloader": "^1.6.28"
   },
   "peerDependencies": {

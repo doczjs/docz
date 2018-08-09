@@ -9,6 +9,7 @@ export type MSXComponent = CT<{
 
 export interface MSXImport {
   default: MSXComponent
+  getInitialData?: (props: any) => any
 }
 
 export interface Heading {
@@ -41,8 +42,10 @@ export interface Config {
   version: string | null
 }
 
+type Import = () => Promise<MSXImport>
+
 export type EntryMap = Record<string, Entry>
-export type ImportMap = Record<string, () => Promise<MSXImport>>
+export type ImportMap = Record<string, Import>
 export type TransformFn = (config: Config) => Config
 
 export interface State {
