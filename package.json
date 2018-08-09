@@ -18,7 +18,7 @@
     "clean": "lerna clean",
     "bs": "lerna bootstrap",
     "packages": "run-s packages:*",
-    "packages:fix": "lerna run fix",
+    "packages:fix": "lerna run fix && echo",
     "packages:lint": "lerna run tslint",
     "packages:build": "lerna run build --ignore docz-example-*",
     "prerelease": "yarn run packages",
