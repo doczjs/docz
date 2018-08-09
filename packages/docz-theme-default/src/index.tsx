@@ -10,7 +10,6 @@ import { config } from './config'
 import { mq, breakpoints } from './styles/responsive'
 import * as components from './components/ui'
 import * as modes from './styles/modes'
-import * as prismThemes from './styles/prism'
 
 const Theme = () => (
   <ThemeConfig>
@@ -50,13 +49,13 @@ webfont.load({
   },
 })
 
-const transform = ({ mode, ...config }: any) => {
+const transform = ({ mode, codemirrorTheme, ...config }: any) => {
   const selectedMode: any = (modes as any)[mode]
 
   return {
     ...config,
     mode,
-    prismTheme: (prismThemes as any)[mode],
+    codemirrorTheme: codemirrorTheme || `docz-${mode}`,
     colors: {
       ...selectedMode,
       ...config.colors,

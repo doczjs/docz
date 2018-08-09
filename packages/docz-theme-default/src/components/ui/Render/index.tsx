@@ -1,7 +1,8 @@
 import * as React from 'react'
-import { Component, Fragment } from 'react'
+import { SFC, Fragment, Component } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { RenderComponentProps } from 'docz'
+import { LiveProvider, LiveError, LivePreview } from 'react-live'
 import styled, { css } from 'react-emotion'
 import lighten from 'polished/lib/color/lighten'
 import darken from 'polished/lib/color/darken'
@@ -14,8 +15,9 @@ import getIn from 'lodash.get'
 import pretty from 'pretty'
 
 import { ResizeBar } from './ResizeBar'
+import { LiveConsumer } from './LiveConsumer'
 import { Handle, HANDLE_SIZE } from './Handle'
-import { Pre as PreBase, ActionButton, ClipboardAction } from '../Pre'
+import { ActionButton, ClipboardAction, Pre as PreBase } from '../Pre'
 import { localStorage } from '../../../utils/local-storage'
 
 interface OverlayProps {
@@ -46,19 +48,43 @@ const Wrapper = styled('div')`
   width: ${minusHandleSize};
 `
 
-const Playground = styled('div')`
-  overflow-y: hidden;
+const PlaygroundWrapper = styled('div')`
+  position: relative;
   flex: 1;
-  background: ${p => p.theme.docz.colors.background};
-  border: 1px solid ${p => p.theme.docz.colors.border};
+  overflow-y: hidden;
   border-radius: 4px 4px 0 0;
+  border: 1px solid ${p => p.theme.docz.colors.border};
+  background: ${p => p.theme.docz.colors.background};
   ${p => p.theme.docz.mq(p.theme.docz.styles.playground)};
+`
+
+const StyledPreview = styled(LivePreview)`
+  width: 100%;
+`
+
+const DummyPlayground = styled('div')`
+  width: 100%;
+`
+
+const StyledError = styled(LiveError)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background: ${rgba('black', 0.8)};
+  font-size: 16px;
+  color: white;
 `
 
 const Pre = styled(PreBase)`
   margin: 0;
-  border-radius: 0 0 4px 4px;
+`
+
+const editorClassName = css`
   border-top: 0;
+  border-radius: 0 0 0 5px;
 `
 
 const Actions = styled('div')`
@@ -121,11 +147,28 @@ const parse = (position: number, key: string, defaultValue: any) => {
   return obj ? getIn(obj, key) : defaultValue
 }
 
+interface JSXProps {
+  code: string
+  onChange: (code: string) => any
+}
+
+const Jsx: SFC<JSXProps> = ({ onChange, code }) => (
+  <Pre
+    readOnly={false}
+    editorClassName={editorClassName}
+    onChange={onChange}
+    actions={<Fragment />}
+  >
+    {code}
+  </Pre>
+)
+
 export interface RenderState {
   fullscreen: boolean
   width: string
   height: string
   showing: 'jsx' | 'html'
+  code: string
 }
 
 export class Render extends Component<RenderComponentProps, RenderState> {
@@ -134,6 +177,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
     width: parse(this.props.position, 'width', '100%'),
     height: parse(this.props.position, 'height', '100%'),
     showing: parse(this.props.position, 'showing', 'jsx'),
+    code: this.props.code,
   }
 
   public componentDidMount(): void {
@@ -144,18 +188,6 @@ export class Render extends Component<RenderComponentProps, RenderState> {
   public componentWillUnmount(): void {
     this.removeUnloadListener()
     hotkeys.unbind('esc')
-  }
-
-  get showingContent(): string {
-    const { code, component } = this.props
-    const { showing } = this.state
-
-    const content = {
-      jsx: () => code,
-      html: () => pretty(renderToStaticMarkup(component)),
-    }
-
-    return content[showing]()
   }
 
   get actions(): JSX.Element {
@@ -174,7 +206,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
             HTML
           </Tab>
         </Tabs>
-        <Clipboard content={this.showingContent} />
+        <Clipboard content={showing === 'jsx' ? this.state.code : this.html} />
         <Action
           onClick={this.handleToggle}
           title={fullscreen ? 'Minimize' : 'Maximize'}
@@ -183,6 +215,10 @@ export class Render extends Component<RenderComponentProps, RenderState> {
         </Action>
       </Actions>
     )
+  }
+
+  get html(): string {
+    return pretty(renderToStaticMarkup(this.props.component))
   }
 
   get resizableProps(): Record<string, any> {
@@ -224,22 +260,49 @@ export class Render extends Component<RenderComponentProps, RenderState> {
   }
 
   public render(): JSX.Element {
-    const { className, style, component } = this.props
-    const { fullscreen } = this.state
+    const { className, style, scope } = this.props
+    const { fullscreen, showing } = this.state
 
     return (
-      <Overlay full={fullscreen}>
-        {fullscreen && <ResizeBar onChangeSize={this.handleSetSize} />}
-        <Resizable {...this.resizableProps}>
-          <Wrapper full={fullscreen}>
-            <Playground className={className} style={style}>
-              {component}
-            </Playground>
-            {this.actions}
-            <Pre actions={<Fragment />}>{this.showingContent}</Pre>
-          </Wrapper>
-        </Resizable>
-      </Overlay>
+      <LiveProvider
+        noInline
+        code={this.state.code}
+        scope={scope}
+        transformCode={this.transformCode}
+        mountStylesheet={false}
+      >
+        <Overlay full={fullscreen}>
+          {fullscreen && <ResizeBar onChangeSize={this.handleSetSize} />}
+          <Resizable {...this.resizableProps}>
+            <Wrapper full={fullscreen}>
+              <LiveConsumer>
+                {(live: any) => (
+                  <PlaygroundWrapper>
+                    {live.error && (
+                      <DummyPlayground className={className} style={style}>
+                        {this.props.component}
+                      </DummyPlayground>
+                    )}
+                    <StyledPreview className={className} style={style} />
+                    <StyledError />
+                  </PlaygroundWrapper>
+                )}
+              </LiveConsumer>
+              {this.actions}
+              {showing === 'jsx' ? (
+                <Jsx
+                  onChange={code => this.setState({ code })}
+                  code={this.state.code}
+                />
+              ) : (
+                <Pre editorClassName={editorClassName} actions={<Fragment />}>
+                  {this.html}
+                </Pre>
+              )}
+            </Wrapper>
+          </Resizable>
+        </Overlay>
+      </LiveProvider>
     )
   }
 
@@ -286,5 +349,17 @@ export class Render extends Component<RenderComponentProps, RenderState> {
   private handleSetSize = (width: string, height: string) => {
     const fullscreen = parse(this.props.position, 'fullscreen', false)
     this.setState({ width, height }, () => this.setSize(fullscreen))
+  }
+
+  private transformCode(code: string): string {
+    return `
+      const App = ({ children }) => (
+        <React.Fragment>
+          {children && typeof children === 'function' ? children() : children}
+        </React.Fragment>
+      )
+
+      render(<App>${code}</App>)
+    `
   }
 }
