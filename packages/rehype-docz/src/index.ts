@@ -31,7 +31,6 @@ const addCodeProp = async (node: any, idx: number) => {
   if (isPlayground(name)) {
     const formatted = await format(nodeToString(node))
     const code = formatted.slice(1, Infinity)
-
     const child = strip(removePlayground(code))
       .trim()
       .split(`'`)
