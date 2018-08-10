@@ -7,7 +7,7 @@ import esm from 'esm'
 export const loadFile = (filepath: string, noCache?: boolean) => {
   let file
   const require = esm(module, {
-    mode: 'all',
+    mode: 'auto',
     cache: !noCache,
     cjs: {
       cache: !noCache,
@@ -46,11 +46,11 @@ export const finds = (name: string): string[] => [
   `${name}.config.json`,
 ]
 
-export const load = (
+export function load<C = any>(
   name: string,
-  defaultConfig: any = {},
+  defaultConfig: C,
   noCache?: boolean
-) => {
+): C {
   let file = {}
   const filepath = findup.sync(finds(name))
 
@@ -58,5 +58,5 @@ export const load = (
     file = loadFile(filepath, noCache)
   }
 
-  return defaultConfig !== null ? merge(defaultConfig, file) : file
+  return defaultConfig ? merge(defaultConfig, file) : file
 }

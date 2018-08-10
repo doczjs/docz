@@ -22,7 +22,7 @@ export interface BundlerServer {
   start(): Promise<Server>
 }
 
-export type ConfigFn<C> = (babelrc: BabelRC) => C
+export type ConfigFn<C> = (babelrc: BabelRC) => Promise<C>
 export type BuildFn<C> = (config: C, dist: string) => void
 
 export type ServerFnReturn = BundlerServer | Promise<BundlerServer>
@@ -56,7 +56,7 @@ export class Bundler<C = ConfigObj> {
 
   public async getConfig(env: Env): Promise<C> {
     const babelConfig = await getBabelConfig(this.args, env)
-    const config = this.mountConfig(this.config(babelConfig), env)
+    const config = this.mountConfig(await this.config(babelConfig), env)
 
     return this.args.modifyBundlerConfig(config, !this.isProd(env), this.args)
   }

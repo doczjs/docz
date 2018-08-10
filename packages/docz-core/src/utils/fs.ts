@@ -30,7 +30,10 @@ export const readIfExist = async (file: string): Promise<string | null> => {
   return exist ? read(file) : Promise.resolve(null)
 }
 
-export const compiled = async (file: string): Promise<(args: any) => string> =>
+export const compiled = async (
+  file: string,
+  opts: Record<string, any> = {}
+): Promise<(args: any) => string> =>
   read(file)
-    .then(data => compile(data))
+    .then(data => compile(data, opts))
     .catch(err => err)

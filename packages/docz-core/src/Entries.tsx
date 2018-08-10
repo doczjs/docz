@@ -13,16 +13,8 @@ import { repoInfo } from './utils/repo-info'
 
 export const fromTemplates = (file: string) => path.join(paths.templates, file)
 
-const getHtmlFilepath = (indexHtml: string | undefined) =>
-  indexHtml ? path.join(paths.root, indexHtml) : fromTemplates('index.tpl.html')
-
-const getPublicUrl = (config: Config, dev: boolean): string => {
-  const prefix = config.base === '/' ? '' : config.base
-  return dev ? prefix : `${prefix}/public`
-}
-
 const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
-  const { plugins, title, description, theme, indexHtml } = config
+  const { plugins, theme } = config
   const props = Plugin.propsOfPlugins(plugins)
 
   const onPreRenders = props('onPreRender')
@@ -30,7 +22,6 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
 
   const root = await compiled(fromTemplates('root.tpl.js'))
   const js = await compiled(fromTemplates('index.tpl.js'))
-  const html = await compiled(getHtmlFilepath(indexHtml))
   const websocketUrl = `ws://${config.websocketHost}:${config.websocketPort}`
 
   const rawRootJs = root({
@@ -42,20 +33,13 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
   })
 
   const rawIndexJs = js({
-    isProd: !dev,
     onPreRenders,
     onPostRenders,
-  })
-
-  const rawIndexHtml = html({
-    title,
-    description,
-    publicUrl: getPublicUrl(config, dev),
+    isProd: !dev,
   })
 
   await touch(paths.rootJs, rawRootJs)
   await touch(paths.indexJs, rawIndexJs)
-  await touch(paths.indexHtml, rawIndexHtml)
 }
 
 export type EntryMap = Record<string, EntryObj>

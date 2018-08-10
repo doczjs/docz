@@ -45,12 +45,12 @@ export class Plugin<C = any> implements PluginFactory {
   }
 
   public static propsOfPlugins(
-    plugins: Plugin[] | undefined
-  ): (prop: keyof Plugin) => any {
+    plugins: Plugin[]
+  ): (prop: keyof Plugin) => any[] {
     return prop =>
-      plugins &&
-      plugins.length > 0 &&
-      plugins.map(p => get(p, prop)).filter(m => m)
+      plugins && plugins.length > 0
+        ? plugins.map(p => get(p, prop)).filter(Boolean)
+        : []
   }
 
   public static reduceFromPlugins<C>(

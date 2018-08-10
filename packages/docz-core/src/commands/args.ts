@@ -24,6 +24,21 @@ const getInitialDescription = (pkg: any): string =>
 export type Env = 'production' | 'development'
 export type ThemeConfig = Record<string, any>
 
+export interface HtmlContext {
+  lang: string
+  favicon?: string
+  head?: {
+    meta: any[]
+    links: any[]
+    raw: string
+    scripts: any[]
+  }
+  body?: {
+    raw: string
+    scripts: any[]
+  }
+}
+
 export interface Argv {
   /* io args */
   base: string
@@ -51,11 +66,13 @@ export interface Argv {
 }
 
 export interface Config extends Argv {
+  paths: Record<string, any>
   hashRouter: boolean
   plugins: Plugin[]
   mdPlugins: any[]
   hastPlugins: any[]
   themeConfig: ThemeConfig
+  htmlContext: HtmlContext
   modifyBundlerConfig<C>(config: C, dev: boolean, args: Config): C
   modifyBabelRc(babelrc: BabelRC, args: Config): BabelRC
 }

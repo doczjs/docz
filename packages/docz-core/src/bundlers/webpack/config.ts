@@ -2,8 +2,9 @@ import * as path from 'path'
 import { Configuration } from 'webpack'
 import webpackBarPlugin from 'webpackbar'
 import Config from 'webpack-chain'
+import { minify } from 'html-minifier'
+import miniHtmlWebpack from 'mini-html-webpack-plugin'
 import friendlyErrors from 'friendly-errors-webpack-plugin'
-import htmlWebpackPlugin from 'html-webpack-plugin'
 import manifestPlugin from 'webpack-manifest-plugin'
 import UglifyJs from 'uglifyjs-webpack-plugin'
 
@@ -12,6 +13,7 @@ import * as paths from '../../config/paths'
 import { getClientEnvironment } from '../../config/env'
 import { Config as Args, Env } from '../../commands/args'
 import { BabelRC } from '../../utils/babel-config'
+import { parseHtml, htmlTemplate } from '../../utils/parse-html'
 
 const uglify = new UglifyJs({
   parallel: true,
@@ -37,9 +39,9 @@ const uglify = new UglifyJs({
   },
 })
 
-export const createConfig = (args: Args, env: Env) => (
+export const createConfig = (args: Args, env: Env) => async (
   babelrc: BabelRC
-): Configuration => {
+): Promise<Configuration> => {
   const { debug, host, port, protocol } = args
 
   const config = new Config()
@@ -177,24 +179,33 @@ export const createConfig = (args: Args, env: Env) => (
     },
   ])
 
-  config.plugin('html-webpack-plugin').use(htmlWebpackPlugin, [
+  const dev = !isProd
+  const template = await htmlTemplate(args.indexHtml)
+
+  config.plugin('html-plugin').use(miniHtmlWebpack, [
     {
-      inject: true,
-      template: paths.indexHtml,
-      ...(isProd && {
-        minify: {
-          removeComments: true,
-          collapseWhitespace: true,
-          removeRedundantAttributes: true,
-          useShortDoctype: true,
-          removeEmptyAttributes: true,
-          removeStyleLinkTypeAttributes: true,
-          keepClosingSlash: true,
-          minifyJS: true,
-          minifyCSS: true,
-          minifyURLs: true,
-        },
-      }),
+      context: {
+        ...args.htmlContext,
+        trimWhitespace: true,
+      },
+      template: (ctx: any) => {
+        const doc = parseHtml({ ctx, dev, template, config: args })
+
+        return dev
+          ? doc
+          : minify(doc, {
+              removeComments: true,
+              collapseWhitespace: true,
+              removeRedundantAttributes: true,
+              useShortDoctype: true,
+              removeEmptyAttributes: true,
+              removeStyleLinkTypeAttributes: true,
+              keepClosingSlash: true,
+              minifyJS: true,
+              minifyCSS: true,
+              minifyURLs: true,
+            })
+      },
     },
   ])
 

@@ -8,19 +8,23 @@ import { BabelRC } from './babel-config'
 
 const toOmit = ['_', '$0', 'version', 'help']
 
+const defaultHtmlContext = {
+  lang: 'en',
+}
+
 export const loadConfig = (args: Config): Config => {
-  const config = load('docz', {
+  const config = load<Config>('docz', {
     ...args,
-    paths,
     hashRouter: false,
     plugins: [],
     mdPlugins: [],
     hastPlugins: [],
     themeConfig: {},
+    htmlContext: defaultHtmlContext,
     modifyBundlerConfig: (config: any) => config,
     modifyBabelRc: (babelrc: BabelRC) => babelrc,
   })
 
   const reduce = Plugin.reduceFromPlugins<Config>(config.plugins)
-  return omit<Config>(toOmit, reduce('setConfig', config))
+  return omit<Config>(toOmit, reduce('setConfig', { ...config, paths }))
 }
