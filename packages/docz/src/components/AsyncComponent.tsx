@@ -16,7 +16,7 @@ interface State {
 
 export class AsyncComponent extends Component<Props, State> {
   public state = {
-    loading: false,
+    loading: true,
     error: null,
     data: {},
   }
