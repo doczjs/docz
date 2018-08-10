@@ -33,7 +33,7 @@ const addCodeProp = (imports: string[]) => async (node: any, idx: number) => {
   if (isPlayground(name)) {
     const formatted = await format(nodeToString(node))
     const code = formatted.slice(1, Infinity)
-    const scope = `{${imports.join(',')}}`
+    const scope = `{props,${imports.join(',')}}`
     const child = strip(removePlayground(code))
       .trim()
       .replace(/'/g, `\\'`)
