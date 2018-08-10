@@ -29,7 +29,8 @@ const getLanguage = (children: any) => {
   const defaultLanguage = 'jsx'
   if (typeof children === 'string') return defaultLanguage
   const language = get(children, 'props.props.className') || defaultLanguage
-  return language.replace('language-', '')
+  const result = language.replace('language-', '')
+  return result === 'js' || result === 'javascript' ? 'jsx' : result
 }
 
 const getChildren = (children: any) =>
@@ -154,8 +155,10 @@ export class Pre extends Component<PreProps> {
     const options = {
       ...props,
       mode,
+      inputStyle: 'contenteditable',
       gutter: true,
       lineNumbers: true,
+      disableInput: true,
       tabSize: 2,
       theme: 'docz-light',
     }
