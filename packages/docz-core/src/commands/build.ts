@@ -1,8 +1,6 @@
-import * as fs from 'fs-extra'
 import logger from 'signale'
 import envDotProp from 'env-dot-prop'
 
-import * as paths from '../config/paths'
 import * as states from '../states'
 import { loadConfig } from '../utils/load-config'
 import { webpack } from '../bundlers'
@@ -19,11 +17,10 @@ export const build = async (args: Config) => {
   const dataServer = new DataServer()
 
   try {
-    await fs.remove(paths.app)
-    await Entries.writeApp(config)
-
     dataServer.register([states.entries(config), states.config(config)])
+
     await dataServer.init()
+    await Entries.writeApp(config)
 
     await run('onPreBuild')
     await bundler.build(await bundler.getConfig(env))

@@ -1,11 +1,8 @@
-import * as fs from 'fs-extra'
 import logger from 'signale'
 import detectPort from 'detect-port'
 import envDotProp from 'env-dot-prop'
 
-import * as paths from '../config/paths'
 import * as states from '../states'
-
 import { Config } from './args'
 import { DataServer } from '../DataServer'
 import { webpack } from '../bundlers'
@@ -36,14 +33,11 @@ export const dev = async (args: Config) => {
   )
 
   try {
-    await fs.remove(paths.rootJs)
-    await fs.remove(paths.indexJs)
-    await Entries.writeApp(newConfig, true)
-
     dataServer.register([states.entries(newConfig), states.config(newConfig)])
 
     await dataServer.init()
     await dataServer.listen()
+    await Entries.writeApp(newConfig, true)
   } catch (err) {
     logger.fatal('Failed to process your server:', err)
     process.exit(1)

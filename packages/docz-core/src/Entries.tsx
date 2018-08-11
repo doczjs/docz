@@ -52,6 +52,8 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
     isProd: !dev,
   })
 
+  await fs.remove(paths.rootJs)
+  await fs.remove(paths.indexJs)
   await touch(paths.rootJs, rawRootJs)
   await touch(paths.indexJs, rawIndexJs)
 }
