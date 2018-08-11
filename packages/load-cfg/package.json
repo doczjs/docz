@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "deepmerge": "^2.1.1",
-    "esm": "^3.0.72",
+    "esm": "^3.0.74",
     "find-up": "^3.0.0"
   },
   "devDependencies": {
