@@ -94,6 +94,7 @@ export const createConfig = (args: Args, env: Env) => async (
 
   config.merge({
     optimization: {
+      runtimeChunk: true,
       nodeEnv: env,
       namedModules: true,
       noEmitOnErrors: true,

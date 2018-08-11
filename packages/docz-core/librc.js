@@ -12,6 +12,7 @@ const copy = (files, dest) => ({
 
 module.exports = {
   external: Object.keys(pkg.dependencies).concat([
+    'crypto',
     'react-dev-utils/FileSizeReporter',
     'react-dev-utils/formatWebpackMessages',
     'react-dev-utils/printBuildError',

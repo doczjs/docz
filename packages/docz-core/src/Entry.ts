@@ -1,5 +1,5 @@
 import * as path from 'path'
-import { ulid } from 'ulid'
+import * as crypto from 'crypto'
 import vfile from 'to-vfile'
 import unified from 'unified'
 import remark from 'remark-parse'
@@ -58,6 +58,12 @@ const getHeadings = (ast: any): Heading[] => {
   return headings
 }
 
+const createId = (file: string) =>
+  crypto
+    .createHash('md5')
+    .update(file)
+    .digest('hex')
+
 export interface EntryObj {
   id: string
   filepath: string
@@ -92,7 +98,7 @@ export class Entry {
     const parsed = getParsedData(ast)
     const name = this.getName(filepath, parsed)
 
-    this.id = ulid()
+    this.id = createId(file)
     this.filepath = filepath
     this.link = null
     this.slug = this.slugify(filepath)

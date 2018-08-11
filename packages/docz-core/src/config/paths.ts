@@ -26,6 +26,7 @@ export interface Paths {
 
   docz: string
   app: string
+  cache: string
   appPublic: string
   appNodeModules: string
   appPackageJson: string
@@ -48,6 +49,7 @@ export const servedPath = (base: string) => ensureSlash(base, true)
 
 export const docz = resolveApp('.docz')
 export const app = path.resolve(docz, 'app/')
+export const cache = path.resolve(docz, 'cache/')
 export const appPublic = path.resolve(docz, 'public/')
 export const appNodeModules = resolveApp('node_modules')
 export const appPackageJson = resolveApp('package.json')

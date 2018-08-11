@@ -1,6 +1,7 @@
 import * as fs from 'fs-extra'
 import { load, finds } from 'load-cfg'
 import chokidar from 'chokidar'
+import equal from 'fast-deep-equal'
 import get from 'lodash.get'
 
 import { Params, State } from '../DataServer'
@@ -27,8 +28,14 @@ const getInitialConfig = (config: Config): Payload => {
   }
 }
 
-const updateConfig = (config: Config) => async (p: Params) =>
-  p.setState('config', load('docz', getInitialConfig(config), true))
+const updateConfig = (config: Config) => async (p: Params) => {
+  const old = p.state.config
+  const newConfig = load('docz', getInitialConfig(config), true)
+
+  if (newConfig && !equal(old, newConfig)) {
+    p.setState('config', newConfig)
+  }
+}
 
 export const state = (config: Config): State => ({
   init: updateConfig(config),

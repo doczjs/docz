@@ -36,7 +36,8 @@ export const dev = async (args: Config) => {
   )
 
   try {
-    await fs.remove(paths.app)
+    await fs.remove(paths.rootJs)
+    await fs.remove(paths.indexJs)
     await Entries.writeApp(newConfig, true)
 
     dataServer.register([states.entries(newConfig), states.config(newConfig)])

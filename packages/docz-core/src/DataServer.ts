@@ -1,3 +1,5 @@
+import * as fs from 'fs-extra'
+import equal from 'fast-deep-equal'
 import WS from 'ws'
 
 import { touch } from './utils/fs'
@@ -32,11 +34,13 @@ export interface State {
 export class DataServer {
   private server?: WS.Server
   private states: Set<State>
-  private state: Map<string, any>
+  private cached: Record<string, any>
+  private state: Record<string, any>
 
   constructor(server?: any, port?: number, host?: string) {
     this.states = new Set()
-    this.state = new Map()
+    this.cached = fs.readJsonSync(paths.db)
+    this.state = {}
 
     if (server) {
       this.server = new WS.Server({ server, port, host })
@@ -54,13 +58,15 @@ export class DataServer {
         async state =>
           state.init &&
           state.init({
-            state: this.getState(),
+            state: { ...this.state },
             setState: this.setState(),
           })
       )
     )
 
-    await touch(paths.db, JSON.stringify(this.getState(), null, 2))
+    if (!equal(this.cached, this.state)) {
+      await touch(paths.db, JSON.stringify(this.state, null, 2))
+    }
   }
 
   public async listen(): Promise<void> {
@@ -77,7 +83,7 @@ export class DataServer {
       async state =>
         state.update &&
         state.update({
-          state: this.getState(),
+          state: this.state,
           setState: this.setState(socket),
         })
     )
@@ -88,17 +94,11 @@ export class DataServer {
     }
   }
 
-  private getState(): Record<string, any> {
-    return Array.from(this.state.entries()).reduce((obj, [key, val]) => {
-      return { ...obj, [key]: val }
-    }, {})
-  }
-
   private setState(socket?: WS): (key: string, val: any) => void {
     const send = sender(socket)
 
     return (key: string, val: any): void => {
-      this.state.set(key, val)
+      this.state[key] = val
       send(`state.${key}`, val)
     }
   }

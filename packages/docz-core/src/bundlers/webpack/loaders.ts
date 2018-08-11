@@ -12,6 +12,12 @@ export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
     verbose: args.debug,
     loaders: [
       {
+        loader: require.resolve('cache-loader'),
+        options: {
+          cacheDirectory: paths.cache,
+        },
+      },
+      {
         loader: require.resolve('babel-loader'),
         options: babelrc,
       },
@@ -28,6 +34,12 @@ export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
     id: 'mdx',
     verbose: args.debug,
     loaders: [
+      {
+        loader: require.resolve('cache-loader'),
+        options: {
+          cacheDirectory: paths.cache,
+        },
+      },
       {
         loader: require.resolve('babel-loader'),
         options: {

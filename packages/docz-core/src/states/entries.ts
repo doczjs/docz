@@ -1,5 +1,6 @@
 import * as path from 'path'
 import chokidar from 'chokidar'
+import equal from 'fast-deep-equal'
 
 import { Params, State } from '../DataServer'
 import { Entries, EntryMap, fromTemplates } from '../Entries'
@@ -15,10 +16,13 @@ const writeImports = async (map: EntryMap): Promise<void> => {
 }
 
 const updateEntries = (entries: Entries) => async (p: Params) => {
+  const old = p.state.entries
   const map = await entries.get()
 
-  await writeImports(map)
-  p.setState('entries', map)
+  if (map && !equal(old, map)) {
+    await writeImports(map)
+    p.setState('entries', map)
+  }
 }
 
 export const state = (config: Config): State => {
