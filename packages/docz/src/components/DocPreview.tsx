@@ -98,20 +98,22 @@ export const DocPreview: SFC<DocPreviewProps> = ({
                     const entry = entries[path]
 
                     return (
-                      <Route
-                        exact
-                        key={entry.id}
-                        path={entry.route}
-                        render={props => (
-                          <AsyncRoute
-                            {...props}
-                            path={path}
-                            entries={entries}
-                            imports={imports}
-                            components={components}
-                          />
-                        )}
-                      />
+                      entry && (
+                        <Route
+                          exact
+                          key={entry.id}
+                          path={entry.route}
+                          render={props => (
+                            <AsyncRoute
+                              {...props}
+                              path={path}
+                              entries={entries}
+                              imports={imports}
+                              components={components}
+                            />
+                          )}
+                        />
+                      )
                     )
                   })}
                   {NotFound && <Route component={NotFound} />}
