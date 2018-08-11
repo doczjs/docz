@@ -79,7 +79,7 @@ export const mdx = (config: Config, args: Args) => {
 
   config.module
     .rule('mdx')
-    .test(/\.md?x$/)
+    .test(/\.(md|markdown|mdx)$/)
     .include.add(srcPath)
     .end()
     .exclude.add(/node_modules/)

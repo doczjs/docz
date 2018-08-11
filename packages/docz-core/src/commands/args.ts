@@ -44,6 +44,7 @@ export interface Argv {
   base: string
   src: string
   files: string
+  ignore: string[]
   dest: string
   /* bundler args */
   debug: boolean
@@ -92,7 +93,11 @@ export const args = (env: Env) => (yargs: any) => {
   })
   yargs.positional('files', {
     type: 'string',
-    default: getEnv('docz.files', '**/*.mdx'),
+    default: getEnv('docz.files', '**/*.{md,mdx,markdown}'),
+  })
+  yargs.positional('ignore', {
+    type: 'array',
+    default: getEnv('docz.ignore', []),
   })
   yargs.positional('dest', {
     alias: 'd',
