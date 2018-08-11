@@ -1,6 +1,6 @@
 import * as path from 'path'
 import * as fs from 'fs-extra'
-import * as glob from 'fast-glob'
+import glob from 'fast-glob'
 
 import * as paths from './config/paths'
 import { touch, compiled } from './utils/fs'
@@ -12,6 +12,20 @@ import { Config } from './commands/args'
 import { repoInfo } from './utils/repo-info'
 
 export const fromTemplates = (file: string) => path.join(paths.templates, file)
+
+const DEFAULT_IGNORE = [
+  '!**/node_modules/**',
+  'readme.md',
+  'changelog.md',
+  'code_of_conduct.md',
+  'contributing.md',
+  'license.md',
+]
+
+const matchFilesWithSrc = (config: Config) => (files: string[]) => {
+  const src = path.relative(paths.root, config.src)
+  return files.map(file => (file.startsWith(src) ? file : path.join(src, file)))
+}
 
 const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
   const { plugins, theme } = config
@@ -61,12 +75,17 @@ export class Entries {
   }
 
   private async getMap(config: Config): Promise<EntryMap> {
-    const { src, files: pattern } = config
+    const { src, files: pattern, ignore } = config
+    const arr = Array.isArray(pattern) ? pattern : [pattern]
+    const toMatch = matchFilesWithSrc(config)
 
-    const ignoreGlob = '!node_modules'
-    const files: string[] = glob.sync(
-      Array.isArray(pattern) ? [...pattern, ignoreGlob] : [pattern, ignoreGlob]
-    )
+    const files = await glob<string>(toMatch(arr), {
+      ignore: DEFAULT_IGNORE.concat(ignore),
+      onlyFiles: true,
+      unique: true,
+      nocase: true,
+      matchBase: true,
+    })
 
     const createEntry = async (file: string) => {
       const ast = await parseMdx(file)
