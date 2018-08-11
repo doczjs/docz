@@ -93,7 +93,7 @@ export const args = (env: Env) => (yargs: any) => {
   })
   yargs.positional('files', {
     type: 'string',
-    default: getEnv('docz.files', '**/*.{md,mdx,markdown}'),
+    default: getEnv('docz.files', '**/*.mdx'),
   })
   yargs.positional('ignore', {
     type: 'array',

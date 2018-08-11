@@ -11,8 +11,6 @@ import { Plugin } from './Plugin'
 import { Config } from './commands/args'
 import { repoInfo } from './utils/repo-info'
 
-export const fromTemplates = (file: string) => path.join(paths.templates, file)
-
 const DEFAULT_IGNORE = [
   '!**/node_modules/**',
   'readme.md',
@@ -21,6 +19,8 @@ const DEFAULT_IGNORE = [
   'contributing.md',
   'license.md',
 ]
+
+export const fromTemplates = (file: string) => path.join(paths.templates, file)
 
 const matchFilesWithSrc = (config: Config) => (files: string[]) => {
   const src = path.relative(paths.root, config.src)
