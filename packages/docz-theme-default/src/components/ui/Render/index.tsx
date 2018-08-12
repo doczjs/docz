@@ -29,7 +29,7 @@ const whenFullscreen = (on: any, off: any) => (p: OverlayProps) =>
 
 const Overlay = styled('div')`
   z-index: ${whenFullscreen(9999, 0)};
-  position: ${whenFullscreen('fixed', 'initial')};
+  position: ${whenFullscreen('fixed', 'relative')};
   top: 0;
   left: 0;
   width: ${whenFullscreen('100vw', 'auto')};
@@ -49,12 +49,13 @@ const Wrapper = styled('div')`
 `
 
 const PlaygroundWrapper = styled('div')`
+  overflow-y: auto;
   position: relative;
   flex: 1;
-  overflow-y: hidden;
   border-radius: 4px 4px 0 0;
   border: 1px solid ${p => p.theme.docz.colors.border};
   background: ${p => p.theme.docz.colors.background};
+  min-height: 198px;
   ${p => p.theme.docz.mq(p.theme.docz.styles.playground)};
 `
 
@@ -272,7 +273,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
         mountStylesheet={false}
       >
         <Overlay full={fullscreen}>
-          {fullscreen && <ResizeBar onChangeSize={this.handleSetSize} />}
+          {fullscreen ? <ResizeBar onChangeSize={this.handleSetSize} /> : null}
           <Resizable {...this.resizableProps}>
             <Wrapper full={fullscreen}>
               <LiveConsumer>
