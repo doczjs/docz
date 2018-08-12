@@ -12,8 +12,8 @@ const Wrapper = styled('div')`
   align-items: center;
   padding: 5px 24px;
   margin-bottom: 20px;
-  border-top: 1px solid ${p => p.theme.docz.colors.border};
-  border-bottom: 1px solid ${p => p.theme.docz.colors.border};
+  border-top: 1px dotted ${p => p.theme.docz.colors.border};
+  border-bottom: 1px dotted ${p => p.theme.docz.colors.border};
   opacity: ${(p: WrapperProps) => (p.showing ? 1 : 0)};
 `
 

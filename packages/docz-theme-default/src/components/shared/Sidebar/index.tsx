@@ -25,9 +25,6 @@ const toggle = (p: WrapperProps) => (p.opened && !p.desktop ? '-90%' : '0')
 const background = (p: WrapperProps) =>
   toggle(p) !== '0' ? 'transparent' : p.theme.docz.colors.sidebarBg
 
-const border = (p: WrapperProps) =>
-  p.desktop ? `1px solid ${p.theme.docz.colors.border}` : 'none'
-
 const position = (p: WrapperProps) =>
   p.theme.docz.mq({
     position: ['absolute', 'absolute', 'absolute', 'relative'],
@@ -40,7 +37,6 @@ const Wrapper = styled('div')`
   min-width: 280px;
   height: 100%;
   background: ${background};
-  border-right: ${border};
   transition: transform 0.2s, background 0.3s;
   transform: translateX(${toggle});
   z-index: 100;
@@ -200,7 +196,7 @@ export const Sidebar = () => (
       return (
         <React.Fragment>
           <Wrapper opened={on} desktop={isDesktop}>
-            <Hamburguer opened={on} onClick={handleSidebarToggle} />
+            <Hamburguer opened={!on} onClick={handleSidebarToggle} />
             <Logo showBg={!on} />
             <Search showing={isDesktop || !on} onSearch={handleSearchDocs} />
             {docs.length < 1 ? (
