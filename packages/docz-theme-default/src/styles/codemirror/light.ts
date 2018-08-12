@@ -21,6 +21,7 @@ export const theme = () => css`
 
   .cm-s-docz-light .CodeMirror-linenumber {
     color: #959da5;
+    background: #fbfcfd;
   }
 
   .cm-s-docz-light .CodeMirror-cursor {

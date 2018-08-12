@@ -39,6 +39,7 @@ const getChildren = (children: any) =>
 const Wrapper = styled('div')`
   margin: 30px 0;
   position: relative;
+  overflow-y: auto;
 `
 
 const Editor = styled(Codemirror)`
@@ -74,7 +75,6 @@ const Editor = styled(Codemirror)`
 
   .CodeMirror-linenumber {
     padding: 0 7px 0 5px;
-    opacity: 0.7;
   }
 `
 

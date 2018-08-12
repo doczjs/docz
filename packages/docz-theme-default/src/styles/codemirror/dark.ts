@@ -16,7 +16,7 @@ export const theme = () => css`
   .cm-s-docz-dark .CodeMirror-linenumber,
   .cm-s-docz-dark .CodeMirror-linenumbers {
     color: rgba(216, 222, 233, 0.4) !important;
-    background-color: transparent;
+    background-color: #2e3440;
   }
   .cm-s-docz-dark .CodeMirror-lines {
     color: #d8dee9 !important;
