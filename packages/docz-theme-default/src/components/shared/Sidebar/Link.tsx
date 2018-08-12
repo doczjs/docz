@@ -34,7 +34,7 @@ const Wrapper = styled('div')`
     left: 24px;
     width: 0;
     height: calc(100% - 36px);
-    background: ${p => p.theme.docz.colors.border};
+    border-left: 1px dashed ${p => p.theme.docz.colors.border};
     transition: width 0.2s;
   }
 

@@ -24,7 +24,7 @@ const Wrapper = styled('div')`
     content: '';
     top: 0;
     left: 0;
-    width: calc(100% + 1px);
+    width: 100%;
     height: ${(p: WrapperProps) => (p.showBg ? '3px' : 0)};
     background: ${p => p.theme.docz.colors.primary};
   }
