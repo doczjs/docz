@@ -9,7 +9,7 @@ import { mapToObj } from './utils/helpers'
 import { Entry, EntryObj, parseMdx } from './Entry'
 import { Plugin } from './Plugin'
 import { Config } from './commands/args'
-import { repoInfo } from './utils/repo-info'
+import { getRepoEditUrl } from './utils/repo-info'
 
 const DEFAULT_IGNORE = [
   '!**/node_modules/**',
@@ -68,10 +68,10 @@ export class Entries {
 
   public all: Map<string, EntryObj>
   public get: () => Promise<EntryMap>
-  public repoUrl: string | null
+  public repoEditUrl: string | null
 
   constructor(config: Config) {
-    this.repoUrl = repoInfo(config.src)
+    this.repoEditUrl = getRepoEditUrl(config.src)
     this.all = new Map()
     this.get = async () => this.getMap(config)
   }
@@ -93,7 +93,7 @@ export class Entries {
       const ast = await parseMdx(file)
       const entry = new Entry(ast, file, src)
 
-      if (this.repoUrl) entry.setLink(this.repoUrl)
+      if (this.repoEditUrl) entry.setLink(this.repoEditUrl)
       const { settings, ...rest } = entry
 
       return {
