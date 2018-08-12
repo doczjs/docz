@@ -6,6 +6,7 @@ import get from 'lodash.get'
 
 import { Params, State } from '../DataServer'
 import { Config, ThemeConfig } from '../commands/args'
+import { getRepoUrl } from '../utils/repo-info'
 import * as paths from '../config/paths'
 
 interface Payload {
@@ -14,10 +15,12 @@ interface Payload {
   ordering: string
   themeConfig: ThemeConfig
   version: string | null
+  repository: string | null
 }
 
 const getInitialConfig = (config: Config): Payload => {
   const pkg = fs.readJsonSync(paths.appPackageJson, { throws: false })
+  const repoUrl = getRepoUrl()
 
   return {
     title: config.title,
@@ -25,6 +28,7 @@ const getInitialConfig = (config: Config): Payload => {
     themeConfig: config.themeConfig,
     ordering: config.ordering,
     version: get(pkg, 'version'),
+    repository: repoUrl,
   }
 }
 

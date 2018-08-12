@@ -40,6 +40,7 @@ export interface Config {
   ordering: string
   themeConfig: ThemeConfig
   version: string | null
+  repository: string | null
 }
 
 type Import = () => Promise<MSXImport>

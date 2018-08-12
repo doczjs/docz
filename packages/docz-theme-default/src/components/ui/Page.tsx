@@ -6,7 +6,7 @@ import Edit from 'react-feather/dist/icons/edit-2'
 import styled from 'react-emotion'
 
 import { ButtonLink } from './Button'
-import { Sidebar, Main } from '../shared'
+import { GithubLink, Sidebar, Main } from '../shared'
 
 const Wrapper = styled('div')`
   flex: 1;
@@ -46,6 +46,7 @@ const EditPage = styled(ButtonLink.withComponent('a'))`
 
   ${p =>
     p.theme.docz.mq({
+      visibility: ['hidden', 'hidden', 'visible'],
       top: [0, -60, 10],
       right: [0, 0, 32],
     })};
@@ -73,8 +74,9 @@ export const Page: SFC<PageProps> = ({
 
   return (
     <ThemeConfig>
-      {config => (
+      {({ repository, ...config }) => (
         <Main config={config}>
+          {repository && <GithubLink repository={repository} />}
           {!fullpage && <Sidebar />}
           <Wrapper>
             {fullpage ? content : <Container>{content}</Container>}
