@@ -29,18 +29,22 @@ export const getRepoUrl = () => {
 }
 
 export const getRepoEditUrl = (src: string): string | null => {
-  const project = path.parse(findup.sync('.git')).dir
-  const root = path.join(paths.root, src)
-  const relative = path.relative(project, root)
-  const tree = path.join('/edit/master', relative)
-  const repo = parseRepo()
+  try {
+    const project = path.parse(findup.sync('.git')).dir
+    const root = path.join(paths.root, src)
+    const relative = path.relative(project, root)
+    const tree = path.join('/edit/master', relative)
+    const repo = parseRepo()
 
-  return (
-    repo &&
-    repo.browsetemplate
-      .replace('{domain}', repo.domain)
-      .replace('{user}', repo.user)
-      .replace('{project}', repo.project)
-      .replace('{/tree/committish}', tree)
-  )
+    return (
+      repo &&
+      repo.browsetemplate
+        .replace('{domain}', repo.domain)
+        .replace('{user}', repo.user)
+        .replace('{project}', repo.project)
+        .replace('{/tree/committish}', tree)
+    )
+  } catch (err) {
+    return null
+  }
 }
