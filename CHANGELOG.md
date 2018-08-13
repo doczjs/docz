@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.10.2"></a>
+## [0.10.2](https://github.com/pedronauck/docz/compare/v0.10.1...v0.10.2) (2018-08-13)
+
+
+### Bug Fixes
+
+* prevent codemirror bug on build ([3d0894e](https://github.com/pedronauck/docz/commit/3d0894e))
+* **docz-core:** remove data server cache :confused: ([9683280](https://github.com/pedronauck/docz/commit/9683280))
+* **docz-core:** try catch on get repo info ([bdfbf0b](https://github.com/pedronauck/docz/commit/bdfbf0b))
+
+
+
+
 <a name="0.10.1"></a>
 ## [0.10.1](https://github.com/pedronauck/docz/compare/v0.10.0...v0.10.1) (2018-08-13)
 
