@@ -28,7 +28,7 @@ export const dev = async (args: Config) => {
   const { app } = await server.start()
   const dataServer = new DataServer(
     app.server,
-    config.websocketPort,
+    websocketPort,
     config.websocketHost
   )
 
