@@ -35,9 +35,9 @@ export const dev = async (args: Config) => {
   try {
     dataServer.register([states.entries(newConfig), states.config(newConfig)])
 
+    await Entries.writeApp(newConfig, true)
     await dataServer.init()
     await dataServer.listen()
-    await Entries.writeApp(newConfig, true)
   } catch (err) {
     logger.fatal('Failed to process your server:', err)
     process.exit(1)
