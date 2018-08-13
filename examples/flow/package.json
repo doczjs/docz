@@ -1,14 +1,19 @@
 {
   "name": "docz-example-flow",
-  "version": "0.9.6",
+  "version": "0.10.0",
   "license": "MIT",
   "scripts": {
     "dev": "docz dev",
     "build": "docz build"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@babel/preset-flow": "^7.0.0-beta.55",
     "docz": "^0.9.6",
+=======
+    "@babel/preset-flow": "^7.0.0-rc.1",
+    "docz": "^0.10.0",
+>>>>>>> 40a222e... v0.10.0
     "emotion": "^9.2.6",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",

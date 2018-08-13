@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.10.0"></a>
+# [0.10.0](https://github.com/pedronauck/docz/compare/v0.9.6...v0.10.0) (2018-08-13)
+
+
+### Features
+
+* **docz-core:** add htmlContext and mini-html-webpack-plugin ([4b6ec0f](https://github.com/pedronauck/docz/commit/4b6ec0f))
+
+
+
+
 <a name="0.9.4"></a>
 ## [0.9.4](https://github.com/pedronauck/docz/compare/v0.9.4-beta.1...v0.9.4) (2018-08-04)
 

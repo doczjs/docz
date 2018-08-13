@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.10.0"></a>
+# [0.10.0](https://github.com/pedronauck/docz/compare/v0.9.6...v0.10.0) (2018-08-13)
+
+
+### Bug Fixes
+
+* bug template typo ([#197](https://github.com/pedronauck/docz/issues/197)) ([497fcfb](https://github.com/pedronauck/docz/commit/497fcfb))
+* bug template typo ([#197](https://github.com/pedronauck/docz/issues/197)) ([fce98c4](https://github.com/pedronauck/docz/commit/fce98c4))
+* **docz:** add initial loading as true ([3f05536](https://github.com/pedronauck/docz/commit/3f05536))
+* **docz-core:** prevent crash on delete entry ([28e1728](https://github.com/pedronauck/docz/commit/28e1728))
+* **docz-core:** prevent delete entire app folder on build ([e345896](https://github.com/pedronauck/docz/commit/e345896))
+* **docz-theme-default:** playground overflow on mobile ([db1eb5b](https://github.com/pedronauck/docz/commit/db1eb5b))
+* **rehype-docz:** add props on playground scope ([ee4b6c0](https://github.com/pedronauck/docz/commit/ee4b6c0))
+* **rehype-docz:** allow ticks and backticks inside playground ([#203](https://github.com/pedronauck/docz/issues/203)) ([fa4ff40](https://github.com/pedronauck/docz/commit/fa4ff40))
+
+
+### Features
+
+* **docz:** fetch data on documents ([04ff0d6](https://github.com/pedronauck/docz/commit/04ff0d6))
+* **docz-core:** add cache system for entries ([b90e598](https://github.com/pedronauck/docz/commit/b90e598))
+* **docz-core:** add htmlContext and mini-html-webpack-plugin ([4b6ec0f](https://github.com/pedronauck/docz/commit/4b6ec0f))
+* **docz-core:** resolve markdown files by default ([#210](https://github.com/pedronauck/docz/issues/210)) ([e0a95b3](https://github.com/pedronauck/docz/commit/e0a95b3))
+* add github repository link ([78a19f6](https://github.com/pedronauck/docz/commit/78a19f6))
+* allow edit code inside playground ([#205](https://github.com/pedronauck/docz/issues/205)) ([4f948f7](https://github.com/pedronauck/docz/commit/4f948f7))
+
+
+
+
 <a name="0.9.6"></a>
 ## [0.9.6](https://github.com/pedronauck/docz/compare/v0.9.5...v0.9.6) (2018-08-06)
 
