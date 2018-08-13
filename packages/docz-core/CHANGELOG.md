@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.10.1"></a>
+## [0.10.1](https://github.com/pedronauck/docz/compare/v0.10.0...v0.10.1) (2018-08-13)
+
+
+### Bug Fixes
+
+* **docz-core:** prevent crash when not have cache ([cd3609a](https://github.com/pedronauck/docz/commit/cd3609a))
+
+
+
+
 <a name="0.10.0"></a>
 # [0.10.0](https://github.com/pedronauck/docz/compare/v0.9.6...v0.10.0) (2018-08-13)
 
