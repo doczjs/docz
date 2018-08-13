@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.10.0"></a>
+# [0.10.0](https://github.com/pedronauck/docz/compare/v0.9.6...v0.10.0) (2018-08-13)
+
+
+### Bug Fixes
+
+* **docz-core:** prevent crash on delete entry ([28e1728](https://github.com/pedronauck/docz/commit/28e1728))
+* **docz-core:** prevent delete entire app folder on build ([e345896](https://github.com/pedronauck/docz/commit/e345896))
+
+
+### Features
+
+* **docz-core:** add cache system for entries ([b90e598](https://github.com/pedronauck/docz/commit/b90e598))
+* **docz-core:** add htmlContext and mini-html-webpack-plugin ([4b6ec0f](https://github.com/pedronauck/docz/commit/4b6ec0f))
+* **docz-core:** resolve markdown files by default ([#210](https://github.com/pedronauck/docz/issues/210)) ([e0a95b3](https://github.com/pedronauck/docz/commit/e0a95b3))
+* add github repository link ([78a19f6](https://github.com/pedronauck/docz/commit/78a19f6))
+
+
+
+
 <a name="0.9.6"></a>
 ## [0.9.6](https://github.com/pedronauck/docz/compare/v0.9.5...v0.9.6) (2018-08-06)
 

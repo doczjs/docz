@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.10.0"></a>
+# [0.10.0](https://github.com/pedronauck/docz/compare/v0.9.6...v0.10.0) (2018-08-13)
+
+
+### Bug Fixes
+
+* **rehype-docz:** add props on playground scope ([ee4b6c0](https://github.com/pedronauck/docz/commit/ee4b6c0))
+* **rehype-docz:** allow ticks and backticks inside playground ([#203](https://github.com/pedronauck/docz/issues/203)) ([fa4ff40](https://github.com/pedronauck/docz/commit/fa4ff40))
+
+
+### Features
+
+* allow edit code inside playground ([#205](https://github.com/pedronauck/docz/issues/205)) ([4f948f7](https://github.com/pedronauck/docz/commit/4f948f7))
+
+
+
+
 <a name="0.9.4"></a>
 ## [0.9.4](https://github.com/pedronauck/docz/compare/v0.9.4-beta.1...v0.9.4) (2018-08-04)
 
