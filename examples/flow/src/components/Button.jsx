@@ -71,7 +71,7 @@ export const Button = ({
   outline = false,
   children,
 }: ButtonProps) => (
-  <ButtonStyled scales={scales} kind={kind} outlint={outline}>
+  <ButtonStyled scale={scale} kind={kind} outline={outline}>
     {children}
   </ButtonStyled>
 )
