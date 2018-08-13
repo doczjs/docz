@@ -54,8 +54,10 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
 
   await fs.remove(paths.rootJs)
   await fs.remove(paths.indexJs)
+  await fs.remove(paths.db)
   await touch(paths.rootJs, rawRootJs)
   await touch(paths.indexJs, rawIndexJs)
+  await touch(paths.db, "{}")
 }
 
 export type EntryMap = Record<string, EntryObj>
