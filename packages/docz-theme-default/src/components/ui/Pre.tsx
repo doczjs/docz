@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { SFC, Component } from 'react'
 import { ThemeConfig } from 'docz'
-import styled, { injectGlobal } from 'react-emotion'
+import styled from 'react-emotion'
 import rgba from 'polished/lib/color/rgba'
 import BaseCheck from 'react-feather/dist/icons/check'
 import Clipboard from 'react-feather/dist/icons/clipboard'
@@ -13,17 +13,11 @@ import { ButtonSwap } from './ButtonSwap'
 import { ButtonLink } from './Button'
 import * as themes from '../../styles/codemirror'
 
-// tslint:disable
-declare var require: any
-require('codemirror/mode/markdown/markdown')
-require('codemirror/mode/javascript/javascript')
-require('codemirror/mode/jsx/jsx')
-require('codemirror/mode/css/css')
-require('codemirror/addon/edit/matchbrackets')
-
-injectGlobal(`
-  @import url('https://unpkg.com/codemirror@5.39.2/lib/codemirror.css');
-`)
+import 'codemirror/mode/markdown/markdown'
+import 'codemirror/mode/javascript/javascript'
+import 'codemirror/mode/jsx/jsx'
+import 'codemirror/mode/css/css'
+import 'codemirror/addon/edit/matchbrackets'
 
 const getLanguage = (children: any) => {
   const defaultLanguage = 'jsx'
@@ -173,7 +167,10 @@ export class Pre extends Component<PreProps> {
               value={code}
               options={{
                 ...options,
-                theme: config.themeConfig.codemirrorTheme,
+                theme:
+                  config && config.themeConfig
+                    ? config.themeConfig.codemirrorTheme
+                    : options.theme,
               }}
             />
           )}

@@ -12,7 +12,14 @@ const internal = [
 
 const depsExternal = [
   '@mdx-js/tag',
+  'react-codemirror',
+  'codemirror',
   'react-dom/server',
+  'codemirror/mode/markdown/markdown',
+  'codemirror/mode/javascript/javascript',
+  'codemirror/mode/jsx/jsx',
+  'codemirror/mode/css/css',
+  'codemirror/addon/edit/matchbrackets',
   'polished/lib/color/rgba',
   'polished/lib/color/lighten',
   'polished/lib/color/darken',
