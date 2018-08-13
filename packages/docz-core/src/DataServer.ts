@@ -39,7 +39,7 @@ export class DataServer {
 
   constructor(server?: any, port?: number, host?: string) {
     this.states = new Set()
-    this.cached = fs.readJsonSync(paths.db)
+    this.cached = fs.readJsonSync(paths.db, { throws: false })
     this.state = {}
 
     if (server) {

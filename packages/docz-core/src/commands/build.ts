@@ -19,8 +19,8 @@ export const build = async (args: Config) => {
   try {
     dataServer.register([states.entries(config), states.config(config)])
 
-    await dataServer.init()
     await Entries.writeApp(config)
+    await dataServer.init()
 
     await run('onPreBuild')
     await bundler.build(await bundler.getConfig(env))
