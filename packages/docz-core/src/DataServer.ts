@@ -1,5 +1,3 @@
-import * as fs from 'fs-extra'
-import equal from 'fast-deep-equal'
 import WS from 'ws'
 
 import { touch } from './utils/fs'
@@ -34,12 +32,10 @@ export interface State {
 export class DataServer {
   private server?: WS.Server
   private states: Set<State>
-  private cached: Record<string, any>
   private state: Record<string, any>
 
   constructor(server?: any, port?: number, host?: string) {
     this.states = new Set()
-    this.cached = fs.readJsonSync(paths.db, { throws: false })
     this.state = {}
 
     if (server) {
@@ -64,9 +60,7 @@ export class DataServer {
       )
     )
 
-    if (!equal(this.cached, this.state)) {
-      await touch(paths.db, JSON.stringify(this.state, null, 2))
-    }
+    await touch(paths.db, JSON.stringify(this.state, null, 2))
   }
 
   public async listen(): Promise<void> {
