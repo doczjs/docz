@@ -74,6 +74,7 @@ export const parseHtml = ({ config, ctx, dev, template }: ParseHtmlParams) => {
   } = ctx
 
   const headStr = `
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/codemirror@5.39.2/lib/codemirror.css" />
     ${favicon ? `<link rel="icon" type="image/x-icon" href="${favicon}">` : ''}
     ${head.meta ? generateMetaTags(head.meta) : ''}
     ${head.links ? generateLinkTags(head.links) : ''}
