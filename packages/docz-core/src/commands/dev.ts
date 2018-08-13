@@ -22,6 +22,13 @@ export const dev = async (args: Config) => {
   )
 
   const newConfig = { ...config, websocketPort, hotPort, port }
+  try {
+    await Entries.writeApp(newConfig, true)
+  } catch(err) {
+    logger.fatal('Failed to process initialise your app:', err)
+    process.exit(1)
+  }
+
   const bundler = webpack(newConfig, env)
   const bundlerConfig = await bundler.getConfig(env)
   const server = await bundler.createServer(bundlerConfig)
@@ -37,7 +44,6 @@ export const dev = async (args: Config) => {
 
     await dataServer.init()
     await dataServer.listen()
-    await Entries.writeApp(newConfig, true)
   } catch (err) {
     logger.fatal('Failed to process your server:', err)
     process.exit(1)
