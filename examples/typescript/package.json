@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "docz": "^0.10.2",
+    "docz-core": "^0.10.2",
     "emotion": "^9.2.6",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
