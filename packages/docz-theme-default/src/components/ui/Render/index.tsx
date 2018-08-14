@@ -55,7 +55,7 @@ const PlaygroundWrapper = styled('div')`
   border-radius: 4px 4px 0 0;
   border: 1px solid ${p => p.theme.docz.colors.border};
   background: ${p => p.theme.docz.colors.background};
-  min-height: 198px;
+  min-height: ${whenFullscreen('198px', 'auto')};
   ${p => p.theme.docz.mq(p.theme.docz.styles.playground)};
 `
 
@@ -278,7 +278,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
             <Wrapper full={fullscreen}>
               <LiveConsumer>
                 {(live: any) => (
-                  <PlaygroundWrapper>
+                  <PlaygroundWrapper full={fullscreen}>
                     {live.error && (
                       <DummyPlayground className={className} style={style}>
                         {this.props.component}
