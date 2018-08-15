@@ -111,7 +111,9 @@ export class Entry {
   }
 
   public setLink(url: string): void {
-    this.link = `${url}/${this.filepath}`
+    if (url) {
+      this.link = url.replace('{{filepath}}', this.filepath)
+    }
   }
 
   private getFilepath(file: string, src: string): string {

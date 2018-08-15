@@ -20,6 +20,7 @@ export const getRepoUrl = () => {
 
   return (
     repo &&
+    repo.browsetemplate &&
     repo.browsetemplate
       .replace('{domain}', repo.domain)
       .replace('{user}', repo.user)
@@ -28,16 +29,31 @@ export const getRepoUrl = () => {
   )
 }
 
-export const getRepoEditUrl = (src: string): string | null => {
+const getBitBucketPath = (branch: string, relative: string) => {
+  const querystring = `?mode=edit&spa=0&at=${branch}&fileviewer=file-view-default`
+  const filepath = path.join(`/src/${branch}`, relative, `{{filepath}}`)
+  return `${filepath}${querystring}`
+}
+
+const getTree = (repo: any, branch: string, relative: string) => {
+  const defaultPath = path.join(`/edit/${branch}`, relative, `{{filepath}}`)
+  const bitBucketPath = getBitBucketPath(branch, relative)
+
+  if (repo && repo.type === 'bitbucket') return bitBucketPath
+  return defaultPath
+}
+
+export const getRepoEditUrl = (src: string, branch: string): string | null => {
   try {
+    const repo = parseRepo()
     const project = path.parse(findup.sync('.git')).dir
     const root = path.join(paths.root, src)
     const relative = path.relative(project, root)
-    const tree = path.join('/edit/master', relative)
-    const repo = parseRepo()
+    const tree = getTree(repo, branch, relative)
 
     return (
       repo &&
+      repo.browsetemplate &&
       repo.browsetemplate
         .replace('{domain}', repo.domain)
         .replace('{user}', repo.user)

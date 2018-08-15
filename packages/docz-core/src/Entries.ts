@@ -71,7 +71,7 @@ export class Entries {
   public repoEditUrl: string | null
 
   constructor(config: Config) {
-    this.repoEditUrl = getRepoEditUrl(config.src)
+    this.repoEditUrl = getRepoEditUrl(config.src, config.editBranch)
     this.all = new Map()
     this.get = async () => this.getMap(config)
   }
