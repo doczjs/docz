@@ -34,7 +34,7 @@ const iconRotate = (p: IconProps) => (p.opened ? '-180deg' : '0deg')
 const Icon = styled('div')`
   position: absolute;
   top: 50%;
-  right: 0;
+  right: 20px;
   transform: translateY(-50%) rotate(${iconRotate});
   transform-origin: 50% 50%;
   transition: transform 0.3s;

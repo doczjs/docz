@@ -44,7 +44,7 @@ const Wrapper = styled('div')`
 export const linkStyle = ({ colors }: any) => css`
   position: relative;
   display: block;
-  margin: 6px 24px;
+  padding: 4px 24px;
   font-weight: 600;
   color: ${colors.sidebarText};
   text-decoration: none;
