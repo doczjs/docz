@@ -11,7 +11,7 @@ export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
     id: 'jsx',
     verbose: args.debug,
     loaders: [
-      {
+      !args.debug && {
         loader: require.resolve('cache-loader'),
         options: {
           cacheDirectory: paths.cache,
@@ -21,7 +21,7 @@ export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
         loader: require.resolve('babel-loader'),
         options: babelrc,
       },
-    ] as any[],
+    ].filter(Boolean) as any[],
   }
 
   if (args.propsParser && args.typescript) {
@@ -34,7 +34,7 @@ export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
     id: 'mdx',
     verbose: args.debug,
     loaders: [
-      {
+      !args.debug && {
         loader: require.resolve('cache-loader'),
         options: {
           cacheDirectory: paths.cache,
@@ -49,7 +49,7 @@ export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
             .filter((p: string) => /babel\-plugin\-react\-docgen/.test(p)),
         },
       },
-    ],
+    ].filter(Boolean),
   }
 
   config.plugin('happypack-jsx').use(HappyPack, [jsx])

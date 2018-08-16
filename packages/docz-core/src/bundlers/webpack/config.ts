@@ -115,7 +115,7 @@ export const createConfig = (args: Args, env: Env) => async (
 
   config
     .entry('app')
-    .add(require.resolve('babel-polyfill'))
+    .add(require.resolve('@babel/polyfill'))
     .add(paths.indexJs)
 
   /**

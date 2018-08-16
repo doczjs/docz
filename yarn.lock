@@ -1161,6 +1161,13 @@
     "@babel/helper-regex" "7.0.0-beta.55"
     regexpu-core "^4.1.3"
 
+"@babel/polyfill@7.0.0-beta.55":
+  version "7.0.0-beta.55"
+  resolved "https://registry.npmjs.org/@babel/polyfill/-/polyfill-7.0.0-beta.55.tgz#fc68159a3a32f67d4003298ee69d3412622b5303"
+  dependencies:
+    core-js "^2.5.7"
+    regenerator-runtime "^0.11.1"
+
 "@babel/preset-env@7.0.0-beta.42":
   version "7.0.0-beta.42"
   resolved "https://registry.npmjs.org/@babel/preset-env/-/preset-env-7.0.0-beta.42.tgz#671e688057c010b22a7811b965f7da5d79c472d3"
@@ -3184,13 +3191,6 @@ babel-polyfill@6.26.0, babel-polyfill@^6.23.0, babel-polyfill@^6.26.0:
     core-js "^2.5.0"
     regenerator-runtime "^0.10.5"
 
-babel-polyfill@^7.0.0-beta.3:
-  version "7.0.0-beta.3"
-  resolved "https://registry.npmjs.org/babel-polyfill/-/babel-polyfill-7.0.0-beta.3.tgz#053f0943cdf498910cc037de2ffc7b1f2e36223a"
-  dependencies:
-    core-js "^2.4.0"
-    regenerator-runtime "^0.11.0"
-
 babel-preset-env@1.6.1:
   version "1.6.1"
   resolved "https://registry.npmjs.org/babel-preset-env/-/babel-preset-env-1.6.1.tgz#a18b564cc9b9afdf4aae57ae3c1b0d99188e6f48"
@@ -4046,6 +4046,10 @@ clone@^1.0.2:
 clone@^2.1.1:
   version "2.1.1"
   resolved "https://registry.npmjs.org/clone/-/clone-2.1.1.tgz#d217d1e961118e3ac9a4b8bba3285553bf647cdb"
+
+clone@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.npmjs.org/clone/-/clone-2.1.2.tgz#1b7f4b9f591f1e8f83670401600345a02887435f"
 
 cmd-shim@^2.0.2:
   version "2.0.2"
@@ -8091,9 +8095,11 @@ less-loader@^4.1.0:
     loader-utils "^1.1.0"
     pify "^3.0.0"
 
-less@^3.8.0:
-  version "3.8.0"
-  resolved "https://registry.npmjs.org/less/-/less-3.8.0.tgz#44785e40c23841c15ba3be741d36bd2775dd0596"
+less@^3.8.1:
+  version "3.8.1"
+  resolved "https://registry.npmjs.org/less/-/less-3.8.1.tgz#f31758598ef5a1930dd4caefa9e4340641e71e1d"
+  dependencies:
+    clone "^2.1.2"
   optionalDependencies:
     errno "^0.1.1"
     graceful-fs "^4.1.2"

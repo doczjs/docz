@@ -24,6 +24,7 @@
   "dependencies": {
     "@babel/core": "7.0.0-beta.55",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.55",
+    "@babel/polyfill": "7.0.0-beta.55",
     "@babel/preset-typescript": "^7.0.0-beta.55",
     "@babel/runtime": "^7.0.0-beta.55",
     "@mdx-js/loader": "^0.15.0-2",
@@ -34,7 +35,6 @@
     "art-template": "^4.12.2",
     "babel-loader": "^8.0.0-beta.4",
     "babel-plugin-react-docgen": "^2.0.0-rc.1",
-    "babel-polyfill": "^7.0.0-beta.3",
     "babel-preset-react-app": "^4.0.0-next.b2fd8db8",
     "babylon": "^6.18.0",
     "cache-loader": "^1.2.2",
