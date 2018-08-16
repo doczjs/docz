@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.10.3"></a>
+## [0.10.3](https://github.com/pedronauck/docz/compare/v0.9.6...v0.10.3) (2018-08-16)
+
+
+
+
+**Note:** Version bump only for package docz-plugin-svgr
+
 <a name="0.10.2"></a>
 ## [0.10.2](https://github.com/pedronauck/docz/compare/v0.10.1...v0.10.2) (2018-08-13)
 

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.10.3"></a>
+## [0.10.3](https://github.com/pedronauck/docz/compare/v0.9.6...v0.10.3) (2018-08-16)
+
+
+### Bug Fixes
+
+* **docz:** add initial loading as true ([3f05536](https://github.com/pedronauck/docz/commit/3f05536))
+* **docz-core:** prevent crash on delete entry ([28e1728](https://github.com/pedronauck/docz/commit/28e1728))
+
+
+### Features
+
+* add github repository link ([1a5de2b](https://github.com/pedronauck/docz/commit/1a5de2b))
+* allow edit code inside playground ([#205](https://github.com/pedronauck/docz/issues/205)) ([4f948f7](https://github.com/pedronauck/docz/commit/4f948f7))
+
+
+
+
 <a name="0.10.2"></a>
 ## [0.10.2](https://github.com/pedronauck/docz/compare/v0.10.1...v0.10.2) (2018-08-13)
 

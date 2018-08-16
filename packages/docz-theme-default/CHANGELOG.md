@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.10.3"></a>
+## [0.10.3](https://github.com/pedronauck/docz/compare/v0.9.6...v0.10.3) (2018-08-16)
+
+
+### Bug Fixes
+
+* prevent codemirror bug on build ([4b2f2fe](https://github.com/pedronauck/docz/commit/4b2f2fe))
+* **docz-theme-default:** add playground min-height just on fullscreen ([a82903a](https://github.com/pedronauck/docz/commit/a82903a))
+* **docz-theme-default:** playground overflow on mobile ([0da6556](https://github.com/pedronauck/docz/commit/0da6556))
+* **docz-theme-default:** use padding on link instead of margin ([b15457c](https://github.com/pedronauck/docz/commit/b15457c))
+
+
+### Features
+
+* add github repository link ([1a5de2b](https://github.com/pedronauck/docz/commit/1a5de2b))
+* allow edit code inside playground ([#205](https://github.com/pedronauck/docz/issues/205)) ([4f948f7](https://github.com/pedronauck/docz/commit/4f948f7))
+
+
+
+
 <a name="0.10.2"></a>
 ## [0.10.2](https://github.com/pedronauck/docz/compare/v0.10.1...v0.10.2) (2018-08-13)
 

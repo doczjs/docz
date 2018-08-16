@@ -1,6 +1,6 @@
 {
   "name": "docz-plugin-babel6",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "description": "This package makes it possible to use babel6 with docz",
   "license": "MIT",
   "main": "dist/index.js",
@@ -27,7 +27,7 @@
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-preset-react-app": "^3.1.2",
     "babel-runtime": "^6.26.0",
-    "docz-core": "^0.10.2",
+    "docz-core": "^0.10.3",
     "happypack": "^5.0.0",
     "react-docgen-typescript-loader": "^2.1.1",
     "ts-loader": "^4.4.2"

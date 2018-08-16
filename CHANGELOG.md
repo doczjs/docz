@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.10.3"></a>
+## [0.10.3](https://github.com/pedronauck/docz/compare/v0.9.6...v0.10.3) (2018-08-16)
+
+
+### Bug Fixes
+
+* **docz-example-flow:** scale and outline props ([#211](https://github.com/pedronauck/docz/issues/211)) ([3709f88](https://github.com/pedronauck/docz/commit/3709f88))
+* bug template typo ([#197](https://github.com/pedronauck/docz/issues/197)) ([fce98c4](https://github.com/pedronauck/docz/commit/fce98c4))
+* bug template typo ([#197](https://github.com/pedronauck/docz/issues/197)) ([497fcfb](https://github.com/pedronauck/docz/commit/497fcfb))
+* **docz:** add initial loading as true ([3f05536](https://github.com/pedronauck/docz/commit/3f05536))
+* **docz-core:** correct data server websocket port ([47fe714](https://github.com/pedronauck/docz/commit/47fe714))
+* **docz-core:** prevent crash on delete entry ([28e1728](https://github.com/pedronauck/docz/commit/28e1728))
+* **docz-core:** prevent crash when not have cache ([bf59403](https://github.com/pedronauck/docz/commit/bf59403))
+* **docz-core:** prevent delete entire app folder on build ([e345896](https://github.com/pedronauck/docz/commit/e345896))
+* prevent codemirror bug on build ([4b2f2fe](https://github.com/pedronauck/docz/commit/4b2f2fe))
+* **docz-core:** remove data server cache :confused: ([794d048](https://github.com/pedronauck/docz/commit/794d048))
+* **docz-core:** try catch on get repo info ([2016736](https://github.com/pedronauck/docz/commit/2016736))
+* **docz-example-typescript:** fix dependencies ([#222](https://github.com/pedronauck/docz/issues/222)) ([67e68aa](https://github.com/pedronauck/docz/commit/67e68aa))
+* **docz-theme-default:** add playground min-height just on fullscreen ([a82903a](https://github.com/pedronauck/docz/commit/a82903a))
+* **docz-theme-default:** playground overflow on mobile ([0da6556](https://github.com/pedronauck/docz/commit/0da6556))
+* **docz-theme-default:** use padding on link instead of margin ([b15457c](https://github.com/pedronauck/docz/commit/b15457c))
+* **rehype-docz:** add props on playground scope ([ee4b6c0](https://github.com/pedronauck/docz/commit/ee4b6c0))
+* **rehype-docz:** allow ticks and backticks inside playground ([#203](https://github.com/pedronauck/docz/issues/203)) ([fa4ff40](https://github.com/pedronauck/docz/commit/fa4ff40))
+
+
+### Features
+
+* **docz:** fetch data on documents ([04ff0d6](https://github.com/pedronauck/docz/commit/04ff0d6))
+* **docz-core:** add cache system for entries ([b90e598](https://github.com/pedronauck/docz/commit/b90e598))
+* add github repository link ([1a5de2b](https://github.com/pedronauck/docz/commit/1a5de2b))
+* allow edit code inside playground ([#205](https://github.com/pedronauck/docz/issues/205)) ([4f948f7](https://github.com/pedronauck/docz/commit/4f948f7))
+* **docz-core:** add editBranch option to mount repo link ([c619d9c](https://github.com/pedronauck/docz/commit/c619d9c))
+* **docz-core:** add htmlContext and mini-html-webpack-plugin ([4b6ec0f](https://github.com/pedronauck/docz/commit/4b6ec0f))
+* **docz-core:** resolve markdown files by default ([#210](https://github.com/pedronauck/docz/issues/210)) ([e0a95b3](https://github.com/pedronauck/docz/commit/e0a95b3))
+
+
+
+
 <a name="0.10.2"></a>
 ## [0.10.2](https://github.com/pedronauck/docz/compare/v0.10.1...v0.10.2) (2018-08-13)
 
