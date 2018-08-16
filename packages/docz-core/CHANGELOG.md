@@ -9,23 +9,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* prevent codemirror bug on build ([4b2f2fe](https://github.com/pedronauck/docz/commit/4b2f2fe))
 * **docz-core:** correct data server websocket port ([47fe714](https://github.com/pedronauck/docz/commit/47fe714))
-* **docz-core:** prevent crash on delete entry ([28e1728](https://github.com/pedronauck/docz/commit/28e1728))
-* **docz-core:** prevent crash when not have cache ([bf59403](https://github.com/pedronauck/docz/commit/bf59403))
-* **docz-core:** prevent delete entire app folder on build ([e345896](https://github.com/pedronauck/docz/commit/e345896))
-* **docz-core:** remove data server cache :confused: ([794d048](https://github.com/pedronauck/docz/commit/794d048))
 * **docz-core:** try catch on get repo info ([2016736](https://github.com/pedronauck/docz/commit/2016736))
-
 
 ### Features
 
-* **docz-core:** add cache system for entries ([b90e598](https://github.com/pedronauck/docz/commit/b90e598))
-* add github repository link ([1a5de2b](https://github.com/pedronauck/docz/commit/1a5de2b))
 * **docz-core:** add editBranch option to mount repo link ([c619d9c](https://github.com/pedronauck/docz/commit/c619d9c))
-* **docz-core:** add htmlContext and mini-html-webpack-plugin ([4b6ec0f](https://github.com/pedronauck/docz/commit/4b6ec0f))
-* **docz-core:** resolve markdown files by default ([#210](https://github.com/pedronauck/docz/issues/210)) ([e0a95b3](https://github.com/pedronauck/docz/commit/e0a95b3))
-
 
 
 

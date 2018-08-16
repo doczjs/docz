@@ -7,12 +7,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ## [0.10.3](https://github.com/pedronauck/docz/compare/v0.9.6...v0.10.3) (2018-08-16)
 
 
-### Features
-
-* **docz-core:** add htmlContext and mini-html-webpack-plugin ([4b6ec0f](https://github.com/pedronauck/docz/commit/4b6ec0f))
-
-
-
+**Note:** Version bump only for package load-cfg
 
 <a name="0.10.0"></a>
 # [0.10.0](https://github.com/pedronauck/docz/compare/v0.9.6...v0.10.0) (2018-08-13)
