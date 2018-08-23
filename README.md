@@ -76,6 +76,7 @@ Documenting our things is one of the most important and heavy processes when you
   - [CreatingPlugins](http://www.docz.site/documentation/creating-plugins)
 - [Themes](http://www.docz.site/themes)
 - [Plugins](http://www.docz.site/plugins)
+- [Repository of Website](https://github.com/pedronauck/docz-website)
 
 ## 🎛 &nbsp; Plugins
 
