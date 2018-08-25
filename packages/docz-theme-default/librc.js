@@ -4,7 +4,6 @@ const pkg = require('./package.json')
 const internal = [
   'facepaint',
   'match-sorter',
-  'react-breakpoints',
   'react-feather',
   'react-powerplug',
   'webfontloader',

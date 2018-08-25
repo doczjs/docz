@@ -61,7 +61,7 @@ const ToggleButton = styled('button')`
   width: 33px;
   height: 30px;
   top: ${(p: OpenProps) => (p.opened ? '3px' : '2px')};
-  right: ${(p: OpenProps) => (p.opened ? '-39px' : '0px')};
+  right: ${(p: OpenProps) => (p.opened ? '-39px' : '-27px')};
   transform: translateX(${translateX}) translateY(${translateY});
   transition: transform 0.3s;
   outline: none;

@@ -210,15 +210,15 @@ export class Render extends Component<RenderComponentProps, RenderState> {
             HTML
           </Tab>
         </Tabs>
+        <Action onClick={this.handleRefresh} title="Refresh playground">
+          <Refresh width={15} />
+        </Action>
         <Clipboard content={showing === 'jsx' ? this.state.code : this.html} />
         <Action
           onClick={this.handleToggle}
           title={fullscreen ? 'Minimize' : 'Maximize'}
         >
           {fullscreen ? <Minimize width={15} /> : <Maximize width={15} />}
-        </Action>
-        <Action onClick={this.handleRefresh} title="Refresh playground">
-          <Refresh width={15} />
         </Action>
       </Actions>
     )

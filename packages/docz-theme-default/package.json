@@ -35,8 +35,6 @@
     "prop-types": "15.6.2",
     "re-resizable": "^4.7.1",
     "react": "^16.4.2",
-    "react-adopt": "^0.6.0",
-    "react-breakpoints": "^3.0.0",
     "react-codemirror": "^1.0.0",
     "react-dom": "^16.4.2",
     "react-emotion": "^9.2.6",

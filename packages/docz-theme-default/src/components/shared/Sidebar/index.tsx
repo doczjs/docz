@@ -1,8 +1,7 @@
 import * as React from 'react'
+import { SFC } from 'react'
 import { Docs, Entry, DocsRenderProps } from 'docz'
 import { Toggle, State } from 'react-powerplug'
-import { Media } from 'react-breakpoints'
-import { adopt } from 'react-adopt'
 import styled from 'react-emotion'
 import match from 'match-sorter'
 
@@ -13,17 +12,12 @@ import { Menu } from './Menu'
 import { Link } from './Link'
 import { Docz } from './Docz'
 import { Hamburguer } from './Hamburguer'
+import { breakpoints } from '../../../styles/responsive'
 
 interface WrapperProps {
   opened: boolean
-  desktop: boolean
   theme?: any
 }
-
-const toggle = (p: WrapperProps) => (p.opened && !p.desktop ? '-90%' : '0')
-
-const background = (p: WrapperProps) =>
-  toggle(p) !== '0' ? 'transparent' : p.theme.docz.colors.sidebarBg
 
 const position = (p: WrapperProps) =>
   p.theme.docz.mq({
@@ -36,9 +30,8 @@ const Wrapper = styled('div')`
   width: 280px;
   min-width: 280px;
   height: 100%;
-  background: ${background};
+  background: ${(p: WrapperProps) => p.theme.docz.colors.sidebarBg};
   transition: transform 0.2s, background 0.3s;
-  transform: translateX(${toggle});
   z-index: 100;
 
   ${position};
@@ -52,6 +45,10 @@ const Wrapper = styled('div')`
 
   dl a {
     font-weight: 400;
+  }
+
+  @media screen and (max-width: ${breakpoints.desktop - 1}px) {
+    transform: translateX(${(p: WrapperProps) => (p.opened ? '-100%' : '0')});
   }
 `
 
@@ -106,11 +103,6 @@ const FooterLogo = styled(Docz)`
   fill: ${p => p.theme.docz.colors.footerText};
 `
 
-interface Media {
-  breakpoints: any
-  currentBreakpoint: string
-}
-
 interface Toggle {
   on: boolean
   toggle: () => void
@@ -125,56 +117,36 @@ interface State {
   }
 }
 
-interface MapperProps {
-  docs: DocsRenderProps
-  media: Media
-  toggle: Toggle
-  state: State
+type RenderProps = DocsRenderProps & Toggle & State
+
+interface ComposedProps {
+  children: (renderProps: RenderProps) => React.ReactNode
 }
 
-type EnhancedProps = DocsRenderProps &
-  Toggle &
-  State & {
-    media: Media
-  }
-
-const mapper = {
-  docs: <Docs />,
-  media: <Media />,
-  state: <State initial={{ docs: null, searching: false, lastVal: '' }} />,
-  toggle: <Toggle initial={true} />,
-}
-
-const mapProps = ({ docs, media, toggle, state }: MapperProps) => ({
-  ...docs,
-  ...toggle,
-  ...state,
-  media,
-})
-
-const Composed = adopt<EnhancedProps>(mapper, mapProps)
+const Composed: SFC<ComposedProps> = ({ children }) => (
+  <Docs>
+    {docs => (
+      <State initial={{ docs: null, searching: false, lastVal: '' }}>
+        {(state: any) => (
+          <Toggle initial={true}>
+            {(toggle: any) => children({ ...docs, ...toggle, ...state })}
+          </Toggle>
+        )}
+      </State>
+    )}
+  </Docs>
+)
 
 export const Sidebar = () => (
   <Composed>
-    {({
-      menus,
-      docs: initialDocs,
-      media,
-      toggle,
-      on,
-      state,
-      setState,
-    }: EnhancedProps) => {
+    {({ menus, docs: initialDocs, toggle, on, state, setState }) => {
       const docs = state.docs || initialDocs
       const docsWithoutMenu = docs.filter((doc: Entry) => !doc.menu)
-      const isDesktop = media.currentBreakpoint === 'desktop' ? true : false
 
       const fromMenu = (menu: string) => docs.filter(doc => doc.menu === menu)
       const search = (val: string) => {
         const change = !val.startsWith(state.lastVal)
-        setState({
-          lastVal: val,
-        })
+        setState({ lastVal: val })
         if (change) return match(initialDocs, val, { keys: ['name'] })
         return match(docs, val, { keys: ['name'] })
       }
@@ -188,17 +160,16 @@ export const Sidebar = () => (
         })
       }
 
-      const handleSidebarToggle = (ev: React.SyntheticEvent<any>) => {
-        if (isDesktop) return
+      const handleSidebarToggle = () => {
         toggle && toggle()
       }
 
       return (
         <React.Fragment>
-          <Wrapper opened={on} desktop={isDesktop}>
+          <Wrapper opened={on}>
             <Hamburguer opened={!on} onClick={handleSidebarToggle} />
             <Logo showBg={!on} />
-            <Search showing={isDesktop || !on} onSearch={handleSearchDocs} />
+            <Search onSearch={handleSearchDocs} />
             {docs.length < 1 ? (
               <Empty>No documents find.</Empty>
             ) : (
