@@ -10,6 +10,7 @@ import rgba from 'polished/lib/color/rgba'
 import Resizable from 're-resizable'
 import Maximize from 'react-feather/dist/icons/maximize'
 import Minimize from 'react-feather/dist/icons/minimize'
+import Refresh from 'react-feather/dist/icons/refresh-cw'
 import hotkeys from 'hotkeys-js'
 import getIn from 'lodash.get'
 import pretty from 'pretty'
@@ -170,6 +171,7 @@ export interface RenderState {
   height: string
   showing: 'jsx' | 'html'
   code: string
+  key: number
 }
 
 export class Render extends Component<RenderComponentProps, RenderState> {
@@ -179,6 +181,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
     height: parse(this.props.position, 'height', '100%'),
     showing: parse(this.props.position, 'showing', 'jsx'),
     code: this.props.code,
+    key: 0,
   }
 
   public componentDidMount(): void {
@@ -213,6 +216,9 @@ export class Render extends Component<RenderComponentProps, RenderState> {
           title={fullscreen ? 'Minimize' : 'Maximize'}
         >
           {fullscreen ? <Minimize width={15} /> : <Maximize width={15} />}
+        </Action>
+        <Action onClick={this.handleRefresh} title="Refresh playground">
+          <Refresh width={15} />
         </Action>
       </Actions>
     )
@@ -262,7 +268,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
 
   public render(): JSX.Element {
     const { className, style, scope } = this.props
-    const { fullscreen, showing } = this.state
+    const { fullscreen, showing, key } = this.state
 
     return (
       <LiveProvider
@@ -276,7 +282,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
           {fullscreen ? <ResizeBar onChangeSize={this.handleSetSize} /> : null}
           <Resizable {...this.resizableProps}>
             <Wrapper full={fullscreen}>
-              <LiveConsumer>
+              <LiveConsumer key={key}>
                 {(live: any) => (
                   <PlaygroundWrapper full={fullscreen}>
                     {live.error && (
@@ -350,6 +356,10 @@ export class Render extends Component<RenderComponentProps, RenderState> {
   private handleSetSize = (width: string, height: string) => {
     const fullscreen = parse(this.props.position, 'fullscreen', false)
     this.setState({ width, height }, () => this.setSize(fullscreen))
+  }
+
+  private handleRefresh = () => {
+    this.setState(state => ({ key: state.key + 1 }))
   }
 
   private transformCode(code: string): string {
