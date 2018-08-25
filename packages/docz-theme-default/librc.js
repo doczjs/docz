@@ -33,6 +33,7 @@ const depsExternal = [
   'react-feather/dist/icons/monitor',
   'react-feather/dist/icons/maximize',
   'react-feather/dist/icons/minimize',
+  'react-feather/dist/icons/refresh-cw',
 ]
 
 const external = Object.keys(pkg.dependencies)
