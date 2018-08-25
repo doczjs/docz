@@ -15,21 +15,21 @@ const wrapItems = (item: any) =>
     .map(key => `${key}="${item[key]}"`)
     .join(' ')
 
-const generateMetaTags = (items: any[] = []) => {
-  return items.map(item => `<meta ${wrapItems(item)}>`)
-}
+export type tagsTemplate = (type: string) => string
+const generateTags = (template: tagsTemplate) => (items: any[] = []) =>
+  items.map(template).join('')
 
-const generateLinkTags = (items: any[] = []) => {
-  return items.map(item => `<link ${wrapItems(item)}>`)
-}
+const generateMetaTags = generateTags(item => `<meta ${wrapItems(item)}>`)
 
-const generateScriptTags = (items: any[] = []) => {
-  return items.map(item => `<script ${wrapItems(item)}></script>`)
-}
+const generateLinkTags = generateTags(item => `<link ${wrapItems(item)}>`)
+
+const generateScriptTags = generateTags(
+  item => `<script ${wrapItems(item)}></script>`
+)
 
 const generateRawTags = (items: any[] = []) => {
   if (typeof items === 'string' || items instanceof String) return items
-  return items.map(item => item)
+  return items.map(item => item).join('')
 }
 
 const getHtmlFilepath = (indexHtml: string | undefined) =>
