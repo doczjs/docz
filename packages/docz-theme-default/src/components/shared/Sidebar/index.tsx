@@ -200,7 +200,7 @@ export const Sidebar = () => (
             <Logo showBg={!on} />
             <Search showing={isDesktop || !on} onSearch={handleSearchDocs} />
             {docs.length < 1 ? (
-              <Empty>No document find.</Empty>
+              <Empty>No documents find.</Empty>
             ) : (
               <Menus>
                 {docsWithoutMenu.map(doc => (
