@@ -10365,6 +10365,14 @@ react-docgen-typescript-loader@^2.1.1:
     ajv "^6.5.0"
     react-docgen-typescript "^1.6.0"
 
+react-docgen-typescript-loader@^3.0.0-rc.0:
+  version "3.0.0-rc.0"
+  resolved "https://registry.npmjs.org/react-docgen-typescript-loader/-/react-docgen-typescript-loader-3.0.0-rc.0.tgz#f945a4672094f484d0cc5d8412d353fd7223c173"
+  dependencies:
+    "@webpack-contrib/schema-utils" "^1.0.0-beta.0"
+    loader-utils "^1.1.0"
+    react-docgen-typescript "^1.6.0"
+
 react-docgen-typescript@^1.6.0:
   version "1.6.1"
   resolved "https://registry.npmjs.org/react-docgen-typescript/-/react-docgen-typescript-1.6.1.tgz#9734ffc0fecce7a58627a3cc26dc67cad908974d"
