@@ -20,7 +20,7 @@ interface WrapperProps {
   theme?: any
 }
 
-const toggle = (p: WrapperProps) => (p.opened && !p.desktop ? '-90%' : '0')
+const toggle = (p: WrapperProps) => (p.opened && !p.desktop ? '-100%' : '0')
 
 const background = (p: WrapperProps) =>
   toggle(p) !== '0' ? 'transparent' : p.theme.docz.colors.sidebarBg
