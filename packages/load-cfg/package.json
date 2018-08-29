@@ -24,7 +24,8 @@
   "dependencies": {
     "deepmerge": "^2.1.1",
     "esm": "^3.0.80",
-    "find-up": "^3.0.0"
+    "find-up": "^3.0.0",
+    "fs-extra": "^7.0.0"
   },
   "devDependencies": {
     "@types/find-up": "^2.1.1",
