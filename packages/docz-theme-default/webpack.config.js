@@ -19,7 +19,7 @@ const externalList = [
   'polished/lib/color/rgba',
   'polished/lib/color/lighten',
   'polished/lib/color/darken',
-  'react-codemirror',
+  'react-codemirror2',
   'react-dom/server',
   'react-feather',
   'react-feather/dist/icons/edit-2',
@@ -68,16 +68,15 @@ const plugins = [
   new FileManagerPlugin({
     onStart: [{ delete: ['./dist'] }],
   }),
-  IS_PROD &&
-    new BundleAnalyzerPlugin({
-      openAnalyzer: false,
-      analyzerMode: 'static',
-    }),
-].filter(Boolean)
+  new BundleAnalyzerPlugin({
+    openAnalyzer: false,
+    analyzerMode: 'static',
+  }),
+]
 
 module.exports = {
   externals,
-  plugins,
+  plugins: IS_PROD ? plugins : [],
   mode: IS_PROD ? 'production' : 'development',
   entry: path.join(__dirname, '/src/index.tsx'),
   devtool: 'source-map',

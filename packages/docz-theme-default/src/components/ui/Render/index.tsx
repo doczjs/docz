@@ -18,7 +18,7 @@ import pretty from 'pretty'
 import { ResizeBar } from './ResizeBar'
 import { LiveConsumer } from './LiveConsumer'
 import { Handle, HANDLE_SIZE } from './Handle'
-import { ActionButton, ClipboardAction, Pre as PreBase } from '../Pre'
+import { ActionButton, ClipboardAction, Editor as PreBase } from '../Editor'
 import { localStorage } from '../../../utils/local-storage'
 
 interface OverlayProps {
@@ -150,18 +150,17 @@ const parse = (position: number, key: string, defaultValue: any) => {
 }
 
 interface JSXProps {
-  code: string
   onChange: (code: string) => any
 }
 
-const Jsx: SFC<JSXProps> = ({ onChange, code }) => (
+const Jsx: SFC<JSXProps> = ({ children, ...props }) => (
   <Pre
+    {...props}
     readOnly={false}
     editorClassName={editorClassName}
-    onChange={onChange}
     actions={<Fragment />}
   >
-    {code}
+    {children}
   </Pre>
 )
 
@@ -297,10 +296,9 @@ export class Render extends Component<RenderComponentProps, RenderState> {
               </LiveConsumer>
               {this.actions}
               {showing === 'jsx' ? (
-                <Jsx
-                  onChange={code => this.setState({ code })}
-                  code={this.state.code}
-                />
+                <Jsx onChange={code => this.setState({ code })}>
+                  {this.state.code}
+                </Jsx>
               ) : (
                 <Pre editorClassName={editorClassName} actions={<Fragment />}>
                   {this.html}
