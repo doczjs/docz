@@ -134,6 +134,7 @@ interface PreProps {
   indentUnit?: number
   onChange?: (code: string) => any
   language?: string
+  withLastLine?: boolean
 }
 
 export const Editor: SFC<PreProps> = ({
@@ -144,6 +145,7 @@ export const Editor: SFC<PreProps> = ({
   className,
   editorClassName,
   language: defaultLanguage,
+  withLastLine,
   ...props
 }) => {
   const code = getChildren(children)
@@ -169,7 +171,7 @@ export const Editor: SFC<PreProps> = ({
                 className={editorClassName}
                 onViewportChange={() => console.log('helo')}
                 editorDidMount={(editor: any) => {
-                  if (editor && props.readOnly) {
+                  if (editor && !withLastLine && props.readOnly) {
                     const lastLine = editor.lastLine()
                     editor.doc.replaceRange(
                       '',
