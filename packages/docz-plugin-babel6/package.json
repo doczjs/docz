@@ -23,13 +23,13 @@
   },
   "dependencies": {
     "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
+    "babel-loader": "^8.0.0",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-preset-react-app": "^3.1.2",
     "babel-runtime": "^6.26.0",
     "docz-core": "^0.10.3",
     "happypack": "^5.0.0",
-    "react-docgen-typescript-loader": "^2.1.1",
-    "ts-loader": "^4.4.2"
+    "react-docgen-typescript-loader": "^2.2.0",
+    "ts-loader": "^4.5.0"
   }
 }
