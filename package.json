@@ -30,14 +30,14 @@
     "contributors:generate": "all-contributors generate"
   },
   "devDependencies": {
-    "@commitlint/cli": "^7.0.0",
-    "@commitlint/config-conventional": "^7.0.1",
-    "@commitlint/config-lerna-scopes": "^7.0.0",
+    "@commitlint/cli": "^7.1.1",
+    "@commitlint/config-conventional": "^7.1.1",
+    "@commitlint/config-lerna-scopes": "^7.1.1",
     "all-contributors-cli": "^5.4.0",
     "commitizen": "^2.10.1",
     "del": "^3.0.0",
     "husky": "^1.0.0-rc.13",
-    "lerna": "2.11.0",
+    "lerna": "3.2.1",
     "libundler": "^1.7.1",
     "lint-staged": "^7.2.2",
     "npm-run-all": "^4.1.3",
