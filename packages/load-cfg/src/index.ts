@@ -1,4 +1,4 @@
-import * as fs from 'fs'
+import * as fs from 'fs-extra'
 import * as path from 'path'
 import findup from 'find-up'
 import merge from 'deepmerge'
@@ -27,11 +27,11 @@ export const loadFile = (filepath: string, noCache?: boolean) => {
       const required = require(filepath)
       file = required.default || required
     } else {
-      file = JSON.parse(fs.readFileSync(filepath, 'utf-8'))
+      file = fs.readJsonSync(filepath, { encoding: 'utf-8' })
     }
   } catch (err) {
-    console.warn('There was an error loading your config:')
-    throw err
+    console.warn('There was an error loading your config:\n')
+    console.warn(err)
   }
 
   return file

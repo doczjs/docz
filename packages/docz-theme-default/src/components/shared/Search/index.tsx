@@ -3,10 +3,6 @@ import { SFC } from 'react'
 import styled from 'react-emotion'
 import SearchIcon from 'react-feather/dist/icons/search'
 
-interface WrapperProps {
-  showing: boolean
-}
-
 const Wrapper = styled('div')`
   display: flex;
   align-items: center;
@@ -14,7 +10,7 @@ const Wrapper = styled('div')`
   margin-bottom: 20px;
   border-top: 1px dotted ${p => p.theme.docz.colors.border};
   border-bottom: 1px dotted ${p => p.theme.docz.colors.border};
-  opacity: ${(p: WrapperProps) => (p.showing ? 1 : 0)};
+  opacity: 1;
 `
 
 const Icon = styled(SearchIcon)`
@@ -34,12 +30,11 @@ const Input = styled('input')`
 `
 
 interface SearchProps {
-  showing: boolean
   onSearch: (value: string) => void
 }
 
-export const Search: SFC<SearchProps> = ({ onSearch, showing }) => (
-  <Wrapper showing={showing}>
+export const Search: SFC<SearchProps> = ({ onSearch }) => (
+  <Wrapper>
     <Icon />
     <Input
       type="text"

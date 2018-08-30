@@ -31,7 +31,7 @@ const handleHeight = (p: HandleProps) =>
   p.horizontal ? `calc(100% + ${p.full ? '5px' : '0px'})` : HANDLE_SIZE
 
 export const Handle = styled('div')`
-  z-index: ${p => (p.full ? (p.horizontal ? 9999 : 9998) : 0)};
+  z-index: ${p => (p.full ? (p.horizontal ? 9999 : 9998) : 9)};
   position: absolute;
   display: block;
   width: ${whenHorizontal(HANDLE_SIZE, 'calc(100% + 5px)')};
