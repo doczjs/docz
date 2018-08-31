@@ -16,6 +16,8 @@ const externalList = [
   'codemirror/mode/jsx/jsx',
   'codemirror/mode/css/css',
   'codemirror/addon/edit/matchbrackets',
+  'codemirror/addon/edit/closetag',
+  'codemirror/addon/fold/xml-fold',
   'polished/lib/color/rgba',
   'polished/lib/color/lighten',
   'polished/lib/color/darken',
