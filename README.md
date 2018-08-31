@@ -87,7 +87,7 @@ Documenting our things is one of the most important and heavy processes when you
 ## 🗃 &nbsp; Examples
 
 - **[basic](https://github.com/pedronauck/docz/tree/master/examples/basic)** - Some basic example
-- **[babel 6](https://github.com/pedronauck/docz/tree/master/examples/babel6)** - Using docz with Babel@6
+- **[babel 6](https://github.com/pedronauck/docz/tree/master/examples/babel6)** - Using docz with Babel@6 ***(DEPRECATED)️***
 - **[with typescript](https://github.com/pedronauck/docz/tree/master/examples/typescript)** - Using docz with Typescript
 - **[with flow](https://github.com/pedronauck/docz/tree/master/examples/flow)** - Using docz with Flow
 - **[with sass](https://github.com/pedronauck/docz/tree/master/examples/css-sass)** - Using docz parsing css with Sass
@@ -97,8 +97,11 @@ Documenting our things is one of the most important and heavy processes when you
 
 ## 🚧 &nbsp; Warning!
 
-> Due to performance issues **docz** uses Babel@7 and Webpack@4. So, if you're using some older version of this packages you'll probably get some errors! If you need to use Babel@6 you can try [docz-plugin-babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6), but about Webpack@4 we can't do anything!
+> Due to performance issues **docz** uses babel 7 and webpack 4. So, if you're using some older version of this packages you'll probably get some errors! About webpack 4 we can't do anything, but about babel, we indicate that you update your babel version. You can do that just by running [babel-upgrade](https://github.com/babel/babel-upgrade):
 
+```bash
+npx babel-upgrade --write
+```
 ## 📟 &nbsp; Install and Usage
 
 Simplicity is one of our core principles. Therefore, getting started with **docz** is something really easy and quick. First of all, you will need to install **docz** on your project using some package managers
