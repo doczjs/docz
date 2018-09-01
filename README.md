@@ -87,7 +87,8 @@ Documenting our things is one of the most important and heavy processes when you
 ## 🗃 &nbsp; Examples
 
 - **[basic](https://github.com/pedronauck/docz/tree/master/examples/basic)** - Some basic example
-- **[react-native](https://github.com/pedronauck/docz/tree/master/examples/react-native)** - Using in a React Native project
+- **[react-native-flow](https://github.com/pedronauck/docz/tree/master/examples/react-native-flow)** - Using in a React Native project with flow
+- **[react-native-propTypes](https://github.com/pedronauck/docz/tree/master/examples/react-native-propTypes)** - Using in a React Native project with propTypes
 - **[babel 6](https://github.com/pedronauck/docz/tree/master/examples/babel6)** - Using docz with Babel@6
 - **[with typescript](https://github.com/pedronauck/docz/tree/master/examples/typescript)** - Using docz with Typescript
 - **[with flow](https://github.com/pedronauck/docz/tree/master/examples/flow)** - Using docz with Flow
