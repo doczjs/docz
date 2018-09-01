@@ -19,6 +19,8 @@ import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/jsx/jsx'
 import 'codemirror/mode/css/css'
 import 'codemirror/addon/edit/matchbrackets'
+import 'codemirror/addon/edit/closetag'
+import 'codemirror/addon/fold/xml-fold'
 
 const getLanguage = (children: any) => {
   const defaultLanguage = 'jsx'
@@ -134,6 +136,7 @@ interface PreProps {
   indentUnit?: number
   onChange?: (code: string) => any
   language?: string
+  withLastLine?: boolean
 }
 
 export const Editor: SFC<PreProps> = ({
@@ -144,6 +147,7 @@ export const Editor: SFC<PreProps> = ({
   className,
   editorClassName,
   language: defaultLanguage,
+  withLastLine,
   ...props
 }) => {
   const code = getChildren(children)
@@ -155,6 +159,7 @@ export const Editor: SFC<PreProps> = ({
     mode: language || mode,
     lineNumbers: true,
     lineWrapping: true,
+    autoCloseTags: true,
     theme: 'docz-light',
   }
 
@@ -167,9 +172,8 @@ export const Editor: SFC<PreProps> = ({
               <EditorStyled
                 value={value}
                 className={editorClassName}
-                onViewportChange={() => console.log('helo')}
                 editorDidMount={(editor: any) => {
-                  if (editor && props.readOnly) {
+                  if (editor && !withLastLine && props.readOnly) {
                     const lastLine = editor.lastLine()
                     editor.doc.replaceRange(
                       '',

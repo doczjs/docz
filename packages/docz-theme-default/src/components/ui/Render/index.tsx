@@ -300,7 +300,11 @@ export class Render extends Component<RenderComponentProps, RenderState> {
                   {this.state.code}
                 </Jsx>
               ) : (
-                <Pre editorClassName={editorClassName} actions={<Fragment />}>
+                <Pre
+                  editorClassName={editorClassName}
+                  actions={<Fragment />}
+                  withLastLine
+                >
                   {this.html}
                 </Pre>
               )}
