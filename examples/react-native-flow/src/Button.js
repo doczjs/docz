@@ -1,6 +1,6 @@
+// @flow
 import * as React from 'react'
 import styled from 'styled-components/native'
-import t from 'prop-types'
 
 const BlueButton = styled.TouchableOpacity`
   background-color: blue;
@@ -15,19 +15,15 @@ const WhiteText = styled.Text`
   color: #fff;
 `
 
-const Button = ({ text, onPress }) => (
+type Props = {
+  text: string,
+  onPress: () => void
+}
+
+const Button = ({ text, onPress }: Props) => (
   <BlueButton onPress={onPress}>
     <WhiteText>{text}</WhiteText>
   </BlueButton>
 )
-
-Button.propTypes = {
-  text: t.string,
-  onPress: t.func,
-}
-
-Button.defaultProps = {
-  text: null,
-}
 
 export default Button
