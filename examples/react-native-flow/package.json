@@ -18,11 +18,9 @@
   },
   "devDependencies": {
     "docz": "^0.10.3",
-    "docz-core": "^0.10.3",
     "babel-jest": "23.4.2",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-react-native-web": "^0.8.9",
-    "babel-preset-react-native": "^5",
-    "babel-plugin-react-docgen": "^2.0.0-babel7.0"
+    "babel-preset-react-native": "^5"
   }
 }
