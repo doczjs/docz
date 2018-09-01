@@ -10,6 +10,7 @@ import rgba from 'polished/lib/color/rgba'
 import Resizable from 're-resizable'
 import Maximize from 'react-feather/dist/icons/maximize'
 import Minimize from 'react-feather/dist/icons/minimize'
+import Refresh from 'react-feather/dist/icons/refresh-cw'
 import hotkeys from 'hotkeys-js'
 import getIn from 'lodash.get'
 import pretty from 'pretty'
@@ -17,7 +18,7 @@ import pretty from 'pretty'
 import { ResizeBar } from './ResizeBar'
 import { LiveConsumer } from './LiveConsumer'
 import { Handle, HANDLE_SIZE } from './Handle'
-import { ActionButton, ClipboardAction, Pre as PreBase } from '../Pre'
+import { ActionButton, ClipboardAction, Editor as PreBase } from '../Editor'
 import { localStorage } from '../../../utils/local-storage'
 
 interface OverlayProps {
@@ -149,18 +150,17 @@ const parse = (position: number, key: string, defaultValue: any) => {
 }
 
 interface JSXProps {
-  code: string
   onChange: (code: string) => any
 }
 
-const Jsx: SFC<JSXProps> = ({ onChange, code }) => (
+const Jsx: SFC<JSXProps> = ({ children, ...props }) => (
   <Pre
+    {...props}
     readOnly={false}
     editorClassName={editorClassName}
-    onChange={onChange}
     actions={<Fragment />}
   >
-    {code}
+    {children}
   </Pre>
 )
 
@@ -170,6 +170,7 @@ export interface RenderState {
   height: string
   showing: 'jsx' | 'html'
   code: string
+  key: number
 }
 
 export class Render extends Component<RenderComponentProps, RenderState> {
@@ -179,6 +180,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
     height: parse(this.props.position, 'height', '100%'),
     showing: parse(this.props.position, 'showing', 'jsx'),
     code: this.props.code,
+    key: 0,
   }
 
   public componentDidMount(): void {
@@ -207,6 +209,9 @@ export class Render extends Component<RenderComponentProps, RenderState> {
             HTML
           </Tab>
         </Tabs>
+        <Action onClick={this.handleRefresh} title="Refresh playground">
+          <Refresh width={15} />
+        </Action>
         <Clipboard content={showing === 'jsx' ? this.state.code : this.html} />
         <Action
           onClick={this.handleToggle}
@@ -262,7 +267,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
 
   public render(): JSX.Element {
     const { className, style, scope } = this.props
-    const { fullscreen, showing } = this.state
+    const { fullscreen, showing, key } = this.state
 
     return (
       <LiveProvider
@@ -276,7 +281,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
           {fullscreen ? <ResizeBar onChangeSize={this.handleSetSize} /> : null}
           <Resizable {...this.resizableProps}>
             <Wrapper full={fullscreen}>
-              <LiveConsumer>
+              <LiveConsumer key={key}>
                 {(live: any) => (
                   <PlaygroundWrapper full={fullscreen}>
                     {live.error && (
@@ -291,12 +296,15 @@ export class Render extends Component<RenderComponentProps, RenderState> {
               </LiveConsumer>
               {this.actions}
               {showing === 'jsx' ? (
-                <Jsx
-                  onChange={code => this.setState({ code })}
-                  code={this.state.code}
-                />
+                <Jsx onChange={code => this.setState({ code })}>
+                  {this.state.code}
+                </Jsx>
               ) : (
-                <Pre editorClassName={editorClassName} actions={<Fragment />}>
+                <Pre
+                  editorClassName={editorClassName}
+                  actions={<Fragment />}
+                  withLastLine
+                >
                   {this.html}
                 </Pre>
               )}
@@ -350,6 +358,10 @@ export class Render extends Component<RenderComponentProps, RenderState> {
   private handleSetSize = (width: string, height: string) => {
     const fullscreen = parse(this.props.position, 'fullscreen', false)
     this.setState({ width, height }, () => this.setSize(fullscreen))
+  }
+
+  private handleRefresh = () => {
+    this.setState(state => ({ key: state.key + 1 }))
   }
 
   private transformCode(code: string): string {

@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { SFC } from 'react'
-import { Media } from 'react-breakpoints'
 import { ThemeConfig } from 'docz'
 import styled from 'react-emotion'
+
+import { breakpoints } from '../../../styles/responsive'
 
 interface WrapperProps {
   showBg: boolean
@@ -16,8 +17,6 @@ const Wrapper = styled('div')`
   align-items: flex-start;
   justify-content: center;
   padding: 24px;
-  background: ${(p: WrapperProps) =>
-    p.showBg ? p.theme.docz.colors.sidebarBg : 'transparent'};
 
   &:before {
     position: absolute;
@@ -25,8 +24,14 @@ const Wrapper = styled('div')`
     top: 0;
     left: 0;
     width: 100%;
-    height: ${(p: WrapperProps) => (p.showBg ? '3px' : 0)};
+    height: 3px;
     background: ${p => p.theme.docz.colors.primary};
+  }
+
+  @media screen and (max-width: ${breakpoints.desktop}px) {
+    &:before {
+      height: ${(p: WrapperProps) => (p.showBg ? '3px' : 0)};
+    }
   }
 `
 
@@ -48,19 +53,15 @@ interface LogoProps {
 }
 
 export const Logo: SFC<LogoProps> = ({ showBg }) => (
-  <Media>
-    {({ currentBreakpoint }: any) => (
-      <ThemeConfig>
-        {({ title, themeConfig: { logo } }) => (
-          <Wrapper showBg={showBg || currentBreakpoint === 'desktop'}>
-            {logo ? (
-              <LogoImg src={logo.src} width={logo.width} alt={title} />
-            ) : (
-              <LogoText>{title}</LogoText>
-            )}
-          </Wrapper>
+  <ThemeConfig>
+    {({ title, themeConfig: { logo } }) => (
+      <Wrapper showBg={showBg}>
+        {logo ? (
+          <LogoImg src={logo.src} width={logo.width} alt={title} />
+        ) : (
+          <LogoText>{title}</LogoText>
         )}
-      </ThemeConfig>
+      </Wrapper>
     )}
-  </Media>
+  </ThemeConfig>
 )
