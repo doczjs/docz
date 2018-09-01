@@ -7,8 +7,6 @@
     "build": "docz build"
   },
   "dependencies": {
-    "docz": "^0.10.3",
-    "docz-core": "^0.10.3",
     "emotion": "^9.2.8",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
@@ -16,6 +14,8 @@
     "react-emotion": "^9.2.8"
   },
   "devDependencies": {
+    "docz": "^0.10.3",
+    "docz-core": "^0.10.3",
     "babel-plugin-emotion": "^9.2.8"
   }
 }
