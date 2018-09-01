@@ -18,6 +18,7 @@ const externalList = [
   'codemirror/addon/edit/matchbrackets',
   'codemirror/addon/edit/closetag',
   'codemirror/addon/fold/xml-fold',
+  'react-perfect-scrollbar',
   'polished/lib/color/rgba',
   'polished/lib/color/lighten',
   'polished/lib/color/darken',
