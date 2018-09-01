@@ -81,6 +81,7 @@ const StyledError = styled(LiveError)`
 `
 
 const Pre = styled(PreBase)`
+  width: calc(100% - 4px);
   margin: 0;
 `
 
@@ -157,7 +158,7 @@ const Jsx: SFC<JSXProps> = ({ children, ...props }) => (
   <Pre
     {...props}
     readOnly={false}
-    editorClassName={editorClassName}
+    className={editorClassName}
     actions={<Fragment />}
   >
     {children}
@@ -301,7 +302,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
                 </Jsx>
               ) : (
                 <Pre
-                  editorClassName={editorClassName}
+                  className={editorClassName}
                   actions={<Fragment />}
                   withLastLine
                 >
