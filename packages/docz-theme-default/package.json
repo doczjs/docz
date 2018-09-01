@@ -41,6 +41,7 @@
     "react-feather": "^1.1.1",
     "react-lightweight-tooltip": "^1.0.0",
     "react-live": "^1.11.0",
+    "react-perfect-scrollbar": "^1.2.0",
     "react-powerplug": "^1.0.0-rc.1",
     "webfontloader": "^1.6.28"
   },

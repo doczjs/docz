@@ -11184,6 +11184,10 @@ pegjs@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/pegjs/-/pegjs-0.10.0.tgz#cf8bafae6eddff4b5a7efb185269eaaf4610ddbd"
 
+perfect-scrollbar@^1.3.0:
+  version "1.4.0"
+  resolved "https://registry.npmjs.org/perfect-scrollbar/-/perfect-scrollbar-1.4.0.tgz#5d014ef9775e1f43058a1dbae9ed1daf0e7091f1"
+
 performance-now@^0.2.0:
   version "0.2.0"
   resolved "https://registry.npmjs.org/performance-now/-/performance-now-0.2.0.tgz#33ef30c5c77d4ea21c5a53869d91b56d8f2555e5"
@@ -11717,7 +11721,7 @@ promzard@^0.3.0:
   dependencies:
     read "1"
 
-prop-types@15.6.2, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.2:
+prop-types@*, prop-types@15.6.2, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -11991,7 +11995,7 @@ react-docgen@^3.0.0-rc.0:
     node-dir "^0.1.10"
     recast "^0.15.0"
 
-react-dom@^16.4.2:
+react-dom@^16.3.1, react-dom@^16.4.2:
   version "16.4.2"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-16.4.2.tgz#4afed569689f2c561d2b8da0b819669c38a0bda4"
   dependencies:
@@ -12131,6 +12135,15 @@ react-native@0.56.0:
     xmldoc "^0.4.0"
     yargs "^9.0.0"
 
+react-perfect-scrollbar@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/react-perfect-scrollbar/-/react-perfect-scrollbar-1.2.0.tgz#1e241e7382e237211c090767b79c61850c48c325"
+  dependencies:
+    perfect-scrollbar "^1.3.0"
+    prop-types "*"
+    react "^16.3.1"
+    react-dom "^16.3.1"
+
 react-powerplug@^1.0.0-rc.1:
   version "1.0.0-rc.1"
   resolved "https://registry.npmjs.org/react-powerplug/-/react-powerplug-1.0.0-rc.1.tgz#6b3bc57e31684e8bc36baa7a65af602ba0e31145"
@@ -12184,7 +12197,7 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react@^16.4.2:
+react@^16.3.1, react@^16.4.2:
   version "16.4.2"
   resolved "https://registry.npmjs.org/react/-/react-16.4.2.tgz#2cd90154e3a9d9dd8da2991149fdca3c260e129f"
   dependencies:

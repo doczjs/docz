@@ -2,6 +2,7 @@ import { css } from 'react-emotion'
 
 export const theme = () => css`
   .cm-s-docz-light.CodeMirror {
+    border-radius: 3px;
     background: #fbfcfd;
     color: #24292e;
   }
@@ -9,6 +10,7 @@ export const theme = () => css`
   .cm-s-docz-light .CodeMirror-gutters {
     background: #fbfcfd;
     border-right-width: 0;
+    border-radius: 3px;
   }
 
   .cm-s-docz-light .CodeMirror-guttermarker {

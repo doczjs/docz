@@ -1,12 +1,12 @@
 import * as React from 'react'
-import { SFC } from 'react'
+import { SFC, Component } from 'react'
 import { ThemeConfig } from 'docz'
-import { Value } from 'react-powerplug'
 import styled from 'react-emotion'
 import rgba from 'polished/lib/color/rgba'
 import BaseCheck from 'react-feather/dist/icons/check'
 import Clipboard from 'react-feather/dist/icons/clipboard'
 import { Controlled as CodeMirror } from 'react-codemirror2'
+import PerfectScrollbar from 'react-perfect-scrollbar'
 import copy from 'copy-text-to-clipboard'
 import get from 'lodash.get'
 
@@ -14,6 +14,7 @@ import { ButtonSwap } from '../ButtonSwap'
 import { ButtonLink } from '../Button'
 import * as themes from '../../../styles/codemirror'
 
+import './ps-scrollbar'
 import 'codemirror/mode/markdown/markdown'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/jsx/jsx'
@@ -38,7 +39,20 @@ const getChildren = (children: any) =>
 const Wrapper = styled('div')`
   margin: 30px 0;
   position: relative;
-  overflow-y: auto;
+  width: 100%;
+  border: 1px solid ${p => p.theme.docz.colors.border};
+  border-radius: 3px;
+`
+
+const Scrollbar = styled(PerfectScrollbar)`
+  overflow: auto;
+  position: relative;
+  max-height: 360px;
+
+  .ps__rail-y {
+    z-index: 9;
+    opacity: 0.4;
+  }
 `
 
 const EditorStyled = styled(CodeMirror)`
@@ -46,14 +60,12 @@ const EditorStyled = styled(CodeMirror)`
   ${themes.light()};
   ${p => p.theme.docz.mq(p.theme.docz.styles.pre)};
   position: relative;
-  border-radius: 5px;
-  border: 1px solid ${p => p.theme.docz.colors.border};
-  overflow-y: auto;
+  border-radius: 3px;
   flex: 1;
 
   .CodeMirror {
     max-width: 100%;
-    height: auto;
+    height: 100%;
   }
 
   .CodeMirror pre {
@@ -125,7 +137,7 @@ export const ClipboardAction: SFC<ClipboardActionProps> = ({
   </ActionButton>
 )
 
-interface PreProps {
+interface EditorProps {
   children: any
   className?: string
   editorClassName?: string
@@ -139,73 +151,90 @@ interface PreProps {
   withLastLine?: boolean
 }
 
-export const Editor: SFC<PreProps> = ({
-  mode,
-  children,
-  actions,
-  onChange,
-  className,
-  editorClassName,
-  language: defaultLanguage,
-  withLastLine,
-  ...props
-}) => {
-  const code = getChildren(children)
-  const language = defaultLanguage || getLanguage(children)
-
-  const options = {
-    ...props,
-    tabSize: 2,
-    mode: language || mode,
-    lineNumbers: true,
-    lineWrapping: true,
-    autoCloseTags: true,
-    theme: 'docz-light',
-  }
-
-  return (
-    <Wrapper className={className}>
-      <ThemeConfig>
-        {config => (
-          <Value initial={code}>
-            {({ set, value }: any) => (
-              <EditorStyled
-                value={value}
-                className={editorClassName}
-                editorDidMount={(editor: any) => {
-                  if (editor && !withLastLine && props.readOnly) {
-                    const lastLine = editor.lastLine()
-                    editor.doc.replaceRange(
-                      '',
-                      { line: lastLine - 1 },
-                      { line: lastLine }
-                    )
-                  }
-                }}
-                onBeforeChange={(editor: any, data: any, value: string) => {
-                  onChange && onChange(value)
-                  set(value)
-                }}
-                options={{
-                  ...options,
-                  theme:
-                    config && config.themeConfig
-                      ? config.themeConfig.codemirrorTheme
-                      : options.theme,
-                }}
-              />
-            )}
-          </Value>
-        )}
-      </ThemeConfig>
-      <Actions>{actions || <ClipboardAction content={code} />}</Actions>
-    </Wrapper>
-  )
+interface EditorState {
+  code: string
 }
 
-Editor.defaultProps = {
-  mode: 'js',
-  readOnly: true,
-  matchBrackets: true,
-  indentUnit: 2,
+export class Editor extends Component<EditorProps, EditorState> {
+  public static defaultProps = {
+    mode: 'js',
+    readOnly: true,
+    matchBrackets: true,
+    indentUnit: 2,
+  }
+
+  public state = {
+    code: getChildren(this.props.children),
+  }
+
+  public render(): React.ReactNode {
+    const { code } = this.state
+    const {
+      mode,
+      children,
+      actions,
+      onChange,
+      className,
+      editorClassName,
+      language: defaultLanguage,
+      ...props
+    } = this.props
+
+    const language = defaultLanguage || getLanguage(children)
+    const options = {
+      ...props,
+      tabSize: 2,
+      mode: language || mode,
+      lineNumbers: true,
+      lineWrapping: true,
+      autoCloseTags: true,
+      theme: 'docz-light',
+    }
+
+    const editorProps = (config: any) => ({
+      value: this.state.code,
+      className: editorClassName,
+      editorDidMount: this.removeLastLine,
+      onBeforeChange: this.handleChange,
+      options: {
+        ...options,
+        theme:
+          config && config.themeConfig
+            ? config.themeConfig.codemirrorTheme
+            : options.theme,
+      },
+    })
+
+    const scrollbarOpts = {
+      wheelSpeed: 2,
+      wheelPropagation: true,
+      minScrollbarLength: 20,
+      suppressScrollX: true,
+    }
+
+    return (
+      <Wrapper className={className}>
+        <ThemeConfig>
+          {config => (
+            <Scrollbar option={scrollbarOpts}>
+              <EditorStyled {...editorProps(config)} />
+            </Scrollbar>
+          )}
+        </ThemeConfig>
+        <Actions>{actions || <ClipboardAction content={code} />}</Actions>
+      </Wrapper>
+    )
+  }
+
+  private removeLastLine = (editor: any) => {
+    if (editor && !this.props.withLastLine && this.props.readOnly) {
+      const lastLine = editor.lastLine()
+      editor.doc.replaceRange('', { line: lastLine - 1 }, { line: lastLine })
+    }
+  }
+
+  private handleChange = (editor: any, data: any, code: string) => {
+    this.props.onChange && this.props.onChange(code)
+    this.setState({ code })
+  }
 }

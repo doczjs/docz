@@ -4,6 +4,7 @@ export const theme = () => css`
   .CodeMirror.cm-s-docz-dark {
     color: #d8dee9;
     background-color: #2e3440;
+    border-radius: 3px;
   }
   .cm-s-docz-dark .CodeMirror-selected {
     background-color: rgba(67, 76, 94, 0.8);
@@ -12,6 +13,7 @@ export const theme = () => css`
   .cm-s-docz-dark .CodeMirror-gutters {
     border: none;
     background-color: #2e3440;
+    border-radius: 3px;
   }
   .cm-s-docz-dark .CodeMirror-linenumber,
   .cm-s-docz-dark .CodeMirror-linenumbers {
