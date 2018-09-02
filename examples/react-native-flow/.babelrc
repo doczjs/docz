@@ -1,5 +1,5 @@
 {
   "presets": [
-    "react-native"
+    "@babel/preset-flow"
   ]
 }

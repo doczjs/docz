@@ -1,5 +1,5 @@
 {
-  "name": "docz-example-react-native-flow",
+  "name": "docz-example-react-native-prop-types",
   "version": "0.10.0",
   "license": "MIT",
   "scripts": {
@@ -9,12 +9,10 @@
   "dependencies": {
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "styled-components": "^3.4.2"
+    "styled-components": "^3.4.2",
+    "prop-types": "15.6.2"
   },
   "devDependencies": {
-    "@babel/preset-flow": "^7.0.0",
-    "docz": "^0.10.3",
-    "flow-bin": "^0.79.1",
-    "flow-typed": "^2.5.1"
+    "docz": "^0.10.3"
   }
 }
