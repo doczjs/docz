@@ -1,4 +1,5 @@
 import * as colors from './colors'
+import lighten from 'polished/lib/color/lighten'
 
 export const light = {
   ...colors,
@@ -15,7 +16,7 @@ export const light = {
   tableColor: colors.dark,
   tooltipBg: colors.dark,
   tooltipColor: colors.grayExtraLight,
-  codeBg: colors.grayExtraLight,
+  codeBg: lighten(0.02, colors.grayExtraLight),
   codeColor: colors.gray,
   preBg: colors.grayExtraLight,
 }
