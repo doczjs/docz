@@ -1,0 +1,18 @@
+{
+  "name": "docz-example-react-native-prop-types",
+  "version": "0.10.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "docz dev",
+    "build": "docz build"
+  },
+  "dependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "styled-components": "^3.4.2",
+    "prop-types": "15.6.2"
+  },
+  "devDependencies": {
+    "docz": "^0.10.3"
+  }
+}
