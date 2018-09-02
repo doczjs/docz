@@ -235,7 +235,6 @@ export const createConfig = (args: Args, env: Env) => async (
   config.plugin('injections').use(require('webpack/lib/DefinePlugin'), [
     {
       ...getClientEnvironment(base).stringified,
-      BASE_URL: JSON.stringify(base),
       NODE_ENV: JSON.stringify(env),
     },
   ])
