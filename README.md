@@ -82,15 +82,15 @@ Documenting our things is one of the most important and heavy processes when you
 
 - **[css](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-css)** - Parse css files inside your documents
 - **[babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6)** - Use this plugin to use older babel version **[DEPRECATED]** ⚠️
-- **[react-native](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-svgr)** - Allow you to use docz with React Native
+- **[react-native](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-react-native)** - Allow you to use docz with React Native
 - **[svgr](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-svgr)** - Allow you to parse svg using svgr
 
 ## 🗃 &nbsp; Examples
 
 - **[basic](https://github.com/pedronauck/docz/tree/master/examples/basic)** - Some basic example
+- **[babel 6](https://github.com/pedronauck/docz/tree/master/examples/babel6)** - Using docz with Babel@6 **[DEPRECATED]** ⚠️
 - **[react-native-flow](https://github.com/pedronauck/docz/tree/master/examples/react-native-flow)** - Using in a React Native project with flow
 - **[react-native-prop-types](https://github.com/pedronauck/docz/tree/master/examples/react-native-prop-types)** - Using in a React Native project with propTypes
-- **[babel 6](https://github.com/pedronauck/docz/tree/master/examples/babel6)** - Using docz with Babel@6 ***(DEPRECATED)️***
 - **[with typescript](https://github.com/pedronauck/docz/tree/master/examples/typescript)** - Using docz with Typescript
 - **[with flow](https://github.com/pedronauck/docz/tree/master/examples/flow)** - Using docz with Flow
 - **[with sass](https://github.com/pedronauck/docz/tree/master/examples/css-sass)** - Using docz parsing css with Sass
