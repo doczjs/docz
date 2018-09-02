@@ -1,0 +1,17 @@
+{
+  "name": "docz-example-styled-components",
+  "version": "0.10.3",
+  "license": "MIT",
+  "scripts": {
+    "dev": "docz dev",
+    "build": "docz build"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  },
+  "devDependencies": {
+    "docz": "^0.10.3"
+  }
+}
