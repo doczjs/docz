@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.11.0"></a>
+# [0.11.0](https://github.com/pedronauck/docz/compare/v0.10.3...v0.11.0) (2018-09-02)
+
+
+### Bug Fixes
+
+* **docz-core:** dispose hmr on imports ([ba51086](https://github.com/pedronauck/docz/commit/ba51086))
+* **docz-core:** join head tags ([#255](https://github.com/pedronauck/docz/issues/255)) ([065e8b3](https://github.com/pedronauck/docz/commit/065e8b3))
+* **docz-core:** update react-docgen-typescript-loader to fix props table ([34b2fdf](https://github.com/pedronauck/docz/commit/34b2fdf))
+* **docz-plugin-css:** fix empty loaderOpts ([193367b](https://github.com/pedronauck/docz/commit/193367b))
+* **docz-plugin-css:** fix empty loaderOpts ([bb9b946](https://github.com/pedronauck/docz/commit/bb9b946))
+* **docz-theme-default:** add prop to keep codemirror last line ([5c1e813](https://github.com/pedronauck/docz/commit/5c1e813))
+* **docz-theme-default:** add prop to keep codemirror last line ([bf19ad5](https://github.com/pedronauck/docz/commit/bf19ad5))
+* **docz-theme-default:** codemirror line end bug ([9b07d27](https://github.com/pedronauck/docz/commit/9b07d27))
+* **docz-theme-default:** fix mobile menu peaking ([#262](https://github.com/pedronauck/docz/issues/262)) ([77b627f](https://github.com/pedronauck/docz/commit/77b627f))
+* **docz-theme-default:** remove react-breakpoints ([c8288b0](https://github.com/pedronauck/docz/commit/c8288b0))
+* **docz-theme-default:** update the empty message ([9db9231](https://github.com/pedronauck/docz/commit/9db9231))
+* **load-cfg:** use fs-extra to read json sync instead of JSON.parse ([04d1e1a](https://github.com/pedronauck/docz/commit/04d1e1a))
+* base url and hash router making weird url ([f483638](https://github.com/pedronauck/docz/commit/f483638))
+
+
+### Features
+
+* add link of repository from website ([#245](https://github.com/pedronauck/docz/issues/245)) ([85cc9e7](https://github.com/pedronauck/docz/commit/85cc9e7))
+* **babel-preset-docz:** add new babel preset ([5efb568](https://github.com/pedronauck/docz/commit/5efb568))
+* **docz:** move docz/docz-core to dev dependency on examples ([e7153a4](https://github.com/pedronauck/docz/commit/e7153a4))
+* integration with react native ([#271](https://github.com/pedronauck/docz/issues/271)) ([ac359ce](https://github.com/pedronauck/docz/commit/ac359ce))
+* **docz-example-styled-components:** add new example ([0cef75e](https://github.com/pedronauck/docz/commit/0cef75e))
+* **docz-theme-default:** add auto close tags on playground editor ([a6e5cf7](https://github.com/pedronauck/docz/commit/a6e5cf7))
+* **docz-theme-default:** add blockquote component ([86ada87](https://github.com/pedronauck/docz/commit/86ada87))
+* **docz-theme-default:** add refresh btn on playground ([#254](https://github.com/pedronauck/docz/issues/254)) ([ebefd91](https://github.com/pedronauck/docz/commit/ebefd91)), closes [#251](https://github.com/pedronauck/docz/issues/251)
+* **docz-theme-default:** add scrollbar on playground ([#279](https://github.com/pedronauck/docz/issues/279)) ([0f6ea2a](https://github.com/pedronauck/docz/commit/0f6ea2a))
+
+
+
+
+
 <a name="0.10.3"></a>
 ## [0.10.3](https://github.com/pedronauck/docz/compare/v0.9.6...v0.10.3) (2018-08-16)
 

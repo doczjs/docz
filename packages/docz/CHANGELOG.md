@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.11.0"></a>
+# [0.11.0](https://github.com/pedronauck/docz/compare/v0.10.3...v0.11.0) (2018-09-02)
+
+
+### Bug Fixes
+
+* base url and hash router making weird url ([f483638](https://github.com/pedronauck/docz/commit/f483638))
+
+
+
+
+
 <a name="0.10.3"></a>
 ## [0.10.3](https://github.com/pedronauck/docz/compare/v0.9.6...v0.10.3) (2018-08-16)
 

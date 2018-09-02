@@ -1,6 +1,6 @@
 {
   "name": "docz-plugin-svgr",
-  "version": "0.10.3",
+  "version": "0.11.0",
   "description": "Use svgr as loader for svg images",
   "license": "MIT",
   "main": "dist/index.js",
@@ -23,6 +23,6 @@
   },
   "dependencies": {
     "@svgr/webpack": "^2.2.1",
-    "docz-core": "^0.10.3"
+    "docz-core": "^0.11.0"
   }
 }

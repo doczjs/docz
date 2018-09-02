@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.11.0"></a>
+# [0.11.0](https://github.com/pedronauck/docz/compare/v0.10.3...v0.11.0) (2018-09-02)
+
+
+### Bug Fixes
+
+* base url and hash router making weird url ([f483638](https://github.com/pedronauck/docz/commit/f483638))
+* **docz-core:** dispose hmr on imports ([ba51086](https://github.com/pedronauck/docz/commit/ba51086))
+* **docz-core:** join head tags ([#255](https://github.com/pedronauck/docz/issues/255)) ([065e8b3](https://github.com/pedronauck/docz/commit/065e8b3))
+* **docz-core:** update react-docgen-typescript-loader to fix props table ([34b2fdf](https://github.com/pedronauck/docz/commit/34b2fdf))
+
+
+### Features
+
+* **babel-preset-docz:** add new babel preset ([5efb568](https://github.com/pedronauck/docz/commit/5efb568))
+
+
+
+
+
 <a name="0.10.3"></a>
 ## [0.10.3](https://github.com/pedronauck/docz/compare/v0.9.6...v0.10.3) (2018-08-16)
 
