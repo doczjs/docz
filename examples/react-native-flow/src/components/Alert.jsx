@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Fragment } from 'react'
+import { Text as BaseText } from 'react-native'
 import styled from 'styled-components/native'
 
 const kinds = {
@@ -23,11 +24,10 @@ const AlertStyled = styled.View`
   padding: 15px 20px;
   background: white;
   border-radius: 3px;
-  color: white;
   background: ${({ kind = 'info' }) => kinds[kind]};
 `
 
-export const Text = styled.Text`
+export const Text = styled(BaseText)`
   color: white;
 `
 
