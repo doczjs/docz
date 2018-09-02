@@ -19,6 +19,9 @@ export const light = {
   codeBg: lighten(0.02, colors.grayExtraLight),
   codeColor: colors.gray,
   preBg: colors.grayExtraLight,
+  blockquoteBg: colors.grayExtraLight,
+  blockquoteBorder: colors.grayLight,
+  blockquoteColor: colors.gray,
 }
 
 export const dark = {
@@ -39,4 +42,7 @@ export const dark = {
   codeBg: colors.gray,
   codeColor: colors.grayExtraLight,
   preBg: colors.grayDark,
+  blockquoteBg: colors.grayDark,
+  blockquoteBorder: colors.gray,
+  blockquoteColor: colors.gray,
 }
