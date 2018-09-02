@@ -62,4 +62,10 @@ export const styles = {
     fontFamily: '"Source Code Pro", monospace',
     fontSize: 14,
   },
+  blockquote: {
+    margin: '25px 0',
+    padding: '20px',
+    fontStyle: 'italic',
+    fontSize: 18,
+  },
 }
