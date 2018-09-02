@@ -20,7 +20,7 @@
   dependencies:
     "@babel/highlight" "^7.0.0"
 
-"@babel/core@7.0.0", "@babel/core@^7.0.0-rc.1":
+"@babel/core@7.0.0", "@babel/core@^7.0.0", "@babel/core@^7.0.0-rc.1":
   version "7.0.0"
   resolved "https://registry.npmjs.org/@babel/core/-/core-7.0.0.tgz#0cb0c0fd2e78a0a2bec97698f549ae9ce0b99515"
   dependencies:

@@ -13,9 +13,11 @@
     "styled-components": "^3.4.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
     "@babel/preset-flow": "^7.0.0",
     "babel-preset-react-native": "^5.0.2",
     "docz": "^0.10.3",
+    "docz-plugin-react-native": "^0.10.3",
     "flow-bin": "^0.79.1",
     "flow-typed": "^2.5.1"
   }
