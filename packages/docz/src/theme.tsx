@@ -9,7 +9,6 @@ import { ErrorBoundary } from './components/ErrorBoundary'
 import { DataServer } from './components/DataServer'
 import { state, State, ThemeConfig, ImportMap } from './state'
 
-declare var BASE_URL: any
 const DefaultWrapper: SFC = ({ children }) => <Fragment>{children}</Fragment>
 
 export interface ThemeProps {
@@ -47,7 +46,7 @@ export function theme(
           <themeContext.Provider value={themeState}>
             <state.Provider initialState={props.db}>
               <DataServer websocketUrl={props.websocketUrl}>
-                <Router basename={BASE_URL}>
+                <Router>
                   <Wrapper>
                     <WrappedComponent />
                   </Wrapper>
