@@ -48,15 +48,23 @@ const getStyleLoaders = (loader: any, opts: Opts) => (
 
 const loaders = {
   postcss: (opts: Opts = { plugins: [] }) =>
-    getStyleLoaders(require.resolve('postcss-loader'), {
-      plugins: () =>
-        opts.plugins.concat([
-          require('postcss-flexbugs-fixes'),
-          require('autoprefixer')({
-            flexbox: 'no-2009',
-          }),
-        ]),
-    }),
+    getStyleLoaders(
+      require.resolve('postcss-loader'),
+      merge(opts, {
+        plugins: () => {
+          const defaultPlugins = [
+            require('postcss-flexbugs-fixes'),
+            require('autoprefixer')({
+              flexbox: 'no-2009',
+            }),
+          ]
+
+          return opts && opts.plugins && Array.isArray(opts.plugins)
+            ? opts.plugins.concat(defaultPlugins)
+            : defaultPlugins
+        },
+      })
+    ),
 
   sass: (opts: Opts = {}) =>
     getStyleLoaders(
@@ -110,6 +118,8 @@ export interface CSSPluginOptions {
 const defaultOpts: Record<string, any> = {
   preprocessor: 'postcss',
   cssmodules: false,
+  loadersOpts: {},
+  cssOpts: {},
 }
 
 export const css = (opts: CSSPluginOptions = defaultOpts) =>
