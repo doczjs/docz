@@ -1,5 +1,5 @@
 {
-  "name": "docz-example-css-less",
+  "name": "docz-example-styled-components",
   "version": "0.10.3",
   "license": "MIT",
   "scripts": {
@@ -7,13 +7,11 @@
     "build": "docz build"
   },
   "dependencies": {
-    "classnames": "^2.2.6",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
   },
   "devDependencies": {
-    "docz": "^0.10.3",
-    "docz-plugin-css": "^0.10.3"
+    "docz": "^0.10.3"
   }
 }

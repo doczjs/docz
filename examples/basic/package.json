@@ -15,7 +15,6 @@
   },
   "devDependencies": {
     "docz": "^0.10.3",
-    "docz-core": "^0.10.3",
     "babel-plugin-emotion": "^9.2.8"
   }
 }

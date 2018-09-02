@@ -105,6 +105,9 @@ const config = {
     codeBg: colors.grayExtraLight,
     codeColor: colors.gray,
     preBg: colors.grayExtraLight,
+    blockquoteBg: colors.grayExtraLight,
+    blockquoteBorder: colors.grayLight,
+    blockquoteColor: colors.gray,
   },
   /**
    * Styles
@@ -172,6 +175,12 @@ const config = {
       marginBottom: [20, 40],
       fontFamily: '"Source Code Pro", monospace',
       fontSize: 14,
+    },
+    blockquote: {
+      margin: '25px 0',
+      padding: '20px',
+      fontStyle: 'italic',
+      fontSize: 18,
     },
   }
 }

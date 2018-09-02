@@ -19,6 +19,7 @@ const Theme = () => (
             page: components.Page,
             notFound: components.NotFound,
             render: components.Render,
+            blockquote: components.Blockquote,
             h1: components.H1,
             h2: components.H2,
             h3: components.H3,
