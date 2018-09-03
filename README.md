@@ -43,7 +43,7 @@ Thanks for all people that support us 🙏🏻
 - 🧘 **Zero config and easy.** Don't worry about complex configurations steps.
 - ⚡️ **Blazing Fast.** Full hot reload support with webpack 4 and automatic code splitting.
 - 💅 **Easy to customize.** Create and use real customizable themes.
-- 📝 **MDX Based.** Write markdown with all power of components.
+- 📝 **[MDX](https://github.com/mdx-js/mdx) Based.** Write markdown with all power of components.
 - 🎛 **Pluggable.** With plugins, you can manipulate a lot of things through the docz flow and data.
 - 🔐 **Typescript Support.** We have a full support for your type definitions.
 
