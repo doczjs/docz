@@ -82,6 +82,7 @@ Documenting our things is one of the most important and heavy processes when you
 
 - **[css](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-css)** - Parse css files inside your documents
 - **[babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6)** - Use this plugin to use older babel version **[DEPRECATED]** ⚠️
+- **[netlify](https://github.com/nicholasess/docz-plugin-netlify) - Deploy your documentation to [Netlify](http://netlify.com/)
 - **[react-native](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-react-native)** - Allow you to use docz with React Native
 - **[svgr](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-svgr)** - Allow you to parse svg using svgr
 
