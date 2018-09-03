@@ -19,6 +19,7 @@ export interface RenderComponentProps {
   component: JSX.Element
   position: number
   code: string
+  codesandbox: string
   scope: Record<string, any>
 }
 

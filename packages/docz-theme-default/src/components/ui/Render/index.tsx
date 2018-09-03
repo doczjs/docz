@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { SFC, Fragment, Component } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { RenderComponentProps } from 'docz'
+import { RenderComponentProps, ThemeConfig } from 'docz'
 import { LiveProvider, LiveError, LivePreview } from 'react-live'
 import styled, { css } from 'react-emotion'
 import lighten from 'polished/lib/color/lighten'
@@ -15,6 +15,7 @@ import hotkeys from 'hotkeys-js'
 import getIn from 'lodash.get'
 import pretty from 'pretty'
 
+import CodeSandboxLogo from './CodeSandboxLogo'
 import { ResizeBar } from './ResizeBar'
 import { LiveConsumer } from './LiveConsumer'
 import { Handle, HANDLE_SIZE } from './Handle'
@@ -109,6 +110,8 @@ const actionClass = (p: any) => css`
 const Action = styled(ActionButton)`
   ${actionClass};
 `
+
+const ActionLink = Action.withComponent('a')
 
 const Clipboard = styled(ClipboardAction)`
   ${actionClass};
@@ -214,6 +217,21 @@ export class Render extends Component<RenderComponentProps, RenderState> {
           <Refresh width={15} />
         </Action>
         <Clipboard content={showing === 'jsx' ? this.state.code : this.html} />
+        {this.props.codesandbox !== 'undefined' && (
+          <ThemeConfig>
+            {config => (
+              <ActionLink
+                href={`https://codesandbox.io/api/v1/sandboxes/define?parameters=${
+                  this.props.codesandbox
+                }${config.native ? `&editorsize=75` : ``}`}
+                target="_blank"
+                title="Open in CodeSandbox"
+              >
+                <CodeSandboxLogo style={{ height: '100%' }} width={15} />
+              </ActionLink>
+            )}
+          </ThemeConfig>
+        )}
         <Action
           onClick={this.handleToggle}
           title={fullscreen ? 'Minimize' : 'Maximize'}
