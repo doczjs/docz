@@ -49,6 +49,7 @@ export const createConfig = (args: Args, env: Env) => async (
   const base = paths.servedPath(args.base)
   const dist = paths.getDist(args.dest)
   const srcPath = path.resolve(paths.root, args.src)
+  const publicPath = isProd ? base : '/'
 
   /**
    * general
@@ -83,8 +84,8 @@ export const createConfig = (args: Args, env: Env) => async (
 
   config.output
     .pathinfo(true)
-    .path(dist)
-    .publicPath(isProd ? base : '/')
+    .path(path.resolve(paths.root, dist))
+    .publicPath(publicPath)
     .when(isProd, outputProd, outputDev)
     .crossOriginLoading('anonymous')
 
@@ -176,7 +177,8 @@ export const createConfig = (args: Args, env: Env) => async (
 
   config.plugin('assets-plugin').use(manifestPlugin, [
     {
-      filename: 'assets.json',
+      publicPath,
+      fileName: 'assets.json',
     },
   ])
 
@@ -235,6 +237,7 @@ export const createConfig = (args: Args, env: Env) => async (
   config.plugin('injections').use(require('webpack/lib/DefinePlugin'), [
     {
       ...getClientEnvironment(base).stringified,
+      BASE_URL: args.hashRouter ? JSON.stringify('/') : JSON.stringify(base),
       NODE_ENV: JSON.stringify(env),
     },
   ])
