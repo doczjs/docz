@@ -2,6 +2,7 @@ import * as React from 'react'
 import { SFC } from 'react'
 import { Docs, Entry, DocsRenderProps } from 'docz'
 import { Toggle, State } from 'react-powerplug'
+import withSizes from 'react-sizes'
 import styled from 'react-emotion'
 import match from 'match-sorter'
 
@@ -137,7 +138,11 @@ const Composed: SFC<ComposedProps> = ({ children }) => (
   </Docs>
 )
 
-export const Sidebar = () => (
+interface SidebarProps {
+  isDesktop: boolean
+}
+
+const SidebarBase: SFC<SidebarProps> = ({ isDesktop }) => (
   <Composed>
     {({ menus, docs: initialDocs, toggle, on, state, setState }) => {
       const docs = state.docs || initialDocs
@@ -161,6 +166,7 @@ export const Sidebar = () => (
       }
 
       const handleSidebarToggle = () => {
+        if (isDesktop) return
         toggle && toggle()
       }
 
@@ -208,3 +214,9 @@ export const Sidebar = () => (
     }}
   </Composed>
 )
+
+const mapSizesToProps = ({ width }: { width: number }) => ({
+  isDesktop: width >= breakpoints.desktop,
+})
+
+export const Sidebar = withSizes(mapSizesToProps)(SidebarBase)
