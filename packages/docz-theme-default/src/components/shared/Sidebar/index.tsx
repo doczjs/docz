@@ -171,7 +171,7 @@ export const Sidebar = () => (
             <Logo showBg={!on} />
             <Search onSearch={handleSearchDocs} />
             {docs.length < 1 ? (
-              <Empty>No documents found.</Empty>
+              <Empty>No documents find.</Empty>
             ) : (
               <Menus>
                 {docsWithoutMenu.map(doc => (
