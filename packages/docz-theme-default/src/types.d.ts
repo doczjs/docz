@@ -27,6 +27,7 @@ declare module 'react-feather/dist/icons/minimize'
 declare module 'react-feather/dist/icons/refresh-cw'
 declare module 'react-lightweight-tooltip'
 declare module 'react-powerplug'
+declare module 'react-sizes'
 declare module 're-resizable'
 declare module 'webfontloader'
 

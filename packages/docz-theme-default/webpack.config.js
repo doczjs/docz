@@ -36,6 +36,7 @@ const externalList = [
   'react-feather/dist/icons/maximize',
   'react-feather/dist/icons/minimize',
   'react-feather/dist/icons/refresh-cw',
+  'react-sizes',
 ]
 
 const deps = Object.keys(pkg.dependencies)

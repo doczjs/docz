@@ -43,6 +43,7 @@
     "react-live": "^1.11.0",
     "react-perfect-scrollbar": "^1.2.0",
     "react-powerplug": "^1.0.0-rc.1",
+    "react-sizes": "^1.0.4",
     "webfontloader": "^1.6.28"
   },
   "peerDependencies": {
