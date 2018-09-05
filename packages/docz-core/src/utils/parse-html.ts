@@ -71,6 +71,7 @@ export const parseHtml = ({ config, ctx, dev, template }: ParseHtmlParams) => {
     head = [],
     body = [],
     trimWhitespace,
+    prerender,
   } = ctx
 
   const headStr = `
@@ -92,6 +93,7 @@ export const parseHtml = ({ config, ctx, dev, template }: ParseHtmlParams) => {
       title,
       description,
       lang,
+      prerender,
       head: headStr,
       footer: footerStr,
       publicUrl: getPublicUrl(config, dev),

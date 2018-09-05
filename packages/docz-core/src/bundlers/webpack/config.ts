@@ -14,10 +14,10 @@ import { getClientEnvironment } from '../../config/env'
 import { Config as CLIArgs, Env } from '../../commands/args'
 import { BabelRC } from '../../utils/babel-config'
 import { parseHtml, htmlTemplate } from '../../utils/parse-html'
-import { EntryMap } from '../../Entries'
+import { PrerenderEntries } from '../../utils/prerender'
 
 export interface Args extends CLIArgs {
-  entries?: EntryMap
+  prerender?: PrerenderEntries
 }
 
 const uglify = new UglifyJs({
@@ -206,16 +206,16 @@ export const createConfig = (args: Args, env: Env) => async (
         })
   }
 
-  if (args.entries) {
-    Object.values(args.entries).forEach((entry, idx) => {
+  if (args.prerender) {
+    Object.keys(args.prerender).forEach((route, idx) => {
       config.plugin(`html-plugin-${idx}`).use(miniHtmlWebpack, [
         {
           context: {
             ...args.htmlContext,
             trimWhitespace: true,
-            entry,
+            prerender: args.prerender![route],
           },
-          filename: `${entry.route}/index.html`,
+          filename: `${route}/index.html`,
           template: createTemplate,
         },
       ])
@@ -226,6 +226,7 @@ export const createConfig = (args: Args, env: Env) => async (
         context: {
           ...args.htmlContext,
           trimWhitespace: true,
+          prerender: '',
         },
         template: createTemplate,
       },

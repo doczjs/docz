@@ -8,6 +8,7 @@ import { Entries } from '../Entries'
 import { DataServer } from '../DataServer'
 import { Plugin } from '../Plugin'
 import { Config } from './args'
+import prerender from '../utils/prerender'
 
 export const build = async (args: Config) => {
   const env = envDotProp.get('node.env')
@@ -17,16 +18,15 @@ export const build = async (args: Config) => {
 
   try {
     dataServer.register([states.entries(config), states.config(config)])
-
     await Entries.writeApp(config)
     await dataServer.init()
 
-    const data = dataServer.getState()
+    const state = dataServer.getState()
 
     const bundler = webpack(
       {
         ...config,
-        entries: data.entries,
+        prerender: prerender(state, config),
       },
       env
     )

@@ -3,6 +3,7 @@ import WS from 'ws'
 import { touch } from './utils/fs'
 import { isFn } from './utils/helpers'
 import * as paths from './config/paths'
+import { State as DerivedState } from './states'
 
 export type Send = (type: string, payload: any) => void
 export type On = (type: string) => Promise<any>
@@ -24,7 +25,7 @@ export interface Params {
   setState: (key: string, val: any) => void
 }
 
-export interface State {
+export interface State extends DerivedState {
   init: (params: Params) => Promise<any>
   update: (params: Params) => any
 }
@@ -32,7 +33,7 @@ export interface State {
 export class DataServer {
   private server?: WS.Server
   private states: Set<State>
-  private state: Record<string, any>
+  private state: DerivedState
 
   constructor(server?: any, port?: number, host?: string) {
     this.states = new Set()
@@ -63,8 +64,8 @@ export class DataServer {
     await touch(paths.db, JSON.stringify(this.state, null, 2))
   }
 
-  public getState(): Record<string, any> {
-    return this.state
+  public getState(): State {
+    return this.state as State
   }
 
   public async listen(): Promise<void> {
