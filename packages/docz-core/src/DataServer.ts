@@ -63,6 +63,10 @@ export class DataServer {
     await touch(paths.db, JSON.stringify(this.state, null, 2))
   }
 
+  public getState(): Record<string, any> {
+    return this.state
+  }
+
   public async listen(): Promise<void> {
     if (this.server) {
       this.server.on('connection', socket => {

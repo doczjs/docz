@@ -12,7 +12,6 @@ import { Config } from './args'
 export const build = async (args: Config) => {
   const env = envDotProp.get('node.env')
   const config = loadConfig(args)
-  const bundler = webpack(config, env)
   const run = Plugin.runPluginsMethod(config.plugins)
   const dataServer = new DataServer()
 
@@ -21,6 +20,16 @@ export const build = async (args: Config) => {
 
     await Entries.writeApp(config)
     await dataServer.init()
+
+    const data = dataServer.getState()
+
+    const bundler = webpack(
+      {
+        ...config,
+        entries: data.entries,
+      },
+      env
+    )
 
     await run('onPreBuild')
     await bundler.build(await bundler.getConfig(env))

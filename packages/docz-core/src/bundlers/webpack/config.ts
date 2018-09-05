@@ -11,9 +11,14 @@ import UglifyJs from 'uglifyjs-webpack-plugin'
 import * as loaders from './loaders'
 import * as paths from '../../config/paths'
 import { getClientEnvironment } from '../../config/env'
-import { Config as Args, Env } from '../../commands/args'
+import { Config as CLIArgs, Env } from '../../commands/args'
 import { BabelRC } from '../../utils/babel-config'
 import { parseHtml, htmlTemplate } from '../../utils/parse-html'
+import { EntryMap } from '../../Entries'
+
+export interface Args extends CLIArgs {
+  entries?: EntryMap
+}
 
 const uglify = new UglifyJs({
   parallel: true,
@@ -182,33 +187,50 @@ export const createConfig = (args: Args, env: Env) => async (
 
   const dev = !isProd
   const template = await htmlTemplate(args.indexHtml)
+  const createTemplate = (ctx: any) => {
+    const doc = parseHtml({ ctx, dev, template, config: args })
 
-  config.plugin('html-plugin').use(miniHtmlWebpack, [
-    {
-      context: {
-        ...args.htmlContext,
-        trimWhitespace: true,
-      },
-      template: (ctx: any) => {
-        const doc = parseHtml({ ctx, dev, template, config: args })
+    return dev
+      ? doc
+      : minify(doc, {
+          removeComments: true,
+          collapseWhitespace: true,
+          removeRedundantAttributes: true,
+          useShortDoctype: true,
+          removeEmptyAttributes: true,
+          removeStyleLinkTypeAttributes: true,
+          keepClosingSlash: true,
+          minifyJS: true,
+          minifyCSS: true,
+          minifyURLs: true,
+        })
+  }
 
-        return dev
-          ? doc
-          : minify(doc, {
-              removeComments: true,
-              collapseWhitespace: true,
-              removeRedundantAttributes: true,
-              useShortDoctype: true,
-              removeEmptyAttributes: true,
-              removeStyleLinkTypeAttributes: true,
-              keepClosingSlash: true,
-              minifyJS: true,
-              minifyCSS: true,
-              minifyURLs: true,
-            })
+  if (args.entries) {
+    Object.values(args.entries).forEach((entry, idx) => {
+      config.plugin(`html-plugin-${idx}`).use(miniHtmlWebpack, [
+        {
+          context: {
+            ...args.htmlContext,
+            trimWhitespace: true,
+            entry,
+          },
+          filename: `${entry.route}/index.html`,
+          template: createTemplate,
+        },
+      ])
+    })
+  } else {
+    config.plugin(`html-plugin`).use(miniHtmlWebpack, [
+      {
+        context: {
+          ...args.htmlContext,
+          trimWhitespace: true,
+        },
+        template: createTemplate,
       },
-    },
-  ])
+    ])
+  }
 
   const isLocalhost = host === '127.0.0.1' || host === '0.0.0.0'
   const hostname = isLocalhost ? 'localhost' : host
