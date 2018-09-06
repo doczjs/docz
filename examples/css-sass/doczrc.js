@@ -1,8 +1,8 @@
 import { css } from 'docz-plugin-css'
 
 export default {
+  title: 'CSS Sass',
   plugins: [
-    title: 'CSS Sass',
     css({
       preprocessor: 'sass',
       cssmodules: true,
