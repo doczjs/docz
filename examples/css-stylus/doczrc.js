@@ -1,8 +1,8 @@
 import { css } from 'docz-plugin-css'
 
 export default {
+  title: 'CSS Styles',
   plugins: [
-    title: 'CSS Styles',
     css({
       preprocessor: 'stylus',
       cssmodules: true,
