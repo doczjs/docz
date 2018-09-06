@@ -1,52 +1,46 @@
-import * as React from 'react'
-import { renderToString } from 'react-dom/server'
-import { JSDOM, DOMWindow } from 'jsdom'
+import puppeteer from 'puppeteer'
 import { State } from '../states'
-import { Config } from '../commands/args'
-import { renderStylesToString } from 'emotion-server'
-import { StaticRouter } from 'react-router-dom'
+import * as path from 'path'
+import * as paths from '../config/paths'
+import { Config as Args } from '../commands/args'
+import express from 'express'
+import fs from 'fs'
 
-export interface Global {
-  [key: string]: any
-  window: DOMWindow
+interface PreRendered {
+  [path: string]: string
 }
 
-declare var global: Global
+export default async function prerender(
+  args: Args,
+  state: State
+): Promise<PreRendered> {
+  const app = express()
+  const browser = await puppeteer.launch()
 
-const dom = new JSDOM()
-global.document = dom.window.document
-global.window = dom.window
+  app.use(express.static(path.resolve(paths.docz, 'dist/')))
+  await app.listen(args.port)
 
-global.navigator = {
-  userAgent: 'node',
-}
+  return Object.keys(state.entries!).reduce(async (promise, path): Promise<
+    PreRendered
+  > => {
+    const acc = await promise
+    const page = await browser.newPage()
+    const entry = state.entries![path]
 
-export interface PrerenderEntries {
-  [key: string]: string
-}
+    await page.goto(`http://127.0.0.1:${args.port}/${entry.route}`)
 
-export default function prerender(
-  state: State,
-  config: Config
-): PrerenderEntries {
-  const imports = Object.values(state.entries!).reduce((acc, entry) => {
-    acc[entry.filepath] = () => require(entry.filepath).default
+    const html = await page.evaluate(() => document.documentElement.innerHTML)
+    acc[entry.route] = html
     return acc
-  }, {})
-
-  const Theme = require(config.theme).default
-  return Object.keys(state.entries!).reduce(
-    (acc, path) => {
-      const entry = state.entries![path]
-      const Root = () => (
-        <StaticRouter location={entry.route}>
-          <Theme db={state} imports={imports} hashRouter={false} />
-        </StaticRouter>
-      )
-
-      acc[entry.route] = renderStylesToString(renderToString(<Root />))
-      return acc
-    },
-    {} as any
-  )
+  }, Promise.resolve({} as PreRendered))
 }
+
+export function writeEntries(args: Args, preRendered: PreRendered): void {
+  Object.keys(preRendered!).map(route => {
+    const html = preRendered![route]
+    const dist = path.resolve(args.dest, `./${route}`)
+    fs.writeFileSync(`${dist}/index.html`, html)
+  })
+}
+
+export { prerender }
