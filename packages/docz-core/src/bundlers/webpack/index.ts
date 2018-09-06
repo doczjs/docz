@@ -1,9 +1,9 @@
 import { Configuration as CFG } from 'webpack'
 
 import { Bundler } from '../../Bundler'
-import { Env } from '../../commands/args'
+import { Env, Config as Args } from '../../commands/args'
 
-import { createConfig, Args } from './config'
+import { createConfig } from './config'
 import { server } from './server'
 import { build } from './build'
 

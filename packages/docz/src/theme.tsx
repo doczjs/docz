@@ -6,6 +6,7 @@ import createContext from 'create-react-context'
 
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { DataServer } from './components/DataServer'
+import { HashRouter, BrowserRouter } from 'react-router-dom'
 import { state, State, ThemeConfig, ImportMap } from './state'
 
 const DefaultWrapper: SFC = ({ children }) => <Fragment>{children}</Fragment>
@@ -13,6 +14,7 @@ const DefaultWrapper: SFC = ({ children }) => <Fragment>{children}</Fragment>
 export interface ThemeProps {
   db: State
   imports: ImportMap
+  hashRouter?: boolean
   wrapper?: CT
   websocketUrl?: string
   children(WrappedComponent: CT): JSX.Element
@@ -35,7 +37,8 @@ export function theme(
 ): ThemeReturn {
   return WrappedComponent => {
     const Theme: CT<ThemeProps> = props => {
-      const { wrapper: Wrapper = DefaultWrapper } = props
+      const { wrapper: Wrapper = DefaultWrapper, hashRouter = false } = props
+      const Router = hashRouter ? HashRouter : BrowserRouter
       const themeState = { themeConfig, transform, imports: props.imports }
 
       return (
@@ -43,9 +46,11 @@ export function theme(
           <themeContext.Provider value={themeState}>
             <state.Provider initialState={props.db}>
               <DataServer websocketUrl={props.websocketUrl}>
-                <Wrapper>
-                  <WrappedComponent />
-                </Wrapper>
+                <Router>
+                  <Wrapper>
+                    <WrappedComponent />
+                  </Wrapper>
+                </Router>
               </DataServer>
             </state.Provider>
           </themeContext.Provider>

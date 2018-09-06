@@ -14,7 +14,6 @@
     "react-emotion": "^9.2.8"
   },
   "devDependencies": {
-    "@types/jsdom": "^11.0.6",
     "babel-plugin-emotion": "^9.2.8",
     "docz": "^0.11.0"
   }

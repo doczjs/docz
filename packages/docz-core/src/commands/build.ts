@@ -21,14 +21,7 @@ export const build = async (args: Config) => {
     await dataServer.init()
     const state = dataServer.getState()
 
-    const bundler = webpack(
-      {
-        ...config,
-        entries: state.entries,
-        prerender: true,
-      },
-      env
-    )
+    const bundler = webpack(config, env)
 
     await run('onPreBuild')
     await bundler.build(await bundler.getConfig(env))
