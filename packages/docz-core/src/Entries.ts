@@ -6,9 +6,10 @@ import * as paths from './config/paths'
 import { touch, compiled } from './utils/fs'
 import { mapToObj } from './utils/helpers'
 
-import { Entry, EntryObj, parseMdx } from './Entry'
+import { Entry, EntryObj } from './Entry'
 import { Plugin } from './Plugin'
 import { Config } from './commands/args'
+import { parseMdx } from './utils/ast'
 import { getRepoEditUrl } from './utils/repo-info'
 
 const DEFAULT_IGNORE = [

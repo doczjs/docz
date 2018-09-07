@@ -1,30 +1,14 @@
 import * as path from 'path'
 import * as crypto from 'crypto'
-import vfile from 'to-vfile'
-import unified from 'unified'
-import remark from 'remark-parse'
-import matter from 'remark-frontmatter'
-import slug from 'remark-slug'
-import parseFrontmatter from 'remark-parse-yaml'
 import slugify from '@sindresorhus/slugify'
+import humanize from 'humanize-string'
 import find from 'unist-util-find'
 import is from 'unist-util-is'
 import visit from 'unist-util-visit'
 import get from 'lodash.get'
-import humanize from 'humanize-string'
 
 import * as paths from './config/paths'
-
-export const parseMdx = (file: string): Promise<string> => {
-  const raw = vfile.readSync(file, 'utf-8')
-  const parser = unified()
-    .use(remark, { type: 'yaml', marker: '-' })
-    .use(matter)
-    .use(parseFrontmatter)
-    .use(slug)
-
-  return parser.run(parser.parse(raw))
-}
+import { valueFromHeading } from './utils/ast'
 
 interface ParsedData {
   [key: string]: any
@@ -51,7 +35,7 @@ const getHeadings = (ast: any): Heading[] => {
     headings.push({
       depth,
       slug,
-      value: humanize(slug),
+      value: valueFromHeading(node),
     })
   })
 
