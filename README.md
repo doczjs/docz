@@ -90,14 +90,13 @@ Documenting our things is one of the most important and heavy processes when you
 
 - **[basic](https://github.com/pedronauck/docz/tree/master/examples/basic)** - Some basic example
 - **[babel 6](https://github.com/pedronauck/docz/tree/master/examples/babel6)** - Using docz with Babel@6 **[DEPRECATED]** ⚠️
-- **[react-native-flow](https://github.com/pedronauck/docz/tree/master/examples/react-native-flow)** - Using in a React Native project with flow
-- **[react-native-prop-types](https://github.com/pedronauck/docz/tree/master/examples/react-native-prop-types)** - Using in a React Native project with propTypes
+- **[react native](https://github.com/pedronauck/docz/tree/master/examples/react-native)** - Using in a React Native project
 - **[with typescript](https://github.com/pedronauck/docz/tree/master/examples/typescript)** - Using docz with Typescript
 - **[with flow](https://github.com/pedronauck/docz/tree/master/examples/flow)** - Using docz with Flow
-- **[with sass](https://github.com/pedronauck/docz/tree/master/examples/css-sass)** - Using docz parsing css with Sass
-- **[with less](https://github.com/pedronauck/docz/tree/master/examples/css-less)** - Using docz parsing css with Less
-- **[with postcss](https://github.com/pedronauck/docz/tree/master/examples/css-postcss)** - Using docz parsing css with PostCSS
-- **[with stylus](https://github.com/pedronauck/docz/tree/master/examples/css-stylus)** - Using docz parsing css with Stylus
+- **[with sass](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-sass)** - Using docz parsing css with Sass
+- **[with less](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-less)** - Using docz parsing css with Less
+- **[with postcss](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-postcss)** - Using docz parsing css with PostCSS
+- **[with stylus](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-stylus)** - Using docz parsing css with Stylus
 
 
 ## 🚧 &nbsp; Warning!

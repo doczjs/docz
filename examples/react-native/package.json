@@ -1,5 +1,5 @@
 {
-  "name": "docz-example-css-stylus",
+  "name": "docz-example-react-native",
   "version": "0.11.0",
   "license": "MIT",
   "scripts": {
@@ -7,13 +7,14 @@
     "build": "docz build"
   },
   "dependencies": {
-    "classnames": "^2.2.6",
-    "prop-types": "^15.6.2",
+    "prop-types": "15.6.2",
     "react": "^16.5.0",
-    "react-dom": "^16.5.0"
+    "react-dom": "^16.5.0",
+    "styled-components": "^3.4.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
     "docz": "^0.11.0",
-    "docz-plugin-css": "^0.11.0"
+    "docz-plugin-react-native": "^0.11.0"
   }
 }
