@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.11.1"></a>
+## [0.11.1](https://github.com/pedronauck/docz/compare/v0.11.0...v0.11.1) (2018-09-07)
+
+
+### Bug Fixes
+
+* **docz:** add react router inside the docz bundle ([a293aa4](https://github.com/pedronauck/docz/commit/a293aa4))
+* **docz-core:** basename configuration ([5fad743](https://github.com/pedronauck/docz/commit/5fad743))
+
+
+
+
+
 <a name="0.11.0"></a>
 # [0.11.0](https://github.com/pedronauck/docz/compare/v0.10.3...v0.11.0) (2018-09-02)
 

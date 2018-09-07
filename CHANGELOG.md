@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.11.1"></a>
+## [0.11.1](https://github.com/pedronauck/docz/compare/v0.11.0...v0.11.1) (2018-09-07)
+
+
+### Bug Fixes
+
+* **docz:** add react router inside the docz bundle ([a293aa4](https://github.com/pedronauck/docz/commit/a293aa4))
+* **docz-core:** basename configuration ([5fad743](https://github.com/pedronauck/docz/commit/5fad743))
+* update no documents found text ([#289](https://github.com/pedronauck/docz/issues/289)) ([cb782f9](https://github.com/pedronauck/docz/commit/cb782f9))
+* **docz-core:** chokidar performance improvements ([0c344d8](https://github.com/pedronauck/docz/commit/0c344d8))
+* **docz-core:** literal value of headings for menus ([85e4083](https://github.com/pedronauck/docz/commit/85e4083))
+* **docz-core:** open js and ts loader scope of files ([03c01b7](https://github.com/pedronauck/docz/commit/03c01b7))
+* **docz-theme-default:** prevent sidebar toggle on desktop ([7a3b97d](https://github.com/pedronauck/docz/commit/7a3b97d))
+
+
+### Features
+
+* **docz-core:** add config as parameter for onPrebuild and onPostBuild ([98692bb](https://github.com/pedronauck/docz/commit/98692bb))
+
+
+
+
+
 <a name="0.11.0"></a>
 # [0.11.0](https://github.com/pedronauck/docz/compare/v0.10.3...v0.11.0) (2018-09-02)
 
