@@ -13,8 +13,8 @@ export type ModifyBundlerConfig<C = any> = (
 export type ModifyBabelRC = (babelrc: BabelRC, args: Config) => BabelRC
 export type onCreateApp = <A>(app: A) => void
 export type OnServerListening = <S>(server: S) => void
-export type OnPreBuild = () => void
-export type OnPostBuild = () => void
+export type OnPreBuild = (args: Config) => void
+export type OnPostBuild = (args: Config) => void
 export type OnPreRender = () => void
 export type OnPostRender = () => void
 

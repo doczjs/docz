@@ -67,7 +67,10 @@ export class DataServer {
     if (this.server) {
       this.server.on('connection', socket => {
         const close = this.handleConnection(socket)
-        this.server && this.server.on('close', async () => close())
+
+        this.server!.on('close', async () => {
+          await close()
+        })
       })
     }
   }

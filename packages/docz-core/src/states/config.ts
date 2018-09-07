@@ -44,8 +44,11 @@ const updateConfig = (config: Config) => async (p: Params) => {
 export const state = (config: Config): State => ({
   init: updateConfig(config),
   update: async params => {
-    const watcher = chokidar.watch(finds('docz'))
     const update = updateConfig(config)
+    const watcher = chokidar.watch(finds('docz'), {
+      cwd: paths.root,
+      persistent: true,
+    })
 
     watcher.on('add', async () => update(params))
     watcher.on('change', async () => update(params))
