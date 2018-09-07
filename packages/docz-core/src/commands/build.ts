@@ -22,9 +22,9 @@ export const build = async (args: Config) => {
     await Entries.writeApp(config)
     await dataServer.init()
 
-    await run('onPreBuild')
+    await run('onPreBuild', config)
     await bundler.build(await bundler.getConfig(env))
-    await run('onPostBuild')
+    await run('onPostBuild', config)
   } catch (err) {
     logger.fatal(err)
     process.exit(1)
