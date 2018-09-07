@@ -27,8 +27,12 @@ const updateEntries = (entries: Entries) => async (p: Params) => {
 
 export const state = (config: Config): State => {
   const entries = new Entries(config)
-  const watcher = chokidar.watch(config.files, {
+  const src = path.relative(paths.root, config.src)
+  const files = path.join(src, config.files)
+  const watcher = chokidar.watch(files, {
+    cwd: paths.root,
     ignored: /(^|[\/\\])\../,
+    persistent: true,
   })
 
   return {
