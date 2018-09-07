@@ -28,11 +28,10 @@ export default async function prerender(
     const page = await browser.newPage()
     const entry = state.entries![path]
 
-    await page.goto(`http://127.0.0.1:${args.port}/${entry.route}`)
+    await page.goto(`http://127.0.0.1:${args.port}${entry.route}`)
 
     const html = await page.evaluate(() => document.documentElement.innerHTML)
 
-    console.log(html)
     acc[entry.route] = html
     return acc
   }, Promise.resolve({} as PreRendered))

@@ -1,7 +1,11 @@
 <% if (!isProd) {%>import 'webpack-serve-overlay'<%}%>
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Root from './root'
+import { sheet } from 'emotion'
+
+if (process.env.SSR && !document.getElementById('root').hasChildNodes()) {
+  sheet.speedy(false)
+}
 
 const _onPreRenders = [<% if (onPreRenders) {%><%- onPreRenders %><%}%>]
 const _onPostRenders = [<% if (onPostRenders) {%><%- onPostRenders %><%}%>]
@@ -15,4 +19,8 @@ const render = (Component = Root) => {
   ReactDOM.render(<Component />, root, onPostRender)
 }
 
-render(Root)
+(async function main() {
+  const { default: Root } = await import('./root')
+  render(Root)
+})()
+

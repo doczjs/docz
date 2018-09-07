@@ -10,6 +10,7 @@ import { Config } from './args'
 import { prerender, writeEntries } from '../utils/prerender'
 
 export const build = async (args: Config) => {
+  envDotProp.set('ssr', true)
   const env = envDotProp.get('node.env')
   const config = loadConfig(args)
   const run = Plugin.runPluginsMethod(config.plugins)
@@ -25,8 +26,7 @@ export const build = async (args: Config) => {
 
     await run('onPreBuild')
     await bundler.build(await bundler.getConfig(env))
-    const preRendered = await prerender(config, state)
-    writeEntries(config, preRendered)
+    writeEntries(config, await prerender(config, state))
     await run('onPostBuild')
   } catch (err) {
     logger.fatal(err)
