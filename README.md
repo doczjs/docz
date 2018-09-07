@@ -18,7 +18,7 @@
   <a href="https://discord.gg/YQE4MbD">
     <img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" alt="Chat">
   </a>
-  <a href="https://discord.gg/YQE4MbD">
+  <a href="http://feedback.docz.site/roadmap">
     <img src="https://img.shields.io/badge/check-our%20roadmap-5362F5.svg" alt="Chat">
   </a>
 </p>
