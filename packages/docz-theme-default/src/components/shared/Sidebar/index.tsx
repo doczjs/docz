@@ -177,7 +177,7 @@ const SidebarBase: SFC<SidebarProps> = ({ isDesktop }) => (
             <Logo showBg={!on} />
             <Search onSearch={handleSearchDocs} />
             {docs.length < 1 ? (
-              <Empty>No documents find.</Empty>
+              <Empty>No documents found.</Empty>
             ) : (
               <Menus>
                 {docsWithoutMenu.map(doc => (
