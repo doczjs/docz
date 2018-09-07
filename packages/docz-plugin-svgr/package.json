@@ -22,7 +22,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@svgr/webpack": "^2.2.1",
+    "@svgr/webpack": "^2.3.0",
     "docz-core": "^0.11.0"
   }
 }

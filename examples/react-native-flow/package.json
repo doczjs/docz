@@ -7,8 +7,8 @@
     "build": "docz build"
   },
   "dependencies": {
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
     "react-native": "^0.56.0",
     "styled-components": "^3.4.2"
   },
@@ -18,7 +18,7 @@
     "babel-preset-react-native": "^5.0.2",
     "docz": "^0.11.0",
     "docz-plugin-react-native": "^0.11.0",
-    "flow-bin": "^0.79.1",
+    "flow-bin": "^0.80.0",
     "flow-typed": "^2.5.1"
   }
 }
