@@ -42,7 +42,7 @@ const uglify = new UglifyJs({
 export const createConfig = (args: Args, env: Env) => async (
   babelrc: BabelRC
 ): Promise<Configuration> => {
-  const { debug, host, port, protocol } = args
+  const { debug, host, port } = args
 
   const config = new Config()
   const isProd = env === 'production'
@@ -227,7 +227,7 @@ export const createConfig = (args: Args, env: Env) => async (
       {
         compilationSuccessInfo: {
           messages: [
-            `Your application is running at ${protocol}://${hostname}:${port}`,
+            `Your application is running at http://${hostname}:${port}`,
           ],
         },
       },
