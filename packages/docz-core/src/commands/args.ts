@@ -51,7 +51,6 @@ export interface Argv {
   debug: boolean
   typescript: boolean
   propsParser: boolean
-  protocol: string
   host: string
   port: number
   websocketPort: number
@@ -147,10 +146,6 @@ export const args = (env: Env) => (yargs: any) => {
   yargs.positional('debug', {
     type: 'boolean',
     default: getEnv('docz.debug', false),
-  })
-  yargs.positional('protocol', {
-    type: 'string',
-    default: getEnv('docz.https', true) ? 'https' : 'http',
   })
   yargs.positional('host', {
     type: 'string',
