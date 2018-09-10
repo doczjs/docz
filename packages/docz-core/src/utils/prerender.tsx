@@ -25,12 +25,14 @@ export default async function prerender(
     PreRendered
   > => {
     const acc = await promise
-    const page = await browser.newPage()
     const entry = state.entries![path]
+    const page = await browser.newPage()
+
+    page.setUserAgent('node')
 
     await page.goto(`http://127.0.0.1:${args.port}${entry.route}`)
 
-    const html = await page.evaluate(() => document.documentElement.innerHTML)
+    const html = await page.evaluate(() => document.documentElement.outerHTML)
 
     acc[entry.route] = html
     return acc

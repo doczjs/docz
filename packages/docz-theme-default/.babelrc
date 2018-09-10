@@ -1,7 +1,7 @@
 {
   "env": {
     "production": {
-      "plugins": [["emotion", { "hoist": true }]]
+      "plugins": [["emotion", { "hoist": true, "sourceMap": false }]]
     },
     "development": {
       "plugins": [
