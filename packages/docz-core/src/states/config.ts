@@ -41,19 +41,22 @@ const updateConfig = (config: Config) => async (p: Params) => {
   }
 }
 
-export const state = (config: Config): State => ({
-  init: updateConfig(config),
-  update: async params => {
-    const update = updateConfig(config)
-    const watcher = chokidar.watch(finds('docz'), {
-      cwd: paths.root,
-      persistent: true,
-    })
+export const state = (config: Config): State => {
+  const watcher = chokidar.watch(finds('docz'), {
+    cwd: paths.root,
+    persistent: true,
+  })
 
-    watcher.on('add', async () => update(params))
-    watcher.on('change', async () => update(params))
-    watcher.on('unlink', async () => update(params))
+  return {
+    init: updateConfig(config),
+    update: async params => {
+      const update = updateConfig(config)
 
-    return () => watcher.close()
-  },
-})
+      watcher.on('add', async () => update(params))
+      watcher.on('change', async () => update(params))
+      watcher.on('unlink', async () => update(params))
+
+      return () => watcher.close()
+    },
+  }
+}
