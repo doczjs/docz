@@ -9,6 +9,7 @@ const getTypeStr = (type: PropType | FlowType): any => {
     case 'instanceof':
       return `Class(${type.value})`
     case 'enum':
+      if (type.computed) return type.value
       return type.value
         ? type.value.map((v: any) => `${v.value}`).join(' │ ')
         : type.raw

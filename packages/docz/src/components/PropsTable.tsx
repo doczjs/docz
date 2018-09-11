@@ -26,6 +26,7 @@ export interface PropType {
   name: string
   value?: any
   raw?: any
+  computed?: boolean
 }
 
 export interface FlowType extends PropType {
@@ -33,6 +34,7 @@ export interface FlowType extends PropType {
   name: string
   raw: string
   type?: string
+  computed?: boolean
   signature?: {
     arguments: FlowTypeArgs[]
     return: {
@@ -73,12 +75,13 @@ export type TooltipComponent = React.ComponentType<{
 
 const getPropType = (prop: Prop, Tooltip?: TooltipComponent) => {
   const propName = prop.flowType ? prop.flowType.name : prop.type.name
-  const isEnum = propName.startsWith('"')
+  const isEnum = propName.startsWith('"') || propName === 'enum'
   const name = capitalize(isEnum ? 'enum' : propName)
   const value = prop.type && prop.type.value
 
   if (!name) return null
   if (!Tooltip) return name
+  if (isEnum && typeof value === 'string') return name
   if (!prop.flowType && !isEnum && !value) return name
   if (prop.flowType && !prop.flowType.elements) return name
 
