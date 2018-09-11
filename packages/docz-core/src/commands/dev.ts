@@ -33,7 +33,11 @@ export const dev = async (args: Config) => {
   )
 
   try {
-    dataServer.register([states.entries(newConfig), states.config(newConfig)])
+    dataServer.register([
+      states.entries(newConfig),
+      states.config(newConfig),
+      states.metadata(newConfig)
+    ])
 
     await Entries.writeApp(newConfig, true)
     await dataServer.init()

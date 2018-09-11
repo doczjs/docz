@@ -1,6 +1,6 @@
 import { ComponentType as CT } from 'react'
 import createState from 'react-copy-write'
-
+import { JSDocAST } from './components/JSDoc'
 import { ComponentsMap } from './components/DocPreview'
 
 export type MSXComponent = CT<{
@@ -43,6 +43,10 @@ export interface Config {
   repository: string | null
 }
 
+export interface Metadata {
+  jsdoc?: JSDocAST
+}
+
 type Import = () => Promise<MSXImport>
 
 export type EntryMap = Record<string, Entry>
@@ -52,9 +56,13 @@ export type TransformFn = (config: Config) => Config
 export interface State {
   config: Config
   entries: EntryMap
+  metadata: Metadata
 }
 
 export const state = createState({
   config: {},
   entries: {},
+  metadata: {}
 })
+
+export const metadataSelector = state.createSelector((s: State) => s.metadata)
