@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Children } from 'react'
 import sort from 'array-sort'
 
-import { state, Entry, EntryMap, Config } from '../state'
+import { state, Entry, EntryMap, Config, MenuConfig } from '../state'
 import { entriesSelector } from './DocPreview'
 import { configSelector } from './ThemeConfig'
 
@@ -21,16 +21,19 @@ const comparePositionInConfig = (
   b: string,
   menu: string | null,
   config: Config
-) => {
+) => {  
 
   if(config.menu) {
-    const orderedMenuList = config.menu.map(m => m[0])
+    const orderedMenuList = config.menu.map(m => {
+      return typeof m === 'string' ? m : m.name
+    })
 
     if(menu) {
       const menuPos = findPos(menu, orderedMenuList)
 
-      if(menuPos !== UNKNOWN_POS) {
-        const orderedList = config.menu[menuPos][1] as (string[] | null)
+      if(menuPos !== UNKNOWN_POS && typeof config.menu[menuPos] === 'object') {
+        const menuConfig = config.menu[menuPos] as MenuConfig
+        const orderedList = menuConfig.docs
 
         return compare(
           findPos(a, orderedList),

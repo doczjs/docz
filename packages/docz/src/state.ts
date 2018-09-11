@@ -35,8 +35,8 @@ export interface ThemeConfig {
 }
 
 type SubMenuConfig = string[]
-export type MenuConfig = Array<[string] | [string, SubMenuConfig]>
-export type RootMenuConfig = MenuConfig | null
+export interface MenuConfig { name: string, docs: SubMenuConfig }
+export type RootMenuConfig = Array<string | MenuConfig> | null
 
 export interface Config {
   title: string
