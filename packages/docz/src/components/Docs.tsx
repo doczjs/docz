@@ -14,7 +14,7 @@ const compare = (a: any, b: any, reverse?: boolean) => {
   return 0
 }
 
-const UNKNOWN_POS = 999999  // TODO: fix this?
+const UNKNOWN_POS = Infinity
 
 const comparePositionInConfig = (
   a: string,
