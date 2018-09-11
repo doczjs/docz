@@ -4,7 +4,7 @@ import { Toggle } from 'react-powerplug'
 
 import { Button as BaseButton } from './Button'
 
-type AnimatedButtonProps = React.ButtonHTMLAttributes<any> & {
+export type AnimatedButtonProps = React.ButtonHTMLAttributes<any> & {
   as?: React.ComponentType<React.ButtonHTMLAttributes<any>>
   swap?: React.ReactNode
 }

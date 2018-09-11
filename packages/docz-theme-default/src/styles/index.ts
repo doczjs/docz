@@ -5,11 +5,11 @@ export const styles = {
     lineHeight: 1.6,
   },
   container: {
-    width: 920,
-    padding: ['20px 30px', '0 40px 40px'],
+    width: ['100%', '100%', 920],
+    padding: ['20px', '0 40px 40px'],
   },
   h1: {
-    margin: ['40px 0 20px', '60px 0 20px', '40px 0'],
+    margin: ['30px 0 20px', '60px 0 20px', '40px 0'],
     fontSize: [36, 42, 48],
     fontWeight: 100,
     letterSpacing: '-0.02em',
@@ -58,6 +58,9 @@ export const styles = {
     lineHeight: 1.8,
   },
   table: {
+    overflowY: ['hidden', 'hidden', 'hidden', 'initial'],
+    display: ['block', 'block', 'block', 'table'],
+    width: '100%',
     marginBottom: [20, 40],
     fontFamily: '"Source Code Pro", monospace',
     fontSize: 14,

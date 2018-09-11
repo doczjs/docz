@@ -128,7 +128,7 @@ export const ClipboardAction: SFC<ClipboardActionProps> = ({
 }) => (
   <ActionButton
     {...props}
-    as={ButtonLink}
+    as={ButtonLink as any}
     title="Copy to clipboard"
     onClick={() => copy(content)}
     swap={<Check width={17} />}

@@ -1,7 +1,6 @@
 import * as React from 'react'
-import { SFC } from 'react'
-import { Docs, Entry, DocsRenderProps } from 'docz'
-import { Toggle, State } from 'react-powerplug'
+import { Component } from 'react'
+import { Docs, Entry } from 'docz'
 import withSizes from 'react-sizes'
 import styled from 'react-emotion'
 import match from 'match-sorter'
@@ -26,22 +25,20 @@ const position = (p: WrapperProps) =>
   })
 
 const Wrapper = styled('div')`
-  display: flex;
-  flex-direction: column;
+  position: relative;
   width: 280px;
   min-width: 280px;
-  height: 100%;
+  min-height: 100vh;
   background: ${(p: WrapperProps) => p.theme.docz.colors.sidebarBg};
   transition: transform 0.2s, background 0.3s;
   z-index: 100;
-
   ${position};
 
   ${p => p.theme.docz.styles.sidebar};
 
   dl {
     padding: 0;
-    margin: 0 0 0 16px;
+    margin: 0 16px;
   }
 
   dl a {
@@ -51,6 +48,18 @@ const Wrapper = styled('div')`
   @media screen and (max-width: ${breakpoints.desktop - 1}px) {
     transform: translateX(${(p: WrapperProps) => (p.opened ? '-100%' : '0')});
   }
+`
+
+const Content = styled('div')`
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  min-width: 280px;
+  height: 100%;
+  max-height: 100vh;
 `
 
 const Menus = styled('nav')`
@@ -104,116 +113,136 @@ const FooterLogo = styled(Docz)`
   fill: ${p => p.theme.docz.colors.footerText};
 `
 
-interface Toggle {
-  on: boolean
-  toggle: () => void
+interface SidebarState {
+  docs: Entry[] | null
+  searching: boolean
+  lastVal: string
+  showing: boolean
 }
-
-interface State {
-  setState: (state: any) => void
-  state: {
-    docs?: Entry[] | null
-    searching?: boolean
-    lastVal: string
-  }
-}
-
-type RenderProps = DocsRenderProps & Toggle & State
-
-interface ComposedProps {
-  children: (renderProps: RenderProps) => React.ReactNode
-}
-
-const Composed: SFC<ComposedProps> = ({ children }) => (
-  <Docs>
-    {docs => (
-      <State initial={{ docs: null, searching: false, lastVal: '' }}>
-        {(state: any) => (
-          <Toggle initial={true}>
-            {(toggle: any) => children({ ...docs, ...toggle, ...state })}
-          </Toggle>
-        )}
-      </State>
-    )}
-  </Docs>
-)
 
 interface SidebarProps {
   isDesktop: boolean
 }
 
-const SidebarBase: SFC<SidebarProps> = ({ isDesktop }) => (
-  <Composed>
-    {({ menus, docs: initialDocs, toggle, on, state, setState }) => {
-      const docs = state.docs || initialDocs
-      const docsWithoutMenu = docs.filter((doc: Entry) => !doc.menu)
+class SidebarBase extends Component<SidebarProps, SidebarState> {
+  public state = {
+    docs: null,
+    lastVal: '',
+    searching: false,
+    showing: true,
+  }
 
-      const fromMenu = (menu: string) => docs.filter(doc => doc.menu === menu)
-      const search = (val: string) => {
-        const change = !val.startsWith(state.lastVal)
-        setState({ lastVal: val })
-        if (change) return match(initialDocs, val, { keys: ['name'] })
-        return match(docs, val, { keys: ['name'] })
-      }
+  public componentDidUpdate(pProps: SidebarProps, pState: SidebarState): void {
+    if (pState.showing !== this.state.showing) {
+      this.addOverlayClass()
+    }
+  }
 
-      const handleSearchDocs = (val: string) => {
-        const isEmpty = val.length === 0
+  public componentDidMount(): void {
+    this.addOverlayClass()
+  }
 
-        setState({
-          docs: isEmpty ? initialDocs : search(val),
-          searching: !isEmpty,
-        })
-      }
+  public render(): React.ReactNode {
+    const { showing } = this.state
 
-      const handleSidebarToggle = () => {
-        if (isDesktop) return
-        toggle && toggle()
-      }
+    return (
+      <Docs>
+        {({ menus, docs: initialDocs }) => {
+          const docs = this.state.docs || initialDocs
+          const docsWithoutMenu = docs.filter((doc: Entry) => !doc.menu)
 
-      return (
-        <React.Fragment>
-          <Wrapper opened={on}>
-            <Hamburguer opened={!on} onClick={handleSidebarToggle} />
-            <Logo showBg={!on} />
-            <Search onSearch={handleSearchDocs} />
-            {docs.length < 1 ? (
-              <Empty>No documents found.</Empty>
-            ) : (
-              <Menus>
-                {docsWithoutMenu.map(doc => (
-                  <Link
-                    key={doc.id}
-                    to={doc.route}
-                    onClick={handleSidebarToggle}
-                    doc={doc}
-                  >
-                    {doc.name}
-                  </Link>
-                ))}
-                {menus.map(menu => (
-                  <Menu
-                    key={menu}
-                    menu={menu}
-                    docs={fromMenu(menu)}
-                    sidebarToggle={handleSidebarToggle}
-                    collapseAll={Boolean(state.searching)}
+          return (
+            <React.Fragment>
+              <Wrapper opened={showing}>
+                <Content>
+                  <Hamburguer
+                    opened={!showing}
+                    onClick={this.handleSidebarToggle}
                   />
-                ))}
-              </Menus>
-            )}
-            <Footer>
-              Built with
-              <FooterLink href="https://docz.site" target="_blank">
-                <FooterLogo width={40} />
-              </FooterLink>
-            </Footer>
-          </Wrapper>
-          <ToggleBackground opened={on} onClick={handleSidebarToggle} />
-        </React.Fragment>
-      )
-    }}
-  </Composed>
-)
+                  <Logo showBg={!showing} />
+                  <Search onSearch={this.handleSearchDocs(initialDocs, docs)} />
+                  {docs.length < 1 ? (
+                    <Empty>No documents found.</Empty>
+                  ) : (
+                    <Menus>
+                      {docsWithoutMenu.map(doc => (
+                        <Link
+                          key={doc.id}
+                          to={doc.route}
+                          onClick={this.handleSidebarToggle}
+                          doc={doc}
+                        >
+                          {doc.name}
+                        </Link>
+                      ))}
+                      {menus.map(menu => (
+                        <Menu
+                          key={menu}
+                          menu={menu}
+                          docs={this.fromMenu(docs, menu)}
+                          sidebarToggle={this.handleSidebarToggle}
+                          collapseAll={Boolean(this.state.searching)}
+                        />
+                      ))}
+                    </Menus>
+                  )}
+                  <Footer>
+                    Built with
+                    <FooterLink href="https://docz.site" target="_blank">
+                      <FooterLogo width={40} />
+                    </FooterLink>
+                  </Footer>
+                </Content>
+              </Wrapper>
+              <ToggleBackground
+                opened={showing}
+                onClick={this.handleSidebarToggle}
+              />
+            </React.Fragment>
+          )
+        }}
+      </Docs>
+    )
+  }
+
+  private addOverlayClass = () => {
+    const { isDesktop } = this.props
+    const { showing } = this.state
+
+    if (window && typeof window !== 'undefined' && !isDesktop) {
+      !showing && document.documentElement.classList.add('with-overlay')
+      showing && document.documentElement.classList.remove('with-overlay')
+    }
+  }
+
+  private fromMenu = (docs: Entry[], menu: string) => {
+    return docs.filter(doc => doc.menu === menu)
+  }
+
+  private search = (initialDocs: Entry[], docs: Entry[], val: string) => {
+    const change = !val.startsWith(this.state.lastVal)
+
+    this.setState({ lastVal: val })
+    if (change) return match(initialDocs, val, { keys: ['name'] })
+    return match(docs, val, { keys: ['name'] })
+  }
+
+  private handleSearchDocs = (initialDocs: Entry[], docs: Entry[]) => (
+    val: string
+  ) => {
+    const isEmpty = val.length === 0
+
+    this.setState({
+      docs: isEmpty ? initialDocs : this.search(initialDocs, docs, val),
+      searching: !isEmpty,
+    })
+  }
+
+  private handleSidebarToggle = () => {
+    if (this.props.isDesktop) return
+    this.setState({ showing: !this.state.showing })
+  }
+}
 
 const mapSizesToProps = ({ width }: { width: number }) => ({
   isDesktop: width >= breakpoints.desktop,

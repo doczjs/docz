@@ -1,7 +1,17 @@
+import * as React from 'react'
 import styled from 'react-emotion'
 
-export const Table = styled('table')`
-  width: 100%;
+const Wrapper = styled('div')`
+  overflow-x: auto;
+  padding: 2px;
+
+  ${p =>
+    p.theme.docz.mq({
+      maxWidth: ['calc(100vw - 40px)', 'calc(100vw - 80px)', '100%'],
+    })};
+`
+
+const TableStyled = styled('table')`
   padding: 0;
   table-layout: auto;
   box-shadow: 0 0 0 1px ${p => p.theme.docz.colors.border};
@@ -12,12 +22,7 @@ export const Table = styled('table')`
   border-radius: 5px;
   font-size: 14px;
   color: ${p => p.theme.docz.colors.tableColor};
-
-  ${p =>
-    p.theme.docz.mq({
-      overflowY: ['hidden', 'hidden', 'hidden', 'initial'],
-      display: ['block', 'block', 'block', 'table'],
-    })};
+  ${p => p.theme.docz.mq(p.theme.docz.styles.table)};
 
   & thead {
     color: ${p => p.theme.docz.colors.theadColor};
@@ -53,6 +58,13 @@ export const Table = styled('table')`
     &:nth-child(4) {
       ${p =>
         p.theme.docz.mq({
+          width: ['10%', '10%', '10%', 'auto'],
+        })};
+    }
+
+    &:nth-child(5) {
+      ${p =>
+        p.theme.docz.mq({
           width: ['20%', '20%', '20%', 'auto'],
         })};
     }
@@ -71,3 +83,9 @@ export const Table = styled('table')`
 
   ${p => p.theme.docz.mq(p.theme.docz.styles.table)};
 `
+
+export const Table = (props: React.TableHTMLAttributes<any>) => (
+  <Wrapper>
+    <TableStyled {...props} />
+  </Wrapper>
+)

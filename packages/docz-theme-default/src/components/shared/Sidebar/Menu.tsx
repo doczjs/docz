@@ -16,9 +16,10 @@ interface ListProps {
 }
 
 const List = styled('dl')`
+  flex: 1;
+  overflow-y: auto;
   visibility: ${(p: ListProps) => (p.opened ? 'visible' : 'hidden')};
-  max-height: ${(p: ListProps) => (p.opened ? '9999px' : '0px')};
-  transition: max-height 0.1s;
+  max-height: ${(p: ListProps) => (p.opened ? 'auto' : '0px')};
 `
 
 export const MenuLink = styled('a')`

@@ -10,8 +10,6 @@ import { GithubLink, Sidebar, Main } from '../shared'
 
 const Wrapper = styled('div')`
   flex: 1;
-  height: 100%;
-  overflow-y: auto;
   color: ${p => p.theme.docz.colors.text};
   background: ${p => p.theme.docz.colors.background};
 `
@@ -19,7 +17,6 @@ const Wrapper = styled('div')`
 export const Container = styled('div')`
   position: relative;
   margin: 0 auto;
-  max-width: 100%;
   ${p => p.theme.docz.mq(p.theme.docz.styles.container)};
 `
 

@@ -15,11 +15,14 @@ injectGlobal`
   body {
     margin: 0;
     padding: 0;
+  }
+
+  .with-overlay {
     overflow: hidden;
   }
 
   html, body, #root {
-    height: 100vh;
-    min-height: 100vh;
+    height: 100%;
+    min-height: 100%;
   }
 `

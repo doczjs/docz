@@ -233,7 +233,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
 
     return {
       minHeight: fullscreen ? 360 : '100%',
-      minWidth: 320,
+      minWidth: 260,
       maxWidth: '100%',
       maxHeight: '100%',
       size: {
