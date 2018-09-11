@@ -5,7 +5,7 @@ import equal from 'fast-deep-equal'
 import get from 'lodash.get'
 
 import { Params, State } from '../DataServer'
-import { Config, ThemeConfig } from '../commands/args'
+import { Config, RootMenuConfig, ThemeConfig } from '../commands/args'
 import { getRepoUrl } from '../utils/repo-info'
 import * as paths from '../config/paths'
 
@@ -13,6 +13,7 @@ interface Payload {
   title: string
   description: string
   ordering: string
+  menu: RootMenuConfig
   themeConfig: ThemeConfig
   version: string | null
   repository: string | null
@@ -26,6 +27,7 @@ const getInitialConfig = (config: Config): Payload => {
     title: config.title,
     description: config.description,
     themeConfig: config.themeConfig,
+    menu: config.menu,
     ordering: config.ordering,
     version: get(pkg, 'version'),
     repository: repoUrl,

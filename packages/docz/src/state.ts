@@ -34,11 +34,16 @@ export interface ThemeConfig {
   [key: string]: any
 }
 
+type SubMenuConfig = string[]
+export type MenuConfig = Array<[string] | [string, SubMenuConfig]>
+export type RootMenuConfig = MenuConfig | null
+
 export interface Config {
   title: string
   description: string
   ordering: string
   themeConfig: ThemeConfig
+  menu: RootMenuConfig
   version: string | null
   repository: string | null
 }
