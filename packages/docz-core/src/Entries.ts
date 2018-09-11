@@ -91,23 +91,29 @@ export class Entries {
     })
 
     const createEntry = async (file: string) => {
-      const ast = await parseMdx(file)
-      const entry = new Entry(ast, file, src)
+      try {
+        const ast = await parseMdx(file)
+        const entry = new Entry(ast, file, src)
 
-      if (this.repoEditUrl) entry.setLink(this.repoEditUrl)
-      const { settings, ...rest } = entry
+        if (this.repoEditUrl) entry.setLink(this.repoEditUrl)
+        const { settings, ...rest } = entry
 
-      return {
-        ...settings,
-        ...rest,
+        return {
+          ...settings,
+          ...rest,
+        }
+      } catch (err) {
+        return null
       }
     }
 
     const map = new Map()
-    const entries = await Promise.all(files.map(createEntry))
+    const entries = await Promise.all(files.map(createEntry).filter(Boolean))
 
     for (const entry of entries) {
-      map.set(entry.filepath, entry)
+      if (entry) {
+        map.set(entry.filepath, entry)
+      }
     }
 
     this.all = map
