@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.11.2"></a>
+## [0.11.2](https://github.com/pedronauck/docz/compare/v0.11.1...v0.11.2) (2018-09-11)
+
+
+### Bug Fixes
+
+* **docz-core:** add watcher outside of update method scope ([18c744d](https://github.com/pedronauck/docz/commit/18c744d))
+* **docz-core:** prevent entries block when parse mdx crash ([07ae769](https://github.com/pedronauck/docz/commit/07ae769))
+* **docz-core:** remove https option and fix message ([#321](https://github.com/pedronauck/docz/issues/321)) ([ea88841](https://github.com/pedronauck/docz/commit/ea88841))
+* heading hash link with hash router config ([7d7f557](https://github.com/pedronauck/docz/commit/7d7f557))
+
+
+### Features
+
+* add native config for doczrc ([2580712](https://github.com/pedronauck/docz/commit/2580712))
+
+
+
+
+
 <a name="0.11.1"></a>
 ## [0.11.1](https://github.com/pedronauck/docz/compare/v0.11.0...v0.11.1) (2018-09-07)
 

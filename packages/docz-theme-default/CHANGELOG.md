@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.11.2"></a>
+## [0.11.2](https://github.com/pedronauck/docz/compare/v0.11.1...v0.11.2) (2018-09-11)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** scrolling and overflows performance ([a28ab79](https://github.com/pedronauck/docz/commit/a28ab79))
+* heading hash link with hash router config ([7d7f557](https://github.com/pedronauck/docz/commit/7d7f557))
+
+
+
+
+
 <a name="0.11.1"></a>
 ## [0.11.1](https://github.com/pedronauck/docz/compare/v0.11.0...v0.11.1) (2018-09-07)
 

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.11.2"></a>
+## [0.11.2](https://github.com/pedronauck/docz/compare/v0.11.1...v0.11.2) (2018-09-11)
+
+
+### Bug Fixes
+
+* **docz:** prevent crash when use imported props ([ef6de9d](https://github.com/pedronauck/docz/commit/ef6de9d))
+
+
+### Features
+
+* add native config for doczrc ([2580712](https://github.com/pedronauck/docz/commit/2580712))
+
+
+
+
+
 <a name="0.11.1"></a>
 ## [0.11.1](https://github.com/pedronauck/docz/compare/v0.11.0...v0.11.1) (2018-09-07)
 
