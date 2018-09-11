@@ -18,8 +18,11 @@ export const build = async (args: Config) => {
   const run = Plugin.runPluginsMethod(config.plugins)
   const dataServer = new DataServer()
 
-  dataServer.register([states.config(config), states.entries(entries, config)])
-
+  dataServer.register([
+    states.config(config),
+    states.entries(entries, config),
+    states.metadata(config),
+  ])
   try {
     await Entries.writeApp(config)
     await dataServer.init()

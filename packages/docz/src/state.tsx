@@ -42,6 +42,12 @@ export interface Config {
   native: boolean
 }
 
+export interface Metadata {
+  jsdoc?: JSDocAST
+}
+
+type Import = () => Promise<MSXImport>
+
 export type EntryMap = Record<string, Entry>
 export type TransformFn = (config: ThemeConfig) => ThemeConfig
 
@@ -50,6 +56,7 @@ export interface State {
   entries?: EntryMap
   themeConfig?: ThemeConfig
   transform?: TransformFn
+  metadata: Metadata
 }
 
 export const state = create<State>()

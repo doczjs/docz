@@ -55,6 +55,7 @@
     "happypack": "^5.0.0",
     "html-minifier": "^3.5.21",
     "humanize-string": "^1.0.2",
+    "jsdoc3-parser": "^2.0.0",
     "koa": "^2.6.2",
     "koa-connect": "^2.0.1",
     "koa-mount": "^4.0.0",
@@ -91,6 +92,7 @@
     "yargs": "^12.0.5"
   },
   "devDependencies": {
+    "@types/babel__core": "^7.0.1",
     "@types/chokidar": "^1.7.5",
     "@types/connect-history-api-fallback": "^1.3.1",
     "@types/del": "^3.0.1",
