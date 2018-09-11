@@ -57,6 +57,7 @@ export interface Argv {
   websocketHost: string
   hotPort: number
   hotHost: string
+  native: boolean
   /* template args */
   title: string
   description: string
@@ -171,5 +172,9 @@ export const args = (env: Env) => (yargs: any) => {
   yargs.positional('websocketPort', {
     type: 'number',
     default: getEnv('docz.websocket.port', 60505),
+  })
+  yargs.positional('native', {
+    type: 'boolean',
+    default: getEnv('docz.native', false),
   })
 }

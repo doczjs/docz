@@ -41,6 +41,7 @@ export interface Config {
   themeConfig: ThemeConfig
   version: string | null
   repository: string | null
+  native: boolean
 }
 
 type Import = () => Promise<MSXImport>

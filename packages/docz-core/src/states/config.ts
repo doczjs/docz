@@ -16,6 +16,7 @@ interface Payload {
   themeConfig: ThemeConfig
   version: string | null
   repository: string | null
+  native: boolean
 }
 
 const getInitialConfig = (config: Config): Payload => {
@@ -29,6 +30,7 @@ const getInitialConfig = (config: Config): Payload => {
     ordering: config.ordering,
     version: get(pkg, 'version'),
     repository: repoUrl,
+    native: config.native,
   }
 }
 
