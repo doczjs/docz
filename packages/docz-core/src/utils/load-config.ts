@@ -22,6 +22,7 @@ export const loadConfig = (args: Config): Config => {
     hastPlugins: [],
     themeConfig: {},
     htmlContext: defaultHtmlContext,
+    menu: null,
     modifyBundlerConfig: (config: any) => config,
     modifyBabelRc: (babelrc: BabelRC) => babelrc,
   })

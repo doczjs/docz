@@ -24,6 +24,10 @@ const getInitialDescription = (pkg: any): string =>
 export type Env = 'production' | 'development'
 export type ThemeConfig = Record<string, any>
 
+type SubMenuConfig = string[]
+export interface MenuConfig { name: string, docs: SubMenuConfig }
+export type RootMenuConfig = Array<string | MenuConfig> | null
+
 export interface HtmlContext {
   lang: string
   favicon?: string
@@ -75,6 +79,7 @@ export interface Config extends Argv {
   hastPlugins: any[]
   themeConfig: ThemeConfig
   htmlContext: HtmlContext
+  menu: RootMenuConfig
   modifyBundlerConfig<C>(config: C, dev: boolean, args: Config): C
   modifyBabelRc(babelrc: BabelRC, args: Config): BabelRC
 }
