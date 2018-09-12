@@ -15,6 +15,7 @@
     "react-emotion": "^9.2.8"
   },
   "devDependencies": {
-    "babel-plugin-emotion": "^9.2.8"
+    "babel-plugin-emotion": "^9.2.8",
+    "typescript": "^3.0.3"
   }
 }
