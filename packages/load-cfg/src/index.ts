@@ -49,14 +49,17 @@ export const finds = (name: string): string[] => [
 export function load<C = any>(
   name: string,
   defaultConfig: C,
-  noCache?: boolean
+  noCache?: boolean,
+  deep?: boolean
 ): C {
   let file = {}
   const filepath = findup.sync(finds(name))
+  if (filepath) file = loadFile(filepath, noCache)
 
-  if (filepath) {
-    file = loadFile(filepath, noCache)
-  }
-
-  return defaultConfig ? merge(defaultConfig, file) : file
+  // tslint:disable
+  return defaultConfig
+    ? deep
+      ? merge(defaultConfig, file)
+      : Object.assign({}, defaultConfig, file)
+    : file
 }

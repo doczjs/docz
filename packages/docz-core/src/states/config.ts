@@ -5,7 +5,7 @@ import equal from 'fast-deep-equal'
 import get from 'lodash.get'
 
 import { Params, State } from '../DataServer'
-import { Config, RootMenuConfig, ThemeConfig } from '../commands/args'
+import { Config, Menu, ThemeConfig } from '../commands/args'
 import { getRepoUrl } from '../utils/repo-info'
 import * as paths from '../config/paths'
 
@@ -13,8 +13,8 @@ interface Payload {
   title: string
   description: string
   ordering: string
-  menu: RootMenuConfig
   themeConfig: ThemeConfig
+  menu: Menu[]
   version: string | null
   repository: string | null
   native: boolean
@@ -38,7 +38,7 @@ const getInitialConfig = (config: Config): Payload => {
 
 const updateConfig = (config: Config) => async (p: Params) => {
   const old = p.state.config
-  const newConfig = load('docz', getInitialConfig(config), true)
+  const newConfig = load('docz', getInitialConfig(config), true, false)
 
   if (newConfig && !equal(old, newConfig)) {
     p.setState('config', newConfig)

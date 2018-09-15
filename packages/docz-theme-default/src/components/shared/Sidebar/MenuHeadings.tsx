@@ -1,0 +1,87 @@
+import * as React from 'react'
+import { SFC } from 'react'
+import { Docs, Entry, Link } from 'docz'
+import styled from 'react-emotion'
+import get from 'lodash.get'
+
+const Submenu = styled('div')`
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0 0 24px;
+`
+
+const SmallLink = styled(Link)`
+  position: relative;
+  font-size: 14px;
+  padding: 0 0 5px 16px;
+  text-decoration: none;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+
+  &,
+  &:visited,
+  &.active {
+    color: ${p => p.theme.docz.colors.sidebarText};
+  }
+
+  &.active {
+    opacity: 1;
+  }
+
+  &:before {
+    z-index: 1;
+    position: absolute;
+    display: block;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 20px;
+    background: ${p => p.theme.docz.colors.primary};
+    transition: width 0.2s;
+  }
+
+  &.active:before {
+    width: 2px;
+  }
+`
+
+const isSmallLinkActive = (slug: string) => (m: any, location: any) =>
+  slug === location.hash.slice(1, Infinity)
+
+const getHeadings = (route: string, docs: Entry[]) => {
+  const doc = docs.find(doc => doc.route === route)
+  const headings = get(doc, 'headings')
+
+  return headings ? headings.filter(heading => heading.depth === 2) : []
+}
+
+interface MenuHeadingsProps {
+  route: string
+  onClick?: React.MouseEventHandler<any>
+}
+
+export const MenuHeadings: SFC<MenuHeadingsProps> = ({ route, onClick }) => (
+  <Docs>
+    {({ docs }) => {
+      const headings = getHeadings(route, docs)
+
+      return (
+        headings.length > 0 && (
+          <Submenu>
+            {headings.map((heading: any) => (
+              <SmallLink
+                key={heading.slug}
+                onClick={onClick}
+                to={{ pathname: route, hash: heading.slug }}
+                isActive={isSmallLinkActive(heading.slug)}
+              >
+                {heading.value}
+              </SmallLink>
+            ))}
+          </Submenu>
+        )
+      )
+    }}
+  </Docs>
+)

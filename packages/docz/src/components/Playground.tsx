@@ -2,8 +2,8 @@ import * as React from 'react'
 import { ComponentType, SFC } from 'react'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 
-import { isFn } from './Docs'
 import { ComponentsMap, Identity } from './DocPreview'
+import { isFn } from '../utils/helpers'
 
 export interface PlaygroundProps {
   components: ComponentsMap

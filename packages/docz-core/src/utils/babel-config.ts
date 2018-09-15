@@ -16,7 +16,7 @@ export const getBabelConfig = async (
   env: Env
 ): Promise<BabelRC> => {
   const isProd = env === 'production'
-  const localBabelRc = load('babel', { presets: [], plugins: [] })
+  const localBabelRc = load('babel', { presets: [], plugins: [] }, false, true)
   const presets = [
     [
       require.resolve('babel-preset-docz'),

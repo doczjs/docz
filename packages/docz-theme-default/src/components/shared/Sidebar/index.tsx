@@ -1,15 +1,15 @@
 import * as React from 'react'
 import { Component } from 'react'
-import { Docs, Entry } from 'docz'
+import { Menu as DocsMenu, MenuItem } from 'docz'
 import withSizes from 'react-sizes'
 import styled from 'react-emotion'
 import match from 'match-sorter'
+import flattendepth from 'lodash.flattendepth'
 
 import { Logo } from '../Logo'
 import { Search } from '../Search'
 
 import { Menu } from './Menu'
-import { Link } from './Link'
 import { Docz } from './Docz'
 import { Hamburguer } from './Hamburguer'
 import { breakpoints } from '../../../styles/responsive'
@@ -114,7 +114,7 @@ const FooterLogo = styled(Docz)`
 `
 
 interface SidebarState {
-  docs: Entry[] | null
+  menus: MenuItem[] | null
   searching: boolean
   lastVal: string
   showing: boolean
@@ -126,8 +126,8 @@ interface SidebarProps {
 
 class SidebarBase extends Component<SidebarProps, SidebarState> {
   public state = {
-    docs: null,
     lastVal: '',
+    menus: null,
     searching: false,
     showing: true,
   }
@@ -146,10 +146,9 @@ class SidebarBase extends Component<SidebarProps, SidebarState> {
     const { showing } = this.state
 
     return (
-      <Docs>
-        {({ menus, docs: initialDocs }) => {
-          const docs = this.state.docs || initialDocs
-          const docsWithoutMenu = docs.filter((doc: Entry) => !doc.menu)
+      <DocsMenu>
+        {initial => {
+          const menus = this.state.menus || initial
 
           return (
             <React.Fragment>
@@ -160,26 +159,16 @@ class SidebarBase extends Component<SidebarProps, SidebarState> {
                     onClick={this.handleSidebarToggle}
                   />
                   <Logo showBg={!showing} />
-                  <Search onSearch={this.handleSearchDocs(initialDocs, docs)} />
-                  {docs.length < 1 ? (
+                  <Search onSearch={this.handleSearchDocs(initial, menus)} />
+
+                  {menus.length === 0 ? (
                     <Empty>No documents found.</Empty>
                   ) : (
                     <Menus>
-                      {docsWithoutMenu.map(doc => (
-                        <Link
-                          key={doc.id}
-                          to={doc.route}
-                          onClick={this.handleSidebarToggle}
-                          doc={doc}
-                        >
-                          {doc.name}
-                        </Link>
-                      ))}
                       {menus.map(menu => (
                         <Menu
-                          key={menu}
-                          menu={menu}
-                          docs={this.fromMenu(docs, menu)}
+                          key={menu.id}
+                          item={menu}
                           sidebarToggle={this.handleSidebarToggle}
                           collapseAll={Boolean(this.state.searching)}
                         />
@@ -201,7 +190,7 @@ class SidebarBase extends Component<SidebarProps, SidebarState> {
             </React.Fragment>
           )
         }}
-      </Docs>
+      </DocsMenu>
     )
   }
 
@@ -215,25 +204,27 @@ class SidebarBase extends Component<SidebarProps, SidebarState> {
     }
   }
 
-  private fromMenu = (docs: Entry[], menu: string) => {
-    return docs.filter(doc => doc.menu === menu)
+  private match = (val: string, menu: MenuItem[]) => {
+    const items = menu.map(item => [item].concat(item.menu || []))
+    const flattened = flattendepth(items, 2)
+
+    return match(flattened, val, { keys: ['name'] })
   }
 
-  private search = (initialDocs: Entry[], docs: Entry[], val: string) => {
+  private search = (initial: MenuItem[], menus: MenuItem[], val: string) => {
     const change = !val.startsWith(this.state.lastVal)
 
     this.setState({ lastVal: val })
-    if (change) return match(initialDocs, val, { keys: ['name'] })
-    return match(docs, val, { keys: ['name'] })
+    return this.match(val, change ? initial : menus)
   }
 
-  private handleSearchDocs = (initialDocs: Entry[], docs: Entry[]) => (
+  private handleSearchDocs = (initial: MenuItem[], menus: MenuItem[]) => (
     val: string
   ) => {
     const isEmpty = val.length === 0
 
     this.setState({
-      docs: isEmpty ? initialDocs : this.search(initialDocs, docs, val),
+      menus: isEmpty ? initial : this.search(initial, menus, val),
       searching: !isEmpty,
     })
   }

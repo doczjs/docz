@@ -28,6 +28,7 @@
     "emotion-theming": "^9.2.6",
     "facepaint": "^1.2.1",
     "hotkeys-js": "^3.3.7",
+    "lodash.flattendepth": "^4.7.0",
     "lodash.get": "^4.4.2",
     "match-sorter": "^2.3.0",
     "polished": "^2.0.3",
@@ -52,6 +53,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.0.0",
+    "@types/lodash.flattendepth": "^4.7.4",
     "@types/lodash.get": "^4.4.4",
     "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.6",

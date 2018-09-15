@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { ReactNode, ComponentType, Component } from 'react'
 
-import { isFn } from './Docs'
+import { isFn } from '../utils/helpers'
 
 interface Props {
   as: ComponentType<any>

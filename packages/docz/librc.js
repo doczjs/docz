@@ -9,9 +9,10 @@ const internal = [
   'react-router',
   'react-router-dom',
   'react-router-hash-link',
+  'ulid',
 ]
 
-const depsExternal = ['@mdx-js/tag/dist/mdx-provider']
+const depsExternal = ['@mdx-js/tag/dist/mdx-provider', 'lodash/fp']
 
 const external = Object.keys(pkg.dependencies)
   .concat(depsExternal)

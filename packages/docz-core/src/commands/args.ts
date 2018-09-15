@@ -24,9 +24,12 @@ const getInitialDescription = (pkg: any): string =>
 export type Env = 'production' | 'development'
 export type ThemeConfig = Record<string, any>
 
-type SubMenuConfig = string[]
-export interface MenuConfig { name: string, docs: SubMenuConfig }
-export type RootMenuConfig = Array<string | MenuConfig> | null
+export interface Menu {
+  name: string
+  route?: string
+  href?: string
+  menu?: Menu[]
+}
 
 export interface HtmlContext {
   lang: string
@@ -66,6 +69,10 @@ export interface Argv {
   title: string
   description: string
   theme: string
+  /**
+   * @deprecated since the new ordering using menu on config file
+   * this property will be deleted in the v1.0
+   */
   ordering: 'ascending' | 'descending'
   wrapper?: string
   indexHtml?: string
@@ -79,7 +86,7 @@ export interface Config extends Argv {
   hastPlugins: any[]
   themeConfig: ThemeConfig
   htmlContext: HtmlContext
-  menu: RootMenuConfig
+  menu: Menu[]
   modifyBundlerConfig<C>(config: C, dev: boolean, args: Config): C
   modifyBabelRc(babelrc: BabelRC, args: Config): BabelRC
 }
