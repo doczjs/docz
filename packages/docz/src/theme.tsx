@@ -5,9 +5,10 @@ import { ComponentType as CT } from 'react'
 import { HashRouter, BrowserRouter } from 'react-router-dom'
 import createContext from 'create-react-context'
 
+import { state, State, ThemeConfig, ImportMap } from './state'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { DataServer } from './components/DataServer'
-import { state, State, ThemeConfig, ImportMap } from './state'
+import { ScrollToTop } from './utils/ScrollToTop'
 
 declare var BASE_URL: string
 
@@ -49,9 +50,11 @@ export function theme(
             <state.Provider initialState={props.db}>
               <DataServer websocketUrl={props.websocketUrl}>
                 <Router basename={BASE_URL}>
-                  <Wrapper>
-                    <WrappedComponent />
-                  </Wrapper>
+                  <ScrollToTop>
+                    <Wrapper>
+                      <WrappedComponent />
+                    </Wrapper>
+                  </ScrollToTop>
                 </Router>
               </DataServer>
             </state.Provider>
