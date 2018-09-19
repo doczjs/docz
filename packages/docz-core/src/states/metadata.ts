@@ -9,7 +9,7 @@ import { parseSourceFiles } from '../utils/jsdoc'
 const update = (config: Config) => async (p: Params) => {
   const oldMeta = p.state.metadata
   const newMeta = {
-    jsdoc: await parseSourceFiles(config)
+    annotations: await parseSourceFiles(config)
   }
   if(newMeta && !equal(oldMeta, newMeta)) {
     p.setState('metadata', newMeta)
