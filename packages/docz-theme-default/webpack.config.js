@@ -1,6 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
-const UglifyJs = require('uglifyjs-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 const FileManagerPlugin = require('filemanager-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
@@ -45,11 +45,8 @@ const externals = Object.keys(pkg.dependencies)
   .concat(externalList)
   .concat(deps.filter(dep => dep.startsWith('react-feather')))
 
-const uglify = new UglifyJs({
-  parallel: true,
-  cache: true,
-  sourceMap: true,
-  uglifyOptions: {
+const minify = new TerserPlugin({
+  terserOptions: {
     parse: {
       ecma: 8,
     },
@@ -67,6 +64,9 @@ const uglify = new UglifyJs({
       ascii_only: true,
     },
   },
+  parallel: true,
+  cache: true,
+  sourceMap: true,
 })
 
 const plugins = [
@@ -122,7 +122,7 @@ module.exports = {
     namedModules: true,
     ...(IS_PROD && {
       minimize: true,
-      minimizer: [uglify],
+      minimizer: [minify],
     }),
   },
   performance: {
