@@ -1,3 +1,6 @@
+import { AnnotationsAST } from './components/Annotations'
+import { ComponentsMap } from './components/DocPreview'
+
 import { create } from './utils/createState'
 
 export interface Heading {
@@ -43,7 +46,7 @@ export interface Config {
 }
 
 export interface Metadata {
-  jsdoc?: JSDocAST
+  annotations?: AnnotationsAST
 }
 
 type Import = () => Promise<MSXImport>
