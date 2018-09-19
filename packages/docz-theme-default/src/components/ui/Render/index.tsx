@@ -15,10 +15,10 @@ import hotkeys from 'hotkeys-js'
 import getIn from 'lodash.get'
 import pretty from 'pretty'
 
-import CodeSandboxLogo from './CodeSandboxLogo'
+import { Handle, HANDLE_SIZE } from './Handle'
 import { ResizeBar } from './ResizeBar'
 import { LiveConsumer } from './LiveConsumer'
-import { Handle, HANDLE_SIZE } from './Handle'
+import { CodeSandboxLogo } from './CodeSandboxLogo'
 import { ActionButton, ClipboardAction, Editor as PreBase } from '../Editor'
 import { localStorage } from '../../../utils/local-storage'
 
@@ -199,6 +199,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
 
   get actions(): JSX.Element {
     const { showing, fullscreen } = this.state
+    const { codesandbox } = this.props
 
     const showJsx = this.handleShow('jsx')
     const showHtml = this.handleShow('html')
@@ -216,14 +217,11 @@ export class Render extends Component<RenderComponentProps, RenderState> {
         <Action onClick={this.handleRefresh} title="Refresh playground">
           <Refresh width={15} />
         </Action>
-        <Clipboard content={showing === 'jsx' ? this.state.code : this.html} />
-        {this.props.codesandbox !== 'undefined' && (
+        {codesandbox !== 'undefined' && (
           <ThemeConfig>
             {config => (
               <ActionLink
-                href={`https://codesandbox.io/api/v1/sandboxes/define?parameters=${
-                  this.props.codesandbox
-                }${config.native ? `&editorsize=75` : ``}`}
+                href={this.codesandboxUrl(config.native)}
                 target="_blank"
                 title="Open in CodeSandbox"
               >
@@ -232,6 +230,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
             )}
           </ThemeConfig>
         )}
+        <Clipboard content={showing === 'jsx' ? this.state.code : this.html} />
         <Action
           onClick={this.handleToggle}
           title={fullscreen ? 'Minimize' : 'Maximize'}
@@ -393,5 +392,12 @@ export class Render extends Component<RenderComponentProps, RenderState> {
 
       render(<App>${code}</App>)
     `
+  }
+
+  private codesandboxUrl = (native: boolean): string => {
+    const { codesandbox } = this.props
+    const url = 'https://codesandbox.io/api/v1/sandboxes/define'
+
+    return `${url}?parameters=${codesandbox}${native ? `&editorsize=75` : ``}`
   }
 }

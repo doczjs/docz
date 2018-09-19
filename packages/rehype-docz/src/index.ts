@@ -64,18 +64,10 @@ const addCodeProp = (
   }
 }
 
-const getScope = (node: any, idx: number) => {
-  return scopesFromEntry(node)
-}
-
-const getImports = (nodes: any[]) => {
-  return importsFromEntry(nodes)
-}
-
 export default () => (tree: any, fileInfo: any) => {
   const importNodes = tree.children.filter((node: any) => is('import', node))
-  const imports: string[] = flatten(importNodes.map(getImports))
-  const scopes: string[] = flatten(importNodes.map(getScope))
+  const imports: string[] = flatten(importNodes.map(importsFromEntry))
+  const scopes: string[] = flatten(importNodes.map(scopesFromEntry))
 
   const nodes = tree.children
     .filter((node: any) => is('jsx', node))
