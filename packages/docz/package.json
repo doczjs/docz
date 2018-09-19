@@ -34,17 +34,17 @@
     "deepmerge": "^2.1.1",
     "docz-core": "^0.11.2",
     "docz-theme-default": "^0.11.2",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
-    "react": "^16.5.0",
+    "react": "^16.5.2",
     "react-copy-write": "^0.8.0",
-    "react-dom": "^16.5.0",
+    "react-dom": "^16.5.2",
     "react-imported-component": "^4.6.2",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-router-hash-link": "^1.2.0",
     "ulid": "^2.3.0",
-    "yargs": "^12.0.1"
+    "yargs": "^12.0.2"
   },
   "peerDependencies": {
     "react": "^16.2.0",
@@ -53,9 +53,9 @@
   "devDependencies": {
     "@types/deepmerge": "^2.1.0",
     "@types/lodash": "^4.14.116",
-    "@types/react": "^16.4.7",
+    "@types/react": "^16.4.14",
     "@types/react-copy-write": "^0.7.1",
     "@types/react-dom": "^16.0.6",
-    "@types/react-router-dom": "^4.3.0"
+    "@types/react-router-dom": "^4.3.1"
   }
 }

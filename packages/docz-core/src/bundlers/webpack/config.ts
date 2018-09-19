@@ -6,7 +6,7 @@ import { minify } from 'html-minifier'
 import miniHtmlWebpack from 'mini-html-webpack-plugin'
 import friendlyErrors from 'friendly-errors-webpack-plugin'
 import manifestPlugin from 'webpack-manifest-plugin'
-import UglifyJs from 'uglifyjs-webpack-plugin'
+import TerserPlugin from 'terser-webpack-plugin'
 
 import * as loaders from './loaders'
 import * as paths from '../../config/paths'
@@ -15,11 +15,8 @@ import { Config as Args, Env } from '../../commands/args'
 import { BabelRC } from '../../utils/babel-config'
 import { parseHtml, htmlTemplate } from '../../utils/parse-html'
 
-const uglify = new UglifyJs({
-  parallel: true,
-  cache: true,
-  sourceMap: true,
-  uglifyOptions: {
+const terser = new TerserPlugin({
+  terserOptions: {
     parse: {
       ecma: 8,
     },
@@ -37,6 +34,9 @@ const uglify = new UglifyJs({
       ascii_only: true,
     },
   },
+  parallel: true,
+  cache: true,
+  sourceMap: true,
 })
 
 export const createConfig = (args: Args, env: Env) => async (
@@ -105,7 +105,7 @@ export const createConfig = (args: Args, env: Env) => async (
       },
       ...(isProd && {
         minimize: true,
-        minimizer: [uglify],
+        minimizer: [terser],
       }),
     },
   })
@@ -123,9 +123,9 @@ export const createConfig = (args: Args, env: Env) => async (
    * resolve
    */
 
-  config.resolve
-    .set('symlinks', true)
-    .extensions.add('.web.js')
+  config.resolve.set('symlinks', true)
+  config.resolve.extensions
+    .add('.web.js')
     .add('.mjs')
     .add('.js')
     .add('.json')

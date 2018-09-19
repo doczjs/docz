@@ -8,9 +8,9 @@
   },
   "dependencies": {
     "prop-types": "^15.6.2",
-    "react": "^16.5.0",
-    "react-dom": "^16.5.0",
-    "styled-components": "^3.4.5"
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "styled-components": "^3.4.9"
   },
   "devDependencies": {
     "docz": "^0.11.2"
