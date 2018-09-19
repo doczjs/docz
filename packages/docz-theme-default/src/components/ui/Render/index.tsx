@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { SFC, Fragment, Component } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { RenderComponentProps } from 'docz'
+import { RenderComponentProps, ThemeConfig } from 'docz'
 import { LiveProvider, LiveError, LivePreview } from 'react-live'
 import styled, { css } from 'react-emotion'
 import lighten from 'polished/lib/color/lighten'
@@ -15,9 +15,10 @@ import hotkeys from 'hotkeys-js'
 import getIn from 'lodash.get'
 import pretty from 'pretty'
 
+import { Handle, HANDLE_SIZE } from './Handle'
 import { ResizeBar } from './ResizeBar'
 import { LiveConsumer } from './LiveConsumer'
-import { Handle, HANDLE_SIZE } from './Handle'
+import { CodeSandboxLogo } from './CodeSandboxLogo'
 import { ActionButton, ClipboardAction, Editor as PreBase } from '../Editor'
 import { localStorage } from '../../../utils/local-storage'
 
@@ -110,6 +111,8 @@ const Action = styled(ActionButton)`
   ${actionClass};
 `
 
+const ActionLink = Action.withComponent('a')
+
 const Clipboard = styled(ClipboardAction)`
   ${actionClass};
 `
@@ -196,6 +199,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
 
   get actions(): JSX.Element {
     const { showing, fullscreen } = this.state
+    const { codesandbox } = this.props
 
     const showJsx = this.handleShow('jsx')
     const showHtml = this.handleShow('html')
@@ -213,6 +217,19 @@ export class Render extends Component<RenderComponentProps, RenderState> {
         <Action onClick={this.handleRefresh} title="Refresh playground">
           <Refresh width={15} />
         </Action>
+        {codesandbox !== 'undefined' && (
+          <ThemeConfig>
+            {config => (
+              <ActionLink
+                href={this.codesandboxUrl(config.native)}
+                target="_blank"
+                title="Open in CodeSandbox"
+              >
+                <CodeSandboxLogo style={{ height: '100%' }} width={15} />
+              </ActionLink>
+            )}
+          </ThemeConfig>
+        )}
         <Clipboard content={showing === 'jsx' ? this.state.code : this.html} />
         <Action
           onClick={this.handleToggle}
@@ -375,5 +392,12 @@ export class Render extends Component<RenderComponentProps, RenderState> {
 
       render(<App>${code}</App>)
     `
+  }
+
+  private codesandboxUrl = (native: boolean): string => {
+    const { codesandbox } = this.props
+    const url = 'https://codesandbox.io/api/v1/sandboxes/define'
+
+    return `${url}?parameters=${codesandbox}${native ? `&editorsize=75` : ``}`
   }
 }

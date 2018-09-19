@@ -22,8 +22,10 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
+    "@babel/generator": "^7.0.0",
     "@babel/parser": "^7.0.0",
     "@babel/traverse": "^7.0.0",
+    "codesandboxer-fs": "^0.3.1",
     "hast-util-to-string": "^1.0.1",
     "lodash.flatten": "^4.4.0",
     "lodash.get": "^4.4.2",
