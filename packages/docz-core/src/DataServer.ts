@@ -60,7 +60,7 @@ export class DataServer {
       )
     )
 
-    await touch(paths.db, JSON.stringify(this.state, null, 2))
+    this.updateStateFile()
   }
 
   public async listen(): Promise<void> {
@@ -97,6 +97,11 @@ export class DataServer {
     return (key: string, val: any): void => {
       this.state[key] = val
       send(`state.${key}`, val)
+      this.updateStateFile()
     }
+  }
+
+  private async updateStateFile(): Promise<void> {
+    await touch(paths.db, JSON.stringify(this.state, null, 2))
   }
 }
