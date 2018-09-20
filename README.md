@@ -14,7 +14,7 @@
 <p align="center">
   <img src="https://badgen.net/npm/v/docz" alt="">
   <img src="https://badgen.net/badge/license/MIT/blue" alt="">
-  <img src="https://badgen.net/npm/dt/express" alt="">
+  <img src="https://badgen.net/npm/dt/docz" alt="">
   <a href="https://discord.gg/YQE4MbD">
     <img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" alt="Chat">
   </a>
