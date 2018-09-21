@@ -1,45 +1,16 @@
 import * as path from 'path'
 import * as crypto from 'crypto'
+import * as utils from 'docz-utils'
 import slugify from '@sindresorhus/slugify'
 import humanize from 'humanize-string'
 import find from 'unist-util-find'
 import is from 'unist-util-is'
-import visit from 'unist-util-visit'
 import get from 'lodash.get'
 
 import * as paths from './config/paths'
-import { valueFromHeading } from './utils/ast'
 
 interface ParsedData {
   [key: string]: any
-}
-
-const getParsedData = (ast: any): ParsedData => {
-  const node = find(ast, (node: any) => is('yaml', node))
-  return get(node, `data.parsedValue`) || {}
-}
-
-export interface Heading {
-  depth: number
-  slug: string
-  value: string
-}
-
-const getHeadings = (ast: any): Heading[] => {
-  const headings: Heading[] = []
-
-  visit(ast, 'heading', (node: any) => {
-    const slug = get(node, 'data.id')
-    const depth = get(node, 'depth')
-
-    headings.push({
-      depth,
-      slug,
-      value: valueFromHeading(node),
-    })
-  })
-
-  return headings
 }
 
 const createId = (file: string) =>
@@ -47,6 +18,11 @@ const createId = (file: string) =>
     .createHash('md5')
     .update(file)
     .digest('hex')
+
+const getParsedData = (ast: any): ParsedData => {
+  const node = find(ast, (node: any) => is('yaml', node))
+  return get(node, `data.parsedValue`) || {}
+}
 
 export interface EntryObj {
   id: string
@@ -57,7 +33,7 @@ export interface EntryObj {
   route: string
   order: number
   menu: string | null
-  headings: Heading[]
+  headings: utils.ast.Heading[]
   [key: string]: any
 }
 
@@ -72,7 +48,7 @@ export class Entry {
   public name: string
   public order: number
   public menu: string | null
-  public headings: Heading[]
+  public headings: utils.ast.Heading[]
   public settings: {
     [key: string]: any
   }
@@ -90,7 +66,7 @@ export class Entry {
     this.name = name
     this.order = parsed.order || 0
     this.menu = parsed.menu || null
-    this.headings = getHeadings(ast)
+    this.headings = utils.ast.headingsFromAst(ast)
     this.settings = parsed
   }
 

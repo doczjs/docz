@@ -3,8 +3,8 @@ import * as fs from 'fs-extra'
 import is from 'unist-util-is'
 import flatten from 'lodash.flatten'
 import nodeToString from 'hast-util-to-string'
+import { format } from 'docz-utils'
 
-import { format } from './format'
 import { removeTags, propFromElement, sanitizeCode } from './jsx'
 import { getImportPath, importsFromEntry, scopesFromEntry } from './imports'
 import { getSandboxImportInfo } from './codesandbox'
@@ -38,7 +38,7 @@ const addPropsOnComponents = (
     const code = formatted.slice(1, Infinity)
     const scope = `{props,${scopes.join(',')}}`
     const child = sanitizeCode(removeTags(code))
-    const codesandBoxInfo = getSandboxImportInfo(child, imports, cwd)
+    const codesandBoxInfo = await getSandboxImportInfo(child, imports, cwd)
 
     node.value = node.value.replace(
       tagOpen,

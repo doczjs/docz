@@ -1,0 +1,37 @@
+{
+  "name": "docz-utils",
+  "version": "0.11.2",
+  "description": "Some methods used and utilities used on docz",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "module": "dist/index.m.js",
+  "typings": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "files": [
+    "dist/",
+    "package.json",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "libundler watch --ts -e all",
+    "build": "libundler build --ts -e all --c",
+    "fix": "run-s fix:*",
+    "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
+    "fix:tslint": "tslint --fix --project .",
+    "tslint": "tslint --project ."
+  },
+  "dependencies": {
+    "humanize-string": "^1.0.2",
+    "lodash.get": "^4.4.2",
+    "prettier": "^1.14.3",
+    "remark-frontmatter": "^1.2.1",
+    "remark-parse": "^5.0.0",
+    "remark-parse-yaml": "^0.0.1",
+    "remark-slug": "^5.1.0",
+    "signale": "^1.3.0",
+    "to-vfile": "^5.0.1",
+    "unified": "^7.0.0",
+    "unist-util-visit": "^1.4.0"
+  }
+}
