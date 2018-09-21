@@ -20,7 +20,7 @@ interface ParamAST {
   description?: string
 }
 
-interface ReturnsAST {
+interface ReturnAST {
   name: string
   type?: {
     names: string[]
@@ -35,7 +35,7 @@ interface NodeAST {
   meta?: MetaAST
   undocumented?: boolean
   params?: ParamAST[]
-  returns?: ReturnsAST
+  returns?: ReturnAST[]
   longname: string
   kind: string
   memberof?: string
@@ -63,10 +63,12 @@ const getParams = (params: ParamAST[] = []) => {
   }).join(', ')
 }
 
-const getReturnTypes = (returns?: ReturnsAST) => {
-  return returns && returns.type ?
-    returns.type.names.join(' | '):
-    'void'
+const getReturnTypes = (returnTypes: ReturnAST[] = []) => {
+  return returnTypes.map(ret => {
+    return ret.type ?
+      ret.type.names.join(' | ') :
+      ''
+  }).join(', ')
 }
 
 const getSignature = (def: NodeAST) => {
