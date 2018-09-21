@@ -3,26 +3,39 @@
   "version": "0.11.2",
   "description": "Some methods used and utilities used on docz",
   "license": "MIT",
-  "main": "dist/index.js",
-  "umd:main": "dist/index.umd.js",
-  "module": "dist/index.m.js",
-  "typings": "dist/index.d.ts",
-  "source": "src/index.ts",
+  "main": "lib/index.js",
+  "module": "lib/index.m.js",
+  "typings": "lib/index.d.ts",
+  "source": [
+    "src/index.ts",
+    "src/ast.ts",
+    "src/mdast.ts",
+    "src/codesandbox.ts",
+    "src/format.ts",
+    "src/imports.ts",
+    "src/jsx.ts"
+  ],
   "files": [
-    "dist/",
+    "lib/",
     "package.json",
     "README.md"
   ],
   "scripts": {
-    "dev": "libundler watch --ts -e all",
-    "build": "libundler build --ts -e all --c",
+    "dev": "libundler watch --dest lib --ts -e all",
+    "build": "libundler build --dest lib --ts -e all --c",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
     "fix:tslint": "tslint --fix --project .",
     "tslint": "tslint --project ."
   },
   "dependencies": {
+    "@babel/generator": "^7.0.0",
+    "@babel/parser": "^7.1.0",
+    "@babel/traverse": "^7.1.0",
+    "codesandboxer-fs": "^0.3.1",
+    "fs-extra": "^7.0.0",
     "humanize-string": "^1.0.2",
+    "jsx-ast-utils": "^2.0.1",
     "lodash.get": "^4.4.2",
     "prettier": "^1.14.3",
     "remark-frontmatter": "^1.2.1",
@@ -30,8 +43,11 @@
     "remark-parse-yaml": "^0.0.1",
     "remark-slug": "^5.1.0",
     "signale": "^1.3.0",
+    "strip-indent": "^2.0.0",
     "to-vfile": "^5.0.1",
     "unified": "^7.0.0",
+    "unist-util-find": "^1.0.1",
+    "unist-util-is": "^2.1.2",
     "unist-util-visit": "^1.4.0"
   }
 }

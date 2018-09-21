@@ -1,28 +1,21 @@
 import * as path from 'path'
 import * as crypto from 'crypto'
-import * as utils from 'docz-utils'
 import slugify from '@sindresorhus/slugify'
 import humanize from 'humanize-string'
-import find from 'unist-util-find'
-import is from 'unist-util-is'
-import get from 'lodash.get'
+import {
+  Heading,
+  getParsedData,
+  headingsFromAst,
+  ParsedData,
+} from 'docz-utils/lib/mdast'
 
 import * as paths from './config/paths'
-
-interface ParsedData {
-  [key: string]: any
-}
 
 const createId = (file: string) =>
   crypto
     .createHash('md5')
     .update(file)
     .digest('hex')
-
-const getParsedData = (ast: any): ParsedData => {
-  const node = find(ast, (node: any) => is('yaml', node))
-  return get(node, `data.parsedValue`) || {}
-}
 
 export interface EntryObj {
   id: string
@@ -33,7 +26,7 @@ export interface EntryObj {
   route: string
   order: number
   menu: string | null
-  headings: utils.ast.Heading[]
+  headings: Heading[]
   [key: string]: any
 }
 
@@ -48,7 +41,7 @@ export class Entry {
   public name: string
   public order: number
   public menu: string | null
-  public headings: utils.ast.Heading[]
+  public headings: Heading[]
   public settings: {
     [key: string]: any
   }
@@ -66,7 +59,7 @@ export class Entry {
     this.name = name
     this.order = parsed.order || 0
     this.menu = parsed.menu || null
-    this.headings = utils.ast.headingsFromAst(ast)
+    this.headings = headingsFromAst(ast)
     this.settings = parsed
   }
 

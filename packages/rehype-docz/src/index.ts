@@ -1,43 +1,29 @@
 import * as path from 'path'
-import * as fs from 'fs-extra'
 import is from 'unist-util-is'
 import flatten from 'lodash.flatten'
 import nodeToString from 'hast-util-to-string'
-import { format } from 'docz-utils'
-
-import { removeTags, propFromElement, sanitizeCode } from './jsx'
-import { getImportPath, importsFromEntry, scopesFromEntry } from './imports'
-import { getSandboxImportInfo } from './codesandbox'
-
-const componentName = (value: any) => {
-  const match = value.match(/^\<\\?(\w+)/)
-  return match && match[1]
-}
-
-const addExtension = (filepath: string) => {
-  const ext = ['.js', '.jsx', '.ts', '.tsx'].find(ext =>
-    fs.pathExistsSync(`${filepath}${ext}`)
-  )
-
-  return `${filepath}${ext}`
-}
+import { jsx, imports as imps } from 'docz-utils'
+import { format } from 'docz-utils/lib/format'
+import { getSandboxImportInfo } from 'docz-utils/lib/codesandbox'
 
 const isPlayground = (name: string) => name === 'Playground'
 const isPropsTable = (name: string) => name === 'PropsTable'
 
-const addPropsOnComponents = (
+const addPropsOnPlayground = async (
+  node: any,
+  idx: number,
   scopes: string[],
   imports: string[],
   cwd: string
-) => async (node: any, idx: number) => {
-  const name = componentName(node.value)
+) => {
+  const name = jsx.componentName(node.value)
   const tagOpen = new RegExp(`^\\<${name}`)
 
   if (isPlayground(name)) {
     const formatted = await format(nodeToString(node))
     const code = formatted.slice(1, Infinity)
     const scope = `{props,${scopes.join(',')}}`
-    const child = sanitizeCode(removeTags(code))
+    const child = jsx.sanitizeCode(jsx.removeTags(code))
     const codesandBoxInfo = await getSandboxImportInfo(child, imports, cwd)
 
     node.value = node.value.replace(
@@ -45,37 +31,49 @@ const addPropsOnComponents = (
       `<${name} __position={${idx}} __codesandbox={\`${codesandBoxInfo}\`} __code={\`${child}\`} __scope={${scope}}`
     )
   }
+}
+
+const addPropsOnPropsTable = async (
+  node: any,
+  imports: string[],
+  cwd: string
+) => {
+  const name = jsx.componentName(node.value)
+  const tagOpen = new RegExp(`^\\<${name}`)
 
   if (isPropsTable(name)) {
     const formatted = await format(nodeToString(node))
     const code = formatted.slice(1, Infinity)
-    const valueFromOf = propFromElement('of')
-    const variable = valueFromOf(code)
-    const filepath = getImportPath(imports, val => val.includes(variable))
-    const fullpath =
-      filepath &&
-      addExtension(
-        filepath.startsWith('.') ? path.resolve(cwd, filepath) : filepath
-      )
+    const findPath = imps.findImportPath(imports)
+    const componentPath = findPath(cwd, jsx.propFromElement('of')(code))
 
-    if (fullpath) {
+    if (componentPath) {
       node.value = node.value.replace(
         tagOpen,
-        `<${name} __componentPath="${fullpath}"`
+        `<${name} __componentPath="${componentPath}"`
       )
     }
   }
 }
 
-export default () => (tree: any, fileInfo: any) => {
+const addComponentsProps = (
+  scopes: string[],
+  imports: string[],
+  cwd: string
+) => async (node: any, idx: number) => {
+  await addPropsOnPlayground(node, idx, scopes, imports, cwd)
+  await addPropsOnPropsTable(node, imports, cwd)
+}
+
+export default (root: string) => () => (tree: any, fileInfo: any) => {
   const importNodes = tree.children.filter((node: any) => is('import', node))
-  const imports: string[] = flatten(importNodes.map(importsFromEntry))
-  const scopes: string[] = flatten(importNodes.map(scopesFromEntry))
-  const fileCwd = path.dirname(fileInfo.history[0])
+  const imports: string[] = flatten(importNodes.map(imps.getFullImports))
+  const scopes: string[] = flatten(importNodes.map(imps.getImportsVariables))
+  const fileCwd = path.relative(root, path.dirname(fileInfo.history[0]))
 
   const nodes = tree.children
     .filter((node: any) => is('jsx', node))
-    .map(addPropsOnComponents(scopes, imports, fileCwd))
+    .map(addComponentsProps(scopes, imports, fileCwd))
 
   return Promise.all(nodes).then(() => tree)
 }

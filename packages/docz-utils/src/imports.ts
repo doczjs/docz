@@ -1,3 +1,5 @@
+import * as path from 'path'
+import * as fs from 'fs-extra'
 import * as parser from '@babel/parser'
 import * as generator from '@babel/generator'
 import traverse from '@babel/traverse'
@@ -30,17 +32,38 @@ const traverseOnImports = (fn: (path: any) => any[]) => (node: any) => {
   }
 }
 
-export const scopesFromEntry = traverseOnImports((path: any) =>
-  fromSpecifiers(path.node.specifiers)
-)
-
-export const importsFromEntry = traverseOnImports((path: any) => [
+export const getFullImports = traverseOnImports((path: any) => [
   get(generator.default(path.node), 'code'),
 ])
 
+export const getImportsVariables = traverseOnImports((path: any) =>
+  fromSpecifiers(path.node.specifiers)
+)
+
+const addExtension = (filepath: string) => {
+  const ext = ['.js', '.jsx', '.ts', '.tsx'].find(ext =>
+    fs.pathExistsSync(`${filepath}${ext}`)
+  )
+
+  return `${filepath}${ext}`
+}
+
 type Iterator = (imp: string) => boolean
-export const getImportPath = (imports: string[], iterator: Iterator) => {
+const getImportPath = (imports: string[], iterator: Iterator) => {
   const selected = imports.find(iterator)
   const match = selected && selected.match(/(\'|\")(.+)(\'|\")/)
   return match && match[2]
+}
+
+export const findImportPath = (imports: string[]) => (
+  cwd: string,
+  variable: string
+) => {
+  const filepath = getImportPath(imports, val => val.includes(variable))
+  return (
+    filepath &&
+    addExtension(
+      filepath.startsWith('.') ? path.resolve(cwd, filepath) : filepath
+    )
+  )
 }
