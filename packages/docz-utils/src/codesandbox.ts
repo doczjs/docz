@@ -1,5 +1,5 @@
-import { assembleFiles } from 'codesandboxer-fs'
 import * as path from 'path'
+import { assembleFiles } from 'codesandboxer-fs'
 
 const wrapCode = (code: string): string => {
   return `import React from 'react';

@@ -1,6 +1,6 @@
 import * as path from 'path'
 import * as fs from 'fs-extra'
-import { ast } from 'docz-utils'
+import { parseMdx } from 'docz-utils/lib/mdast'
 import glob from 'fast-glob'
 
 import * as paths from './config/paths'
@@ -94,8 +94,8 @@ export class Entries {
 
     const createEntry = async (file: string) => {
       try {
-        const parsed = await ast.parseMdx(file)
-        const entry = new Entry(parsed, file, src)
+        const ast = await parseMdx(file)
+        const entry = new Entry(ast, file, src)
 
         if (this.repoEditUrl) entry.setLink(this.repoEditUrl)
         const { settings, ...rest } = entry
