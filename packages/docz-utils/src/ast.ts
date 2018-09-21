@@ -4,6 +4,7 @@ import remark from 'remark-parse'
 import matter from 'remark-frontmatter'
 import slug from 'remark-slug'
 import parseFrontmatter from 'remark-parse-yaml'
+import visit from 'unist-util-visit'
 import humanize from 'humanize-string'
 import get from 'lodash.get'
 
@@ -18,7 +19,7 @@ export const parseMdx = (file: string): Promise<string> => {
   return parser.run(parser.parse(raw))
 }
 
-export const valueFromHeading = (node: any): string => {
+const valueFromHeading = (node: any): string => {
   const children = get(node, 'children')
   const slug = get(node, 'data.id')
 
@@ -30,4 +31,33 @@ export const valueFromHeading = (node: any): string => {
   }
 
   return humanize(slug)
+}
+
+export interface Heading {
+  depth: number
+  slug: string
+  value: string
+}
+
+export const headingsFromAst = (ast: any): Heading[] => {
+  const headings: Heading[] = []
+
+  visit(ast, 'heading', (node: any) => {
+    const slug = get(node, 'data.id')
+    const depth = get(node, 'depth')
+
+    headings.push({
+      depth,
+      slug,
+      value: valueFromHeading(node),
+    })
+  })
+
+  return headings
+}
+
+export const propsOfComponent = (component: string, prop: string) => (
+  ast: any
+) => {
+  return []
 }
