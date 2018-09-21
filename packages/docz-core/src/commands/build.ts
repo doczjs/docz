@@ -17,11 +17,15 @@ export const build = async (args: Config) => {
   const dataServer = new DataServer()
 
   try {
-    dataServer.register([states.entries(config), states.config(config)])
-
+    dataServer.register([
+      states.entries(config),
+      states.config(config),
+      states.metadata(config)
+    ])
+  
     await Entries.writeApp(config)
     await dataServer.init()
-
+return
     await run('onPreBuild', config)
     await bundler.build(await bundler.getConfig(env))
     await run('onPostBuild', config)
