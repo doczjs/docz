@@ -1,41 +1,31 @@
-import is from 'unist-util-is'
-import nodeToString from 'hast-util-to-string'
-import strip from 'strip-indent'
-import flatten from 'lodash.flatten'
 import * as path from 'path'
+import * as fs from 'fs-extra'
+import is from 'unist-util-is'
+import flatten from 'lodash.flatten'
+import nodeToString from 'hast-util-to-string'
 
-import { codeFromNode } from './code-from-node'
-import { importsFromEntry, scopesFromEntry } from './imports-from-entry'
 import { format } from './format'
-import { getCodeSandboxFiles } from './codesandbox-files'
+import { removeTags, propFromElement, sanitizeCode } from './jsx'
+import { getImportPath, importsFromEntry, scopesFromEntry } from './imports'
+import { getSandboxImportInfo } from './codesandbox'
 
 const componentName = (value: any) => {
   const match = value.match(/^\<\\?(\w+)/)
   return match && match[1]
 }
 
-const isPlayground = (name: string) => name === 'Playground'
+const addExtension = (filepath: string) => {
+  const ext = ['.js', '.jsx', '.ts', '.tsx'].find(ext =>
+    fs.pathExistsSync(`${filepath}${ext}`)
+  )
 
-const isOpenTag = (p: any) =>
-  p.isJSXOpeningElement() && isPlayground(p.node.name.name)
-
-const isClosetag = (p: any) =>
-  p.isJSXClosingElement() && isPlayground(p.node.name.name)
-
-const removePlayground = (code: string) => {
-  const open = codeFromNode(isOpenTag)
-  const close = codeFromNode(isClosetag)
-
-  return code.replace(open(code), '').replace(close(code), '')
+  return `${filepath}${ext}`
 }
 
-const sanitizeCode = (code: string) =>
-  strip(code)
-    .trim()
-    .replace(/'/g, `\\'`)
-    .replace(/`/g, '\\`')
+const isPlayground = (name: string) => name === 'Playground'
+const isPropsTable = (name: string) => name === 'PropsTable'
 
-const addCodeProp = (
+const addPropsOnComponents = (
   scopes: string[],
   imports: string[],
   cwd: string
@@ -47,20 +37,33 @@ const addCodeProp = (
     const formatted = await format(nodeToString(node))
     const code = formatted.slice(1, Infinity)
     const scope = `{props,${scopes.join(',')}}`
-    const child = sanitizeCode(removePlayground(code))
-
-    let codeSandboxImportInfo: string | undefined
-    try {
-      const { parameters } = await getCodeSandboxFiles(child, imports, cwd)
-      codeSandboxImportInfo = parameters
-    } catch (e) {
-      console.error('Could not create Open in CodeSandbox', e)
-    }
+    const child = sanitizeCode(removeTags(code))
+    const codesandBoxInfo = getSandboxImportInfo(child, imports, cwd)
 
     node.value = node.value.replace(
       tagOpen,
-      `<${name} __position={${idx}} __codesandbox={\`${codeSandboxImportInfo}\`} __code={\`${child}\`} __scope={${scope}}`
+      `<${name} __position={${idx}} __codesandbox={\`${codesandBoxInfo}\`} __code={\`${child}\`} __scope={${scope}}`
     )
+  }
+
+  if (isPropsTable(name)) {
+    const formatted = await format(nodeToString(node))
+    const code = formatted.slice(1, Infinity)
+    const valueFromOf = propFromElement('of')
+    const variable = valueFromOf(code)
+    const filepath = getImportPath(imports, val => val.includes(variable))
+    const fullpath =
+      filepath &&
+      addExtension(
+        filepath.startsWith('.') ? path.resolve(cwd, filepath) : filepath
+      )
+
+    if (fullpath) {
+      node.value = node.value.replace(
+        tagOpen,
+        `<${name} __componentPath="${fullpath}"`
+      )
+    }
   }
 }
 
@@ -68,10 +71,11 @@ export default () => (tree: any, fileInfo: any) => {
   const importNodes = tree.children.filter((node: any) => is('import', node))
   const imports: string[] = flatten(importNodes.map(importsFromEntry))
   const scopes: string[] = flatten(importNodes.map(scopesFromEntry))
+  const fileCwd = path.dirname(fileInfo.history[0])
 
   const nodes = tree.children
     .filter((node: any) => is('jsx', node))
-    .map(addCodeProp(scopes, imports, path.dirname(fileInfo.history[0])))
+    .map(addPropsOnComponents(scopes, imports, fileCwd))
 
   return Promise.all(nodes).then(() => tree)
 }

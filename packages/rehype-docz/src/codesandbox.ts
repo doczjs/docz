@@ -24,7 +24,7 @@ export default () => (
 )`
 }
 
-export function getCodeSandboxFiles(
+function getSandboxFiles(
   code: string,
   imports: string[],
   cwd: string
@@ -36,4 +36,21 @@ export function getCodeSandboxFiles(
     extensions: ['.js', '.ts', '.jsx', '.tsx'],
     contents: rawCode,
   })
+}
+
+export const getSandboxImportInfo = async (
+  child: any,
+  imports: string[],
+  cwd: string
+) => {
+  let info: string | undefined
+
+  try {
+    const { parameters } = await getSandboxFiles(child, imports, cwd)
+    info = parameters
+  } catch (e) {
+    console.error('Could not create Open in CodeSandbox', e)
+  }
+
+  return info
 }
