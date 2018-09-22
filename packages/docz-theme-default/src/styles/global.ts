@@ -1,9 +1,9 @@
 import { injectGlobal } from 'emotion'
+import '../vendor/normalize.css'
+import '../vendor/codemirror.css'
 
 // tslint:disable
 injectGlobal`
-  @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css');
-
   *, *:before, *:after {
     box-sizing: border-box;
   }
