@@ -1,6 +1,6 @@
 import { injectGlobal } from 'emotion'
-import '../vendor/normalize.css'
-import '../vendor/codemirror.css'
+import 'normalize.css'
+import 'codemirror/lib/codemirror.css'
 
 // tslint:disable
 injectGlobal`
