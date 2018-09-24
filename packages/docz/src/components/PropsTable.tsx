@@ -92,11 +92,8 @@ const getPropType = (prop: Prop, Tooltip?: TooltipComponent) => {
   )
 }
 
-const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
-  const info = component.__docgenInfo
-  const props = info && info.props
-
-  if (!info || !props) {
+const BasePropsTable: SFC<PropsTable> = ({ of: component, props = component.__docgenInfo && component.__docgenInfo.props, components }) => {
+  if (!props) {
     return null
   }
 
