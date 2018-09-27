@@ -29,12 +29,9 @@ export const loadConfig = (args: Config): Config => {
     modifyBabelRc: (babelrc: BabelRC) => babelrc,
   }
 
-  let config
-  if (args.config) {
-    config = loadFrom<Config>(path.resolve(args.config), defaultConfig)
-  } else {
-    config = load<Config>('docz', defaultConfig)
-  }
+  const config = args.config
+    ? loadFrom<Config>(path.resolve(args.config), defaultConfig)
+    : load<Config>('docz', defaultConfig)
 
   const reduce = Plugin.reduceFromPlugins<Config>(config.plugins)
   return omit<Config>(toOmit, reduce('setConfig', { ...config, paths }))
