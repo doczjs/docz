@@ -7,7 +7,6 @@ import { format } from 'docz-utils/lib/format'
 import { getSandboxImportInfo } from 'docz-utils/lib/codesandbox'
 
 const isPlayground = (name: string) => name === 'Playground'
-const isPropsTable = (name: string) => name === 'PropsTable'
 
 const addPropsOnPlayground = async (
   node: any,
