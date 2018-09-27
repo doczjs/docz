@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { SFC } from 'react'
-import { ThemeConfig } from 'docz'
+import { ThemeConfig, Link } from 'docz'
 import styled from 'react-emotion'
 
 import { breakpoints } from '../../../styles/responsive'
@@ -17,6 +17,12 @@ const Wrapper = styled('div')`
   align-items: flex-start;
   justify-content: center;
   padding: 24px;
+
+  a,
+  a:hover,
+  a:visited {
+    text-decoration: none;
+  }
 
   &:before {
     position: absolute;
@@ -56,11 +62,13 @@ export const Logo: SFC<LogoProps> = ({ showBg }) => (
   <ThemeConfig>
     {({ title, themeConfig: { logo } }) => (
       <Wrapper showBg={showBg}>
-        {logo ? (
-          <LogoImg src={logo.src} width={logo.width} alt={title} />
-        ) : (
-          <LogoText>{title}</LogoText>
-        )}
+        <Link to="/">
+          {logo ? (
+            <LogoImg src={logo.src} width={logo.width} alt={title} />
+          ) : (
+            <LogoText>{title}</LogoText>
+          )}
+        </Link>
       </Wrapper>
     )}
   </ThemeConfig>
