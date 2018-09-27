@@ -1,4 +1,6 @@
-import { load } from 'load-cfg'
+import * as path from 'path'
+
+import { load, loadFrom } from 'load-cfg'
 
 import * as paths from '../config/paths'
 import { Config } from '../commands/args'
@@ -13,7 +15,7 @@ const defaultHtmlContext = {
 }
 
 export const loadConfig = (args: Config): Config => {
-  const config = load<Config>('docz', {
+  const defaultConfig = {
     ...args,
     hashRouter: false,
     native: false,
@@ -25,7 +27,14 @@ export const loadConfig = (args: Config): Config => {
     menu: [],
     modifyBundlerConfig: (config: any) => config,
     modifyBabelRc: (babelrc: BabelRC) => babelrc,
-  })
+  }
+
+  let config
+  if (args.config) {
+    config = loadFrom<Config>(path.resolve(args.config), defaultConfig)
+  } else {
+    config = load<Config>('docz', defaultConfig)
+  }
 
   const reduce = Plugin.reduceFromPlugins<Config>(config.plugins)
   return omit<Config>(toOmit, reduce('setConfig', { ...config, paths }))
