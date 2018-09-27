@@ -37,7 +37,6 @@ export const dev = async (args: Config) => {
   dataServer.register([
     states.config(newConfig),
     states.entries(entries, newConfig),
-    states.props(entries, newConfig),
   ])
 
   try {

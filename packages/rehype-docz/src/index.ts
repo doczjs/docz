@@ -33,36 +33,12 @@ const addPropsOnPlayground = async (
   }
 }
 
-const addPropsOnPropsTable = async (
-  node: any,
-  imports: string[],
-  cwd: string
-) => {
-  const name = jsx.componentName(node.value)
-  const tagOpen = new RegExp(`^\\<${name}`)
-
-  if (isPropsTable(name)) {
-    const formatted = await format(nodeToString(node))
-    const code = formatted.slice(1, Infinity)
-    const findPath = imps.findImportPath(imports)
-    const componentPath = findPath(cwd, jsx.propFromElement('of')(code))
-
-    if (componentPath) {
-      node.value = node.value.replace(
-        tagOpen,
-        `<${name} __componentPath="${componentPath}"`
-      )
-    }
-  }
-}
-
 const addComponentsProps = (
   scopes: string[],
   imports: string[],
   cwd: string
 ) => async (node: any, idx: number) => {
   await addPropsOnPlayground(node, idx, scopes, imports, cwd)
-  await addPropsOnPropsTable(node, imports, cwd)
 }
 
 export default (root: string) => () => (tree: any, fileInfo: any) => {
