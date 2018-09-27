@@ -54,6 +54,7 @@ export interface Argv {
   ignore: string[]
   dest: string
   editBranch: string
+  config: string
   /* bundler args */
   debug: boolean
   typescript: boolean
@@ -122,7 +123,10 @@ export const args = (env: Env) => (yargs: any) => {
     type: 'string',
     default: getEnv('docz.edit.branch', 'master'),
   })
-
+  yargs.positional('config', {
+    type: 'string',
+    default: getEnv('docz.config', ''),
+  })
   yargs.positional('title', {
     type: 'string',
     default: getEnv('docz.title', getInitialTitle(pkg)),
