@@ -22,20 +22,13 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@babel/generator": "^7.0.0",
-    "@babel/parser": "^7.0.0",
-    "@babel/traverse": "^7.0.0",
-    "codesandboxer-fs": "^0.3.1",
+    "docz-utils": "^0.11.2",
     "hast-util-to-string": "^1.0.1",
+    "jsx-ast-utils": "^2.0.1",
     "lodash.flatten": "^4.4.0",
-    "lodash.get": "^4.4.2",
-    "prettier": "^1.14.2",
-    "signale": "^1.2.1",
-    "strip-indent": "^2.0.0",
     "unist-util-is": "^2.1.2"
   },
   "devDependencies": {
-    "@types/lodash.flatten": "^4.4.4",
-    "@types/lodash.get": "^4.4.4"
+    "@types/lodash.flatten": "^4.4.4"
   }
 }

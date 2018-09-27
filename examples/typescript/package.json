@@ -9,12 +9,12 @@
   "dependencies": {
     "docz": "^0.11.2",
     "docz-core": "^0.11.2",
-    "emotion": "^9.2.8",
-    "react": "^16.5.0",
-    "react-dom": "^16.5.0",
-    "react-emotion": "^9.2.8"
+    "emotion": "^9.2.9",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-emotion": "^9.2.9"
   },
   "devDependencies": {
-    "babel-plugin-emotion": "^9.2.8"
+    "babel-plugin-emotion": "^9.2.9"
   }
 }
