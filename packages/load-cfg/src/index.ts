@@ -63,3 +63,19 @@ export function load<C = any>(
       : Object.assign({}, defaultConfig, file)
     : file
 }
+
+export function loadFrom<C = any>(
+  filePath: string,
+  defaultConfig: C,
+  noCache?: boolean,
+  deep?: boolean
+): C {
+  const file = loadFile(filePath, noCache)
+
+  // tslint:disable
+  return defaultConfig
+    ? deep
+      ? merge(defaultConfig, file)
+      : Object.assign({}, defaultConfig, file)
+    : file
+}
