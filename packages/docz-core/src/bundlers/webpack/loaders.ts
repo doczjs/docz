@@ -42,12 +42,7 @@ export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
       },
       {
         loader: require.resolve('babel-loader'),
-        options: {
-          ...babelrc,
-          plugins: babelrc.plugins
-            .filter((p: string) => /react\-hot\-loader\/babel/.test(p))
-            .filter((p: string) => /babel\-plugin\-react\-docgen/.test(p)),
-        },
+        options: babelrc,
       },
     ].filter(Boolean),
   }

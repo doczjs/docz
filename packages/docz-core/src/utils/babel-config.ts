@@ -28,15 +28,26 @@ export const getBabelConfig = async (
     ],
   ]
 
-  const plugins: any[] = !isProd
-    ? [require.resolve('react-hot-loader/babel')]
-    : []
+  const defaultPlugins: any[] = [
+    [
+      require.resolve('babel-plugin-named-asset-import'),
+      {
+        loaderMap: {
+          svg: {
+            ReactComponent: '@svgr/webpack?-prettier,-svgo![path]',
+          },
+        },
+      },
+    ],
+  ]
 
   const config = merge(localBabelRc, {
     presets,
-    plugins,
     cacheDirectory: !args.debug,
     babelrc: false,
+    plugins: defaultPlugins.concat(
+      !isProd ? [require.resolve('react-hot-loader/babel')] : []
+    ),
   })
 
   const reduce = Plugin.reduceFromPlugins<BabelRC>(args.plugins)

@@ -1,3 +1,3 @@
-# docz-plugin-svgr [MOVED]
+# docz-plugin-svgr [DEPRECATED]
 
-In order to improve monorepo performance, we moved it to [another repo](https://github.com/pedronauck/docz-plugin-svgr)!
+This plugin is deprecated. Now svgr loader is built in docz.
