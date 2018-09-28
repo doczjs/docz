@@ -50,7 +50,7 @@ export const styles = {
     padding: '4px 6px',
     borderRadius: '3px',
     fontFamily: '"Source Code Pro", monospace',
-    fontSize: 14,
+    fontSize: '0.85em',
   },
   pre: {
     fontFamily: '"Source Code Pro", monospace',
