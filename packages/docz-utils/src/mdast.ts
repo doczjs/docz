@@ -8,6 +8,7 @@ import find from 'unist-util-find'
 import is from 'unist-util-is'
 import visit from 'unist-util-visit'
 import humanize from 'humanize-string'
+import flatten from 'lodash.flatten'
 import get from 'lodash.get'
 
 export const parseMdx = (file: string): Promise<string> => {
@@ -21,13 +22,18 @@ export const parseMdx = (file: string): Promise<string> => {
   return parser.run(parser.parse(raw))
 }
 
-const valueFromHeading = (node: any): string => {
+const getChildValue = (children: any) =>
+  children.map(
+    (child: any) =>
+      child.children ? getChildValue(child.children) : child.value
+  )
+
+const valueFromHeading = (node: any) => {
   const children = get(node, 'children')
   const slug = get(node, 'data.id')
 
   if (Array.isArray(children)) {
-    return children
-      .map((child: any) => child.value)
+    return flatten(getChildValue(children))
       .filter(Boolean)
       .join(' ')
   }
