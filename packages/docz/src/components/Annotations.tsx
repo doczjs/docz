@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Metadata, metadataSelector, state } from '../state'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 
 interface MetaAST {
@@ -48,58 +47,58 @@ interface ThemeComponents {
   [key: string]: React.ComponentType<any>
 }
 
-
-const findDefinition = (name: string, ast: AnnotationsAST): NodeAST | undefined => {
-  return ast.find(node => !node.undocumented && node.name === name)
-}
-
 const getParams = (params: ParamAST[] = []) => {
-  return params.map(p => {
-    const signature = `${p.name}${p.optional ? '?' : ''}`
-    const defValue = p.defaultvalue !== undefined ? ` = ${p.defaultvalue}` : ''
-    return p.type ?
-      `${signature}: ${p.type.names.join(' | ')}${defValue}` :
-      `${signature}${defValue}`
-  }).join(', ')
+  return params
+    .map(p => {
+      const signature = `${p.name}${p.optional ? '?' : ''}`
+      const defValue =
+        p.defaultvalue !== undefined ? ` = ${p.defaultvalue}` : ''
+      return p.type
+        ? `${signature}: ${p.type.names.join(' | ')}${defValue}`
+        : `${signature}${defValue}`
+    })
+    .join(', ')
 }
 
 const getReturnTypes = (returnTypes: ReturnAST[] = []) => {
-  return returnTypes.map(ret => {
-    return ret.type ?
-      ret.type.names.join(' | ') :
-      ''
-  }).join(', ')
+  return returnTypes
+    .map(ret => {
+      return ret.type ? ret.type.names.join(' | ') : ''
+    })
+    .join(', ')
 }
 
 const getSignature = (def: NodeAST) => {
-  return `${def.name} (${getParams(def.params)}) => ${getReturnTypes(def.returns)}`
+  return `${def.name} (${getParams(def.params)}) => ${getReturnTypes(
+    def.returns
+  )}`
+}
+
+type ComponentWithMeta = React.ComponentType & {
+  __docz: {
+    jsdoc: NodeAST | null
+  }
 }
 
 interface Props {
-  of: string
+  of: ComponentWithMeta
   from?: string
   components: ThemeComponents
 }
 
 const BaseAnnotations: React.SFC<Props> = ({ of, components }) => {
+  const def = of.__docz.jsdoc
+  const { inlineCode: Code, p: Paragraph } = components
+
+  if (!def) {
+    console.warn(`Annotation not found for: ${of}`)
+    return null
+  }
   return (
-    <state.Consumer select={[metadataSelector]}>
-      {(metadata: Metadata) => {
-        console.log(metadata.annotations)
-        const { inlineCode: Code, p: Paragraph } = components
-        const def = findDefinition(of, metadata.annotations || [])
-        if(!def) {
-          console.warn(`Annotation not found for: ${of}`);
-          return null
-        }
-        return (
-          <div>
-            <Code>{getSignature(def)}</Code>
-            <Paragraph>{def.description}</Paragraph> 
-          </div>
-        )
-      }}
-    </state.Consumer>
+    <div>
+      <Code>{getSignature(def)}</Code>
+      <Paragraph>{def.description}</Paragraph>
+    </div>
   )
 }
 

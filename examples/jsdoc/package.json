@@ -1,13 +1,18 @@
 {
   "name": "docz-example-jsdoc",
-  "version": "0.11.1",
+  "version": "0.12.4",
   "license": "MIT",
   "scripts": {
     "dev": "docz dev",
     "build": "docz build"
   },
   "dependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "babel-plugin-docz": "mpivaa/babel-plugin-docz",
+    "babel-preset-docz": "^0.12.2",
     "emotion": "^9.2.8",
+    "jsdoc": "^3.5.5",
     "prop-types": "^15.6.2",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
@@ -15,6 +20,6 @@
   },
   "devDependencies": {
     "babel-plugin-emotion": "^9.2.8",
-    "docz": "^0.11.1"
+    "docz": "^0.12.4"
   }
 }

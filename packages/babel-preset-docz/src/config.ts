@@ -54,7 +54,6 @@ export const config = (opts: ConfigParams) => {
       require('babel-plugin-react-docgen').default,
       { resolver: 'findAllExportedComponentDefinitions' },
     ],
-    require('babel-plugin-docz').default,
     opts.env.prod && [
       require('babel-plugin-transform-react-remove-prop-types').default,
       { removeImport: true },

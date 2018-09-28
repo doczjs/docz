@@ -9,9 +9,9 @@ import { parseSourceFiles } from '../utils/jsdoc'
 const update = (config: Config) => async (p: Params) => {
   const oldMeta = p.state.metadata
   const newMeta = {
-    annotations: await parseSourceFiles(config)
+    annotations: await parseSourceFiles(config),
   }
-  if(newMeta && !equal(oldMeta, newMeta)) {
+  if (newMeta && !equal(oldMeta, newMeta)) {
     p.setState('metadata', newMeta)
   }
 }
@@ -35,6 +35,6 @@ export const state = (config: Config): State => {
       watcher.on('unlink', async () => updateWithConfig(params))
 
       return () => watcher.close()
-    }
+    },
   }
 }

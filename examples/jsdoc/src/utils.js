@@ -1,5 +1,4 @@
-
-/** 
+/**
  * Returns the sum of a and b
  * @param {number | string} a
  * @param {(number)} [b=0]
@@ -33,7 +32,7 @@ export function sum(a, b) {
  * get(object, 'a.b.c', 'default')
  * // => 'default'
  */
-function get(object, path, defaultValue) {
+export function get(object, path, defaultValue) {
   const result = object == null ? undefined : baseGet(object, path)
   return result === undefined ? defaultValue : result
 }
