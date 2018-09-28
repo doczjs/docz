@@ -1,5 +1,4 @@
-import { get, differenceBy } from 'lodash/fp'
-import merge from 'deepmerge'
+import { get, unionBy } from 'lodash/fp'
 
 export const isFn = (value: any): boolean => typeof value === 'function'
 
@@ -18,11 +17,6 @@ export function compare<T>(a: T, b: T, reverse?: boolean): number {
   return 0
 }
 
-export function mergeArrOfObject<T>(a: T[], b: T[], prop: string): T[] {
-  const values = a.reduce((arr: any[], item: any) => {
-    const idx = b.findIndex(i => get(prop, i) === get(prop, item))
-    return idx !== -1 ? arr.concat([merge(item, b[idx])]) : arr.concat([item])
-  }, [])
-
-  return values.concat(differenceBy(prop, b, a))
+export function mergeArrBy<T>(prop: string, a: T[], b: T[]): T[] {
+  return unionBy<T>(prop, a)(b)
 }

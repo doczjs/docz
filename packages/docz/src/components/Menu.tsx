@@ -1,17 +1,12 @@
 import * as React from 'react'
-import { pipe, get, uniqBy, omit } from 'lodash/fp'
+import { pipe, get, omit } from 'lodash/fp'
 import { ulid } from 'ulid'
 import sort from 'array-sort'
 
 import { state, Entry, EntryMap, Config, MenuItem } from '../state'
 import { entriesSelector } from './DocPreview'
 import { configSelector } from './ThemeConfig'
-import {
-  compare,
-  isFn,
-  flatArrFromObject,
-  mergeArrOfObject,
-} from '../utils/helpers'
+import { compare, isFn, flatArrFromObject, mergeArrBy } from '../utils/helpers'
 
 const noMenu = (entry: Entry) => !entry.menu
 const fromMenu = (menu: string) => (entry: Entry) => entry.menu === menu
@@ -62,14 +57,22 @@ const normalizeAndClean = pipe(
   clean
 )
 
-const mergeMenus = (entriesMenu: Menus, configMenu: Menus) => {
+const mergeMenus = (entriesMenu: Menus, configMenu: Menus): Menus => {
   const first = entriesMenu.map(normalizeAndClean)
   const second = configMenu.map(normalizeAndClean)
-  const merged = mergeArrOfObject<MenuItem>(second, first, 'name')
+  const merged = mergeArrBy<MenuItem>('name', first, second)
 
   return merged.map(item => {
     if (!item.menu) return item
-    return { ...item, menu: uniqBy('name', item.menu) }
+    const found: any = second.find(i => i.name === item.name)
+    const foundMenu = found && found.menu
+
+    return {
+      ...item,
+      menu: foundMenu
+        ? mergeMenus(item.menu, foundMenu)
+        : item.menu || found.menu,
+    }
   })
 }
 
