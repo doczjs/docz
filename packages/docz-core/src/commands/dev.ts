@@ -23,6 +23,8 @@ export const dev = async (args: Config) => {
 
   const newConfig = { ...config, websocketPort, hotPort, port }
   const bundler = webpack(newConfig, env)
+  const entries = new Entries(config)
+
   const bundlerConfig = await bundler.getConfig(env)
   const server = await bundler.createServer(bundlerConfig)
   const { app } = await server.start()
@@ -32,9 +34,12 @@ export const dev = async (args: Config) => {
     config.websocketHost
   )
 
-  try {
-    dataServer.register([states.entries(newConfig), states.config(newConfig)])
+  dataServer.register([
+    states.config(newConfig),
+    states.entries(entries, newConfig),
+  ])
 
+  try {
     await Entries.writeApp(newConfig, true)
     await dataServer.init()
     await dataServer.listen()

@@ -1,8 +1,7 @@
 import * as path from 'path'
 import * as fs from 'fs-extra'
 import { compile } from 'art-template'
-
-import { format } from './format'
+import { format } from 'docz-utils'
 
 export const touch = (file: string, raw: string) =>
   new Promise(async (resolve, reject) => {

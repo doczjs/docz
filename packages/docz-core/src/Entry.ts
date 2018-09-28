@@ -2,45 +2,14 @@ import * as path from 'path'
 import * as crypto from 'crypto'
 import slugify from '@sindresorhus/slugify'
 import humanize from 'humanize-string'
-import find from 'unist-util-find'
-import is from 'unist-util-is'
-import visit from 'unist-util-visit'
-import get from 'lodash.get'
+import {
+  Heading,
+  getParsedData,
+  headingsFromAst,
+  ParsedData,
+} from 'docz-utils/lib/mdast'
 
 import * as paths from './config/paths'
-import { valueFromHeading } from './utils/ast'
-
-interface ParsedData {
-  [key: string]: any
-}
-
-const getParsedData = (ast: any): ParsedData => {
-  const node = find(ast, (node: any) => is('yaml', node))
-  return get(node, `data.parsedValue`) || {}
-}
-
-export interface Heading {
-  depth: number
-  slug: string
-  value: string
-}
-
-const getHeadings = (ast: any): Heading[] => {
-  const headings: Heading[] = []
-
-  visit(ast, 'heading', (node: any) => {
-    const slug = get(node, 'data.id')
-    const depth = get(node, 'depth')
-
-    headings.push({
-      depth,
-      slug,
-      value: valueFromHeading(node),
-    })
-  })
-
-  return headings
-}
 
 const createId = (file: string) =>
   crypto
@@ -90,7 +59,7 @@ export class Entry {
     this.name = name
     this.order = parsed.order || 0
     this.menu = parsed.menu || null
-    this.headings = getHeadings(ast)
+    this.headings = headingsFromAst(ast)
     this.settings = parsed
   }
 

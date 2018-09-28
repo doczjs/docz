@@ -18,6 +18,7 @@ const externalList = [
   'codemirror/addon/edit/matchbrackets',
   'codemirror/addon/edit/closetag',
   'codemirror/addon/fold/xml-fold',
+  'normalize.css',
   'react-perfect-scrollbar',
   'polished/lib/color/rgba',
   'polished/lib/color/lighten',
@@ -40,10 +41,15 @@ const externalList = [
   'react-sizes',
 ]
 
+const internals = [
+  'normalize.css',
+  'codemirror/lib/codemirror.css'
+]
+
 const deps = Object.keys(pkg.dependencies)
-const externals = Object.keys(pkg.dependencies)
+const externals = deps
   .concat(externalList)
-  .concat(deps.filter(dep => dep.startsWith('react-feather')))
+  .filter(dep => internals.indexOf(dep) === -1)
 
 const minify = new TerserPlugin({
   terserOptions: {
@@ -107,6 +113,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      }
     ],
   },
   resolve: {

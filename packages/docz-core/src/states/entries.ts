@@ -25,8 +25,7 @@ const updateEntries = (entries: Entries) => async (p: Params) => {
   }
 }
 
-export const state = (config: Config): State => {
-  const entries = new Entries(config)
+export const state = (entries: Entries, config: Config): State => {
   const src = path.relative(paths.root, config.src)
   const files = path.join(src, config.files)
   const watcher = chokidar.watch(files, {
