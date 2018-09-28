@@ -10,10 +10,16 @@ import { mq } from './styles/responsive'
 import * as components from './components/ui'
 import * as modes from './styles/modes'
 
+// tslint:disable
+const mergeTheme = (config: any) => (old: any) => ({
+  ...old,
+  docz: Object.assign({}, config.themeConfig, { mq }),
+})
+
 const Theme = () => (
   <ThemeConfig>
     {config => (
-      <ThemeProvider theme={{ docz: { ...config.themeConfig, mq } }}>
+      <ThemeProvider theme={mergeTheme(config)}>
         <DocPreview
           components={{
             page: components.Page,

@@ -73,17 +73,22 @@ export type TooltipComponent = React.ComponentType<{
   children: React.ReactNode
 }>
 
-const getPropType = (prop: Prop, Tooltip?: TooltipComponent) => {
+export const getPropType = (prop: Prop, Tooltip?: TooltipComponent) => {
   const propName = prop.flowType ? prop.flowType.name : prop.type.name
   const isEnum = propName.startsWith('"') || propName === 'enum'
   const name = capitalize(isEnum ? 'enum' : propName)
   const value = prop.type && prop.type.value
 
   if (!name) return null
-  if (!Tooltip) return name
-  if (isEnum && typeof value === 'string') return name
-  if (!prop.flowType && !isEnum && !value) return name
-  if (prop.flowType && !prop.flowType.elements) return name
+
+  if (
+    !Tooltip ||
+    (isEnum && typeof value === 'string') ||
+    (!prop.flowType && !isEnum && !value) ||
+    (prop.flowType && !prop.flowType.elements)
+  ) {
+    return name
+  }
 
   return prop.flowType ? (
     <Tooltip text={humanize(prop.flowType)}>{name}</Tooltip>
