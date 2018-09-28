@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ReactNode, SFC, Children } from 'react'
+import { ReactNode, SFC } from 'react'
 import merge from 'deepmerge'
 
 import { themeContext } from '../theme'
@@ -23,14 +23,12 @@ export const ThemeConfig: SFC<ThemeConfigProps> = ({ children }) => {
           {({ themeConfig, ...config }: Config) => {
             const newThemeConfig = merge(initialThemeConfig, themeConfig)
 
-            return Children.only(
-              children({
-                ...config,
-                themeConfig: transform
-                  ? transform(newThemeConfig)
-                  : newThemeConfig,
-              })
-            )
+            return children({
+              ...config,
+              themeConfig: transform
+                ? transform(newThemeConfig)
+                : newThemeConfig,
+            })
           }}
         </state.Consumer>
       )}

@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Children } from 'react'
 import sort from 'array-sort'
 
 import { state, Entry, EntryMap, Config } from '../state'
@@ -46,12 +45,10 @@ export const Docs: React.SFC<DocsProps> = ({ children }) => {
           (a: Entry, b: Entry) => compare(a.name, b.name)
         )
 
-        return Children.only(
-          children({
-            menus,
-            docs,
-          })
-        )
+        return children({
+          menus,
+          docs,
+        })
       }}
     </state.Consumer>
   )
