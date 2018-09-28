@@ -1,6 +1,6 @@
 {
   "name": "docz-example-basic",
-  "version": "0.12.3",
+  "version": "0.12.4",
   "license": "MIT",
   "scripts": {
     "dev": "docz dev",
@@ -15,6 +15,6 @@
   },
   "devDependencies": {
     "babel-plugin-emotion": "^9.2.9",
-    "docz": "^0.12.3"
+    "docz": "^0.12.4"
   }
 }
