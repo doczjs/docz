@@ -32,7 +32,6 @@
     "@svgr/webpack": "^2.4.1",
     "art-template": "^4.13.0",
     "babel-loader": "^8.0.2",
-    "babel-plugin-named-asset-import": "^0.11.1",
     "babel-preset-docz": "^0.11.1",
     "babylon": "^6.18.0",
     "cache-loader": "^1.2.2",

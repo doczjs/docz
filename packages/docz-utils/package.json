@@ -13,7 +13,8 @@
     "src/codesandbox.ts",
     "src/format.ts",
     "src/imports.ts",
-    "src/jsx.ts"
+    "src/jsx.ts",
+    "src/named-asset-import.ts"
   ],
   "files": [
     "lib/",

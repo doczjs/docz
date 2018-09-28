@@ -30,7 +30,7 @@ export const getBabelConfig = async (
 
   const defaultPlugins: any[] = [
     [
-      require.resolve('babel-plugin-named-asset-import'),
+      require.resolve('docz-utils/lib/named-asset-import'),
       {
         loaderMap: {
           svg: {

@@ -1,9 +1,0 @@
-{
-  "name": "babel-plugin-named-asset-import",
-  "version": "0.11.1",
-  "license": "MIT",
-  "main": "index.js",
-  "peerDependencies": {
-    "@babel/core": "^7.1.0"
-  }
-}

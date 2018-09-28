@@ -5,4 +5,5 @@ import * as imports from './imports'
 import * as codesandbox from './codesandbox'
 import { format } from './format'
 
+export { default as namedAssetImport } from './named-asset-import'
 export { ast, mdast, format, imports, jsx, codesandbox }

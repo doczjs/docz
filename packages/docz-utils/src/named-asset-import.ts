@@ -1,11 +1,11 @@
-const { extname } = require('path')
+import { extname } from 'path'
 
-function namedAssetImportPlugin({ types: t }) {
+export default function namedAssetImport({ types: t }: any): any {
   const visited = new WeakSet()
 
   return {
     visitor: {
-      ImportDeclaration(path, { opts: { loaderMap } }) {
+      ImportDeclaration(path: any, { opts: { loaderMap } }: any): any {
         const sourcePath = path.node.source.value
         const ext = extname(sourcePath).substr(1)
 
@@ -15,7 +15,7 @@ function namedAssetImportPlugin({ types: t }) {
 
         if (loaderMap[ext]) {
           path.replaceWithMultiple(
-            path.node.specifiers.map(specifier => {
+            path.node.specifiers.map((specifier: any) => {
               if (t.isImportDefaultSpecifier(specifier)) {
                 const newDefaultImport = t.importDeclaration(
                   [
@@ -56,5 +56,3 @@ function namedAssetImportPlugin({ types: t }) {
     },
   }
 }
-
-module.exports = namedAssetImportPlugin
