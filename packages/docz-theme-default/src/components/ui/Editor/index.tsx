@@ -26,9 +26,15 @@ import 'codemirror/addon/fold/xml-fold'
 const getLanguage = (children: any) => {
   const defaultLanguage = 'jsx'
   if (typeof children === 'string') return defaultLanguage
+
   const language = get(children, 'props.props.className') || defaultLanguage
   const result = language.replace('language-', '')
-  return result === 'js' || result === 'javascript' ? 'jsx' : result
+
+  if (result === 'js' || result === 'javascript') return 'jsx'
+  if (result === 'ts' || result === 'tsx' || result === 'typescript') {
+    return 'text/typescript'
+  }
+  return result
 }
 
 const getChildren = (children: any) =>
