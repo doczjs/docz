@@ -23,7 +23,6 @@
   </a>
 </p>
 
-
 <p align="center">
   <a href="http://docz.site" target="_blank">
     <img src="https://cdn-std.dprcdn.net/files/acc_649651/lvs55S" alt="Docz video">
@@ -97,6 +96,15 @@ Documenting our things is one of the most important and heavy processes when you
 - **[with postcss](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-postcss)** - Using docz parsing css with PostCSS
 - **[with stylus](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-stylus)** - Using docz parsing css with Stylus
 
+## 🌍 &nbsp; Around the world
+
+- **[React Spring](http://react-spring.surge.sh/)** - Helping react-motion and animated to become best friends
+- **[Smooth UI](https://smooth-ui.smooth-code.com/)** - Modern React UI library
+- **[Set Protocol Docs](https://docs.setprotocol.com/)** - Documentation site of Set Protocal
+- **[Circuit UI](https://circuit.sumup.com/#/)** - React component library for [SumUp](https://sumup.com) web apps
+- **[React Pixi](https://reactpixi.org/#/)** - React Fiber renderer for Pixi
+- **[React Hotkey Tooltip](https://react-hotkey-tooltip.netlify.com/#/)** - A global Hotkey provider with built in tooltip for React
+- **[Sajari React SDK](https://sajari-sdk-react.netlify.com/)** - Library of React Components for the Sajari
 
 ## 🚧 &nbsp; Warning!
 
