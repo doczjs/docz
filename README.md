@@ -48,7 +48,7 @@ Thanks for all people that support us 🙏🏻
 
 ## 🚀 &nbsp; Roadmap
 
-We still have a *long road to go*, this is just the beginning. So to further improve **docz** we've created a roadmap so that you can see the next features and improvements and **give your feedback about**:
+We still have a *long road to go*, this is just the beginning. So to further improve **docz** we've created a roadmap that you can see the next features and improvements. **Give us your feedback**:
 
 <a href="http://feedback.docz.site/roadmap" target="_blank">
   <img src="https://cdn-std.dprcdn.net/files/acc_649651/ogSCYY" alt="Docz Roadmap" width="300">
