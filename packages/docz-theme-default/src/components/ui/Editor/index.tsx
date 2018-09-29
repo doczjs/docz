@@ -8,11 +8,12 @@ import Clipboard from 'react-feather/dist/icons/clipboard'
 import { Controlled as CodeMirror } from 'react-codemirror2'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import copy from 'copy-text-to-clipboard'
-import get from 'lodash.get'
+import getter from 'lodash.get'
 
 import { ButtonSwap } from '../ButtonSwap'
 import { ButtonLink } from '../Button'
-import * as themes from '../../../styles/codemirror'
+import * as themes from '@styles/codemirror'
+import { get } from '@utils/theme'
 
 import './ps-scrollbar'
 import 'codemirror/mode/markdown/markdown'
@@ -27,7 +28,7 @@ const getLanguage = (children: any) => {
   const defaultLanguage = 'jsx'
   if (typeof children === 'string') return defaultLanguage
 
-  const language = get(children, 'props.props.className') || defaultLanguage
+  const language = getter(children, 'props.props.className') || defaultLanguage
   const result = language.replace('language-', '')
 
   if (result === 'js' || result === 'javascript') return 'jsx'
@@ -39,14 +40,14 @@ const getLanguage = (children: any) => {
 
 const getChildren = (children: any) =>
   children && typeof children !== 'string'
-    ? get(children, 'props.children')
+    ? getter(children, 'props.children')
     : children
 
 const Wrapper = styled('div')`
   margin: 30px 0;
   position: relative;
   width: 100%;
-  border: 1px solid ${p => p.theme.docz.colors.border};
+  border: 1px solid ${get('colors.border')};
   border-radius: 3px;
 `
 
@@ -61,10 +62,11 @@ const Scrollbar = styled(PerfectScrollbar)`
   }
 `
 
+const preStyles = get('styles.pre')
 const EditorStyled = styled(CodeMirror)`
   ${themes.dark()};
   ${themes.light()};
-  ${p => p.theme.docz.mq(p.theme.docz.styles.pre)};
+  ${p => p.theme.docz.mq(preStyles(p))};
   position: relative;
   border-radius: 3px;
   flex: 1;
@@ -75,7 +77,7 @@ const EditorStyled = styled(CodeMirror)`
   }
 
   .CodeMirror pre {
-    ${p => p.theme.docz.mq(p.theme.docz.styles.pre)};
+    ${p => p.theme.docz.mq(preStyles(p))};
   }
 
   .CodeMirror-gutters {
@@ -107,21 +109,22 @@ const Actions = styled('div')`
   background: transparent;
 `
 
+const textColor = get('colors.text')
 export const ActionButton = styled(ButtonSwap)`
   padding: 4px;
   background: transparent;
   font-size: 12px;
   text-transform: uppercase;
-  color: ${p => rgba(p.theme.docz.colors.text, 0.4)};
+  color: ${p => rgba(textColor(p), 0.4)};
   transition: color 0.3s;
 
   &:hover {
-    color: ${p => rgba(p.theme.docz.colors.text, 0.7)};
+    color: ${p => rgba(textColor(p), 0.7)};
   }
 `
 
 const Check = styled(BaseCheck)`
-  stroke: ${p => p.theme.docz.colors.primary};
+  stroke: ${get('colors.primary')};
 `
 
 interface ClipboardActionProps {

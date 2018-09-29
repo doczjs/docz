@@ -5,6 +5,7 @@ import ChevronDown from 'react-feather/dist/icons/chevron-down'
 import styled from 'react-emotion'
 
 import { MenuLink, getActiveFromClass } from './MenuLink'
+import { get } from '@utils/theme'
 
 const Wrapper = styled('div')`
   display: flex;
@@ -33,7 +34,7 @@ const Icon = styled('div')`
   transition: transform 0.3s;
 
   & svg {
-    stroke: ${p => p.theme.docz.colors.text};
+    stroke: ${get('colors.sidebarText')};
   }
 `
 

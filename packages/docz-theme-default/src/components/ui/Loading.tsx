@@ -1,6 +1,8 @@
 import * as React from 'react'
 import styled, { css, keyframes } from 'react-emotion'
 
+import { get } from '@utils/theme'
+
 const Wrapper = styled('div')`
   display: flex;
   align-items: center;
@@ -22,12 +24,12 @@ const spinnerClass = (delay: number = 0) => css`
 `
 
 const Lines = styled('path')`
-  stroke: ${p => p.theme.docz.colors.primary};
+  stroke: ${get('colors.primary')};
   stroke-width: 3px;
 `
 
 const Path = styled('path')`
-  fill: ${p => p.theme.docz.colors.primary};
+  fill: ${get('colors.primary')};
 `
 
 const Spinner = ({ size = 60 }) => (

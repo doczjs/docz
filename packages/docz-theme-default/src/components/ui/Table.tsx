@@ -1,6 +1,8 @@
 import * as React from 'react'
 import styled from 'react-emotion'
 
+import { get } from '@utils/theme'
+
 const Wrapper = styled('div')`
   overflow-x: auto;
   padding: 2px;
@@ -14,19 +16,19 @@ const Wrapper = styled('div')`
 const TableStyled = styled('table')`
   padding: 0;
   table-layout: auto;
-  box-shadow: 0 0 0 1px ${p => p.theme.docz.colors.border};
+  box-shadow: 0 0 0 1px ${get('colors.border')};
   background-color: transparent;
   border-spacing: 0;
   border-collapse: collapse;
   border-style: hidden;
   border-radius: 5px;
   font-size: 14px;
-  color: ${p => p.theme.docz.colors.tableColor};
+  color: ${get('colors.tableColor')};
   ${p => p.theme.docz.mq(p.theme.docz.styles.table)};
 
   & thead {
-    color: ${p => p.theme.docz.colors.theadColor};
-    background: ${p => p.theme.docz.colors.theadBg};
+    color: ${get('colors.theadColor')};
+    background: ${get('colors.theadBg')};
   }
 
   & thead th {
@@ -78,7 +80,7 @@ const TableStyled = styled('table')`
 
   & tbody > tr {
     display: table-row;
-    border-top: 1px solid ${p => p.theme.docz.colors.border};
+    border-top: 1px solid ${get('colors.border')};
   }
 
   ${p => p.theme.docz.mq(p.theme.docz.styles.table)};

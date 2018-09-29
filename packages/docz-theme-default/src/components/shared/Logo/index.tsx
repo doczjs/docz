@@ -3,12 +3,16 @@ import { SFC } from 'react'
 import { ThemeConfig, Link } from 'docz'
 import styled from 'react-emotion'
 
-import { breakpoints } from '../../../styles/responsive'
+import { breakpoints } from '@styles/responsive'
+import { get } from '@utils/theme'
 
 interface WrapperProps {
   showBg: boolean
   theme?: any
 }
+
+const sidebarPrimary = get('colors.sidebarPrimary')
+const primaryColor = get('colors.primary')
 
 const Wrapper = styled('div')`
   position: relative;
@@ -31,7 +35,7 @@ const Wrapper = styled('div')`
     left: 0;
     width: 100%;
     height: 3px;
-    background: ${p => p.theme.docz.colors.primary};
+    background: ${p => sidebarPrimary(p) || primaryColor(p)};
   }
 
   @media screen and (max-width: ${breakpoints.desktop}px) {
@@ -51,7 +55,7 @@ const LogoText = styled('h1')`
   font-size: 24px;
   font-weight: 600;
   letter-spacing: -0.015em;
-  color: ${p => p.theme.docz.colors.text};
+  color: ${get('colors.sidebarText')};
 `
 
 interface LogoProps {

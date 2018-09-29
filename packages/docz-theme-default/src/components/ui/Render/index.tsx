@@ -12,7 +12,7 @@ import Maximize from 'react-feather/dist/icons/maximize'
 import Minimize from 'react-feather/dist/icons/minimize'
 import Refresh from 'react-feather/dist/icons/refresh-cw'
 import hotkeys from 'hotkeys-js'
-import getIn from 'lodash.get'
+import getter from 'lodash.get'
 import pretty from 'pretty'
 
 import { Handle, HANDLE_SIZE } from './Handle'
@@ -20,7 +20,9 @@ import { ResizeBar } from './ResizeBar'
 import { LiveConsumer } from './LiveConsumer'
 import { CodeSandboxLogo } from './CodeSandboxLogo'
 import { ActionButton, ClipboardAction, Editor as PreBase } from '../Editor'
-import { localStorage } from '../../../utils/local-storage'
+
+import { localStorage } from '@utils/local-storage'
+import { get as themeGet } from '@utils/theme'
 
 interface OverlayProps {
   full: boolean
@@ -49,14 +51,17 @@ const Wrapper = styled('div')`
   height: ${whenFullscreen(minusHandleSize, '100%')};
   width: ${minusHandleSize};
 `
+const borderColor = themeGet('colors.border')
+const backgroundColor = themeGet('colors.background')
+const textColor = themeGet('colors.text')
 
 const PlaygroundWrapper = styled('div')`
   overflow-y: auto;
   position: relative;
   flex: 1;
   border-radius: 4px 4px 0 0;
-  border: 1px solid ${p => p.theme.docz.colors.border};
-  background: ${p => p.theme.docz.colors.background};
+  border: 1px solid ${borderColor};
+  background: ${backgroundColor};
   min-height: ${whenFullscreen('198px', 'auto')};
   ${p => p.theme.docz.mq(p.theme.docz.styles.playground)};
 `
@@ -96,15 +101,15 @@ const Actions = styled('div')`
   padding: 0 5px;
   background: ${p =>
     p.theme.docz.mode === 'light'
-      ? lighten(0.13, p.theme.docz.colors.border)
-      : darken(0.04, p.theme.docz.colors.border)};
-  border-left: 1px solid ${p => p.theme.docz.colors.border};
-  border-bottom: 1px solid ${p => p.theme.docz.colors.border};
+      ? lighten(0.13, borderColor(p))
+      : darken(0.04, borderColor(p))};
+  border-left: 1px solid ${themeGet('colors.border')};
+  border-bottom: 1px solid ${themeGet('colors.border')};
 `
 
 const actionClass = (p: any) => css`
   padding: 3px 10px;
-  border-left: 1px solid ${p.theme.docz.colors.border};
+  border-left: 1px solid ${borderColor(p)};
 `
 
 const Action = styled(ActionButton)`
@@ -137,8 +142,7 @@ const Tab = styled('button')`
   background: none;
   border: none;
   font-size: 14px;
-  color: ${(p: TabProps) =>
-    rgba(p.theme.docz.colors.text, p.active ? 0.8 : 0.4)};
+  color: ${(p: TabProps) => rgba(textColor(p), p.active ? 0.8 : 0.4)};
   transition: color 0.3s;
 `
 
@@ -150,7 +154,7 @@ const set = (pos: number, size: string): void =>
 
 const parse = (position: number, key: string, defaultValue: any) => {
   const obj = JSON.parse(get(position))
-  return obj ? getIn(obj, key) : defaultValue
+  return obj ? getter(obj, key) : defaultValue
 }
 
 interface JSXProps {

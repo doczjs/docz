@@ -3,6 +3,7 @@ import { ThemeConfig } from 'docz'
 import styled from 'react-emotion'
 
 import { Sidebar, Main } from '../shared'
+import { get } from '@utils/theme'
 
 const Wrapper = styled('div')`
   display: flex;
@@ -11,15 +12,15 @@ const Wrapper = styled('div')`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  color: ${p => p.theme.docz.colors.text};
-  background: ${p => p.theme.docz.colors.background};
+  color: ${get('colors.text')};
+  background: ${get('colors.background')};
 `
 
 const Title = styled('h1')`
   margin: 0;
   font-size: 42px;
   font-weight: 400;
-  color: ${p => p.theme.docz.colors.primary};
+  color: ${get('colors.primary')};
 `
 
 const Subtitle = styled('p')`

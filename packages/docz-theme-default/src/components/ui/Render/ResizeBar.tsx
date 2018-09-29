@@ -6,6 +6,7 @@ import Monitor from 'react-feather/dist/icons/monitor'
 import styled from 'react-emotion'
 
 import { ActionButton } from '../Editor'
+import { get } from '@utils/theme'
 
 const Wrapper = styled('div')`
   position: absolute;
@@ -17,8 +18,8 @@ const Wrapper = styled('div')`
 
 const Buttons = styled('div')`
   display: flex;
-  background: ${p => p.theme.docz.colors.background};
-  border: 1px solid ${p => p.theme.docz.colors.border};
+  background: ${get('colors.background')};
+  border: 1px solid ${get('colors.border')};
   border-radius: 3px;
   padding: 3px 5px;
 `

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { SFC } from 'react'
 import styled, { keyframes } from 'react-emotion'
+import { get } from '@utils/theme'
 
 const octocatWave = keyframes`
   0%, 100% {
@@ -35,8 +36,8 @@ const Link = styled('a')`
 
 const Svg = styled('svg')`
   z-index: 99;
-  fill: ${p => p.theme.docz.colors.primary};
-  color: ${p => p.theme.docz.colors.background};
+  fill: ${get('colors.primary')};
+  color: ${get('colors.background')};
   position: absolute;
   top: 0;
   border: 0;

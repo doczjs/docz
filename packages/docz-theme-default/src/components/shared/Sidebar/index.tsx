@@ -8,16 +8,21 @@ import flattendepth from 'lodash.flattendepth'
 
 import { Logo } from '../Logo'
 import { Search } from '../Search'
-
 import { Menu } from './Menu'
 import { Docz } from './Docz'
 import { Hamburguer } from './Hamburguer'
-import { breakpoints } from '../../../styles/responsive'
+
+import { get } from '@utils/theme'
+import { breakpoints } from '@styles/responsive'
 
 interface WrapperProps {
   opened: boolean
   theme?: any
 }
+
+const sidebarBg = get('colors.sidebarBg')
+const sidebarText = get('colors.sidebarText')
+const sidebarBorder = get('colors.sidebarText')
 
 const position = (p: WrapperProps) =>
   p.theme.docz.mq({
@@ -29,12 +34,11 @@ const Wrapper = styled('div')`
   width: 280px;
   min-width: 280px;
   min-height: 100vh;
-  background: ${(p: WrapperProps) => p.theme.docz.colors.sidebarBg};
+  background: ${sidebarBg};
   transition: transform 0.2s, background 0.3s;
   z-index: 100;
   ${position};
-
-  ${p => p.theme.docz.styles.sidebar};
+  ${get('styles.sidebar')};
 
   dl {
     padding: 0;
@@ -70,8 +74,9 @@ const Menus = styled('nav')`
 
 const Empty = styled('div')`
   flex: 1;
-  opacity: 0.6;
+  opacity: 0.7;
   padding: 0 24px;
+  color: ${sidebarText};
 `
 
 const Footer = styled('div')`
@@ -80,14 +85,18 @@ const Footer = styled('div')`
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  color: ${p => p.theme.docz.colors.footerText};
-  border-top: 1px dashed ${p => p.theme.docz.colors.border};
+  color: ${sidebarText};
+  border-top: 1px dashed ${sidebarBorder};
 `
 
 const FooterLink = styled('a')`
   padding: 0;
   margin: 0;
   margin-left: 5px;
+`
+
+const FooterLogo = styled(Docz)`
+  fill: ${sidebarText};
 `
 
 interface OpenProps {
@@ -107,10 +116,6 @@ const ToggleBackground = styled('div')`
   right: 0;
   cursor: pointer;
   z-index: 99;
-`
-
-const FooterLogo = styled(Docz)`
-  fill: ${p => p.theme.docz.colors.footerText};
 `
 
 interface SidebarState {
@@ -199,8 +204,8 @@ class SidebarBase extends Component<SidebarProps, SidebarState> {
     const { showing } = this.state
 
     if (window && typeof window !== 'undefined' && !isDesktop) {
-      !showing && document.documentElement.classList.add('with-overlay')
-      showing && document.documentElement.classList.remove('with-overlay')
+      !showing && document.documentElement!.classList.add('with-overlay')
+      showing && document.documentElement!.classList.remove('with-overlay')
     }
   }
 

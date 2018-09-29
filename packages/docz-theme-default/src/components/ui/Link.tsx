@@ -3,16 +3,18 @@ import { SFC } from 'react'
 import styled from 'react-emotion'
 import { Link as BaseLink } from 'docz'
 
+import { get } from '@utils/theme'
+
 export const LinkStyled = styled('a')`
   &,
   &:visited,
   &:active {
     text-decoration: none;
-    color: ${p => p.theme.docz.colors.link};
+    color: ${get('colors.link')};
   }
 
   &:hover {
-    color: ${p => p.theme.docz.colors.link};
+    color: ${get('colors.link')};
   }
 `
 

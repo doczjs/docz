@@ -23,6 +23,7 @@ const externalList = [
   'polished/lib/color/rgba',
   'polished/lib/color/lighten',
   'polished/lib/color/darken',
+  'polished/lib/mixins/placeholder',
   'react-codemirror2',
   'react-dom/server',
   'react-feather',
@@ -41,10 +42,7 @@ const externalList = [
   'react-sizes',
 ]
 
-const internals = [
-  'normalize.css',
-  'codemirror/lib/codemirror.css'
-]
+const internals = ['normalize.css', 'codemirror/lib/codemirror.css']
 
 const deps = Object.keys(pkg.dependencies)
 const externals = deps
@@ -115,8 +113,8 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
-      }
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
   resolve: {
@@ -126,6 +124,12 @@ module.exports = {
       path.resolve('../../node_modules'),
       path.resolve('./src'),
     ],
+    alias: {
+      '@ui': path.resolve(__dirname, 'src/components/ui'),
+      '@shared': path.resolve(__dirname, 'src/components/shared'),
+      '@styles': path.resolve(__dirname, 'src/styles'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
+    },
   },
   optimization: {
     nodeEnv: ENV,

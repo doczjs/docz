@@ -94,6 +94,7 @@ const config = {
     link: colors.blue,
     footerText: colors.grayDark,
     sidebarBg: colors.grayExtraLight,
+    sidebarPrimary: null,
     sidebarText: colors.dark,
     background: colors.white,
     border: colors.grayLight,

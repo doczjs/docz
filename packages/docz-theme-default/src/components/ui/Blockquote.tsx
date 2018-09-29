@@ -1,13 +1,14 @@
 import styled from 'react-emotion'
+import { get } from '@utils/theme'
 
 export const Blockquote = styled('blockquote')`
-  background: ${p => p.theme.docz.colors.blockquoteBg};
-  border-left: 5px solid ${p => p.theme.docz.colors.blockquoteBorder};
-  color: ${p => p.theme.docz.colors.blockquoteColor};
-  ${p => p.theme.docz.styles.blockquote};
+  background: ${get('colors.blockquoteBg')};
+  border-left: 5px solid ${get('colors.blockquoteBorder')};
+  color: ${get('colors.blockquoteColor')};
+  ${get('styles.blockquote')};
 
   & > p {
     margin: 0;
-    color: ${p => p.theme.docz.colors.blockquoteColor};
+    color: ${get('colors.blockquoteColor')};
   }
 `

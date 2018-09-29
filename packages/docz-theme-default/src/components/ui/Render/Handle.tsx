@@ -2,6 +2,8 @@ import lighten from 'polished/lib/color/lighten'
 import darken from 'polished/lib/color/darken'
 import styled, { css } from 'react-emotion'
 
+import { get } from '@utils/theme'
+
 export const HANDLE_SIZE = '20px'
 
 interface HandleProps {
@@ -9,6 +11,10 @@ interface HandleProps {
   horizontal: boolean
   theme?: any
 }
+
+const borderColor = get('colors.border')
+const preBg = get('colors.preBg')
+const mode = get('mode')
 
 const line = (position: string) => (p: HandleProps) => css`
   content: '';
@@ -18,9 +24,9 @@ const line = (position: string) => (p: HandleProps) => css`
   left: ${p.horizontal ? position : '50%'};
   width: ${p.horizontal ? '2px' : '25px'};
   height: ${p.horizontal ? '25px' : '2px'};
-  background: ${p.theme.docz.mode === 'light'
-    ? darken(0.05, p.theme.docz.colors.border)
-    : lighten(0.06, p.theme.docz.colors.border)};
+  background: ${mode(p) === 'light'
+    ? darken(0.05, borderColor(p))
+    : lighten(0.06, borderColor(p))};
   transform: translate(-50%, -50%);
 `
 
@@ -36,9 +42,9 @@ export const Handle = styled('div')`
   display: block;
   width: ${whenHorizontal(HANDLE_SIZE, 'calc(100% + 5px)')};
   height: ${handleHeight};
-  border: 1px solid ${p => lighten(0.03, p.theme.docz.colors.border)};
+  border: 1px solid ${p => lighten(0.03, borderColor(p))};
   border-radius: ${whenHorizontal('0 4px 4px 0', '0 0 4px 4px')};
-  background: ${p => darken(0.01, p.theme.docz.colors.preBg)};
+  background: ${p => darken(0.01, preBg(p))};
 
   ${whenHorizontal(
     `

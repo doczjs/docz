@@ -4,6 +4,8 @@ import styled from 'react-emotion'
 import Hash from 'react-feather/dist/icons/hash'
 import { Link } from 'docz'
 
+import { get } from '@utils/theme'
+
 const Icon = styled(Hash)`
   position: absolute;
   display: inline-block;
@@ -11,13 +13,13 @@ const Icon = styled(Hash)`
   left: -28px;
   opacity: 0;
   transition: opacity 0.2s;
-  color: ${p => p.theme.docz.colors.primary};
+  color: ${get('colors.primary')};
 `
 
 const Heading = styled('h2')`
   position: relative;
   margin: 50px 0 20px;
-  ${p => p.theme.docz.mq(p.theme.docz.styles.h2)};
+  ${p => p.theme.docz.mq(get('styles.h2')(p))};
 
   &:hover ${Icon.toString()} {
     opacity: 1;

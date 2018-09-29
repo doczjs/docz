@@ -7,11 +7,12 @@ import styled from 'react-emotion'
 
 import { ButtonLink } from './Button'
 import { GithubLink, Sidebar, Main } from '../shared'
+import { get } from '@utils/theme'
 
 const Wrapper = styled('div')`
   flex: 1;
-  color: ${p => p.theme.docz.colors.text};
-  background: ${p => p.theme.docz.colors.background};
+  color: ${get('colors.text')};
+  background: ${get('colors.background')};
 `
 
 export const Container = styled('div')`
@@ -28,11 +29,11 @@ const EditPage = styled(ButtonLink.withComponent('a'))`
   padding: 2px 8px;
   margin: 8px;
   border-radius: 3px;
-  border: 1px solid ${p => p.theme.docz.colors.border};
+  border: 1px solid ${get('colors.border')};
   opacity: 0.7;
   transition: opacity 0.4s;
   font-size: 14px;
-  color: ${p => p.theme.docz.colors.text};
+  color: ${get('colors.text')};
   text-decoration: none;
   text-transform: uppercase;
 

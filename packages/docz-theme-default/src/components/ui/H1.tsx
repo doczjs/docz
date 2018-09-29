@@ -1,4 +1,5 @@
 import styled from 'react-emotion'
+import { get } from '@utils/theme'
 
 export const H1 = styled('h1')`
   position: relative;
@@ -13,6 +14,6 @@ export const H1 = styled('h1')`
     left: 0;
     width: 35%;
     height: 2px;
-    background: ${p => p.theme.docz.colors.primary};
+    background: ${get('colors.primary')};
   }
 `

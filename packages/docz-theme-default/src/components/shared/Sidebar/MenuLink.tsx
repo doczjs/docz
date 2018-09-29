@@ -4,6 +4,7 @@ import { Link, MenuItem, ThemeConfig } from 'docz'
 import styled, { css } from 'react-emotion'
 
 import { MenuHeadings } from './MenuHeadings'
+import { get } from '@utils/theme'
 
 interface WrapperProps {
   active: boolean
@@ -30,7 +31,7 @@ const Wrapper = styled('div')`
     left: 24px;
     width: 0;
     height: calc(100% - 36px);
-    border-left: 1px dashed ${p => p.theme.docz.colors.border};
+    border-left: 1px dashed ${get('colors.sidebarBorder')};
     transition: width 0.2s;
   }
 
@@ -53,7 +54,7 @@ export const linkStyle = ({ colors }: any) => css`
 
   &:hover,
   &.active {
-    color: ${colors.primary};
+    color: ${colors.sidebarPrimary || colors.primary};
     font-weight: 600;
   }
 `

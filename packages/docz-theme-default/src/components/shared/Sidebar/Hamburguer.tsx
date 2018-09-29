@@ -2,6 +2,8 @@ import * as React from 'react'
 import { SFC } from 'react'
 import styled from 'react-emotion'
 
+import { get } from '@utils/theme'
+
 interface OpenProps {
   opened: boolean
 }
@@ -20,6 +22,13 @@ const Icon = styled('div')`
     scale(${(p: OpenProps) => (p.opened ? 0.8 : 1)});
 `
 
+const sidebarBg = get('colors.sidebarBg')
+const sidebarPrimary = get('colors.sidebarPrimary')
+const sidebarText = get('colors.sidebarText')
+const primaryColor = get('colors.primary')
+const backgroundColor = get('colors.background')
+const textColor = get('colors.text')
+
 const IconLine = styled('span')`
   content: '';
   display: block;
@@ -28,7 +37,7 @@ const IconLine = styled('span')`
   height: 2px;
   left: 0;
   right: 0;
-  background: ${p => p.theme.docz.colors.text};
+  background: ${p => (p.opened ? sidebarText(p) : textColor(p))};
   transition: transform 0.3s, opacity 0.3s;
 
   &:nth-child(1) {
@@ -66,8 +75,7 @@ const ToggleButton = styled('button')`
   transition: transform 0.3s;
   outline: none;
   border: none;
-  background: ${p =>
-    p.opened ? p.theme.docz.colors.sidebarBg : p.theme.docz.colors.background};
+  background: ${p => (p.opened ? sidebarBg(p) : backgroundColor(p))};
   border-radius: ${p => (p.opened ? '0 0 3px 0' : '3px')};
 
   &:before {
@@ -77,7 +85,7 @@ const ToggleButton = styled('button')`
     left: 0;
     width: calc(100% + 1px);
     height: ${(p: OpenProps) => (p.opened ? '3px' : 0)};
-    background: ${p => p.theme.docz.colors.primary};
+    background: ${p => sidebarPrimary(p) || primaryColor(p)};
   }
 
   ${p =>

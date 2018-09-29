@@ -1,5 +1,6 @@
 import styled from 'react-emotion'
+import { get } from '@utils/theme'
 
 export const Paragraph = styled('p')`
-  color: ${p => p.theme.docz.colors.text};
+  color: ${get('colors.text')};
 `

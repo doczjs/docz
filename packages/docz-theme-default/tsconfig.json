@@ -4,7 +4,14 @@
     "declaration": false,
     "outDir": "dist",
     "rootDir": "src",
-    "typeRoots": ["node_modules/@types", "src/types"]
+    "typeRoots": ["node_modules/@types", "src/types"],
+    "baseUrl": "src",
+    "paths": {
+      "@ui/*": ["components/ui/*"],
+      "@shared/*": ["components/shared/*"],
+      "@styles/*": ["styles/*"],
+      "@utils/*": ["utils/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules/**"]

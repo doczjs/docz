@@ -4,6 +4,11 @@ import { Docs, Entry, Link } from 'docz'
 import styled from 'react-emotion'
 import get from 'lodash.get'
 
+import { get as themeGet } from '@utils/theme'
+
+const sidebarPrimary = themeGet('colors.sidebarPrimary')
+const primaryColor = themeGet('colors.primary')
+
 const Submenu = styled('div')`
   display: flex;
   flex-direction: column;
@@ -21,7 +26,7 @@ const SmallLink = styled(Link)`
   &,
   &:visited,
   &.active {
-    color: ${p => p.theme.docz.colors.sidebarText};
+    color: ${themeGet('colors.sidebarText')};
   }
 
   &.active {
@@ -33,11 +38,11 @@ const SmallLink = styled(Link)`
     position: absolute;
     display: block;
     content: '';
-    top: 0;
+    top: 1px;
     left: 0;
     width: 0;
     height: 20px;
-    background: ${p => p.theme.docz.colors.primary};
+    background: ${p => sidebarPrimary(p) || primaryColor(p)};
     transition: width 0.2s;
   }
 
