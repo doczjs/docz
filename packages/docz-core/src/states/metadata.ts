@@ -4,19 +4,20 @@ import equal from 'fast-deep-equal'
 import { State, Params } from '../DataServer'
 import { Config } from '../commands/args'
 import * as paths from '../config/paths'
+import { Entries } from '../Entries'
 import { parseSourceFiles } from '../utils/jsdoc'
 
-const update = (config: Config) => async (p: Params) => {
+const update = (entries: Entries, config: Config) => async (p: Params) => {
   const oldMeta = p.state.metadata
   const newMeta = {
-    annotations: await parseSourceFiles(config),
+    annotations: await parseSourceFiles(entries, config),
   }
   if (newMeta && !equal(oldMeta, newMeta)) {
     p.setState('metadata', newMeta)
   }
 }
 
-export const state = (config: Config): State => {
+export const state = (entries: Entries, config: Config): State => {
   const src = path.relative(paths.root, config.src)
   const files = path.join(src, config.files)
   const watcher = chokidar.watch(files, {
@@ -26,9 +27,9 @@ export const state = (config: Config): State => {
   })
 
   return {
-    init: update(config),
+    init: update(entries, config),
     update: async params => {
-      const updateWithConfig = update(config)
+      const updateWithConfig = update(entries, config)
 
       watcher.on('add', async () => updateWithConfig(params))
       watcher.on('change', async () => updateWithConfig(params))

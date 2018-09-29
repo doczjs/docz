@@ -36,6 +36,7 @@
     "babylon": "^6.18.0",
     "cache-loader": "^1.2.5",
     "chalk": "^2.4.1",
+    "child_process": "^1.0.2",
     "chokidar": "^2.0.4",
     "common-tags": "^1.8.0",
     "connect-history-api-fallback": "^1.5.0",

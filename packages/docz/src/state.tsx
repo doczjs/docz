@@ -46,7 +46,7 @@ export interface Config {
 }
 
 export interface Metadata {
-  annotations?: AnnotationsAST
+  annotations?: AnnotationsMap
 }
 
 type Import = () => Promise<MSXImport>

@@ -45,7 +45,7 @@ export const dev = async (args: Config) => {
   dataServer.register([
     states.config(newConfig),
     states.entries(entries, newConfig),
-    states.metadata(newConfig)
+    states.metadata(entries, config),
   ])
 
   try {

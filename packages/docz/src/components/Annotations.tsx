@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Metadata, metadataSelector, state } from '../state'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 
 interface MetaAST {
@@ -41,7 +42,9 @@ interface NodeAST {
   scope?: string
 }
 
-export type AnnotationsAST = NodeAST[]
+export interface AnnotationsMap {
+  [path: string]: NodeAST[]
+}
 
 interface ThemeComponents {
   [key: string]: React.ComponentType<any>
@@ -74,9 +77,19 @@ const getSignature = (def: NodeAST) => {
   )}`
 }
 
+const findDefinition = (
+  of: ComponentWithMeta,
+  ann: AnnotationsMap
+): NodeAST | null | undefined => {
+  const { filename, name } = of.__docz
+  if (!ann[filename]) return null
+  return ann[filename].find(node => node.name === name)
+}
+
 type ComponentWithMeta = React.ComponentType & {
   __docz: {
-    jsdoc: NodeAST | null
+    name: string
+    filename: string
   }
 }
 
@@ -87,18 +100,21 @@ interface Props {
 }
 
 const BaseAnnotations: React.SFC<Props> = ({ of, components }) => {
-  const def = of.__docz.jsdoc
   const { inlineCode: Code, p: Paragraph } = components
 
-  if (!def) {
-    console.warn(`Annotation not found for: ${of}`)
-    return null
-  }
   return (
-    <div>
-      <Code>{getSignature(def)}</Code>
-      <Paragraph>{def.description}</Paragraph>
-    </div>
+    <state.Consumer select={[metadataSelector]}>
+      {(metadata: Metadata) => {
+        const def = findDefinition(of, metadata.annotations || {})
+        if (!def) return 'Not found'
+        return (
+          <div>
+            <Code>{getSignature(def)}</Code>
+            <Paragraph>{def.description}</Paragraph>
+          </div>
+        )
+      }}
+    </state.Consumer>
   )
 }
 

@@ -9,8 +9,6 @@
   "dependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
-    "babel-plugin-docz": "mpivaa/babel-plugin-docz",
-    "babel-preset-docz": "^0.12.2",
     "emotion": "^9.2.8",
     "jsdoc": "^3.5.5",
     "prop-types": "^15.6.2",

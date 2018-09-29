@@ -21,8 +21,9 @@ export const build = async (args: Config) => {
   dataServer.register([
     states.config(config),
     states.entries(entries, config),
-    states.metadata(config),
+    states.metadata(entries, config),
   ])
+
   try {
     await Entries.writeApp(config)
     await dataServer.init()
