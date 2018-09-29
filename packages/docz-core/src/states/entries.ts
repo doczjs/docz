@@ -30,12 +30,15 @@ export const state = (entries: Entries, config: Config): State => {
   const files = path.join(src, config.files)
   const watcher = chokidar.watch(files, {
     cwd: paths.root,
-    ignored: /(^|[\/\\])\../,
+    ignored: /(((^|[\/\\])\..+)|(node_modules))/,
     persistent: true,
   })
 
+  const handleClose = () => watcher.close()
+
   return {
     init: updateEntries(entries),
+    close: handleClose,
     update: async params => {
       const update = updateEntries(entries)
 
@@ -47,7 +50,7 @@ export const state = (entries: Entries, config: Config): State => {
         }
       })
 
-      return () => watcher.close()
+      return handleClose
     },
   }
 }

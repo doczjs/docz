@@ -27,6 +27,7 @@ export interface Params {
 export interface State {
   init: (params: Params) => Promise<any>
   update: (params: Params) => any
+  close: (params: Params) => any
 }
 
 export class DataServer {
@@ -52,7 +53,7 @@ export class DataServer {
     await Promise.all(
       Array.from(this.states).map(
         async state =>
-          state.init &&
+          isFn(state.init) &&
           state.init({
             state: { ...this.state },
             setState: this.setState(),
@@ -75,10 +76,23 @@ export class DataServer {
     }
   }
 
+  public async close(): Promise<void> {
+    await Promise.all(
+      Array.from(this.states).map(
+        async state =>
+          isFn(state.close) &&
+          state.close({
+            state: { ...this.state },
+            setState: this.setState(),
+          })
+      )
+    )
+  }
+
   private handleConnection(socket: WS): () => void {
     const states = Array.from(this.states).map(
       async state =>
-        state.update &&
+        isFn(state.update) &&
         state.update({
           state: this.state,
           setState: this.setState(socket),
