@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.12.5"></a>
+## [0.12.5](https://github.com/pedronauck/docz/compare/v0.12.4...v0.12.5) (2018-09-30)
+
+
+### Bug Fixes
+
+* **docz-core:** close dataserver connection on build ([0f6bd7b](https://github.com/pedronauck/docz/commit/0f6bd7b))
+* **docz-theme-default:** adjust theme colors ([eed7212](https://github.com/pedronauck/docz/commit/eed7212))
+
+
+
+
+
 <a name="0.12.4"></a>
 ## [0.12.4](https://github.com/pedronauck/docz/compare/v0.12.3...v0.12.4) (2018-09-28)
 
