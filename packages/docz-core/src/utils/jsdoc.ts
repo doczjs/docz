@@ -1,12 +1,13 @@
 // @ts-ignore
-import parser from 'jsdoc3-parser'
-import glob from 'fast-glob'
+import * as fs from 'fs-extra'
 import * as path from 'path'
-import { Config } from '../commands/args'
-import * as paths from '../config/paths'
-import { Entries } from '../Entries'
-import fs from 'fs'
 import cp from 'child_process'
+import glob from 'fast-glob'
+import parser from 'jsdoc3-parser'
+
+import * as paths from '../config/paths'
+import { Config } from '../commands/args'
+import { Entries } from '../Entries'
 
 interface MetaAST {
   range: number[]
@@ -75,26 +76,12 @@ function findImports(code: string): RegExpMatchArray {
   return imports
 }
 
-<<<<<<< HEAD
-export async function parseSourceFiles(config: Config): Promise<JSDocAST>  {
-  const files = await findSourceFiles(config)
-
-  const promises = files.map(async (file) => {
-    return new Promise<JSDocAST>((resolve, reject) => {
-      return parser(file, (error: string | null, ast: JSDocAST) => resolve(ast))
-    })
-  })
-
-  const asts = await Promise.all(promises)
-  return asts.reduce((acc, ast) => acc.concat(ast), [])
-}
-=======
 function resolveModule(module: string, relativePath: string): string | null {
   const lookups = [
     `${module}.js`,
+    `${module}.ts`,
     `${module}.jsx`,
     `${module}.mjs`,
-    `${module}.ts`,
     `${module}.tsx`,
     `${module}/index.js`,
     `${module}/index.ts`,
@@ -149,8 +136,6 @@ export async function parseSourceFiles(
     Promise.resolve([])
   )
 
-  console.log(filepaths)
-
   return filepaths.reduce(
     (acc, filename) => {
       try {
@@ -165,4 +150,3 @@ export async function parseSourceFiles(
     {} as AnnotationsMap
   )
 }
->>>>>>> chore: use recursive module resolution to discover files
