@@ -129,7 +129,8 @@ const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
         </Thead>
         <Tbody>
           {props &&
-            Object.keys(props).map((name: string) => {
+            component.propTypes &&
+            Object.keys(component.propTypes).map((name: string) => {
               const prop = props[name]
 
               if (!prop.flowType && !prop.type) return null
