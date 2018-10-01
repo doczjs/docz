@@ -1,0 +1,27 @@
+{
+  "name": "babel-plugin-docz",
+  "version": "0.12.2",
+  "description": "Add superpowers to docz",
+  "main": "lib/index.js",
+  "repository": "https://github.com/mpivaa/babel-plugin-docz",
+  "author": "Marcelo Piva <m.pivaa@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src/index.js -o lib/index.js",
+    "dev": "babel src/index.js -o lib/index.js --watch"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-generator": "^6.26.1",
+    "babel-literal-to-ast": "^2.0.0",
+    "babel-template": "^6.26.0",
+    "jsdoc": "^3.5.5"
+  },
+  "devDependencies": {
+    "babel-jest": "^23.6.0",
+    "jest": "^23.6.0"
+  }
+}
