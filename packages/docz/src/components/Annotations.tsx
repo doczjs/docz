@@ -36,6 +36,8 @@ interface NodeAST {
   undocumented?: boolean
   params?: ParamAST[]
   returns?: ReturnAST[]
+  since?: string
+  examples?: string[]
   longname: string
   kind: string
   memberof?: string
@@ -77,13 +79,8 @@ const getSignature = (def: NodeAST) => {
   )}`
 }
 
-const findDefinition = (
-  of: ComponentWithMeta,
-  ann: AnnotationsMap
-): NodeAST | null | undefined => {
-  const { filename, name } = of.__docz
-  if (!ann[filename]) return null
-  return ann[filename].find(node => node.name === name)
+const findDef = (of: string, ann: NodeAST[]): NodeAST | null | undefined => {
+  return ann.find(node => node.name === of)
 }
 
 type ComponentWithMeta = React.ComponentType & {
@@ -99,20 +96,73 @@ interface Props {
   components: ThemeComponents
 }
 
+interface WithDef {
+  def: NodeAST
+}
+
+interface WithOf {
+  of: ComponentWithMeta
+}
+
 const BaseAnnotations: React.SFC<Props> = ({ of, components }) => {
-  const { inlineCode: Code, p: Paragraph } = components
+  const { inlineCode: Code, p: P, h3: H3, h4: H4, pre: Pre } = components
 
   return (
     <state.Consumer select={[metadataSelector]}>
       {(metadata: Metadata) => {
-        const def = findDefinition(of, metadata.annotations || {})
-        if (!def) return 'Not found'
-        return (
-          <div>
-            <Code>{getSignature(def)}</Code>
-            <Paragraph>{def.description}</Paragraph>
-          </div>
-        )
+        const { name, filename } = of.__docz
+        const { annotations } = metadata
+        if (!annotations) return null
+
+        const fileAnns = annotations[filename] || []
+
+        const def = findDef(name, fileAnns)
+        if (!def) return `Definition not found for ${name}`
+
+        const Signature = ({ def }: WithDef) => <Code>{getSignature(def)}</Code>
+        const Since = ({ def: { since } }: WithDef) =>
+          since ? <P>Since: {since}</P> : null
+        const Examples = ({ def: { examples } }: WithDef) =>
+          examples ? (
+            <>
+              {examples.map(eg => (
+                <Pre key={eg}>{eg}</Pre>
+              ))}
+            </>
+          ) : null
+        const FunctionAnnotation = ({ def }: WithDef) => {
+          return (
+            <div>
+              <Signature def={def} />
+              <Since def={def} />
+              <P>{def.description}</P>
+              <Examples def={def} />
+            </div>
+          )
+        }
+
+        const ClassAnnotation = ({ def, of }: WithDef & WithOf) => {
+          const properties = Object.getOwnPropertyNames(of.prototype)
+          const scopedAnns = fileAnns.filter(ann => ann.memberof === name)
+          return (
+            <div>
+              <H3>{def.name}</H3>
+              <P>{def.description}</P>
+              <H4>Methods</H4>
+              {properties.map(prop => {
+                const def = findDef(prop, scopedAnns)
+                return def ? <FunctionAnnotation key={prop} def={def} /> : null
+              })}
+            </div>
+          )
+        }
+
+        const ObjectAnnotation = ({
+          function: FunctionAnnotation,
+          class: ClassAnnotation,
+        } as any)[def.kind]
+
+        return <ObjectAnnotation def={def} of={of} />
       }}
     </state.Consumer>
   )
