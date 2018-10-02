@@ -127,13 +127,13 @@ const findSourceFiles = async (
     return findSourceFiles(config, filepath, await paths)
   }
 
-  const isFirstVisit = (imp: string) => found.indexOf(imp) === -1
+  const isFirstVisit = (path: string) => found.indexOf(path) === -1
   const isPathResolved = (path: string | null): path is string => path !== null
 
   return imports
-    .filter(isFirstVisit)
     .map(_ => resolveModule(_, relativePath))
     .filter(isPathResolved)
+    .filter(isFirstVisit)
     .reduce(reducer, initial)
 }
 
