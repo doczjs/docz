@@ -20,20 +20,24 @@
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
     "fix:tslint": "tslint --fix --project .",
-    "tslint": "tslint --project ."
+    "tslint": "tslint --project .",
+    "test": "jest"
   },
   "dependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
+    "@babel/template": "^7.1.2",
     "babel-core": "7.0.0-bridge.0",
-    "babel-generator": "^6.26.1",
     "babel-literal-to-ast": "^2.0.0",
-    "babel-template": "^6.26.0",
-    "jsdoc": "^3.5.5"
+    "jsdoc": "^3.5.5",
+    "ts-jest": "^23.10.3"
   },
   "devDependencies": {
     "babel-jest": "^23.6.0",
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "@types/babel__template": "^7.0.0",
+    "@types/jest": "^23.3.2",
+    "@types/mocha": "^5.2.5"
   }
 }

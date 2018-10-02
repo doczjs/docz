@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`works 1`] = `
+"\\"use strict\\";
+
+/**
+ * Some description
+ */
+function get(object, path) {
+  return object[path];
+}
+/**
+ * Some description
+ */
+
+
+get.__docz = {
+  name: \\"get\\",
+  filename: \\"/Users/marcelopiva/workspace/docz/packages/babel-plugin-docz/tests/fixtures/example.js\\"
+};
+
+class Abc {
+  /**
+   * Some description
+   */
+  method() {
+    return null;
+  }
+
+}
+
+Abc.__docz = {
+  name: \\"Abc\\",
+  filename: \\"/Users/marcelopiva/workspace/docz/packages/babel-plugin-docz/tests/fixtures/example.js\\"
+};"
+`;

@@ -58,24 +58,41 @@ const findImports = (code: string): RegExpMatchArray => {
   const imports: string[] = []
   let m
 
-  while (true) {
+  do {
     m = regex.exec(code)
-    if (m === null) break
-    // This is necessary to avoid infinite loops with zero-width matches
-    if (m.index === regex.lastIndex) {
-      regex.lastIndex++
+    if (m) {
+      const [, imp] = m
+      imports.push(imp)
     }
-
-    // The result can be accessed through the `m`-variable.
-    m.forEach((match, groupIndex) => {
-      if (groupIndex > 0) imports.push(match)
-    })
-  }
+  } while (m)
 
   return imports
 }
 
+interface AliasConfig {
+  [alias: string]: string
+}
+
+/**
+ * See https://github.com/Microsoft/TypeScript/blob/9c71eaf59040ae75343da8cdff01344020f5bba2/src/compiler/moduleNameResolver.ts#L544
+ */
+const resolveAliases = (module: string, aliases: AliasConfig): string => {
+  return Object.keys(aliases).reduce<string>((module, alias) => {
+    const matcher = new RegExp(`^${alias.slice().replace(/\*/, '(.*)')}$`)
+    const m = matcher.exec(module)
+    if (!m) {
+      return module
+    }
+
+    const path = aliases[alias]
+
+    const [, sub] = m
+    return path.slice().replace(/\*/, sub)
+  }, module)
+}
+
 const resolveModule = (module: string, relativePath: string): string | null => {
+  module = resolveAliases(module, {}) // TODO: Read tsconfig.json and pass paths here
   const lookups = [
     `${module}.js`,
     `${module}.ts`,
@@ -111,7 +128,9 @@ const findSourceFiles = async (
     return filepath ? findSourceFiles(config, filepath, await paths) : paths
   }
 
-  return imports.reduce(reducer, initial)
+  return imports
+    .filter(imp => found.indexOf(imp) === -1)
+    .reduce(reducer, initial)
 }
 
 const pathsFromEntries = (config: Config, src: string, filespaths: string[]) =>
