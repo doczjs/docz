@@ -1,13 +1,12 @@
 // @ts-ignore
 import * as fs from 'fs-extra'
 import * as path from 'path'
-import cp from 'child_process'
-import glob from 'fast-glob'
-import parser from 'jsdoc3-parser'
+import { shellSync } from 'execa'
 
 import * as paths from '../config/paths'
 import { Config } from '../commands/args'
 import { Entries } from '../Entries'
+import { read } from '../utils/fs'
 
 interface MetaAST {
   range: number[]
@@ -53,7 +52,7 @@ export interface AnnotationsMap {
   [path: string]: NodeAST[]
 }
 
-function findImports(code: string): RegExpMatchArray {
+const findImports = (code: string): RegExpMatchArray => {
   const regex = /\s*from\s*["']\s*([.@\w/_-]+)\s*["'][\s*;?]?$/gm
 
   const imports: string[] = []
@@ -76,7 +75,7 @@ function findImports(code: string): RegExpMatchArray {
   return imports
 }
 
-function resolveModule(module: string, relativePath: string): string | null {
+const resolveModule = (module: string, relativePath: string): string | null => {
   const lookups = [
     `${module}.js`,
     `${module}.ts`,
@@ -89,64 +88,59 @@ function resolveModule(module: string, relativePath: string): string | null {
     `${module}/index.tsx`,
     `${module}/index.mjs`,
   ]
+
   const def = lookups.find(lookup => {
     const filepath = path.resolve(relativePath, lookup)
-    return fs.existsSync(filepath)
+    return fs.pathExistsSync(filepath)
   })
-  if (def) {
-    return path.resolve(relativePath, def)
-  }
-  return null
+
+  return def ? path.resolve(relativePath, def) : null
 }
 
-async function findSourceFiles(
+const findSourceFiles = async (
   config: Config,
   filepath: string,
   found: string[]
-): Promise<string[]> {
-  const relativePath = path.dirname(filepath)
-  const code = await new Promise<string>((resolve, reject) => {
-    return fs.readFile(filepath, (err, code) => {
-      if (err) return reject(err)
-      resolve(code.toString())
-    })
-  })
-
+): Promise<string[]> => {
+  const code = await read(filepath)
   const imports = findImports(code)
-  return imports.reduce<Promise<string[]>>(async (paths, imp) => {
+  const relativePath = path.dirname(filepath)
+  const initial = Promise.resolve(found.concat(filepath))
+  const reducer = async (paths: Promise<string[]>, imp: string) => {
     const filepath = resolveModule(imp, relativePath)
-    if (filepath) {
-      return findSourceFiles(config, filepath, await paths)
-    }
-    return paths
-  }, Promise.resolve(found.concat(filepath)))
+    return filepath ? findSourceFiles(config, filepath, await paths) : paths
+  }
+
+  return imports.reduce(reducer, initial)
 }
 
-export async function parseSourceFiles(
+const pathsFromEntries = (config: Config, src: string, filespaths: string[]) =>
+  filespaths.reduce(async (paths: Promise<string[]>, entry: string) => {
+    const filepath = path.resolve(src, entry)
+    return findSourceFiles(config, filepath, await paths)
+  }, Promise.resolve([]))
+
+export const jsdocParse = (filepath: string) => {
+  try {
+    const { stdout } = shellSync(`jsdoc -X ${filepath}`)
+    return JSON.parse(stdout)
+  } catch (e) {
+    return null
+  }
+}
+
+export const parseSourceFiles = async (
   entries: Entries,
   config: Config
-): Promise<AnnotationsMap> {
+): Promise<AnnotationsMap> => {
   const src = path.resolve(paths.root, config.src)
   const entriesPaths = Object.keys(await entries.get())
-  const filepaths = await entriesPaths.reduce<Promise<string[]>>(
-    async (paths, entry) => {
-      const filepath = path.resolve(src, entry)
-      return findSourceFiles(config, filepath, await paths)
-    },
-    Promise.resolve([])
-  )
+  const filepaths = await pathsFromEntries(config, src, entriesPaths)
 
-  return filepaths.reduce(
-    (acc, filename) => {
-      try {
-        acc[filename] = JSON.parse(
-          cp.execSync(`jsdoc -X ${filename}`).toString()
-        ) as NodeAST[]
-        return acc
-      } catch (e) {
-        return acc
-      }
-    },
-    {} as AnnotationsMap
-  )
+  const reducer = (acc: AnnotationsMap, filepath: string) => {
+    const parsed = jsdocParse(filepath)
+    return parsed ? { ...acc, [filepath]: parsed } : acc
+  }
+
+  return filepaths.reduce(reducer, {})
 }

@@ -34,11 +34,9 @@ export const state = (entries: Entries, config: Config): State => {
     persistent: true,
   })
 
-  const handleClose = () => watcher.close()
-
   return {
     init: updateEntries(entries),
-    close: handleClose,
+    close: watcher.close,
     update: async params => {
       const update = updateEntries(entries)
 
@@ -50,7 +48,7 @@ export const state = (entries: Entries, config: Config): State => {
         }
       })
 
-      return handleClose
+      return watcher.close
     },
   }
 }

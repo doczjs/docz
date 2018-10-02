@@ -2,40 +2,48 @@ import * as path from 'path'
 import chokidar from 'chokidar'
 import equal from 'fast-deep-equal'
 import { State, Params } from '../DataServer'
-import { Config } from '../commands/args'
+import get from 'lodash.get'
+
 import * as paths from '../config/paths'
 import { Entries } from '../Entries'
-import { parseSourceFiles } from '../utils/jsdoc'
+import { Config } from '../commands/args'
+import { parseSourceFiles, jsdocParse } from '../utils/jsdoc'
 
-const update = (entries: Entries, config: Config) => async (p: Params) => {
-  const oldMeta = p.state.metadata
-  const newMeta = {
-    annotations: await parseSourceFiles(entries, config),
-  }
-  if (newMeta && !equal(oldMeta, newMeta)) {
-    p.setState('metadata', newMeta)
+const initial = (entries: Entries, config: Config) => async (p: Params) => {
+  const annotations = await parseSourceFiles(entries, config)
+  p.setState('metadata', { annotations })
+}
+
+const update = (config: Config) => (p: Params) => async (filepath: string) => {
+  const old = get(p, 'state.metadata.annotations')
+  const fullpath = path.join(paths.root, config.src, filepath)
+  const newMeta = { ...old, [fullpath]: jsdocParse(fullpath) }
+
+  if (newMeta && !equal(old, newMeta)) {
+    p.setState('metadata', { annotations: newMeta })
   }
 }
 
 export const state = (entries: Entries, config: Config): State => {
   const src = path.relative(paths.root, config.src)
-  const files = path.join(src, config.files)
+  const files = path.join(src, '**/*.{js,jsx,ts,tsx,mjs}')
   const watcher = chokidar.watch(files, {
     cwd: paths.root,
-    ignored: /(^|[\/\\])\../,
+    ignored: /(((^|[\/\\])\..+)|(node_modules))/,
     persistent: true,
   })
 
   return {
-    init: update(entries, config),
+    init: initial(entries, config),
+    close: watcher.close,
     update: async params => {
-      const updateWithConfig = update(entries, config)
+      const updateWithConfig = update(config)
 
-      watcher.on('add', async () => updateWithConfig(params))
-      watcher.on('change', async () => updateWithConfig(params))
-      watcher.on('unlink', async () => updateWithConfig(params))
+      watcher.on('add', updateWithConfig(params))
+      watcher.on('change', updateWithConfig(params))
+      watcher.on('unlink', updateWithConfig(params))
 
-      return () => watcher.close()
+      return watcher.close
     },
   }
 }
