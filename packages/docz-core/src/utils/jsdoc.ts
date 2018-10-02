@@ -76,6 +76,7 @@ interface AliasConfig {
 /**
  * See https://github.com/Microsoft/TypeScript/blob/9c71eaf59040ae75343da8cdff01344020f5bba2/src/compiler/moduleNameResolver.ts#L544
  */
+// @ts-ignore
 const resolveAliases = (module: string, aliases: AliasConfig): string => {
   return Object.keys(aliases).reduce<string>((module, alias) => {
     const matcher = new RegExp(`^${alias.slice().replace(/\*/, '(.*)')}$`)
@@ -92,7 +93,7 @@ const resolveAliases = (module: string, aliases: AliasConfig): string => {
 }
 
 const resolveModule = (module: string, relativePath: string): string | null => {
-  module = resolveAliases(module, {}) // TODO: Read tsconfig.json and pass paths here
+  // const aliasPaths = resolveAliases(module, {}) TODO: Read tsconfig.json and pass paths here
   const lookups = [
     `${module}.js`,
     `${module}.ts`,
@@ -122,19 +123,20 @@ const findSourceFiles = async (
   const code = await read(filepath)
   const imports = findImports(code)
   const relativePath = path.dirname(filepath)
-  const initial = Promise.resolve(found.concat(filepath))
-  const reducer = async (paths: Promise<string[]>, filepath: string) => {
-    return findSourceFiles(config, filepath, await paths)
-  }
+  const initial = found.concat(filepath)
 
   const isFirstVisit = (path: string) => found.indexOf(path) === -1
   const isPathResolved = (path: string | null): path is string => path !== null
 
-  return imports
-    .map(_ => resolveModule(_, relativePath))
-    .filter(isPathResolved)
-    .filter(isFirstVisit)
-    .reduce(reducer, initial)
+  const pathsOfInnerModules = await Promise.all(
+    imports
+      .map(_ => resolveModule(_, relativePath))
+      .filter(isPathResolved)
+      .filter(isFirstVisit)
+      .map((filepath: string) => findSourceFiles(config, filepath, []))
+  )
+
+  return initial.concat(...pathsOfInnerModules)
 }
 
 const pathsFromEntries = (config: Config, src: string, filespaths: string[]) =>
@@ -143,7 +145,9 @@ const pathsFromEntries = (config: Config, src: string, filespaths: string[]) =>
     return findSourceFiles(config, filepath, await paths)
   }, Promise.resolve([]))
 
-export const jsdocParse = (filepath: string) => {
+export const jsdocParse = async (
+  filepath: string
+): Promise<NodeAST[] | null> => {
   try {
     const { stdout } = shellSync(`jsdoc -X ${filepath}`)
     return JSON.parse(stdout)
@@ -152,18 +156,30 @@ export const jsdocParse = (filepath: string) => {
   }
 }
 
+type AnnMap = AnnotationsMap
+
 export const parseSourceFiles = async (
   entries: Entries,
   config: Config
-): Promise<AnnotationsMap> => {
+): Promise<AnnMap> => {
   const src = path.resolve(paths.root, config.src)
   const entriesPaths = Object.keys(await entries.get())
   const filepaths = await pathsFromEntries(config, src, entriesPaths)
 
-  const reducer = (acc: AnnotationsMap, filepath: string) => {
-    const parsed = jsdocParse(filepath)
-    return parsed ? { ...acc, [filepath]: parsed } : acc
-  }
+  const parsedMaps = await Promise.all(
+    filepaths.map(async path => {
+      const parsed = await jsdocParse(path)
+      return parsed ? { [path]: parsed } : null
+    })
+  )
 
-  return filepaths.reduce(reducer, {})
+  const isNotNull = (m: AnnMap | null): m is AnnMap => m !== null
+
+  return parsedMaps.filter(isNotNull).reduce(
+    (acc: AnnMap, parsed) => ({
+      ...acc,
+      ...parsed,
+    }),
+    {}
+  )
 }
