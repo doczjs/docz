@@ -105,6 +105,12 @@ const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
     return null
   }
 
+  const includeDescription: boolean = Object.keys(props).some(
+    (name: string) =>
+      props[name] &&
+      typeof props[name].description !== 'undefined' &&
+      props[name].description !== ''
+  )
   const Table = components.table || 'table'
   const Thead = components.thead || 'thead'
   const Tr = components.tr || 'tr'
@@ -115,16 +121,18 @@ const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
 
   return (
     <Fragment>
-      <Table className="PropsTable">
+      <Table className="PropsTable" data-was-description-excluded={includeDescription ? 'false' : 'true'}>
         <Thead>
           <Tr>
             <Th className="PropsTable--property">Property</Th>
             <Th className="PropsTable--type">Type</Th>
             <Th className="PropsTable--required">Required</Th>
             <Th className="PropsTable--default">Default</Th>
-            <Th width="40%" className="PropsTable--description">
-              Description
-            </Th>
+            {includeDescription && (
+              <Th width="40%" className="PropsTable--description">
+                Description
+              </Th>
+            )}
           </Tr>
         </Thead>
         <Tbody>
@@ -142,7 +150,9 @@ const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
                     {prop.defaultValue &&
                       prop.defaultValue.value.replace(/\'/g, '')}
                   </Td>
-                  <Td>{prop.description && prop.description}</Td>
+                  {includeDescription && (
+                    <Td>{prop.description && prop.description}</Td>
+                  )}
                 </Tr>
               )
             })}
