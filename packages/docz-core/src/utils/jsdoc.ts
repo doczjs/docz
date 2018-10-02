@@ -123,13 +123,17 @@ const findSourceFiles = async (
   const imports = findImports(code)
   const relativePath = path.dirname(filepath)
   const initial = Promise.resolve(found.concat(filepath))
-  const reducer = async (paths: Promise<string[]>, imp: string) => {
-    const filepath = resolveModule(imp, relativePath)
-    return filepath ? findSourceFiles(config, filepath, await paths) : paths
+  const reducer = async (paths: Promise<string[]>, filepath: string) => {
+    return findSourceFiles(config, filepath, await paths)
   }
 
+  const isFirstVisit = (imp: string) => found.indexOf(imp) === -1
+  const isPathResolved = (path: string | null): path is string => path !== null
+
   return imports
-    .filter(imp => found.indexOf(imp) === -1)
+    .filter(isFirstVisit)
+    .map(_ => resolveModule(_, relativePath))
+    .filter(isPathResolved)
     .reduce(reducer, initial)
 }
 
