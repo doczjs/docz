@@ -121,7 +121,7 @@ const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
 
   return (
     <Fragment>
-      <Table className="PropsTable" data-was-description-excluded={includeDescription ? 'false' : 'true'}>
+      <Table className="PropsTable">
         <Thead>
           <Tr>
             <Th className="PropsTable--property">Property</Th>
