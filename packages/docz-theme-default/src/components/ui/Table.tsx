@@ -32,7 +32,6 @@ const TableStyled = styled('table')`
   }
 
   & thead th {
-    text-align: left;
     font-weight: 400;
     padding: 20px 20px;
 
