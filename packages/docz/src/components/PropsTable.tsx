@@ -1,9 +1,19 @@
 import * as React from 'react'
-import { Fragment, SFC, ComponentType } from 'react'
+import { CSSProperties, Fragment, SFC, ComponentType } from 'react'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 import capitalize from 'capitalize'
 
 import { humanize } from '../utils/humanize-prop'
+
+export interface StylesMap {
+  [s: string]: CSSProperties
+}
+
+const styles: StylesMap = {
+  thead: {
+    textAlign: 'left'
+  },
+}
 
 export interface EnumValue {
   value: string
@@ -116,7 +126,7 @@ const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
   return (
     <Fragment>
       <Table className="PropsTable">
-        <Thead>
+        <Thead style={styles.thead}>
           <Tr>
             <Th className="PropsTable--property">Property</Th>
             <Th className="PropsTable--type">Type</Th>
