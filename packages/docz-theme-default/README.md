@@ -114,9 +114,12 @@ const config = {
    * Styles
    */
   styles: {
+    html: {
+      fontSize: 16,
+    },
     body: {
       fontFamily: "'Source Sans Pro', Helvetica, sans-serif",
-      fontSize: 16,
+      fontSize: '1rem',
       lineHeight: 1.6,
     },
     container: {
