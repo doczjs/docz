@@ -105,6 +105,12 @@ const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
     return null
   }
 
+  const includeDescription: boolean = Object.keys(props).some(
+    (name: string) =>
+      props[name] &&
+      typeof props[name].description !== 'undefined' &&
+      props[name].description !== ''
+  )
   const Table = components.table || 'table'
   const Thead = components.thead || 'thead'
   const Tr = components.tr || 'tr'
@@ -122,9 +128,11 @@ const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
             <Th className="PropsTable--type">Type</Th>
             <Th className="PropsTable--required">Required</Th>
             <Th className="PropsTable--default">Default</Th>
-            <Th width="40%" className="PropsTable--description">
-              Description
-            </Th>
+            {includeDescription && (
+              <Th width="40%" className="PropsTable--description">
+                Description
+              </Th>
+            )}
           </Tr>
         </Thead>
         <Tbody>
@@ -138,11 +146,23 @@ const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
                   <Td>{name}</Td>
                   <Td>{getPropType(prop, Tooltip)}</Td>
                   <Td>{String(prop.required)}</Td>
-                  <Td>
-                    {prop.defaultValue &&
-                      prop.defaultValue.value.replace(/\'/g, '')}
-                  </Td>
-                  <Td>{prop.description && prop.description}</Td>
+                  {!prop.defaultValue ? (
+                    <Td>
+                      <em>[No Default]</em>
+                    </Td>
+                  ) : (
+                    <Td>
+                      {prop.defaultValue.value === "''" ? (
+                        <em>[Empty String]</em>
+                      ) : (
+                        prop.defaultValue &&
+                        prop.defaultValue.value.replace(/\'/g, '')
+                      )}
+                    </Td>
+                  )}
+                  {includeDescription && (
+                    <Td>{prop.description && prop.description}</Td>
+                  )}
                 </Tr>
               )
             })}
