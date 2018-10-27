@@ -22,7 +22,7 @@ interface WrapperProps {
 
 const sidebarBg = get('colors.sidebarBg')
 const sidebarText = get('colors.sidebarText')
-const sidebarBorder = get('colors.sidebarText')
+const sidebarBorder = get('colors.sidebarBorder')
 
 const position = (p: WrapperProps) =>
   p.theme.docz.mq({

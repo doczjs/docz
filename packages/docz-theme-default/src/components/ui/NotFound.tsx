@@ -11,7 +11,7 @@ const Wrapper = styled('div')`
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   color: ${get('colors.text')};
   background: ${get('colors.background')};
 `

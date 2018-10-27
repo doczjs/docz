@@ -252,7 +252,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
           onClick={this.handleShowEditorToggle}
           title={showEditor ? 'Close editor' : 'Show editor'}
         >
-          <Code />
+          <Code width={15} />
         </Action>
       </Actions>
     )
@@ -384,7 +384,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
   }
 
   private handleShowEditorToggle = () => {
-    this.setState(prevState => ({ showEditor: !prevState.showEditor }))
+    this.setState(state => ({ showEditor: !state.showEditor }))
   }
 
   private handleShow = (showing: 'jsx' | 'html') => () => {
