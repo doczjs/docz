@@ -11,6 +11,7 @@ import Resizable from 're-resizable'
 import Maximize from 'react-feather/dist/icons/maximize'
 import Minimize from 'react-feather/dist/icons/minimize'
 import Refresh from 'react-feather/dist/icons/refresh-cw'
+import Code from 'react-feather/dist/icons/code'
 import hotkeys from 'hotkeys-js'
 import getter from 'lodash.get'
 import pretty from 'pretty'
@@ -179,6 +180,7 @@ export interface RenderState {
   showing: 'jsx' | 'html'
   code: string
   key: number
+  showEditor: boolean
 }
 
 export class Render extends Component<RenderComponentProps, RenderState> {
@@ -189,6 +191,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
     showing: parse(this.props.position, 'showing', 'jsx'),
     code: this.props.code,
     key: 0,
+    showEditor: true,
   }
 
   public componentDidMount(): void {
@@ -202,7 +205,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
   }
 
   get actions(): JSX.Element {
-    const { showing, fullscreen } = this.state
+    const { showing, fullscreen, showEditor } = this.state
     const { codesandbox } = this.props
 
     const showJsx = this.handleShow('jsx')
@@ -211,12 +214,16 @@ export class Render extends Component<RenderComponentProps, RenderState> {
     return (
       <Actions>
         <Tabs>
-          <Tab active={showing === 'jsx'} onClick={showJsx}>
-            JSX
-          </Tab>
-          <Tab active={showing === 'html'} onClick={showHtml}>
-            HTML
-          </Tab>
+          {showEditor && (
+            <>
+              <Tab active={showing === 'jsx'} onClick={showJsx}>
+                JSX
+              </Tab>
+              <Tab active={showing === 'html'} onClick={showHtml}>
+                HTML
+              </Tab>
+            </>
+          )}
         </Tabs>
         <Action onClick={this.handleRefresh} title="Refresh playground">
           <Refresh width={15} />
@@ -240,6 +247,12 @@ export class Render extends Component<RenderComponentProps, RenderState> {
           title={fullscreen ? 'Minimize' : 'Maximize'}
         >
           {fullscreen ? <Minimize width={15} /> : <Maximize width={15} />}
+        </Action>
+        <Action
+          onClick={this.handleShowEditorToggle}
+          title={showEditor ? 'Close editor' : 'Show editor'}
+        >
+          <Code />
         </Action>
       </Actions>
     )
@@ -289,7 +302,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
 
   public render(): JSX.Element {
     const { className, style, scope } = this.props
-    const { fullscreen, showing, key } = this.state
+    const { fullscreen, showing, key, showEditor } = this.state
 
     return (
       <LiveProvider
@@ -317,19 +330,20 @@ export class Render extends Component<RenderComponentProps, RenderState> {
                 )}
               </LiveConsumer>
               {this.actions}
-              {showing === 'jsx' ? (
-                <Jsx onChange={code => this.setState({ code })}>
-                  {this.state.code}
-                </Jsx>
-              ) : (
-                <Pre
-                  className={editorClassName}
-                  actions={<Fragment />}
-                  withLastLine
-                >
-                  {this.html}
-                </Pre>
-              )}
+              {showEditor &&
+                (showing === 'jsx' ? (
+                  <Jsx onChange={code => this.setState({ code })}>
+                    {this.state.code}
+                  </Jsx>
+                ) : (
+                  <Pre
+                    className={editorClassName}
+                    actions={<Fragment />}
+                    withLastLine
+                  >
+                    {this.html}
+                  </Pre>
+                ))}
             </Wrapper>
           </Resizable>
         </Overlay>
@@ -367,6 +381,10 @@ export class Render extends Component<RenderComponentProps, RenderState> {
       width: parse(position, 'width', '100%'),
       height: parse(position, 'height', '100%'),
     })
+  }
+
+  private handleShowEditorToggle = () => {
+    this.setState(prevState => ({ showEditor: !prevState.showEditor }))
   }
 
   private handleShow = (showing: 'jsx' | 'html') => () => {
