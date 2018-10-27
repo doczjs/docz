@@ -58,7 +58,8 @@ export const styles = {
     lineHeight: 1.8,
   },
   table: {
-    overflowY: ['hidden', 'hidden', 'hidden', 'initial'],
+    overflowY: 'hidden',
+    overflowX: ['initial', 'initial', 'initial', 'hidden'],
     display: ['block', 'block', 'block', 'table'],
     width: '100%',
     marginBottom: [20, 40],
