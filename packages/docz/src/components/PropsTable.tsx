@@ -12,7 +12,7 @@ export interface StylesMap {
 
 const styles: StylesMap = {
   thead: {
-    textAlign: 'left'
+    textAlign: 'left',
   },
 }
 
