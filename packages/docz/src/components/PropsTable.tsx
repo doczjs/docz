@@ -138,10 +138,20 @@ const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
                   <Td>{name}</Td>
                   <Td>{getPropType(prop, Tooltip)}</Td>
                   <Td>{String(prop.required)}</Td>
-                  <Td>
-                    {prop.defaultValue &&
-                      prop.defaultValue.value.replace(/\'/g, '')}
-                  </Td>
+                  {!prop.defaultValue ? (
+                    <Td>
+                      <em>[No Default]</em>
+                    </Td>
+                  ) : (
+                    <Td>
+                      {prop.defaultValue.value === "''" ? (
+                        <em>[Empty String]</em>
+                      ) : (
+                        prop.defaultValue &&
+                        prop.defaultValue.value.replace(/\'/g, '')
+                      )}
+                    </Td>
+                  )}
                   <Td>{prop.description && prop.description}</Td>
                 </Tr>
               )
