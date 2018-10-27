@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { CSSProperties, Fragment, SFC, ComponentType } from 'react'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
+import { get } from 'lodash/fp'
 import capitalize from 'capitalize'
 
 import { humanize } from '../utils/humanize-prop'
@@ -115,12 +116,11 @@ const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
     return null
   }
 
-  const includeDescription: boolean = Object.keys(props).some(
-    (name: string) =>
-      props[name] &&
-      typeof props[name].description !== 'undefined' &&
-      props[name].description !== ''
-  )
+  const hasDescription = Object.keys(props).some((name: string) => {
+    const description = get(`${name}.description`, props)
+    return Boolean(description) && Boolean(get('length', description))
+  })
+
   const Table = components.table || 'table'
   const Thead = components.thead || 'thead'
   const Tr = components.tr || 'tr'
@@ -138,7 +138,7 @@ const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
             <Th className="PropsTable--type">Type</Th>
             <Th className="PropsTable--required">Required</Th>
             <Th className="PropsTable--default">Default</Th>
-            {includeDescription && (
+            {hasDescription && (
               <Th width="40%" className="PropsTable--description">
                 Description
               </Th>
@@ -170,7 +170,7 @@ const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
                       )}
                     </Td>
                   )}
-                  {includeDescription && (
+                  {hasDescription && (
                     <Td>{prop.description && prop.description}</Td>
                   )}
                 </Tr>
