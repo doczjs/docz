@@ -27,18 +27,18 @@
   },
   "dependencies": {
     "@mdx-js/tag": "^0.15.0",
-    "@sindresorhus/slugify": "^0.3.0",
+    "@sindresorhus/slugify": "^0.4.0",
     "array-sort": "^1.0.0",
-    "capitalize": "^1.0.0",
+    "capitalize": "^2.0.0",
     "create-react-context": "^0.2.3",
-    "deepmerge": "^2.1.1",
+    "deepmerge": "^2.2.1",
     "docz-core": "^0.12.5",
     "docz-theme-default": "^0.12.5",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
-    "react": "^16.5.2",
+    "react": "^16.6.0",
     "react-copy-write": "^0.8.0",
-    "react-dom": "^16.5.2",
+    "react-dom": "^16.6.0",
     "react-imported-component": "^4.6.2",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
@@ -51,11 +51,11 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
-    "@types/deepmerge": "^2.1.0",
-    "@types/lodash": "^4.14.116",
-    "@types/react": "^16.4.14",
+    "@types/deepmerge": "^2.2.0",
+    "@types/lodash": "^4.14.117",
+    "@types/react": "^16.4.18",
     "@types/react-copy-write": "^0.7.1",
-    "@types/react-dom": "^16.0.6",
+    "@types/react-dom": "^16.0.9",
     "@types/react-router-dom": "^4.3.1"
   }
 }
