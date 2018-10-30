@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.6](https://github.com/pedronauck/docz/compare/v0.12.5...v0.12.6) (2018-10-30)
+
+
+### Bug Fixes
+
+* **docz:** conditionally description column on PropsTable ([#385](https://github.com/pedronauck/docz/issues/385)) ([829a3aa](https://github.com/pedronauck/docz/commit/829a3aa)), closes [#427](https://github.com/pedronauck/docz/issues/427) [#421](https://github.com/pedronauck/docz/issues/421)
+* **docz-theme-default:** fill adjustments ([119e4a7](https://github.com/pedronauck/docz/commit/119e4a7))
+* **docz-theme-default:** rename playground container to avoid conflicts ([#429](https://github.com/pedronauck/docz/issues/429)) ([86845bf](https://github.com/pedronauck/docz/commit/86845bf))
+* **docz-theme-default:** text alignment in table thead ([#403](https://github.com/pedronauck/docz/issues/403)) ([475eb52](https://github.com/pedronauck/docz/commit/475eb52))
+* **docz-theme-default:** tooltip component ([9234b5e](https://github.com/pedronauck/docz/commit/9234b5e))
+
+
+### Features
+
+* **docz-theme-default:** add code editor toggle on playground ([#387](https://github.com/pedronauck/docz/issues/387)) ([f833eaa](https://github.com/pedronauck/docz/commit/f833eaa))
+* add support to disable codesandbox ([be94b0e](https://github.com/pedronauck/docz/commit/be94b0e))
+* **docz-theme-default:** add support to show/hide playground editor ([cacc6fb](https://github.com/pedronauck/docz/commit/cacc6fb))
+
+
+
+
+
 <a name="0.12.5"></a>
 ## [0.12.5](https://github.com/pedronauck/docz/compare/v0.12.4...v0.12.5) (2018-09-30)
 

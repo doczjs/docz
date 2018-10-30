@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.6](https://github.com/pedronauck/docz/compare/v0.12.5...v0.12.6) (2018-10-30)
+
+
+### Bug Fixes
+
+* **docz:** conditionally description column on PropsTable ([#385](https://github.com/pedronauck/docz/issues/385)) ([829a3aa](https://github.com/pedronauck/docz/commit/829a3aa)), closes [#427](https://github.com/pedronauck/docz/issues/427) [#421](https://github.com/pedronauck/docz/issues/421)
+
+
+
+
+
 <a name="0.12.5"></a>
 ## [0.12.5](https://github.com/pedronauck/docz/compare/v0.12.4...v0.12.5) (2018-09-30)
 

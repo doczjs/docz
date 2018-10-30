@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.6](https://github.com/pedronauck/docz/compare/v0.12.5...v0.12.6) (2018-10-30)
+
+
+### Bug Fixes
+
+* **docz:** conditionally description column on PropsTable ([#385](https://github.com/pedronauck/docz/issues/385)) ([829a3aa](https://github.com/pedronauck/docz/commit/829a3aa)), closes [#427](https://github.com/pedronauck/docz/issues/427) [#421](https://github.com/pedronauck/docz/issues/421)
+* **docz-theme-default:** text alignment in table thead ([#403](https://github.com/pedronauck/docz/issues/403)) ([475eb52](https://github.com/pedronauck/docz/commit/475eb52))
+
+
+### Features
+
+* **docz:** render [Empty String] on PropsTable ([#427](https://github.com/pedronauck/docz/issues/427)) ([10a3eda](https://github.com/pedronauck/docz/commit/10a3eda))
+* **docz:** render [Empty String] on PropsTable ([#427](https://github.com/pedronauck/docz/issues/427)) ([2a9db98](https://github.com/pedronauck/docz/commit/2a9db98))
+* **docz-theme-default:** add support to show/hide playground editor ([cacc6fb](https://github.com/pedronauck/docz/commit/cacc6fb))
+
+
+
+
+
 <a name="0.12.5"></a>
 ## [0.12.5](https://github.com/pedronauck/docz/compare/v0.12.4...v0.12.5) (2018-09-30)
 

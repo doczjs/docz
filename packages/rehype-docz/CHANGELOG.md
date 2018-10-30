@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.6](https://github.com/pedronauck/docz/compare/v0.12.5...v0.12.6) (2018-10-30)
+
+
+### Features
+
+* add support to disable codesandbox ([be94b0e](https://github.com/pedronauck/docz/commit/be94b0e))
+
+
+
+
+
 <a name="0.11.0"></a>
 # [0.11.0](https://github.com/pedronauck/docz/compare/v0.10.3...v0.11.0) (2018-09-02)
 
