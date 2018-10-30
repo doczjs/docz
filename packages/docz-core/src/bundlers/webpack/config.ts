@@ -6,7 +6,7 @@ import { minify } from 'html-minifier'
 import miniHtmlWebpack from 'mini-html-webpack-plugin'
 import friendlyErrors from 'friendly-errors-webpack-plugin'
 import manifestPlugin from 'webpack-manifest-plugin'
-import TerserPlugin from 'terser-webpack-plugin'
+import * as TerserPlugin from 'terser-webpack-plugin'
 
 import * as loaders from './loaders'
 import * as paths from '../../config/paths'
@@ -14,30 +14,6 @@ import { getClientEnvironment } from '../../config/env'
 import { Config as Args, Env } from '../../commands/args'
 import { BabelRC } from '../../utils/babel-config'
 import { parseHtml, htmlTemplate } from '../../utils/parse-html'
-
-const terser = new TerserPlugin({
-  terserOptions: {
-    parse: {
-      ecma: 8,
-    },
-    compress: {
-      ecma: 5,
-      warnings: false,
-      comparisons: false,
-    },
-    mangle: {
-      safari10: true,
-    },
-    output: {
-      ecma: 5,
-      comments: false,
-      ascii_only: true,
-    },
-  },
-  parallel: true,
-  cache: true,
-  sourceMap: true,
-})
 
 export const createConfig = (args: Args, env: Env) => async (
   babelrc: BabelRC
@@ -93,22 +69,43 @@ export const createConfig = (args: Args, env: Env) => async (
    * optimization
    */
 
-  config.merge({
-    optimization: {
-      runtimeChunk: true,
-      nodeEnv: env,
-      namedModules: true,
-      noEmitOnErrors: true,
-      splitChunks: {
-        chunks: 'all',
-        name: 'vendors',
+  config.optimization
+    .runtimeChunk(true)
+    .nodeEnv(env)
+    .namedModules(true)
+    .splitChunks({ chunks: 'all', name: 'vendors' })
+    .minimize(isProd)
+
+  /** TODO: this is needed because incorrect typing on webpack-chain */
+  const optimization: any = config.optimization
+
+  if (isProd) {
+    optimization.minimizer('js').use(TerserPlugin, [
+      {
+        terserOptions: {
+          parse: {
+            ecma: 8,
+          },
+          compress: {
+            ecma: 5,
+            warnings: false,
+            comparisons: false,
+          },
+          mangle: {
+            safari10: true,
+          },
+          output: {
+            ecma: 5,
+            comments: false,
+            ascii_only: true,
+          },
+        },
+        parallel: true,
+        cache: true,
+        sourceMap: true,
       },
-      ...(isProd && {
-        minimize: true,
-        minimizer: [terser],
-      }),
-    },
-  })
+    ])
+  }
 
   /**
    * entries
