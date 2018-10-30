@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.7](https://github.com/pedronauck/docz/compare/v0.12.6...v0.12.7) (2018-10-30)
+
+
+### Bug Fixes
+
+* **docz-core:** webpack chain minimizer config ([ab13208](https://github.com/pedronauck/docz/commit/ab13208))
+
+
+
+
+
 ## [0.12.6](https://github.com/pedronauck/docz/compare/v0.12.5...v0.12.6) (2018-10-30)
 
 
