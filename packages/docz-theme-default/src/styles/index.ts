@@ -57,6 +57,9 @@ export const styles = {
     fontSize: 14,
     lineHeight: 1.8,
   },
+  paragraph: {
+    margin: '10px 0 30px',
+  },
   table: {
     overflowY: 'hidden',
     overflowX: ['initial', 'initial', 'initial', 'hidden'],
