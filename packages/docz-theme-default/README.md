@@ -106,8 +106,6 @@ const config = {
     theadColor: colors.gray,
     theadBg: colors.grayExtraLight,
     tableColor: colors.dark,
-    tooltipBg: colors.dark,
-    tooltipColor: colors.grayExtraLight,
     codeBg: lighten(0.02, colors.grayExtraLight),
     codeColor: colors.gray,
     preBg: colors.grayExtraLight,

@@ -1,3 +1,4 @@
+import 'rc-tooltip/assets/bootstrap.css'
 import './styles/global'
 
 import * as React from 'react'

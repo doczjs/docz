@@ -1,41 +1,42 @@
 import * as React from 'react'
-import { ThemeConfig } from 'docz'
 import { SFC, ReactNode } from 'react'
-import { Tooltip as BaseTooltip } from 'react-lightweight-tooltip'
-
-const getStyles = (colors: any) => ({
-  wrapper: {
-    color: colors.primary,
-  },
-  content: {
-    backgroundColor: colors.tooltipBg,
-    color: colors.tooltipColor,
-  },
-  tooltip: {
-    display: 'flex',
-    alignItems: 'center',
-    width: 220,
-    maxWidth: 220,
-    padding: 5,
-    backgroundColor: colors.tooltipBg,
-    borderRadius: '3px',
-    fontSize: 16,
-  },
-  arrow: {
-    borderTop: `solid ${colors.tooltipBg} 5px`,
-  },
-})
+import { ThemeConfig } from 'docz'
+import BaseTooltip from 'rc-tooltip'
+import styled, { css } from 'react-emotion'
 
 interface TooltipProps {
   text: ReactNode
   children: ReactNode
 }
 
+const overlayClass = (colors: Record<string, any>) => css`
+  .rc-tooltip-inner {
+    background: ${colors.tooltipBg};
+    color: ${colors.tooltipColor};
+  }
+
+  .rc-tooltip-arrow {
+    border-top-color: ${colors.tooltipBg};
+  }
+`
+
+const Link = styled('a')`
+  text-decoration: none;
+  color: initial;
+`
+
 export const Tooltip: SFC<TooltipProps> = ({ text, children }) => (
   <ThemeConfig>
     {config => (
-      <BaseTooltip styles={getStyles(config.themeConfig.colors)} content={text}>
-        {children}
+      <BaseTooltip
+        placement="top"
+        trigger={['hover']}
+        overlay={text}
+        overlayClassName={overlayClass(config.themeConfig.colors)}
+      >
+        <Link href="#" onClick={ev => ev.preventDefault()}>
+          {children}
+        </Link>
       </BaseTooltip>
     )}
   </ThemeConfig>

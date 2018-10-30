@@ -33,6 +33,7 @@ declare module 'react-powerplug'
 declare module 'react-sizes'
 declare module 're-resizable'
 declare module 'webfontloader'
+declare module 'rc-tooltip'
 
 declare module 'facepaint' {
   interface Styles {
