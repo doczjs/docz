@@ -36,7 +36,7 @@ export const Tooltip: SFC<TooltipProps> = ({ text, children }) => (
         overlay={text}
         overlayClassName={overlayClass(config.themeConfig.colors)}
       >
-        <Link href="#" onClick={ev => ev.preventDefault()}>
+        <Link href="#" onClick={(ev: any) => ev.preventDefault()}>
           {children}
         </Link>
       </BaseTooltip>
