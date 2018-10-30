@@ -66,6 +66,7 @@ export interface Argv {
   hotPort: number
   hotHost: string
   native: boolean
+  codeSandbox: boolean
   /* template args */
   title: string
   description: string
@@ -192,5 +193,9 @@ export const args = (env: Env) => (yargs: any) => {
   yargs.positional('native', {
     type: 'boolean',
     default: getEnv('docz.native', false),
+  })
+  yargs.positional('codeSandbox', {
+    type: 'boolean',
+    default: getEnv('docz.codeSandbox', true),
   })
 }

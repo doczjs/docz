@@ -100,8 +100,8 @@ export const mdx = (config: Config, args: Args) => {
     .loader(require.resolve('@mdx-js/loader'))
     .options({
       ...mdxConfig.config,
-      mdPlugins: mdPlugins.concat(mdxConfig.remarkPlugins),
-      hastPlugins: hastPlugins.concat(mdxConfig.rehypePlugins),
+      mdPlugins: mdPlugins.concat(mdxConfig.remarkPlugins()),
+      hastPlugins: hastPlugins.concat(mdxConfig.rehypePlugins(args)),
     })
 }
 

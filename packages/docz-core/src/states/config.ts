@@ -17,6 +17,7 @@ interface Payload {
   version: string | null
   repository: string | null
   native: boolean
+  codeSandbox: boolean
 }
 
 const getInitialConfig = (config: Config): Payload => {
@@ -32,6 +33,7 @@ const getInitialConfig = (config: Config): Payload => {
     version: get(pkg, 'version'),
     repository: repoUrl,
     native: config.native,
+    codeSandbox: config.codeSandbox,
   }
 }
 

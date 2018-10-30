@@ -228,9 +228,10 @@ export class Render extends Component<RenderComponentProps, RenderState> {
         <Action onClick={this.handleRefresh} title="Refresh playground">
           <Refresh width={15} />
         </Action>
-        {codesandbox !== 'undefined' && (
-          <ThemeConfig>
-            {config => (
+        <ThemeConfig>
+          {config =>
+            config.codeSandbox &&
+            codesandbox !== 'undefined' && (
               <ActionLink
                 href={this.codesandboxUrl(config.native)}
                 target="_blank"
@@ -238,9 +239,9 @@ export class Render extends Component<RenderComponentProps, RenderState> {
               >
                 <CodeSandboxLogo style={{ height: '100%' }} width={15} />
               </ActionLink>
-            )}
-          </ThemeConfig>
-        )}
+            )
+          }
+        </ThemeConfig>
         <Clipboard content={showing === 'jsx' ? this.state.code : this.html} />
         <Action
           onClick={this.handleToggle}
