@@ -388,13 +388,13 @@ export class Render extends Component<RenderComponentProps, RenderState> {
 
   private transformCode(code: string): string {
     return `
-      const App = ({ children }) => (
+      const DoczApp = ({ children }) => (
         <React.Fragment>
           {children && typeof children === 'function' ? children() : children}
         </React.Fragment>
       )
 
-      render(<App>${code}</App>)
+      render(<DoczApp>${code}</DoczApp>)
     `
   }
 
