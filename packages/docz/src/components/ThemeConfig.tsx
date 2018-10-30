@@ -21,7 +21,7 @@ export const ThemeConfig: SFC<ThemeConfigProps> = ({ children }) => {
       {({ themeConfig: initialThemeConfig, transform }) => (
         <state.Consumer select={[configSelector]}>
           {({ themeConfig, ...config }: Config) => {
-            const newThemeConfig = merge(initialThemeConfig, themeConfig)
+            const newThemeConfig = merge(initialThemeConfig || {}, themeConfig)
 
             return children({
               ...config,

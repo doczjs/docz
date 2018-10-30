@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { SFC, Fragment, Component } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { RenderComponentProps, ThemeConfig } from 'docz'
+import { RenderComponentProps, ThemeConfig, theme } from 'docz'
 import { LiveProvider, LiveError, LivePreview } from 'react-live'
 import styled, { css } from 'react-emotion'
 import lighten from 'polished/lib/color/lighten'
@@ -106,6 +106,8 @@ const Actions = styled('div')`
       : darken(0.04, borderColor(p))};
   border-left: 1px solid ${themeGet('colors.border')};
   border-bottom: 1px solid ${themeGet('colors.border')};
+  border-radius: ${p =>
+    themeGet('showPlaygroundEditor')(p) ? '0' : '0 0 0 4px'};
 `
 
 const actionClass = (p: any) => css`
@@ -173,6 +175,10 @@ const Jsx: SFC<JSXProps> = ({ children, ...props }) => (
   </Pre>
 )
 
+interface RenderProps extends RenderComponentProps {
+  showEditor?: boolean
+}
+
 export interface RenderState {
   fullscreen: boolean
   width: string
@@ -183,7 +189,7 @@ export interface RenderState {
   showEditor: boolean
 }
 
-export class Render extends Component<RenderComponentProps, RenderState> {
+class RenderBase extends Component<RenderProps, RenderState> {
   public state: RenderState = {
     fullscreen: parse(this.props.position, 'fullscreen', false),
     width: parse(this.props.position, 'width', '100%'),
@@ -191,7 +197,7 @@ export class Render extends Component<RenderComponentProps, RenderState> {
     showing: parse(this.props.position, 'showing', 'jsx'),
     code: this.props.code,
     key: 0,
-    showEditor: true,
+    showEditor: Boolean(this.props.showEditor),
   }
 
   public componentDidMount(): void {
@@ -424,3 +430,14 @@ export class Render extends Component<RenderComponentProps, RenderState> {
     return `${url}?parameters=${codesandbox}${native ? `&editorsize=75` : ``}`
   }
 }
+
+export const Render: SFC<RenderProps> = props => (
+  <ThemeConfig>
+    {config => (
+      <RenderBase
+        {...props}
+        showEditor={getter(config, 'themeConfig.showPlaygroundEditor')}
+      />
+    )}
+  </ThemeConfig>
+)

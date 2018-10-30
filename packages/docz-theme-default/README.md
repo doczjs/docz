@@ -65,6 +65,10 @@ const config = {
    */
   mode: 'light', // you can use: 'dark' or 'light'
   /**
+   * Show/hide Playground editor by default
+   */
+  showPlaygroundEditor: true,
+  /**
    * Customize codemirror theme
    */
   codemirrorTheme: 'docz-light',
@@ -90,12 +94,13 @@ const config = {
     skyBlue: '#1FB6FF',
     /** properties bellow depends on mode select */
     primary: colors.blue,
-    text: colors.dark,
+    text: colors.grayDark,
     link: colors.blue,
     footerText: colors.grayDark,
     sidebarBg: colors.grayExtraLight,
-    sidebarPrimary: null,
     sidebarText: colors.dark,
+    sidebarHighlight: null,
+    sidebarBorder: colors.grayLight,
     background: colors.white,
     border: colors.grayLight,
     theadColor: colors.gray,
@@ -103,7 +108,7 @@ const config = {
     tableColor: colors.dark,
     tooltipBg: colors.dark,
     tooltipColor: colors.grayExtraLight,
-    codeBg: colors.grayExtraLight,
+    codeBg: lighten(0.02, colors.grayExtraLight),
     codeColor: colors.gray,
     preBg: colors.grayExtraLight,
     blockquoteBg: colors.grayExtraLight,
@@ -120,11 +125,11 @@ const config = {
       lineHeight: 1.6,
     },
     container: {
-      width: 920,
-      padding: ['20px 30px', '0 40px 40px'],
+      width: ['100%', '100%', 920],
+      padding: ['20px', '0 40px 40px'],
     },
     h1: {
-      margin: ['40px 0 20px', '60px 0 20px', '40px 0'],
+      margin: ['30px 0 20px', '60px 0 20px', '40px 0'],
       fontSize: [36, 42, 48],
       fontWeight: 100,
       letterSpacing: '-0.02em',
@@ -165,14 +170,21 @@ const config = {
       padding: '4px 6px',
       borderRadius: '3px',
       fontFamily: '"Source Code Pro", monospace',
-      fontSize: 14,
+      fontSize: '0.85em',
     },
     pre: {
       fontFamily: '"Source Code Pro", monospace',
       fontSize: 14,
       lineHeight: 1.8,
     },
+    paragraph: {
+      margin: '10px 0 30px',
+    },
     table: {
+      overflowY: 'hidden',
+      overflowX: ['initial', 'initial', 'initial', 'hidden'],
+      display: ['block', 'block', 'block', 'table'],
+      width: '100%',
       marginBottom: [20, 40],
       fontFamily: '"Source Code Pro", monospace',
       fontSize: 14,
