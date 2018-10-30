@@ -11,7 +11,7 @@ import { loadConfig } from '../utils/load-config'
 
 export const dev = async (args: Config) => {
   const env = envDotProp.get('node.env')
-  const config = loadConfig(args)
+  const config = await loadConfig(args)
   const port = await detectPort(config.port)
   const hotPort = await detectPort(config.hotPort)
   const websocketPort = await detectPort(config.websocketPort)

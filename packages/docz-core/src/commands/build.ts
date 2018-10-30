@@ -11,7 +11,7 @@ import { Config } from './args'
 
 export const build = async (args: Config) => {
   const env = envDotProp.get('node.env')
-  const config = loadConfig(args)
+  const config = await loadConfig(args)
   const entries = new Entries(config)
 
   const bundler = webpack(config, env)

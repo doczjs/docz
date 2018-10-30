@@ -1,16 +1,18 @@
 import get from 'lodash.get'
+import pReduce from 'p-reduce'
 
 import { Config } from './commands/args'
 import { isFn } from './utils/helpers'
 import { BabelRC } from './utils/babel-config'
 
-export type SetConfig = (config: Config) => Config
+export type SetConfig = (config: Config) => Config | Promise<Config>
 export type ModifyBundlerConfig<C = any> = (
   config: C,
   dev: boolean,
   args: Config
 ) => C
 export type ModifyBabelRC = (babelrc: BabelRC, args: Config) => BabelRC
+export type ModifyFiles = (files: string[], args: Config) => string[]
 export type onCreateApp = <A>(app: A) => void
 export type OnServerListening = <S>(server: S) => void
 export type OnPreBuild = (args: Config) => void
@@ -22,6 +24,7 @@ export interface PluginFactory {
   setConfig?: SetConfig
   modifyBundlerConfig?: ModifyBundlerConfig
   modifyBabelRc?: ModifyBabelRC
+  modifyFiles?: ModifyFiles
   onCreateApp?: onCreateApp
   onServerListening?: OnServerListening
   onPreBuild?: OnPreBuild
@@ -64,9 +67,25 @@ export class Plugin<C = any> implements PluginFactory {
     }
   }
 
+  public static reduceFromPluginsAsync<C>(
+    plugins: Plugin[] | undefined
+  ): (method: keyof Plugin, initial: C, ...args: any[]) => Promise<C> {
+    return (method, initial, ...args) => {
+      return pReduce(
+        [...(plugins || [])],
+        (obj: any, plugin: any) => {
+          const fn = get(plugin, method)
+          return Promise.resolve(fn && isFn(fn) ? fn(obj, ...args) : obj)
+        },
+        initial
+      )
+    }
+  }
+
   public readonly setConfig?: SetConfig
   public readonly modifyBundlerConfig?: ModifyBundlerConfig<C>
   public readonly modifyBabelRc?: ModifyBabelRC
+  public readonly modifyFiles?: ModifyFiles
   public readonly onCreateApp?: onCreateApp
   public readonly onServerListening?: OnServerListening
   public readonly onPreBuild?: OnPreBuild
@@ -78,6 +97,7 @@ export class Plugin<C = any> implements PluginFactory {
     this.setConfig = p.setConfig
     this.modifyBundlerConfig = p.modifyBundlerConfig
     this.modifyBabelRc = p.modifyBabelRc
+    this.modifyFiles = p.modifyFiles
     this.onCreateApp = p.onCreateApp
     this.onServerListening = p.onServerListening
     this.onPreBuild = p.onPreBuild
