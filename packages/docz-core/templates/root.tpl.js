@@ -1,5 +1,5 @@
 import React from 'react'
-import { hot } from 'react-hot-loader'
+import { setConfig, hot } from 'react-hot-loader'
 import Theme from '<%- theme %>'
 
 import { imports } from './imports'
@@ -16,5 +16,10 @@ const Root = () => (
     <% if (wrapper) {%>wrapper={Wrapper}<%}%>
   />
 )
+
+// TODO: this is temporary until react-hot-loader fix hooks issues
+setConfig({
+  pureSFC: true,
+})
 
 export default hot(module)(Root)
