@@ -38,8 +38,8 @@
     "rc-tooltip": "^3.7.3",
     "re-resizable": "^4.9.2",
     "react": "^16.6.0",
-    "react-codemirror2": "^5.1.0",
     "react-dom": "^16.6.0",
+    "react-codemirror2": "^5.1.0",
     "react-emotion": "^9.2.12",
     "react-feather": "^1.1.4",
     "react-live": "^1.12.0",
@@ -65,7 +65,7 @@
     "filemanager-webpack-plugin": "^2.0.5",
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.1.0",
-    "ts-loader": "^5.2.2",
+    "ts-loader": "^5.3.0",
     "webpack": "^4.23.1",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2"
