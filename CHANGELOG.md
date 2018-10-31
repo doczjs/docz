@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.8](https://github.com/pedronauck/docz/compare/v0.12.7...v0.12.8) (2018-10-31)
+
+
+### Bug Fixes
+
+* **docz:** update to new react imported component api ([759160e](https://github.com/pedronauck/docz/commit/759160e))
+* **docz-core:** add support to react hooks ([f26a990](https://github.com/pedronauck/docz/commit/f26a990))
+
+
+
+
+
 ## [0.12.7](https://github.com/pedronauck/docz/compare/v0.12.6...v0.12.7) (2018-10-30)
 
 

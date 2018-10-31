@@ -1,6 +1,6 @@
 {
   "name": "docz-theme-default",
-  "version": "0.12.7",
+  "version": "0.12.8",
   "description": "The default theme of docz",
   "license": "MIT",
   "main": "dist/index.js",
@@ -23,7 +23,7 @@
   "dependencies": {
     "codemirror": "^5.41.0",
     "copy-text-to-clipboard": "^1.0.4",
-    "docz": "^0.12.7",
+    "docz": "^0.12.8",
     "emotion": "^9.2.12",
     "emotion-theming": "^9.2.9",
     "facepaint": "^1.2.1",
@@ -38,8 +38,8 @@
     "rc-tooltip": "^3.7.3",
     "re-resizable": "^4.9.2",
     "react": "^16.6.0",
-    "react-dom": "^16.6.0",
     "react-codemirror2": "^5.1.0",
+    "react-dom": "^16.6.0",
     "react-emotion": "^9.2.12",
     "react-feather": "^1.1.4",
     "react-live": "^1.12.0",
