@@ -28,33 +28,19 @@ export const AsyncRoute: SFC<AsyncRouteProps> = ({
 
   const loadImport = async () => {
     const { default: Component, getInitialData } = await imports[path]()
+    const ExportedComponent: any = (props: any) => (
+      <AsyncComponent
+        {...props}
+        as={Component}
+        getInitialData={getInitialData}
+      />
+    )
 
-    const ExportedComponent: any = (props: any) => <Component {...props} />
-    ExportedComponent.getInitialData = getInitialData
     return ExportedComponent
   }
 
   const Component = withMDXComponents(
-    importedComponent(loadImport, {
-      LoadingComponent,
-      render(Component: any, state, defaultProps: any): React.ReactNode {
-        const { history, match, location, doc } = defaultProps
-        const { LoadingComponent: Loading } = defaultProps
-        const props = { history, match, location, doc }
-
-        if (state === 'done') {
-          return (
-            <AsyncComponent
-              {...props}
-              as={Component}
-              getInitialData={Component.getInitialData}
-            />
-          )
-        }
-
-        return <Loading {...props} />
-      },
-    })
+    importedComponent(loadImport, { LoadingComponent })
   )
 
   return Page ? (

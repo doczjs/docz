@@ -37,6 +37,7 @@ export class AsyncComponent extends Component<Props, State> {
 
     if (getInitialData && isFn(getInitialData)) {
       this.setState({ loading: true })
+
       try {
         const data = await getInitialData(this.props)
         this.setState({
