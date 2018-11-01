@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.9](https://github.com/pedronauck/docz/compare/v0.12.8...v0.12.9) (2018-11-01)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** table margin bottom ([36e322f](https://github.com/pedronauck/docz/commit/36e322f))
+* **docz-theme-default:** use class inside playground ([cecbea1](https://github.com/pedronauck/docz/commit/cecbea1))
+
+
+### Features
+
+* **docz-theme-default:** add style for hr component ([5b24400](https://github.com/pedronauck/docz/commit/5b24400))
+* **docz-theme-default:** hide playground editor by default ([0ccda92](https://github.com/pedronauck/docz/commit/0ccda92))
+
+
+
+
+
 ## [0.12.8](https://github.com/pedronauck/docz/compare/v0.12.7...v0.12.8) (2018-10-31)
 
 
