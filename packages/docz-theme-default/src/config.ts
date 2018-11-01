@@ -5,5 +5,5 @@ export const config = {
   colors,
   styles,
   mode: 'light',
-  showPlaygroundEditor: true,
+  showPlaygroundEditor: false,
 }
