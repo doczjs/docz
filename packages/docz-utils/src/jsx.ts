@@ -16,11 +16,18 @@ export const removeTags = (code: string) => {
   return code.replace(open(code), '').replace(close(code), '')
 }
 
-export const sanitizeCode = (code: string) =>
-  strip(code)
+export const sanitizeCode = (code: string) => {
+  const trimmed = strip(code).trim()
+  const newCode =
+    trimmed.startsWith('{') && trimmed.endsWith('}')
+      ? trimmed.substr(1, trimmed.length - 2)
+      : trimmed
+
+  return strip(newCode)
     .trim()
     .replace(/'/g, `\\'`)
     .replace(/`/g, '\\`')
+}
 
 export const componentName = (value: any) => {
   const match = value.match(/^\<\\?(\w+)/)

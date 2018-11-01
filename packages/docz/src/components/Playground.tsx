@@ -2,8 +2,7 @@ import * as React from 'react'
 import { ComponentType, SFC } from 'react'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 
-import { ComponentsMap, Identity } from './DocPreview'
-import { isFn } from '../utils/helpers'
+import { ComponentsMap } from './DocPreview'
 
 export interface PlaygroundProps {
   components: ComponentsMap
@@ -21,7 +20,7 @@ const BasePlayground: SFC<PlaygroundProps> = ({
   components,
   className,
   style,
-  wrapper: Wrapper = Identity,
+  wrapper: Wrapper,
   children,
   __scope,
   __position,
@@ -35,7 +34,7 @@ const BasePlayground: SFC<PlaygroundProps> = ({
       className={className}
       style={style}
       components={components}
-      component={<Wrapper>{isFn(children) ? children() : children}</Wrapper>}
+      component={Wrapper ? <Wrapper>{children}</Wrapper> : children}
       scope={__scope}
       position={__position}
       code={__code}

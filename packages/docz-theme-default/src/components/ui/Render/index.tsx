@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { SFC, Fragment, Component } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { RenderComponentProps, ThemeConfig, theme } from 'docz'
+import { RenderComponentProps, ThemeConfig } from 'docz'
 import { LiveProvider, LiveError, LivePreview } from 'react-live'
 import styled, { css } from 'react-emotion'
 import lighten from 'polished/lib/color/lighten'
@@ -71,7 +71,7 @@ const StyledPreview = styled(LivePreview)`
   width: 100%;
 `
 
-const DummyPlayground = styled('div')`
+const Playground = styled('div')`
   width: 100%;
 `
 
@@ -106,8 +106,7 @@ const Actions = styled('div')`
       : darken(0.04, borderColor(p))};
   border-left: 1px solid ${themeGet('colors.border')};
   border-bottom: 1px solid ${themeGet('colors.border')};
-  border-radius: ${p =>
-    themeGet('showPlaygroundEditor')(p) ? '0' : '0 0 0 4px'};
+  border-radius: ${p => (p.withRadius ? '0' : '0 0 0 4px')};
 `
 
 const actionClass = (p: any) => css`
@@ -218,7 +217,7 @@ class RenderBase extends Component<RenderProps, RenderState> {
     const showHtml = this.handleShow('html')
 
     return (
-      <Actions>
+      <Actions withRadius={this.state.showEditor}>
         <Tabs>
           {showEditor && (
             <>
@@ -313,7 +312,6 @@ class RenderBase extends Component<RenderProps, RenderState> {
 
     return (
       <LiveProvider
-        noInline
         code={this.state.code}
         scope={scope}
         transformCode={this.transformCode}
@@ -327,9 +325,9 @@ class RenderBase extends Component<RenderProps, RenderState> {
                 {(live: any) => (
                   <PlaygroundWrapper full={fullscreen}>
                     {live.error && (
-                      <DummyPlayground className={className} style={style}>
+                      <Playground className={className} style={style}>
                         {this.props.component}
-                      </DummyPlayground>
+                      </Playground>
                     )}
                     <StyledPreview className={className} style={style} />
                     <StyledError />
@@ -411,16 +409,9 @@ class RenderBase extends Component<RenderProps, RenderState> {
     this.setState(state => ({ key: state.key + 1 }))
   }
 
-  private transformCode(code: string): string {
-    return `
-      const DoczApp = ({ children }) => (
-        <React.Fragment>
-          {children && typeof children === 'function' ? children() : children}
-        </React.Fragment>
-      )
-
-      render(<DoczApp>${code}</DoczApp>)
-    `
+  private transformCode = (code: string) => {
+    if (code.startsWith('()') || code.startsWith('class')) return code
+    return `<React.Fragment>${code}</React.Fragment>`
   }
 
   private codesandboxUrl = (native: boolean): string => {
