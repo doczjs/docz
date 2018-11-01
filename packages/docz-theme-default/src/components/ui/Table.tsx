@@ -9,6 +9,7 @@ const Wrapper = styled('div')`
 
   ${p =>
     p.theme.docz.mq({
+      marginBottom: [20, 40],
       maxWidth: ['calc(100vw - 40px)', 'calc(100vw - 80px)', '100%'],
     })};
 `
