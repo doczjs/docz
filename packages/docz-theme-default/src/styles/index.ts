@@ -9,7 +9,7 @@ export const styles = {
     padding: ['20px', '0 40px 40px'],
   },
   h1: {
-    margin: ['30px 0 20px', '60px 0 20px', '40px 0'],
+    margin: ['30px 0 20px', '60px 0 20px', '40px 0 20px'],
     fontSize: [36, 42, 48],
     fontWeight: 100,
     letterSpacing: '-0.02em',
@@ -27,14 +27,17 @@ export const styles = {
     fontWeight: 400,
   },
   h4: {
+    margin: '25px 0 10px',
     fontSize: 20,
     fontWeight: 400,
   },
   h5: {
+    margin: '20px 0 10px',
     fontSize: 18,
     fontWeight: 400,
   },
   h6: {
+    margin: '20px 0 10px',
     fontSize: 16,
     fontWeight: 400,
   },
@@ -58,14 +61,13 @@ export const styles = {
     lineHeight: 1.8,
   },
   paragraph: {
-    margin: '10px 0 30px',
+    margin: '15px 0 30px',
   },
   table: {
     overflowY: 'hidden',
     overflowX: ['initial', 'initial', 'initial', 'hidden'],
     display: ['block', 'block', 'block', 'table'],
     width: '100%',
-    marginBottom: [20, 40],
     fontFamily: '"Source Code Pro", monospace',
     fontSize: 14,
   },
