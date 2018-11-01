@@ -33,6 +33,7 @@ const Theme = () => (
             h4: components.H4,
             h5: components.H5,
             h6: components.H6,
+            hr: components.Hr,
             ul: components.List,
             p: components.Paragraph,
             a: components.Link,
