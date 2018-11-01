@@ -20,7 +20,7 @@ const Buttons = styled('div')`
   display: flex;
   background: ${get('colors.background')};
   border: 1px solid ${get('colors.border')};
-  border-radius: 3px;
+  border-radius: ${get('radii')};
   padding: 3px 5px;
 `
 

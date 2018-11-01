@@ -48,13 +48,14 @@ const Wrapper = styled('div')`
   position: relative;
   width: 100%;
   border: 1px solid ${get('colors.border')};
-  border-radius: 3px;
+  border-radius: ${get('radii')};
 `
 
 const Scrollbar = styled(PerfectScrollbar)`
   overflow: auto;
   position: relative;
   max-height: 360px;
+  border-radius: ${get('radii')};
 
   .ps__rail-y {
     z-index: 9;
@@ -68,7 +69,7 @@ const EditorStyled = styled(CodeMirror)`
   ${themes.light()};
   ${p => p.theme.docz.mq(preStyles(p))};
   position: relative;
-  border-radius: 3px;
+  border-radius: ${get('radii')};
   flex: 1;
 
   .CodeMirror {

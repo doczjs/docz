@@ -51,7 +51,7 @@ injectGlobal`
  */
 .ps__thumb-x {
   background-color: #aaa;
-  border-radius: 6px;
+  border-radius: 4px;
   transition: background-color .2s linear, height .2s ease-in-out;
   -webkit-transition: background-color .2s linear, height .2s ease-in-out;
   height: 6px;
@@ -63,7 +63,7 @@ injectGlobal`
 
 .ps__thumb-y {
   background-color: #aaa;
-  border-radius: 6px;
+  border-radius: 4px;
   transition: background-color .2s linear, width .2s ease-in-out;
   -webkit-transition: background-color .2s linear, width .2s ease-in-out;
   width: 6px;

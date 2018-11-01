@@ -22,7 +22,7 @@ const TableStyled = styled('table')`
   border-spacing: 0;
   border-collapse: collapse;
   border-style: hidden;
-  border-radius: 5px;
+  border-radius: ${get('radii')};
   font-size: 14px;
   color: ${get('colors.tableColor')};
   ${p => p.theme.docz.mq(p.theme.docz.styles.table)};

@@ -59,6 +59,8 @@ const IconLine = styled('span')`
 const translateX = (p: OpenProps) => (!p.opened ? '10px' : '-6px')
 const translateY = (p: OpenProps) => (!p.opened ? '4px' : '0px')
 
+const radii = get('radii')
+
 const ToggleButton = styled('button')`
   cursor: pointer;
   z-index: 99;
@@ -76,7 +78,7 @@ const ToggleButton = styled('button')`
   outline: none;
   border: none;
   background: ${p => (p.opened ? sidebarBg(p) : backgroundColor(p))};
-  border-radius: ${p => (p.opened ? '0 0 3px 0' : '3px')};
+  border-radius: ${p => (p.opened ? `0 0 ${radii(p)} 0` : `${radii(p)}`)};
 
   &:before {
     position: absolute;

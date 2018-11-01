@@ -28,7 +28,7 @@ const EditPage = styled(ButtonLink.withComponent('a'))`
   position: absolute;
   padding: 2px 8px;
   margin: 8px;
-  border-radius: 3px;
+  border-radius: ${get('radii')};
   border: 1px solid ${get('colors.border')};
   opacity: 0.7;
   transition: opacity 0.4s;

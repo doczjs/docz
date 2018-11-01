@@ -60,7 +60,7 @@ const PlaygroundWrapper = styled('div')`
   overflow-y: auto;
   position: relative;
   flex: 1;
-  border-radius: 4px 4px 0 0;
+  border-radius: ${themeGet('radii')} ${themeGet('radii')} 0 0;
   border: 1px solid ${borderColor};
   background: ${backgroundColor};
   min-height: ${whenFullscreen('198px', 'auto')};
@@ -94,7 +94,7 @@ const Pre = styled(PreBase)`
 
 const editorClassName = css`
   border-top: 0;
-  border-radius: 0 0 0 5px;
+  border-radius: 0 0 0 4px;
 `
 
 const Actions = styled('div')`

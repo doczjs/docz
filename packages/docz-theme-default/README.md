@@ -80,6 +80,10 @@ const config = {
     width: null,
   },
   /**
+   * Radius
+   */
+  radii: '4px',
+  /**
    * Colors (depends on select mode)
    */
   colors: {
