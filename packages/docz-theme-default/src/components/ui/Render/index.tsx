@@ -92,6 +92,17 @@ const Pre = styled(PreBase)`
   margin: 0;
 `
 
+interface ShowingProps {
+  showing: boolean
+}
+
+const EditorWrapper = styled('div')`
+  max-height: ${(p: ShowingProps) => (p.showing ? '9999px' : '0px')};
+  transform: scaleY(${(p: ShowingProps) => (p.showing ? '1' : '0')});
+  transform-origin: top center;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+`
+
 const editorClassName = css`
   border-top: 0;
   border-radius: 0 0 0 4px;
@@ -128,6 +139,8 @@ const Tabs = styled('div')`
   flex: 1;
   display: flex;
   align-items: center;
+  opacity: ${(p: ShowingProps) => (p.showing ? 1 : 0)};
+  transition: opacity 0.3s;
 `
 
 interface TabProps {
@@ -218,7 +231,7 @@ class RenderBase extends Component<RenderProps, RenderState> {
 
     return (
       <Actions withRadius={this.state.showEditor}>
-        <Tabs>
+        <Tabs showing={showEditor}>
           {showEditor && (
             <>
               <Tab active={showing === 'jsx'} onClick={showJsx}>
@@ -335,20 +348,22 @@ class RenderBase extends Component<RenderProps, RenderState> {
                 )}
               </LiveConsumer>
               {this.actions}
-              {showEditor &&
-                (showing === 'jsx' ? (
-                  <Jsx onChange={code => this.setState({ code })}>
-                    {this.state.code}
-                  </Jsx>
-                ) : (
-                  <Pre
-                    className={editorClassName}
-                    actions={<Fragment />}
-                    withLastLine
-                  >
-                    {this.html}
-                  </Pre>
-                ))}
+              <EditorWrapper showing={showEditor}>
+                {showEditor &&
+                  (showing === 'jsx' ? (
+                    <Jsx onChange={code => this.setState({ code })}>
+                      {this.state.code}
+                    </Jsx>
+                  ) : (
+                    <Pre
+                      className={editorClassName}
+                      actions={<Fragment />}
+                      withLastLine
+                    >
+                      {this.html}
+                    </Pre>
+                  ))}
+              </EditorWrapper>
             </Wrapper>
           </Resizable>
         </Overlay>
