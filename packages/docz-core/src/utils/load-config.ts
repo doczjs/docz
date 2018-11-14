@@ -9,7 +9,6 @@ import { omit } from './helpers'
 import { BabelRC } from './babel-config'
 
 const toOmit = ['_', '$0', 'version', 'help']
-
 const defaultHtmlContext = {
   lang: 'en',
 }
@@ -25,6 +24,13 @@ export const loadConfig = async (args: Config): Promise<Config> => {
     themeConfig: {},
     htmlContext: defaultHtmlContext,
     menu: [],
+    ignore: [
+      'readme.md',
+      'changelog.md',
+      'code_of_conduct.md',
+      'contributing.md',
+      'license.md',
+    ],
     modifyBundlerConfig: (config: any) => config,
     modifyBabelRc: (babelrc: BabelRC) => babelrc,
   }

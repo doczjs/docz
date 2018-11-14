@@ -12,17 +12,6 @@ import { Plugin } from './Plugin'
 import { Config } from './commands/args'
 import { getRepoEditUrl } from './utils/repo-info'
 
-const DEFAULT_IGNORE = [
-  'readme.md',
-  'changelog.md',
-  'code_of_conduct.md',
-  'contributing.md',
-  'license.md',
-]
-
-const ignoreFiles = (arr: string[]) =>
-  ['!**/node_modules/**'].concat(arr.length > 0 ? arr : DEFAULT_IGNORE)
-
 export const fromTemplates = (file: string) => path.join(paths.templates, file)
 
 const matchFilesWithSrc = (config: Config) => (files: string[]) => {
@@ -85,7 +74,7 @@ export class Entries {
     const toMatch = matchFilesWithSrc(config)
 
     const files = await glob<string>(toMatch(arr), {
-      ignore: ignoreFiles(ignore),
+      ignore: ['**/node_modules/**'].concat(ignore),
       onlyFiles: true,
       unique: true,
       nocase: true,
