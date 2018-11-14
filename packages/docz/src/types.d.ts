@@ -1,3 +1,4 @@
+declare module '~db'
 declare module '~imports'
 
 declare module '@sindresorhus/slugify'

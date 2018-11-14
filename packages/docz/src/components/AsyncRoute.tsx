@@ -7,10 +7,9 @@ import { EntryMap } from '../state'
 import { ComponentsMap } from './DocPreview'
 import { AsyncComponent } from './AsyncComponent'
 
-// tslint:disable-next-line
-import { imports } from '~imports'
-
 const loadFromImports = (path: string) => async () => {
+  // tslint:disable-next-line
+  const { imports } = await import('~imports')
   const { default: Component, getInitialData } = await imports[path]()
   const ExportedComponent: any = (props: any) => (
     <AsyncComponent {...props} as={Component} getInitialData={getInitialData} />

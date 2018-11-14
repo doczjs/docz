@@ -3577,6 +3577,16 @@ call-me-maybe@^1.0.1:
   resolved "https://registry.npmjs.org/call-me-maybe/-/call-me-maybe-1.0.1.tgz#26d208ea89e37b5cbde60250a15f031c16a4d66b"
   integrity sha1-JtII6onje1y95gJQoV8DHBak1ms=
 
+callbag-observe@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/callbag-observe/-/callbag-observe-1.0.0.tgz#fd91dcc2ef628317c7a0031e17398132a21fcbbf"
+  integrity sha512-ZwNu0qvbyNQMw0pHnbn+Zdmfe0FvHlzQy28b84Ba4kg5O6F/LrVB9/ljGN5hqf6OXYukk38ThhmM/NPdkmrH9w==
+
+callbag-subject@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/callbag-subject/-/callbag-subject-1.0.2.tgz#63923185000bcb10ec12d03491102aa43df93080"
+  integrity sha512-pMIKoXxJdO6SypymWQyLJHW/idY0esgT68I6xjYQjGZch0IVPlM5Bd+YSJaQ17fGLJEvK3HsaRaDuU8nmAqWOQ==
+
 caller-callsite@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/caller-callsite/-/caller-callsite-2.0.0.tgz#847e0fce0a223750a9a027c54b33731ad3154134"
@@ -4585,7 +4595,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-create-react-context@^0.2.2, create-react-context@^0.2.3:
+create-react-context@^0.2.3:
   version "0.2.3"
   resolved "https://registry.npmjs.org/create-react-context/-/create-react-context-0.2.3.tgz#9ec140a6914a22ef04b8b09b7771de89567cb6f3"
   integrity sha512-CQBmD0+QGgTaxDL3OX1IDXYqjkp2It4RIbcb99jS6AEg27Ga+a9G3JtK6SIu0HBwPLZlmwt9F7UwWA4Bn92Rag==
@@ -5947,7 +5957,7 @@ faye-websocket@~0.11.0:
   dependencies:
     websocket-driver ">=0.5.1"
 
-fbjs@^0.8.0, fbjs@^0.8.16, fbjs@^0.8.5:
+fbjs@^0.8.0, fbjs@^0.8.5:
   version "0.8.17"
   resolved "https://registry.npmjs.org/fbjs/-/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
   integrity sha1-xNWY6taUkRJlPWWIsBpc3Nn5D90=
@@ -7202,11 +7212,6 @@ immer@1.7.2:
   version "1.7.2"
   resolved "https://registry.npmjs.org/immer/-/immer-1.7.2.tgz#a51e9723c50b27e132f6566facbec1c85fc69547"
   integrity sha512-4Urocwu9+XLDJw4Tc6ZCg7APVjjLInCFvO4TwGsAYV5zT6YYSor14dsZR0+0tHlDIN92cFUOq+i7fC00G5vTxA==
-
-immer@^1.2.1:
-  version "1.7.4"
-  resolved "https://registry.npmjs.org/immer/-/immer-1.7.4.tgz#b9a833a61cbeee477a3694870b172c590837a963"
-  integrity sha512-mZpvQe9LXc+lg3hhcT/2M6Apej43FSs6hS2Bt4HrQxyI6hVJugukLgH2KdSBL/fIOmahHmQvpWU37BWzFLDp1Q==
 
 import-fresh@^2.0.0:
   version "2.0.0"
@@ -10820,16 +10825,6 @@ react-codemirror2@^5.1.0:
   version "5.1.0"
   resolved "https://registry.npmjs.org/react-codemirror2/-/react-codemirror2-5.1.0.tgz#62de4460178adea40eb52eabf7491669bf3794b8"
   integrity sha512-Cksbgbviuf2mJfMyrKmcu7ycK6zX/ukuQO8dvRZdFWqATf5joalhjFc6etnBdGCcPA2LbhIwz+OPnQxLN/j1Fw==
-
-react-copy-write@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.npmjs.org/react-copy-write/-/react-copy-write-0.8.0.tgz#a54fb2bd52f26b8cedaf8783ef3f7297fdd9723f"
-  integrity sha512-Zfly2tqinwfcS39v5o1S+Ur9SL3fjCFlTl6JqHATzDV1Ig8aIs5c1RxTyUqf+klH/12mn/TFsMLpvLKPR4TqaA==
-  dependencies:
-    create-react-context "^0.2.2"
-    fbjs "^0.8.16"
-    immer "^1.2.1"
-    invariant "^2.2.4"
 
 react-dev-utils@^6.1.1:
   version "6.1.1"

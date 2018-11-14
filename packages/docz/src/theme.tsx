@@ -3,16 +3,18 @@ import * as React from 'react'
 import { Fragment, SFC, ComponentType as CT } from 'react'
 import { HashRouter, BrowserRouter } from 'react-router-dom'
 
-import { state, State, ThemeConfig, TransformFn } from './state'
+import { state, ThemeConfig, TransformFn } from './state'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { DataServer } from './components/DataServer'
 import { ScrollToTop } from './utils/ScrollToTop'
+
+// tslint:disable-next-line
+import db from '~db'
 
 declare var BASE_URL: string
 const DefaultWrapper: SFC = ({ children }) => <Fragment>{children}</Fragment>
 
 interface ThemeProps {
-  db: State
   wrapper?: CT
   hashRouter?: boolean
   websocketUrl?: string
@@ -32,7 +34,7 @@ export function theme(
 
       return (
         <ErrorBoundary>
-          <state.Provider initial={{ ...props.db, themeConfig, transform }}>
+          <state.Provider initial={{ ...db, themeConfig, transform }}>
             <DataServer websocketUrl={props.websocketUrl}>
               <Router basename={BASE_URL}>
                 <ScrollToTop>

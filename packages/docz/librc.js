@@ -12,7 +12,12 @@ const internal = [
   'ulid',
 ]
 
-const depsExternal = ['@mdx-js/tag/dist/mdx-provider', 'lodash/fp']
+const depsExternal = [
+  '@mdx-js/tag/dist/mdx-provider',
+  'lodash/fp',
+  '~db',
+  '~imports',
+]
 
 const external = Object.keys(pkg.dependencies)
   .concat(depsExternal)

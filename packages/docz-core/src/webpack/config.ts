@@ -131,6 +131,9 @@ export const createConfig = (args: Args, env: Env) => async (
     .add('.mdx')
     .end()
 
+  config.resolve.alias.set('~db', paths.db)
+  config.resolve.alias.set('~imports', paths.importsJs)
+
   if (args.typescript) {
     config.resolve.extensions
       .prepend('.ts')
