@@ -80,7 +80,7 @@ export class Entries {
   }
 
   private async getMap(config: Config): Promise<EntryMap> {
-    const { src, files: pattern, ignore } = config
+    const { src, files: pattern, ignore, plugins } = config
     const arr = Array.isArray(pattern) ? pattern : [pattern]
     const toMatch = matchFilesWithSrc(config)
 
@@ -109,8 +109,13 @@ export class Entries {
       }
     }
 
+    const reduce = Plugin.reduceFromPlugins<string[]>(plugins)
+    const modifiedFiles = reduce('modifyFiles', files)
+
     const map = new Map()
-    const entries = await Promise.all(files.map(createEntry).filter(Boolean))
+    const entries = await Promise.all(
+      modifiedFiles.map(createEntry).filter(Boolean)
+    )
 
     for (const entry of entries) {
       if (entry) {

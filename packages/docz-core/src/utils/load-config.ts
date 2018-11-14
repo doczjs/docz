@@ -14,7 +14,7 @@ const defaultHtmlContext = {
   lang: 'en',
 }
 
-export const loadConfig = (args: Config): Config => {
+export const loadConfig = async (args: Config): Promise<Config> => {
   const defaultConfig = {
     ...args,
     hashRouter: false,
@@ -33,6 +33,9 @@ export const loadConfig = (args: Config): Config => {
     ? loadFrom<Config>(path.resolve(args.config), defaultConfig)
     : load<Config>('docz', defaultConfig)
 
-  const reduce = Plugin.reduceFromPlugins<Config>(config.plugins)
-  return omit<Config>(toOmit, reduce('setConfig', { ...config, paths }))
+  const reduceAsync = Plugin.reduceFromPluginsAsync<Config>(config.plugins)
+  return omit<Config>(
+    toOmit,
+    await reduceAsync('setConfig', { ...config, paths })
+  )
 }
