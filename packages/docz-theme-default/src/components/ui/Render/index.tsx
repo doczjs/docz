@@ -18,7 +18,6 @@ import pretty from 'pretty'
 
 import { Handle, HANDLE_SIZE } from './Handle'
 import { ResizeBar } from './ResizeBar'
-import { LiveConsumer } from './LiveConsumer'
 import { CodeSandboxLogo } from './CodeSandboxLogo'
 import { ActionButton, ClipboardAction, Editor as PreBase } from '../Editor'
 
@@ -64,15 +63,11 @@ const PlaygroundWrapper = styled('div')`
   border: 1px solid ${borderColor};
   background: ${backgroundColor};
   min-height: ${whenFullscreen('198px', 'auto')};
-  ${p => p.theme.docz.mq(p.theme.docz.styles.playground)};
 `
 
 const StyledPreview = styled(LivePreview)`
   width: 100%;
-`
-
-const Playground = styled('div')`
-  width: 100%;
+  ${p => p.theme.docz.mq(p.theme.docz.styles.playground)};
 `
 
 const StyledError = styled(LiveError)`
@@ -131,7 +126,7 @@ const Action = styled(ActionButton)`
 
 const ActionLink = Action.withComponent('a')
 
-const Clipboard = styled(ClipboardAction)`
+const Clipboard = styled(ClipboardAction as any)`
   ${actionClass};
 `
 
@@ -171,21 +166,6 @@ const parse = (position: number, key: string, defaultValue: any) => {
   const obj = JSON.parse(get(position))
   return obj ? getter(obj, key) : defaultValue
 }
-
-interface JSXProps {
-  onChange: (code: string) => any
-}
-
-const Jsx: SFC<JSXProps> = ({ children, ...props }) => (
-  <Pre
-    {...props}
-    readOnly={false}
-    className={editorClassName}
-    actions={<Fragment />}
-  >
-    {children}
-  </Pre>
-)
 
 interface RenderProps extends RenderComponentProps {
   showEditor?: boolean
@@ -233,14 +213,14 @@ class RenderBase extends Component<RenderProps, RenderState> {
       <Actions withRadius={this.state.showEditor}>
         <Tabs showing={showEditor}>
           {showEditor && (
-            <>
+            <Fragment>
               <Tab active={showing === 'jsx'} onClick={showJsx}>
                 JSX
               </Tab>
               <Tab active={showing === 'html'} onClick={showHtml}>
                 HTML
               </Tab>
-            </>
+            </Fragment>
           )}
         </Tabs>
         <Action onClick={this.handleRefresh} title="Refresh playground">
@@ -278,7 +258,11 @@ class RenderBase extends Component<RenderProps, RenderState> {
   }
 
   get html(): string {
-    return pretty(renderToStaticMarkup(this.props.component))
+    try {
+      return pretty(renderToStaticMarkup(this.props.component))
+    } catch (err) {
+      return 'There was an error while rendering your html'
+    }
   }
 
   get resizableProps(): Record<string, any> {
@@ -321,7 +305,13 @@ class RenderBase extends Component<RenderProps, RenderState> {
 
   public render(): JSX.Element {
     const { className, style, scope } = this.props
-    const { fullscreen, showing, key, showEditor } = this.state
+    const { fullscreen, showing, showEditor } = this.state
+
+    const editorProps = {
+      square: true,
+      className: editorClassName,
+      actions: <Fragment />,
+    }
 
     return (
       <LiveProvider
@@ -334,35 +324,26 @@ class RenderBase extends Component<RenderProps, RenderState> {
           {fullscreen ? <ResizeBar onChangeSize={this.handleSetSize} /> : null}
           <Resizable {...this.resizableProps}>
             <Wrapper full={fullscreen}>
-              <LiveConsumer key={key}>
-                {(live: any) => (
-                  <PlaygroundWrapper full={fullscreen}>
-                    {live.error && (
-                      <Playground className={className} style={style}>
-                        {this.props.component}
-                      </Playground>
-                    )}
-                    <StyledPreview className={className} style={style} />
-                    <StyledError />
-                  </PlaygroundWrapper>
-                )}
-              </LiveConsumer>
+              <PlaygroundWrapper full={fullscreen}>
+                <StyledPreview className={className} style={style} />
+                <StyledError />
+              </PlaygroundWrapper>
               {this.actions}
               <EditorWrapper showing={showEditor}>
-                {showEditor &&
-                  (showing === 'jsx' ? (
-                    <Jsx onChange={code => this.setState({ code })}>
-                      {this.state.code}
-                    </Jsx>
-                  ) : (
-                    <Pre
-                      className={editorClassName}
-                      actions={<Fragment />}
-                      withLastLine
-                    >
-                      {this.html}
-                    </Pre>
-                  ))}
+                {showing === 'jsx' && (
+                  <Pre
+                    {...editorProps}
+                    onChange={code => this.setState({ code })}
+                    readOnly={false}
+                  >
+                    {this.state.code}
+                  </Pre>
+                )}
+                {showing === 'html' && (
+                  <Pre {...editorProps} withLastLine>
+                    {this.html}
+                  </Pre>
+                )}
               </EditorWrapper>
             </Wrapper>
           </Resizable>
