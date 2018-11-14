@@ -1,57 +1,22 @@
 import * as path from 'path'
-import HappyPack from 'happypack'
 
 import Config from 'webpack-chain'
 import { Config as Args } from '../commands/args'
 import * as paths from '../config/paths'
 import * as mdxConfig from '../config/mdx'
 
-export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
-  const jsx = {
-    id: 'jsx',
-    verbose: args.debug,
-    loaders: [
-      !args.debug && {
-        loader: require.resolve('cache-loader'),
-        options: {
-          cacheDirectory: paths.cache,
-        },
-      },
-      {
-        loader: require.resolve('babel-loader'),
-        options: babelrc,
-      },
-    ].filter(Boolean) as any[],
-  }
+const addCacheLoader = (rule: Config.Rule) =>
+  rule
+    .use('cache-loader')
+    .loader(require.resolve('cache-loader'))
+    .options({ cacheDirectory: paths.cache })
 
-  if (args.propsParser && args.typescript) {
-    jsx.loaders.push({
-      loader: require.resolve('react-docgen-typescript-loader'),
-    })
-  }
+const addTypescriptDocgen = (rule: Config.Rule) =>
+  rule
+    .use('typescript-docgen')
+    .loader(require.resolve('react-docgen-typescript-loader'))
 
-  const mdx = {
-    id: 'mdx',
-    verbose: args.debug,
-    loaders: [
-      !args.debug && {
-        loader: require.resolve('cache-loader'),
-        options: {
-          cacheDirectory: paths.cache,
-        },
-      },
-      {
-        loader: require.resolve('babel-loader'),
-        options: babelrc,
-      },
-    ].filter(Boolean),
-  }
-
-  config.plugin('happypack-jsx').use(HappyPack, [jsx])
-  config.plugin('happypack-mdx').use(HappyPack, [mdx])
-}
-
-export const js = (config: Config, args: Args) => {
+export const js = (config: Config, args: Args, babelrc: any) => {
   const srcPath = path.resolve(paths.root, args.src)
 
   config.module
@@ -63,11 +28,15 @@ export const js = (config: Config, args: Args) => {
     .end()
     .exclude.add(/node_modules/)
     .end()
-    .use('happypack-jsx')
-    .loader('happypack/loader?id=jsx')
+    .when(args.debug, addCacheLoader)
+    .use('babel-loader')
+    .loader(require.resolve('babel-loader'))
+    .options(babelrc)
+    .end()
+    .when(args.propsParser && args.typescript, addTypescriptDocgen)
 }
 
-export const mdx = (config: Config, args: Args) => {
+export const mdx = (config: Config, args: Args, babelrc: any) => {
   const { mdPlugins, hastPlugins } = args
   const srcPath = path.resolve(paths.root, args.src)
 
@@ -78,8 +47,10 @@ export const mdx = (config: Config, args: Args) => {
     .end()
     .exclude.add(/node_modules/)
     .end()
-    .use('happypack-mdx')
-    .loader('happypack/loader?id=mdx')
+    .when(args.debug, addCacheLoader)
+    .use('babel-loader')
+    .loader(require.resolve('babel-loader'))
+    .options(babelrc)
     .end()
     .use('mdx-loader')
     .loader(require.resolve('@mdx-js/loader'))
