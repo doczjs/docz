@@ -23,9 +23,8 @@ export const parseMdx = (file: string): Promise<string> => {
 }
 
 const getChildValue = (children: any) =>
-  children.map(
-    (child: any) =>
-      child.children ? getChildValue(child.children) : child.value
+  children.map((child: any) =>
+    child.children ? getChildValue(child.children) : child.value
   )
 
 const valueFromHeading = (node: any) => {

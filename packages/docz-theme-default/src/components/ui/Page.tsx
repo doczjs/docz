@@ -60,12 +60,11 @@ export const Page: SFC<PageProps> = ({
 }) => {
   const content = (
     <Fragment>
-      {link &&
-        edit && (
-          <EditPage href={link} target="_blank">
-            <EditIcon width={14} /> Edit page
-          </EditPage>
-        )}
+      {link && edit && (
+        <EditPage href={link} target="_blank">
+          <EditIcon width={14} /> Edit page
+        </EditPage>
+      )}
       {children}
     </Fragment>
   )

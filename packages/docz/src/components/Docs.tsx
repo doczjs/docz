@@ -2,9 +2,8 @@ import * as React from 'react'
 import sort from 'array-sort'
 
 import { state, Entry, EntryMap, Config } from '../state'
-import { entriesSelector } from './DocPreview'
-import { configSelector } from './ThemeConfig'
 import { compare, flatArrFromObject, isFn } from '../utils/helpers'
+import * as selectors from '../state/selectors'
 
 export interface DocsRenderProps {
   docs: Entry[]
@@ -24,7 +23,7 @@ export const Docs: React.SFC<DocsProps> = ({ children }) => {
   if (typeof children !== 'function') return null
 
   return (
-    <state.Consumer select={[entriesSelector, configSelector]}>
+    <state.Consumer select={[selectors.entries, selectors.config]}>
       {(entries: EntryMap, config: Config) => {
         if (!entries || !children) return null
         if (!isFn(children)) {

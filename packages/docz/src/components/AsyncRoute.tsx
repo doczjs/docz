@@ -7,6 +7,15 @@ import { ImportMap, EntryMap } from '../state'
 import { ComponentsMap } from './DocPreview'
 import { AsyncComponent } from './AsyncComponent'
 
+const loadImport = (imports: ImportMap, path: string) => async () => {
+  const { default: Component, getInitialData } = await imports[path]()
+  const ExportedComponent: any = (props: any) => (
+    <AsyncComponent {...props} as={Component} getInitialData={getInitialData} />
+  )
+
+  return ExportedComponent
+}
+
 interface AsyncRouteProps {
   components: ComponentsMap
   path: string
@@ -26,21 +35,9 @@ export const AsyncRoute: SFC<AsyncRouteProps> = ({
   const entry = entries && entries[path]
   const props = { ...routeProps, doc: entry }
 
-  const loadImport = async () => {
-    const { default: Component, getInitialData } = await imports[path]()
-    const ExportedComponent: any = (props: any) => (
-      <AsyncComponent
-        {...props}
-        as={Component}
-        getInitialData={getInitialData}
-      />
-    )
-
-    return ExportedComponent
-  }
-
+  const load = loadImport(imports, path)
   const Component = withMDXComponents(
-    importedComponent(loadImport, { LoadingComponent })
+    importedComponent(load, { LoadingComponent })
   )
 
   return Page ? (

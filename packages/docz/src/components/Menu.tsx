@@ -3,10 +3,9 @@ import { pipe, get, omit } from 'lodash/fp'
 import { ulid } from 'ulid'
 import sort from 'array-sort'
 
-import { state, Entry, EntryMap, Config, MenuItem } from '../state'
-import { entriesSelector } from './DocPreview'
-import { configSelector } from './ThemeConfig'
 import { compare, isFn, flatArrFromObject, mergeArrBy } from '../utils/helpers'
+import { state, Entry, EntryMap, Config, MenuItem } from '../state'
+import * as selectors from '../state/selectors'
 
 const noMenu = (entry: Entry) => !entry.menu
 const fromMenu = (menu: string) => (entry: Entry) => entry.menu === menu
@@ -124,7 +123,7 @@ export const Menu: React.SFC<DocsProps> = ({ children }) => {
   if (typeof children !== 'function') return null
 
   return (
-    <state.Consumer select={[entriesSelector, configSelector]}>
+    <state.Consumer select={[selectors.entries, selectors.config]}>
       {(entries: EntryMap, config: Config) => {
         if (!entries || !children) return null
         if (!isFn(children)) {

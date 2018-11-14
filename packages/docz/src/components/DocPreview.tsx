@@ -2,9 +2,10 @@ import * as React from 'react'
 import { Fragment, SFC, ComponentType as CT } from 'react'
 import { Switch, Route, RouteComponentProps } from 'react-router-dom'
 import { MDXProvider } from '@mdx-js/tag'
+import { get } from 'lodash/fp'
 
-import { state, State, Entry, EntryMap } from '../state'
-import { themeContext } from '../theme'
+import { state, Entry, EntryMap, ImportMap } from '../state'
+import * as selectors from '../state/selectors'
 import { AsyncRoute } from './AsyncRoute'
 
 export type PageProps = RouteComponentProps<any> & {
@@ -69,8 +70,6 @@ const defaultComponents: ComponentsMap = {
   page: Identity,
 }
 
-export const entriesSelector = state.createSelector((s: State) => s.entries)
-
 export interface DocPreviewProps {
   components: ComponentsMap
 }
@@ -84,46 +83,33 @@ export const DocPreview: SFC<DocPreviewProps> = ({
   }
 
   const NotFound: any = components.notFound
-  const LoadingComponent: any = components.loading
 
   return (
     <MDXProvider components={components}>
-      <themeContext.Consumer>
-        {({ imports }) => {
-          if (!imports) return <LoadingComponent />
+      <state.Consumer select={[selectors.entries, selectors.imports]}>
+        {(entries: EntryMap, imports: ImportMap) => {
+          if (!imports) return <NotFound />
           return (
-            <state.Consumer select={[entriesSelector]}>
-              {(entries: EntryMap) => (
-                <Switch>
-                  {Object.keys(imports).map(path => {
-                    const entry = entries[path]
-
-                    return (
-                      entry && (
-                        <Route
-                          exact
-                          key={entry.id}
-                          path={entry.route}
-                          render={props => (
-                            <AsyncRoute
-                              {...props}
-                              path={path}
-                              entries={entries}
-                              imports={imports}
-                              components={components}
-                            />
-                          )}
-                        />
-                      )
-                    )
-                  })}
-                  {NotFound && <Route component={NotFound} />}
-                </Switch>
-              )}
-            </state.Consumer>
+            <Switch>
+              {Object.keys(imports).map(path => {
+                const entry = get(path, entries)
+                const props = { path, entries, imports, components }
+                return (
+                  <Route
+                    exact
+                    key={entry.id}
+                    path={entry.route}
+                    render={routeProps => (
+                      <AsyncRoute {...routeProps} {...props} />
+                    )}
+                  />
+                )
+              })}
+              {NotFound && <Route component={NotFound} />}
+            </Switch>
           )
         }}
-      </themeContext.Consumer>
+      </state.Consumer>
     </MDXProvider>
   )
 }

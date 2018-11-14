@@ -1,7 +1,7 @@
 import { ComponentType as CT } from 'react'
 import createState from 'react-copy-write'
 
-import { ComponentsMap } from './components/DocPreview'
+import { ComponentsMap } from '../components/DocPreview'
 
 export type MSXComponent = CT<{
   components: ComponentsMap
@@ -58,14 +58,30 @@ type Import = () => Promise<MSXImport>
 
 export type EntryMap = Record<string, Entry>
 export type ImportMap = Record<string, Import>
-export type TransformFn = (config: Config) => Config
+
+export interface ThemeProps {
+  db: State
+  imports: ImportMap
+  wrapper?: CT
+  hashRouter?: boolean
+  websocketUrl?: string
+  children(WrappedComponent: CT): JSX.Element
+}
+
+export type TransformFn = (config: ThemeConfig) => ThemeConfig
 
 export interface State {
   config: Config
   entries: EntryMap
+  imports: ImportMap
+  themeConfig: ThemeConfig
+  transform: TransformFn
 }
 
 export const state = createState({
   config: {},
   entries: {},
+  imports: {},
+  themeConfig: {},
+  transform: (i: TransformFn) => i,
 })
