@@ -1,6 +1,5 @@
 import matter from 'remark-frontmatter'
 import slug from 'rehype-slug'
-import detectChanged from 'detect-one-changed/remark-plugin'
 import remarkDocz from 'remark-docz'
 import rehypeDocz from 'rehype-docz'
 
@@ -12,7 +11,7 @@ export const config = {
   marker: '-',
 }
 
-export const remarkPlugins = () => [detectChanged, matter, remarkDocz]
+export const remarkPlugins = () => [matter, remarkDocz]
 export const rehypePlugins = (config: Config) => [
   rehypeDocz(paths.root, config.codeSandbox),
   slug,

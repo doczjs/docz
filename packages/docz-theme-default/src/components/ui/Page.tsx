@@ -13,10 +13,11 @@ const Wrapper = styled('div')`
   flex: 1;
   color: ${get('colors.text')};
   background: ${get('colors.background')};
+  font-size: 18px;
 `
 
 export const Container = styled('div')`
-  position: relative;
+  box-sizing: border-box;
   margin: 0 auto;
   ${p => p.theme.docz.mq(p.theme.docz.styles.container)};
 `

@@ -66,6 +66,7 @@ const PlaygroundWrapper = styled('div')`
 `
 
 const StyledPreview = styled(LivePreview)`
+  box-sizing: border-box;
   width: 100%;
   ${p => p.theme.docz.mq(p.theme.docz.styles.playground)};
 `

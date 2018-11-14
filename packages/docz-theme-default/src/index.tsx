@@ -51,7 +51,12 @@ const Theme = () => (
 
 webfont.load({
   google: {
-    families: ['Source Code Pro', 'Source Sans Pro:300,400,600,700'],
+    families: [
+      'Source Code Pro',
+      'Source Sans Pro:400,600',
+      'Poppins:400',
+      'Playfair Display:700',
+    ],
   },
 })
 

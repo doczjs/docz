@@ -1,7 +1,6 @@
 export const styles = {
   body: {
     fontFamily: "'Source Sans Pro', Helvetica, sans-serif",
-    fontSize: 16,
     lineHeight: 1.6,
   },
   container: {
@@ -9,37 +8,40 @@ export const styles = {
     padding: ['20px', '0 40px 40px'],
   },
   h1: {
-    margin: ['30px 0 20px', '60px 0 20px', '40px 0 20px'],
-    fontSize: [36, 42, 48],
-    fontWeight: 100,
+    margin: ['30px 0 20px', '60px 0 20px', '40px 0 30px'],
+    fontFamily: '"Playfair Display", serif',
+    fontSize: [50, 50, 80],
+    fontWeight: 700,
     letterSpacing: '-0.02em',
   },
   h2: {
-    margin: ['20px 0 20px', '35px 0 20px'],
+    margin: ['40px 0 20px', '40px 0 30px'],
     lineHeight: ['1.2em', '1.5em'],
-    fontSize: 28,
-    fontWeight: 600,
+    fontFamily: '"Poppins", serif',
+    fontWeight: 400,
+    fontSize: 32,
     letterSpacing: '-0.02em',
   },
   h3: {
     margin: '25px 0 10px',
-    fontSize: [22, 24],
+    fontSize: 22,
     fontWeight: 400,
   },
   h4: {
     margin: '25px 0 10px',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 400,
   },
   h5: {
     margin: '20px 0 10px',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 400,
   },
   h6: {
     margin: '20px 0 10px',
     fontSize: 16,
     fontWeight: 400,
+    textTransform: 'uppercase',
   },
   list: {
     padding: 0,
@@ -61,7 +63,7 @@ export const styles = {
     lineHeight: 1.8,
   },
   paragraph: {
-    margin: '15px 0 30px',
+    margin: '10px 0 20px 0',
   },
   table: {
     overflowY: 'hidden',

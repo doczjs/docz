@@ -95,7 +95,7 @@ const FooterLink = styled('a')`
   margin-left: 5px;
 `
 
-const FooterLogo = styled(Docz)`
+const FooterLogo = styled(Docz as any)`
   fill: ${sidebarText};
 `
 

@@ -18,7 +18,8 @@ const Icon = styled(Hash)`
 
 const Heading = styled('h2')`
   position: relative;
-  margin: 50px 0 20px;
+  border-bottom: 1px dashed ${get('colors.border')};
+  padding-bottom: 5px;
   ${p => p.theme.docz.mq(get('styles.h2')(p))};
 
   &:hover ${Icon.toString()} {

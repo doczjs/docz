@@ -1,13 +1,8 @@
 import { injectGlobal } from 'emotion'
-import 'normalize.css'
 import 'codemirror/lib/codemirror.css'
 
 // tslint:disable
 injectGlobal`
-  *, *:before, *:after {
-    box-sizing: border-box;
-  }
-
   .icon-link {
     display: none;
   }

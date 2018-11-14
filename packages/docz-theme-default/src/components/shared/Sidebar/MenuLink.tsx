@@ -43,6 +43,8 @@ export const linkStyle = ({ colors }: any) => css`
   display: block;
   padding: 4px 24px;
   font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.02em;
   color: ${colors.sidebarText};
   text-decoration: none;
   transition: color 0.2s;
