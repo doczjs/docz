@@ -22,7 +22,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@babel/core": "7.1.2",
+    "@babel/core": "7.1.6",
     "@babel/plugin-proposal-class-properties": "7.1.0",
     "@babel/plugin-proposal-object-rest-spread": "7.0.0",
     "@babel/plugin-syntax-dynamic-import": "7.0.0",
@@ -36,6 +36,6 @@
     "babel-plugin-macros": "^2.4.0",
     "babel-plugin-react-docgen": "^2.0.0",
     "babel-plugin-transform-dynamic-import": "^2.0.0",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.19"
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.20"
   }
 }

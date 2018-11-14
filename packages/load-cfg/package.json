@@ -25,10 +25,10 @@
     "deepmerge": "^2.2.1",
     "esm": "^3.0.84",
     "find-up": "^3.0.0",
-    "fs-extra": "^7.0.0"
+    "fs-extra": "^7.0.1"
   },
   "devDependencies": {
     "@types/find-up": "^2.1.1",
-    "@types/node": "^10.12.1"
+    "@types/node": "^10.12.7"
   }
 }

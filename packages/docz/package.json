@@ -26,23 +26,22 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@mdx-js/tag": "^0.15.6",
+    "@mdx-js/tag": "^0.16.0",
     "@sindresorhus/slugify": "^0.6.0",
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
-    "create-react-context": "^0.2.3",
     "deepmerge": "^2.2.1",
     "docz-core": "^0.12.9",
     "docz-theme-default": "^0.12.9",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
-    "react": "^16.6.0",
+    "react": "^16.6.3",
     "react-copy-write": "^0.8.0",
-    "react-dom": "^16.6.0",
-    "react-imported-component": "^5.1.2",
+    "react-dom": "^16.6.3",
+    "react-imported-component": "^5.2.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-router-hash-link": "^1.2.0",
+    "react-router-hash-link": "^1.2.1",
     "ulid": "^2.3.0",
     "yargs": "^12.0.2"
   },
@@ -51,8 +50,8 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.117",
-    "@types/react": "^16.4.18",
+    "@types/lodash": "^4.14.118",
+    "@types/react": "^16.7.6",
     "@types/react-copy-write": "^0.7.1",
     "@types/react-dom": "^16.0.9",
     "@types/react-router-dom": "^4.3.1"
