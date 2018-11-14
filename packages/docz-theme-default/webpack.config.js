@@ -9,8 +9,6 @@ const ENV = process.env.NODE_ENV || 'development'
 const IS_PROD = ENV === 'production'
 
 const externalList = [
-  '@mdx-js/tag',
-  'codemirror',
   'codemirror/mode/markdown/markdown',
   'codemirror/mode/javascript/javascript',
   'codemirror/mode/jsx/jsx',
@@ -18,15 +16,10 @@ const externalList = [
   'codemirror/addon/edit/matchbrackets',
   'codemirror/addon/edit/closetag',
   'codemirror/addon/fold/xml-fold',
-  'normalize.css',
-  'react-perfect-scrollbar',
   'polished/lib/color/rgba',
   'polished/lib/color/lighten',
   'polished/lib/color/darken',
   'polished/lib/mixins/placeholder',
-  'react-codemirror2',
-  'react-dom/server',
-  'react-feather',
   'react-feather/dist/icons/edit-2',
   'react-feather/dist/icons/chevron-down',
   'react-feather/dist/icons/search',
@@ -39,10 +32,9 @@ const externalList = [
   'react-feather/dist/icons/minimize',
   'react-feather/dist/icons/refresh-cw',
   'react-feather/dist/icons/hash',
-  'react-sizes',
 ]
 
-const internals = ['normalize.css', 'codemirror/lib/codemirror.css']
+const internals = ['codemirror/lib/codemirror.css']
 
 const deps = Object.keys(pkg.dependencies)
 const externals = deps
@@ -92,9 +84,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/dist'),
     filename: `index.js`,
-    library: 'DoczThemeDefault',
-    libraryTarget: 'umd',
-    umdNamedDefine: true,
+    libraryTarget: 'commonjs2',
   },
   module: {
     rules: [
