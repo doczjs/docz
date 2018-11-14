@@ -7,7 +7,7 @@ import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages'
 import printBuildError from 'react-dev-utils/printBuildError'
 import envDotProp from 'env-dot-prop'
 
-import * as paths from '../../config/paths'
+import * as paths from '../config/paths'
 
 const { measureFileSizesBeforeBuild, printFileSizesAfterBuild } = FSR
 const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024

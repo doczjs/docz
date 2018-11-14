@@ -2,9 +2,9 @@ import * as path from 'path'
 import HappyPack from 'happypack'
 
 import Config from 'webpack-chain'
-import { Config as Args } from '../../commands/args'
-import * as paths from '../../config/paths'
-import * as mdxConfig from '../../config/mdx'
+import { Config as Args } from '../commands/args'
+import * as paths from '../config/paths'
+import * as mdxConfig from '../config/mdx'
 
 export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
   const jsx = {

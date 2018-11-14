@@ -9,9 +9,9 @@ import serveStatic from 'koa-static'
 import history from 'connect-history-api-fallback'
 import serveWaitpage from 'webpack-serve-waitpage'
 
-import * as paths from '../../config/paths'
-import { Config } from '../../commands/args'
-import { ServerHooks } from '../../Bundler'
+import * as paths from '../config/paths'
+import { Config } from '../commands/args'
+import { ServerHooks } from '../Bundler'
 
 export const devServerConfig = (
   args: Config,

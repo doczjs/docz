@@ -3,7 +3,7 @@ import envDotProp from 'env-dot-prop'
 
 import * as states from '../states'
 import { loadConfig } from '../utils/load-config'
-import { webpack } from '../bundlers'
+import { bundler as webpack } from '../webpack'
 import { Entries } from '../Entries'
 import { DataServer } from '../DataServer'
 import { Plugin } from '../Plugin'

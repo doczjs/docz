@@ -9,11 +9,11 @@ import manifestPlugin from 'webpack-manifest-plugin'
 import * as TerserPlugin from 'terser-webpack-plugin'
 
 import * as loaders from './loaders'
-import * as paths from '../../config/paths'
-import { getClientEnvironment } from '../../config/env'
-import { Config as Args, Env } from '../../commands/args'
-import { BabelRC } from '../../utils/babel-config'
-import { parseHtml, htmlTemplate } from '../../utils/parse-html'
+import * as paths from '../config/paths'
+import { getClientEnvironment } from '../config/env'
+import { Config as Args, Env } from '../commands/args'
+import { BabelRC } from '../utils/babel-config'
+import { parseHtml, htmlTemplate } from '../utils/parse-html'
 
 export const createConfig = (args: Args, env: Env) => async (
   babelrc: BabelRC

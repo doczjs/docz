@@ -2,8 +2,8 @@ import { Configuration as Config } from 'webpack'
 import serve from 'webpack-serve'
 
 import { devServerConfig } from './devserver'
-import { BundlerServer, ServerHooks } from '../../Bundler'
-import { Config as Args } from '../../commands/args'
+import { BundlerServer, ServerHooks } from '../Bundler'
+import { Config as Args } from '../commands/args'
 import * as http from 'http'
 
 type Server = Promise<BundlerServer>
