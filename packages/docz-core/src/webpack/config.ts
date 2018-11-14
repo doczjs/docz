@@ -164,8 +164,6 @@ export const createConfig = (args: Args, env: Env) => async (
   loaders.svg(config)
   loaders.media(config)
   loaders.fonts(config)
-
-  args.typescript && loaders.ts(config, args)
   loaders.setupHappypack(config, args, babelrc)
 
   /**

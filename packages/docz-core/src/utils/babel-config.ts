@@ -43,8 +43,10 @@ export const getBabelConfig = async (
 
   const config = merge(localBabelRc, {
     presets,
-    cacheDirectory: !args.debug,
     babelrc: false,
+    cacheDirectory: !args.debug,
+    cacheCompression: isProd,
+    compact: isProd,
     plugins: defaultPlugins.concat(
       !isProd ? [require.resolve('react-hot-loader/babel')] : []
     ),

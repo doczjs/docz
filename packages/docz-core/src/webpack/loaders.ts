@@ -56,25 +56,10 @@ export const js = (config: Config, args: Args) => {
 
   config.module
     .rule('js')
-    .test(/\.(js|jsx|mjs)$/)
+    .test(/\.(js|mjs|jsx|ts|tsx)$/)
     .include.add(srcPath)
     .add(paths.root)
     .add(paths.docz)
-    .end()
-    .exclude.add(/node_modules/)
-    .end()
-    .use('happypack-jsx')
-    .loader('happypack/loader?id=jsx')
-}
-
-export const ts = (config: Config, args: Args) => {
-  const srcPath = path.resolve(paths.root, args.src)
-
-  config.module
-    .rule('ts')
-    .test(/\.(ts|tsx)$/)
-    .include.add(srcPath)
-    .add(paths.root)
     .end()
     .exclude.add(/node_modules/)
     .end()
