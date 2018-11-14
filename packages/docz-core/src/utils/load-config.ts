@@ -11,6 +11,7 @@ import { BabelRC } from './babel-config'
 const toOmit = ['_', '$0', 'version', 'help']
 const defaultHtmlContext = {
   lang: 'en',
+  favicon: 'https://cdn-std.dprcdn.net/files/acc_649651/LUKiMl',
 }
 
 export const loadConfig = async (args: Config): Promise<Config> => {
