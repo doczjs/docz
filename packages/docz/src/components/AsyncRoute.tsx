@@ -3,11 +3,14 @@ import { SFC } from 'react'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 import importedComponent from 'react-imported-component'
 
-import { ImportMap, EntryMap } from '../state'
+import { EntryMap } from '../state'
 import { ComponentsMap } from './DocPreview'
 import { AsyncComponent } from './AsyncComponent'
 
-const loadImport = (imports: ImportMap, path: string) => async () => {
+// tslint:disable-next-line
+import { imports } from '~imports'
+
+const loadFromImports = (path: string) => async () => {
   const { default: Component, getInitialData } = await imports[path]()
   const ExportedComponent: any = (props: any) => (
     <AsyncComponent {...props} as={Component} getInitialData={getInitialData} />
@@ -19,14 +22,12 @@ const loadImport = (imports: ImportMap, path: string) => async () => {
 interface AsyncRouteProps {
   components: ComponentsMap
   path: string
-  imports: ImportMap
   entries: EntryMap
 }
 
 export const AsyncRoute: SFC<AsyncRouteProps> = ({
   components,
   path,
-  imports,
   entries,
   ...routeProps
 }) => {
@@ -35,7 +36,7 @@ export const AsyncRoute: SFC<AsyncRouteProps> = ({
   const entry = entries && entries[path]
   const props = { ...routeProps, doc: entry }
 
-  const load = loadImport(imports, path)
+  const load = loadFromImports(path)
   const Component = withMDXComponents(
     importedComponent(load, { LoadingComponent })
   )

@@ -4,9 +4,8 @@ import { Switch, Route, RouteComponentProps } from 'react-router-dom'
 import { MDXProvider } from '@mdx-js/tag'
 import { get } from 'lodash/fp'
 
-import { state, Entry, EntryMap, ImportMap } from '../state'
-import * as selectors from '../state/selectors'
 import { AsyncRoute } from './AsyncRoute'
+import { state, Entry } from '../state'
 
 export type PageProps = RouteComponentProps<any> & {
   doc: Entry
@@ -86,30 +85,28 @@ export const DocPreview: SFC<DocPreviewProps> = ({
 
   return (
     <MDXProvider components={components}>
-      <state.Consumer select={[selectors.entries, selectors.imports]}>
-        {(entries: EntryMap, imports: ImportMap) => {
-          if (!imports) return <NotFound />
-          return (
-            <Switch>
-              {Object.keys(imports).map(path => {
-                const entry = get(path, entries)
-                const props = { path, entries, imports, components }
-                return (
-                  <Route
-                    exact
-                    key={entry.id}
-                    path={entry.route}
-                    render={routeProps => (
-                      <AsyncRoute {...routeProps} {...props} />
-                    )}
-                  />
-                )
-              })}
-              {NotFound && <Route component={NotFound} />}
-            </Switch>
-          )
-        }}
-      </state.Consumer>
+      {state.get(({ entries }) => {
+        if (!entries) return null
+        return (
+          <Switch>
+            {Object.keys(entries).map(path => {
+              const entry = get(path, entries)
+              const props = { path, entries, components }
+              return (
+                <Route
+                  exact
+                  key={entry.id}
+                  path={entry.route}
+                  render={routeProps => (
+                    <AsyncRoute {...routeProps} {...props} />
+                  )}
+                />
+              )
+            })}
+            {NotFound && <Route component={NotFound} />}
+          </Switch>
+        )
+      })}
     </MDXProvider>
   )
 }

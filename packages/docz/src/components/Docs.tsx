@@ -1,9 +1,9 @@
 import * as React from 'react'
+import { Fragment } from 'react'
 import sort from 'array-sort'
 
-import { state, Entry, EntryMap, Config } from '../state'
+import { state, Entry } from '../state'
 import { compare, flatArrFromObject, isFn } from '../utils/helpers'
-import * as selectors from '../state/selectors'
 
 export interface DocsRenderProps {
   docs: Entry[]
@@ -23,9 +23,9 @@ export const Docs: React.SFC<DocsProps> = ({ children }) => {
   if (typeof children !== 'function') return null
 
   return (
-    <state.Consumer select={[selectors.entries, selectors.config]}>
-      {(entries: EntryMap, config: Config) => {
-        if (!entries || !children) return null
+    <Fragment>
+      {state.get(({ entries, config }) => {
+        if (!entries || !config || !children) return null
         if (!isFn(children)) {
           throw new Error(
             'You need to pass a children as a function to your <Docs/> component'
@@ -48,7 +48,7 @@ export const Docs: React.SFC<DocsProps> = ({ children }) => {
           menus,
           docs,
         })
-      }}
-    </state.Consumer>
+      })}
+    </Fragment>
   )
 }

@@ -1,5 +1,5 @@
 import { ReactNode, Component } from 'react'
-import { state, State } from '../state'
+import { state } from '../state'
 
 interface DataServerProps {
   websocketUrl?: string
@@ -28,15 +28,17 @@ export class DataServer extends Component<DataServerProps> {
       const message = JSON.parse(ev.data)
 
       if (message.type === 'state.entries') {
-        state.mutate((draft: State) => {
-          if (draft) draft.entries = message.payload
-        })
+        state.set(state => ({
+          ...state,
+          entries: message.payload,
+        }))
       }
 
       if (message.type === 'state.config') {
-        state.mutate((draft: State) => {
-          if (draft) draft.config = message.payload
-        })
+        state.set(state => ({
+          ...state,
+          config: message.payload,
+        }))
       }
     }
   }

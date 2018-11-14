@@ -1,11 +1,11 @@
 import * as React from 'react'
+import { Fragment } from 'react'
 import { pipe, get, omit } from 'lodash/fp'
 import { ulid } from 'ulid'
 import sort from 'array-sort'
 
 import { compare, isFn, flatArrFromObject, mergeArrBy } from '../utils/helpers'
-import { state, Entry, EntryMap, Config, MenuItem } from '../state'
-import * as selectors from '../state/selectors'
+import { state, Entry, MenuItem } from '../state'
 
 const noMenu = (entry: Entry) => !entry.menu
 const fromMenu = (menu: string) => (entry: Entry) => entry.menu === menu
@@ -123,9 +123,9 @@ export const Menu: React.SFC<DocsProps> = ({ children }) => {
   if (typeof children !== 'function') return null
 
   return (
-    <state.Consumer select={[selectors.entries, selectors.config]}>
-      {(entries: EntryMap, config: Config) => {
-        if (!entries || !children) return null
+    <Fragment>
+      {state.get(({ entries, config }) => {
+        if (!entries || !config || !children) return null
         if (!isFn(children)) {
           throw new Error(
             'You need to pass a children as a function to your <Docs/> component'
@@ -139,7 +139,7 @@ export const Menu: React.SFC<DocsProps> = ({ children }) => {
         const menus = sortMenus(merged, config.menu, reverse)
 
         return children(menus)
-      }}
-    </state.Consumer>
+      })}
+    </Fragment>
   )
 }
