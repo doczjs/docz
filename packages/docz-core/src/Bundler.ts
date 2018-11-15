@@ -23,7 +23,7 @@ export interface BundlerServer {
 }
 
 export type ConfigFn<C> = (babelrc: BabelRC) => Promise<C>
-export type BuildFn<C> = (config: C, dist: string) => void
+export type BuildFn<C> = (config: C, dist: string, publicDir: string) => void
 
 export type ServerFnReturn = BundlerServer | Promise<BundlerServer>
 export type ServerFn<C> = (config: C, hooks: ServerHooks) => ServerFnReturn
@@ -77,6 +77,7 @@ export class Bundler<C = ConfigObj> {
 
   public async build(config: C): Promise<void> {
     const dist = paths.getDist(this.args.dest)
+    const publicDir = path.join(paths.root, this.args.public)
 
     if (paths.root === path.resolve(dist)) {
       logger.fatal(
@@ -87,7 +88,7 @@ export class Bundler<C = ConfigObj> {
       process.exit(1)
     }
 
-    await this.builder(config, dist)
+    await this.builder(config, dist, publicDir)
   }
 
   private mountConfig(config: C, env: Env): any {

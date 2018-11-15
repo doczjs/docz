@@ -15,9 +15,12 @@ const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024
 
 const hasCiEnvVar = () => envDotProp.get('ci', false, { parse: true })
 
-const copyPublicFolder = async (dest: string): Promise<void> => {
-  if (await fs.pathExists(paths.appPublic)) {
-    await fs.copySync(paths.appPublic, paths.distPublic(dest), {
+const copyPublicFolder = async (
+  dest: string,
+  publicDir: string
+): Promise<void> => {
+  if (await fs.pathExists(publicDir)) {
+    await fs.copy(publicDir, paths.distPublic(dest), {
       dereference: true,
       filter: file => file !== paths.indexHtml,
     })
@@ -108,13 +111,13 @@ const onError = (err: Error) => {
   process.exit(1)
 }
 
-export const build = async (config: CFG, dist: string) => {
+export const build = async (config: CFG, dist: string, publicDir: string) => {
   try {
     await fs.ensureDir(dist)
     const previousFileSizes = await measureFileSizesBeforeBuild(dist)
 
     await fs.emptyDir(dist)
-    await copyPublicFolder(dist)
+    await copyPublicFolder(dist, publicDir)
 
     const result = await builder(config, previousFileSizes)
     onSuccess(dist, result)

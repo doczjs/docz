@@ -52,6 +52,7 @@ export interface Argv {
   src: string
   files: string
   ignore: string[]
+  public: string
   dest: string
   editBranch: string
   config: string
@@ -113,6 +114,10 @@ export const args = (env: Env) => (yargs: any) => {
   yargs.positional('ignore', {
     type: 'array',
     default: getEnv('docz.ignore', []),
+  })
+  yargs.positional('public', {
+    type: 'string',
+    default: getEnv('docz.public', '/public'),
   })
   yargs.positional('dest', {
     alias: 'd',

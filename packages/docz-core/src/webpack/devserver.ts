@@ -20,6 +20,7 @@ export const devServerConfig = (
 ) => {
   const nonExistentDir = path.resolve(__dirname, 'non-existent')
   const logLevel = (level: string) => (args.debug ? 'debug' : level)
+  const publicDir = path.join(paths.root, args.public)
 
   return {
     config,
@@ -42,8 +43,8 @@ export const devServerConfig = (
 
       app.use(range)
 
-      if (fs.existsSync(paths.appPublic)) {
-        app.use(mount(args.base, serveStatic(paths.appPublic)))
+      if (fs.existsSync(publicDir)) {
+        app.use(mount(path.join(args.base, '/public'), serveStatic(publicDir)))
       }
 
       app.use(
