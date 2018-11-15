@@ -10,7 +10,7 @@ export const styles = {
   h1: {
     margin: ['30px 0 20px', '60px 0 20px', '40px 0 30px'],
     fontFamily: '"Playfair Display", serif',
-    fontSize: [50, 50, 80],
+    fontSize: [50, 50, 70],
     fontWeight: 700,
     letterSpacing: '-0.02em',
   },
