@@ -96,7 +96,7 @@
     "@types/html-webpack-plugin": "^3.2.0",
     "@types/koa": "^2.0.46",
     "@types/lodash.get": "^4.4.4",
-    "@types/node": "10.12.7",
+    "@types/node": "10.12.8",
     "@types/p-reduce": "^1.0.0",
     "@types/prettier": "^1.13.2",
     "@types/resolve": "^0.0.8",
