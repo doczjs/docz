@@ -36,7 +36,7 @@ const Wrapper = styled('div')`
   min-height: 100vh;
   background: ${sidebarBg};
   transition: transform 0.2s, background 0.3s;
-  z-index: 100;
+  z-index: 1000;
   ${position};
   ${get('styles.sidebar')};
 
