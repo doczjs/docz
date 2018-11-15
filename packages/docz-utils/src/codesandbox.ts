@@ -1,7 +1,26 @@
 import * as path from 'path'
 import { assembleFiles } from 'codesandboxer-fs'
+import unescapeJS from 'unescape-js'
 
 import { formatter } from './format'
+
+const classComponent = (code: string) => {
+  const match = code.match(/(class)(\s)(\w+)/m)
+  const component = match && match[3]
+
+  return `
+    {() => {
+      ${code}
+      return <${component} />
+    }}
+  `
+}
+
+const checkCodeToRender = (code: string) => {
+  if (code.startsWith('()')) return `{${code}}`
+  if (code.startsWith('class')) return classComponent(code)
+  return `<React.Fragment>${code}</React.Fragment>`
+}
 
 const wrapCode = (code: string): string =>
   `import React from 'react';
@@ -21,7 +40,7 @@ const wrapCode = (code: string): string =>
 
   export default () => (
     <App>
-      ${code.split('\n').join('\n    ')}
+      ${checkCodeToRender(unescapeJS(code))}
     </App>
   )`
 

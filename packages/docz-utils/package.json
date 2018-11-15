@@ -47,6 +47,7 @@
     "signale": "^1.3.0",
     "strip-indent": "^2.0.0",
     "to-vfile": "^5.0.2",
+    "unescape-js": "^1.1.1",
     "unified": "^7.0.1",
     "unist-util-find": "^1.0.1",
     "unist-util-is": "^2.1.2",
