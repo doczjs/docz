@@ -27,9 +27,9 @@ export const dev = async (args: Config) => {
 
   const bundlerConfig = await bundler.getConfig(env)
   const server = await bundler.createServer(bundlerConfig)
-  const { app } = await server.start()
+  const instance = await server.start()
   const dataServer = new DataServer(
-    app.server,
+    instance.app.server,
     websocketPort,
     config.websocketHost
   )
@@ -46,5 +46,13 @@ export const dev = async (args: Config) => {
   } catch (err) {
     logger.fatal('Failed to process your server:', err)
     process.exit(1)
+  }
+
+  const signals: any = ['SIGINT', 'SIGTERM']
+  for (const sig of signals) {
+    process.on(sig, async () => {
+      instance.close()
+      process.exit()
+    })
   }
 }
