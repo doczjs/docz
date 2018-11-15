@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.11](https://github.com/pedronauck/docz/compare/v0.12.10...v0.12.11) (2018-11-15)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** adjust z-index of menu ([ea9a864](https://github.com/pedronauck/docz/commit/ea9a864))
+* **docz-theme-default:** font size of heading ([5cf6144](https://github.com/pedronauck/docz/commit/5cf6144))
+
+
+
+
+
 ## [0.12.10](https://github.com/pedronauck/docz/compare/v0.12.9...v0.12.10) (2018-11-15)
 
 

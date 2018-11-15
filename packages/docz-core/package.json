@@ -1,6 +1,6 @@
 {
   "name": "docz-core",
-  "version": "0.12.10",
+  "version": "0.12.11",
   "description": "All docz core logic of bundle and parsing is included on this package",
   "license": "MIT",
   "main": "dist/index.js",
@@ -32,7 +32,7 @@
     "@svgr/webpack": "^4.0.3",
     "art-template": "^4.13.2",
     "babel-loader": "^8.0.2",
-    "babel-preset-docz": "^0.12.10",
+    "babel-preset-docz": "^0.12.11",
     "babylon": "^6.18.0",
     "cache-loader": "^1.2.5",
     "chalk": "^2.4.1",
