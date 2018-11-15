@@ -161,12 +161,13 @@ export const createConfig = (args: Args, env: Env) => async (
    * loaders
    */
 
-  loaders.js(config, args, babelrc)
-  loaders.mdx(config, args, babelrc)
+  loaders.js(config, args)
+  loaders.mdx(config, args)
   loaders.images(config)
   loaders.svg(config)
   loaders.media(config)
   loaders.fonts(config)
+  loaders.setupHappypack(config, args, babelrc)
 
   /**
    * plugins

@@ -52,6 +52,7 @@
     "friendly-errors-webpack-plugin": "^1.7.0",
     "fs-extra": "^7.0.1",
     "get-pkg-repo": "^4.0.2",
+    "happypack": "^5.0.0",
     "html-minifier": "^3.5.21",
     "humanize-string": "^1.0.2",
     "koa": "^2.6.2",
