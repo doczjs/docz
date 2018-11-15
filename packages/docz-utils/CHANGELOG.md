@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.10](https://github.com/pedronauck/docz/compare/v0.12.9...v0.12.10) (2018-11-15)
+
+
+### Bug Fixes
+
+* **docz-utils:** resolve codesandbox code ([33dc6e5](https://github.com/pedronauck/docz/commit/33dc6e5))
+
+
+
+
+
 ## [0.12.9](https://github.com/pedronauck/docz/compare/v0.12.8...v0.12.9) (2018-11-01)
 
 

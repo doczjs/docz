@@ -1,6 +1,6 @@
 {
   "name": "docz-example-styled-components",
-  "version": "0.12.9",
+  "version": "0.12.10",
   "license": "MIT",
   "scripts": {
     "dev": "docz dev",
@@ -13,6 +13,6 @@
     "styled-components": "^4.1.1"
   },
   "devDependencies": {
-    "docz": "^0.12.9"
+    "docz": "^0.12.10"
   }
 }

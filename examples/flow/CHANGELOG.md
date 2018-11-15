@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.10](https://github.com/pedronauck/docz/compare/v0.12.9...v0.12.10) (2018-11-15)
+
+**Note:** Version bump only for package docz-example-flow
+
+
+
+
+
 ## [0.12.9](https://github.com/pedronauck/docz/compare/v0.12.8...v0.12.9) (2018-11-01)
 
 **Note:** Version bump only for package docz-example-flow

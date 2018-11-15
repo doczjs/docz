@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.10](https://github.com/pedronauck/docz/compare/v0.12.9...v0.12.10) (2018-11-15)
+
+
+### Bug Fixes
+
+* **docz-core:** add cache just for non-debug ([cede436](https://github.com/pedronauck/docz/commit/cede436))
+* **docz-core:** add default favicon ([a0ed2ab](https://github.com/pedronauck/docz/commit/a0ed2ab))
+* **docz-core:** add ignore md files by args ([d8c8045](https://github.com/pedronauck/docz/commit/d8c8045))
+* **docz-core:** kill server on signals ([be0855f](https://github.com/pedronauck/docz/commit/be0855f))
+* **docz-core:** use assets from public folder ([210c3a1](https://github.com/pedronauck/docz/commit/210c3a1))
+* **docz-theme-default:** add styles or classname on playground ([01110d4](https://github.com/pedronauck/docz/commit/01110d4))
+* **docz-utils:** resolve codesandbox code ([33dc6e5](https://github.com/pedronauck/docz/commit/33dc6e5))
+
+
+### Features
+
+* **docz-core:** add detect-one-changed in development ([#433](https://github.com/pedronauck/docz/issues/433)) ([0585b97](https://github.com/pedronauck/docz/commit/0585b97))
+* **docz-core:** add two new plugin hooks ([#431](https://github.com/pedronauck/docz/issues/431)) ([f4a122f](https://github.com/pedronauck/docz/commit/f4a122f))
+* **docz-theme-default:** show and hide playground ([b665f81](https://github.com/pedronauck/docz/commit/b665f81))
+
+
+
+
+
 ## [0.12.9](https://github.com/pedronauck/docz/compare/v0.12.8...v0.12.9) (2018-11-01)
 
 
