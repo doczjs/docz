@@ -43,9 +43,13 @@ export const styles = {
     fontWeight: 400,
     textTransform: 'uppercase',
   },
-  list: {
+  ol: {
     padding: 0,
-    margin: '10px 0 10px 20px',
+    margin: '10px 0 10px',
+  },
+  ul: {
+    padding: 0,
+    margin: '10px 0 10px',
   },
   playground: {
     padding: ['1.5em', '2em'],
