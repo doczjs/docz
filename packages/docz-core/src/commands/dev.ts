@@ -27,6 +27,14 @@ export const dev = async (args: Config) => {
 
   const bundlerConfig = await bundler.getConfig(env)
   const server = await bundler.createServer(bundlerConfig)
+
+  try {
+    await Entries.writeApp(newConfig, true)
+  } catch (err) {
+    logger.fatal('Failed to build your files:', err)
+    process.exit(1)
+  }
+
   const instance = await server.start()
   const dataServer = new DataServer(
     instance.app.server,
@@ -40,7 +48,6 @@ export const dev = async (args: Config) => {
   ])
 
   try {
-    await Entries.writeApp(newConfig, true)
     await dataServer.init()
     await dataServer.listen()
   } catch (err) {
