@@ -83,6 +83,7 @@ Documenting our things is one of the most important and heavy processes when you
 - **[babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6)** - Use this plugin to use older babel version **[DEPRECATED]** ⚠️
 - **[netlify](https://github.com/nicholasess/docz-plugin-netlify)** - Deploy your documentation to [Netlify](http://netlify.com/)
 - **[react-native](https://github.com/pedronauck/docz-plugin-react-native)** - Allow you to use docz with React Native
+- **[postcss](https://github.com/andreasonny83/docz-plugin-postcss)** - Use Docz with PostCSS
 
 ## 🗃 &nbsp; Examples
 
