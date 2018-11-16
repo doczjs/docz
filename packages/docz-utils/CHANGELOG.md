@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.12](https://github.com/pedronauck/docz/compare/v0.12.11...v0.12.12) (2018-11-16)
+
+
+### Bug Fixes
+
+* **docz-utils:** add .scss to codesandbox assemble files ([59e8fa8](https://github.com/pedronauck/docz/commit/59e8fa8))
+
+
+
+
+
 ## [0.12.10](https://github.com/pedronauck/docz/compare/v0.12.9...v0.12.10) (2018-11-15)
 
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.12](https://github.com/pedronauck/docz/compare/v0.12.11...v0.12.12) (2018-11-16)
+
+**Note:** Version bump only for package docz-core
+
+
+
+
+
 ## [0.12.11](https://github.com/pedronauck/docz/compare/v0.12.10...v0.12.11) (2018-11-15)
 
 
