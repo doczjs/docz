@@ -1,12 +1,10 @@
 import * as React from 'react'
 import { SFC, Fragment } from 'react'
 import { PageProps, ThemeConfig } from 'docz'
-import { ThemeProvider } from 'emotion-theming'
 import lighten from 'polished/lib/color/lighten'
 import Edit from 'react-feather/dist/icons/edit-2'
 import styled from 'react-emotion'
 
-import { mq } from '../../styles/responsive'
 import { ButtonLink } from './Button'
 import { GithubLink, Sidebar, Main } from '../shared'
 import { get } from '@utils/theme'
@@ -57,12 +55,6 @@ const EditIcon = styled(Edit)`
   margin-right: 5px;
 `
 
-// tslint:disable
-const mergeTheme = (config: any) => (old: any) => ({
-  ...old,
-  docz: Object.assign({}, config.themeConfig, { mq }),
-})
-
 export const Page: SFC<PageProps> = ({
   children,
   doc: { link, fullpage, edit = true },
@@ -81,15 +73,13 @@ export const Page: SFC<PageProps> = ({
   return (
     <ThemeConfig>
       {({ repository, ...config }) => (
-        <ThemeProvider theme={mergeTheme(config)}>
-          <Main config={config}>
-            {repository && <GithubLink repository={repository} />}
-            {!fullpage && <Sidebar />}
-            <Wrapper>
-              {fullpage ? content : <Container>{content}</Container>}
-            </Wrapper>
-          </Main>
-        </ThemeProvider>
+        <Main config={config}>
+          {repository && <GithubLink repository={repository} />}
+          {!fullpage && <Sidebar />}
+          <Wrapper>
+            {fullpage ? content : <Container>{content}</Container>}
+          </Wrapper>
+        </Main>
       )}
     </ThemeConfig>
   )
