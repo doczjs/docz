@@ -1,6 +1,4 @@
-import { AnnotationsAST } from './components/Annotations'
-import { ComponentsMap } from './components/DocPreview'
-
+import { AnnotationsMap } from './components/Annotations'
 import { create } from './utils/createState'
 
 export interface Heading {
@@ -48,8 +46,6 @@ export interface Config {
 export interface Metadata {
   annotations?: AnnotationsMap
 }
-
-type Import = () => Promise<MSXImport>
 
 export type EntryMap = Record<string, Entry>
 export type TransformFn = (config: ThemeConfig) => ThemeConfig

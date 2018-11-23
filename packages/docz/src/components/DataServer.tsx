@@ -29,9 +29,7 @@ export class DataServer extends Component<DataServerProps> {
       const prop = type.startsWith('state.') && type.split('.')[1]
 
       if (prop) {
-        state.mutate((state: any) => {
-          if (state) state[prop] = payload
-        })
+        state.set(state => ({ ...state, [prop]: payload }))
       }
     }
   }

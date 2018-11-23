@@ -1,6 +1,9 @@
 import * as React from 'react'
-import { Metadata, metadataSelector, state } from '../state'
+import { SFC } from 'react'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
+import { get } from 'lodash/fp'
+
+import { state } from '../state'
 
 interface MetaAST {
   range: number[]
@@ -80,6 +83,7 @@ const getSignature = (def: NodeAST) => {
 }
 
 const findDef = (of: string, ann: NodeAST[]): NodeAST | undefined => {
+  if (!Array.isArray(ann)) return undefined
   return ann.find(node => node.name === of)
 }
 
@@ -105,42 +109,48 @@ interface Props {
 }
 
 const BaseAnnotations: React.SFC<Props> = ({ of, annotations, components }) => {
-  if (!annotations) return null
-
   const { inlineCode: Code, p: P, h3: H3, h4: H4, pre: Pre } = components
   const { name, filename } = of.__docz
-  const fileAnns = annotations[filename] || []
+  const fileAnns = get(filename, annotations) || []
   const def = findDef(name, fileAnns)
 
-  if (!def) return <P>Definition not found for {name}</P>
+  if (!def) {
+    return <P>Definition not found for {name}</P>
+  }
 
-  const Signature = ({ def }: WithDef) => <Code>{getSignature(def)}</Code>
-  const Since = ({ def: { since } }: WithDef) =>
-    since ? <P>Since: {since}</P> : null
-  const Examples = ({ def: { examples } }: WithDef) =>
-    examples ? (
+  const Signature: SFC<WithDef> = ({ def }) => {
+    return <Code>{getSignature(def)}</Code>
+  }
+
+  const Since: SFC<WithDef> = ({ def: { since } }) => {
+    return since ? <P>Since: {since}</P> : null
+  }
+
+  const Examples: SFC<WithDef> = ({ def: { examples } }) => {
+    if (!examples) return null
+    return (
       <>
         {examples.map(eg => (
           <Pre key={eg}>{eg}</Pre>
         ))}
       </>
-    ) : null
-
-  const FunctionAnnotation = ({ def }: WithDef) => {
-    return (
-      <div>
-        <Signature def={def} />
-        <Since def={def} />
-        <P>{def.description}</P>
-        <Examples def={def} />
-      </div>
     )
   }
 
-  const ClassAnnotation = ({ def, of }: WithDef & WithOf) => {
-    const properties = Object.getOwnPropertyNames(of.prototype)
+  const FunctionAnnotation: SFC<WithDef> = ({ def }) => (
+    <div>
+      <Signature def={def} />
+      <Since def={def} />
+      <P>{def.description}</P>
+      <Examples def={def} />
+    </div>
+  )
+
+  const ClassAnnotation: SFC<WithDef & WithOf> = ({ def, of }) => {
     const isMemberOfClass = (node: NodeAST) => node.memberof === name
+    const properties = Object.getOwnPropertyNames(of.prototype)
     const membersAnns = fileAnns.filter(isMemberOfClass)
+
     return (
       <div>
         <H3>{def.name}</H3>
@@ -152,7 +162,10 @@ const BaseAnnotations: React.SFC<Props> = ({ of, annotations, components }) => {
 
           const ObjectAnnotation = getDefAnnotationType(def)
           return (
-            <ObjectAnnotation key={prop} def={def} of={of.prototype[prop]} />
+            <ObjectAnnotation
+              key={prop}
+              {...{ def, of: get(prop, of.prototype) }}
+            />
           )
         })}
       </div>
@@ -171,18 +184,20 @@ const BaseAnnotations: React.SFC<Props> = ({ of, annotations, components }) => {
   }
 
   const ObjectAnnotation = getDefAnnotationType(def)
-
-  return <ObjectAnnotation def={def} of={of} />
+  return <ObjectAnnotation {...{ def, of }} />
 }
 
 type ProviderProps = Pick<Props, Exclude<keyof Props, 'annotations'>>
 
 const AnnotationsProvider: React.SFC<ProviderProps> = props => (
-  <state.Consumer select={[metadataSelector]}>
-    {({ annotations }: Metadata) =>
-      annotations && <BaseAnnotations {...props} annotations={annotations} />
-    }
-  </state.Consumer>
+  <>
+    {state.get(({ metadata }) => {
+      const annotations = get('annotations', metadata)
+      return annotations ? (
+        <BaseAnnotations {...props} annotations={annotations} />
+      ) : null
+    })}
+  </>
 )
 
 export const Annotations = withMDXComponents(AnnotationsProvider)
