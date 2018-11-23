@@ -30,6 +30,8 @@ const styles: StylesMap = {
   stack: {
     display: 'flex',
     flexDirection: 'column',
+    marginBottom: '1em',
+    marginTop: '1em',
   },
 }
 
@@ -40,11 +42,11 @@ const ErrorReporter: SFC<ErrorBoundaryRP> = ({ error, componentStack }) => (
       {error && <div>{error.message}</div>}
       <h2 style={styles.subtitle}>Stack trace</h2>
       {componentStack && (
-        <p style={styles.stack}>
+        <div style={styles.stack}>
           {componentStack.split('\n').map(str => (
-            <div>{str}</div>
+            <div key={str}>{str}</div>
           ))}
-        </p>
+        </div>
       )}
     </div>
   </div>
