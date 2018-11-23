@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.13](https://github.com/pedronauck/docz/compare/v0.12.12...v0.12.13) (2018-11-23)
+
+
+### Bug Fixes
+
+* **docz:** resolve react warnings in ErrorReporter ([#465](https://github.com/pedronauck/docz/issues/465)) ([1b0e09d](https://github.com/pedronauck/docz/commit/1b0e09d))
+
+
+
+
+
 ## [0.12.12](https://github.com/pedronauck/docz/compare/v0.12.11...v0.12.12) (2018-11-16)
 
 **Note:** Version bump only for package docz
