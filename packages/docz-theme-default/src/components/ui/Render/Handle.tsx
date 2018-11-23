@@ -34,7 +34,7 @@ const whenHorizontal = (on: any, off: any) => (p: HandleProps) =>
   p.horizontal ? on : off
 
 const handleHeight = (p: HandleProps) =>
-  p.horizontal ? `calc(100% + ${p.full ? '5px' : '0px'})` : HANDLE_SIZE
+  p.horizontal ? `calc(100% ${p.full ? '+ 4px' : '- 2px'})` : HANDLE_SIZE
 
 export const Handle = styled('div')`
   z-index: ${p => (p.full ? (p.horizontal ? 9999 : 9998) : 9)};

@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { SFC, Fragment, Component } from 'react'
-import { renderToStaticMarkup } from 'react-dom/server'
 import { RenderComponentProps, ThemeConfig } from 'docz'
 import { LiveProvider, LiveError, LivePreview } from 'react-live'
 import styled, { css } from 'react-emotion'
@@ -14,7 +13,6 @@ import Refresh from 'react-feather/dist/icons/refresh-cw'
 import Code from 'react-feather/dist/icons/code'
 import hotkeys from 'hotkeys-js'
 import getter from 'lodash.get'
-import pretty from 'pretty'
 
 import { Handle, HANDLE_SIZE } from './Handle'
 import { ResizeBar } from './ResizeBar'
@@ -53,7 +51,6 @@ const Wrapper = styled('div')`
 `
 const borderColor = themeGet('colors.border')
 const backgroundColor = themeGet('colors.background')
-const textColor = themeGet('colors.text')
 
 const PlaygroundWrapper = styled('div')`
   overflow-y: auto;
@@ -96,7 +93,6 @@ const EditorWrapper = styled('div')`
   max-height: ${(p: ShowingProps) => (p.showing ? '9999px' : '0px')};
   transform: scaleY(${(p: ShowingProps) => (p.showing ? '1' : '0')});
   transform-origin: top center;
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 `
 
 const editorClassName = css`
@@ -106,6 +102,7 @@ const editorClassName = css`
 
 const Actions = styled('div')`
   display: flex;
+  justify-content: flex-end;
   padding: 0 5px;
   background: ${p =>
     p.theme.docz.mode === 'light'
@@ -126,35 +123,8 @@ const Action = styled(ActionButton)`
 `
 
 const ActionLink = Action.withComponent('a')
-
 const Clipboard = styled(ClipboardAction as any)`
   ${actionClass};
-`
-
-const Tabs = styled('div')`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  opacity: ${(p: ShowingProps) => (p.showing ? 1 : 0)};
-  transition: opacity 0.3s;
-`
-
-interface TabProps {
-  active: boolean
-  theme?: any
-}
-
-const Tab = styled('button')`
-  position: relative;
-  cursor: pointer;
-  display: block;
-  outline: none;
-  height: 100%;
-  background: none;
-  border: none;
-  font-size: 14px;
-  color: ${(p: TabProps) => rgba(textColor(p), p.active ? 0.8 : 0.4)};
-  transition: color 0.3s;
 `
 
 const storage = localStorage()
@@ -176,7 +146,6 @@ export interface RenderState {
   fullscreen: boolean
   width: string
   height: string
-  showing: 'jsx' | 'html'
   code: string
   key: number
   showEditor: boolean
@@ -187,7 +156,6 @@ class RenderBase extends Component<RenderProps, RenderState> {
     fullscreen: parse(this.props.position, 'fullscreen', false),
     width: parse(this.props.position, 'width', '100%'),
     height: parse(this.props.position, 'height', '100%'),
-    showing: parse(this.props.position, 'showing', 'jsx'),
     code: this.props.code,
     key: 0,
     showEditor: Boolean(this.props.showEditor),
@@ -204,26 +172,11 @@ class RenderBase extends Component<RenderProps, RenderState> {
   }
 
   get actions(): JSX.Element {
-    const { showing, fullscreen, showEditor } = this.state
+    const { fullscreen, showEditor } = this.state
     const { codesandbox } = this.props
-
-    const showJsx = this.handleShow('jsx')
-    const showHtml = this.handleShow('html')
 
     return (
       <Actions withRadius={this.state.showEditor}>
-        <Tabs showing={showEditor}>
-          {showEditor && (
-            <Fragment>
-              <Tab active={showing === 'jsx'} onClick={showJsx}>
-                JSX
-              </Tab>
-              <Tab active={showing === 'html'} onClick={showHtml}>
-                HTML
-              </Tab>
-            </Fragment>
-          )}
-        </Tabs>
         <Action onClick={this.handleRefresh} title="Refresh playground">
           <Refresh width={15} />
         </Action>
@@ -241,7 +194,7 @@ class RenderBase extends Component<RenderProps, RenderState> {
             )
           }
         </ThemeConfig>
-        <Clipboard content={showing === 'jsx' ? this.state.code : this.html} />
+        <Clipboard content={this.state.code} />
         <Action
           onClick={this.handleToggle}
           title={fullscreen ? 'Minimize' : 'Maximize'}
@@ -256,14 +209,6 @@ class RenderBase extends Component<RenderProps, RenderState> {
         </Action>
       </Actions>
     )
-  }
-
-  get html(): string {
-    try {
-      return pretty(renderToStaticMarkup(this.props.component))
-    } catch (err) {
-      return 'There was an error while rendering your html'
-    }
   }
 
   get resizableProps(): Record<string, any> {
@@ -306,7 +251,7 @@ class RenderBase extends Component<RenderProps, RenderState> {
 
   public render(): JSX.Element {
     const { className, style, scope } = this.props
-    const { fullscreen, showing, showEditor } = this.state
+    const { fullscreen, showEditor } = this.state
 
     const editorProps = {
       square: true,
@@ -331,20 +276,13 @@ class RenderBase extends Component<RenderProps, RenderState> {
               </PlaygroundWrapper>
               {this.actions}
               <EditorWrapper showing={showEditor}>
-                {showing === 'jsx' && (
-                  <Pre
-                    {...editorProps}
-                    onChange={code => this.setState({ code })}
-                    readOnly={false}
-                  >
-                    {this.state.code}
-                  </Pre>
-                )}
-                {showing === 'html' && (
-                  <Pre {...editorProps} withLastLine>
-                    {this.html}
-                  </Pre>
-                )}
+                <Pre
+                  {...editorProps}
+                  onChange={code => this.setState({ code })}
+                  readOnly={false}
+                >
+                  {this.state.code}
+                </Pre>
               </EditorWrapper>
             </Wrapper>
           </Resizable>
@@ -387,10 +325,6 @@ class RenderBase extends Component<RenderProps, RenderState> {
 
   private handleShowEditorToggle = () => {
     this.setState(state => ({ showEditor: !state.showEditor }))
-  }
-
-  private handleShow = (showing: 'jsx' | 'html') => () => {
-    this.setState({ showing })
   }
 
   private closeOnEsc = () => {

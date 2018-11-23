@@ -32,7 +32,6 @@
     "lodash.get": "^4.4.2",
     "match-sorter": "^2.3.0",
     "polished": "^2.3.0",
-    "pretty": "^2.0.0",
     "prop-types": "15.6.2",
     "rc-tooltip": "^3.7.3",
     "re-resizable": "^4.9.3",
