@@ -34,13 +34,13 @@ const whenHorizontal = (on: any, off: any) => (p: HandleProps) =>
   p.horizontal ? on : off
 
 const handleHeight = (p: HandleProps) =>
-  p.horizontal ? `calc(100% ${p.full ? '+ 4px' : '- 2px'})` : HANDLE_SIZE
+  p.horizontal ? `calc(100% ${p.full ? '+ 3px' : '- 2px'})` : HANDLE_SIZE
 
 export const Handle = styled('div')`
   z-index: ${p => (p.full ? (p.horizontal ? 9999 : 9998) : 9)};
   position: absolute;
   display: block;
-  width: ${whenHorizontal(HANDLE_SIZE, 'calc(100% + 5px)')};
+  width: ${whenHorizontal(HANDLE_SIZE, 'calc(100% + 3px)')};
   height: ${handleHeight};
   border: 1px solid ${p => lighten(0.03, borderColor(p))};
   border-radius: ${whenHorizontal('0 4px 4px 0', '0 0 4px 4px')};

@@ -202,10 +202,10 @@ class SidebarBase extends Component<SidebarProps, SidebarState> {
   private addOverlayClass = () => {
     const { isDesktop } = this.props
     const { showing } = this.state
+    const method = showing ? 'add' : 'remove'
 
     if (window && typeof window !== 'undefined' && !isDesktop) {
-      !showing && document.documentElement!.classList.add('with-overlay')
-      showing && document.documentElement!.classList.remove('with-overlay')
+      document.documentElement!.classList[method]('with-overlay')
     }
   }
 

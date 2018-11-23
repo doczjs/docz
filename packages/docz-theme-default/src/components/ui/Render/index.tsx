@@ -30,6 +30,7 @@ const whenFullscreen = (on: any, off: any) => (p: OverlayProps) =>
   p.full ? on : off
 
 const Overlay = styled('div')`
+  box-sizing: border-box;
   z-index: ${whenFullscreen(9999, 0)};
   position: ${whenFullscreen('fixed', 'relative')};
   top: 0;
@@ -42,7 +43,7 @@ const Overlay = styled('div')`
   transition: background 0.3s;
 `
 
-const minusHandleSize = `calc(100% - ${HANDLE_SIZE} + 10px)`
+const minusHandleSize = `calc(100% - ${HANDLE_SIZE} + 4px)`
 const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
@@ -56,7 +57,6 @@ const PlaygroundWrapper = styled('div')`
   overflow-y: auto;
   position: relative;
   flex: 1;
-  border-radius: ${themeGet('radii')} ${themeGet('radii')} 0 0;
   border: 1px solid ${borderColor};
   background: ${backgroundColor};
   min-height: ${whenFullscreen('198px', 'auto')};
@@ -97,7 +97,6 @@ const EditorWrapper = styled('div')`
 
 const editorClassName = css`
   border-top: 0;
-  border-radius: 0 0 0 4px;
 `
 
 const Actions = styled('div')`
@@ -110,7 +109,6 @@ const Actions = styled('div')`
       : darken(0.04, borderColor(p))};
   border-left: 1px solid ${themeGet('colors.border')};
   border-bottom: 1px solid ${themeGet('colors.border')};
-  border-radius: ${p => (p.withRadius ? '0' : '0 0 0 4px')};
 `
 
 const actionClass = (p: any) => css`
@@ -159,6 +157,15 @@ class RenderBase extends Component<RenderProps, RenderState> {
     code: this.props.code,
     key: 0,
     showEditor: Boolean(this.props.showEditor),
+  }
+
+  public componentDidUpdate(
+    prevProps: RenderProps,
+    prevState: RenderState
+  ): void {
+    if (prevState.fullscreen !== this.state.fullscreen) {
+      this.toggleBodyOverlayClass()
+    }
   }
 
   public componentDidMount(): void {
@@ -350,6 +357,11 @@ class RenderBase extends Component<RenderProps, RenderState> {
     const url = 'https://codesandbox.io/api/v1/sandboxes/define'
 
     return `${url}?parameters=${codesandbox}${native ? `&editorsize=75` : ``}`
+  }
+
+  private toggleBodyOverlayClass = (): void => {
+    const method = this.state.fullscreen ? 'add' : 'remove'
+    document.body.classList[method]('with-overlay')
   }
 }
 
