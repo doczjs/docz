@@ -51,6 +51,24 @@ export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
   config.plugin('happypack-mdx').use(HappyPack, [mdx])
 }
 
+export const sourceMaps = (config: Config, args: Args) => {
+  const srcPath = path.resolve(paths.root, args.src)
+
+  config.module
+    .rule('sourcemaps')
+    .test(/\.(js|mjs|jsx|ts|tsx|md|mdx)$/)
+    .include.add(srcPath)
+    .add(paths.root)
+    .add(paths.docz)
+    .end()
+    .exclude.add(/node_modules/)
+    .end()
+    .use('sourcemaps')
+    .loader(require.resolve('source-map-loader'))
+    .end()
+    .enforce('pre')
+}
+
 export const js = (config: Config, args: Args) => {
   const srcPath = path.resolve(paths.root, args.src)
 

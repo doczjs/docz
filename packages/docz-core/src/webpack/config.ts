@@ -1,11 +1,12 @@
 import * as path from 'path'
-import { Configuration } from 'webpack'
+import { Configuration, IgnorePlugin } from 'webpack'
 import webpackBarPlugin from 'webpackbar'
 import Config from 'webpack-chain'
 import { minify } from 'html-minifier'
 import miniHtmlWebpack from 'mini-html-webpack-plugin'
 import friendlyErrors from 'friendly-errors-webpack-plugin'
 import manifestPlugin from 'webpack-manifest-plugin'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import * as TerserPlugin from 'terser-webpack-plugin'
 
 import * as loaders from './loaders'
@@ -33,8 +34,11 @@ export const createConfig = (args: Args, env: Env) => async (
   config.context(paths.root)
   config.set('mode', env)
 
-  config.when(debug, cfg => cfg.devtool('source-map'))
-  config.when(!isProd, cfg => cfg.devtool('cheap-module-eval-source-map'))
+  config.when(
+    isProd,
+    cfg => cfg.devtool('source-map'),
+    cfg => cfg.devtool('cheap-module-eval-source-map')
+  )
 
   config.node.merge({
     child_process: 'empty',
@@ -100,8 +104,8 @@ export const createConfig = (args: Args, env: Env) => async (
             ascii_only: true,
           },
         },
-        parallel: true,
         cache: true,
+        parallel: true,
         sourceMap: true,
       },
     ])
@@ -161,6 +165,7 @@ export const createConfig = (args: Args, env: Env) => async (
    * loaders
    */
 
+  loaders.sourceMaps(config, args)
   loaders.js(config, args)
   loaders.mdx(config, args)
   loaders.images(config)
@@ -172,6 +177,15 @@ export const createConfig = (args: Args, env: Env) => async (
   /**
    * plugins
    */
+
+  if (debug) {
+    config.plugin('bundle-analyzer').use(BundleAnalyzerPlugin, [
+      {
+        generateStatsFile: true,
+        openAnalyzer: false,
+      },
+    ])
+  }
 
   config.plugin('assets-plugin').use(manifestPlugin, [
     {
@@ -239,6 +253,13 @@ export const createConfig = (args: Args, env: Env) => async (
       NODE_ENV: JSON.stringify(env),
     },
   ])
+
+  config
+    .plugin('ignore-plugin')
+    .use(IgnorePlugin, [
+      /(regenerate\-unicode\-properties)|(elliptic)/,
+      /node_modules/,
+    ])
 
   config.performance.hints(false)
   return config.toConfig() as Configuration
