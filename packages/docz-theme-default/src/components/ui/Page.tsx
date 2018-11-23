@@ -14,6 +14,7 @@ const Wrapper = styled('div')`
   color: ${get('colors.text')};
   background: ${get('colors.background')};
   font-size: 18px;
+  min-width: 0;
 `
 
 export const Container = styled('div')`
