@@ -22,7 +22,7 @@ const addPropsOnPlayground = async (
   if (isPlayground(name)) {
     const formatted = await format(nodeToString(node))
     const code = formatted.slice(1, Infinity)
-    const scope = `{props,${scopes.join(',')}}`
+    const scope = `{props: this ? this.props : props,${scopes.join(',')}}`
     const child = jsx.sanitizeCode(jsx.removeTags(code))
 
     node.value = node.value.replace(
