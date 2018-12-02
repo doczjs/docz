@@ -1,6 +1,7 @@
 {
   "extends": ["tslint:latest", "tslint-config-prettier"],
   "rules": {
+    "class-name": false,
     "curly": false,
     "interface-name": [true, "never-prefix"],
     "ordered-imports": false,

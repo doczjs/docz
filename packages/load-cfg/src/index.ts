@@ -52,9 +52,8 @@ export function load<C = any>(
   noCache?: boolean,
   deep?: boolean
 ): C {
-  let file = {}
   const filepath = findup.sync(finds(name))
-  if (filepath) file = loadFile(filepath, noCache)
+  const file = filepath ? loadFile(filepath, noCache) : {}
 
   // tslint:disable
   return defaultConfig
