@@ -7,7 +7,6 @@ import range from 'koa-range'
 import convert from 'koa-connect'
 import serveStatic from 'koa-static'
 import history from 'connect-history-api-fallback'
-import serveWaitpage from 'webpack-serve-waitpage'
 
 import * as paths from '../config/paths'
 import { Config } from '../commands/args'
@@ -55,7 +54,6 @@ export const devServerConfig = (
         )
       )
 
-      app.use(serveWaitpage(options, { title: args.title }))
       hooks.onCreateApp<Koa>(app)
     },
   }
