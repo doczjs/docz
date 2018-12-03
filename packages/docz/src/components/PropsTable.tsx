@@ -158,7 +158,7 @@ const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
                   <Td>{String(prop.required)}</Td>
                   {!prop.defaultValue ? (
                     <Td>
-                      <em>[No Default]</em>
+                      <em>-</em>
                     </Td>
                   ) : (
                     <Td>
