@@ -4,7 +4,7 @@ import * as colors from './styles/colors'
 export const config = {
   colors,
   styles,
-  radii: '4px',
+  radii: '2px',
   mode: 'light',
   showPlaygroundEditor: false,
 }

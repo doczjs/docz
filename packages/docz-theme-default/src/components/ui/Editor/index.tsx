@@ -48,14 +48,12 @@ const Wrapper = styled('div')`
   position: relative;
   width: 100%;
   border: 1px solid ${get('colors.border')};
-  border-radius: ${get('radii')};
 `
 
 const Scrollbar = styled(PerfectScrollbar)`
   overflow: auto;
   position: relative;
   max-height: 360px;
-  border-radius: ${get('radii')};
 
   .ps__rail-y {
     z-index: 9;
@@ -63,18 +61,12 @@ const Scrollbar = styled(PerfectScrollbar)`
   }
 `
 
-interface EditorStyledProps {
-  square: boolean
-}
-
 const preStyles = get('styles.pre')
 const EditorStyled = styled(CodeMirror)`
   ${themes.dark()};
   ${themes.light()};
   ${p => p.theme.docz.mq(preStyles(p))};
   position: relative;
-  border-radius: ${(p: EditorStyledProps) =>
-    p.square ? 'none' : get('radii')};
   flex: 1;
 
   .CodeMirror {
@@ -164,7 +156,6 @@ interface EditorProps {
   onChange?: (code: string) => any
   language?: string
   withLastLine?: boolean
-  square?: boolean
 }
 
 interface EditorState {
@@ -193,7 +184,6 @@ export class Editor extends Component<EditorProps, EditorState> {
       className,
       editorClassName,
       language: defaultLanguage,
-      square,
       ...props
     } = this.props
 
@@ -234,7 +224,7 @@ export class Editor extends Component<EditorProps, EditorState> {
         <ThemeConfig>
           {config => (
             <Scrollbar option={scrollbarOpts}>
-              <EditorStyled {...editorProps(config)} square={square} />
+              <EditorStyled {...editorProps(config)} />
             </Scrollbar>
           )}
         </ThemeConfig>
