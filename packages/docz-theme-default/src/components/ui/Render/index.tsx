@@ -53,9 +53,8 @@ const Wrapper = styled('div')`
 const borderColor = themeGet('colors.border')
 const backgroundColor = themeGet('colors.background')
 
-const PlaygroundWrapper = styled('div')`
+const PreviewWrapper = styled('div')`
   overflow-y: auto;
-  position: relative;
   flex: 1;
   border: 1px solid ${borderColor};
   background: ${backgroundColor};
@@ -63,6 +62,7 @@ const PlaygroundWrapper = styled('div')`
 `
 
 const StyledPreview = styled(LivePreview)`
+  position: relative;
   box-sizing: border-box;
   width: 100%;
   ${p => p.theme.docz.mq(p.theme.docz.styles.playground)};
@@ -81,7 +81,8 @@ const StyledError = styled(LiveError)`
 `
 
 const Pre = styled(PreBase)`
-  width: calc(100% - 4px);
+  width: calc(100% - 2px);
+  border-radius: 0 !important;
   margin: 0;
 `
 
@@ -261,7 +262,6 @@ class RenderBase extends Component<RenderProps, RenderState> {
     const { fullscreen, showEditor } = this.state
 
     const editorProps = {
-      square: true,
       className: editorClassName,
       actions: <Fragment />,
     }
@@ -277,10 +277,10 @@ class RenderBase extends Component<RenderProps, RenderState> {
           {fullscreen ? <ResizeBar onChangeSize={this.handleSetSize} /> : null}
           <Resizable {...this.resizableProps}>
             <Wrapper full={fullscreen}>
-              <PlaygroundWrapper full={fullscreen}>
+              <PreviewWrapper full={fullscreen}>
                 <StyledPreview className={className} style={style} />
                 <StyledError />
-              </PlaygroundWrapper>
+              </PreviewWrapper>
               {this.actions}
               <EditorWrapper showing={showEditor}>
                 <Pre
