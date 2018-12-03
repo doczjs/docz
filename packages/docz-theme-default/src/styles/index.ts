@@ -56,10 +56,11 @@ export const styles = {
   },
   code: {
     margin: '0 3px',
-    padding: '4px 6px',
     borderRadius: '3px',
     fontFamily: '"Source Code Pro", monospace',
-    fontSize: '0.85em',
+    padding: `2px 5px`,
+    fontSize: '0.8em',
+    border: '1px solid rgba(0, 0, 0, 0.02)',
   },
   pre: {
     fontFamily: '"Source Code Pro", monospace',
