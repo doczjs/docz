@@ -160,11 +160,8 @@ class RenderBase extends Component<RenderProps, RenderState> {
     showEditor: Boolean(this.props.showEditor),
   }
 
-  public componentDidUpdate(
-    prevProps: RenderProps,
-    prevState: RenderState
-  ): void {
-    if (prevState.fullscreen !== this.state.fullscreen) {
+  public componentDidUpdate(pProps: RenderProps, pState: RenderState): void {
+    if (pState.fullscreen !== this.state.fullscreen) {
       this.toggleBodyOverlayClass()
     }
   }
