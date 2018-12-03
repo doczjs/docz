@@ -83,8 +83,8 @@ module.exports = {
   devtool: 'source-map',
   output: {
     path: path.join(__dirname, '/dist'),
-    filename: `index.js`,
-    libraryTarget: 'commonjs2',
+    filename: 'index.js',
+    libraryTarget: 'umd',
   },
   module: {
     rules: [

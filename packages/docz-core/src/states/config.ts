@@ -49,7 +49,7 @@ export const state = (config: Config): State => {
 
   return {
     init: updateConfig(config),
-    close: watcher.close,
+    close: () => watcher.close(),
     update: async params => {
       const update = updateConfig(config)
       const fn = async () => update(params)
@@ -58,7 +58,7 @@ export const state = (config: Config): State => {
       watcher.on('change', fn)
       watcher.on('unlink', fn)
 
-      return watcher.close
+      return () => watcher.close()
     },
   }
 }

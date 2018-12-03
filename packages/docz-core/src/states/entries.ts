@@ -36,7 +36,7 @@ export const state = (entries: Entries, config: Config): State => {
 
   return {
     init: updateEntries(entries),
-    close: watcher.close,
+    close: () => watcher.close(),
     update: async params => {
       const update = updateEntries(entries)
 
@@ -48,7 +48,7 @@ export const state = (entries: Entries, config: Config): State => {
         }
       })
 
-      return watcher.close
+      return () => watcher.close()
     },
   }
 }
