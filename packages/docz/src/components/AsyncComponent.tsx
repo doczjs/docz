@@ -26,7 +26,7 @@ export class AsyncComponent extends Component<Props, State> {
   }
 
   public render(): ReactNode {
-    const { as: Comp = 'div', getInitialData, ...props } = this.props
+    const { as: Comp, getInitialData, ...props } = this.props
     const { data, loading, error } = this.state
 
     return <Comp {...props} data={{ ...data, loading, error }} />

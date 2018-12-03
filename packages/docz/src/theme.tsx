@@ -30,7 +30,12 @@ export function theme(
   return WrappedComponent => {
     const Theme: SFC<ThemeProps> = props => {
       const { wrapper: Wrapper = DefaultWrapper, hashRouter } = props
-      const Router = Boolean(hashRouter) ? HashRouter : BrowserRouter
+      const Router = (props: any) =>
+        Boolean(hashRouter) ? (
+          <HashRouter {...props} />
+        ) : (
+          <BrowserRouter {...props} />
+        )
 
       return (
         <ErrorBoundary>
