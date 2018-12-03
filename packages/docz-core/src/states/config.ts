@@ -12,12 +12,12 @@ interface Payload {
   title: string
   description: string
   ordering: string
-  themeConfig: ThemeConfig
   menu: Menu[]
   version: string | null
   repository: string | null
   native: boolean
   codeSandbox: boolean
+  themeConfig: ThemeConfig
 }
 
 const getInitialConfig = (config: Config): Payload => {
@@ -27,13 +27,13 @@ const getInitialConfig = (config: Config): Payload => {
   return {
     title: config.title,
     description: config.description,
-    themeConfig: config.themeConfig,
     menu: config.menu,
     ordering: config.ordering,
     version: get(pkg, 'version'),
     repository: repoUrl,
     native: config.native,
     codeSandbox: config.codeSandbox,
+    themeConfig: config.themeConfig,
   }
 }
 
@@ -47,11 +47,9 @@ export const state = (config: Config): State => {
     persistent: true,
   })
 
-  const handleClose = () => watcher.close()
-
   return {
     init: updateConfig(config),
-    close: handleClose,
+    close: watcher.close,
     update: async params => {
       const update = updateConfig(config)
       const fn = async () => update(params)
@@ -60,7 +58,7 @@ export const state = (config: Config): State => {
       watcher.on('change', fn)
       watcher.on('unlink', fn)
 
-      return handleClose
+      return watcher.close
     },
   }
 }

@@ -9,7 +9,7 @@ import { omit } from './helpers'
 import { BabelRC } from './babel-config'
 
 const toOmit = ['_', '$0', 'version', 'help']
-const defaultHtmlContext = {
+const htmlContext = {
   lang: 'en',
   favicon: 'https://cdn-std.dprcdn.net/files/acc_649651/LUKiMl',
 }
@@ -17,13 +17,10 @@ const defaultHtmlContext = {
 export const loadConfig = async (args: Config): Promise<Config> => {
   const defaultConfig = {
     ...args,
-    hashRouter: false,
-    native: false,
+    htmlContext,
     plugins: [],
     mdPlugins: [],
     hastPlugins: [],
-    themeConfig: {},
-    htmlContext: defaultHtmlContext,
     menu: [],
     ignore: [
       'readme.md',
@@ -32,6 +29,7 @@ export const loadConfig = async (args: Config): Promise<Config> => {
       'contributing.md',
       'license.md',
     ],
+    themeConfig: {},
     modifyBundlerConfig: (config: any) => config,
     modifyBabelRc: (babelrc: BabelRC) => babelrc,
   }

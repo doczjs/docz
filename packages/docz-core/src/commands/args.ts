@@ -77,19 +77,19 @@ export interface Argv {
    * this property will be deleted in the v1.0
    */
   ordering: 'ascending' | 'descending'
+  hashRouter: boolean
   wrapper?: string
   indexHtml?: string
 }
 
 export interface Config extends Argv {
   paths: Record<string, any>
-  hashRouter: boolean
   plugins: Plugin[]
   mdPlugins: any[]
   hastPlugins: any[]
-  themeConfig: ThemeConfig
-  htmlContext: HtmlContext
   menu: Menu[]
+  htmlContext: HtmlContext
+  themeConfig: ThemeConfig
   modifyBundlerConfig<C>(config: C, dev: boolean, args: Config): C
   modifyBabelRc(babelrc: BabelRC, args: Config): BabelRC
 }
@@ -194,6 +194,10 @@ export const args = (env: Env) => (yargs: any) => {
   yargs.positional('websocketPort', {
     type: 'number',
     default: getEnv('docz.websocket.port', 60505),
+  })
+  yargs.positional('hahRouter', {
+    type: 'boolean',
+    default: getEnv('docz.hash.router', false),
   })
   yargs.positional('native', {
     type: 'boolean',
