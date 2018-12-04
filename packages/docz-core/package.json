@@ -22,9 +22,9 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@babel/core": "7.1.6",
+    "@babel/core": "7.2.0",
     "@babel/polyfill": "7.0.0",
-    "@babel/runtime": "^7.1.5",
+    "@babel/runtime": "^7.2.0",
     "@mdx-js/loader": "^0.16.5",
     "@mdx-js/mdx": "^0.16.5",
     "@mdx-js/mdxast": "^0.16.1",
@@ -97,7 +97,7 @@
     "@types/html-webpack-plugin": "^3.2.0",
     "@types/koa": "^2.0.47",
     "@types/lodash.get": "^4.4.4",
-    "@types/node": "10.12.11",
+    "@types/node": "10.12.12",
     "@types/p-reduce": "^1.0.0",
     "@types/prettier": "^1.15.2",
     "@types/resolve": "^0.0.8",

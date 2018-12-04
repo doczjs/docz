@@ -30,8 +30,8 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@babel/generator": "^7.1.6",
-    "@babel/parser": "^7.1.6",
+    "@babel/generator": "^7.2.0",
+    "@babel/parser": "^7.2.0",
     "@babel/traverse": "^7.1.6",
     "codesandboxer-fs": "^0.4.7",
     "fs-extra": "^7.0.1",

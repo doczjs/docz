@@ -51,10 +51,10 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
-    "@babel/core": "7.1.6",
+    "@babel/core": "7.2.0",
     "@types/lodash.flattendepth": "^4.7.4",
     "@types/lodash.get": "^4.4.4",
-    "@types/react": "^16.7.11",
+    "@types/react": "^16.7.13",
     "@types/react-dom": "^16.0.11",
     "babel-plugin-emotion": "^9.2.11"
   }
