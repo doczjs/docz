@@ -17,7 +17,7 @@
     "@babel/preset-flow": "^7.0.0",
     "babel-plugin-emotion": "^9.2.11",
     "docz": "^0.12.14",
-    "flow-bin": "^0.86.0",
+    "flow-bin": "^0.87.0",
     "flow-typed": "^2.5.1"
   }
 }

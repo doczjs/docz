@@ -78,7 +78,7 @@
     "terser-webpack-plugin": "^1.1.0",
     "titleize": "^1.0.1",
     "url-loader": "^1.1.2",
-    "webpack": "^4.26.1",
+    "webpack": "^4.27.0",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-chain": "^5.0.1",
     "webpack-hot-client": "^4.1.1",

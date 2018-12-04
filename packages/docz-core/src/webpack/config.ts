@@ -145,6 +145,7 @@ export const createConfig = (args: Args, env: Env) => async (
 
   config.resolve.alias.set('~db', paths.db)
   config.resolve.alias.set('~imports', paths.importsJs)
+  config.resolve.alias.set('react-native$', 'react-native-web')
 
   if (args.typescript) {
     config.resolve.extensions

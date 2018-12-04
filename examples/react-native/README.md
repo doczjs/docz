@@ -1,3 +1,30 @@
-# ⚠️ &nbsp; [MOVED REPO](https://github.com/pedronauck/docz-plugin-react-native/tree/master/example)
+## Docz React Native
 
-To avoid some performances issues, we move this example to a new repo!
+Use your React Native components inside docz
+
+> We're using [react-native-web](https://github.com/necolas/react-native-web) to make this integration possible. So, maybe you can have some caveats.
+
+## Instalation
+
+These packages are required to use React Native with docz:
+
+```bash
+$ yarn add react-native-web react-art
+```
+
+Then, just set the `--native` argument with docz script:
+
+```bash
+$ docz dev --native
+$ docz build --native
+```
+
+Or you can set directly on your `doczrc.js`:
+
+```js
+export default {
+  native: true
+}
+```
+
+That's it 🙌🏻

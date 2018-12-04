@@ -80,16 +80,13 @@ Documenting our things is one of the most important and heavy processes when you
 ## 🎛 &nbsp; Plugins
 
 - **[css](https://github.com/pedronauck/docz-plugin-css)** - Parse css files inside your documents
-- **[babel6](https://github.com/pedronauck/docz/blob/master/packages/docz-plugin-babel6)** - Use this plugin to use older babel version **[DEPRECATED]** ⚠️
 - **[netlify](https://github.com/nicholasess/docz-plugin-netlify)** - Deploy your documentation to [Netlify](http://netlify.com/)
-- **[react-native](https://github.com/pedronauck/docz-plugin-react-native)** - Allow you to use docz with React Native
 - **[postcss](https://github.com/andreasonny83/docz-plugin-postcss)** - Use Docz with PostCSS
 
 ## 🗃 &nbsp; Examples
 
 - **[basic](https://github.com/pedronauck/docz/tree/master/examples/basic)** - Some basic example
-- **[babel 6](https://github.com/pedronauck/docz/tree/master/examples/babel6)** - Using docz with Babel@6 **[DEPRECATED]** ⚠️
-- **[react native](https://github.com/pedronauck/docz-plugin-react-native/tree/master/example)** - Using in a React Native project
+- **[react native](https://github.com/pedronauck/docz/tree/master/examples/react-native)** - Using in a React Native project
 - **[with typescript](https://github.com/pedronauck/docz/tree/master/examples/typescript)** - Using docz with Typescript
 - **[with flow](https://github.com/pedronauck/docz/tree/master/examples/flow)** - Using docz with Flow
 - **[with sass](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-sass)** - Using docz parsing css with Sass
@@ -116,7 +113,7 @@ npx babel-upgrade --write
 ```
 ## 📟 &nbsp; Install and Usage
 
-Simplicity is one of our core principles. Therefore, getting started with **docz** is something really easy and quick. First of all, you will need to install **docz** on your project using some package managers
+Simplicity is one of our core principles. Therefore, getting started with **docz** is something really easy and quick. First of all, you will need to install **docz** on your project using your favorite package manager (we'll asume yarn for this example):
 
 ```bash
 $ yarn add docz --dev
@@ -144,7 +141,7 @@ import Button from './'
 </Playground>
 ```
 
-Now just run your dev server:
+Now, just run your dev server:
 
 ```bash
 $ yarn docz dev
