@@ -19,12 +19,14 @@ export interface State<T> {
 
 export function create<T = any>(initial: T = {} as T): State<T> {
   const subject = makeSubject()
-  const { Provider, Consumer } = createContext<T>(initial)
+  const { Provider, Consumer }: any = createContext<T>(initial)
+  Consumer.displayName = 'StateConsumer'
 
   return {
     get: fn => <Consumer>{fn}</Consumer>,
     set: fn => subject(1, fn),
     Provider: class CustomProvider extends Component<ProviderProps<T>, T> {
+      public static displayName = 'StateProvider'
       public state: T = this.props.initial || initial
       public componentDidMount(): void {
         observe((v: T) => this.setState(v))(subject)
