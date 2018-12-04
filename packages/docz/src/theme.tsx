@@ -1,6 +1,6 @@
 // tslint:disable
 import * as React from 'react'
-import { Fragment, SFC, ComponentType as CT } from 'react'
+import { SFC, ComponentType as CT } from 'react'
 import { HashRouter, BrowserRouter } from 'react-router-dom'
 
 import { state, ThemeConfig, TransformFn } from './state'
@@ -12,7 +12,6 @@ import { ScrollToTop } from './utils/ScrollToTop'
 import db from '~db'
 
 declare var BASE_URL: string
-const DefaultWrapper: SFC = ({ children }) => <Fragment>{children}</Fragment>
 
 interface ThemeProps {
   wrapper?: CT
@@ -29,7 +28,7 @@ export function theme(
 ): ThemeReturn {
   return WrappedComponent => {
     const Theme: SFC<ThemeProps> = props => {
-      const { wrapper: Wrapper = DefaultWrapper, hashRouter } = props
+      const { wrapper: Wrapper, hashRouter } = props
       const Router = (props: any) =>
         Boolean(hashRouter) ? (
           <HashRouter {...props} />
@@ -37,16 +36,20 @@ export function theme(
           <BrowserRouter {...props} />
         )
 
+      const wrapped = Wrapper ? (
+        <Wrapper>
+          <WrappedComponent />
+        </Wrapper>
+      ) : (
+        <WrappedComponent />
+      )
+
       return (
         <ErrorBoundary>
           <state.Provider initial={{ ...db, themeConfig, transform }}>
             <DataServer websocketUrl={props.websocketUrl}>
               <Router basename={BASE_URL}>
-                <ScrollToTop>
-                  <Wrapper>
-                    <WrappedComponent />
-                  </Wrapper>
-                </ScrollToTop>
+                <ScrollToTop>{wrapped}</ScrollToTop>
               </Router>
             </DataServer>
           </state.Provider>
