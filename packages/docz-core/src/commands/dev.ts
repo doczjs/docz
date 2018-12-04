@@ -1,3 +1,5 @@
+process.setMaxListeners(Infinity)
+
 import logger from 'signale'
 import detectPort from 'detect-port'
 import envDotProp from 'env-dot-prop'
@@ -55,7 +57,6 @@ export const dev = async (args: Config) => {
     process.exit(1)
   }
 
-  process.setMaxListeners(9999)
   const signals: any = ['SIGINT', 'SIGTERM']
   for (const sig of signals) {
     process.on(sig, async () => {
