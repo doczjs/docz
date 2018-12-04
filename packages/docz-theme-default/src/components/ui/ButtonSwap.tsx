@@ -18,6 +18,7 @@ export const ButtonSwap: SFC<AnimatedButtonProps> = ({
 }) => (
   <Toggle>
     {({ toggle, on }: any) => {
+      const Btn: any = Button
       const hasSwap = Boolean(swap)
       const handleClick = (ev: any) => {
         hasSwap && toggle()
@@ -26,9 +27,9 @@ export const ButtonSwap: SFC<AnimatedButtonProps> = ({
       }
 
       return (
-        <Button onClick={handleClick} {...props}>
+        <Btn onClick={handleClick} {...props}>
           {on ? swap : children}
-        </Button>
+        </Btn>
       )
     }}
   </Toggle>

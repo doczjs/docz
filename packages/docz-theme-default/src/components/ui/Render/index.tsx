@@ -17,7 +17,8 @@ import getter from 'lodash.get'
 import { Handle, HANDLE_SIZE } from './Handle'
 import { ResizeBar } from './ResizeBar'
 import { CodeSandboxLogo } from './CodeSandboxLogo'
-import { ActionButton, ClipboardAction, Editor as PreBase } from '../Editor'
+import { Editor as PreBase } from '../Editor'
+import { ActionButton, ClipboardAction } from '../Editor/elements'
 
 import { localStorage } from '@utils/local-storage'
 import { get as themeGet } from '@utils/theme'
@@ -137,7 +138,7 @@ const parse = (position: number, key: string, defaultValue: any) => {
   return obj ? getter(obj, key) : defaultValue
 }
 
-interface RenderProps extends RenderComponentProps {
+export interface RenderProps extends RenderComponentProps {
   showEditor?: boolean
 }
 

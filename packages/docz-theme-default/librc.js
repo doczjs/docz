@@ -13,6 +13,7 @@ module.exports = {
     'polished/lib/color/lighten',
     'polished/lib/color/darken',
     'polished/lib/mixins/placeholder',
+    'react-feather/dist/icons/code',
     'react-feather/dist/icons/edit-2',
     'react-feather/dist/icons/chevron-down',
     'react-feather/dist/icons/search',

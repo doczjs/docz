@@ -77,8 +77,16 @@ export const createConfig = (args: Args, env: Env) => async (
     .runtimeChunk(true)
     .nodeEnv(env)
     .namedModules(true)
-    .splitChunks({ chunks: 'all', name: 'vendors' })
     .minimize(isProd)
+    .splitChunks({
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    })
 
   /** TODO: this is needed because incorrect typing on webpack-chain */
   const optimization: any = config.optimization

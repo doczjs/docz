@@ -5,7 +5,7 @@ import Tablet from 'react-feather/dist/icons/tablet'
 import Monitor from 'react-feather/dist/icons/monitor'
 import styled from 'react-emotion'
 
-import { ActionButton } from '../Editor'
+import { ActionButton } from '../Editor/elements'
 import { get } from '@utils/theme'
 
 const Wrapper = styled('div')`
