@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.14](https://github.com/pedronauck/docz/compare/v0.12.13...v0.12.14) (2018-12-04)
+
+
+### Bug Fixes
+
+* some typings warnings ([4afb87b](https://github.com/pedronauck/docz/commit/4afb87b))
+
+
+
+
+
 <a name="0.11.0"></a>
 # [0.11.0](https://github.com/pedronauck/docz/compare/v0.10.3...v0.11.0) (2018-09-02)
 

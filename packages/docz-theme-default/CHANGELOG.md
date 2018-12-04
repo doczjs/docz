@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.14](https://github.com/pedronauck/docz/compare/v0.12.13...v0.12.14) (2018-12-04)
+
+
+### Bug Fixes
+
+* **docz-core:** watcher close ([caa8151](https://github.com/pedronauck/docz/commit/caa8151))
+* **docz-theme-default:** editor border-radius ([7a7d1f8](https://github.com/pedronauck/docz/commit/7a7d1f8))
+* **docz-theme-default:** overlay logic ([8b3fdc9](https://github.com/pedronauck/docz/commit/8b3fdc9))
+* **docz-theme-default:** playground relative position ([a097b5f](https://github.com/pedronauck/docz/commit/a097b5f))
+
+
+
+
+
 ## [0.12.13](https://github.com/pedronauck/docz/compare/v0.12.12...v0.12.13) (2018-11-23)
 
 

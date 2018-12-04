@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.14](https://github.com/pedronauck/docz/compare/v0.12.13...v0.12.14) (2018-12-04)
+
+
+### Bug Fixes
+
+* **docz-core:** set max listener ([898010b](https://github.com/pedronauck/docz/commit/898010b))
+* **docz-core:** watcher close ([caa8151](https://github.com/pedronauck/docz/commit/caa8151))
+
+
+
+
+
 ## [0.12.13](https://github.com/pedronauck/docz/compare/v0.12.12...v0.12.13) (2018-11-23)
 
 **Note:** Version bump only for package docz-core
