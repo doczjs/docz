@@ -1,8 +1,10 @@
 import { injectGlobal } from 'emotion'
-import 'codemirror/lib/codemirror.css'
 
 // tslint:disable
 injectGlobal`
+  @import url("https://unpkg.com/rc-tooltip@3.7.3/assets/bootstrap.css");
+  @import url("https://unpkg.com/codemirror@5.42.0/lib/codemirror.css");
+
   .icon-link {
     display: none;
   }
