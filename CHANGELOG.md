@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.15](https://github.com/pedronauck/docz/compare/v0.12.14...v0.12.15) (2018-12-04)
+
+
+### Bug Fixes
+
+* babel class plugin update ([236331a](https://github.com/pedronauck/docz/commit/236331a))
+* **docz-core:** add setMaxListener in the top of script ([2eef307](https://github.com/pedronauck/docz/commit/2eef307))
+* **docz-core:** update react-hot-loader to support hooks ([4394a5b](https://github.com/pedronauck/docz/commit/4394a5b))
+
+
+### Features
+
+* add native support for react-native ([f998874](https://github.com/pedronauck/docz/commit/f998874))
+
+
+
+
+
 ## [0.12.14](https://github.com/pedronauck/docz/compare/v0.12.13...v0.12.14) (2018-12-04)
 
 
