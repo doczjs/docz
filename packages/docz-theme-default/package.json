@@ -13,8 +13,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack",
-    "dev": "cross-env NODE_ENV=development webpack --progress --colors --watch",
+    "dev": "libundler watch --ts",
+    "build": "libundler build --ts --c --sm",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
     "fix:tslint": "tslint --fix --project .",
@@ -56,16 +56,6 @@
     "@types/lodash.get": "^4.4.4",
     "@types/react": "^16.7.11",
     "@types/react-dom": "^16.0.11",
-    "babel-loader": "^8.0.2",
-    "babel-plugin-emotion": "^9.2.11",
-    "cross-env": "^5.2.0",
-    "css-loader": "^1.0.1",
-    "filemanager-webpack-plugin": "^2.0.5",
-    "style-loader": "^0.23.1",
-    "terser-webpack-plugin": "^1.1.0",
-    "ts-loader": "^5.3.1",
-    "webpack": "^4.26.1",
-    "webpack-bundle-analyzer": "^3.0.3",
-    "webpack-cli": "^3.1.2"
+    "babel-plugin-emotion": "^9.2.11"
   }
 }
