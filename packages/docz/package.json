@@ -32,7 +32,7 @@
     "callbag-observe": "^1.0.0",
     "callbag-subject": "^1.0.2",
     "capitalize": "^2.0.0",
-    "deepmerge": "^2.2.1",
+    "deepmerge": "^3.0.0",
     "docz-core": "^0.12.15",
     "docz-theme-default": "^0.12.15",
     "fast-deep-equal": "^2.0.1",
@@ -52,7 +52,7 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.118",
+    "@types/lodash": "^4.14.119",
     "@types/react": "^16.7.13",
     "@types/react-copy-write": "^0.7.1",
     "@types/react-dom": "^16.0.11",
