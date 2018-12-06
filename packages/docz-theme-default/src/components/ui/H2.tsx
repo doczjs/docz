@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { SFC } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { jsx } from '@emotion/core'
 import Hash from 'react-feather/dist/icons/hash'
 import { Link } from 'docz'
 
@@ -30,7 +31,10 @@ const Heading = styled('h2')`
 export const H2: SFC<React.HTMLAttributes<any>> = ({ children, ...props }) => (
   <Heading {...props}>
     <Link aria-hidden to={{ hash: `#${props.id}` }}>
-      <Icon height={20} />
+      <Icon
+        // @ts-ignore
+        height={20}
+      />
     </Link>
     {children}
   </Heading>

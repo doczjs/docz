@@ -8,6 +8,7 @@
     "rootDir": "src",
     "typeRoots": ["node_modules/@types", "src/types"],
     "baseUrl": "src",
+    "jsxFactory": "jsx",
     "paths": {
       "@ui/*": ["components/ui/*"],
       "@shared/*": ["components/shared/*"],

@@ -1,9 +1,9 @@
-import * as React from 'react'
 import { SFC, Fragment } from 'react'
 import { PageProps, ThemeConfig } from 'docz'
 import lighten from 'polished/lib/color/lighten'
 import Edit from 'react-feather/dist/icons/edit-2'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { jsx } from '@emotion/core'
 
 import { ButtonLink } from './Button'
 import { GithubLink, Sidebar, Main } from '../shared'
@@ -64,7 +64,11 @@ export const Page: SFC<PageProps> = ({
     <Fragment>
       {link && edit && (
         <EditPage href={link} target="_blank">
-          <EditIcon width={14} /> Edit page
+          <EditIcon
+            // @ts-ignore
+            width={14}
+          />{' '}
+          Edit page
         </EditPage>
       )}
       {children}

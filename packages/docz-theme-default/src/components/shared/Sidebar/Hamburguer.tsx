@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { SFC } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { jsx } from '@emotion/core'
 
 import { get } from '@utils/theme'
 
@@ -13,13 +14,13 @@ const IconMiddle = (p: OpenProps) => (!p.opened ? '1' : '0')
 const IconLast = (p: OpenProps) => (!p.opened ? '0px' : '-6px')
 const IconRotate = (p: OpenProps) => (!p.opened ? '0deg' : '45deg')
 
-const Icon = styled('div')`
+const Icon = styled('div')<OpenProps>`
   position: relative;
   width: 23px;
   height: 32px;
-  transform: translateX(${(p: OpenProps) => (p.opened ? '-2px' : '-1px')})
-    translateY(${(p: OpenProps) => (p.opened ? '0' : '2px')})
-    scale(${(p: OpenProps) => (p.opened ? 0.8 : 1)});
+  transform: translateX(${p => (p.opened ? '-2px' : '-1px')})
+    translateY(${p => (p.opened ? '0' : '2px')})
+    scale(${p => (p.opened ? 0.8 : 1)});
 `
 
 const sidebarBg = get('colors.sidebarBg')
@@ -29,7 +30,7 @@ const primaryColor = get('colors.primary')
 const backgroundColor = get('colors.background')
 const textColor = get('colors.text')
 
-const IconLine = styled('span')`
+const IconLine = styled('span')<OpenProps>`
   content: '';
   display: block;
   position: absolute;
@@ -61,7 +62,7 @@ const translateY = (p: OpenProps) => (!p.opened ? '4px' : '0px')
 
 const radii = get('radii')
 
-const ToggleButton = styled('button')`
+const ToggleButton = styled('button')<OpenProps>`
   cursor: pointer;
   z-index: 99;
   position: absolute;
@@ -71,8 +72,8 @@ const ToggleButton = styled('button')`
   padding: 5px 6px;
   width: 33px;
   height: 30px;
-  top: ${(p: OpenProps) => (p.opened ? '3px' : '2px')};
-  right: ${(p: OpenProps) => (p.opened ? '-39px' : '-27px')};
+  top: ${p => (p.opened ? '3px' : '2px')};
+  right: ${p => (p.opened ? '-39px' : '-27px')};
   transform: translateX(${translateX}) translateY(${translateY});
   transition: transform 0.3s;
   outline: none;
@@ -86,7 +87,7 @@ const ToggleButton = styled('button')`
     top: -3px;
     left: 0;
     width: calc(100% + 1px);
-    height: ${(p: OpenProps) => (p.opened ? '3px' : 0)};
+    height: ${p => (p.opened ? '3px' : 0)};
     background: ${p => sidebarPrimary(p) || primaryColor(p)};
   }
 
