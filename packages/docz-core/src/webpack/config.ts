@@ -265,7 +265,7 @@ export const createConfig = (args: Args, env: Env) => async (
 
   config
     .plugin('ignore-plugin')
-    .use(IgnorePlugin, [
+    .use(IgnorePlugin as any, [
       /(regenerate\-unicode\-properties)|(elliptic)/,
       /node_modules/,
     ])

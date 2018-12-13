@@ -22,10 +22,10 @@ export async function loadFromImports(path: string): Promise<SFC<any>> {
   return withMDXComponents(ExportedComponent)
 }
 
-export const loadRoute = (path: string, LoadingComponent: any) =>
-  importedComponent(async () => loadFromImports(path), {
-    LoadingComponent,
-  })
+export const loadRoute: any = (path: string, LoadingComponent: any) => {
+  const opts: any = { LoadingComponent }
+  return importedComponent(async () => loadFromImports(path), opts)
+}
 
 interface AsyncRouteProps {
   asyncComponent: any

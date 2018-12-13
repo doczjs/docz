@@ -1,12 +1,13 @@
 import * as React from 'react'
 import { SFC } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { jsx } from '@emotion/core'
 import Hash from 'react-feather/dist/icons/hash'
 import { Link } from 'docz'
 
 import { get } from '@utils/theme'
 
-const Icon = styled(Hash)`
+const Icon = styled(Hash)<any>`
   position: absolute;
   display: inline-block;
   top: 11px;
