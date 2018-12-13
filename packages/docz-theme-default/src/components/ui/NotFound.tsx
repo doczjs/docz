@@ -1,6 +1,6 @@
-import * as React from 'react'
 import { ThemeConfig } from 'docz'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { jsx } from '@emotion/core'
 
 import { Sidebar, Main } from '../shared'
 import { get } from '@utils/theme'

@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { SFC } from 'react'
 import { Docs, Entry, Link } from 'docz'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { jsx } from '@emotion/core'
 import get from 'lodash.get'
 
 import { get as themeGet } from '@utils/theme'

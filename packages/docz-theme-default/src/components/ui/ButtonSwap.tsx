@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { SFC } from 'react'
 import { Toggle } from 'react-powerplug'
+import { jsx } from '@emotion/core'
 
 import { Button as BaseButton } from './Button'
 

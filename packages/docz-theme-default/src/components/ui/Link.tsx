@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { SFC } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { jsx } from '@emotion/core'
 import { Link as BaseLink } from 'docz'
 
 import { get } from '@utils/theme'

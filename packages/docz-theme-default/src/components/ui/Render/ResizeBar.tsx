@@ -1,9 +1,9 @@
-import * as React from 'react'
 import { SFC } from 'react'
 import Smartphone from 'react-feather/dist/icons/smartphone'
 import Tablet from 'react-feather/dist/icons/tablet'
 import Monitor from 'react-feather/dist/icons/monitor'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { jsx } from '@emotion/core'
 
 import { ActionButton } from '../Editor/elements'
 import { get } from '@utils/theme'

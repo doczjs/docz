@@ -2,7 +2,8 @@ import * as React from 'react'
 import { Component } from 'react'
 import { Menu as DocsMenu, MenuItem } from 'docz'
 import withSizes from 'react-sizes'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { jsx } from '@emotion/core'
 import match from 'match-sorter'
 import flattendepth from 'lodash.flattendepth'
 
@@ -29,7 +30,7 @@ const position = (p: WrapperProps) =>
     position: ['absolute', 'absolute', 'absolute', 'relative'],
   })
 
-const Wrapper = styled('div')`
+const Wrapper = styled('div')<WrapperProps>`
   position: relative;
   width: 280px;
   min-width: 280px;
@@ -95,7 +96,7 @@ const FooterLink = styled('a')`
   margin-left: 5px;
 `
 
-const FooterLogo = styled(Docz as any)`
+const FooterLogo = styled(Docz as any)<{ width: number }>`
   fill: ${sidebarText};
 `
 
@@ -103,9 +104,9 @@ interface OpenProps {
   opened: boolean
 }
 
-const ToggleBackground = styled('div')`
+const ToggleBackground = styled('div')<OpenProps>`
   content: '';
-  display: ${(p: OpenProps) => (p.opened ? 'none' : 'block')};
+  display: ${p => (p.opened ? 'none' : 'block')};
   position: fixed;
   background-color: rgba(0, 0, 0, 0.4);
   width: 100vw;

@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { Component } from 'react'
 import { Link, MenuItem, ThemeConfig } from 'docz'
-import styled, { css } from 'react-emotion'
+import styled from '@emotion/styled'
+import { css, jsx } from '@emotion/core'
 
 import { MenuHeadings } from './MenuHeadings'
 import { get } from '@utils/theme'
@@ -19,7 +20,7 @@ const activeWrapper = css`
   }
 `
 
-const Wrapper = styled('div')`
+const Wrapper = styled('div')<WrapperProps>`
   position: relative;
   transition: padding 0.2s;
 
@@ -35,7 +36,7 @@ const Wrapper = styled('div')`
     transition: width 0.2s;
   }
 
-  ${(p: WrapperProps) => p.active && activeWrapper};
+  ${p => p.active && activeWrapper};
 `
 
 export const linkStyle = ({ colors }: any) => css`
@@ -105,7 +106,7 @@ export class MenuLink extends Component<LinkProps, LinkState> {
     const commonProps = (config: any) => ({
       children,
       onClick,
-      className: linkStyle(config.themeConfig),
+      css: linkStyle(config.themeConfig) as any,
       innerRef: (node: any) => {
         innerRef && innerRef(node)
         this.$el = node
