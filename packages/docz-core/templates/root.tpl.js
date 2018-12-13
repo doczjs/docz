@@ -12,9 +12,4 @@ const Root = () => (
   />
 )
 
-// TODO: this is temporary until react-hot-loader fix hooks issues
-setConfig({
-  pureSFC: true,
-})
-
 export default hot(module)(Root)
