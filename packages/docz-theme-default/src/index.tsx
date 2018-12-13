@@ -18,7 +18,7 @@ const mergeTheme = (config: any) => (old: any) => ({
 
 const Theme = () => (
   <ThemeConfig>
-    {config => (
+    {(config: object) => (
       <ThemeProvider theme={mergeTheme(config)}>
         <DocPreview
           components={{
