@@ -73,7 +73,7 @@ export const Page: SFC<PageProps> = ({
 
   return (
     <ThemeConfig>
-      {({ repository, ...config }) => (
+      {({ repository, ...config }: { repository: string }) => (
         <Main config={config}>
           {repository && <GithubLink repository={repository} />}
           {!fullpage && <Sidebar />}
