@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.16](https://github.com/pedronauck/docz/compare/v0.12.15...v0.12.16) (2018-12-13)
+
+
+### Bug Fixes
+
+* **docz-core:** correct koa mounting path on windows systems ([#491](https://github.com/pedronauck/docz/issues/491)) ([6addd32](https://github.com/pedronauck/docz/commit/6addd32))
+* **docz-theme-default:** refresh editor after it's mounted ([#406](https://github.com/pedronauck/docz/issues/406)) ([#506](https://github.com/pedronauck/docz/issues/506)) ([c67fa41](https://github.com/pedronauck/docz/commit/c67fa41))
+* edit page button is overlayed by github link ([341e03a](https://github.com/pedronauck/docz/commit/341e03a))
+* **docz-theme-default:** ts warning ([452904b](https://github.com/pedronauck/docz/commit/452904b))
+
+
+
+
+
 ## [0.12.15](https://github.com/pedronauck/docz/compare/v0.12.14...v0.12.15) (2018-12-04)
 
 
