@@ -1,5 +1,6 @@
 import * as React from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { jsx } from '@emotion/core'
 
 import { get } from '@utils/theme'
 
@@ -36,35 +37,35 @@ const TableStyled = styled('table')`
     font-weight: 400;
     padding: 20px 20px;
 
-    &:nth-child(1) {
+    &:nth-of-type(1) {
       ${p =>
         p.theme.docz.mq({
           width: ['20%', '20%', '20%', 'auto'],
         })};
     }
 
-    &:nth-child(2) {
+    &:nth-of-type(2) {
       ${p =>
         p.theme.docz.mq({
           width: ['10%', '10%', '10%', 'auto'],
         })};
     }
 
-    &:nth-child(3) {
+    &:nth-of-type(3) {
       ${p =>
         p.theme.docz.mq({
           width: ['10%', '10%', '10%', 'auto'],
         })};
     }
 
-    &:nth-child(4) {
+    &:nth-of-type(4) {
       ${p =>
         p.theme.docz.mq({
           width: ['10%', '10%', '10%', 'auto'],
         })};
     }
 
-    &:nth-child(5) {
+    &:nth-of-type(5) {
       ${p =>
         p.theme.docz.mq({
           width: ['20%', '20%', '20%', 'auto'],

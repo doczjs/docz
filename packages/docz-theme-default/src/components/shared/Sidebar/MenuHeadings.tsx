@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { SFC } from 'react'
 import { Docs, Entry, Link } from 'docz'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { jsx } from '@emotion/core'
 import get from 'lodash.get'
 
 import { get as themeGet } from '@utils/theme'
@@ -15,7 +16,7 @@ const Submenu = styled('div')`
   margin: 5px 0 0 24px;
 `
 
-const SmallLink = styled(Link)`
+const SmallLink = styled(Link as any)`
   position: relative;
   font-size: 14px;
   padding: 0 0 5px 16px;

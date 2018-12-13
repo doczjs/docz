@@ -1,5 +1,5 @@
-import * as React from 'react'
 import { SFC } from 'react'
+import { jsx } from '@emotion/core'
 
 interface DoczProps {
   width?: number

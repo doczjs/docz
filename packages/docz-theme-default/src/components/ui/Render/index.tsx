@@ -1,8 +1,8 @@
-import * as React from 'react'
 import { SFC, Fragment, Component } from 'react'
 import { RenderComponentProps, ThemeConfig } from 'docz'
 import { LiveProvider, LiveError, LivePreview } from 'react-live'
-import styled, { css } from 'react-emotion'
+import styled from '@emotion/styled'
+import { css, jsx } from '@emotion/core'
 import lighten from 'polished/lib/color/lighten'
 import darken from 'polished/lib/color/darken'
 import rgba from 'polished/lib/color/rgba'
@@ -30,7 +30,7 @@ interface OverlayProps {
 const whenFullscreen = (on: any, off: any) => (p: OverlayProps) =>
   p.full ? on : off
 
-const Overlay = styled('div')`
+const Overlay = styled('div')<OverlayProps>`
   box-sizing: border-box;
   z-index: ${whenFullscreen(9999, 0)};
   position: ${whenFullscreen('fixed', 'relative')};
@@ -45,7 +45,7 @@ const Overlay = styled('div')`
 `
 
 const minusHandleSize = `calc(100% - ${HANDLE_SIZE} + 4px)`
-const Wrapper = styled('div')`
+const Wrapper = styled('div')<OverlayProps>`
   display: flex;
   flex-direction: column;
   height: ${whenFullscreen(minusHandleSize, '100%')};
@@ -54,7 +54,8 @@ const Wrapper = styled('div')`
 const borderColor = themeGet('colors.border')
 const backgroundColor = themeGet('colors.background')
 
-const PreviewWrapper = styled('div')`
+const PreviewWrapper = styled('div')<OverlayProps>`
+  position: relative;
   overflow-y: auto;
   flex: 1;
   border: 1px solid ${borderColor};
@@ -81,7 +82,7 @@ const StyledError = styled(LiveError)`
   color: white;
 `
 
-const Pre = styled(PreBase)`
+const Pre = styled(PreBase as any)<any>`
   width: calc(100% - 2px);
   border-radius: 0 !important;
   margin: 0;
@@ -91,17 +92,21 @@ interface ShowingProps {
   showing: boolean
 }
 
-const EditorWrapper = styled('div')`
-  max-height: ${(p: ShowingProps) => (p.showing ? '9999px' : '0px')};
-  transform: scaleY(${(p: ShowingProps) => (p.showing ? '1' : '0')});
+const EditorWrapper = styled('div')<ShowingProps>`
+  max-height: ${p => (p.showing ? '9999px' : '0px')};
+  transform: scaleY(${p => (p.showing ? '1' : '0')});
   transform-origin: top center;
 `
 
-const editorClassName = css`
+const editorStyle = css`
   border-top: 0;
 `
 
-const Actions = styled('div')`
+interface WithRadiusProps {
+  withRadius: boolean
+}
+
+const Actions = styled('div')<WithRadiusProps>`
   display: flex;
   justify-content: flex-end;
   padding: 0 5px;
@@ -260,7 +265,7 @@ class RenderBase extends Component<RenderProps, RenderState> {
     const { fullscreen, showEditor } = this.state
 
     const editorProps = {
-      className: editorClassName,
+      css: editorStyle,
       actions: <Fragment />,
     }
 
@@ -283,7 +288,7 @@ class RenderBase extends Component<RenderProps, RenderState> {
               <EditorWrapper showing={showEditor}>
                 <Pre
                   {...editorProps}
-                  onChange={code => this.setState({ code })}
+                  onChange={(code: any) => this.setState({ code })}
                   readOnly={false}
                 >
                   {this.state.code}

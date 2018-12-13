@@ -1,9 +1,9 @@
-import * as React from 'react'
 import { SFC, Fragment } from 'react'
 import { PageProps, ThemeConfig } from 'docz'
 import lighten from 'polished/lib/color/lighten'
 import Edit from 'react-feather/dist/icons/edit-2'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { jsx } from '@emotion/core'
 
 import { ButtonLink } from './Button'
 import { GithubLink, Sidebar, Main } from '../shared'
@@ -52,7 +52,7 @@ const EditPage = styled(ButtonLink.withComponent('a'))`
     })};
 `
 
-const EditIcon = styled(Edit)`
+const EditIcon = styled(Edit)<any>`
   margin-right: 5px;
 `
 

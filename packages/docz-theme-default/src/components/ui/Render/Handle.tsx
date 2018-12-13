@@ -1,6 +1,7 @@
 import lighten from 'polished/lib/color/lighten'
 import darken from 'polished/lib/color/darken'
-import styled, { css } from 'react-emotion'
+import styled from '@emotion/styled'
+import { css } from '@emotion/core'
 
 import { get } from '@utils/theme'
 
@@ -36,7 +37,7 @@ const whenHorizontal = (on: any, off: any) => (p: HandleProps) =>
 const handleHeight = (p: HandleProps) =>
   p.horizontal ? `calc(100% ${p.full ? '+ 3px' : '- 2px'})` : HANDLE_SIZE
 
-export const Handle = styled('div')`
+export const Handle = styled('div')<HandleProps>`
   z-index: ${p => (p.full ? (p.horizontal ? 9999 : 9998) : 9)};
   position: absolute;
   display: block;

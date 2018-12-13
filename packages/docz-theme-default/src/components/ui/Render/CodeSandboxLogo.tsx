@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { jsx } from '@emotion/core'
 
 export const CodeSandboxLogo = (props: any) => (
   <svg {...props} viewBox="0 0 512 512">

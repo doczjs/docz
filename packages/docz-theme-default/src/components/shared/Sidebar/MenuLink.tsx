@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { Component } from 'react'
 import { Link, MenuItem, ThemeConfig } from 'docz'
-import styled, { css } from 'react-emotion'
+import styled from '@emotion/styled'
+import { css, jsx } from '@emotion/core'
 
 import { MenuHeadings } from './MenuHeadings'
 import { get } from '@utils/theme'
@@ -19,7 +20,7 @@ const activeWrapper = css`
   }
 `
 
-const Wrapper = styled('div')`
+const Wrapper = styled('div')<WrapperProps>`
   position: relative;
   transition: padding 0.2s;
 
@@ -35,7 +36,7 @@ const Wrapper = styled('div')`
     transition: width 0.2s;
   }
 
-  ${(p: WrapperProps) => p.active && activeWrapper};
+  ${p => p.active && activeWrapper};
 `
 
 export const linkStyle = ({ colors }: any) => css`
@@ -105,12 +106,13 @@ export class MenuLink extends Component<LinkProps, LinkState> {
     const commonProps = (config: any) => ({
       children,
       onClick,
-      className: linkStyle(config.themeConfig),
-      innerRef: (node: any) => {
-        innerRef && innerRef(node)
-        this.$el = node
-      },
+      css: linkStyle(config.themeConfig) as any,
     })
+
+    const refFn = (node: any) => {
+      innerRef && innerRef(node)
+      this.$el = node
+    }
 
     return (
       <Wrapper active={active}>
@@ -119,15 +121,16 @@ export class MenuLink extends Component<LinkProps, LinkState> {
             const route: any = item.route === '/' ? '/' : item.route
             const props = { ...commonProps(config) }
 
-            if (item.href) {
-              return <LinkAnchor {...props} href={item.href} target="_blank" />
-            }
-
-            if (item.route) {
-              return <Link {...props} to={route} />
-            }
-
-            return <LinkAnchor {...props} href="#" />
+            return item.route ? (
+              <Link {...props} innerRef={refFn} to={route} />
+            ) : (
+              <LinkAnchor
+                {...props}
+                ref={refFn}
+                href={item.href || '#'}
+                target={item.href ? '_blank' : '_self'}
+              />
+            )
           }}
         </ThemeConfig>
         {active && item.route && <MenuHeadings route={item.route} />}
