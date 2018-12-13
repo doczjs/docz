@@ -47,8 +47,8 @@ const EditPage = styled(ButtonLink.withComponent('a'))`
   ${p =>
     p.theme.docz.mq({
       visibility: ['hidden', 'hidden', 'visible'],
-      top: [0, -60, 10],
-      right: [0, 0, 32],
+      top: [0, -60, 32],
+      right: [0, 0, 40],
     })};
 `
 
@@ -77,7 +77,7 @@ export const Page: SFC<PageProps> = ({
 
   return (
     <ThemeConfig>
-      {({ repository, ...config }) => (
+      {({ repository, ...config }: { repository: string }) => (
         <Main config={config}>
           {repository && <GithubLink repository={repository} />}
           {!fullpage && <Sidebar />}

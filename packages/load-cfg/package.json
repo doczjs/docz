@@ -22,7 +22,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "deepmerge": "^2.2.1",
+    "deepmerge": "^3.0.0",
     "esm": "^3.0.84",
     "find-up": "^3.0.0",
     "fs-extra": "^7.0.1"

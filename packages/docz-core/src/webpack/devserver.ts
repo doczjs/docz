@@ -43,7 +43,7 @@ export const devServerConfig = (
       app.use(range)
 
       if (fs.existsSync(publicDir)) {
-        app.use(mount(path.join(args.base, '/public'), serveStatic(publicDir)))
+        app.use(mount(path.posix.join(args.base, '/public'), serveStatic(publicDir)))
       }
 
       app.use(
