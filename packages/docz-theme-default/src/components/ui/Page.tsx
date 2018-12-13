@@ -52,7 +52,7 @@ const EditPage = styled(ButtonLink.withComponent('a'))`
     })};
 `
 
-const EditIcon = styled(Edit)`
+const EditIcon = styled(Edit)<any>`
   margin-right: 5px;
 `
 
@@ -64,11 +64,7 @@ export const Page: SFC<PageProps> = ({
     <Fragment>
       {link && edit && (
         <EditPage href={link} target="_blank">
-          <EditIcon
-            // @ts-ignore
-            width={14}
-          />{' '}
-          Edit page
+          <EditIcon width={14} /> Edit page
         </EditPage>
       )}
       {children}
@@ -77,7 +73,7 @@ export const Page: SFC<PageProps> = ({
 
   return (
     <ThemeConfig>
-      {({ repository, ...config }: { repository: string }) => (
+      {({ repository, ...config }) => (
         <Main config={config}>
           {repository && <GithubLink repository={repository} />}
           {!fullpage && <Sidebar />}

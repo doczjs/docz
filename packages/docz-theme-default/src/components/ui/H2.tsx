@@ -7,7 +7,7 @@ import { Link } from 'docz'
 
 import { get } from '@utils/theme'
 
-const Icon = styled(Hash)`
+const Icon = styled(Hash)<any>`
   position: absolute;
   display: inline-block;
   top: 11px;
@@ -31,10 +31,7 @@ const Heading = styled('h2')`
 export const H2: SFC<React.HTMLAttributes<any>> = ({ children, ...props }) => (
   <Heading {...props}>
     <Link aria-hidden to={{ hash: `#${props.id}` }}>
-      <Icon
-        // @ts-ignore
-        height={20}
-      />
+      <Icon height={20} />
     </Link>
     {children}
   </Heading>

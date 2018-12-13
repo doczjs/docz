@@ -107,11 +107,12 @@ export class MenuLink extends Component<LinkProps, LinkState> {
       children,
       onClick,
       css: linkStyle(config.themeConfig) as any,
-      innerRef: (node: any) => {
-        innerRef && innerRef(node)
-        this.$el = node
-      },
     })
+
+    const refFn = (node: any) => {
+      innerRef && innerRef(node)
+      this.$el = node
+    }
 
     return (
       <Wrapper active={active}>
@@ -120,15 +121,16 @@ export class MenuLink extends Component<LinkProps, LinkState> {
             const route: any = item.route === '/' ? '/' : item.route
             const props = { ...commonProps(config) }
 
-            if (item.href) {
-              return <LinkAnchor {...props} href={item.href} target="_blank" />
-            }
-
-            if (item.route) {
-              return <Link {...props} to={route} />
-            }
-
-            return <LinkAnchor {...props} href="#" />
+            return item.route ? (
+              <Link {...props} innerRef={refFn} to={route} />
+            ) : (
+              <LinkAnchor
+                {...props}
+                ref={refFn}
+                href={item.href || '#'}
+                target={item.href ? '_blank' : '_self'}
+              />
+            )
           }}
         </ThemeConfig>
         {active && item.route && <MenuHeadings route={item.route} />}

@@ -17,7 +17,7 @@ import 'codemirror/addon/edit/matchbrackets'
 import 'codemirror/addon/edit/closetag'
 import 'codemirror/addon/fold/xml-fold'
 
-const Scrollbar = styled(PerfectScrollbar)`
+const Scrollbar = styled(PerfectScrollbar)<any>`
   overflow: auto;
   position: relative;
   max-height: 360px;
@@ -70,7 +70,6 @@ const scrollbarOpts = {
 }
 
 export const CodeMirror: SFC<any> = props => (
-  // @ts-ignore
   <Scrollbar option={scrollbarOpts}>
     {global}
     <EditorStyled {...props} />

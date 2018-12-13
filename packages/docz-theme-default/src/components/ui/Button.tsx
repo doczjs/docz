@@ -19,6 +19,6 @@ export const Button: SFC<ButtonProps> = ({
   ...props
 }) => <Component {...props} />
 
-export const ButtonLink = styled(Button)`
+export const ButtonLink = styled(Button as any)`
   background: transparent;
 `

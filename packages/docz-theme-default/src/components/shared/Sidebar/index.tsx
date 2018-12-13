@@ -142,16 +142,17 @@ class SidebarBase extends Component<SidebarProps, SidebarState> {
     const { isDesktop } = this.props
     const { hidden } = this.state
 
+    if (pState.hidden !== this.state.hidden) {
+      this.toggleOverlayClass()
+    }
     if (pProps.isDesktop !== isDesktop && !hidden && isDesktop) {
       this.setState({ hidden: true })
-    }
-    if (pState.hidden !== this.state.hidden) {
-      this.addOverlayClass()
+      this.removeOverlayClass()
     }
   }
 
   public componentDidMount(): void {
-    this.addOverlayClass()
+    this.toggleOverlayClass()
   }
 
   public render(): React.ReactNode {
@@ -206,14 +207,21 @@ class SidebarBase extends Component<SidebarProps, SidebarState> {
     )
   }
 
-  private addOverlayClass = () => {
+  private toggleOverlayClass = () => {
     const { isDesktop } = this.props
     const { hidden } = this.state
-    const method = !hidden ? 'add' : 'remove'
+    const method = !hidden ? this.addOverlayClass : this.removeOverlayClass
 
     if (window && typeof window !== 'undefined' && !isDesktop) {
-      document.documentElement!.classList[method]('with-overlay')
+      method()
     }
+  }
+
+  private removeOverlayClass(): void {
+    document.documentElement!.classList.remove('with-overlay')
+  }
+  private addOverlayClass(): void {
+    document.documentElement!.classList.add('with-overlay')
   }
 
   private match = (val: string, menu: MenuItem[]) => {

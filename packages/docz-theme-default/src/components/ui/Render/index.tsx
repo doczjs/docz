@@ -55,6 +55,7 @@ const borderColor = themeGet('colors.border')
 const backgroundColor = themeGet('colors.background')
 
 const PreviewWrapper = styled('div')<OverlayProps>`
+  position: relative;
   overflow-y: auto;
   flex: 1;
   border: 1px solid ${borderColor};
@@ -81,7 +82,7 @@ const StyledError = styled(LiveError)`
   color: white;
 `
 
-const Pre = styled(PreBase)`
+const Pre = styled(PreBase as any)<any>`
   width: calc(100% - 2px);
   border-radius: 0 !important;
   margin: 0;
@@ -127,7 +128,7 @@ const Action = styled(ActionButton)`
 `
 
 const ActionLink = Action.withComponent('a')
-const Clipboard = styled(ClipboardAction)`
+const Clipboard = styled(ClipboardAction as any)`
   ${actionClass};
 `
 
@@ -287,7 +288,7 @@ class RenderBase extends Component<RenderProps, RenderState> {
               <EditorWrapper showing={showEditor}>
                 <Pre
                   {...editorProps}
-                  onChange={code => this.setState({ code })}
+                  onChange={(code: any) => this.setState({ code })}
                   readOnly={false}
                 >
                   {this.state.code}

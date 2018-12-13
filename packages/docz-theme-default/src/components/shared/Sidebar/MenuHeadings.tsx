@@ -16,7 +16,7 @@ const Submenu = styled('div')`
   margin: 5px 0 0 24px;
 `
 
-const SmallLink = styled(Link)`
+const SmallLink = styled(Link as any)`
   position: relative;
   font-size: 14px;
   padding: 0 0 5px 16px;

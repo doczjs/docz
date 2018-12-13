@@ -23,7 +23,9 @@ type LinkProps = React.AnchorHTMLAttributes<any>
 
 export const Link: SFC<LinkProps> = ({ href, ...props }) => {
   const isInternal = href && href.startsWith('/')
-  const Component = isInternal ? LinkStyled.withComponent(BaseLink) : LinkStyled
+  const Component = isInternal
+    ? LinkStyled.withComponent(BaseLink as any)
+    : LinkStyled
 
   return isInternal ? (
     <Component {...props} to={href} />

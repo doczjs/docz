@@ -54,7 +54,7 @@
     "@babel/core": "7.2.0",
     "@types/lodash.flattendepth": "^4.7.4",
     "@types/lodash.get": "^4.4.4",
-    "@types/react": "^16.7.13",
+    "@types/react": "^16.7.17",
     "@types/react-dom": "^16.0.11",
     "babel-plugin-emotion": "^10.0.4"
   }
