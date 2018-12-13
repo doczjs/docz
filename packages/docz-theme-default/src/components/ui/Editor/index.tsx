@@ -103,7 +103,7 @@ export class Editor extends Component<EditorProps, EditorState> {
     const editorProps = (config: any) => ({
       value: this.state.code,
       className: editorClassName,
-      editorDidMount: this.removeLastLine,
+      editorDidMount: this.onEditorDidMount,
       onBeforeChange: this.handleChange,
       options: {
         ...options,
@@ -122,6 +122,13 @@ export class Editor extends Component<EditorProps, EditorState> {
         <Actions>{actions || <ClipboardAction content={code} />}</Actions>
       </Wrapper>
     )
+  }
+
+  private onEditorDidMount = (editor: any) => {
+    if (editor) {
+      this.removeLastLine(editor)
+      editor.refresh()
+    }
   }
 
   private removeLastLine = (editor: any) => {
