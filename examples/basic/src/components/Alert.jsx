@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import t from 'prop-types'
 
 const kinds = {

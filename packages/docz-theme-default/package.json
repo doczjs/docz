@@ -21,11 +21,13 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
+    "@emotion/core": "^10.0.5",
+    "@emotion/styled": "^10.0.5",
     "codemirror": "^5.42.0",
     "copy-text-to-clipboard": "^1.0.4",
     "docz": "^0.12.15",
-    "emotion": "^9.2.12",
-    "emotion-theming": "^9.2.9",
+    "emotion": "^10.0.5",
+    "emotion-theming": "^10.0.5",
     "facepaint": "^1.2.1",
     "hotkeys-js": "^3.4.1",
     "lodash.flattendepth": "^4.7.0",
@@ -38,7 +40,6 @@
     "react": "^16.6.3",
     "react-codemirror2": "^5.1.0",
     "react-dom": "^16.6.3",
-    "react-emotion": "^9.2.12",
     "react-feather": "^1.1.4",
     "react-live": "^1.12.0",
     "react-perfect-scrollbar": "^1.4.2",
@@ -54,8 +55,8 @@
     "@babel/core": "7.2.0",
     "@types/lodash.flattendepth": "^4.7.4",
     "@types/lodash.get": "^4.4.4",
-    "@types/react": "^16.7.13",
+    "@types/react": "^16.7.17",
     "@types/react-dom": "^16.0.11",
-    "babel-plugin-emotion": "^9.2.11"
+    "babel-plugin-emotion": "^10.0.5"
   }
 }

@@ -1,6 +1,6 @@
-import * as React from 'react'
 import { SFC, ComponentType } from 'react'
-import styled from 'react-emotion'
+import { jsx } from '@emotion/core'
+import styled from '@emotion/styled'
 
 const BaseButton = styled('button')`
   cursor: pointer;
@@ -19,6 +19,6 @@ export const Button: SFC<ButtonProps> = ({
   ...props
 }) => <Component {...props} />
 
-export const ButtonLink = styled(Button)`
+export const ButtonLink = styled(Button as any)`
   background: transparent;
 `

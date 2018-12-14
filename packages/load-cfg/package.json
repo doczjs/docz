@@ -29,6 +29,6 @@
   },
   "devDependencies": {
     "@types/find-up": "^2.1.1",
-    "@types/node": "^10.12.12"
+    "@types/node": "^10.12.15"
   }
 }

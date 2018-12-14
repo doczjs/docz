@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { jsx } from '@emotion/core'
 import { SFC } from 'react'
 import { Toggle } from 'react-powerplug'
 

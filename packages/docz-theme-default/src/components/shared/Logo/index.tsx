@@ -1,7 +1,7 @@
-import * as React from 'react'
+import { jsx } from '@emotion/core'
 import { SFC } from 'react'
 import { ThemeConfig, Link } from 'docz'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 import { breakpoints } from '@styles/responsive'
 import { get } from '@utils/theme'
@@ -14,7 +14,7 @@ interface WrapperProps {
 const sidebarPrimary = get('colors.sidebarPrimary')
 const primaryColor = get('colors.primary')
 
-const Wrapper = styled('div')`
+const Wrapper = styled.div<WrapperProps>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -40,7 +40,7 @@ const Wrapper = styled('div')`
 
   @media screen and (max-width: ${breakpoints.desktop}px) {
     &:before {
-      height: ${(p: WrapperProps) => (p.showBg ? '3px' : 0)};
+      height: ${p => (p.showBg ? '3px' : 0)};
     }
   }
 `

@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Fragment } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 const kinds = {
   info: '#5352ED',

@@ -1,8 +1,8 @@
-import * as React from 'react'
-import { Component } from 'react'
+import { jsx } from '@emotion/core'
+import { Fragment, Component } from 'react'
 import { Menu as DocsMenu, MenuItem } from 'docz'
 import withSizes from 'react-sizes'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import match from 'match-sorter'
 import flattendepth from 'lodash.flattendepth'
 
@@ -29,7 +29,7 @@ const position = (p: WrapperProps) =>
     position: ['absolute', 'absolute', 'absolute', 'relative'],
   })
 
-const Wrapper = styled('div')`
+const Wrapper = styled.div<WrapperProps>`
   position: relative;
   width: 280px;
   min-width: 280px;
@@ -50,7 +50,7 @@ const Wrapper = styled('div')`
   }
 
   @media screen and (max-width: ${breakpoints.desktop - 1}px) {
-    transform: translateX(${(p: WrapperProps) => (p.opened ? '-100%' : '0')});
+    transform: translateX(${p => (p.opened ? '-100%' : '0')});
   }
 `
 
@@ -95,7 +95,7 @@ const FooterLink = styled('a')`
   margin-left: 5px;
 `
 
-const FooterLogo = styled(Docz as any)`
+const FooterLogo = styled(Docz as any)<{ width: number }>`
   fill: ${sidebarText};
 `
 
@@ -103,9 +103,9 @@ interface OpenProps {
   opened: boolean
 }
 
-const ToggleBackground = styled('div')`
+const ToggleBackground = styled.div<OpenProps>`
   content: '';
-  display: ${(p: OpenProps) => (p.opened ? 'none' : 'block')};
+  display: ${p => (p.opened ? 'none' : 'block')};
   position: fixed;
   background-color: rgba(0, 0, 0, 0.4);
   width: 100vw;
@@ -141,16 +141,17 @@ class SidebarBase extends Component<SidebarProps, SidebarState> {
     const { isDesktop } = this.props
     const { hidden } = this.state
 
+    if (pState.hidden !== this.state.hidden) {
+      this.toggleOverlayClass()
+    }
     if (pProps.isDesktop !== isDesktop && !hidden && isDesktop) {
       this.setState({ hidden: true })
-    }
-    if (pState.hidden !== this.state.hidden) {
-      this.addOverlayClass()
+      this.removeOverlayClass()
     }
   }
 
   public componentDidMount(): void {
-    this.addOverlayClass()
+    this.toggleOverlayClass()
   }
 
   public render(): React.ReactNode {
@@ -162,7 +163,7 @@ class SidebarBase extends Component<SidebarProps, SidebarState> {
           const menus = this.state.menus || initial
 
           return (
-            <React.Fragment>
+            <Fragment>
               <Wrapper opened={hidden}>
                 <Content>
                   <Hamburguer
@@ -198,21 +199,28 @@ class SidebarBase extends Component<SidebarProps, SidebarState> {
                 opened={hidden}
                 onClick={this.handleSidebarToggle}
               />
-            </React.Fragment>
+            </Fragment>
           )
         }}
       </DocsMenu>
     )
   }
 
-  private addOverlayClass = () => {
+  private toggleOverlayClass = () => {
     const { isDesktop } = this.props
     const { hidden } = this.state
-    const method = !hidden ? 'add' : 'remove'
+    const method = !hidden ? this.addOverlayClass : this.removeOverlayClass
 
     if (window && typeof window !== 'undefined' && !isDesktop) {
-      document.documentElement!.classList[method]('with-overlay')
+      method()
     }
+  }
+
+  private removeOverlayClass(): void {
+    document.documentElement!.classList.remove('with-overlay')
+  }
+  private addOverlayClass(): void {
+    document.documentElement!.classList.add('with-overlay')
   }
 
   private match = (val: string, menu: MenuItem[]) => {

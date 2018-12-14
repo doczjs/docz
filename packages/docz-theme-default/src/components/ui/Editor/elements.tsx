@@ -1,17 +1,17 @@
-import * as React from 'react'
+import { jsx } from '@emotion/core'
 import { SFC } from 'react'
 import BaseCheck from 'react-feather/dist/icons/check'
 import Clipboard from 'react-feather/dist/icons/clipboard'
 import rgba from 'polished/lib/color/rgba'
 import copy from 'copy-text-to-clipboard'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 import { ButtonSwap } from '../ButtonSwap'
 import { ButtonLink } from '../Button'
 import { get } from '@utils/theme'
 
 const textColor = get('colors.text')
-export const ActionButton = styled(ButtonSwap)`
+export const ActionButton = styled(ButtonSwap as any)<any>`
   padding: 4px;
   background: transparent;
   font-size: 12px;

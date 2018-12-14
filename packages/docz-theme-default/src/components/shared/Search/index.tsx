@@ -1,6 +1,6 @@
-import * as React from 'react'
 import { SFC } from 'react'
-import styled from 'react-emotion'
+import { jsx } from '@emotion/core'
+import styled from '@emotion/styled'
 import SearchIcon from 'react-feather/dist/icons/search'
 import placeholder from 'polished/lib/mixins/placeholder'
 import rgba from 'polished/lib/color/rgba'

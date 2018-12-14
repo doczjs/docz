@@ -1,5 +1,5 @@
-import * as React from 'react'
-import styled, { css, keyframes } from 'react-emotion'
+import { css, keyframes, jsx } from '@emotion/core'
+import styled from '@emotion/styled'
 
 import { get } from '@utils/theme'
 
@@ -46,7 +46,7 @@ const Spinner = ({ size = 60 }) => (
         strokeWidth="5"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className={spinnerClass(1.5)}
+        css={spinnerClass(1.5)}
       />
       <Lines
         d="M47.75,18.5 L86.25,18.5"
@@ -54,7 +54,7 @@ const Spinner = ({ size = 60 }) => (
         strokeWidth="5"
         stroke-linecap="round"
         strokeLinejoin="round"
-        className={spinnerClass(0.2)}
+        css={spinnerClass(0.2)}
       />
       <Lines
         d="M30.9375,38.5 L72.0625,38.5"
@@ -62,7 +62,7 @@ const Spinner = ({ size = 60 }) => (
         strokeWidth="5"
         stroke-linecap="round"
         strokeLinejoin="round"
-        className={spinnerClass(1)}
+        css={spinnerClass(1)}
       />
       <Lines
         d="M31,56.5 L59,56.5"
@@ -70,7 +70,7 @@ const Spinner = ({ size = 60 }) => (
         strokeWidth="5"
         stroke-linecap="round"
         strokeLinejoin="round"
-        className={spinnerClass(3)}
+        css={spinnerClass(3)}
       />
       <Lines
         d="M31.375,72.5 L50.625,72.5"
@@ -78,7 +78,7 @@ const Spinner = ({ size = 60 }) => (
         strokeWidth="5"
         stroke-linecap="round"
         strokeLinejoin="round"
-        className={spinnerClass(2)}
+        css={spinnerClass(2)}
       />
     </g>
   </svg>

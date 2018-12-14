@@ -1,7 +1,7 @@
-import * as React from 'react'
+import { jsx } from '@emotion/core'
 import { SFC } from 'react'
 import { Docs, Entry, Link } from 'docz'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import get from 'lodash.get'
 
 import { get as themeGet } from '@utils/theme'
@@ -9,13 +9,13 @@ import { get as themeGet } from '@utils/theme'
 const sidebarPrimary = themeGet('colors.sidebarPrimary')
 const primaryColor = themeGet('colors.primary')
 
-const Submenu = styled('div')`
+const Submenu = styled.div`
   display: flex;
   flex-direction: column;
   margin: 5px 0 0 24px;
 `
 
-const SmallLink = styled(Link)`
+const SmallLink = styled(Link as any)`
   position: relative;
   font-size: 14px;
   padding: 0 0 5px 16px;

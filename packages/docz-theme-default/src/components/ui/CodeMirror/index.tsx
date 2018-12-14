@@ -1,13 +1,13 @@
-import * as React from 'react'
+import { jsx } from '@emotion/core'
 import { SFC } from 'react'
 import { Controlled as BaseCodeMirror } from 'react-codemirror2'
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 import * as themes from '@styles/codemirror'
 import { get } from '@utils/theme'
+import { global } from './ps-scrollbar'
 
-import './ps-scrollbar'
 import 'codemirror/mode/markdown/markdown'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/jsx/jsx'
@@ -16,7 +16,7 @@ import 'codemirror/addon/edit/matchbrackets'
 import 'codemirror/addon/edit/closetag'
 import 'codemirror/addon/fold/xml-fold'
 
-const Scrollbar = styled(PerfectScrollbar)`
+const Scrollbar = styled(PerfectScrollbar)<any>`
   overflow: auto;
   position: relative;
   max-height: 360px;
@@ -70,6 +70,7 @@ const scrollbarOpts = {
 
 export const CodeMirror: SFC<any> = props => (
   <Scrollbar option={scrollbarOpts}>
+    {global}
     <EditorStyled {...props} />
   </Scrollbar>
 )

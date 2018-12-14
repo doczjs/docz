@@ -1,8 +1,8 @@
-import * as React from 'react'
+import { jsx } from '@emotion/core'
 import { Component } from 'react'
 import { MenuItem } from 'docz'
 import ChevronDown from 'react-feather/dist/icons/chevron-down'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 import { MenuLink, getActiveFromClass } from './MenuLink'
 import { get } from '@utils/theme'
@@ -16,16 +16,16 @@ interface OpenedProps {
   opened: boolean
 }
 
-const List = styled('dl')`
+const List = styled.dl<OpenedProps>`
   flex: 1;
   overflow-y: auto;
-  visibility: ${(p: OpenedProps) => (p.opened ? 'visible' : 'hidden')};
-  max-height: ${(p: OpenedProps) => (p.opened ? 'auto' : '0px')};
+  visibility: ${p => (p.opened ? 'visible' : 'hidden')};
+  max-height: ${p => (p.opened ? 'auto' : '0px')};
 `
 
 const iconRotate = (p: OpenedProps) => (p.opened ? '-180deg' : '0deg')
 
-const Icon = styled('div')`
+const Icon = styled.div<OpenedProps>`
   position: absolute;
   top: 50%;
   right: 20px;

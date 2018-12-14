@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { Component } from 'react'
 import { ThemeConfig } from 'docz'
-import styled from 'react-emotion'
+import { jsx } from '@emotion/core'
+import styled from '@emotion/styled'
 import getter from 'lodash.get'
 
 import { CodeMirror } from '../CodeMirror'
