@@ -42,7 +42,7 @@ const EditPage = styled(ButtonLink.withComponent('a'))`
 
   &:hover {
     opacity: 1;
-    background: ${p => lighten(0.1, get('colors.border')(p))};
+    background: ${p => lighten(0.1, get('colors.border', '#CED4DE')(p))};
   }
 
   ${mq({
