@@ -52,9 +52,5 @@
     "unist-util-find": "^1.0.1",
     "unist-util-is": "^2.1.2",
     "unist-util-visit": "^1.4.0"
-  },
-  "devDependencies": {
-    "@types/lodash.flatten": "^4.4.4",
-    "@types/lodash.get": "^4.4.4"
   }
 }
