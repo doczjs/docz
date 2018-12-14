@@ -1,7 +1,8 @@
 import { SFC } from 'react'
-import { Global, css, jsx } from '@emotion/core'
+import { Global, jsx } from '@emotion/core'
 import styled from '@emotion/styled'
-import get from 'lodash.get'
+
+import { styles } from '../../../styles/global'
 
 const Wrapper = styled('div')`
   display: flex;
@@ -14,13 +15,7 @@ interface MainProps {
 
 export const Main: SFC<MainProps> = props => (
   <Wrapper>
-    <Global
-      styles={css`
-        body {
-          ${get(props, 'config.themeConfig.styles.body')}
-        }
-      `}
-    />
+    <Global styles={styles(props)} />
     {props.children}
   </Wrapper>
 )

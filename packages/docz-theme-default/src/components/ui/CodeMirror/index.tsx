@@ -7,6 +7,7 @@ import styled from '@emotion/styled'
 import * as themes from '@styles/codemirror'
 import { get } from '@utils/theme'
 import { global } from './ps-scrollbar'
+import { mq } from '@styles/responsive'
 
 import 'codemirror/mode/markdown/markdown'
 import 'codemirror/mode/javascript/javascript'
@@ -31,7 +32,7 @@ const preStyles = get('styles.pre')
 const EditorStyled = styled(BaseCodeMirror)`
   ${themes.dark()};
   ${themes.light()};
-  ${p => p.theme.docz.mq(preStyles(p))};
+  ${p => mq(preStyles(p))};
   position: relative;
   flex: 1;
 
@@ -41,7 +42,7 @@ const EditorStyled = styled(BaseCodeMirror)`
   }
 
   .CodeMirror pre {
-    ${p => p.theme.docz.mq(preStyles(p))};
+    ${p => mq(preStyles(p))};
   }
 
   .CodeMirror-gutters {

@@ -1,11 +1,12 @@
 import styled from '@emotion/styled'
 import { get } from '@utils/theme'
+import { mq } from '@styles/responsive'
 
 export const H1 = styled('h1')`
   position: relative;
   display: table;
   margin: 30px 0;
-  ${p => p.theme.docz.mq(p.theme.docz.styles.h1)};
+  ${p => mq(get('styles.h1')(p))};
 
   &:before {
     position: absolute;

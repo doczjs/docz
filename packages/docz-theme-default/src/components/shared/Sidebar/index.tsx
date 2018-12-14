@@ -13,7 +13,7 @@ import { Docz } from './Docz'
 import { Hamburguer } from './Hamburguer'
 
 import { get } from '@utils/theme'
-import { breakpoints } from '@styles/responsive'
+import { mq, breakpoints } from '@styles/responsive'
 
 interface WrapperProps {
   opened: boolean
@@ -24,11 +24,6 @@ const sidebarBg = get('colors.sidebarBg')
 const sidebarText = get('colors.sidebarText')
 const sidebarBorder = get('colors.sidebarBorder')
 
-const position = (p: WrapperProps) =>
-  p.theme.docz.mq({
-    position: ['absolute', 'absolute', 'absolute', 'relative'],
-  })
-
 const Wrapper = styled.div<WrapperProps>`
   position: relative;
   width: 280px;
@@ -37,8 +32,11 @@ const Wrapper = styled.div<WrapperProps>`
   background: ${sidebarBg};
   transition: transform 0.2s, background 0.3s;
   z-index: 1000;
-  ${position};
+
   ${get('styles.sidebar')};
+  ${mq({
+    position: ['absolute', 'absolute', 'absolute', 'relative'],
+  })};
 
   dl {
     padding: 0;

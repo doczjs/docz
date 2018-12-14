@@ -38,7 +38,7 @@ const Wrapper = styled.div<WrapperProps>`
   ${p => p.active && activeWrapper};
 `
 
-export const linkStyle = ({ colors }: any) => css`
+export const linkStyle = (colors: any) => css`
   position: relative;
   display: block;
   padding: 4px 24px;
@@ -62,7 +62,7 @@ export const linkStyle = ({ colors }: any) => css`
 `
 
 const LinkAnchor = styled('a')`
-  ${p => linkStyle(p.theme.docz)};
+  ${p => linkStyle(get('colors')(p))};
 `
 
 export const getActiveFromClass = (el: HTMLElement | null) =>

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { get } from '@utils/theme'
+import { mq } from '@styles/responsive'
 
 export const OrderedList = styled('ol')`
   list-style: none;
@@ -17,5 +18,5 @@ export const OrderedList = styled('ol')`
     margin-right: 5px;
   }
 
-  ${p => p.theme.docz.mq(p.theme.docz.styles.ol)};
+  ${p => mq(get('styles.ol')(p))};
 `

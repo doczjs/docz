@@ -22,6 +22,7 @@ import { ActionButton, ClipboardAction } from '../Editor/elements'
 
 import { localStorage } from '@utils/local-storage'
 import { get as themeGet } from '@utils/theme'
+import { mq } from '@styles/responsive'
 
 interface OverlayProps {
   full: boolean
@@ -67,7 +68,7 @@ const StyledPreview = styled(LivePreview)`
   position: relative;
   box-sizing: border-box;
   width: 100%;
-  ${p => p.theme.docz.mq(p.theme.docz.styles.playground)};
+  ${p => mq(themeGet('styles.playground')(p))};
 `
 
 const StyledError = styled(LiveError)`
@@ -110,7 +111,7 @@ const Actions = styled('div')<WithRadiusProps>`
   justify-content: flex-end;
   padding: 0 5px;
   background: ${p =>
-    p.theme.docz.mode === 'light'
+    themeGet('mode')(p) === 'light'
       ? lighten(0.13, borderColor(p))
       : darken(0.04, borderColor(p))};
   border-left: 1px solid ${themeGet('colors.border')};

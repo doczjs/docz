@@ -8,6 +8,7 @@ import styled from '@emotion/styled'
 import { ButtonLink } from './Button'
 import { GithubLink, Sidebar, Main } from '../shared'
 import { get } from '@utils/theme'
+import { mq } from '@styles/responsive'
 
 const Wrapper = styled('div')`
   flex: 1;
@@ -20,7 +21,7 @@ const Wrapper = styled('div')`
 export const Container = styled('div')`
   box-sizing: border-box;
   margin: 0 auto;
-  ${p => p.theme.docz.mq(p.theme.docz.styles.container)};
+  ${p => mq(get('styles.container')(p))};
 `
 
 const EditPage = styled(ButtonLink.withComponent('a'))`
@@ -41,15 +42,14 @@ const EditPage = styled(ButtonLink.withComponent('a'))`
 
   &:hover {
     opacity: 1;
-    background: ${p => lighten(0.1, p.theme.docz.colors.border)};
+    background: ${p => lighten(0.1, get('colors.border')(p))};
   }
 
-  ${p =>
-    p.theme.docz.mq({
-      visibility: ['hidden', 'hidden', 'visible'],
-      top: [0, -60, 32],
-      right: [0, 0, 40],
-    })};
+  ${mq({
+    visibility: ['hidden', 'hidden', 'visible'],
+    top: [0, -60, 32],
+    right: [0, 0, 40],
+  })};
 `
 
 const EditIcon = styled(Edit)<{ width: number }>`

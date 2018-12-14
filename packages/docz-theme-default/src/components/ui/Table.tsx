@@ -3,16 +3,16 @@ import { jsx } from '@emotion/core'
 import styled from '@emotion/styled'
 
 import { get } from '@utils/theme'
+import { mq } from '@styles/responsive'
 
 const Wrapper = styled('div')`
   overflow-x: auto;
   padding: 2px;
 
-  ${p =>
-    p.theme.docz.mq({
-      marginBottom: [20, 40],
-      maxWidth: ['calc(100vw - 40px)', 'calc(100vw - 80px)', '100%'],
-    })};
+  ${mq({
+    marginBottom: [20, 40],
+    maxWidth: ['calc(100vw - 40px)', 'calc(100vw - 80px)', '100%'],
+  })};
 `
 
 const TableStyled = styled('table')`
@@ -26,7 +26,7 @@ const TableStyled = styled('table')`
   border-radius: ${get('radii')};
   font-size: 14px;
   color: ${get('colors.tableColor')};
-  ${p => p.theme.docz.mq(p.theme.docz.styles.table)};
+  ${p => mq(get('styles.table')(p))};
 
   & thead {
     color: ${get('colors.theadColor')};
@@ -38,38 +38,33 @@ const TableStyled = styled('table')`
     padding: 20px 20px;
 
     &:nth-of-type(1) {
-      ${p =>
-        p.theme.docz.mq({
-          width: ['20%', '20%', '20%', 'auto'],
-        })};
+      ${mq({
+        width: ['20%', '20%', '20%', 'auto'],
+      })};
     }
 
     &:nth-of-type(2) {
-      ${p =>
-        p.theme.docz.mq({
-          width: ['10%', '10%', '10%', 'auto'],
-        })};
+      ${mq({
+        width: ['10%', '10%', '10%', 'auto'],
+      })};
     }
 
     &:nth-of-type(3) {
-      ${p =>
-        p.theme.docz.mq({
-          width: ['10%', '10%', '10%', 'auto'],
-        })};
+      ${mq({
+        width: ['10%', '10%', '10%', 'auto'],
+      })};
     }
 
     &:nth-of-type(4) {
-      ${p =>
-        p.theme.docz.mq({
-          width: ['10%', '10%', '10%', 'auto'],
-        })};
+      ${mq({
+        width: ['10%', '10%', '10%', 'auto'],
+      })};
     }
 
     &:nth-of-type(5) {
-      ${p =>
-        p.theme.docz.mq({
-          width: ['20%', '20%', '20%', 'auto'],
-        })};
+      ${mq({
+        width: ['20%', '20%', '20%', 'auto'],
+      })};
     }
   }
 
@@ -84,7 +79,7 @@ const TableStyled = styled('table')`
     border-top: 1px solid ${get('colors.border')};
   }
 
-  ${p => p.theme.docz.mq(p.theme.docz.styles.table)};
+  ${p => mq(get('styles.table')(p))};
 `
 
 export const Table = (props: React.TableHTMLAttributes<any>) => (

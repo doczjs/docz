@@ -3,6 +3,7 @@ import { jsx } from '@emotion/core'
 import styled from '@emotion/styled'
 
 import { get } from '@utils/theme'
+import { mq } from '@styles/responsive'
 
 interface OpenProps {
   opened: boolean
@@ -90,10 +91,9 @@ const ToggleButton = styled.button<OpenProps>`
     background: ${p => sidebarPrimary(p) || primaryColor(p)};
   }
 
-  ${p =>
-    p.theme.docz.mq({
-      display: ['block', 'block', 'block', 'none'],
-    })};
+  ${mq({
+    display: ['block', 'block', 'block', 'none'],
+  })};
 `
 
 interface HamburguerProps extends OpenProps {

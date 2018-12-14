@@ -1,27 +1,27 @@
 import { Fragment } from 'react'
 import { theme, DocPreview, ThemeConfig } from 'docz'
 import { ThemeProvider } from 'emotion-theming'
-import { Global, jsx } from '@emotion/core'
+import { jsx } from '@emotion/core'
 import webfont from 'webfontloader'
 
 import { config } from './config'
-import { styles } from './styles/global'
 import { mq } from './styles/responsive'
 import * as components from './components/ui'
 import * as modes from './styles/modes'
 
-// tslint:disable
-const mergeTheme = (config: any) => (old: any) => ({
-  ...old,
-  docz: Object.assign({}, config.themeConfig, { mq }),
-})
-
 const Theme = () => (
   <Fragment>
-    <Global styles={styles} />
     <ThemeConfig>
       {config => (
-        <ThemeProvider theme={mergeTheme(config)}>
+        <ThemeProvider
+          theme={(old: any) => ({
+            ...old,
+            docz: {
+              ...config.themeConfig,
+              mq,
+            },
+          })}
+        >
           <DocPreview
             components={{
               page: components.Page,

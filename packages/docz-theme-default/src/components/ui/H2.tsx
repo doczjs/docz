@@ -6,6 +6,7 @@ import Hash from 'react-feather/dist/icons/hash'
 import { Link } from 'docz'
 
 import { get } from '@utils/theme'
+import { mq } from '@styles/responsive'
 
 const Icon = styled(Hash)`
   position: absolute;
@@ -21,7 +22,7 @@ const Heading = styled('h2')`
   position: relative;
   border-bottom: 1px dashed ${get('colors.border')};
   padding-bottom: 5px;
-  ${p => p.theme.docz.mq(get('styles.h2')(p))};
+  ${p => mq(get('styles.h2')(p))};
 
   &:hover ${Icon.toString()} {
     opacity: 1;

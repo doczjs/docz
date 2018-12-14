@@ -1,8 +1,9 @@
 import styled from '@emotion/styled'
 import { get } from '@utils/theme'
+import { mq } from '@styles/responsive'
 
 export const InlineCode = styled('code')`
   background: ${get('colors.codeBg')};
   color: ${get('colors.codeColor')};
-  ${p => p.theme.docz.mq(p.theme.docz.styles.code)};
+  ${p => mq(get('styles.code')(p))};
 `
