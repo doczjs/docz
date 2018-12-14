@@ -27,8 +27,5 @@
     "jsx-ast-utils": "^2.0.1",
     "lodash.flatten": "^4.4.0",
     "unist-util-is": "^2.1.2"
-  },
-  "devDependencies": {
-    "@types/lodash.flatten": "^4.4.4"
   }
 }
