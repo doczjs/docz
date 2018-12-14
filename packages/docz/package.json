@@ -34,7 +34,6 @@
     "capitalize": "^2.0.0",
     "deepmerge": "^3.0.0",
     "docz-core": "^0.12.16",
-    "docz-theme-default": "^0.12.16",
     "fast-deep-equal": "^2.0.1",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
