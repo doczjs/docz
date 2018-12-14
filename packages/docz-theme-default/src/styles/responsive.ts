@@ -6,9 +6,8 @@ export const breakpoints = {
   desktop: 1120,
 }
 
-export const mq = (p: any = []) =>
-  facepaint([
-    `@media(min-width: ${breakpoints.mobile}px)`,
-    `@media(min-width: ${breakpoints.tablet}px)`,
-    `@media(min-width: ${breakpoints.desktop}px)`,
-  ])(p)
+export const mq = facepaint([
+  `@media(min-width: ${breakpoints.mobile}px)`,
+  `@media(min-width: ${breakpoints.tablet}px)`,
+  `@media(min-width: ${breakpoints.desktop}px)`,
+])

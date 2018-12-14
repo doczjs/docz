@@ -10,7 +10,7 @@ import { ButtonSwap } from '../ButtonSwap'
 import { ButtonLink } from '../Button'
 import { get } from '@utils/theme'
 
-const textColor = get('colors.text', '#2D3747')
+const textColor = get('colors.text')
 export const ActionButton = styled(ButtonSwap as any)<any>`
   padding: 4px;
   background: transparent;
