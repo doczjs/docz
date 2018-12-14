@@ -100,6 +100,7 @@ Documenting our things is one of the most important and heavy processes when you
 - **[Smooth UI](https://smooth-ui.smooth-code.com/)** - Modern React UI library
 - **[Set Protocol Docs](https://docs.setprotocol.com/)** - Documentation site of Set Protocal
 - **[Circuit UI](https://circuit.sumup.com/#/)** - React component library for [SumUp](https://sumup.com) web apps
+- **[Fannypack](https://fannypack.style)** - A friendly & accessible React UI Kit built with [Reakit](https://reakit.io/)
 - **[React Pixi](https://reactpixi.org/#/)** - React Fiber renderer for Pixi
 - **[React Hotkey Tooltip](https://react-hotkey-tooltip.netlify.com/#/)** - A global Hotkey provider with built in tooltip for React
 - **[Sajari React SDK](https://sajari-sdk-react.netlify.com/)** - Library of React Components for the Sajari
@@ -113,10 +114,10 @@ npx babel-upgrade --write
 ```
 ## 📟 &nbsp; Install and Usage
 
-Simplicity is one of our core principles. Therefore, getting started with **docz** is something really easy and quick. First of all, you will need to install **docz** on your project using your favorite package manager (we'll asume yarn for this example):
+Simplicity is one of our core principles. Therefore, getting started with **docz** is something really easy and quick. First of all, you will need to install **docz** and some theme on your project using your favorite package manager (we'll asume yarn for this example):
 
 ```bash
-$ yarn add docz --dev
+$ yarn add docz docz-theme-default --dev
 ```
 
 Then create some `.mdx` anywhere inside your project:
