@@ -4339,16 +4339,6 @@ create-ecdh@^4.0.0:
     bn.js "^4.1.0"
     elliptic "^6.0.0"
 
-create-emotion@^10.0.5:
-  version "10.0.5"
-  resolved "https://registry.npmjs.org/create-emotion/-/create-emotion-10.0.5.tgz#22487f19b59a7ed10144f808289eadffebcfab06"
-  integrity sha512-MIOSeFiMtPrAULEtd2GFYGZEzeN2xnCFoiHrjvUYjxruYCJfGqUOBmh4YEN1yU+Ww5yXr+DIZibFl7FEOP57iA==
-  dependencies:
-    "@emotion/cache" "10.0.0"
-    "@emotion/serialize" "^0.11.3"
-    "@emotion/sheet" "0.9.2"
-    "@emotion/utils" "0.11.1"
-
 create-error-class@^3.0.0, create-error-class@^3.0.1:
   version "3.0.2"
   resolved "https://registry.npmjs.org/create-error-class/-/create-error-class-3.0.2.tgz#06be7abef947a3f14a30fd610671d401bca8b7b6"
@@ -5095,14 +5085,6 @@ emotion-theming@^10.0.5:
     "@emotion/weak-memoize" "0.2.2"
     hoist-non-react-statics "^2.3.1"
     object-assign "^4.1.1"
-
-emotion@^10.0.5:
-  version "10.0.5"
-  resolved "https://registry.npmjs.org/emotion/-/emotion-10.0.5.tgz#9b22cee820de0a45bc102e4750553c1b81098b00"
-  integrity sha512-bYti4oM6k1oDm/qZ3w/AcJNJDitTt++/EWy9TqYu2Th7YEJw2H5hesihynHszsfn4TAf5TS43y+51/KWHFnuBA==
-  dependencies:
-    babel-plugin-emotion "^10.0.5"
-    create-emotion "^10.0.5"
 
 encodeurl@~1.0.2:
   version "1.0.2"
