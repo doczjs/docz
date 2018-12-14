@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.17](https://github.com/pedronauck/docz/compare/v0.12.16...v0.12.17) (2018-12-14)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** link color ([21d58fb](https://github.com/pedronauck/docz/commit/21d58fb))
+* **docz-theme-default:** some fixes on styles ([a17e914](https://github.com/pedronauck/docz/commit/a17e914))
+* **docz-theme-default:** use theme getter instead of literal obj access ([89e1d03](https://github.com/pedronauck/docz/commit/89e1d03))
+
+
+
+
+
 ## [0.12.16](https://github.com/pedronauck/docz/compare/v0.12.15...v0.12.16) (2018-12-13)
 
 
