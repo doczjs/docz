@@ -1,63 +1,81 @@
 # Contributing
 
-Contributions, issues and feature requests are very welcome. If you are using this package and fixed a bug for yourself, please consider submitting a PR! Also you can ping me at [Twitter](https://twitter.com/pedronauck)
+Contributions, issues and feature requests are very welcome. If you are using this package and fixed a bug for yourself, please consider submitting a PR! Also, you can ping me on [Twitter](https://twitter.com/pedronauck).
 
 ## Guidelines
 
-If you are planning to submit a pull request, it's very important follow these basic rules:
+If you are planning to submit a pull request, it's very important to follow these basic rules:
 
-### Commit messages
+### Getting started
 
-Commit messages should follow the [commit message convention](https://conventionalcommits.org/) so that changelogs can be automatically generated. Commit messages will be automatically validated upon commit. If you are not familiar with the commit message convention, you can use `yarn commit` instead of `git commit`, which provides an interactive CLI for generating proper commit messages.
+Fork the project on Github.
 
-### General guidelines
+![](https://www.dropbox.com/s/jgh20dxksyjawgv/fork-project.png?raw=1)
 
-- The master branch is basically just a snapshot of the latest stable release. All development should be done in dedicated branch. **Do not submit PRs against the master branch.**
-- Checkout a topic branch from the relevant branch, e.g. `dev`, and merge back against that branch.
-- Work in the **src** folder of respective package and **DO NOT** checkin dist in the commits.
-- It's OK - and a very nice thing - to have multiple small commits as you work on the PR - we will let GitHub automatically squash it before merging.
+Clone the project from the fork you have created previously at first step.
 
-### If adding a new feature:
+![](https://www.dropbox.com/s/nzmz154oav7imn5/clone-project.png?raw=1)
 
-- Make sure that [all examples](https://github.com/pedronauck/docz/tree/master/examples) are running as expected
-- Provide convincing reason to add this feature. Ideally you should open a suggestion issue first and have it greenlighted before working on it.
+Then, check out the project:
+
+`$ git clone https://github.com/`**your-github-user**`/docz.git`
 
 ## Setup
 
 ### Pre-requisites
 
-- *Node:* `^9.0.0`
-- *Yarn:* `^1.7.0`
+- *Node:* `^9.0.0` or higher
+- *Npm:* `6.0.0` or higher
+- *Yarn: (optional)* `^1.7.0` or higher
 
 ### Install
 
-Check out the code and go into the docz directory:
+Go to `docz` directory after checking out the repository:
 
 ```bash
-git clone https://github.com/pedronauck/docz.git
-cd docz
+$ cd docz
 ```
 
-Then run yarn install and bootstrap all packages:
+Then run the following commands to bootstrap all dependencies:
 
+With `yarn`:
 ```bash
 $ yarn install
 $ yarn bs
 ```
 
-After that, just run `packages` script to format, build and lint all packages:
+With `npm`:
+```bash
+$ npm install
+$ npm run bs
+```
 
+Finally, run the `packages` script to format, build and lint all packages:
+
+With `yarn`:
 ```bash
 $ yarn packages
 ```
 
-## Developing
+With `npm`:
+```bash
+$ npm run packages
+```
 
-There's just few things that you need to know to start developing on docz
+## Developing
 
 ### Project structure
 
-There's a lot of [packages](https://github.com/pedronauck/docz/tree/master/packages) that are necessary to run docz, but basically has just two that you need to know more about:
+docz follows the [Monorepo](https://en.wikipedia.org/wiki/Monorepo) design managed by [Lerna](https://github.com/lerna/lerna).
+
+The are just two directories to care about if you would like to contribute:
+
+- **Packages**: Host all docz source code.
+- **Examples**: Host all available usage examples.
+
+#### Packages
+
+There are lots of [packages](https://github.com/pedronauck/docz/tree/master/packages) that are necessary to run docz, the most important packages that are important to care about:
 
 #### **[docz-core](https://github.com/pedronauck/docz/tree/master/packages/docz)**
 - This is the core of docz. All build algorithms, server process and parses belongs to here.
@@ -73,9 +91,12 @@ There's a lot of [packages](https://github.com/pedronauck/docz/tree/master/packa
 
 ### Watching projects
 
-To speed up your develop process:
+To speed up your developing we recommended to run packages in a separated terminal process.
+
 - Split your terminal and open each package directory in a separate window.
-- Run `yarn dev` in each window to run the watch tasks. For example, in this [examples](https://github.com/pedronauck/docz/tree/master/examples) directory.
+- Run `yarn dev` (or `npm run dev`) in each slice (or window) to watch tasks.
+
+For example, to run some example from [examples](https://github.com/pedronauck/docz/tree/master/examples) directory.
 
 ![](https://cdn-std.dprcdn.net/files/acc_649651/MdH4FL)
 
@@ -84,6 +105,28 @@ In the above example you're watching `docz`, `docz-core` and `docz-theme-default
 ### Creating plugins
 
 If there are some plugin that you want to create, please contact me before to talk about the possibility to make this plugin official!
+
+## Commit messages
+
+Commit messages should follow the [commit message convention](https://conventionalcommits.org/) so, changelogs could be generated automatically by that. Commit messages are validated automatically upon commit. If you aren't familiar with the commit message convention, you can use yarn commit (or `npm run commit`) instead of git commit, which provides an interactive CLI for generating proper commit messages.
+
+### Pull Requests
+
+- All pull requests have to be send against `dev` branch.
+
+- The **master branch** is a snapshot of the latest stable release. All development should be done in dedicated branch. **Do not submit PRs against the master branch**.
+
+- If you are checking out from a feature or a topic different of `master` or `dev`, you have to merge back and push against the same feature.
+
+- Work in the **src** folder of respective package and **DO NOT** checkin dist in the commits.
+
+- It's OK - and a very nice thing - to have multiple small commits as you work on the PR - we will let GitHub automatically squash it before merging.
+
+### If adding a new feature:
+
+- Make sure that [all examples](https://github.com/pedronauck/docz/tree/master/examples) are running as expected
+- Provide convincing reason to add this feature. Ideally you should open a suggestion issue first and have it greenlighted before working on it.
+
 
 ## Contributors
 
