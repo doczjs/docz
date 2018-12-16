@@ -1,28 +1,37 @@
+import * as fs from 'fs'
 import { Configuration as Config } from 'webpack'
-import serve from 'webpack-serve'
+import WebpackDevServer from 'webpack-dev-server'
 
+import * as paths from '../config/paths'
 import { devServerConfig } from './devserver'
-import { BundlerServer, ServerHooks } from '../Bundler'
 import { Config as Args } from '../commands/args'
-import * as http from 'http'
+import { ServerHooks as Hooks } from '../Bundler'
+import * as serverUtils from 'react-dev-utils/WebpackDevServerUtils'
 
-type Server = Promise<BundlerServer>
+export const server = (args: Args) => async (config: Config, hooks: Hooks) => {
+  const useYarn = fs.existsSync(paths.appYarnLock)
+  const protocol = process.env.HTTPS === 'true' ? 'https' : 'http'
+  const appName = require(paths.appPackageJson).name
+  const urls = serverUtils.prepareUrls(protocol, args.host, args.port)
+  const serverConfig: any = devServerConfig(hooks, args)
 
-export const server = (args: Args) => async (
-  config: Config,
-  hooks: ServerHooks
-): Server => {
-  const devserver = devServerConfig(args, config, hooks)
+  const compiler = serverUtils.createCompiler(
+    require('webpack'),
+    config,
+    appName,
+    urls,
+    useYarn
+  )
 
   return {
     start: async () => {
-      const instance = await serve({}, devserver)
-      hooks.OnServerListening<http.Server>(instance.app.server)
+      const devServer = new WebpackDevServer(compiler, serverConfig)
+      devServer.listen(args.port, args.host, err => {
+        if (err) return console.log(err)
+        hooks.OnServerListening<WebpackDevServer>(devServer)
+      })
 
-      return {
-        ...instance,
-        close: () => instance.app.stop(),
-      }
+      return devServer
     },
   }
 }

@@ -30,6 +30,7 @@ export interface Paths {
   appPublic: string
   appNodeModules: string
   appPackageJson: string
+  appYarnLock: string
   ownNodeModules: string
 
   getDist: (dest: string) => string
@@ -53,6 +54,7 @@ export const cache = path.resolve(docz, 'cache/')
 export const appPublic = path.resolve(docz, 'public/')
 export const appNodeModules = resolveApp('node_modules')
 export const appPackageJson = resolveApp('package.json')
+export const appYarnLock = resolveOwn('yarn.lock')
 export const ownNodeModules = resolveOwn('node_modules')
 
 export const getDist = (dest: string) => path.join(root, dest)

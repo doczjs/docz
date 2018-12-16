@@ -13,6 +13,7 @@ export type ModifyBundlerConfig<C = any> = (
 ) => C
 export type ModifyBabelRC = (babelrc: BabelRC, args: Config) => BabelRC
 export type ModifyFiles = (files: string[], args: Config) => string[]
+export type onPreCreateApp = <A>(app: A) => void
 export type onCreateApp = <A>(app: A) => void
 export type OnServerListening = <S>(server: S) => void
 export type OnPreBuild = (args: Config) => void
@@ -25,6 +26,7 @@ export interface PluginFactory {
   modifyBundlerConfig?: ModifyBundlerConfig
   modifyBabelRc?: ModifyBabelRC
   modifyFiles?: ModifyFiles
+  onPreCreateApp?: onPreCreateApp
   onCreateApp?: onCreateApp
   onServerListening?: OnServerListening
   onPreBuild?: OnPreBuild
@@ -86,6 +88,7 @@ export class Plugin<C = any> implements PluginFactory {
   public readonly modifyBundlerConfig?: ModifyBundlerConfig<C>
   public readonly modifyBabelRc?: ModifyBabelRC
   public readonly modifyFiles?: ModifyFiles
+  public readonly onPreCreateApp?: onPreCreateApp
   public readonly onCreateApp?: onCreateApp
   public readonly onServerListening?: OnServerListening
   public readonly onPreBuild?: OnPreBuild
@@ -98,6 +101,7 @@ export class Plugin<C = any> implements PluginFactory {
     this.modifyBundlerConfig = p.modifyBundlerConfig
     this.modifyBabelRc = p.modifyBabelRc
     this.modifyFiles = p.modifyFiles
+    this.onPreCreateApp = p.onPreCreateApp
     this.onCreateApp = p.onCreateApp
     this.onServerListening = p.onServerListening
     this.onPreBuild = p.onPreBuild

@@ -15,6 +15,7 @@ export const build = async (args: Config) => {
   const entries = new Entries(config)
 
   const bundler = webpack(config, env)
+  const bundlerConfig = await bundler.mountConfig(env)
   const run = Plugin.runPluginsMethod(config.plugins)
   const dataServer = new DataServer()
 
@@ -25,7 +26,7 @@ export const build = async (args: Config) => {
     await dataServer.init()
 
     await run('onPreBuild', config)
-    await bundler.build(await bundler.getConfig(env))
+    await bundler.build(bundlerConfig)
     await run('onPostBuild', config)
     await dataServer.close()
   } catch (err) {

@@ -64,8 +64,6 @@ export interface Argv {
   port: number
   websocketPort: number
   websocketHost: string
-  hotPort: number
-  hotHost: string
   native: boolean
   codeSandbox: boolean
   /* template args */
@@ -178,14 +176,6 @@ export const args = (env: Env) => (yargs: any) => {
     alias: 'p',
     type: 'number',
     default: getEnv('docz.port', 3000),
-  })
-  yargs.positional('hotHost', {
-    type: 'string',
-    default: getEnv('docz.hot.host', '127.0.0.1'),
-  })
-  yargs.positional('hotPort', {
-    type: 'number',
-    default: getEnv('docz.hot.port', 60757),
   })
   yargs.positional('websocketHost', {
     type: 'string',

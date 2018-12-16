@@ -1,26 +1,18 @@
 import * as path from 'path'
-import { Configuration, IgnorePlugin } from 'webpack'
-import webpackBarPlugin from 'webpackbar'
+import { Configuration } from 'webpack'
 import Config from 'webpack-chain'
-import { minify } from 'html-minifier'
-import miniHtmlWebpack from 'mini-html-webpack-plugin'
-import friendlyErrors from 'friendly-errors-webpack-plugin'
-import manifestPlugin from 'webpack-manifest-plugin'
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
-import * as TerserPlugin from 'terser-webpack-plugin'
-import envDotProp from 'env-dot-prop'
 
 import * as loaders from './loaders'
+import * as plugins from './plugins'
 import * as paths from '../config/paths'
-import { getClientEnvironment } from '../config/env'
 import { Config as Args, Env } from '../commands/args'
 import { BabelRC } from '../utils/babel-config'
-import { parseHtml, htmlTemplate } from '../utils/parse-html'
+import { minifier } from './minifier'
 
 export const createConfig = (args: Args, env: Env) => async (
   babelrc: BabelRC
 ): Promise<Configuration> => {
-  const { debug, host, port } = args
+  const { debug } = args
 
   const config = new Config()
   const isProd = env === 'production'
@@ -71,61 +63,12 @@ export const createConfig = (args: Args, env: Env) => async (
     .crossOriginLoading('anonymous')
 
   /**
-   * optimization
-   */
-
-  config.optimization
-    .runtimeChunk(true)
-    .nodeEnv(env)
-    .namedModules(true)
-    .minimize(isProd)
-    .splitChunks({
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-        },
-      },
-    })
-
-  /** TODO: this is needed because incorrect typing on webpack-chain */
-  const optimization: any = config.optimization
-
-  if (isProd) {
-    optimization.minimizer('js').use(TerserPlugin, [
-      {
-        terserOptions: {
-          parse: {
-            ecma: 8,
-          },
-          compress: {
-            ecma: 5,
-            warnings: false,
-            comparisons: false,
-          },
-          mangle: {
-            safari10: true,
-          },
-          output: {
-            ecma: 5,
-            comments: false,
-            ascii_only: true,
-          },
-        },
-        cache: true,
-        parallel: true,
-        sourceMap: true,
-      },
-    ])
-  }
-
-  /**
    * entries
    */
 
   config
     .entry('app')
+    .add(require.resolve('react-dev-utils/webpackHotDevClient'))
     .add(require.resolve('@babel/polyfill'))
     .add(paths.indexJs)
 
@@ -144,16 +87,16 @@ export const createConfig = (args: Args, env: Env) => async (
     .add('.mdx')
     .end()
 
-  config.resolve.alias.set('~db', paths.db)
-  config.resolve.alias.set('~imports', paths.importsJs)
-  config.resolve.alias.set('react-native$', 'react-native-web')
-
   if (args.typescript) {
     config.resolve.extensions
       .prepend('.ts')
       .prepend('.tsx')
       .end()
   }
+
+  config.resolve.alias.set('~db', paths.db)
+  config.resolve.alias.set('~imports', paths.importsJs)
+  config.resolve.alias.set('react-native$', 'react-native-web')
 
   config.resolve.modules
     // prioritize our own
@@ -168,7 +111,6 @@ export const createConfig = (args: Args, env: Env) => async (
         .split(path.delimiter)
         .filter(Boolean),
     ])
-
 
   config.resolveLoader
     .set('symlinks', true)
@@ -195,89 +137,39 @@ export const createConfig = (args: Args, env: Env) => async (
    * plugins
    */
 
-  if (debug) {
-    config.plugin('bundle-analyzer').use(BundleAnalyzerPlugin, [
-      {
-        generateStatsFile: true,
-        openAnalyzer: false,
-      },
-    ])
-  }
+  await plugins.html(config, args, env)
+  plugins.assets(config, args, env)
+  plugins.ignore(config)
+  plugins.injections(config, args, env)
+  plugins.hot(config)
 
-  config.plugin('assets-plugin').use(manifestPlugin, [
-    {
-      publicPath,
-      fileName: 'assets.json',
-    },
-  ])
-
-  const dev = !isProd
-  const template = await htmlTemplate(args.indexHtml)
-
-  config.plugin('html-plugin').use(miniHtmlWebpack, [
-    {
-      context: {
-        ...args.htmlContext,
-        trimWhitespace: true,
-      },
-      template: (ctx: any) => {
-        const doc = parseHtml({ ctx, dev, template, config: args })
-
-        return dev
-          ? doc
-          : minify(doc, {
-              removeComments: true,
-              collapseWhitespace: true,
-              removeRedundantAttributes: true,
-              useShortDoctype: true,
-              removeEmptyAttributes: true,
-              removeStyleLinkTypeAttributes: true,
-              keepClosingSlash: true,
-              minifyJS: true,
-              minifyCSS: true,
-              minifyURLs: true,
-            })
-      },
-    },
-  ])
-
-  const isLocalhost = host === '127.0.0.1' || host === '0.0.0.0'
-  const hostname = isLocalhost ? 'localhost' : host
-
+  config.when(debug, cfg => plugins.analyzer(cfg))
   config.when(!debug && !isProd, cfg => {
-    cfg.plugin('webpackbar').use(webpackBarPlugin, [
-      {
-        color: '#41b883',
-        compiledIn: false,
-        name: 'Client',
-      },
-    ])
-    cfg.plugin('friendly-errors').use(friendlyErrors, [
-      {
-        compilationSuccessInfo: {
-          messages: [
-            `Your application is running at http://${hostname}:${port}`,
-          ],
-        },
-      },
-    ])
+    plugins.webpackBar(cfg)
+    plugins.friendlyErrors(cfg, args)
   })
 
-  config.plugin('injections').use(require('webpack/lib/DefinePlugin'), [
-    {
-      ...getClientEnvironment(base).stringified,
-      BASE_URL: args.hashRouter ? JSON.stringify('/') : JSON.stringify(base),
-      NODE_ENV: JSON.stringify(env),
-    },
-  ])
+  /**
+   * optimization
+   */
 
-  config
-    .plugin('ignore-plugin')
-    .use(IgnorePlugin as any, [
-      /(regenerate\-unicode\-properties)|(elliptic)/,
-      /node_modules/,
-    ])
+  config.optimization
+    .runtimeChunk(true)
+    .nodeEnv(env)
+    .namedModules(true)
+    .minimize(isProd)
+    .splitChunks({
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    })
 
+  config.when(isProd, cfg => minifier(cfg))
   config.performance.hints(false)
+
   return config.toConfig() as Configuration
 }

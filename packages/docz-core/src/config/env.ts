@@ -77,9 +77,6 @@ export const getClientEnvironment = (publicUrl: string) => {
         // only be used as an escape hatch. Normally you would put images into the `src`
         // and `import` them in code to get their
         PUBLIC_URL: publicUrl,
-        WEBPACK_SERVE_OVERLAY_WS_URL: envDotProp.get(
-          'webpack.server.overlay.ws.url'
-        ),
       }
     )
   const stringified = {
