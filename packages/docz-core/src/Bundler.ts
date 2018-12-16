@@ -1,5 +1,6 @@
 import * as path from 'path'
 import logger from 'signale'
+import WebpackDevServer from 'webpack-dev-server'
 
 import { Plugin } from './Plugin'
 
@@ -7,26 +8,22 @@ import { Config as Args, Env } from './commands/args'
 import { getBabelConfig, BabelRC } from './utils/babel-config'
 import * as paths from './config/paths'
 
-export interface Server {
-  app: any
-  on: (event: string, cb: (server: any) => void) => void
-  close: () => void
-}
-
 export interface ServerHooks {
+  onPreCreateApp<A>(app: A): void
   onCreateApp<A>(app: A): void
   OnServerListening<S>(server: S): void
 }
 
 export interface BundlerServer {
-  start(): Promise<Server>
+  start(): Promise<WebpackDevServer>
 }
 
 export type ConfigFn<C> = (babelrc: BabelRC) => Promise<C>
 export type BuildFn<C> = (config: C, dist: string, publicDir: string) => void
-
-export type ServerFnReturn = BundlerServer | Promise<BundlerServer>
-export type ServerFn<C> = (config: C, hooks: ServerHooks) => ServerFnReturn
+export type ServerFn<C> = (
+  config: C,
+  hooks: ServerHooks
+) => BundlerServer | Promise<BundlerServer>
 
 export interface BundlerConstructor<Config> {
   args: Args
@@ -54,16 +51,23 @@ export class Bundler<C = ConfigObj> {
     this.builder = build
   }
 
-  public async getConfig(env: Env): Promise<C> {
+  public async mountConfig(env: Env): Promise<C> {
+    const { plugins } = this.args
+    const isDev = env !== 'production'
+    const reduce = Plugin.reduceFromPlugins<C>(plugins)
     const babelConfig = await getBabelConfig(this.args, env)
-    const config = this.mountConfig(await this.config(babelConfig), env)
+    const userConfig = await this.config(babelConfig)
+    const config = reduce('modifyBundlerConfig', userConfig, isDev, this.args)
 
-    return this.args.modifyBundlerConfig(config, !this.isProd(env), this.args)
+    return this.args.modifyBundlerConfig(config, isDev, this.args)
   }
 
-  public async createServer(config: C): Promise<BundlerServer> {
+  public async createApp(config: C): Promise<BundlerServer> {
     const run = Plugin.runPluginsMethod(this.args.plugins)
     const hooks = {
+      onPreCreateApp<A>(app: A): void {
+        run('onPreCreateApp', app)
+      },
       onCreateApp<A>(app: A): void {
         run('onCreateApp', app)
       },
@@ -89,16 +93,5 @@ export class Bundler<C = ConfigObj> {
     }
 
     await this.builder(config, dist, publicDir)
-  }
-
-  private mountConfig(config: C, env: Env): any {
-    const { plugins } = this.args
-    const reduce = Plugin.reduceFromPlugins<C>(plugins)
-
-    return reduce('modifyBundlerConfig', config, !this.isProd(env), this.args)
-  }
-
-  private isProd(env: Env): boolean {
-    return env === 'production'
   }
 }

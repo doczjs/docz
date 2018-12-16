@@ -15,20 +15,13 @@ export const dev = async (args: Config) => {
   const env = envDotProp.get('node.env')
   const config = await loadConfig(args)
   const port = await detectPort(config.port)
-  const hotPort = await detectPort(config.hotPort)
   const websocketPort = await detectPort(config.websocketPort)
-
-  envDotProp.set(
-    'webpack.server.overlay.ws.url',
-    `ws://${config.hotHost}:${hotPort}`
-  )
-
-  const newConfig = { ...config, websocketPort, hotPort, port }
+  const newConfig = { ...config, websocketPort, port }
   const bundler = webpack(newConfig, env)
   const entries = new Entries(config)
 
-  const bundlerConfig = await bundler.getConfig(env)
-  const server = await bundler.createServer(bundlerConfig)
+  const bundlerConfig = await bundler.mountConfig(env)
+  const app = await bundler.createApp(bundlerConfig)
 
   try {
     await Entries.writeApp(newConfig, true)
@@ -37,12 +30,8 @@ export const dev = async (args: Config) => {
     process.exit(1)
   }
 
-  const instance = await server.start()
-  const dataServer = new DataServer(
-    instance.app.server,
-    websocketPort,
-    config.websocketHost
-  )
+  const server = await app.start()
+  const dataServer = new DataServer(server, websocketPort, config.websocketHost)
 
   dataServer.register([
     states.config(newConfig),
@@ -60,7 +49,7 @@ export const dev = async (args: Config) => {
   const signals: any = ['SIGINT', 'SIGTERM']
   for (const sig of signals) {
     process.on(sig, async () => {
-      instance.close()
+      server.close()
       process.exit()
     })
   }
