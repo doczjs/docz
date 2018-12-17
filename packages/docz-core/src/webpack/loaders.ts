@@ -40,7 +40,9 @@ export const js = (config: Config, args: Args) => {
     .loader('happypack/loader?id=jsx')
     .end()
     .when(args.propsParser && args.typescript, rule =>
-      rule.use(require.resolve('react-docgen-typescript-loader'))
+      rule
+        .use('typescript')
+        .loader(require.resolve('react-docgen-typescript-loader'))
     )
 }
 
