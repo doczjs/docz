@@ -18,6 +18,7 @@ module.exports = {
     'react-dev-utils/evalSourceMapMiddleware',
     'react-dev-utils/FileSizeReporter',
     'react-dev-utils/formatWebpackMessages',
+    'react-dev-utils/getCacheIdentifier',
     'react-dev-utils/ignoredFiles',
     'react-dev-utils/printBuildError',
     'react-dev-utils/WebpackDevServerUtils',
