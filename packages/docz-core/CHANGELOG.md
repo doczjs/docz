@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.3](https://github.com/pedronauck/docz/compare/v0.13.2...v0.13.3) (2018-12-17)
+
+
+### Bug Fixes
+
+* **docz-core:** react hot loader config for hooks ([444cac2](https://github.com/pedronauck/docz/commit/444cac2))
+
+
+### Features
+
+* **docz-core:** add sourcemap config argument ([3baad4a](https://github.com/pedronauck/docz/commit/3baad4a))
+
+
+
+
+
 ## [0.13.2](https://github.com/pedronauck/docz/compare/v0.13.1...v0.13.2) (2018-12-17)
 
 

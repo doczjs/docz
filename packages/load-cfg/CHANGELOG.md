@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.3](https://github.com/pedronauck/docz/compare/v0.13.2...v0.13.3) (2018-12-17)
+
+**Note:** Version bump only for package load-cfg
+
+
+
+
+
 # [0.13.0](https://github.com/pedronauck/docz/compare/v0.12.17...v0.13.0) (2018-12-17)
 
 
