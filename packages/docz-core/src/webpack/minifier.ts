@@ -1,7 +1,9 @@
 import Config from 'webpack-chain'
 import * as TerserPlugin from 'terser-webpack-plugin'
 
-export const minifier = (config: Config) => {
+import { Config as Args } from '../commands/args'
+
+export const minifier = (config: Config, args: Args) => {
   config.optimization.minimizer('js').use(TerserPlugin, [
     {
       terserOptions: {
@@ -22,9 +24,9 @@ export const minifier = (config: Config) => {
           ascii_only: true,
         },
       },
-      cache: true,
       parallel: true,
-      sourceMap: true,
+      cache: !args.debug,
+      sourceMap: args.sourcemaps,
     },
   ])
 }

@@ -126,7 +126,7 @@ export const createConfig = (args: Args, env: Env) => async (
    * loaders
    */
 
-  loaders.sourceMaps(config, args)
+  config.when(args.sourcemaps, cfg => loaders.sourceMaps(cfg, args))
   loaders.js(config, args)
   loaders.mdx(config, args)
   loaders.images(config)
@@ -170,9 +170,8 @@ export const createConfig = (args: Args, env: Env) => async (
       },
     })
 
-  config.when(isProd, cfg => minifier(cfg))
   config.performance.hints(false)
-
+  config.when(isProd, cfg => minifier(cfg, args))
   hooks.onCreateWebpackChain<Config>(config, !isProd, args)
   args.onCreateWebpackChain<Config>(config, !isProd, args)
 

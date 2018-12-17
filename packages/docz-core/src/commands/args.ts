@@ -66,6 +66,7 @@ export interface Argv {
   websocketHost: string
   native: boolean
   codeSandbox: boolean
+  sourcemaps: boolean
   /* template args */
   title: string
   description: string
@@ -197,5 +198,9 @@ export const args = (env: Env) => (yargs: any) => {
   yargs.positional('codeSandbox', {
     type: 'boolean',
     default: getEnv('docz.codeSandbox', true),
+  })
+  yargs.positional('sourcemaps', {
+    type: 'boolean',
+    default: getEnv('docz.sourcemaps', true),
   })
 }
