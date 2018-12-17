@@ -8,6 +8,7 @@ import friendlyErrors from 'friendly-errors-webpack-plugin'
 import manifestPlugin from 'webpack-manifest-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import * as TerserPlugin from 'terser-webpack-plugin'
+import envDotProp from 'env-dot-prop'
 
 import * as loaders from './loaders'
 import * as paths from '../config/paths'
@@ -161,6 +162,13 @@ export const createConfig = (args: Args, env: Env) => async (
     .add('node_modules')
     .add(srcPath)
     .add(paths.root)
+    .merge([
+      envDotProp
+        .get('node.path')
+        .split(path.delimiter)
+        .filter(Boolean),
+    ])
+
 
   config.resolveLoader
     .set('symlinks', true)

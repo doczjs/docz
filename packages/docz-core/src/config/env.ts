@@ -11,11 +11,15 @@ const populateNodePath = () => {
   // Otherwise, we risk importing Node.js core modules into an app instead of Webpack shims.
   // https://github.com/facebook/create-react-app/issues/1023#issuecomment-265344421
   // We also resolve them to make sure all tools using them work consistently.
-  return (envDotProp.get('node.path') || '')
-    .split(path.delimiter)
-    .filter((folder: any) => folder && !path.isAbsolute(folder))
-    .map((folder: any) => path.resolve(root, folder))
-    .join(path.delimiter)
+  envDotProp.set(
+    'node.path',
+    envDotProp
+      .get('node.path', '')
+      .split(path.delimiter)
+      .filter((folder: any) => folder && !path.isAbsolute(folder))
+      .map((folder: any) => path.resolve(root, folder))
+      .join(path.delimiter)
+  )
 }
 
 const configDotEnv = () => {
