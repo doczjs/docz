@@ -17,7 +17,7 @@
     "dev": "libundler watch -e all --ts",
     "build": "libundler build -e all --ts --c",
     "fix": "run-s fix:*",
-    "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
+    "fix:prettier": "prettier \"src/**/*.{ts,tsx,md,mdx,js,jsx,json}\" --write",
     "fix:tslint": "tslint --fix --project .",
     "tslint": "tslint --project ."
   },
