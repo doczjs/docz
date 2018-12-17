@@ -1,6 +1,7 @@
 import * as path from 'path'
 import { Configuration } from 'webpack'
 import Config from 'webpack-chain'
+import envDotProp from 'env-dot-prop'
 
 import * as loaders from './loaders'
 import * as plugins from './plugins'
@@ -101,18 +102,17 @@ export const createConfig = (args: Args, env: Env) => async (
   config.resolve.alias.set('react-native$', 'react-native-web')
 
   config.resolve.modules
-    // prioritize our own
     .add(paths.ownNodeModules)
     .add(paths.appNodeModules)
     .add('node_modules')
     .add(srcPath)
     .add(paths.root)
-    .merge([
+    .merge(
       envDotProp
         .get('node.path')
         .split(path.delimiter)
-        .filter(Boolean),
-    ])
+        .filter(Boolean)
+    )
 
   config.resolveLoader
     .set('symlinks', true)
