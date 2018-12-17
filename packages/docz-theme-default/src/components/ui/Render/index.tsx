@@ -57,7 +57,6 @@ const backgroundColor = themeGet('colors.background')
 
 const PreviewWrapper = styled('div')<OverlayProps>`
   position: relative;
-  overflow-y: auto;
   flex: 1;
   border: 1px solid ${borderColor};
   background: ${backgroundColor};
