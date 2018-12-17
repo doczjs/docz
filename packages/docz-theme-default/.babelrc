@@ -1,11 +1,14 @@
 {
   "env": {
     "production": {
-      "plugins": [["emotion", { "hoist": true }]]
+      "presets": ["@emotion/babel-preset-css-prop"]
     },
     "development": {
-      "plugins": [
-        ["emotion", { "sourceMap": true, "autoLabel": true }]
+      "presets": [
+        [
+          "@emotion/babel-preset-css-prop",
+          { "sourceMap": true, "autoLabel": true }
+        ]
       ]
     }
   }

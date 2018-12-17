@@ -1,8 +1,3 @@
 {
-  "presets": [
-    "@babel/preset-flow"
-  ],
-  "plugins": [
-    "emotion"
-  ]
+  "presets": ["@babel/preset-flow", "@emotion/babel-preset-css-prop"]
 }
