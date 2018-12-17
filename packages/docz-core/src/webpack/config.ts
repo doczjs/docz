@@ -8,9 +8,11 @@ import * as paths from '../config/paths'
 import { Config as Args, Env } from '../commands/args'
 import { BabelRC } from '../utils/babel-config'
 import { minifier } from './minifier'
+import { ServerHooks } from '../Bundler'
 
 export const createConfig = (args: Args, env: Env) => async (
-  babelrc: BabelRC
+  babelrc: BabelRC,
+  hooks: ServerHooks
 ): Promise<Configuration> => {
   const { debug } = args
 
@@ -170,6 +172,9 @@ export const createConfig = (args: Args, env: Env) => async (
 
   config.when(isProd, cfg => minifier(cfg))
   config.performance.hints(false)
+
+  hooks.onCreateWebpackChain<Config>(config, !isProd, args)
+  args.onCreateWebpackChain<Config>(config, !isProd, args)
 
   return config.toConfig() as Configuration
 }

@@ -2,7 +2,7 @@ import * as fs from 'fs-extra'
 import envDotProp from 'env-dot-prop'
 import humanize from 'humanize-string'
 import titleize from 'titleize'
-import get from 'lodash.get'
+import get from 'lodash/get'
 
 import { Plugin } from '../Plugin'
 import { BabelRC } from '../utils/babel-config'
@@ -90,6 +90,7 @@ export interface Config extends Argv {
   themeConfig: ThemeConfig
   modifyBundlerConfig<C>(config: C, dev: boolean, args: Config): C
   modifyBabelRc(babelrc: BabelRC, args: Config): BabelRC
+  onCreateWebpackChain<C>(c: C, dev: boolean, args: Config): void
 }
 
 export const args = (env: Env) => (yargs: any) => {

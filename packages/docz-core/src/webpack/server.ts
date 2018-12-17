@@ -28,7 +28,7 @@ export const server = (args: Args) => async (config: Config, hooks: Hooks) => {
       const devServer = new WebpackDevServer(compiler, serverConfig)
       devServer.listen(args.port, args.host, err => {
         if (err) return console.log(err)
-        hooks.OnServerListening<WebpackDevServer>(devServer)
+        hooks.onServerListening<WebpackDevServer>(devServer)
       })
 
       return devServer

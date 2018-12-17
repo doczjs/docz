@@ -1,7 +1,7 @@
 import * as fs from 'fs-extra'
 import { load, finds } from 'load-cfg'
 import chokidar from 'chokidar'
-import get from 'lodash.get'
+import get from 'lodash/get'
 
 import { Params, State } from '../DataServer'
 import { Config, Menu, ThemeConfig } from '../commands/args'

@@ -32,6 +32,7 @@ export const loadConfig = async (args: Config): Promise<Config> => {
     themeConfig: {},
     modifyBundlerConfig: (config: any) => config,
     modifyBabelRc: (babelrc: BabelRC) => babelrc,
+    onCreateWebpackChain: () => null,
   }
 
   const config = args.config
