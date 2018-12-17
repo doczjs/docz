@@ -26,8 +26,8 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
   const onPreRenders = props('onPreRender')
   const onPostRenders = props('onPostRender')
 
-  const root = await compiled(fromTemplates('root.tpl.js'))
-  const js = await compiled(fromTemplates('index.tpl.js'))
+  const root = await compiled(fromTemplates('root.tpl.js'), { minimize: false })
+  const js = await compiled(fromTemplates('index.tpl.js'), { minimize: false })
   const websocketUrl = `ws://${config.websocketHost}:${config.websocketPort}`
 
   const rawRootJs = root({
