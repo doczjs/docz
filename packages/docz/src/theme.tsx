@@ -1,7 +1,7 @@
-// tslint:disable
 import * as React from 'react'
 import { SFC, ComponentType as CT } from 'react'
 import { HashRouter, BrowserRouter } from 'react-router-dom'
+import { StaticRouterProps } from 'react-router'
 
 import { state, ThemeConfig, TransformFn } from './state'
 import { ErrorBoundary } from './components/ErrorBoundary'
@@ -11,7 +11,9 @@ import { ScrollToTop } from './utils/ScrollToTop'
 // tslint:disable-next-line
 import db from '~db'
 
-declare var BASE_URL: string
+declare var DOCZ_BASE_URL: string
+declare var DOCZ_HASH_ROUTER: boolean
+declare var DOCZ_WEBSOCKET_URL: string
 
 interface ThemeProps {
   wrapper?: CT
@@ -22,19 +24,20 @@ interface ThemeProps {
 
 export type ThemeReturn = (WrappedComponent: CT) => CT<ThemeProps>
 
+const Router: SFC<StaticRouterProps> = (props: any) =>
+  Boolean(DOCZ_HASH_ROUTER) ? (
+    <HashRouter {...props} />
+  ) : (
+    <BrowserRouter {...props} />
+  )
+
 export function theme(
   themeConfig: ThemeConfig,
   transform: TransformFn = c => c
 ): ThemeReturn {
   return WrappedComponent => {
     const Theme: SFC<ThemeProps> = props => {
-      const { wrapper: Wrapper, hashRouter } = props
-      const Router = (props: any) =>
-        Boolean(hashRouter) ? (
-          <HashRouter {...props} />
-        ) : (
-          <BrowserRouter {...props} />
-        )
+      const { wrapper: Wrapper } = props
 
       const wrapped = Wrapper ? (
         <Wrapper>
@@ -47,8 +50,8 @@ export function theme(
       return (
         <ErrorBoundary>
           <state.Provider initial={{ ...db, themeConfig, transform }}>
-            <DataServer websocketUrl={props.websocketUrl}>
-              <Router basename={BASE_URL}>
+            <DataServer websocketUrl={DOCZ_WEBSOCKET_URL}>
+              <Router basename={DOCZ_BASE_URL}>
                 <ScrollToTop>{wrapped}</ScrollToTop>
               </Router>
             </DataServer>

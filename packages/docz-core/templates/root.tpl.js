@@ -5,11 +5,7 @@ import Theme from '<%- theme %>'
 <% if (wrapper) {%>import Wrapper from '<%- wrapper %>'<%}%>
 
 const Root = () => (
-  <Theme
-    <% if (!isProd) {%>hashRouter={<%- hashRouter %>}<%}%>
-    <% if (!isProd) {%>websocketUrl="<%- websocketUrl %>"<%}%>
-    <% if (wrapper) {%>wrapper={Wrapper}<%}%>
-  />
+  <Theme <% if (wrapper) {%>wrapper={Wrapper}<%}%> />
 )
 
 export default hot(module)(Root)
