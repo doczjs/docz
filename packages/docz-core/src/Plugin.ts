@@ -1,18 +1,28 @@
-import get from 'lodash.get'
 import pReduce from 'p-reduce'
+import WebpackChainConfig from 'webpack-chain'
+import get from 'lodash/get'
 
 import { Config } from './commands/args'
 import { isFn } from './utils/helpers'
 import { BabelRC } from './utils/babel-config'
 
 export type SetConfig = (config: Config) => Config | Promise<Config>
+
 export type ModifyBundlerConfig<C = any> = (
   config: C,
   dev: boolean,
   args: Config
 ) => C
+
 export type ModifyBabelRC = (babelrc: BabelRC, args: Config) => BabelRC
 export type ModifyFiles = (files: string[], args: Config) => string[]
+
+export type OnCreateWebpackChain = (
+  config: WebpackChainConfig,
+  dev: boolean,
+  args: Config
+) => void
+
 export type onPreCreateApp = <A>(app: A) => void
 export type onCreateApp = <A>(app: A) => void
 export type OnServerListening = <S>(server: S) => void
@@ -26,6 +36,7 @@ export interface PluginFactory {
   modifyBundlerConfig?: ModifyBundlerConfig
   modifyBabelRc?: ModifyBabelRC
   modifyFiles?: ModifyFiles
+  onCreateWebpackChain?: OnCreateWebpackChain
   onPreCreateApp?: onPreCreateApp
   onCreateApp?: onCreateApp
   onServerListening?: OnServerListening
@@ -42,7 +53,7 @@ export class Plugin<C = any> implements PluginFactory {
     return (method, ...args) => {
       if (plugins && plugins.length > 0) {
         for (const plugin of plugins) {
-          const fn = get(plugin, method)
+          const fn = get<Plugin, any>(plugin, method)
           isFn(fn) && fn(...args)
         }
       }
@@ -63,7 +74,7 @@ export class Plugin<C = any> implements PluginFactory {
   ): (method: keyof Plugin, initial: C, ...args: any[]) => C {
     return (method, initial, ...args) => {
       return [...(plugins || [])].reduce((obj: any, plugin) => {
-        const fn = get(plugin, method)
+        const fn = get<Plugin, any>(plugin, method)
         return fn && isFn(fn) ? fn(obj, ...args) : obj
       }, initial)
     }
@@ -88,6 +99,7 @@ export class Plugin<C = any> implements PluginFactory {
   public readonly modifyBundlerConfig?: ModifyBundlerConfig<C>
   public readonly modifyBabelRc?: ModifyBabelRC
   public readonly modifyFiles?: ModifyFiles
+  public readonly onCreateWebpackChain?: OnCreateWebpackChain
   public readonly onPreCreateApp?: onPreCreateApp
   public readonly onCreateApp?: onCreateApp
   public readonly onServerListening?: OnServerListening
@@ -102,6 +114,7 @@ export class Plugin<C = any> implements PluginFactory {
     this.modifyBabelRc = p.modifyBabelRc
     this.modifyFiles = p.modifyFiles
     this.onPreCreateApp = p.onPreCreateApp
+    this.onCreateWebpackChain = p.onCreateWebpackChain
     this.onCreateApp = p.onCreateApp
     this.onServerListening = p.onServerListening
     this.onPreBuild = p.onPreBuild

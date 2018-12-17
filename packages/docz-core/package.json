@@ -56,7 +56,7 @@
     "humanize-string": "^1.0.2",
     "koa-range": "^0.3.0",
     "load-cfg": "^0.12.16",
-    "lodash.get": "^4.4.2",
+    "lodash": "^4.17.11",
     "mini-html-webpack-plugin": "^0.2.3",
     "p-reduce": "^1.0.0",
     "progress-estimator": "^0.2.2",
