@@ -1,6 +1,6 @@
 {
   "name": "docz-example-typescript",
-  "version": "0.13.1",
+  "version": "0.13.2",
   "license": "MIT",
   "scripts": {
     "dev": "docz dev",
@@ -9,8 +9,8 @@
   "dependencies": {
     "@emotion/core": "^10.0.5",
     "@emotion/styled": "^10.0.5",
-    "docz": "^0.13.1",
-    "docz-core": "^0.13.1",
+    "docz": "^0.13.2",
+    "docz-core": "^0.13.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
   },
