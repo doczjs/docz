@@ -59,6 +59,7 @@
     "lodash.get": "^4.4.2",
     "mini-html-webpack-plugin": "^0.2.3",
     "p-reduce": "^1.0.0",
+    "progress-estimator": "^0.2.2",
     "react-dev-utils": "^6.1.1",
     "react-docgen-typescript-loader": "^3.0.0-rc.0",
     "react-hot-loader": "^4.6.0",
