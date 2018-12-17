@@ -15,4 +15,4 @@ class ScrollToTopBase extends Component<ScrollToTopProps> {
   }
 }
 
-export const ScrollToTop = withRouter(ScrollToTopBase as any)
+export const ScrollToTop: any = withRouter(ScrollToTopBase as any)
