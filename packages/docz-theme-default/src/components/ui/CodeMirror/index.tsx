@@ -1,5 +1,6 @@
 import { jsx } from '@emotion/core'
 import { SFC } from 'react'
+import { ThemeConfig } from 'docz'
 import { Controlled as BaseCodeMirror } from 'react-codemirror2'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import styled from '@emotion/styled'
@@ -20,7 +21,7 @@ import 'codemirror/addon/fold/xml-fold'
 const Scrollbar = styled(PerfectScrollbar)<any>`
   overflow: auto;
   position: relative;
-  max-height: 360px;
+  max-height: ${p => 25 * p.linesToScroll}px;
 
   .ps__rail-y {
     z-index: 9;
@@ -70,8 +71,15 @@ const scrollbarOpts = {
 }
 
 export const CodeMirror: SFC<any> = props => (
-  <Scrollbar option={scrollbarOpts}>
-    {global}
-    <EditorStyled {...props} />
-  </Scrollbar>
+  <ThemeConfig>
+    {({ themeConfig }) => (
+      <Scrollbar
+        option={scrollbarOpts}
+        linesToScroll={themeConfig.linesToScrollEditor || 14}
+      >
+        {global}
+        <EditorStyled {...props} />
+      </Scrollbar>
+    )}
+  </ThemeConfig>
 )

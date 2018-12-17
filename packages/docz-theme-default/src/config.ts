@@ -7,4 +7,5 @@ export const config = {
   radii: '2px',
   mode: 'light',
   showPlaygroundEditor: false,
+  linesToScrollEditor: 18,
 }
