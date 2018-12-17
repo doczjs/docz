@@ -14,11 +14,11 @@ export const devServerConfig = (hooks: ServerHooks, args: Args) => {
   return {
     publicPath: '/',
     compress: true,
-    clientLogLevel: 'none',
+    clientLogLevel: args.debug ? 'info' : 'none',
     contentBase: publicDir,
     watchContentBase: true,
     hot: true,
-    quiet: true,
+    quiet: !args.debug,
     open: true,
     watchOptions: {
       ignored: ignoredFiles(srcPath),
@@ -34,7 +34,7 @@ export const devServerConfig = (hooks: ServerHooks, args: Args) => {
       app.use(errorOverlayMiddleware())
       hooks.onPreCreateApp<any>(app)
     },
-    after(app: any, server: any): void {
+    after(app: any): void {
       hooks.onCreateApp<any>(app)
     },
   }
