@@ -69,6 +69,10 @@ const config = {
    */
   showPlaygroundEditor: true,
   /**
+   * Set the numbers of max lines before scroll editor
+   */
+  linesToScrollEditor: 14
+  /**
    * Customize codemirror theme
    */
   codemirrorTheme: 'docz-light',

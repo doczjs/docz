@@ -28,12 +28,11 @@ const BasePlayground: SFC<PlaygroundProps> = ({
   __codesandbox,
 }) => {
   if (!components || !components.render) return null
+  const props = { className, style, components }
 
   return (
     <components.render
-      className={className}
-      style={style}
-      components={components}
+      {...props}
       component={Wrapper ? <Wrapper>{children}</Wrapper> : children}
       scope={__scope}
       position={__position}
