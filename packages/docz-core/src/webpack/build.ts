@@ -8,6 +8,7 @@ import printBuildError from 'react-dev-utils/printBuildError'
 import envDotProp from 'env-dot-prop'
 
 import * as paths from '../config/paths'
+import { promiseLogger } from '../utils/promise-logger'
 
 const { measureFileSizesBeforeBuild, printFileSizesAfterBuild } = FSR
 const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024
@@ -42,10 +43,8 @@ const compile = (config: CFG) =>
       })
   })
 
-const builder = async (config: CFG, previousFileSizes: any) => {
-  logger.start('Creating an optimized production build...')
-
-  return new Promise(async (resolve, reject) => {
+const builder = async (config: CFG, previousFileSizes: any) =>
+  new Promise(async (resolve, reject) => {
     try {
       const stats: any = await compile(config)
       const messages = formatWebpackMessages(stats.toJson({}, true))
@@ -71,13 +70,13 @@ const builder = async (config: CFG, previousFileSizes: any) => {
       reject(err)
     }
   })
-}
 
 const onSuccess = (
   dist: string,
   { stats, previousFileSizes, warnings }: any
 ) => {
   if (warnings.length) {
+    logger.log()
     logger.warn('Compiled with warnings.\n')
     logger.warn(warnings.join('\n\n'))
     logger.warn(
@@ -90,11 +89,10 @@ const onSuccess = (
         chalk.cyan('// eslint-disable-next-line') +
         ' to the line before.\n'
     )
-  } else {
-    logger.success(chalk.green('Compiled successfully.\n'))
   }
 
-  logger.log('File sizes after gzip:\n')
+  logger.log()
+  logger.log(`File sizes after gzip:\n`)
   printFileSizesAfterBuild(
     stats,
     previousFileSizes,
@@ -106,9 +104,11 @@ const onSuccess = (
 }
 
 const onError = (err: Error) => {
+  logger.log()
   logger.fatal(chalk.red('Failed to compile.\n'))
   printBuildError(err)
   process.exit(1)
+  logger.log()
 }
 
 export const build = async (config: CFG, dist: string, publicDir: string) => {
@@ -119,7 +119,11 @@ export const build = async (config: CFG, dist: string, publicDir: string) => {
     await fs.emptyDir(dist)
     await copyPublicFolder(dist, publicDir)
 
-    const result = await builder(config, previousFileSizes)
+    const result = await promiseLogger(
+      builder(config, previousFileSizes),
+      'Creating production build'
+    )
+
     onSuccess(dist, result)
   } catch (err) {
     onError(err)

@@ -10,6 +10,7 @@ import { DataServer } from '../DataServer'
 import { bundler as webpack } from '../webpack'
 import { Entries } from '../Entries'
 import { loadConfig } from '../utils/load-config'
+import { promiseLogger } from '../utils/promise-logger'
 
 export const dev = async (args: Config) => {
   const env = envDotProp.get('node.env')
@@ -21,16 +22,19 @@ export const dev = async (args: Config) => {
   const entries = new Entries(config)
 
   const bundlerConfig = await bundler.mountConfig(env)
-  const app = await bundler.createApp(bundlerConfig)
+  const app = await promiseLogger(
+    bundler.createApp(bundlerConfig),
+    'Creating app...'
+  )
 
   try {
-    await Entries.writeApp(newConfig, true)
+    await promiseLogger(Entries.writeApp(newConfig, true), 'Parsing mdx files')
   } catch (err) {
     logger.fatal('Failed to build your files:', err)
     process.exit(1)
   }
 
-  const server = await app.start()
+  const server = await promiseLogger(app.start(), 'Starting your server')
   const dataServer = new DataServer(server, websocketPort, config.websocketHost)
 
   dataServer.register([
@@ -39,7 +43,7 @@ export const dev = async (args: Config) => {
   ])
 
   try {
-    await dataServer.init()
+    await promiseLogger(dataServer.init(), 'Initializing data server')
     await dataServer.listen()
   } catch (err) {
     logger.fatal('Failed to process your server:', err)

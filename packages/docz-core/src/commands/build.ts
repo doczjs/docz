@@ -2,12 +2,13 @@ import logger from 'signale'
 import envDotProp from 'env-dot-prop'
 
 import * as states from '../states'
-import { loadConfig } from '../utils/load-config'
 import { bundler as webpack } from '../webpack'
 import { Entries } from '../Entries'
 import { DataServer } from '../DataServer'
 import { Plugin } from '../Plugin'
 import { Config } from './args'
+import { loadConfig } from '../utils/load-config'
+import { promiseLogger } from '../utils/promise-logger'
 
 export const build = async (args: Config) => {
   const env = envDotProp.get('node.env')
@@ -22,12 +23,13 @@ export const build = async (args: Config) => {
   dataServer.register([states.config(config), states.entries(entries, config)])
 
   try {
-    await Entries.writeApp(config)
-    await dataServer.init()
+    await promiseLogger(Entries.writeApp(config, true), 'Parsing mdx files')
+    await promiseLogger(dataServer.init(), 'Initializing data server')
 
-    await run('onPreBuild', config)
+    await promiseLogger(run('onPreBuild', config), 'Running onPreBuild()')
     await bundler.build(bundlerConfig)
-    await run('onPostBuild', config)
+
+    await promiseLogger(run('onPostBuild', config), 'Running onPostBuild()')
     await dataServer.close()
   } catch (err) {
     logger.fatal(err)
