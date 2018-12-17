@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/pedronauck/docz/compare/v0.12.17...v0.13.0) (2018-12-17)
+
+
+### Bug Fixes
+
+* **docz:** ts warning ([19ccc09](https://github.com/pedronauck/docz/commit/19ccc09))
+* **docz-core:** use webpack-dev-server instead of webpack-serve ([4157e05](https://github.com/pedronauck/docz/commit/4157e05))
+
+
+### Features
+
+* **docz-theme-default:** set max lines before scroll editor ([#519](https://github.com/pedronauck/docz/issues/519)) ([698261b](https://github.com/pedronauck/docz/commit/698261b))
+
+
+
+
+
 ## [0.12.17](https://github.com/pedronauck/docz/compare/v0.12.16...v0.12.17) (2018-12-14)
 
 

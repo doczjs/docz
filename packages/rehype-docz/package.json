@@ -1,6 +1,6 @@
 {
   "name": "rehype-docz",
-  "version": "0.12.16",
+  "version": "0.13.0",
   "description": "Rehype plugin used by docz",
   "license": "MIT",
   "main": "dist/index.js",
@@ -22,7 +22,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "docz-utils": "^0.12.16",
+    "docz-utils": "^0.13.0",
     "hast-util-to-string": "^1.0.1",
     "jsx-ast-utils": "^2.0.1",
     "lodash.flatten": "^4.4.0",

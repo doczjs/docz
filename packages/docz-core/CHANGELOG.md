@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/pedronauck/docz/compare/v0.12.17...v0.13.0) (2018-12-17)
+
+
+### Bug Fixes
+
+* **docz-core:** add setMaxListener for chokidar watchers ([6053c16](https://github.com/pedronauck/docz/commit/6053c16))
+* **docz-core:** log level based on debug argument ([507e149](https://github.com/pedronauck/docz/commit/507e149))
+* **docz-core:** node path resolve modules merge ([27102fd](https://github.com/pedronauck/docz/commit/27102fd))
+* **docz-core:** turn off htmlMinifier when loading from templates ([#518](https://github.com/pedronauck/docz/issues/518)) ([9cb0e1d](https://github.com/pedronauck/docz/commit/9cb0e1d))
+* **docz-core:** use webpack-dev-server instead of webpack-serve ([4157e05](https://github.com/pedronauck/docz/commit/4157e05))
+
+
+### Features
+
+* **docz-core:** add onCreateWebpackChain hook ([70bb242](https://github.com/pedronauck/docz/commit/70bb242))
+* **docz-core:** add promise logger using progress-estimator ([2797608](https://github.com/pedronauck/docz/commit/2797608))
+* **docz-core:** use NODE_PATH to resolve modules ([#516](https://github.com/pedronauck/docz/issues/516)) ([cc86f93](https://github.com/pedronauck/docz/commit/cc86f93))
+
+
+
+
+
 ## [0.12.16](https://github.com/pedronauck/docz/compare/v0.12.15...v0.12.16) (2018-12-13)
 
 

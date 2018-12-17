@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/pedronauck/docz/compare/v0.12.17...v0.13.0) (2018-12-17)
+
+
+### Bug Fixes
+
+* **docz-core:** use webpack-dev-server instead of webpack-serve ([4157e05](https://github.com/pedronauck/docz/commit/4157e05))
+
+
+
+
+
 ## [0.12.15](https://github.com/pedronauck/docz/compare/v0.12.14...v0.12.15) (2018-12-04)
 
 **Note:** Version bump only for package remark-docz
