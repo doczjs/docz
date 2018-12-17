@@ -34,6 +34,8 @@ export const state = (entries: Entries, config: Config): State => {
     persistent: true,
   })
 
+  watcher.setMaxListeners(Infinity)
+
   return {
     init: updateEntries(entries),
     close: () => watcher.close(),
