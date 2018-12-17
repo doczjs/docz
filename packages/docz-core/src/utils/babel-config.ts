@@ -1,5 +1,6 @@
 import { load } from 'load-cfg'
 import merge from 'deepmerge'
+import getCacheIdentifier from 'react-dev-utils/getCacheIdentifier'
 
 import { Config, Env } from '../commands/args'
 import { Plugin } from '../Plugin'
@@ -16,6 +17,7 @@ export const getBabelConfig = async (
   env: Env
 ): Promise<BabelRC> => {
   const isProd = env === 'production'
+  const isDev = env === 'development'
   const localBabelRc = load('babel', { presets: [], plugins: [] }, false, true)
   const presets = [
     [
@@ -44,7 +46,19 @@ export const getBabelConfig = async (
   const config = merge(localBabelRc, {
     presets,
     babelrc: false,
-    cacheDirectory: !args.debug,
+    ...(args.debug && {
+      cacheDirectory: true,
+      cacheIdentifier: getCacheIdentifier(
+        isProd ? 'production' : isDev && 'development',
+        [
+          'docz',
+          'docz-theme-default',
+          'docz-utils',
+          'docz-core',
+          'babel-preset-docz',
+        ]
+      ),
+    }),
     cacheCompression: isProd,
     compact: isProd,
     plugins: defaultPlugins.concat(
