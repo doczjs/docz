@@ -62,7 +62,7 @@
     "progress-estimator": "^0.2.2",
     "react-dev-utils": "^6.1.1",
     "react-docgen-typescript-loader": "^3.0.0-rc.0",
-    "react-hot-loader": "^4.6.1",
+    "react-hot-loader": "^4.6.2",
     "rehype-docz": "^0.13.3",
     "rehype-slug": "^2.0.2",
     "remark-docz": "^0.13.3",

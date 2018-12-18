@@ -33,7 +33,7 @@
     "@babel/preset-flow": "7.0.0",
     "@babel/preset-react": "7.0.0",
     "@babel/preset-typescript": "7.1.0",
-    "babel-plugin-macros": "^2.4.0",
+    "babel-plugin-macros": "^2.4.3",
     "babel-plugin-react-docgen": "^2.0.0",
     "babel-plugin-transform-dynamic-import": "^2.0.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.21"
