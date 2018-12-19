@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`works 1`] = `
+"\\"use strict\\";
+
+Object.defineProperty(exports, \\"__esModule\\", {
+  value: true
+});
+exports.getOther = getOther;
+exports.default = exports.Abcd = exports.bar = void 0;
+
+const foo = () => 'foo';
+
+foo.__filemeta = {
+  name: \\"foo\\",
+  filename: \\"/Volumes/Projects/dev/docz/docz/packages/babel-plugin-function-filemeta/tests/fixtures/example.js\\"
+};
+
+const bar = () => 'bar';
+
+exports.bar = bar;
+bar.__filemeta = {
+  name: \\"bar\\",
+  filename: \\"/Volumes/Projects/dev/docz/docz/packages/babel-plugin-function-filemeta/tests/fixtures/example.js\\"
+};
+const obj = {
+  foo: () => 'foo'
+  /**
+   * Some description
+   */
+
+};
+
+function get(object, path) {
+  return object[path];
+}
+
+get.__filemeta = {
+  name: \\"get\\",
+  filename: \\"/Volumes/Projects/dev/docz/docz/packages/babel-plugin-function-filemeta/tests/fixtures/example.js\\"
+};
+
+function getOther(object, path) {
+  return object[path];
+}
+
+getOther.__filemeta = {
+  name: \\"getOther\\",
+  filename: \\"/Volumes/Projects/dev/docz/docz/packages/babel-plugin-function-filemeta/tests/fixtures/example.js\\"
+};
+const obj2 = {
+  get: () => null
+  /**
+   * Some description
+   */
+
+};
+
+class Abc {
+  /**
+   * Some description
+   */
+  method() {
+    return null;
+  }
+
+}
+
+Abc.__filemeta = {
+  name: \\"Abc\\",
+  filename: \\"/Volumes/Projects/dev/docz/docz/packages/babel-plugin-function-filemeta/tests/fixtures/example.js\\"
+};
+
+class Abcd {
+  /**
+   * Some description
+   */
+  method() {
+    return null;
+  }
+
+}
+
+exports.Abcd = Abcd;
+Abcd.__filemeta = {
+  name: \\"Abcd\\",
+  filename: \\"/Volumes/Projects/dev/docz/docz/packages/babel-plugin-function-filemeta/tests/fixtures/example.js\\"
+};
+const obj3 = {
+  method: class Abcd {
+    method() {
+      return null;
+    }
+
+  }
+};
+
+const log = fn => fn(1);
+
+log.__filemeta = {
+  name: \\"log\\",
+  filename: \\"/Volumes/Projects/dev/docz/docz/packages/babel-plugin-function-filemeta/tests/fixtures/example.js\\"
+};
+log(id => console.log(id));
+
+var _default = () => 'other';
+
+exports.default = _default;"
+`;

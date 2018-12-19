@@ -32,7 +32,7 @@ export const getBabelConfig = async (
   const config = merge(localBabelRc, {
     presets,
     babelrc: false,
-    ...(args.debug && {
+    ...(!args.debug && {
       cacheDirectory: true,
       cacheIdentifier: getCacheIdentifier(
         isProd ? 'production' : isDev && 'development',
