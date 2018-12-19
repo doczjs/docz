@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.5](https://github.com/pedronauck/docz/compare/v0.13.4...v0.13.5) (2018-12-19)
+
+
+### Bug Fixes
+
+* **docz-core:** add react docgen loader inside happypack ([4433561](https://github.com/pedronauck/docz/commit/4433561))
+* **docz-core:** close data server when need ([6a2b96a](https://github.com/pedronauck/docz/commit/6a2b96a))
+* **docz-core:** escape template string in playground ([#529](https://github.com/pedronauck/docz/issues/529)) ([5ab2349](https://github.com/pedronauck/docz/commit/5ab2349))
+* **docz-core:** public folder in dev mode ([abb3626](https://github.com/pedronauck/docz/commit/abb3626))
+* **docz-core:** webpack dev server log level ([1d72539](https://github.com/pedronauck/docz/commit/1d72539))
+* **docz-theme-default:** add default value for rgba of polished ([dcb74af](https://github.com/pedronauck/docz/commit/dcb74af))
+* **docz-utils:** add missing dependency for codesandbox ([3a51066](https://github.com/pedronauck/docz/commit/3a51066))
+* **docz-utils:** escape code for playground ([3fc4187](https://github.com/pedronauck/docz/commit/3fc4187))
+
+
+
+
+
 ## [0.13.4](https://github.com/pedronauck/docz/compare/v0.13.3...v0.13.4) (2018-12-17)
 
 

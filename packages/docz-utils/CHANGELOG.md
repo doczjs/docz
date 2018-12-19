@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.5](https://github.com/pedronauck/docz/compare/v0.13.4...v0.13.5) (2018-12-19)
+
+
+### Bug Fixes
+
+* **docz-core:** escape template string in playground ([#529](https://github.com/pedronauck/docz/issues/529)) ([5ab2349](https://github.com/pedronauck/docz/commit/5ab2349))
+* **docz-utils:** add missing dependency for codesandbox ([3a51066](https://github.com/pedronauck/docz/commit/3a51066))
+* **docz-utils:** escape code for playground ([3fc4187](https://github.com/pedronauck/docz/commit/3fc4187))
+
+
+
+
+
 ## [0.13.3](https://github.com/pedronauck/docz/compare/v0.13.2...v0.13.3) (2018-12-17)
 
 **Note:** Version bump only for package docz-utils

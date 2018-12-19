@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.5](https://github.com/pedronauck/docz/compare/v0.13.4...v0.13.5) (2018-12-19)
+
+**Note:** Version bump only for package docz-example-styled-components
+
+
+
+
+
 ## [0.13.4](https://github.com/pedronauck/docz/compare/v0.13.3...v0.13.4) (2018-12-17)
 
 **Note:** Version bump only for package docz-example-styled-components

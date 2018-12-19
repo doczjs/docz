@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.5](https://github.com/pedronauck/docz/compare/v0.13.4...v0.13.5) (2018-12-19)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** add default value for rgba of polished ([dcb74af](https://github.com/pedronauck/docz/commit/dcb74af))
+
+
+
+
+
 ## [0.13.4](https://github.com/pedronauck/docz/compare/v0.13.3...v0.13.4) (2018-12-17)
 
 
