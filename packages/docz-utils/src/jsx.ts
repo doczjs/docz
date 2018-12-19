@@ -27,6 +27,7 @@ export const sanitizeCode = (code: string) => {
     .trim()
     .replace(/'/g, `\\'`)
     .replace(/`/g, '\\`')
+    .replace(/\${.*}/g, (match: string) => `\\${match}`)
 }
 
 export const componentName = (value: any) => {
