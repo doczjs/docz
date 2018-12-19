@@ -3,6 +3,7 @@ import WS from 'ws'
 import { touch } from './utils/fs'
 import { isFn } from './utils/helpers'
 import * as paths from './config/paths'
+import { onSignal } from './utils/on-signal'
 
 export type Send = (type: string, payload: any) => void
 export type On = (type: string) => Promise<any>
@@ -31,7 +32,7 @@ export interface State {
 }
 
 export class DataServer {
-  private server?: WS.Server
+  private client?: WS.Server
   private states: Set<State>
   private state: Record<string, any>
 
@@ -40,7 +41,11 @@ export class DataServer {
     this.state = {}
 
     if (server) {
-      this.server = new WS.Server({ server, port, host })
+      this.client = new WS.Server({
+        server,
+        port,
+        host,
+      })
     }
   }
 
@@ -65,13 +70,16 @@ export class DataServer {
   }
 
   public async listen(): Promise<void> {
-    if (this.server) {
-      this.server.on('connection', socket => {
+    if (this.client) {
+      this.client.on('connection', socket => {
         const close = this.handleConnection(socket)
-
-        this.server!.on('close', async () => {
+        const handleClose = async () => {
           await close()
-        })
+          socket.terminate()
+        }
+
+        this.client!.on('close', handleClose)
+        onSignal(handleClose)
       })
     }
   }
@@ -101,7 +109,7 @@ export class DataServer {
 
     return async () => {
       const fns = await Promise.all(states.filter(Boolean))
-      for (const fn of fns) fn && isFn(fn) && fn()
+      for (const fn of fns) isFn(fn) && fn()
     }
   }
 

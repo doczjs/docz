@@ -11,6 +11,7 @@ import { bundler as webpack } from '../webpack'
 import { Entries } from '../Entries'
 import { loadConfig } from '../utils/load-config'
 import { promiseLogger } from '../utils/promise-logger'
+import { onSignal } from '../utils/on-signal'
 
 export const dev = async (args: Config) => {
   const env = envDotProp.get('node.env')
@@ -35,7 +36,11 @@ export const dev = async (args: Config) => {
   }
 
   const server = await promiseLogger(app.start(), 'Starting your server')
-  const dataServer = new DataServer(server, websocketPort, config.websocketHost)
+  const dataServer = new DataServer(
+    server.listeningApp,
+    websocketPort,
+    config.websocketHost
+  )
 
   dataServer.register([
     states.config(newConfig),
@@ -47,14 +52,16 @@ export const dev = async (args: Config) => {
     await dataServer.listen()
   } catch (err) {
     logger.fatal('Failed to process your server:', err)
+    await dataServer.close()
     process.exit(1)
   }
 
-  const signals: any = ['SIGINT', 'SIGTERM']
-  for (const sig of signals) {
-    process.on(sig, async () => {
-      server.close()
-      process.exit()
-    })
-  }
+  onSignal(async () => {
+    await dataServer.close()
+    server.close()
+  })
+
+  server.listeningApp.on('close', async () => {
+    await dataServer.close()
+  })
 }
