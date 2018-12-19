@@ -2024,10 +2024,10 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-10.12.12.tgz#e15a9d034d9210f00320ef718a50c4a799417c47"
   integrity sha512-Pr+6JRiKkfsFvmU/LK68oBRCQeEg36TyAbPhc2xpez24OOZZCuoIhWGTd39VZy6nGafSbxzGouFPTFD/rR1A0A==
 
-"@types/node@^10.12.16":
-  version "10.12.16"
-  resolved "https://registry.npmjs.org/@types/node/-/node-10.12.16.tgz#006a67ab106673f4c0d5928b7bcb5072e336a148"
-  integrity sha512-Ash6o4tVo3dRojXVW1Ot7Ec/ohBpFqxseuQRCXKd38BnldUTG5fn/+MOhlfcKuQy34vz+Zl9Ipixc0wAGLHNXA==
+"@types/node@^10.12.17":
+  version "10.12.17"
+  resolved "https://registry.npmjs.org/@types/node/-/node-10.12.17.tgz#7040565b2c93d59325a68fa69073e754a7eda93a"
+  integrity sha512-umSCRkjWH70uNzFiOof5yxCqrMXIBJ9UJJUzbEsmtWt8apURQh06pylGMqnhdjHGJSeoBrhzk+mibu6NgL1oBA==
 
 "@types/p-reduce@^1.0.0":
   version "1.0.0"
@@ -10325,10 +10325,10 @@ react-feather@^1.1.4:
   resolved "https://registry.npmjs.org/react-feather/-/react-feather-1.1.4.tgz#d0143da95f9d52843cf13a553091573a7c617897"
   integrity sha512-Odke3WUl00+a2scGQKlep4m+qDESl/x+PsTRB3v6fAV/2dteF4EaRjqhX8h7HM3mU3V3v0xGTv8Z5S26bpQ5PQ==
 
-react-hot-loader@^4.6.2:
-  version "4.6.2"
-  resolved "https://registry.npmjs.org/react-hot-loader/-/react-hot-loader-4.6.2.tgz#9844b76a7bf4b6fdd45dd91f7e757ddf3aad5289"
-  integrity sha512-9XxH/t9jblu4vUDgxHcMLwvm4aOhaoxazzTP9vwjTVzOgU987T4rDYA85XrlmbDan9WkD+h/iVHOK8F8UnQsDg==
+react-hot-loader@^4.6.3:
+  version "4.6.3"
+  resolved "https://registry.npmjs.org/react-hot-loader/-/react-hot-loader-4.6.3.tgz#d9c8923c45b35fd51538ba4297081a00be6bccb1"
+  integrity sha512-FUvRO8dwbeLnc3mgLn8ARuSh8NnLBYJyiRjFn+grY/5GupSyPqv0U7ixgwXro77hwDplhm8z9wU7FlJ8kZqiAQ==
   dependencies:
     fast-levenshtein "^2.0.6"
     global "^4.3.0"
@@ -13132,10 +13132,10 @@ webpack-sources@^1.1.0, webpack-sources@^1.3.0:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.27.1:
-  version "4.27.1"
-  resolved "https://registry.npmjs.org/webpack/-/webpack-4.27.1.tgz#5f2e2db446d2266376fa15d7d2277a1a9c2e12bb"
-  integrity sha512-WArHiLvHrlfyRM8i7f+2SFbr/XbQ0bXqTkPF8JpHOzub5482Y3wx7rEO8stuLGOKOgZJcqcisLhD7LrM/+fVMw==
+webpack@^4.28.0:
+  version "4.28.0"
+  resolved "https://registry.npmjs.org/webpack/-/webpack-4.28.0.tgz#6bdc26c17fe4c7e28c29fa002e6d37ac92caae9e"
+  integrity sha512-gPNTMGR5ZlBucXmEQ34TRxRqXnGYq9P3t8LeP9rvhkNnr+Cn+HvZMxGuJ4Hl7zdmoRUZP+GosniqJiadXW/RqQ==
   dependencies:
     "@webassemblyjs/ast" "1.7.11"
     "@webassemblyjs/helper-module-context" "1.7.11"
