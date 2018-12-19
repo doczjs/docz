@@ -24,6 +24,7 @@ const checkCodeToRender = (code: string) => {
 
 const wrapCode = (code: string): string =>
   `import React from 'react';
+  import { jsx } from '@emotion/core'
 
   const doczStyles = {
     margin: '0 3px',
@@ -56,9 +57,12 @@ function getSandboxFiles(
     contents: rawCode,
     extensions: [
       '.js',
-      '.ts',
       '.jsx',
+      '.ts',
       '.tsx',
+      '.md',
+      '.html',
+      '.htm',
       '.css',
       '.css.less',
       '.css.sass',
@@ -66,6 +70,9 @@ function getSandboxFiles(
       '.sass',
       '.scss',
       '.svg',
+      '.png',
+      '.jpg',
+      '.jpeg',
     ],
   })
 }
