@@ -7,8 +7,8 @@ import rgba from 'polished/lib/color/rgba'
 
 import { get } from '@utils/theme'
 
-const sidebarBorder = get('colors.sidebarBorder')
-const sidebarText = get('colors.sidebarText')
+const sidebarBorder = get('colors.sidebarBorder', '#CED4DE')
+const sidebarText = get('colors.sidebarText', '#13161F')
 
 const Wrapper = styled('div')`
   display: flex;
