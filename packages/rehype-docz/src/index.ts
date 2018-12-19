@@ -27,7 +27,7 @@ const addPropsOnPlayground = async (
 
     node.value = node.value.replace(
       tagOpen,
-      `<${name} __position={${idx}} __code={\`${child}\`} __scope={${scope}}`
+      `<${name} __position={${idx}} __code={'${child}'} __scope={${scope}}`
     )
 
     if (useCodeSandbox) {

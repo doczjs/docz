@@ -1,5 +1,6 @@
 import * as jsxUtils from 'jsx-ast-utils'
 import strip from 'strip-indent'
+import escapeJS from 'js-string-escape'
 
 import { valueFromTraverse, codeFromNode } from './ast'
 
@@ -23,11 +24,7 @@ export const sanitizeCode = (code: string) => {
       ? trimmed.substr(1, trimmed.length - 2)
       : trimmed
 
-  return strip(newCode)
-    .trim()
-    .replace(/'/g, `\\'`)
-    .replace(/`/g, '\\`')
-    .replace(/\${.*}/g, (match: string) => `\\${match}`)
+  return escapeJS(strip(newCode))
 }
 
 export const componentName = (value: any) => {
