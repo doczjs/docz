@@ -23,6 +23,7 @@ export class AsyncComponent extends Component<Props, State> {
 
   public componentDidMount(): void {
     this.fetch()
+    this.scrollToAnchor()
   }
 
   public render(): ReactNode {
@@ -53,5 +54,17 @@ export class AsyncComponent extends Component<Props, State> {
         })
       }
     }
+  }
+
+  private scrollToAnchor(): void {
+    setTimeout(() => {
+      if (location.hash) {
+        const id: string = location.hash.substring(1)
+        const el: HTMLElement | null = document.getElementById(id)
+        if (el) {
+          el.scrollIntoView()
+        }
+      }
+    }, 0)
   }
 }
