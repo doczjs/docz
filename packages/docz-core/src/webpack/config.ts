@@ -102,8 +102,6 @@ export const createConfig = (args: Args, env: Env) => async (
   config.resolve.alias.set('react-native$', 'react-native-web')
 
   config.resolve.modules
-    .add(paths.ownNodeModules)
-    .add(paths.appNodeModules)
     .add('node_modules')
     .add(srcPath)
     .add(paths.root)
@@ -117,8 +115,6 @@ export const createConfig = (args: Args, env: Env) => async (
   config.resolveLoader
     .set('symlinks', true)
     .modules // prioritize our own
-    .add(paths.ownNodeModules)
-    .add(paths.appNodeModules)
     .add('node_modules')
     .add(paths.root)
 
