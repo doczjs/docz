@@ -1,5 +1,6 @@
 import * as path from 'path'
 import * as fs from 'fs-extra'
+import { isFunction } from 'lodash/fp'
 import logger from 'signale'
 import findUp from 'find-up'
 import externalProptypesHandler from 'react-docgen-external-proptypes-handler'
@@ -10,14 +11,6 @@ import reactDocgen from 'react-docgen'
 
 import * as paths from '../config/paths'
 import { Config } from '../commands/args'
-import { isFn } from './helpers'
-
-// const stringRegex = /^"(.*)"$/
-// const parsePropTypeName = (propTypeName: string) =>
-//   propTypeName
-//     .split(' | ')
-//     .filter(x => stringRegex.test(x))
-//     .map(x => x.replace(stringRegex, '$1'))
 
 const fileFullPath = (filepath: string) => path.join(paths.root, filepath)
 
@@ -30,7 +23,7 @@ const tsParser = async (files: string[], config: Config) => {
       propFilter(prop: any, component: any): any {
         if (prop.parent == null) return true
         const propFilter = config.docgenConfig.propFilter
-        const val = propFilter && isFn(propFilter) && propFilter(prop)
+        const val = propFilter && isFunction(propFilter) && propFilter(prop)
         return !prop.parent.fileName.includes('node_modules') || Boolean(val)
       },
     })

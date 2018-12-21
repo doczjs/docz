@@ -44,7 +44,9 @@ export const getBabelConfig = async (
           'babel-preset-docz',
         ]),
     compact: isProd,
-    plugins: !isProd ? [require.resolve('react-hot-loader/babel')] : [],
+    plugins: [require.resolve('babel-plugin-export-metadata')].concat(
+      !isProd ? [require.resolve('react-hot-loader/babel')] : []
+    ),
   })
 
   const reduce = Plugin.reduceFromPlugins<BabelRC>(args.plugins)
