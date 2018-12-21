@@ -1,7 +1,7 @@
 import WS from 'ws'
+import { isFunction } from 'lodash/fp'
 
 import { touch } from './utils/fs'
-import { isFn } from './utils/helpers'
 import * as paths from './config/paths'
 import { onSignal } from './utils/on-signal'
 
@@ -58,7 +58,7 @@ export class DataServer {
     await Promise.all(
       Array.from(this.states).map(
         async state =>
-          isFn(state.init) &&
+          isFunction(state.init) &&
           state.init({
             state: { ...this.state },
             setState: this.setState(),
@@ -88,7 +88,7 @@ export class DataServer {
     await Promise.all(
       Array.from(this.states).map(
         async state =>
-          isFn(state.close) &&
+          isFunction(state.close) &&
           state.close({
             state: { ...this.state },
             setState: this.setState(),
@@ -100,7 +100,7 @@ export class DataServer {
   private handleConnection(socket: WS): () => void {
     const states = Array.from(this.states).map(
       async state =>
-        isFn(state.update) &&
+        isFunction(state.update) &&
         state.update({
           state: this.state,
           setState: this.setState(socket),
@@ -109,7 +109,7 @@ export class DataServer {
 
     return async () => {
       const fns = await Promise.all(states.filter(Boolean))
-      for (const fn of fns) isFn(fn) && fn()
+      for (const fn of fns) isFunction(fn) && fn()
     }
   }
 

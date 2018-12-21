@@ -1,10 +1,9 @@
 import pReduce from 'p-reduce'
 import WebpackChainConfig from 'webpack-chain'
-import get from 'lodash/get'
+import { get, isFunction } from 'lodash/fp'
 
 import { Config } from './commands/args'
-import { isFn } from './utils/helpers'
-import { BabelRC } from './utils/babel-config'
+import { BabelRC } from './config/babel'
 
 export type SetConfig = (config: Config) => Config | Promise<Config>
 
@@ -53,8 +52,8 @@ export class Plugin<C = any> implements PluginFactory {
     return (method, ...args) => {
       if (plugins && plugins.length > 0) {
         for (const plugin of plugins) {
-          const fn = get<Plugin, any>(plugin, method)
-          isFn(fn) && fn(...args)
+          const fn = get<Plugin, any>(method, plugin)
+          isFunction(fn) && fn(...args)
         }
       }
     }
@@ -65,7 +64,7 @@ export class Plugin<C = any> implements PluginFactory {
   ): (prop: keyof Plugin) => any[] {
     return prop =>
       plugins && plugins.length > 0
-        ? plugins.map(p => get(p, prop)).filter(Boolean)
+        ? plugins.map(p => get(prop, p)).filter(Boolean)
         : []
   }
 
@@ -74,8 +73,8 @@ export class Plugin<C = any> implements PluginFactory {
   ): (method: keyof Plugin, initial: C, ...args: any[]) => C {
     return (method, initial, ...args) => {
       return [...(plugins || [])].reduce((obj: any, plugin) => {
-        const fn = get<Plugin, any>(plugin, method)
-        return fn && isFn(fn) ? fn(obj, ...args) : obj
+        const fn = get<Plugin, any>(method, plugin)
+        return fn && isFunction(fn) ? fn(obj, ...args) : obj
       }, initial)
     }
   }
@@ -87,8 +86,8 @@ export class Plugin<C = any> implements PluginFactory {
       return pReduce(
         [...(plugins || [])],
         (obj: any, plugin: any) => {
-          const fn = get(plugin, method)
-          return Promise.resolve(fn && isFn(fn) ? fn(obj, ...args) : obj)
+          const fn = get(method, plugin)
+          return Promise.resolve(fn && isFunction(fn) ? fn(obj, ...args) : obj)
         },
         initial
       )

@@ -6,10 +6,10 @@ import envDotProp from 'env-dot-prop'
 import * as loaders from './loaders'
 import * as plugins from './plugins'
 import * as paths from '../config/paths'
-import { Config as Args, Env } from '../commands/args'
-import { BabelRC } from '../utils/babel-config'
+import { BabelRC } from '../config/babel'
 import { minifier } from './minifier'
 import { ServerHooks } from '../Bundler'
+import { Config as Args, Env } from '../commands/args'
 
 export const createConfig = (args: Args, env: Env) => async (
   babelrc: BabelRC,

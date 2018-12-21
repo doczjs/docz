@@ -14,6 +14,7 @@ module.exports = {
   plugins: [copy('templates/*.{js,html,json}', 'dist/templates')],
   external: Object.keys(pkg.dependencies).concat([
     'crypto',
+    'lodash/fp',
     'react-dev-utils/errorOverlayMiddleware',
     'react-dev-utils/evalSourceMapMiddleware',
     'react-dev-utils/FileSizeReporter',

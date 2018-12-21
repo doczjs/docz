@@ -1,12 +1,12 @@
 import * as path from 'path'
+import omit from 'lodash/omit'
 
 import { load, loadFrom } from 'load-cfg'
 
 import * as paths from '../config/paths'
+import { BabelRC } from '../config/babel'
 import { Config } from '../commands/args'
 import { Plugin } from '../Plugin'
-import { omit } from './helpers'
-import { BabelRC } from './babel-config'
 
 const toOmit = ['_', '$0', 'version', 'help']
 const htmlContext = {
@@ -40,8 +40,8 @@ export const loadConfig = async (args: Config): Promise<Config> => {
     : load<Config>('docz', defaultConfig)
 
   const reduceAsync = Plugin.reduceFromPluginsAsync<Config>(config.plugins)
-  return omit<Config>(
-    toOmit,
-    await reduceAsync('setConfig', { ...config, paths })
+  return omit<Config, any>(
+    await reduceAsync('setConfig', { ...config, paths }),
+    toOmit
   )
 }

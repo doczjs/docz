@@ -5,7 +5,6 @@ import glob from 'fast-glob'
 
 import * as paths from './config/paths'
 import { touch, compiled } from './utils/fs'
-import { mapToObj } from './utils/helpers'
 
 import { Entry, EntryObj } from './Entry'
 import { Plugin } from './Plugin'
@@ -13,6 +12,12 @@ import { Config } from './commands/args'
 import { getRepoEditUrl } from './utils/repo-info'
 
 export const fromTemplates = (file: string) => path.join(paths.templates, file)
+
+const mapToObj = (map: Map<any, any>) =>
+  Array.from(map.entries()).reduce(
+    (obj, [key, value]) => ({ ...obj, [`${key}`]: value }),
+    {}
+  )
 
 const matchFilesWithSrc = (config: Config) => (files: string[]) => {
   const src = path.relative(paths.root, config.src)

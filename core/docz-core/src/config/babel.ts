@@ -21,24 +21,10 @@ export const getBabelConfig = async (
   const localBabelRc = load('babel', { presets: [], plugins: [] }, false, true)
   const presets = [
     [
-      require.resolve('babel-preset-docz'),
+      require.resolve('poi/babel'),
       {
         flow: !args.typescript,
         typescript: args.typescript,
-        parseProps: args.propsParser && !args.typescript,
-      },
-    ],
-  ]
-
-  const defaultPlugins: any[] = [
-    [
-      require.resolve('docz-utils/lib/named-asset-import'),
-      {
-        loaderMap: {
-          svg: {
-            ReactComponent: '@svgr/webpack?-prettier,-svgo![path]',
-          },
-        },
       },
     ],
   ]
@@ -61,9 +47,7 @@ export const getBabelConfig = async (
     }),
     cacheCompression: isProd,
     compact: isProd,
-    plugins: defaultPlugins.concat(
-      !isProd ? [require.resolve('react-hot-loader/babel')] : []
-    ),
+    plugins: !isProd ? [require.resolve('react-hot-loader/babel')] : [],
   })
 
   const reduce = Plugin.reduceFromPlugins<BabelRC>(args.plugins)

@@ -5,7 +5,7 @@ import titleize from 'titleize'
 import get from 'lodash/get'
 
 import { Plugin } from '../Plugin'
-import { BabelRC } from '../utils/babel-config'
+import { BabelRC } from '../config/babel'
 import { setEnv } from '../config/env'
 import * as paths from '../config/paths'
 

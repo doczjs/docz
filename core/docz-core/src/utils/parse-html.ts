@@ -20,9 +20,7 @@ const generateTags = (template: tagsTemplate) => (items: any[] = []) =>
   items.map(template).join('')
 
 const generateMetaTags = generateTags(item => `<meta ${wrapItems(item)}>`)
-
 const generateLinkTags = generateTags(item => `<link ${wrapItems(item)}>`)
-
 const generateScriptTags = generateTags(
   item => `<script ${wrapItems(item)}></script>`
 )

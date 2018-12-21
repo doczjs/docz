@@ -4,7 +4,7 @@ import WebpackDevServer from 'webpack-dev-server'
 
 import { Plugin } from './Plugin'
 import { Config as Args, Env } from './commands/args'
-import { getBabelConfig, BabelRC } from './utils/babel-config'
+import { getBabelConfig, BabelRC } from './config/babel'
 import * as paths from './config/paths'
 
 export interface ServerHooks {
