@@ -24,6 +24,12 @@ const getInitialDescription = (pkg: any): string =>
 export type Env = 'production' | 'development'
 export type ThemeConfig = Record<string, any>
 
+export interface DocgenConfig {
+  handlers?: any[]
+  resolver?: (ast: any, recast: any) => any
+  propFilter?: (prop: any) => boolean
+}
+
 export interface Menu {
   name: string
   route?: string
@@ -89,6 +95,7 @@ export interface Config extends Argv {
   menu: Menu[]
   htmlContext: HtmlContext
   themeConfig: ThemeConfig
+  docgenConfig: DocgenConfig
   modifyBundlerConfig<C>(config: C, dev: boolean, args: Config): C
   modifyBabelRc(babelrc: BabelRC, args: Config): BabelRC
   onCreateWebpackChain<C>(c: C, dev: boolean, args: Config): void

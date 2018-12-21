@@ -1,4 +1,5 @@
 import * as fs from 'fs'
+import logger from 'signale'
 import { Configuration as Config } from 'webpack'
 import WebpackDevServer from 'webpack-dev-server'
 
@@ -27,7 +28,7 @@ export const server = (args: Args) => async (config: Config, hooks: Hooks) => {
     start: async () => {
       const devServer = new WebpackDevServer(compiler, serverConfig)
       devServer.listen(args.port, args.host, err => {
-        if (err) return console.log(err)
+        if (err) return logger.fatal(err)
         hooks.onServerListening<WebpackDevServer>(devServer)
       })
 

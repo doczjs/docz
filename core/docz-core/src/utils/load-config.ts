@@ -30,6 +30,7 @@ export const loadConfig = async (args: Config): Promise<Config> => {
       'license.md',
     ],
     themeConfig: {},
+    docgenConfig: {},
     modifyBundlerConfig: (config: any) => config,
     modifyBabelRc: (babelrc: BabelRC) => babelrc,
     onCreateWebpackChain: () => null,

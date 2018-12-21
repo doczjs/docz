@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { CSSProperties, Fragment, SFC, ComponentType } from 'react'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
-import { get } from 'lodash/fp'
+import { last, get } from 'lodash/fp'
 import capitalize from 'capitalize'
 
+import { state } from '../state'
 import { humanize } from '../utils/humanize-prop'
 
 export interface StylesMap {
@@ -108,78 +109,81 @@ export const getPropType = (prop: Prop, Tooltip?: TooltipComponent) => {
   )
 }
 
-const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
-  const info = component.__docgenInfo
-  const props = info && info.props
+const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => (
+  <Fragment>
+    {state.get(s => {
+      const filename = get('__filemeta.filename', component)
+      const definition: any = last(s.props[filename] || [])
+      const props = get('props', definition)
 
-  if (!info || !props) {
-    return null
-  }
+      if (!props) return null
 
-  const hasDescription = Object.keys(props).some((name: string) => {
-    const description = get(`${name}.description`, props)
-    return Boolean(description) && Boolean(get('length', description))
-  })
+      const hasDescription = Object.keys(props).some((name: string) => {
+        const description = get(`${name}.description`, props)
+        return Boolean(description) && Boolean(get('length', description))
+      })
 
-  const Table = components.table || 'table'
-  const Thead = components.thead || 'thead'
-  const Tr = components.tr || 'tr'
-  const Th = components.th || 'th'
-  const Tbody = components.tbody || 'tbody'
-  const Td = components.td || 'td'
-  const Tooltip = components.tooltip
+      const Table = components.table || 'table'
+      const Thead = components.thead || 'thead'
+      const Tr = components.tr || 'tr'
+      const Th = components.th || 'th'
+      const Tbody = components.tbody || 'tbody'
+      const Td = components.td || 'td'
+      const Tooltip = components.tooltip
 
-  return (
-    <Fragment>
-      <Table className="PropsTable">
-        <Thead style={styles.thead}>
-          <Tr>
-            <Th className="PropsTable--property">Property</Th>
-            <Th className="PropsTable--type">Type</Th>
-            <Th className="PropsTable--required">Required</Th>
-            <Th className="PropsTable--default">Default</Th>
-            {hasDescription && (
-              <Th width="40%" className="PropsTable--description">
-                Description
-              </Th>
-            )}
-          </Tr>
-        </Thead>
-        <Tbody>
-          {props &&
-            Object.keys(props).map((name: string) => {
-              const prop = props[name]
+      return (
+        <Fragment>
+          <Table className="PropsTable">
+            <Thead style={styles.thead}>
+              <Tr>
+                <Th className="PropsTable--property">Property</Th>
+                <Th className="PropsTable--type">Type</Th>
+                <Th className="PropsTable--required">Required</Th>
+                <Th className="PropsTable--default">Default</Th>
+                {hasDescription && (
+                  <Th width="40%" className="PropsTable--description">
+                    Description
+                  </Th>
+                )}
+              </Tr>
+            </Thead>
+            <Tbody>
+              {props &&
+                Object.keys(props).map((name: string) => {
+                  const prop = props[name]
 
-              if (!prop.flowType && !prop.type) return null
-              return (
-                <Tr key={name}>
-                  <Td>{name}</Td>
-                  <Td>{getPropType(prop, Tooltip)}</Td>
-                  <Td>{String(prop.required)}</Td>
-                  {!prop.defaultValue ? (
-                    <Td>
-                      <em>-</em>
-                    </Td>
-                  ) : (
-                    <Td>
-                      {prop.defaultValue.value === "''" ? (
-                        <em>[Empty String]</em>
+                  if (!prop.flowType && !prop.type) return null
+                  return (
+                    <Tr key={name}>
+                      <Td>{name}</Td>
+                      <Td>{getPropType(prop, Tooltip)}</Td>
+                      <Td>{String(prop.required)}</Td>
+                      {!prop.defaultValue ? (
+                        <Td>
+                          <em>-</em>
+                        </Td>
                       ) : (
-                        prop.defaultValue &&
-                        prop.defaultValue.value.replace(/\'/g, '')
+                        <Td>
+                          {prop.defaultValue.value === "''" ? (
+                            <em>[Empty String]</em>
+                          ) : (
+                            prop.defaultValue &&
+                            prop.defaultValue.value.replace(/\'/g, '')
+                          )}
+                        </Td>
                       )}
-                    </Td>
-                  )}
-                  {hasDescription && (
-                    <Td>{prop.description && prop.description}</Td>
-                  )}
-                </Tr>
-              )
-            })}
-        </Tbody>
-      </Table>
-    </Fragment>
-  )
-}
+                      {hasDescription && (
+                        <Td>{prop.description && prop.description}</Td>
+                      )}
+                    </Tr>
+                  )
+                })}
+            </Tbody>
+          </Table>
+        </Fragment>
+      )
+    })}
+  </Fragment>
+)
 
 export const PropsTable = withMDXComponents(BasePropsTable)

@@ -20,11 +20,12 @@ export const build = async (args: Config) => {
   const run = Plugin.runPluginsMethod(config.plugins)
   const dataServer = new DataServer()
 
+  if (args.propsParser) dataServer.register([states.props(config)])
   dataServer.register([states.config(config), states.entries(entries, config)])
 
   try {
     await promiseLogger(Entries.writeApp(config, true), 'Parsing mdx files')
-    await promiseLogger(dataServer.init(), 'Initializing data server')
+    await promiseLogger(dataServer.init(), 'Running data server')
 
     await promiseLogger(run('onPreBuild', config), 'Running onPreBuild()')
     await bundler.build(bundlerConfig)
