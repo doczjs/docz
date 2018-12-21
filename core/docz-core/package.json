@@ -4,7 +4,6 @@
   "description": "All docz core logic of bundle and parsing is included on this package",
   "license": "MIT",
   "main": "dist/index.js",
-  "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
   "typings": "dist/index.d.ts",
   "source": "src/index.ts",
@@ -64,7 +63,11 @@
     "poi": "^12.2.4",
     "progress-estimator": "^0.2.2",
     "react-dev-utils": "^6.1.1",
-    "react-docgen-typescript-loader": "^3.0.0-rc.0",
+    "react-docgen": "^2.21.0",
+    "react-docgen-actual-name-handler": "0.13.5",
+    "react-docgen-external-proptypes-handler": "^1.0.2",
+    "react-docgen-imported-proptype-handler": "^1.0.4",
+    "react-docgen-typescript": "^1.12.2",
     "react-hot-loader": "^4.6.3",
     "rehype-docz": "^0.13.5",
     "rehype-slug": "^2.0.2",
@@ -86,5 +89,6 @@
     "webpackbar": "^3.1.4",
     "ws": "^6.1.2",
     "yargs": "^12.0.5"
-  }
+  },
+  "devDependencies": {}
 }

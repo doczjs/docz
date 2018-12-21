@@ -30,6 +30,7 @@ export const analyzer = (config: Config) => {
     {
       generateStatsFile: true,
       openAnalyzer: false,
+      analyzerMode: 'static',
     },
   ])
 }

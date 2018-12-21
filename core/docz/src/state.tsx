@@ -48,6 +48,7 @@ export type TransformFn = (config: ThemeConfig) => ThemeConfig
 export interface State {
   config?: Config
   entries?: EntryMap
+  props?: any
   themeConfig?: ThemeConfig
   transform?: TransformFn
 }

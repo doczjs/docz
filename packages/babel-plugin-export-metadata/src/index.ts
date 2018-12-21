@@ -66,12 +66,6 @@ export default function({ types: t }: any): any {
       ClassDeclaration: insert,
       ArrowFunctionExpression: insert,
       VariableDeclarator: insert,
-      // CallExpression(path: any, state: any): void {
-      //   const callee = get(path, 'node.callee')
-      //   const name = get(callee, 'name') || get(callee, 'object.name')
-      //   console.log(name)
-      //   if (name === 'styled') return insert(path, state)
-      // },
     },
   }
 }

@@ -42,13 +42,14 @@ export const dev = async (args: Config) => {
     config.websocketHost
   )
 
+  if (args.propsParser) dataServer.register([states.props(newConfig)])
   dataServer.register([
     states.config(newConfig),
     states.entries(entries, newConfig),
   ])
 
   try {
-    await promiseLogger(dataServer.init(), 'Initializing data server')
+    await promiseLogger(dataServer.init(), 'Running data server')
     await dataServer.listen()
   } catch (err) {
     logger.fatal('Failed to process your server:', err)

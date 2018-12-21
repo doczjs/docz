@@ -19,26 +19,21 @@ export class DataServer extends Component<DataServerProps> {
     if (this.socket) this.setupWebsockets(this.socket)
   }
 
+  public componentWillUnmount(): void {
+    if (this.socket) this.socket.close()
+  }
+
   public render(): ReactNode {
     return this.props.children
   }
 
   private setupWebsockets(socket: WebSocket): void {
     socket.onmessage = (ev: any) => {
-      const message = JSON.parse(ev.data)
+      const { type, payload } = JSON.parse(ev.data)
+      const prop = type.startsWith('state.') && type.split('.')[1]
 
-      if (message.type === 'state.entries') {
-        state.set(state => ({
-          ...state,
-          entries: message.payload,
-        }))
-      }
-
-      if (message.type === 'state.config') {
-        state.set(state => ({
-          ...state,
-          config: message.payload,
-        }))
+      if (prop) {
+        state.set(state => ({ ...state, [prop]: payload }))
       }
     }
   }

@@ -54,8 +54,8 @@ export const mdx = (config: Config, args: Args) => {
     .end()
     .exclude.add(excludeNodeModules)
     .end()
-    .use('happypack-mdx')
-    .loader('happypack/loader?id=mdx')
+    .use('happypack-jsx')
+    .loader('happypack/loader?id=jsx')
     .end()
     .use('mdx-loader')
     .loader(require.resolve('@mdx-js/loader'))
@@ -81,31 +81,9 @@ export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
     },
   ]
 
-  const loaderWithDocgen = [
-    args.propsParser &&
-      args.typescript && {
-        loader: require.resolve('react-docgen-typescript-loader'),
-        options: {
-          propFilter: (prop: any) => {
-            if (prop.parent == null) return true
-            return !prop.parent.fileName.includes('node_modules')
-          },
-        },
-      },
-  ]
-
   config.plugin('happypack-jsx').use(HappyPack, [
     {
       id: 'jsx',
-      verbose: args.debug,
-      threadPool: happyThreadPool,
-      loaders: loaders.concat(loaderWithDocgen).filter(Boolean),
-    },
-  ])
-
-  config.plugin('happypack-mdx').use(HappyPack, [
-    {
-      id: 'mdx',
       verbose: args.debug,
       threadPool: happyThreadPool,
       loaders: loaders.filter(Boolean),

@@ -4,6 +4,7 @@ import { isFunction } from 'lodash/fp'
 import { touch } from './utils/fs'
 import * as paths from './config/paths'
 import { onSignal } from './utils/on-signal'
+import { promiseLogger } from './utils/promise-logger'
 
 export type Send = (type: string, payload: any) => void
 export type On = (type: string) => Promise<any>
@@ -26,6 +27,7 @@ export interface Params {
 }
 
 export interface State {
+  id: string
   init: (params: Params) => Promise<any>
   update: (params: Params) => any
   close: (params: Params) => any
@@ -56,14 +58,16 @@ export class DataServer {
 
   public async init(): Promise<void> {
     await Promise.all(
-      Array.from(this.states).map(
-        async state =>
-          isFunction(state.init) &&
-          state.init({
-            state: { ...this.state },
-            setState: this.setState(),
-          })
-      )
+      Array.from(this.states).map(async state => {
+        if (!isFunction(state.init)) return
+
+        const promise = state.init({
+          state: { ...this.state },
+          setState: this.setState(),
+        })
+
+        return promiseLogger(promise, `Initial data for ${state.id}`)
+      })
     )
 
     this.updateStateFile()

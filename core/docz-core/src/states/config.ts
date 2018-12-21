@@ -3,10 +3,10 @@ import { load, finds } from 'load-cfg'
 import chokidar from 'chokidar'
 import get from 'lodash/get'
 
+import * as paths from '../config/paths'
 import { Params, State } from '../DataServer'
 import { Config, Menu, ThemeConfig } from '../commands/args'
 import { getRepoUrl } from '../utils/repo-info'
-import * as paths from '../config/paths'
 
 interface Payload {
   title: string
@@ -50,6 +50,7 @@ export const state = (config: Config): State => {
   watcher.setMaxListeners(Infinity)
 
   return {
+    id: 'config',
     init: updateConfig(config),
     close: () => watcher.close(),
     update: async params => {

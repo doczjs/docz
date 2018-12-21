@@ -32,20 +32,17 @@ export const getBabelConfig = async (
   const config = merge(localBabelRc, {
     presets,
     babelrc: false,
-    ...(!args.debug && {
-      cacheDirectory: true,
-      cacheIdentifier: getCacheIdentifier(
-        isProd ? 'production' : isDev && 'development',
-        [
+    cacheCompression: args.debug ? false : isProd,
+    cacheDirectory: !args.debug,
+    cacheIdentifier: args.debug
+      ? null
+      : getCacheIdentifier(isProd ? 'production' : isDev && 'development', [
           'docz',
           'docz-theme-default',
           'docz-utils',
           'docz-core',
           'babel-preset-docz',
-        ]
-      ),
-    }),
-    cacheCompression: isProd,
+        ]),
     compact: isProd,
     plugins: !isProd ? [require.resolve('react-hot-loader/babel')] : [],
   })
