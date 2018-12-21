@@ -4,7 +4,6 @@
   "description": "Babel preset used on docz",
   "license": "MIT",
   "main": "dist/index.js",
-  "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
   "typings": "dist/index.d.ts",
   "source": "src/index.ts",
@@ -33,9 +32,8 @@
     "@babel/preset-flow": "7.0.0",
     "@babel/preset-react": "7.0.0",
     "@babel/preset-typescript": "7.1.0",
-    "babel-plugin-function-filemeta": "^0.13.4",
+    "babel-plugin-export-metadata": "^0.13.4",
     "babel-plugin-macros": "^2.4.3",
-    "babel-plugin-react-docgen": "^2.0.0",
     "babel-plugin-transform-dynamic-import": "^2.0.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.21"
   }

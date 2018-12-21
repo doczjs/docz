@@ -1,7 +1,6 @@
 interface ConfigParams {
   flow: boolean
   typescript: boolean
-  parseProps: boolean
   env: {
     dev: boolean
     prod: boolean
@@ -50,11 +49,7 @@ export const config = (opts: ConfigParams) => {
       require('@babel/plugin-transform-runtime').default,
       { helpers: false, regenerator: true },
     ],
-    opts.parseProps && [
-      require('babel-plugin-react-docgen').default,
-      { resolver: 'findAllExportedComponentDefinitions' },
-    ],
-    require('babel-plugin-function-filemeta').default,
+    require('babel-plugin-export-metadata').default,
     opts.env.prod && [
       require('babel-plugin-transform-react-remove-prop-types').default,
       { removeImport: true },

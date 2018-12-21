@@ -32,6 +32,10 @@ class Abc {
   }
 }
 
+export const component = styled.div`
+  background: red;
+`
+
 export class Abcd {
   /**
    * Some description

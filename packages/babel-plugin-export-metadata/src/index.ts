@@ -20,21 +20,32 @@ const findPathToInsert = (path: any): any =>
     ? path
     : findPathToInsert(path.parentPath)
 
-const checkIfIsInsideAnObject = (path: any, is?: boolean): boolean => {
+const checkReverseOnThree = (pred: (type: string) => boolean = () => false) => (
+  path: any,
+  is?: boolean
+): boolean => {
   const parentType = path.parent.type
   if (parentType === 'Program') return Boolean(is)
-  if (parentType === 'ObjectProperty' || parentType === 'ClassProperty') {
-    return true
-  }
-  return checkIfIsInsideAnObject(path.parentPath, false)
+  if (pred(parentType)) return true
+  return checkReverseOnThree(pred)(path.parentPath, false)
 }
+
+const checkIfIsInsideAnObject = checkReverseOnThree(
+  (type: string) => type === 'ObjectProperty' || type === 'ClassProperty'
+)
+
+const checkIfIsExported = checkReverseOnThree(
+  type =>
+    type === 'ExportNamedDeclaration' || type === 'ExportDefaultDeclaration'
+)
 
 const insertNode = (t: any) => (path: any, state: any) => {
   const filename = getFilename(state)
   const name = getPathName(path)
   const isInsideObject = checkIfIsInsideAnObject(path)
+  const isExported = checkIfIsExported(path)
 
-  if (filename && name && !isInsideObject) {
+  if (filename && name && !isInsideObject && isExported) {
     const pathToInsert = findPathToInsert(path)
     const newNode = buildFileMeta({
       ID: t.identifier(name),
@@ -54,6 +65,13 @@ export default function({ types: t }: any): any {
       FunctionDeclaration: insert,
       ClassDeclaration: insert,
       ArrowFunctionExpression: insert,
+      VariableDeclarator: insert,
+      // CallExpression(path: any, state: any): void {
+      //   const callee = get(path, 'node.callee')
+      //   const name = get(callee, 'name') || get(callee, 'object.name')
+      //   console.log(name)
+      //   if (name === 'styled') return insert(path, state)
+      // },
     },
   }
 }
