@@ -33,7 +33,8 @@ const BasePlayground: SFC<PlaygroundProps> = ({
   return (
     <components.render
       {...props}
-      component={Wrapper ? <Wrapper>{children}</Wrapper> : children}
+      component={children}
+      wrapper={Wrapper}
       scope={__scope}
       position={__position}
       code={__code}

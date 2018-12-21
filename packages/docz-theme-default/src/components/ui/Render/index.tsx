@@ -1,4 +1,4 @@
-import { SFC, Fragment, Component } from 'react'
+import { SFC, Fragment, Component, ComponentType } from 'react'
 import { RenderComponentProps, ThemeConfig } from 'docz'
 import { LiveProvider, LiveError, LivePreview } from 'react-live'
 import { css, jsx } from '@emotion/core'
@@ -63,7 +63,7 @@ const PreviewWrapper = styled('div')<OverlayProps>`
   min-height: ${whenFullscreen('198px', 'auto')};
 `
 
-const StyledPreview = styled(LivePreview)`
+const StyledPreviewWrapper = styled('div')`
   position: relative;
   box-sizing: border-box;
   width: 100%;
@@ -259,6 +259,10 @@ class RenderBase extends Component<RenderProps, RenderState> {
     }
   }
 
+  get userWrapper(): ComponentType<any> {
+    return this.props.wrapper || Fragment
+  }
+
   public render(): JSX.Element {
     const { className, style, scope } = this.props
     const { fullscreen, showEditor } = this.state
@@ -280,7 +284,11 @@ class RenderBase extends Component<RenderProps, RenderState> {
           <Resizable {...this.resizableProps}>
             <Wrapper full={fullscreen}>
               <PreviewWrapper full={fullscreen}>
-                <StyledPreview className={className} style={style} />
+                <StyledPreviewWrapper>
+                  <this.userWrapper>
+                    <LivePreview className={className} style={style} />
+                  </this.userWrapper>
+                </StyledPreviewWrapper>
                 <StyledError />
               </PreviewWrapper>
               {this.actions}
