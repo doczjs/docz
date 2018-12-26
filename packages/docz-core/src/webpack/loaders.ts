@@ -1,5 +1,5 @@
 import * as path from 'path'
-import HappyPack from 'happypack'
+import * as happyPack from 'happypack'
 
 import Config from 'webpack-chain'
 import { Config as Args } from '../commands/args'
@@ -67,7 +67,7 @@ export const mdx = (config: Config, args: Args) => {
 }
 
 export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
-  const happyThreadPool = HappyPack.ThreadPool({ size: 6 })
+  const happyThreadPool = happyPack.ThreadPool({ size: 6 })
   const loaders = [
     !args.debug && {
       loader: require.resolve('cache-loader'),
@@ -94,7 +94,7 @@ export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
       },
   ]
 
-  config.plugin('happypack-jsx').use(HappyPack, [
+  config.plugin('happypack-jsx').use(happyPack, [
     {
       id: 'jsx',
       verbose: args.debug,
@@ -103,7 +103,7 @@ export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
     },
   ])
 
-  config.plugin('happypack-mdx').use(HappyPack, [
+  config.plugin('happypack-mdx').use(happyPack, [
     {
       id: 'mdx',
       verbose: args.debug,
