@@ -40,8 +40,6 @@ export const loadConfig = async (args: Config): Promise<Config> => {
     : load<Config>('docz', defaultConfig)
 
   const reduceAsync = Plugin.reduceFromPluginsAsync<Config>(config.plugins)
-  return omit<Config>(
-    toOmit,
-    await reduceAsync('setConfig', { ...config, paths })
-  )
+  const reduced = await reduceAsync('setConfig', { ...config, paths })
+  return omit<Config>(toOmit, reduced)
 }
