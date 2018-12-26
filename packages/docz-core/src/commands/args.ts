@@ -148,19 +148,19 @@ export const args = (env: Env) => (yargs: any) => {
   yargs.positional('typescript', {
     alias: 'ts',
     type: 'boolean',
-    default: getEnv('docz.typescript') || false,
+    default: getEnv('docz.typescript', false),
   })
   yargs.positional('propsParser', {
     type: 'boolean',
-    default: getEnv('docz.props.parser') || true,
+    default: getEnv('docz.props.parser', true),
   })
   yargs.positional('wrapper', {
     type: 'string',
-    default: getEnv('docz.wrapper') || null,
+    default: getEnv('docz.wrapper', null),
   })
   yargs.positional('indexHtml', {
     type: 'string',
-    default: getEnv('docz.index.html') || null,
+    default: getEnv('docz.index.html', null),
   })
   yargs.positional('ordering', {
     type: 'string',
@@ -168,7 +168,7 @@ export const args = (env: Env) => (yargs: any) => {
   })
   yargs.positional('debug', {
     type: 'boolean',
-    default: getEnv('docz.debug') || false,
+    default: getEnv('docz.debug', false),
   })
   yargs.positional('host', {
     type: 'string',
@@ -189,18 +189,18 @@ export const args = (env: Env) => (yargs: any) => {
   })
   yargs.positional('hahRouter', {
     type: 'boolean',
-    default: getEnv('docz.hash.router') || false,
+    default: getEnv('docz.hash.router', false),
   })
   yargs.positional('native', {
     type: 'boolean',
-    default: getEnv('docz.native') || false,
+    default: getEnv('docz.native', false),
   })
   yargs.positional('codeSandbox', {
     type: 'boolean',
-    default: getEnv('docz.codeSandbox') || true,
+    default: getEnv('docz.codeSandbox', true),
   })
   yargs.positional('sourcemaps', {
     type: 'boolean',
-    default: getEnv('docz.sourcemaps') || true,
+    default: getEnv('docz.sourcemaps', true),
   })
 }
