@@ -26,5 +26,12 @@
     "esm": "^3.0.84",
     "find-up": "^3.0.0",
     "fs-extra": "^7.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.18",
+    "@types/react": "^16.7.18",
+    "@types/webpack": "^4.4.22",
+    "@types/yargs": "^12.0.4",
+    "lerna": "3.8.0"
   }
 }
