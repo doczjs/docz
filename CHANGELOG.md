@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.6](https://github.com/pedronauck/docz/compare/v0.13.5...v0.13.6) (2018-12-26)
+
+
+### Bug Fixes
+
+* **docz-core:** default value for arguments ([5644343](https://github.com/pedronauck/docz/commit/5644343))
+* **docz-core:** happypack plugin name ([cbf7692](https://github.com/pedronauck/docz/commit/cbf7692))
+
+
+
+
+
 ## [0.13.5](https://github.com/pedronauck/docz/compare/v0.13.4...v0.13.5) (2018-12-19)
 
 
