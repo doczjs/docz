@@ -14,8 +14,8 @@
     "README.md"
   ],
   "scripts": {
-    "dev": "libundler watch -e all --ts",
-    "build": "libundler build -e all --ts --c",
+    "dev": "node ../../node_modules/libundler/bin/libundler watch -e all --ts",
+    "build": "node ../../node_modules/libundler/bin/libundler build -e all --ts --c",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx,md,mdx,js,jsx,json}\" --write",
     "fix:tslint": "tslint --fix --project .",

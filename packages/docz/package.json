@@ -18,8 +18,8 @@
     "README.md"
   ],
   "scripts": {
-    "dev": "libundler watch --ts",
-    "build": "libundler build --ts --sm",
+    "dev": "node ../../node_modules/libundler/bin/libundler watch --ts",
+    "build": "node ../../node_modules/libundler/bin/libundler build --ts --sm",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx,md,mdx,js,jsx,json}\" --write",
     "fix:tslint": "tslint --fix --project .",
