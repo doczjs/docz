@@ -50,7 +50,7 @@ export interface Argv {
   /* io args */
   base: string
   src: string
-  files: string
+  files: string | string[]
   ignore: string[]
   public: string
   dest: string
@@ -108,8 +108,7 @@ export const args = (env: Env) => (yargs: any) => {
     default: getEnv('docz.source', './'),
   })
   yargs.positional('files', {
-    type: 'string',
-    default: getEnv('docz.files', '**/*.mdx'),
+    default: getEnv('docz.files', '**/*.{md,markdown,mdx}'),
   })
   yargs.positional('ignore', {
     type: 'array',
