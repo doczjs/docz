@@ -126,14 +126,13 @@ export const createConfig = (args: Args, env: Env) => async (
    * loaders
    */
 
-  config.when(args.sourcemaps, cfg => loaders.sourceMaps(cfg, args))
-  loaders.js(config, args)
-  loaders.mdx(config, args)
+  config.when(args.sourcemaps, cfg => loaders.sourceMaps(cfg))
+  loaders.js(config, args, babelrc)
+  loaders.mdx(config, args, babelrc)
   loaders.images(config)
   loaders.svg(config)
   loaders.media(config)
   loaders.fonts(config)
-  loaders.setupHappypack(config, args, babelrc)
 
   /**
    * plugins

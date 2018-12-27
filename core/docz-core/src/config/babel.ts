@@ -21,7 +21,7 @@ export const getBabelConfig = async (
   const localBabelRc = load('babel', { presets: [], plugins: [] }, false, true)
   const presets = [
     [
-      require.resolve('poi/babel'),
+      require.resolve('babel-preset-react-app'),
       {
         flow: !args.typescript,
         typescript: args.typescript,
@@ -38,10 +38,7 @@ export const getBabelConfig = async (
       ? null
       : getCacheIdentifier(isProd ? 'production' : isDev && 'development', [
           'docz',
-          'docz-theme-default',
-          'docz-utils',
           'docz-core',
-          'babel-preset-docz',
         ]),
     compact: isProd,
     plugins: [require.resolve('babel-plugin-export-metadata')].concat(

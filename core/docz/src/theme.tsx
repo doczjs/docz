@@ -4,7 +4,6 @@ import { HashRouter, BrowserRouter } from 'react-router-dom'
 import { StaticRouterProps } from 'react-router'
 
 import { state, ThemeConfig, TransformFn } from './state'
-import { ErrorBoundary } from './components/ErrorBoundary'
 import { DataServer } from './components/DataServer'
 import { ScrollToTop } from './utils/ScrollToTop'
 
@@ -48,15 +47,13 @@ export function theme(
       )
 
       return (
-        <ErrorBoundary>
-          <state.Provider initial={{ ...db, themeConfig, transform }}>
-            <DataServer websocketUrl={DOCZ_WEBSOCKET_URL}>
-              <Router basename={DOCZ_BASE_URL}>
-                <ScrollToTop>{wrapped}</ScrollToTop>
-              </Router>
-            </DataServer>
-          </state.Provider>
-        </ErrorBoundary>
+        <state.Provider initial={{ ...db, themeConfig, transform }}>
+          <DataServer websocketUrl={DOCZ_WEBSOCKET_URL}>
+            <Router basename={DOCZ_BASE_URL}>
+              <ScrollToTop>{wrapped}</ScrollToTop>
+            </Router>
+          </DataServer>
+        </state.Provider>
       )
     }
 

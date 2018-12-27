@@ -1,24 +1,19 @@
 import * as path from 'path'
-import HappyPack from 'happypack'
-
 import Config from 'webpack-chain'
-import { Config as Args } from '../commands/args'
+
 import * as paths from '../config/paths'
 import * as mdxConfig from '../config/mdx'
+import { Config as Args } from '../commands/args'
+import { BabelRC } from '../config/babel'
 
+const outsideNodeModules = (filepath: string) => !/node_modules/.test(filepath)
 const excludeNodeModules = (filepath: string) => /node_modules/.test(filepath)
 
-export const sourceMaps = (config: Config, args: Args) => {
-  const srcPath = path.resolve(paths.root, args.src)
-
+export const sourceMaps = (config: Config) => {
   config.module
     .rule('sourcemaps')
     .test(/\.(js|mjs|jsx|ts|tsx|md|mdx)$/)
-    .include.add(srcPath)
-    .add(paths.root)
-    .add(paths.docz)
-    .end()
-    .exclude.add(excludeNodeModules)
+    .include.add(outsideNodeModules)
     .end()
     .use('sourcemaps')
     .loader(require.resolve('source-map-loader'))
@@ -26,24 +21,27 @@ export const sourceMaps = (config: Config, args: Args) => {
     .enforce('pre')
 }
 
-export const js = (config: Config, args: Args) => {
+export const js = (config: Config, args: Args, babelrc: BabelRC) => {
   const srcPath = path.resolve(paths.root, args.src)
 
   config.module
     .rule('js')
     .test(/\.(js|mjs|jsx|ts|tsx)$/)
     .include.add(srcPath)
-    .add(paths.root)
     .add(paths.docz)
     .end()
     .exclude.add(excludeNodeModules)
     .end()
-    .use('happypack-jsx')
-    .loader('happypack/loader?id=jsx')
+    .use('thread-loader')
+    .loader(require.resolve('thread-loader'))
+    .end()
+    .use('babel-loader')
+    .loader(require.resolve('babel-loader'))
+    .options(babelrc)
     .end()
 }
 
-export const mdx = (config: Config, args: Args) => {
+export const mdx = (config: Config, args: Args, babelrc: BabelRC) => {
   const { mdPlugins, hastPlugins } = args
   const srcPath = path.resolve(paths.root, args.src)
 
@@ -51,11 +49,17 @@ export const mdx = (config: Config, args: Args) => {
     .rule('mdx')
     .test(/\.(md|markdown|mdx)$/)
     .include.add(srcPath)
+    .add(paths.root)
+    .add(paths.docz)
     .end()
     .exclude.add(excludeNodeModules)
     .end()
-    .use('happypack-jsx')
-    .loader('happypack/loader?id=jsx')
+    .use('thread-loader')
+    .loader(require.resolve('thread-loader'))
+    .end()
+    .use('babel-loader')
+    .loader(require.resolve('babel-loader'))
+    .options(babelrc)
     .end()
     .use('mdx-loader')
     .loader(require.resolve('@mdx-js/loader'))
@@ -64,31 +68,6 @@ export const mdx = (config: Config, args: Args) => {
       mdPlugins: mdPlugins.concat(mdxConfig.remarkPlugins()),
       hastPlugins: hastPlugins.concat(mdxConfig.rehypePlugins(args)),
     })
-}
-
-export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
-  const happyThreadPool = HappyPack.ThreadPool({ size: 6 })
-  const loaders = [
-    !args.debug && {
-      loader: require.resolve('cache-loader'),
-      options: {
-        cacheDirectory: paths.cache,
-      },
-    },
-    {
-      loader: require.resolve('babel-loader'),
-      options: babelrc,
-    },
-  ]
-
-  config.plugin('happypack-jsx').use(HappyPack, [
-    {
-      id: 'jsx',
-      verbose: args.debug,
-      threadPool: happyThreadPool,
-      loaders: loaders.filter(Boolean),
-    },
-  ])
 }
 
 const INLINE_LIMIT = 10000

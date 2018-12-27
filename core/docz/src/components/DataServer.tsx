@@ -19,10 +19,6 @@ export class DataServer extends Component<DataServerProps> {
     if (this.socket) this.setupWebsockets(this.socket)
   }
 
-  public componentWillUnmount(): void {
-    if (this.socket) this.socket.close()
-  }
-
   public render(): ReactNode {
     return this.props.children
   }

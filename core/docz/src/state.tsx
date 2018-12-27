@@ -1,3 +1,4 @@
+// tslint:disable-next-line
 import { create } from './utils/createState'
 
 export interface Heading {

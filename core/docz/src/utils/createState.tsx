@@ -17,8 +17,8 @@ export interface State<T> {
   Provider: React.ComponentType<ProviderProps<T>>
 }
 
+const subject = makeSubject()
 export function create<T = any>(initial: T = {} as T): State<T> {
-  const subject = makeSubject()
   const { Provider, Consumer }: any = createContext<T>(initial)
   Consumer.displayName = 'StateConsumer'
 
@@ -29,7 +29,7 @@ export function create<T = any>(initial: T = {} as T): State<T> {
       public static displayName = 'StateProvider'
       public state: T = this.props.initial || initial
       public componentDidMount(): void {
-        observe((v: T) => this.setState(v))(subject)
+        observe((fn: T) => this.setState(fn))(subject)
       }
       public componentWillUnmount(): void {
         subject(2)
