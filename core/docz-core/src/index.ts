@@ -1,9 +1,5 @@
-import * as commands from './commands'
-import { args } from './commands/args'
-
-export { commands, args }
-export { setEnv } from './config/env'
-export { Config } from './commands/args'
+export { cli } from './cli'
+export { Config } from './config/argv'
 export { BabelRC } from './config/babel'
 export { Plugin, createPlugin } from './Plugin'
 export { DataServer } from './DataServer'

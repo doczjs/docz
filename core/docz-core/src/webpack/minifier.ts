@@ -1,7 +1,7 @@
 import Config from 'webpack-chain'
 import * as TerserPlugin from 'terser-webpack-plugin'
 
-import { Config as Args } from '../commands/args'
+import { Config as Args } from '../config/argv'
 
 export const minifier = (config: Config, args: Args) => {
   config.optimization.minimizer('js').use(TerserPlugin, [

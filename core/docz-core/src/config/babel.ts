@@ -2,7 +2,7 @@ import { load } from 'load-cfg'
 import merge from 'deepmerge'
 import getCacheIdentifier from 'react-dev-utils/getCacheIdentifier'
 
-import { Config, Env } from '../commands/args'
+import { Config, Env } from '../config/argv'
 import { Plugin } from '../Plugin'
 
 export interface BabelRC {

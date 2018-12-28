@@ -2,7 +2,7 @@ import pReduce from 'p-reduce'
 import WebpackChainConfig from 'webpack-chain'
 import { get, isFunction } from 'lodash/fp'
 
-import { Config } from './commands/args'
+import { Config } from './config/argv'
 import { BabelRC } from './config/babel'
 
 export type SetConfig = (config: Config) => Config | Promise<Config>

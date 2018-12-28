@@ -4,7 +4,7 @@ import remarkDocz from 'remark-docz'
 import rehypeDocz from 'rehype-docz'
 
 import * as paths from './paths'
-import { Config } from '../commands/args'
+import { Config } from '../config/argv'
 
 export const config = {
   type: 'yaml',

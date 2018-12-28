@@ -8,7 +8,7 @@ import {
 import { compiled } from './fs'
 import { fromTemplates } from '../Entries'
 import * as paths from '../config/paths'
-import { Config } from '../commands/args'
+import { Config } from '../config/argv'
 
 const wrapItems = (item: any) =>
   Object.keys(item)

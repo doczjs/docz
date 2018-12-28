@@ -15,6 +15,7 @@ module.exports = {
   external: Object.keys(pkg.dependencies).concat([
     'crypto',
     'lodash/fp',
+    'docz-utils/lib/mdast',
     'react-dev-utils/errorOverlayMiddleware',
     'react-dev-utils/evalSourceMapMiddleware',
     'react-dev-utils/FileSizeReporter',

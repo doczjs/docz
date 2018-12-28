@@ -9,7 +9,7 @@ import * as paths from '../config/paths'
 import { BabelRC } from '../config/babel'
 import { minifier } from './minifier'
 import { ServerHooks } from '../Bundler'
-import { Config as Args, Env } from '../commands/args'
+import { Config as Args, Env } from '../config/argv'
 
 export const createConfig = (args: Args, env: Env) => async (
   babelrc: BabelRC,

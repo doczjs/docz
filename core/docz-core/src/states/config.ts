@@ -5,7 +5,7 @@ import get from 'lodash/get'
 
 import * as paths from '../config/paths'
 import { Params, State } from '../DataServer'
-import { Config, Menu, ThemeConfig } from '../commands/args'
+import { Config, Menu, ThemeConfig } from '../config/argv'
 import { getRepoUrl } from '../utils/repo-info'
 
 interface Payload {

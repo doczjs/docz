@@ -3,7 +3,7 @@ import logger from 'signale'
 import WebpackDevServer from 'webpack-dev-server'
 
 import { Plugin } from './Plugin'
-import { Config as Args, Env } from './commands/args'
+import { Config as Args, Env } from './config/argv'
 import { getBabelConfig, BabelRC } from './config/babel'
 import * as paths from './config/paths'
 

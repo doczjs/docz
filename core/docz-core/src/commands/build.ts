@@ -1,18 +1,18 @@
+import { Arguments } from 'yargs'
 import logger from 'signale'
 import envDotProp from 'env-dot-prop'
 
-import * as states from '../states'
-import { bundler as webpack } from '../webpack'
+import { Plugin } from '../Plugin'
 import { Entries } from '../Entries'
 import { DataServer } from '../DataServer'
-import { Plugin } from '../Plugin'
-import { Config } from './args'
-import { loadConfig } from '../utils/load-config'
+import { parseConfig } from '../config/docz'
 import { promiseLogger } from '../utils/promise-logger'
+import { bundler as webpack } from '../webpack'
+import * as states from '../states'
 
-export const build = async (args: Config) => {
+export const build = async (args: Arguments) => {
   const env = envDotProp.get('node.env')
-  const config = await loadConfig(args)
+  const config = await parseConfig(args)
   const entries = new Entries(config)
 
   const bundler = webpack(config, env)

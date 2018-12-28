@@ -3,7 +3,7 @@ import Config from 'webpack-chain'
 
 import * as paths from '../config/paths'
 import * as mdxConfig from '../config/mdx'
-import { Config as Args } from '../commands/args'
+import { Config as Args } from '../config/argv'
 import { BabelRC } from '../config/babel'
 
 const outsideNodeModules = (filepath: string) => !/node_modules/.test(filepath)

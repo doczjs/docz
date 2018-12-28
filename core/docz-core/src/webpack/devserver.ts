@@ -5,7 +5,7 @@ import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware'
 import ignoredFiles from 'react-dev-utils/ignoredFiles'
 
 import * as paths from '../config/paths'
-import { Config as Args } from '../commands/args'
+import { Config as Args } from '../config/argv'
 import { ServerHooks } from '../Bundler'
 
 export const devServerConfig = (hooks: ServerHooks, args: Args) => {

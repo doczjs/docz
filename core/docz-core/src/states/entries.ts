@@ -4,7 +4,7 @@ import equal from 'fast-deep-equal'
 
 import { Params, State } from '../DataServer'
 import { Entries, EntryMap, fromTemplates } from '../Entries'
-import { Config } from '../commands/args'
+import { Config } from '../config/argv'
 import { touch, compiled } from '../utils/fs'
 import * as paths from '../config/paths'
 

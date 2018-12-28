@@ -8,7 +8,7 @@ import manifestPlugin from 'webpack-manifest-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
 import * as paths from '../config/paths'
-import { Config as Args, Env } from '../commands/args'
+import { Config as Args, Env } from '../config/argv'
 import { getClientEnvironment } from '../config/env'
 import { parseHtml, htmlTemplate } from '../utils/parse-html'
 

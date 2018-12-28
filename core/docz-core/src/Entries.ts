@@ -8,7 +8,7 @@ import { touch, compiled } from './utils/fs'
 
 import { Entry, EntryObj } from './Entry'
 import { Plugin } from './Plugin'
-import { Config } from './commands/args'
+import { Config } from './config/argv'
 import { getRepoEditUrl } from './utils/repo-info'
 
 export const fromTemplates = (file: string) => path.join(paths.templates, file)

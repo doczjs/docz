@@ -5,7 +5,7 @@ import { State, Params } from '../DataServer'
 import { get, omit } from 'lodash/fp'
 
 import * as paths from '../config/paths'
-import { Config } from '../commands/args'
+import { Config } from '../config/argv'
 import { docgen } from '../utils/docgen'
 
 const getPattern = (ts: boolean) => {

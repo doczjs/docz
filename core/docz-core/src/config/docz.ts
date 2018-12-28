@@ -1,11 +1,12 @@
 import * as path from 'path'
-import omit from 'lodash/omit'
-
+import { Arguments } from 'yargs'
+import { omit } from 'lodash/fp'
 import { load, loadFrom } from 'load-cfg'
+import detectPort from 'detect-port'
 
 import * as paths from '../config/paths'
 import { BabelRC } from '../config/babel'
-import { Config } from '../commands/args'
+import { Config } from '../config/argv'
 import { Plugin } from '../Plugin'
 
 const toOmit = ['_', '$0', 'version', 'help']
@@ -14,14 +15,20 @@ const htmlContext = {
   favicon: 'https://cdn-std.dprcdn.net/files/acc_649651/LUKiMl',
 }
 
-export const loadConfig = async (args: Config): Promise<Config> => {
-  const defaultConfig = {
-    ...args,
+export const parseConfig = async (argv: Arguments): Promise<Config> => {
+  const port = await detectPort(argv.port)
+  const websocketPort = await detectPort(argv.websocketPort)
+  const initial = omit<Arguments, any>(toOmit, argv)
+
+  const defaultConfig: any = {
+    ...initial,
+    port,
+    websocketPort,
     htmlContext,
+    menu: [],
     plugins: [],
     mdPlugins: [],
     hastPlugins: [],
-    menu: [],
     ignore: [
       'readme.md',
       'changelog.md',
@@ -36,13 +43,10 @@ export const loadConfig = async (args: Config): Promise<Config> => {
     onCreateWebpackChain: () => null,
   }
 
-  const config = args.config
-    ? loadFrom<Config>(path.resolve(args.config), defaultConfig)
+  const config = argv.config
+    ? loadFrom<Config>(path.resolve(argv.config), defaultConfig)
     : load<Config>('docz', defaultConfig)
 
   const reduceAsync = Plugin.reduceFromPluginsAsync<Config>(config.plugins)
-  return omit<Config, any>(
-    await reduceAsync('setConfig', { ...config, paths }),
-    toOmit
-  )
+  return reduceAsync('setConfig', { ...config, paths })
 }

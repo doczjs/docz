@@ -10,7 +10,7 @@ import reactDocgenTs from 'react-docgen-typescript'
 import reactDocgen from 'react-docgen'
 
 import * as paths from '../config/paths'
-import { Config } from '../commands/args'
+import { Config } from '../config/argv'
 
 const fileFullPath = (filepath: string) => path.join(paths.root, filepath)
 
