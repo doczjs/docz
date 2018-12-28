@@ -11,7 +11,7 @@ import { onSignal } from '../utils/on-signal'
 import { bundler as webpack } from '../bundler'
 import * as states from '../states'
 
-export const dev = async (args: Arguments) => {
+export const dev = async (args: Arguments<any>) => {
   const env = envDotProp.get('node.env')
   const config = await parseConfig(args)
   const bundler = webpack(config, env)

@@ -14,7 +14,8 @@ export interface BabelRC {
 
 export const getBabelConfig = async (
   args: Config,
-  env: Env
+  env: Env,
+  typescript?: boolean
 ): Promise<BabelRC> => {
   const isProd = env === 'production'
   const isDev = env === 'development'
@@ -23,8 +24,22 @@ export const getBabelConfig = async (
     [
       require.resolve('babel-preset-react-app'),
       {
+        typescript,
         flow: !args.typescript,
-        typescript: args.typescript,
+      },
+    ],
+  ]
+
+  const defaultPlugins = [
+    require.resolve('babel-plugin-export-metadata'),
+    [
+      require.resolve('babel-plugin-named-asset-import'),
+      {
+        loaderMap: {
+          svg: {
+            ReactComponent: '@svgr/webpack?-prettier,-svgo![path]',
+          },
+        },
       },
     ],
   ]
@@ -41,7 +56,8 @@ export const getBabelConfig = async (
           'docz-core',
         ]),
     compact: isProd,
-    plugins: [require.resolve('babel-plugin-export-metadata')].concat(
+    customize: require.resolve('babel-preset-react-app/webpack-overrides'),
+    plugins: defaultPlugins.concat(
       !isProd ? [require.resolve('react-hot-loader/babel')] : []
     ),
   })

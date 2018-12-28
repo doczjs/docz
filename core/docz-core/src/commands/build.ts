@@ -9,7 +9,7 @@ import { parseConfig } from '../config/docz'
 import { bundler as webpack } from '../bundler'
 import * as states from '../states'
 
-export const build = async (args: Arguments) => {
+export const build = async (args: Arguments<any>) => {
   const env = envDotProp.get('node.env')
   const config = await parseConfig(args)
   const entries = new Entries(config)

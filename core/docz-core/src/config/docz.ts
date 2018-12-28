@@ -6,7 +6,7 @@ import detectPort from 'detect-port'
 
 import * as paths from '../config/paths'
 import { BabelRC } from '../config/babel'
-import { Config } from '../config/argv'
+import { Config, Argv } from '../config/argv'
 import { Plugin } from '../lib/Plugin'
 
 const toOmit = ['_', '$0', 'version', 'help']
@@ -15,10 +15,10 @@ const htmlContext = {
   favicon: 'https://cdn-std.dprcdn.net/files/acc_649651/LUKiMl',
 }
 
-export const parseConfig = async (argv: Arguments): Promise<Config> => {
+export const parseConfig = async (argv: Arguments<Argv>): Promise<Config> => {
   const port = await detectPort(argv.port)
   const websocketPort = await detectPort(argv.websocketPort)
-  const initial = omit<Arguments, any>(toOmit, argv)
+  const initial = omit<Arguments<Argv>, any>(toOmit, argv)
 
   const defaultConfig: any = {
     ...initial,

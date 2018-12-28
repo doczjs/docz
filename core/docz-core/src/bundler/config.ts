@@ -6,15 +6,12 @@ import envDotProp from 'env-dot-prop'
 import * as loaders from './loaders'
 import * as plugins from './plugins'
 import * as paths from '../config/paths'
-import { BabelRC } from '../config/babel'
 import { minifier } from './minifier'
-import { ServerHooks } from '../lib/Bundler'
+import { ServerHooks as Hooks } from '../lib/Bundler'
 import { Config as Args, Env } from '../config/argv'
+import { getBabelConfig } from '../config/babel'
 
-export const createConfig = (args: Args, env: Env) => async (
-  babelrc: BabelRC,
-  hooks: ServerHooks
-): Promise<Configuration> => {
+export const createConfig = (args: Args, env: Env) => async (hooks: Hooks) => {
   const { debug } = args
 
   const config = new Config()
@@ -64,6 +61,9 @@ export const createConfig = (args: Args, env: Env) => async (
     .publicPath(publicPath)
     .when(isProd, outputProd, outputDev)
     .crossOriginLoading('anonymous')
+    .devtoolModuleFilenameTemplate((info: any) =>
+      path.resolve(info.resourcePath).replace(/\\/g, '/')
+    )
 
   /**
    * entries
@@ -90,13 +90,6 @@ export const createConfig = (args: Args, env: Env) => async (
     .add('.mdx')
     .end()
 
-  if (args.typescript) {
-    config.resolve.extensions
-      .prepend('.ts')
-      .prepend('.tsx')
-      .end()
-  }
-
   config.resolve.alias.set('~db', paths.db)
   config.resolve.alias.set('~imports', paths.importsJs)
   config.resolve.alias.set('react-native$', 'react-native-web')
@@ -104,7 +97,7 @@ export const createConfig = (args: Args, env: Env) => async (
   const inYarnWorkspaces = __dirname.includes('/docz/core/docz-core')
   const doczDependenciesDir = inYarnWorkspaces
     ? path.join(__dirname, '../../../../node_modules')
-    : path.join(__dirname, '../../../')
+    : paths.ownNodeModules
 
   config.resolve.modules
     .add('node_modules')
@@ -129,17 +122,16 @@ export const createConfig = (args: Args, env: Env) => async (
    * loaders
    */
 
-  config.when(args.sourcemaps, cfg => loaders.sourceMaps(cfg))
-  loaders.js(config, args, babelrc)
-  loaders.mdx(config, args, babelrc)
+  const jsBabelRc = await getBabelConfig(args, env)
+  const tsBabelRc = await getBabelConfig(args, env, true)
+
+  config.when(args.sourcemaps, cfg => loaders.sourceMaps(cfg, args))
+  loaders.js(config, args, jsBabelRc)
+  loaders.mdx(config, args, jsBabelRc)
   loaders.images(config)
   loaders.svg(config)
   loaders.media(config)
   loaders.fonts(config)
-
-  /**
-   * plugins
-   */
 
   await plugins.html(config, args, env)
   plugins.assets(config, args, env)
@@ -150,8 +142,21 @@ export const createConfig = (args: Args, env: Env) => async (
   config.when(debug, cfg => plugins.analyzer(cfg))
   config.when(!isProd, cfg => plugins.watchNodeModulesPlugin(cfg))
   config.when(!debug && !isProd, cfg => {
-    plugins.webpackBar(cfg)
+    plugins.webpackBar(cfg, args)
     plugins.friendlyErrors(cfg, args)
+  })
+
+  /**
+   * typescript setup
+   */
+
+  config.when(args.typescript, cfg => {
+    cfg.resolve.extensions
+      .prepend('.ts')
+      .prepend('.tsx')
+      .end()
+
+    loaders.ts(cfg, args, tsBabelRc)
   })
 
   /**
@@ -159,7 +164,6 @@ export const createConfig = (args: Args, env: Env) => async (
    */
 
   config.optimization
-    .runtimeChunk(true)
     .nodeEnv(env)
     .namedModules(true)
     .minimize(isProd)

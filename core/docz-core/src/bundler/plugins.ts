@@ -6,6 +6,7 @@ import { minify } from 'html-minifier'
 import miniHtmlWebpack from 'mini-html-webpack-plugin'
 import manifestPlugin from 'webpack-manifest-plugin'
 import watchMissingNodeModules from 'react-dev-utils/WatchMissingNodeModulesPlugin'
+import moduleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
 import * as paths from '../config/paths'
@@ -79,7 +80,11 @@ export const ignore = (config: Config) => {
 export const hot = (config: Config) => {
   config
     .plugin('hot-module-replacement')
-    .use(HotModuleReplacementPlugin as any, [])
+    .use(HotModuleReplacementPlugin as any, [
+      {
+        multiStep: true,
+      },
+    ])
 }
 
 export const html = async (config: Config, args: Args, env: Env) => {
@@ -114,12 +119,11 @@ export const html = async (config: Config, args: Args, env: Env) => {
   ])
 }
 
-export const webpackBar = (config: Config) => {
+export const webpackBar = (config: Config, args: Args) => {
   config.plugin('webpackbar').use(webpackBarPlugin, [
     {
+      name: 'Docz',
       color: '#41b883',
-      compiledIn: false,
-      name: 'Client',
     },
   ])
 }
@@ -128,4 +132,8 @@ export const watchNodeModulesPlugin = (config: Config) => {
   config
     .plugin('watch-missing-node-modules')
     .use(watchMissingNodeModules, [paths.appNodeModules])
+}
+
+export const notFoundPlugin = (config: Config) => {
+  config.plugin('not-found-plugin').use(moduleNotFoundPlugin, [paths.root])
 }

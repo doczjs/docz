@@ -22,8 +22,9 @@ module.exports = {
     'react-dev-utils/formatWebpackMessages',
     'react-dev-utils/getCacheIdentifier',
     'react-dev-utils/ignoredFiles',
+    'react-dev-utils/ModuleNotFoundPlugin',
+    'react-dev-utils/typescriptFormatter',
     'react-dev-utils/WatchMissingNodeModulesPlugin',
-    'react-dev-utils/WebpackDevServerUtils',
     'react-dom/server',
   ]),
 }

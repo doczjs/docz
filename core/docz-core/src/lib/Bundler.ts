@@ -4,7 +4,6 @@ import logger from 'signale'
 
 import { Plugin } from './Plugin'
 import { Config as Args, Env } from '../config/argv'
-import { getBabelConfig, BabelRC } from '../config/babel'
 import * as paths from '../config/paths'
 
 export interface ServerHooks {
@@ -18,7 +17,7 @@ export interface BundlerServer {
   start(): Promise<http.Server>
 }
 
-export type ConfigFn<C> = (babelrc: BabelRC, hooks: ServerHooks) => Promise<C>
+export type ConfigFn<C> = (hooks: ServerHooks) => Promise<C>
 export type BuildFn<C> = (config: C, dist: string, publicDir: string) => void
 export type ServerFn<C> = (
   config: C,
@@ -72,8 +71,7 @@ export class Bundler<C = ConfigObj> {
     const { plugins } = this.args
     const isDev = env !== 'production'
     const reduce = Plugin.reduceFromPlugins<C>(plugins)
-    const babelConfig = await getBabelConfig(this.args, env)
-    const userConfig = await this.config(babelConfig, this.hooks)
+    const userConfig = await this.config(this.hooks)
     const config = reduce('modifyBundlerConfig', userConfig, isDev, this.args)
 
     return this.args.modifyBundlerConfig(config, isDev, this.args)

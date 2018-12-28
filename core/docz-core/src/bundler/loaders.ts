@@ -9,14 +9,16 @@ import * as paths from '../config/paths'
 import { Config as Args } from '../config/argv'
 import { BabelRC } from '../config/babel'
 
-const outsideNodeModules = (filepath: string) => !/node_modules/.test(filepath)
 const excludeNodeModules = (filepath: string) => /node_modules/.test(filepath)
 
-export const sourceMaps = (config: Config) => {
+export const sourceMaps = (config: Config, args: Args) => {
+  const srcPath = path.resolve(paths.root, args.src)
+
   config.module
     .rule('sourcemaps')
     .test(/\.(js|mjs|jsx|ts|tsx|md|mdx)$/)
-    .include.add(outsideNodeModules)
+    .include.add(srcPath)
+    .add(paths.app)
     .end()
     .use('sourcemaps')
     .loader(require.resolve('source-map-loader'))
@@ -24,46 +26,70 @@ export const sourceMaps = (config: Config) => {
     .enforce('pre')
 }
 
-export const js = (config: Config, args: Args, babelrc: BabelRC) => {
-  const srcPath = path.resolve(paths.root, args.src)
-
-  config.module
-    .rule('js')
-    .test(/\.(js|mjs|jsx|ts|tsx)$/)
-    .include.add(srcPath)
-    .add(paths.docz)
-    .end()
-    .exclude.add(excludeNodeModules)
-    .end()
+const addScriptLoaders = (rule: Config.Rule, babelrc: BabelRC, args: Args) =>
+  rule
+    .when(!args.debug, rule =>
+      rule
+        .use('cache-loader')
+        .loader(require.resolve('cache-loader'))
+        .options({
+          cacheDirectory: paths.cache,
+        })
+    )
     .use('thread-loader')
     .loader(require.resolve('thread-loader'))
+    .options({
+      workers: require('os').cpus().length - 1,
+    })
     .end()
     .use('babel-loader')
     .loader(require.resolve('babel-loader'))
     .options(babelrc)
     .end()
+
+export const js = (config: Config, args: Args, babelrc: BabelRC) => {
+  const srcPath = path.resolve(paths.root, args.src)
+  const rule = config.module
+    .rule('js')
+    .test(/\.(js|mjs|jsx)$/)
+    .include.add(srcPath)
+    .add(paths.root)
+    .add(paths.app)
+    .end()
+    .exclude.add(excludeNodeModules)
+    .end()
+
+  addScriptLoaders(rule, babelrc, args)
+}
+
+export const ts = (config: Config, args: Args, babelrc: BabelRC) => {
+  const srcPath = path.resolve(paths.root, args.src)
+  const rule = config.module
+    .rule('ts')
+    .test(/\.(ts|tsx?)$/)
+    .include.add(srcPath)
+    .add(paths.root)
+    .add(paths.app)
+    .end()
+    .exclude.add(excludeNodeModules)
+    .end()
+
+  addScriptLoaders(rule, babelrc, args)
 }
 
 export const mdx = (config: Config, args: Args, babelrc: BabelRC) => {
   const { mdPlugins, hastPlugins } = args
   const srcPath = path.resolve(paths.root, args.src)
-
-  config.module
+  const rule = config.module
     .rule('mdx')
     .test(/\.(md|markdown|mdx)$/)
     .include.add(srcPath)
     .add(paths.root)
-    .add(paths.docz)
     .end()
     .exclude.add(excludeNodeModules)
     .end()
-    .use('thread-loader')
-    .loader(require.resolve('thread-loader'))
-    .end()
-    .use('babel-loader')
-    .loader(require.resolve('babel-loader'))
-    .options(babelrc)
-    .end()
+
+  addScriptLoaders(rule, babelrc, args)
     .use('mdx-loader')
     .loader(require.resolve('@mdx-js/loader'))
     .options({
