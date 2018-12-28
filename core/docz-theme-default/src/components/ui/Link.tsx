@@ -2,7 +2,7 @@ import * as React from 'react'
 import { SFC } from 'react'
 import { jsx } from '@emotion/core'
 import styled from '@emotion/styled'
-import { Link as BaseLink } from 'docz'
+import { Docs, Link as BaseLink } from 'docz'
 
 import { get } from '@utils/theme'
 
@@ -22,14 +22,25 @@ export const LinkStyled = styled('a')`
 type LinkProps = React.AnchorHTMLAttributes<any>
 
 export const Link: SFC<LinkProps> = ({ href, ...props }) => {
-  const isInternal = href && href.startsWith('/')
-  const Component = isInternal
-    ? LinkStyled.withComponent(BaseLink as any)
-    : LinkStyled
+  return <Docs>
+    {({ docs, config: { separator } }) => {
+      // calculate matched route
+      const matched = docs.find(doc => doc.filepath === [
+        location.pathname.split(separator).slice(0, -1).join(separator).slice(1),
+        (href || '').replace(/^(?:\.\/)+/gi, '')
+      ].join('/'))
+      matched && (href = matched.route)
 
-  return isInternal ? (
-    <Component {...props} to={href} />
-  ) : (
-    <Component {...props} href={href} />
-  )
+      const isInternal = href && href.startsWith('/')
+      const Component = isInternal
+        ? LinkStyled.withComponent(BaseLink as any)
+        : LinkStyled
+
+      return isInternal ? (
+        <Component {...props} to={href} />
+      ) : (
+        <Component {...props} href={href} />
+      )
+    }}
+  </Docs>
 }
