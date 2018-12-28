@@ -1,6 +1,6 @@
 import * as path from 'path'
+import * as http from 'http'
 import logger from 'signale'
-import WebpackDevServer from 'webpack-dev-server'
 
 import { Plugin } from './Plugin'
 import { Config as Args, Env } from './config/argv'
@@ -15,7 +15,7 @@ export interface ServerHooks {
 }
 
 export interface BundlerServer {
-  start(): Promise<WebpackDevServer>
+  start(): Promise<http.Server>
 }
 
 export type ConfigFn<C> = (babelrc: BabelRC, hooks: ServerHooks) => Promise<C>
