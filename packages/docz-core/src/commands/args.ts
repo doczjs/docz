@@ -79,6 +79,8 @@ export interface Argv {
   hashRouter: boolean
   wrapper?: string
   indexHtml?: string
+  /* slugify separator */
+  separator: string
 }
 
 export interface Config extends Argv {
@@ -201,5 +203,9 @@ export const args = (env: Env) => (yargs: any) => {
   yargs.positional('sourcemaps', {
     type: 'boolean',
     default: getEnv('docz.sourcemaps') || true,
+  })
+  yargs.positional('separator', {
+    type: 'string',
+    default: getEnv('docz.separator', '-'),
   })
 }

@@ -11,6 +11,8 @@ import {
 
 import * as paths from './config/paths'
 
+import { Config } from './commands/args'
+
 const createId = (file: string) =>
   crypto
     .createHash('md5')
@@ -46,7 +48,7 @@ export class Entry {
     [key: string]: any
   }
 
-  constructor(ast: any, file: string, src: string) {
+  constructor(ast: any, file: string, src: string, config: Config) {
     const filepath = this.getFilepath(file, src)
     const parsed = getParsedData(ast)
     const name = this.getName(filepath, parsed)
@@ -54,7 +56,7 @@ export class Entry {
     this.id = createId(file)
     this.filepath = filepath
     this.link = null
-    this.slug = this.slugify(filepath)
+    this.slug = this.slugify(filepath, config.separator)
     this.route = this.getRoute(parsed)
     this.name = name
     this.order = parsed.order || 0
@@ -85,11 +87,11 @@ export class Entry {
     return parsed && parsed.name ? parsed.name : filename
   }
 
-  private slugify(filepath: string): string {
+  private slugify(filepath: string, separator: string): string {
     const ext = path.extname(filepath)
     const fileWithoutExt = filepath.replace(ext, '')
 
-    return slugify(fileWithoutExt)
+    return slugify(fileWithoutExt, { separator })
   }
 
   private getRoute(parsed: any): string {
