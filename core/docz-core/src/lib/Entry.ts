@@ -4,7 +4,7 @@ import slugify from '@sindresorhus/slugify'
 import humanize from 'humanize-string'
 import { mdast } from 'docz-utils'
 
-import * as paths from './config/paths'
+import * as paths from '../config/paths'
 
 const createId = (file: string) =>
   crypto

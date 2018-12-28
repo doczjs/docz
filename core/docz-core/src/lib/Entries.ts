@@ -4,12 +4,12 @@ import { mdast } from 'docz-utils'
 import { touch, compiled } from 'docz-utils/lib/fs'
 import glob from 'fast-glob'
 
-import * as paths from './config/paths'
+import * as paths from '../config/paths'
 
 import { Entry, EntryObj } from './Entry'
 import { Plugin } from './Plugin'
-import { Config } from './config/argv'
-import { getRepoEditUrl } from './utils/repo-info'
+import { Config } from '../config/argv'
+import { getRepoEditUrl } from '../utils/repo-info'
 
 export const fromTemplates = (file: string) => path.join(paths.templates, file)
 

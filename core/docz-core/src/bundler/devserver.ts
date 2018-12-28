@@ -6,7 +6,7 @@ import ignoredFiles from 'react-dev-utils/ignoredFiles'
 
 import * as paths from '../config/paths'
 import { Config as Args } from '../config/argv'
-import { ServerHooks } from '../Bundler'
+import { ServerHooks } from '../lib/Bundler'
 
 export const devServerConfig = (hooks: ServerHooks, args: Args) => {
   const srcPath = path.resolve(paths.root, args.src)

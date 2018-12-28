@@ -5,7 +5,7 @@ import humanize from 'humanize-string'
 import titleize from 'titleize'
 import get from 'lodash/get'
 
-import { Plugin } from '../Plugin'
+import { Plugin } from '../lib/Plugin'
 import { BabelRC } from '../config/babel'
 import * as paths from '../config/paths'
 

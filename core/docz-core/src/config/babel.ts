@@ -3,7 +3,7 @@ import merge from 'deepmerge'
 import getCacheIdentifier from 'react-dev-utils/getCacheIdentifier'
 
 import { Config, Env } from '../config/argv'
-import { Plugin } from '../Plugin'
+import { Plugin } from '../lib/Plugin'
 
 export interface BabelRC {
   presets: any[]

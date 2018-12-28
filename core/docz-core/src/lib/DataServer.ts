@@ -2,8 +2,8 @@ import * as fs from 'fs-extra'
 import WS from 'ws'
 import { isFunction } from 'lodash/fp'
 
-import * as paths from './config/paths'
-import { onSignal } from './utils/on-signal'
+import * as paths from '../config/paths'
+import { onSignal } from '../utils/on-signal'
 
 export type Send = (type: string, payload: any) => void
 export type On = (type: string) => Promise<any>

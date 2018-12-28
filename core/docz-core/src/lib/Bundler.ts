@@ -3,9 +3,9 @@ import * as http from 'http'
 import logger from 'signale'
 
 import { Plugin } from './Plugin'
-import { Config as Args, Env } from './config/argv'
-import { getBabelConfig, BabelRC } from './config/babel'
-import * as paths from './config/paths'
+import { Config as Args, Env } from '../config/argv'
+import { getBabelConfig, BabelRC } from '../config/babel'
+import * as paths from '../config/paths'
 
 export interface ServerHooks {
   onCreateWebpackChain<C>(config: C, dev: boolean, args: Args): void

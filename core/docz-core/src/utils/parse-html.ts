@@ -8,7 +8,7 @@ import {
 
 import * as paths from '../config/paths'
 import { Config } from '../config/argv'
-import { fromTemplates } from '../Entries'
+import { fromTemplates } from '../lib/Entries'
 
 const wrapItems = (item: any) =>
   Object.keys(item)

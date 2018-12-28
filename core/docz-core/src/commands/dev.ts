@@ -4,11 +4,11 @@ import { Arguments } from 'yargs'
 import logger from 'signale'
 import envDotProp from 'env-dot-prop'
 
-import { Entries } from '../Entries'
-import { DataServer } from '../DataServer'
+import { Entries } from '../lib/Entries'
+import { DataServer } from '../lib/DataServer'
 import { parseConfig } from '../config/docz'
 import { onSignal } from '../utils/on-signal'
-import { bundler as webpack } from '../webpack'
+import { bundler as webpack } from '../bundler'
 import * as states from '../states'
 
 export const dev = async (args: Arguments) => {

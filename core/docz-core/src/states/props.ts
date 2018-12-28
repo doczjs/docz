@@ -1,7 +1,7 @@
 import chokidar from 'chokidar'
 import equal from 'fast-deep-equal'
 import fastglob from 'fast-glob'
-import { State, Params } from '../DataServer'
+import { State, Params } from '../lib/DataServer'
 import { get, omit } from 'lodash/fp'
 
 import * as paths from '../config/paths'

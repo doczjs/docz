@@ -7,7 +7,7 @@ import detectPort from 'detect-port'
 import * as paths from '../config/paths'
 import { BabelRC } from '../config/babel'
 import { Config } from '../config/argv'
-import { Plugin } from '../Plugin'
+import { Plugin } from '../lib/Plugin'
 
 const toOmit = ['_', '$0', 'version', 'help']
 const htmlContext = {

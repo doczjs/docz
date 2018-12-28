@@ -4,7 +4,7 @@ import chokidar from 'chokidar'
 import get from 'lodash/get'
 
 import * as paths from '../config/paths'
-import { Params, State } from '../DataServer'
+import { Params, State } from '../lib/DataServer'
 import { Config, Menu, ThemeConfig } from '../config/argv'
 import { getRepoUrl } from '../utils/repo-info'
 

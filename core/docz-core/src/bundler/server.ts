@@ -6,7 +6,7 @@ import WebpackDevServer from 'webpack-dev-server'
 import * as paths from '../config/paths'
 import { devServerConfig } from './devserver'
 import { Config as Args } from '../config/argv'
-import { ServerHooks as Hooks } from '../Bundler'
+import { ServerHooks as Hooks } from '../lib/Bundler'
 import * as serverUtils from 'react-dev-utils/WebpackDevServerUtils'
 
 export const server = (args: Args) => async (config: Config, hooks: Hooks) => {

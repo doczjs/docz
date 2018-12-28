@@ -3,8 +3,8 @@ import chokidar from 'chokidar'
 import equal from 'fast-deep-equal'
 import { touch, compiled } from 'docz-utils/lib/fs'
 
-import { Params, State } from '../DataServer'
-import { Entries, EntryMap, fromTemplates } from '../Entries'
+import { Params, State } from '../lib/DataServer'
+import { Entries, EntryMap, fromTemplates } from '../lib/Entries'
 import { Config } from '../config/argv'
 import * as paths from '../config/paths'
 
