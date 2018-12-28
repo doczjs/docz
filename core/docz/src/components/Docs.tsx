@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Fragment } from 'react'
 import sort from 'array-sort'
 
-import { state, Entry } from '../state'
+import { state, Entry, Config } from '../state'
 import { compare, flatArrFromObject, isFn } from '../utils/helpers'
 
 export interface DocsRenderProps {
@@ -13,6 +13,7 @@ export interface DocsRenderProps {
    * will be deleted in v1.0
    */
   menus: string[]
+  config: Config
 }
 
 export interface DocsProps {
@@ -47,6 +48,7 @@ export const Docs: React.SFC<DocsProps> = ({ children }) => {
         return children({
           menus,
           docs,
+          config,
         })
       })}
     </Fragment>

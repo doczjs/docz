@@ -41,6 +41,7 @@ export interface Config {
   version: string | null
   repository: string | null
   native: boolean
+  separator: string
 }
 
 export type EntryMap = Record<string, Entry>
