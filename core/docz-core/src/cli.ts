@@ -11,7 +11,7 @@ export const cli = () => {
       await commands.dev(args)
     })
     .command('build', 'build dir as static site', setArgs, async args => {
-      setEnv('build')
+      setEnv('production')
       await commands.build(args)
       process.exit()
     })

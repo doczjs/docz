@@ -34,9 +34,9 @@ export const devServerConfig = (hooks: ServerHooks, args: Args) => {
       disableDotRule: true,
     },
     before(app: any, server: any): void {
+      app.use('/public', express.static(publicDir))
       app.use(evalSourceMapMiddleware(server))
       app.use(errorOverlayMiddleware())
-      app.use('/public', express.static(publicDir))
       hooks.onPreCreateApp<any>(app)
     },
     after(app: any): void {

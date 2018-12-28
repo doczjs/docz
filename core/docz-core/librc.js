@@ -22,7 +22,6 @@ module.exports = {
     'react-dev-utils/formatWebpackMessages',
     'react-dev-utils/getCacheIdentifier',
     'react-dev-utils/ignoredFiles',
-    'react-dev-utils/printBuildError',
     'react-dev-utils/WebpackDevServerUtils',
     'react-dom/server',
   ]),

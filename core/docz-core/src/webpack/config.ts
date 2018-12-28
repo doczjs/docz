@@ -101,10 +101,14 @@ export const createConfig = (args: Args, env: Env) => async (
   config.resolve.alias.set('~imports', paths.importsJs)
   config.resolve.alias.set('react-native$', 'react-native-web')
 
+  const inYarnWorkspaces = __dirname.includes('/docz/core/docz-core')
+  const doczDependenciesDir = inYarnWorkspaces
+    ? path.join(__dirname, '../../../../node_modules')
+    : path.join(__dirname, '../../../')
+
   config.resolve.modules
-    .add(paths.ownNodeModules)
-    .add(paths.appNodeModules)
     .add('node_modules')
+    .add(doczDependenciesDir)
     .add(srcPath)
     .add(paths.root)
     .merge(
@@ -117,9 +121,8 @@ export const createConfig = (args: Args, env: Env) => async (
   config.resolveLoader
     .set('symlinks', true)
     .modules // prioritize our own
-    .add(paths.ownNodeModules)
-    .add(paths.appNodeModules)
     .add('node_modules')
+    .add(doczDependenciesDir)
     .add(paths.root)
 
   /**

@@ -4,7 +4,6 @@ import logger from 'signale'
 import webpack, { Configuration as CFG } from 'webpack'
 import FSR from 'react-dev-utils/FileSizeReporter'
 import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages'
-import printBuildError from 'react-dev-utils/printBuildError'
 import envDotProp from 'env-dot-prop'
 
 import * as paths from '../config/paths'
@@ -105,7 +104,7 @@ const onSuccess = (
 const onError = (err: Error) => {
   logger.log()
   logger.fatal(chalk.red('Failed to compile.\n'))
-  printBuildError(err)
+  logger.fatal(err)
   process.exit(1)
   logger.log()
 }
@@ -118,7 +117,7 @@ export const build = async (config: CFG, dist: string, publicDir: string) => {
     await fs.emptyDir(dist)
     await copyPublicFolder(dist, publicDir)
 
-    const result = builder(config, previousFileSizes)
+    const result = await builder(config, previousFileSizes)
     onSuccess(dist, result)
   } catch (err) {
     onError(err)
