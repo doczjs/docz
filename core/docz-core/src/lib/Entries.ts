@@ -91,7 +91,7 @@ export class Entries {
     const createEntry = async (file: string) => {
       try {
         const ast = await parseMdx(file)
-        const entry = new Entry(ast, file, src)
+        const entry = new Entry(ast, file, src, config)
 
         if (this.repoEditUrl) entry.setLink(this.repoEditUrl)
         const { settings, ...rest } = entry

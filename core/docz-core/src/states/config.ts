@@ -18,6 +18,7 @@ interface Payload {
   native: boolean
   codeSandbox: boolean
   themeConfig: ThemeConfig
+  separator: string
 }
 
 const getInitialConfig = (config: Config): Payload => {
@@ -34,6 +35,7 @@ const getInitialConfig = (config: Config): Payload => {
     native: config.native,
     codeSandbox: config.codeSandbox,
     themeConfig: config.themeConfig,
+    separator: config.separator,
   }
 }
 
