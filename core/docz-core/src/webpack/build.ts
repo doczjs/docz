@@ -1,6 +1,6 @@
 import * as fs from 'fs-extra'
 import chalk from 'chalk'
-import logger from 'signale'
+import logger, { Signale } from 'signale'
 import webpack, { Configuration as CFG } from 'webpack'
 import FSR from 'react-dev-utils/FileSizeReporter'
 import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages'
@@ -103,14 +103,17 @@ const onSuccess = (
 
 const onError = (err: Error) => {
   logger.log()
-  logger.fatal(chalk.red('Failed to compile.\n'))
   logger.fatal(err)
   process.exit(1)
   logger.log()
 }
 
 export const build = async (config: CFG, dist: string, publicDir: string) => {
+  const interactive = new Signale({ interactive: true, scope: 'build' })
+
   try {
+    interactive.start('Creating an optimized bundle')
+
     await fs.ensureDir(dist)
     const previousFileSizes = await measureFileSizesBeforeBuild(dist)
 
@@ -118,8 +121,11 @@ export const build = async (config: CFG, dist: string, publicDir: string) => {
     await copyPublicFolder(dist, publicDir)
 
     const result = await builder(config, previousFileSizes)
+
+    interactive.success('Build successfully created')
     onSuccess(dist, result)
   } catch (err) {
+    logger.fatal(chalk.red('Failed to compile.\n'))
     onError(err)
   }
 }

@@ -41,7 +41,7 @@ export const dev = async (args: Arguments) => {
     await dataServer.init()
     await dataServer.listen()
   } catch (err) {
-    logger.fatal('Failed to process your server:', err)
+    logger.fatal('Failed to process data server:', err)
     await dataServer.close()
     process.exit(1)
   }
