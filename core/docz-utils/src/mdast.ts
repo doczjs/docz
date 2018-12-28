@@ -40,28 +40,29 @@ const valueFromHeading = (node: any) => {
   return humanize(slug)
 }
 
+const extractAst = <T>(callback: (node: any) => T, type: string) => {
+  return (ast: any): T[] => {
+    const results: T[] = []
+
+    visit(ast, type, (node: any) => {
+      results.push(callback(node))
+    })
+
+    return results
+  }
+}
+
 export interface Heading {
   depth: number
   slug: string
   value: string
 }
 
-export const headingsFromAst = (ast: any): Heading[] => {
-  const headings: Heading[] = []
-
-  visit(ast, 'heading', (node: any) => {
-    const slug = get(node, 'data.id')
-    const depth = get(node, 'depth')
-
-    headings.push({
-      depth,
-      slug,
-      value: valueFromHeading(node),
-    })
-  })
-
-  return headings
-}
+export const headingsFromAst = extractAst<Heading>((node: any) => ({
+  depth: get(node, 'data.id'),
+  slug: get(node, 'depth'),
+  value: valueFromHeading(node),
+}), 'heading')
 
 export interface ParsedData {
   [key: string]: any
