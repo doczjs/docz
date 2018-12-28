@@ -1,11 +1,11 @@
 import * as path from 'path'
 import chokidar from 'chokidar'
 import equal from 'fast-deep-equal'
+import { touch, compiled } from 'docz-utils/lib/fs'
 
 import { Params, State } from '../DataServer'
 import { Entries, EntryMap, fromTemplates } from '../Entries'
 import { Config } from '../config/argv'
-import { touch, compiled } from '../utils/fs'
 import * as paths from '../config/paths'
 
 const writeImports = async (map: EntryMap): Promise<void> => {

@@ -7,14 +7,14 @@
   "module": "lib/index.m.js",
   "typings": "lib/index.d.ts",
   "source": [
-    "src/index.ts",
     "src/ast.ts",
-    "src/mdast.ts",
     "src/codesandbox.ts",
     "src/format.ts",
+    "src/fs.ts",
     "src/imports.ts",
+    "src/index.ts",
     "src/jsx.ts",
-    "src/named-asset-import.ts"
+    "src/mdast.ts"
   ],
   "files": [
     "lib/",
@@ -33,6 +33,7 @@
     "@babel/generator": "^7.2.2",
     "@babel/parser": "^7.2.3",
     "@babel/traverse": "^7.2.3",
+    "art-template": "^4.13.2",
     "codesandboxer-fs": "^0.4.7",
     "fs-extra": "^7.0.1",
     "humanize-string": "^1.0.2",

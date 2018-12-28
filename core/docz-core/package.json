@@ -26,7 +26,6 @@
     "@babel/runtime": "^7.2.0",
     "@mdx-js/loader": "^0.16.6",
     "@sindresorhus/slugify": "^0.6.0",
-    "art-template": "^4.13.2",
     "babel-loader": "^8.0.2",
     "babel-plugin-export-metadata": "^0.13.4",
     "babel-preset-react-app": "^7.0.0",

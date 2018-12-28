@@ -1,14 +1,14 @@
 import * as path from 'path'
 import * as ctags from 'common-tags'
+import { compiled } from 'docz-utils/lib/fs'
 import {
   generateCSSReferences,
   generateJSReferences,
 } from 'mini-html-webpack-plugin'
 
-import { compiled } from './fs'
-import { fromTemplates } from '../Entries'
 import * as paths from '../config/paths'
 import { Config } from '../config/argv'
+import { fromTemplates } from '../Entries'
 
 const wrapItems = (item: any) =>
   Object.keys(item)

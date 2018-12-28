@@ -1,8 +1,8 @@
+import * as fs from 'fs-extra'
 import WS from 'ws'
 import { isFunction } from 'lodash/fp'
 
 import * as paths from './config/paths'
-import { touch } from './utils/fs'
 import { onSignal } from './utils/on-signal'
 
 export type Send = (type: string, payload: any) => void
@@ -124,6 +124,6 @@ export class DataServer {
   }
 
   private async updateStateFile(): Promise<void> {
-    await touch(paths.db, JSON.stringify(this.state, null, 2))
+    await fs.outputJSON(paths.db, this.state)
   }
 }
