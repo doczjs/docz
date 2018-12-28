@@ -6,7 +6,6 @@ import { Plugin } from '../Plugin'
 import { Entries } from '../Entries'
 import { DataServer } from '../DataServer'
 import { parseConfig } from '../config/docz'
-import { promiseLogger } from '../utils/promise-logger'
 import { bundler as webpack } from '../webpack'
 import * as states from '../states'
 
@@ -24,13 +23,13 @@ export const build = async (args: Arguments) => {
   dataServer.register([states.config(config), states.entries(entries, config)])
 
   try {
-    await promiseLogger(Entries.writeApp(config, true), 'Parsing mdx files')
-    await promiseLogger(dataServer.init(), 'Running data server')
+    await Entries.writeApp(config, true)
+    await dataServer.init()
 
-    await promiseLogger(run('onPreBuild', config), 'Running onPreBuild()')
+    await run('onPreBuild', config)
     await bundler.build(bundlerConfig)
 
-    await promiseLogger(run('onPostBuild', config), 'Running onPostBuild()')
+    await run('onPostBuild', config)
     await dataServer.close()
   } catch (err) {
     logger.fatal(err)

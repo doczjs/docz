@@ -7,7 +7,6 @@ import envDotProp from 'env-dot-prop'
 import { Entries } from '../Entries'
 import { DataServer } from '../DataServer'
 import { parseConfig } from '../config/docz'
-import { promiseLogger } from '../utils/promise-logger'
 import { onSignal } from '../utils/on-signal'
 import { bundler as webpack } from '../webpack'
 import * as states from '../states'
@@ -19,21 +18,18 @@ export const dev = async (args: Arguments) => {
   const entries = new Entries(config)
 
   const bundlerConfig = await bundler.mountConfig(env)
-  const app = await promiseLogger(
-    bundler.createApp(bundlerConfig),
-    'Creating app...'
-  )
+  const app = await bundler.createApp(bundlerConfig)
 
   try {
-    await promiseLogger(Entries.writeApp(config, true), 'Parsing mdx files')
+    await Entries.writeApp(config, true)
   } catch (err) {
     logger.fatal('Failed to build your files:', err)
     process.exit(1)
   }
 
-  const server = await promiseLogger(app.start(), 'Starting your server')
+  const server = await app.start()
   const dataServer = new DataServer(
-    server.listeningApp,
+    server,
     config.websocketPort,
     config.websocketHost
   )
@@ -42,7 +38,7 @@ export const dev = async (args: Arguments) => {
   dataServer.register([states.config(config), states.entries(entries, config)])
 
   try {
-    await promiseLogger(dataServer.init(), 'Running data server')
+    await dataServer.init()
     await dataServer.listen()
   } catch (err) {
     logger.fatal('Failed to process your server:', err)
@@ -55,7 +51,7 @@ export const dev = async (args: Arguments) => {
     server.close()
   })
 
-  server.listeningApp.on('close', async () => {
+  server.on('close', async () => {
     await dataServer.close()
   })
 }

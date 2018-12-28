@@ -1,10 +1,9 @@
 import WS from 'ws'
 import { isFunction } from 'lodash/fp'
 
-import { touch } from './utils/fs'
 import * as paths from './config/paths'
+import { touch } from './utils/fs'
 import { onSignal } from './utils/on-signal'
-import { promiseLogger } from './utils/promise-logger'
 
 export type Send = (type: string, payload: any) => void
 export type On = (type: string) => Promise<any>
@@ -60,13 +59,10 @@ export class DataServer {
     await Promise.all(
       Array.from(this.states).map(async state => {
         if (!isFunction(state.init)) return
-
-        const promise = state.init({
+        return state.init({
           state: { ...this.state },
           setState: this.setState(),
         })
-
-        return promiseLogger(promise, `Initial data for ${state.id}`)
       })
     )
 
