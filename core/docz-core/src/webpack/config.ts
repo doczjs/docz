@@ -31,9 +31,9 @@ export const createConfig = (args: Args, env: Env) => async (
   config.set('mode', env)
 
   config.when(
-    isProd,
-    cfg => cfg.devtool('source-map'),
-    cfg => cfg.devtool('cheap-module-eval-source-map')
+    args.sourcemaps,
+    cfg => cfg.devtool(isProd ? 'source-map' : 'cheap-module-eval-source-map'),
+    cfg => cfg.devtool(false)
   )
 
   config.node.merge({
