@@ -5,6 +5,7 @@ import friendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
 import { minify } from 'html-minifier'
 import miniHtmlWebpack from 'mini-html-webpack-plugin'
 import manifestPlugin from 'webpack-manifest-plugin'
+import watchMissingNodeModules from 'react-dev-utils/WatchMissingNodeModulesPlugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
 import * as paths from '../config/paths'
@@ -121,4 +122,10 @@ export const webpackBar = (config: Config) => {
       name: 'Client',
     },
   ])
+}
+
+export const watchNodeModulesPlugin = (config: Config) => {
+  config
+    .plugin('watch-missing-node-modules')
+    .use(watchMissingNodeModules, [paths.appNodeModules])
 }

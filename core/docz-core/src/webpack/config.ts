@@ -148,6 +148,7 @@ export const createConfig = (args: Args, env: Env) => async (
   plugins.hot(config)
 
   config.when(debug, cfg => plugins.analyzer(cfg))
+  config.when(!isProd, cfg => plugins.watchNodeModulesPlugin(cfg))
   config.when(!debug && !isProd, cfg => {
     plugins.webpackBar(cfg)
     plugins.friendlyErrors(cfg, args)
