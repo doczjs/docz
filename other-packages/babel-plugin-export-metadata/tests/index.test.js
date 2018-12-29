@@ -4,7 +4,6 @@ import * as path from 'path'
 import plugin from '../src'
 
 const fixture = path.resolve('./tests/fixtures/example.js')
-
 const code = fs.readFileSync(fixture).toString()
 
 it('works', () => {

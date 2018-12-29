@@ -1,7 +1,7 @@
 import * as path from 'path'
 import { Configuration } from 'webpack'
+import * as envDotProp from 'env-dot-prop'
 import Config from 'webpack-chain'
-import envDotProp from 'env-dot-prop'
 
 import * as loaders from './loaders'
 import * as plugins from './plugins'

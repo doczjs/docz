@@ -1,21 +1,19 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "module": "esnext",
     "target": "es6",
+    "module": "esnext",
     "jsxFactory": "jsx",
     "declaration": false,
-    "outDir": "dist",
-    "rootDir": "src",
-    "typeRoots": ["../../node_modules/@types", "node_modules/@types", "src/types"],
     "baseUrl": "src",
+    "rootDir": "src",
+    "outDir": "dist",
+    "typeRoots": ["../../node_modules/@types", "node_modules/@types"],
     "paths": {
-      "@ui/*": ["components/ui/*"],
-      "@shared/*": ["components/shared/*"],
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/types"],
   "exclude": ["node_modules/**"]
 }

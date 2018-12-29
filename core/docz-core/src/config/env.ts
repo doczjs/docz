@@ -1,5 +1,5 @@
 import * as path from 'path'
-import envDotProp from 'env-dot-prop'
+import * as envDotProp from 'env-dot-prop'
 
 import { root, resolveApp } from './paths'
 

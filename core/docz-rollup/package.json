@@ -1,0 +1,26 @@
+{
+  "name": "docz-rollup",
+  "version": "0.13.3",
+  "license": "MIT",
+  "main": "src/index.js",
+  "files": [
+    "src/",
+    "package.json"
+  ],
+  "scripts": {
+    "fix": "run-s fix:*",
+    "fix:prettier": "prettier \"src/**/*.{ts,tsx,md,mdx,js,jsx,json}\" --write"
+  },
+  "dependencies": {
+    "@pedronauck/rollup-plugin-typescript2": "0.18.3",
+    "chalk": "^2.4.1",
+    "figures": "2.0.0",
+    "filesize": "^3.6.1",
+    "fs-extra": "^7.0.1",
+    "gzip-size": "^5.0.0",
+    "lodash": "^4.17.11",
+    "log-update": "^2.3.0",
+    "rollup": "^1.0.0",
+    "rollup-plugin-babel": "^4.1.0"
+  }
+}

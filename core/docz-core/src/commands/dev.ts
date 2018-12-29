@@ -1,8 +1,9 @@
 process.setMaxListeners(Infinity)
 
 import { Arguments } from 'yargs'
-import logger from 'signale'
-import envDotProp from 'env-dot-prop'
+import * as logger from 'signale'
+import * as envDotProp from 'env-dot-prop'
+import PrettyError from 'pretty-error'
 
 import { Entries } from '../lib/Entries'
 import { DataServer } from '../lib/DataServer'
@@ -11,6 +12,7 @@ import { onSignal } from '../utils/on-signal'
 import { bundler as webpack } from '../bundler'
 import * as states from '../states'
 
+const pe = new PrettyError()
 export const dev = async (args: Arguments<any>) => {
   const env = envDotProp.get('node.env')
   const config = await parseConfig(args)
@@ -23,7 +25,8 @@ export const dev = async (args: Arguments<any>) => {
   try {
     await Entries.writeApp(config, true)
   } catch (err) {
-    logger.fatal('Failed to build your files:', err)
+    logger.fatal('Failed to build your files')
+    pe.render(err)
     process.exit(1)
   }
 
@@ -41,7 +44,8 @@ export const dev = async (args: Arguments<any>) => {
     await dataServer.init()
     await dataServer.listen()
   } catch (err) {
-    logger.fatal('Failed to process data server:', err)
+    logger.fatal('Failed to process data server')
+    pe.render(err)
     await dataServer.close()
     process.exit(1)
   }

@@ -8,10 +8,12 @@ import importedProptypesHandler from 'react-docgen-imported-proptype-handler'
 import actualNameHandler from 'react-docgen-actual-name-handler'
 import reactDocgenTs from 'react-docgen-typescript'
 import reactDocgen from 'react-docgen'
+import PrettyError from 'pretty-error'
 
 import * as paths from '../config/paths'
 import { Config } from '../config/argv'
 
+const pe = new PrettyError()
 const fileFullPath = (filepath: string) => path.join(paths.root, filepath)
 
 const tsParser = async (files: string[], config: Config) => {
@@ -32,7 +34,8 @@ const tsParser = async (files: string[], config: Config) => {
       .map(filepath => ({ [fileFullPath(filepath)]: parse(filepath) }))
       .reduce((obj, val) => ({ ...obj, ...val }), {})
   } catch (err) {
-    logger.fatal('Error parsing static types.', err)
+    logger.fatal('Error parsing static types.')
+    pe.render(err)
     return {}
   }
 }
@@ -55,9 +58,7 @@ const jsParser = (files: string[], config: Config) => {
       const data = reactDocgen.parse(code, resolver, handlers)
       memo[fileFullPath(filepath)] = data
     } catch (err) {
-      if (err.message !== 'No suitable component definition found.') {
-        logger.fatal('Error:', filepath, err)
-      }
+      pe.render(err)
     }
 
     return memo

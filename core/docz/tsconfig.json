@@ -3,9 +3,10 @@
   "compilerOptions": {
     "module": "esnext",
     "declaration": true,
-    "outDir": "dist",
-    "rootDir": "src",
-    "typeRoots": ["../../node_modules/@types", "node_modules/@types", "src/types"]
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "baseUrl": "./",
+    "typeRoots": ["../../node_modules/@types", "node_modules/@types"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules/**", "templates/**"]

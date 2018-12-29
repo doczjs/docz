@@ -6,6 +6,7 @@
     "moduleResolution": "node",
     "inlineSourceMap": true,
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
 
     "jsx": "react",
     "strict": true /* Enable all strict type-checking options. */,

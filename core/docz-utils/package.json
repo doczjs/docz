@@ -4,26 +4,16 @@
   "description": "Some methods used and utilities used on docz",
   "license": "MIT",
   "main": "lib/index.js",
-  "module": "lib/index.m.js",
+  "module": "lib/index.esm.js",
   "typings": "lib/index.d.ts",
-  "source": [
-    "src/ast.ts",
-    "src/codesandbox.ts",
-    "src/format.ts",
-    "src/fs.ts",
-    "src/imports.ts",
-    "src/index.ts",
-    "src/jsx.ts",
-    "src/mdast.ts"
-  ],
   "files": [
     "lib/",
     "package.json",
     "README.md"
   ],
   "scripts": {
-    "dev": "libundler watch --dest lib --ts -e all",
-    "build": "libundler build --dest lib --ts -e all --c",
+    "dev": "cross-env NODE_ENV=development yarn build -w",
+    "build": "trash lib && cross-env NODE_ENV=production rollup -c",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx,md,mdx,js,jsx,json}\" --write",
     "fix:tslint": "tslint --fix --project .",

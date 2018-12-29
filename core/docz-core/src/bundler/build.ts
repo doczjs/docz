@@ -1,10 +1,11 @@
 import * as fs from 'fs-extra'
-import chalk from 'chalk'
-import logger, { Signale } from 'signale'
+import * as logger from 'signale'
+import * as envDotProp from 'env-dot-prop'
 import webpack, { Configuration as CFG } from 'webpack'
-import FSR from 'react-dev-utils/FileSizeReporter'
-import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages'
-import envDotProp from 'env-dot-prop'
+import chalk from 'chalk'
+
+const FSR = require('react-dev-utils/FileSizeReporter')
+const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages')
 
 import * as paths from '../config/paths'
 
@@ -109,7 +110,7 @@ const onError = (err: Error) => {
 }
 
 export const build = async (config: CFG, dist: string, publicDir: string) => {
-  const interactive = new Signale({ interactive: true, scope: 'build' })
+  const interactive = new logger.Signale({ interactive: true, scope: 'build' })
 
   try {
     interactive.start('Creating an optimized bundle')

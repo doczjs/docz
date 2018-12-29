@@ -1,5 +1,5 @@
 import { utils } from 'react-docgen'
-import recast from 'recast'
+import * as recast from 'recast'
 
 const { getNameOrValue, resolveFunctionDefinitionToReturnValue } = utils
 const {

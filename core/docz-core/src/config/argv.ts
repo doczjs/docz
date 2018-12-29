@@ -1,9 +1,9 @@
 import * as fs from 'fs-extra'
 import { Argv as Yargs } from 'yargs'
-import envDotProp from 'env-dot-prop'
+import * as envDotProp from 'env-dot-prop'
 import humanize from 'humanize-string'
 import titleize from 'titleize'
-import get from 'lodash/get'
+import { get } from 'lodash/fp'
 
 import { Plugin } from '../lib/Plugin'
 import { BabelRC } from '../config/babel'
@@ -12,14 +12,13 @@ import * as paths from '../config/paths'
 const getEnv = (val: string | string[], defaultValue: any = null): any =>
   envDotProp.get(val, defaultValue, { parse: true })
 
-const removeScope = (name: string) => name.replace(/^@.*\//, '')
 const getInitialTitle = (pkg: any): string => {
-  const name = get(pkg, 'name') || 'MyDoc'
-  return titleize(humanize(removeScope(name)))
+  const name = get('name', pkg) || 'MyDoc'
+  return titleize(humanize(name.replace(/^@.*\//, '')))
 }
 
 const getInitialDescription = (pkg: any): string =>
-  get(pkg, 'description') || 'My awesome app using docz'
+  get('description', pkg) || 'My awesome app using docz'
 
 export type Env = 'production' | 'development'
 export type ThemeConfig = Record<string, any>

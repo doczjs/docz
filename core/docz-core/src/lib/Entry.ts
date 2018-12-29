@@ -2,7 +2,12 @@ import * as path from 'path'
 import * as crypto from 'crypto'
 import slugify from '@sindresorhus/slugify'
 import humanize from 'humanize-string'
-import { mdast } from 'docz-utils'
+import {
+  getParsedData,
+  headingsFromAst,
+  Heading,
+  ParsedData,
+} from 'docz-utils/lib/mdast'
 
 import * as paths from '../config/paths'
 
@@ -21,7 +26,7 @@ export interface EntryObj {
   route: string
   order: number
   menu: string | null
-  headings: mdast.Heading[]
+  headings: Heading[]
   [key: string]: any
 }
 
@@ -36,14 +41,14 @@ export class Entry {
   public name: string
   public order: number
   public menu: string | null
-  public headings: mdast.Heading[]
+  public headings: Heading[]
   public settings: {
     [key: string]: any
   }
 
   constructor(ast: any, file: string, src: string) {
     const filepath = this.getFilepath(file, src)
-    const parsed = mdast.getParsedData(ast)
+    const parsed = getParsedData(ast)
     const name = this.getName(filepath, parsed)
 
     this.id = createId(file)
@@ -54,7 +59,7 @@ export class Entry {
     this.name = name
     this.order = parsed.order || 0
     this.menu = parsed.menu || null
-    this.headings = mdast.headingsFromAst(ast)
+    this.headings = headingsFromAst(ast)
     this.settings = parsed
   }
 
@@ -75,7 +80,7 @@ export class Entry {
     return filepath
   }
 
-  private getName(filepath: string, parsed: mdast.ParsedData): string {
+  private getName(filepath: string, parsed: ParsedData): string {
     const filename = humanize(path.parse(filepath).name)
     return parsed && parsed.name ? parsed.name : filename
   }

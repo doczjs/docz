@@ -1,8 +1,9 @@
 import * as path from 'path'
 import * as fs from 'fs-extra'
-import { mdast } from 'docz-utils'
+import { parseMdx } from 'docz-utils/lib/mdast'
 import { touch, compiled } from 'docz-utils/lib/fs'
 import glob from 'fast-glob'
+import PrettyError from 'pretty-error'
 
 import * as paths from '../config/paths'
 
@@ -13,6 +14,7 @@ import { getRepoEditUrl } from '../utils/repo-info'
 
 export const fromTemplates = (file: string) => path.join(paths.templates, file)
 
+const pe = new PrettyError()
 const mapToObj = (map: Map<any, any>) =>
   Array.from(map.entries()).reduce(
     (obj, [key, value]) => ({ ...obj, [`${key}`]: value }),
@@ -88,7 +90,7 @@ export class Entries {
 
     const createEntry = async (file: string) => {
       try {
-        const ast = await mdast.parseMdx(file)
+        const ast = await parseMdx(file)
         const entry = new Entry(ast, file, src)
 
         if (this.repoEditUrl) entry.setLink(this.repoEditUrl)
@@ -99,6 +101,8 @@ export class Entries {
           ...rest,
         }
       } catch (err) {
+        console.log(err)
+        config.debug && pe.render(err)
         return null
       }
     }

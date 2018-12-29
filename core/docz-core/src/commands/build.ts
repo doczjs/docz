@@ -1,6 +1,6 @@
 import { Arguments } from 'yargs'
-import logger from 'signale'
-import envDotProp from 'env-dot-prop'
+import * as envDotProp from 'env-dot-prop'
+import PrettyError from 'pretty-error'
 
 import { Plugin } from '../lib/Plugin'
 import { Entries } from '../lib/Entries'
@@ -9,6 +9,7 @@ import { parseConfig } from '../config/docz'
 import { bundler as webpack } from '../bundler'
 import * as states from '../states'
 
+const pe = new PrettyError()
 export const build = async (args: Arguments<any>) => {
   const env = envDotProp.get('node.env')
   const config = await parseConfig(args)
@@ -32,7 +33,7 @@ export const build = async (args: Arguments<any>) => {
     await run('onPostBuild', config)
     await dataServer.close()
   } catch (err) {
-    logger.fatal(err)
+    pe.render(err)
     process.exit(1)
   }
 }

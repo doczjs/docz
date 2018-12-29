@@ -1,6 +1,6 @@
 import * as fs from 'fs-extra'
 import * as path from 'path'
-import findup from 'find-up'
+import * as findup from 'find-up'
 import merge from 'deepmerge'
 import esm from 'esm'
 

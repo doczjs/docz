@@ -2,9 +2,10 @@ import * as path from 'path'
 import is from 'unist-util-is'
 import flatten from 'lodash.flatten'
 import nodeToString from 'hast-util-to-string'
-import { jsx, imports as imps } from 'docz-utils'
 import { format } from 'docz-utils/lib/format'
+import { componentName, sanitizeCode, removeTags } from 'docz-utils/lib/jsx'
 import { getSandboxImportInfo } from 'docz-utils/lib/codesandbox'
+import { getFullImports, getImportsVariables } from 'docz-utils/lib/imports'
 
 const isPlayground = (name: string) => name === 'Playground'
 
@@ -16,14 +17,14 @@ const addPropsOnPlayground = async (
   cwd: string,
   useCodeSandbox: boolean
 ) => {
-  const name = jsx.componentName(node.value)
+  const name = componentName(node.value)
   const tagOpen = new RegExp(`^\\<${name}`)
 
   if (isPlayground(name)) {
     const formatted = await format(nodeToString(node))
     const code = formatted.slice(1, Infinity)
     const scope = `{props: this ? this.props : props,${scopes.join(',')}}`
-    const child = jsx.sanitizeCode(jsx.removeTags(code))
+    const child = sanitizeCode(removeTags(code))
 
     node.value = node.value.replace(
       tagOpen,
@@ -55,8 +56,8 @@ export default (root: string, useCodeSandbox: boolean) => () => (
   fileInfo: any
 ) => {
   const importNodes = tree.children.filter((node: any) => is('import', node))
-  const imports: string[] = flatten(importNodes.map(imps.getFullImports))
-  const scopes: string[] = flatten(importNodes.map(imps.getImportsVariables))
+  const imports: string[] = flatten(importNodes.map(getFullImports))
+  const scopes: string[] = flatten(importNodes.map(getImportsVariables))
   const fileCwd = path.relative(root, path.dirname(fileInfo.history[0]))
 
   const nodes = tree.children

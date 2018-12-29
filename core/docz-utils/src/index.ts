@@ -1,9 +1,7 @@
-import * as ast from './ast'
-import * as codesandbox from './codesandbox'
-import * as fs from './fs'
-import * as imports from './imports'
-import * as jsx from './jsx'
-import * as mdast from './mdast'
-import { format } from './format'
-
-export { ast, fs, mdast, format, imports, jsx, codesandbox }
+export * from './ast'
+export * from './codesandbox'
+export * from './fs'
+export * from './imports'
+export * from './jsx'
+export * from './mdast'
+export { format } from './format'

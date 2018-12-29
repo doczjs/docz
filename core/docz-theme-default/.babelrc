@@ -1,4 +1,18 @@
 {
+  "plugins": [
+    "lodash",
+    [
+      "module-resolver",
+      {
+        "extensions": [".ts", ".tsx"],
+        "root": ["./src"],
+        "alias": {
+          "@utils": "./src/utils",
+          "@styles": "./src/styles"
+        }
+      }
+    ]
+  ],
   "env": {
     "production": {
       "presets": ["@emotion/babel-preset-css-prop"]

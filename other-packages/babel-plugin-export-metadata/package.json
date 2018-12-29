@@ -13,23 +13,14 @@
       "email": "pedronauck@gmail.com"
     }
   ],
-  "main": "dist/index.js",
-  "umd:main": "dist/index.umd.js",
-  "module": "dist/index.m.js",
-  "typings": "dist/index.d.ts",
-  "source": "src/index.ts",
+  "main": "src/index.js",
   "files": [
-    "dist/",
-    "package.json",
-    "README.md"
+    "src/",
+    "package.json"
   ],
   "scripts": {
-    "dev": "libundler watch --ts -e all",
-    "build": "libundler build --ts -e all --c",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
-    "fix:tslint": "tslint --fix --project .",
-    "tslint": "tslint --project .",
     "test": "jest"
   },
   "dependencies": {
@@ -38,15 +29,9 @@
     "@babel/preset-env": "^7.2.3",
     "@babel/template": "^7.1.2",
     "babel-core": "7.0.0-bridge.0",
-    "babel-literal-to-ast": "^2.0.0",
-    "jsdoc": "^3.5.5",
-    "lodash": "^4.17.11",
-    "ts-jest": "^23.10.3"
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "@types/babel__template": "^7.0.0",
-    "@types/jest": "^23.3.2",
-    "@types/mocha": "^5.2.5",
     "babel-jest": "^23.6.0",
     "jest": "^23.6.0"
   }

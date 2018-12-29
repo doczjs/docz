@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import resolve from 'resolve'
+import * as resolve from 'resolve'
 
 const ensureSlash = (filepath: any, needsSlash: boolean) => {
   const hasSlash = filepath.endsWith('/')

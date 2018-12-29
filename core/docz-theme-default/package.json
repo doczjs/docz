@@ -4,17 +4,15 @@
   "description": "The default theme of docz",
   "license": "MIT",
   "main": "dist/index.js",
-  "umd:main": "dist/index.umd.js",
-  "module": "dist/index.m.js",
-  "source": "src/index.tsx",
+  "module": "dist/index.esm.js",
   "files": [
     "dist/",
     "package.json",
     "README.md"
   ],
   "scripts": {
-    "dev": "libundler watch --ts",
-    "build": "libundler build --ts --sm",
+    "dev": "cross-env NODE_ENV=development yarn build -w",
+    "build": "cross-env NODE_ENV=production rollup -c",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx,md,mdx,js,jsx,json}\" --write",
     "fix:tslint": "tslint --fix --project .",

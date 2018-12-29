@@ -1,4 +1,4 @@
-import yargs from 'yargs'
+import * as yargs from 'yargs'
 
 import { setArgs } from './config/argv'
 import { setEnv } from './config/env'

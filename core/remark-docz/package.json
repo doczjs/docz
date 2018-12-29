@@ -4,17 +4,16 @@
   "description": "Remark plugin used by docz",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/index.m.js",
+  "module": "dist/index.esm.js",
   "typings": "dist/index.d.ts",
-  "source": "src/index.ts",
   "files": [
     "dist/",
     "package.json",
     "README.md"
   ],
   "scripts": {
-    "dev": "libundler watch -e all --ts",
-    "build": "libundler build -e all --ts --c",
+    "dev": "cross-env NODE_ENV=development yarn build -w",
+    "build": "cross-env NODE_ENV=production rollup -c",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx,md,mdx,js,jsx,json}\" --write",
     "fix:tslint": "tslint --fix --project .",

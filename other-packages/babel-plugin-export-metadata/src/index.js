@@ -1,5 +1,5 @@
-import template from '@babel/template'
-import { get } from 'lodash'
+const { default: template } = require('@babel/template')
+const { get } = require('lodash')
 
 const buildFileMeta = template(`
   if (typeof ID !== 'undefined') {
@@ -10,20 +10,17 @@ const buildFileMeta = template(`
   }
 `)
 
-const getFilename = (state: any) => get(state, 'file.opts.filename')
+const getFilename = state => get(state, 'file.opts.filename')
 
-const getPathName = (path: any) =>
+const getPathName = path =>
   get(path, 'node.id.name') || get(path, 'parent.id.name')
 
-const findPathToInsert = (path: any): any =>
+const findPathToInsert = path =>
   path.parent.type === 'Program' && path.insertAfter
     ? path
     : findPathToInsert(path.parentPath)
 
-const checkReverseOnThree = (pred: (type: string) => boolean = () => false) => (
-  path: any,
-  is?: boolean
-): boolean => {
+const checkReverseOnThree = (pred = () => false) => (path, is) => {
   const parentType = path.parent.type
   if (parentType === 'Program') return Boolean(is)
   if (pred(parentType)) return true
@@ -31,7 +28,7 @@ const checkReverseOnThree = (pred: (type: string) => boolean = () => false) => (
 }
 
 const checkIfIsInsideAnObject = checkReverseOnThree(
-  (type: string) => type === 'ObjectProperty' || type === 'ClassProperty'
+  type => type === 'ObjectProperty' || type === 'ClassProperty'
 )
 
 const checkIfIsExported = checkReverseOnThree(
@@ -39,7 +36,7 @@ const checkIfIsExported = checkReverseOnThree(
     type === 'ExportNamedDeclaration' || type === 'ExportDefaultDeclaration'
 )
 
-const insertNode = (t: any) => (path: any, state: any) => {
+const insertNode = t => (path, state) => {
   const filename = getFilename(state)
   const name = getPathName(path)
   const isInsideObject = checkIfIsInsideAnObject(path)
@@ -57,7 +54,7 @@ const insertNode = (t: any) => (path: any, state: any) => {
   }
 }
 
-export default function({ types: t }: any): any {
+module.exports = function({ types: t }) {
   const insert = insertNode(t)
 
   return {
