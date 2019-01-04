@@ -24,9 +24,9 @@
     "@babel/polyfill": "7.2.5",
     "@babel/runtime": "^7.2.0",
     "@mdx-js/loader": "^0.16.6",
-    "@sindresorhus/slugify": "^0.6.0",
+    "@sindresorhus/slugify": "^0.7.0",
     "@svgr/webpack": "^4.1.0",
-    "babel-loader": "^8.0.2",
+    "babel-loader": "^8.0.5",
     "babel-plugin-export-metadata": "^0.13.4",
     "babel-plugin-named-asset-import": "^0.3.0",
     "babel-preset-react-app": "^7.0.0",
@@ -93,7 +93,7 @@
     "@types/webpack-chain": "^5.0.0",
     "@types/webpack-dev-server": "^3.1.1",
     "@types/ws": "^6.0.1",
-    "@types/yargs": "^12.0.4",
+    "@types/yargs": "^12.0.5",
     "cpy": "^7.0.1"
   }
 }

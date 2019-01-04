@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@mdx-js/tag": "^0.16.6",
-    "@sindresorhus/slugify": "^0.6.0",
+    "@sindresorhus/slugify": "^0.7.0",
     "array-sort": "^1.0.0",
     "callbag-observe": "^1.0.0",
     "callbag-subject": "^1.0.2",
@@ -37,7 +37,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-imported-component": "^5.2.4",
+    "react-imported-component": "^5.3.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-router-hash-link": "^1.2.1",

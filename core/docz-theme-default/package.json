@@ -19,6 +19,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
+    "@emotion/cache": "^10.0.0",
     "@emotion/core": "^10.0.5",
     "@emotion/styled": "^10.0.5",
     "codemirror": "^5.42.2",
