@@ -47,6 +47,7 @@
     "yargs": "^12.0.5"
   },
   "peerDependencies": {
+    "docz-theme-default": "^0.13.7",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   }
