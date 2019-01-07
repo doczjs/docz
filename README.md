@@ -29,14 +29,6 @@
   </a>
 </p>
 
-## 🙌🏻 &nbsp; Sponsors
-
-Thanks for all people that support us 🙏🏻
-
-<a href="https://impulso.work" target="_blank">
-  <img src="https://cdn-std.dprcdn.net/files/acc_649651/OosgCe" width="60">
-</a>
-
 ## 🎩 &nbsp; Features
 
 - 🧘 **Zero config and easy.** Don't worry about complex configurations steps.
