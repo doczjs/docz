@@ -21,7 +21,7 @@ export const sanitizeCode = (code: string) => {
   const trimmed = strip(code).trim()
   const newCode =
     trimmed.startsWith('{') && trimmed.endsWith('}')
-      ? trimmed.substr(1, trimmed.length - 2)
+      ? trimmed.substr(1, trimmed.length - 2).trim()
       : trimmed
 
   return escapeJS(strip(newCode))
