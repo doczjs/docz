@@ -52,6 +52,7 @@ const EditorStyled = styled(BaseCodeMirror)`
 
   .CodeMirror-lines {
     padding: 10px 0;
+    box-sizing: content-box;
   }
 
   .CodeMirror-line {

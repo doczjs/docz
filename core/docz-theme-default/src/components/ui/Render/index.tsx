@@ -83,6 +83,7 @@ const StyledError = styled(LiveError)`
 `
 
 const Pre = styled(PreBase as any)<any>`
+  box-sizing: content-box;
   width: calc(100% - 2px);
   border-radius: 0 !important;
   margin: 0;

@@ -46,6 +46,7 @@ export const Handle = styled('div')<HandleProps>`
   border: 1px solid ${p => lighten(0.03, borderColor(p))};
   border-radius: ${whenHorizontal('0 4px 4px 0', '0 0 4px 4px')};
   background: ${p => darken(0.01, preBg(p))};
+  box-sizing: content-box;
 
   ${whenHorizontal(
     `
