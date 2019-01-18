@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "fix": "run-s fix:*",
-    "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
+    "fix:prettier": "prettier \"src/**/*.js\" --write",
     "test": "jest"
   },
   "dependencies": {
