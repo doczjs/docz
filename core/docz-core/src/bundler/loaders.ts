@@ -1,9 +1,5 @@
 import * as path from 'path'
 import Config from 'webpack-chain'
-import matter from 'remark-frontmatter'
-import slug from 'rehype-slug'
-import remarkDocz from 'remark-docz'
-import rehypeDocz from 'rehype-docz'
 
 import * as paths from '../config/paths'
 import { Config as Args } from '../config/argv'
@@ -26,8 +22,16 @@ export const sourceMaps = (config: Config, args: Args) => {
     .enforce('pre')
 }
 
-const addScriptLoaders = (rule: Config.Rule, babelrc: BabelRC, args: Args) =>
-  rule
+export interface AddScriptLoaderOpts {
+  threadLoader?: boolean
+  rule: Config.Rule
+  babelrc: BabelRC
+  args: Args
+}
+
+const addScriptLoaders = (opts: AddScriptLoaderOpts) => {
+  const { rule, threadLoader = true, babelrc, args } = opts
+  return rule
     .when(!args.debug, rule =>
       rule
         .use('cache-loader')
@@ -36,16 +40,19 @@ const addScriptLoaders = (rule: Config.Rule, babelrc: BabelRC, args: Args) =>
           cacheDirectory: paths.cache,
         })
     )
-    .use('thread-loader')
-    .loader(require.resolve('thread-loader'))
-    .options({
-      workers: require('os').cpus().length - 1,
-    })
-    .end()
+    .when(Boolean(threadLoader), rule =>
+      rule
+        .use('thread-loader')
+        .loader(require.resolve('thread-loader'))
+        .options({
+          workers: require('os').cpus().length - 1,
+        })
+    )
     .use('babel-loader')
     .loader(require.resolve('babel-loader'))
     .options(babelrc)
     .end()
+}
 
 export const js = (config: Config, args: Args, babelrc: BabelRC) => {
   const srcPath = path.resolve(paths.root, args.src)
@@ -59,7 +66,7 @@ export const js = (config: Config, args: Args, babelrc: BabelRC) => {
     .exclude.add(excludeNodeModules)
     .end()
 
-  addScriptLoaders(rule, babelrc, args)
+  addScriptLoaders({ rule, babelrc, args })
 }
 
 export const ts = (config: Config, args: Args, babelrc: BabelRC) => {
@@ -74,7 +81,7 @@ export const ts = (config: Config, args: Args, babelrc: BabelRC) => {
     .exclude.add(excludeNodeModules)
     .end()
 
-  addScriptLoaders(rule, babelrc, args)
+  addScriptLoaders({ rule, babelrc, args })
 }
 
 export const mdx = (config: Config, args: Args, babelrc: BabelRC) => {
@@ -89,16 +96,20 @@ export const mdx = (config: Config, args: Args, babelrc: BabelRC) => {
     .exclude.add(excludeNodeModules)
     .end()
 
-  addScriptLoaders(rule, babelrc, args)
+  addScriptLoaders({ rule, babelrc, args, threadLoader: false })
     .use('mdx-loader')
     .loader(require.resolve('@mdx-js/loader'))
     .options({
-      type: 'yaml',
-      marker: '-',
-      mdPlugins: mdPlugins.concat([matter, remarkDocz]),
+      mdPlugins: mdPlugins.concat([
+        [require('remark-frontmatter'), { type: 'yaml', marker: '-' }],
+        require('remark-docz'),
+      ]),
       hastPlugins: hastPlugins.concat([
-        rehypeDocz(paths.root, args.codeSandbox),
-        slug,
+        [
+          require('rehype-docz'),
+          { root: paths.root, useCodeSandbox: args.codeSandbox },
+        ],
+        require('rehype-slug'),
       ]),
     })
 }
