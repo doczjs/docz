@@ -9,14 +9,12 @@ import { getFullImports, getImportsVariables } from 'docz-utils/lib/imports'
 
 const isPlayground = (name: string) => name === 'Playground'
 
-const addPropsOnPlayground = async (
-  node: any,
-  idx: number,
+const addComponentsProps = (
   scopes: string[],
   imports: string[],
   cwd: string,
   useCodeSandbox: boolean
-) => {
+) => async (node: any, idx: number) => {
   const name = componentName(node.value)
   const tagOpen = new RegExp(`^\\<${name}`)
 
@@ -26,11 +24,6 @@ const addPropsOnPlayground = async (
     const scope = `{props: this ? this.props : props,${scopes.join(',')}}`
     const child = sanitizeCode(removeTags(code))
 
-    node.value = node.value.replace(
-      tagOpen,
-      `<${name} __position={${idx}} __code={'${child}'} __scope={${scope}}`
-    )
-
     if (useCodeSandbox) {
       const codesandBoxInfo = await getSandboxImportInfo(child, imports, cwd)
 
@@ -39,26 +32,26 @@ const addPropsOnPlayground = async (
         `<${name} __codesandbox={\`${codesandBoxInfo}\`}`
       )
     }
+
+    node.value = node.value.replace(
+      tagOpen,
+      `<${name} __position={${idx}} __code={'${child}'} __scope={${scope}}`
+    )
   }
 }
 
-const addComponentsProps = (
-  scopes: string[],
-  imports: string[],
-  cwd: string,
+export interface PluginOpts {
+  root: string
   useCodeSandbox: boolean
-) => async (node: any, idx: number) => {
-  await addPropsOnPlayground(node, idx, scopes, imports, cwd, useCodeSandbox)
 }
 
-export default (root: string, useCodeSandbox: boolean) => () => (
-  tree: any,
-  fileInfo: any
-) => {
+export default (opts: PluginOpts) => (tree: any, fileInfo: any) => {
+  const { root, useCodeSandbox } = opts
   const importNodes = tree.children.filter((node: any) => is('import', node))
   const imports: string[] = flatten(importNodes.map(getFullImports))
   const scopes: string[] = flatten(importNodes.map(getImportsVariables))
-  const fileCwd = path.relative(root, path.dirname(fileInfo.history[0]))
+  const fileInfoHistory = fileInfo.history[0] ? fileInfo.history[0] : ''
+  const fileCwd = path.relative(root, path.dirname(fileInfoHistory))
 
   const nodes = tree.children
     .filter((node: any) => is('jsx', node))
