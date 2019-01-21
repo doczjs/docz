@@ -30,6 +30,7 @@ export const state = (entries: Entries, config: Config): State => {
   const files = Array.isArray(config.files)
     ? config.files.map(filePath => path.join(src, filePath))
     : path.join(src, config.files)
+
   const watcher = chokidar.watch(files, {
     cwd: paths.root,
     ignored: /(((^|[\/\\])\..+)|(node_modules))/,

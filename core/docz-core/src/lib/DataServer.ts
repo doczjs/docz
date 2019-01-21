@@ -124,6 +124,6 @@ export class DataServer {
   }
 
   private async updateStateFile(): Promise<void> {
-    await fs.outputJSON(paths.db, this.state)
+    await fs.outputJSON(paths.db, this.state, { spaces: 2 })
   }
 }
