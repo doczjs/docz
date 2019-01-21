@@ -40,8 +40,11 @@ const valueFromHeading = (node: any) => {
   return humanize(slug)
 }
 
-const extractAst = <T>(callback: (node: any) => T, type: string) => {
-  return (ast: any): T[] => {
+function extractAst<T>(
+  callback: (node: any) => T,
+  type: string
+): (ast: any) => T[] {
+  return ast => {
     const results: T[] = []
 
     visit(ast, type, (node: any) => {
@@ -58,11 +61,14 @@ export interface Heading {
   value: string
 }
 
-export const headingsFromAst = extractAst<Heading>((node: any) => ({
-  depth: get(node, 'data.id'),
-  slug: get(node, 'depth'),
-  value: valueFromHeading(node),
-}), 'heading')
+export const headingsFromAst = extractAst<Heading>(
+  (node: any) => ({
+    slug: get(node, 'data.id'),
+    depth: get(node, 'depth'),
+    value: valueFromHeading(node),
+  }),
+  'heading'
+)
 
 export interface ParsedData {
   [key: string]: any
