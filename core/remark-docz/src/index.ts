@@ -67,7 +67,7 @@ const mergeNodeWithoutCloseTag = (tree: any, node: any, idx: any) => {
 }
 
 // turns `html` nodes into `jsx` nodes
-export default () => (tree: any) =>
+export default () => (tree: any) => {
   visit(
     tree,
     'html',
@@ -76,3 +76,4 @@ export default () => (tree: any) =>
       mergeNodeWithoutCloseTag(tree, node, idx)
     }
   )
+}

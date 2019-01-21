@@ -17,10 +17,14 @@
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.{ts,tsx,md,mdx,js,jsx,json}\" --write",
     "fix:tslint": "tslint --fix --project .",
-    "tslint": "tslint --project ."
+    "tslint": "tslint --project .",
+    "test": "jest"
   },
   "dependencies": {
     "unist-util-remove": "^1.0.1",
     "unist-util-visit": "^1.4.0"
+  },
+  "devDependencies": {
+    "@mdx-js/mdx": "^0.16.6"
   }
 }
