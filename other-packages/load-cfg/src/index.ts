@@ -2,19 +2,14 @@ import * as fs from 'fs-extra'
 import * as path from 'path'
 import * as findup from 'find-up'
 import merge from 'deepmerge'
-import esm from 'esm'
 
 export const loadFile = (filepath: string, noCache?: boolean) => {
-  let file
-  const require = esm(module, {
-    mode: 'auto',
+  require('@babel/register')({
     cache: !noCache,
-    cjs: {
-      cache: !noCache,
-      namedExports: true,
-      vars: true,
-    },
+    presets: [['@babel/preset-env', { modules: 'commonjs' }]],
   })
+
+  let file
 
   if (noCache && filepath) {
     delete require.cache[path.resolve(filepath)]
@@ -54,13 +49,14 @@ export function load<C = any>(
 ): C {
   const filepath = findup.sync(finds(name))
   const file = filepath ? loadFile(filepath, noCache) : {}
-
-  // tslint:disable
-  return defaultConfig
+  const next = defaultConfig
     ? deep
       ? merge(defaultConfig, file)
-      : Object.assign({}, defaultConfig, file)
+      : { ...defaultConfig, ...file }
     : file
+
+  // tslint:disable
+  return next
 }
 
 export function loadFrom<C = any>(
@@ -75,6 +71,6 @@ export function loadFrom<C = any>(
   return defaultConfig
     ? deep
       ? merge(defaultConfig, file)
-      : Object.assign({}, defaultConfig, file)
+      : { ...defaultConfig, ...file }
     : file
 }

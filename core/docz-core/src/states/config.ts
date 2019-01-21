@@ -39,8 +39,11 @@ const getInitialConfig = (config: Config): Payload => {
   }
 }
 
-const updateConfig = (config: Config) => async ({ setState }: Params) =>
-  setState('config', load('docz', getInitialConfig(config), true, false))
+const updateConfig = (config: Config) => async (p: Params) => {
+  const initial = getInitialConfig(config)
+  const next = load('docz', initial, true, true)
+  p.setState('config', next)
+}
 
 export const state = (config: Config): State => {
   const watcher = chokidar.watch(finds('docz'), {

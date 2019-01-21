@@ -22,7 +22,7 @@
     "@emotion/cache": "^10.0.0",
     "@emotion/core": "^10.0.6",
     "@emotion/styled": "^10.0.6",
-    "codemirror": "^5.42.2",
+    "codemirror": "^5.43.0",
     "copy-text-to-clipboard": "^1.0.4",
     "docz": "^0.13.5",
     "emotion-theming": "^10.0.6",
