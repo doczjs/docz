@@ -10,8 +10,7 @@ import {
 } from 'docz-utils/lib/mdast'
 
 import * as paths from '../config/paths'
-
-import { Config } from './commands/args'
+import { Config } from '../config/argv'
 
 const createId = (file: string) =>
   crypto

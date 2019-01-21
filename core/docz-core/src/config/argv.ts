@@ -55,7 +55,7 @@ export interface Argv {
   /* io args */
   base: string
   src: string
-  files: string
+  files: string | string[]
   ignore: string[]
   public: string
   dest: string
@@ -84,6 +84,8 @@ export interface Argv {
   hashRouter: boolean
   wrapper?: string
   indexHtml?: string
+  /** slugify separator */
+  separator: string
 }
 
 export interface Config extends Argv {
@@ -115,7 +117,7 @@ export const setArgs = (yargs: Yargs) => {
     })
     .option('files', {
       type: 'string',
-      default: getEnv('docz.files', '**/*.mdx'),
+      default: getEnv('docz.files', '**/*.{md,markdown,mdx}'),
     })
     .option('ignore', {
       type: 'array',
@@ -208,5 +210,9 @@ export const setArgs = (yargs: Yargs) => {
     .option('sourcemaps', {
       type: 'boolean',
       default: getEnv('docz.sourcemaps', true),
+    })
+    .option('separator', {
+      type: 'string',
+      default: getEnv('docz.separator', '-'),
     })
 }
