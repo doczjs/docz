@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "docz dev",
+      "type": "node",
+      "request": "launch",
+      "protocol": "inspector",
+      "program": "${workspaceRoot}/node_modules/docz/bin/index.js",
+      "cwd": "${workspaceFolder}/examples/basic",
+      "args": ["dev"],
+      "runtimeArgs": ["--debug"],
+      "stopOnEntry": false,
+      "sourceMaps": false
+    },
+    {
+      "name": "docz build",
+      "type": "node",
+      "request": "launch",
+      "protocol": "inspector",
+      "program": "${workspaceRoot}/node_modules/docz/bin/index.js",
+      "cwd": "${workspaceFolder}/examples/basic",
+      "args": ["build"],
+      "stopOnEntry": false,
+      "sourceMaps": false
+    }
+  ]
+}
