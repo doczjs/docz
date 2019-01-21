@@ -16,6 +16,8 @@ export const sourceMaps = (config: Config, args: Args) => {
     .include.add(srcPath)
     .add(paths.app)
     .end()
+    .exclude.add(excludeNodeModules)
+    .end()
     .use('sourcemaps')
     .loader(require.resolve('source-map-loader'))
     .end()
