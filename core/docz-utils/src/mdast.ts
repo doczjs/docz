@@ -11,13 +11,18 @@ import humanize from 'humanize-string'
 import flatten from 'lodash.flatten'
 import get from 'lodash.get'
 
-export const parseMdx = (file: string): Promise<string> => {
+export const parseMdx = (file: string, plugins: any[]): Promise<string> => {
   const raw = vfile.readSync(file, 'utf-8')
   const parser = unified()
     .use(remark, { type: 'yaml', marker: '-' })
     .use(matter)
     .use(parseFrontmatter)
     .use(slug)
+
+  for (const plugin of plugins) {
+    const [item, opts = {}] = Array.isArray(plugin) ? plugin : [plugin]
+    parser.use(item, opts)
+  }
 
   return parser.run(parser.parse(raw))
 }

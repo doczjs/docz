@@ -76,7 +76,7 @@ export class Entries {
   }
 
   private async getMap(config: Config): Promise<EntryMap> {
-    const { src, files: pattern, ignore, plugins } = config
+    const { src, files: pattern, ignore, plugins, mdPlugins } = config
     const arr = Array.isArray(pattern) ? pattern : [pattern]
     const toMatch = matchFilesWithSrc(config)
 
@@ -90,7 +90,7 @@ export class Entries {
 
     const createEntry = async (file: string) => {
       try {
-        const ast = await parseMdx(file)
+        const ast = await parseMdx(file, mdPlugins)
         const entry = new Entry(ast, file, src, config)
 
         if (this.repoEditUrl) entry.setLink(this.repoEditUrl)
