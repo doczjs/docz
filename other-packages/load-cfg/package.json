@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "deepmerge": "^3.1.0",
-    "esm": "^3.1.0",
+    "esm": "^3.1.1",
     "find-up": "^3.0.0",
     "fs-extra": "^7.0.1"
   },
@@ -30,6 +30,6 @@
     "@types/react": "^16.7.20",
     "@types/webpack": "^4.4.23",
     "@types/yargs": "^12.0.5",
-    "lerna": "3.10.5"
+    "lerna": "3.10.6"
   }
 }
