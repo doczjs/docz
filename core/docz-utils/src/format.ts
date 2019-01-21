@@ -3,11 +3,11 @@ import logger from 'signale'
 
 export const formatter = (code: string) =>
   prettier.format(code, {
-    parser: 'babylon',
+    parser: 'babel',
     semi: false,
     singleQuote: true,
     trailingComma: 'all',
-  })
+  } as any)
 
 export const format = (code: string): Promise<string> =>
   new Promise((resolve, reject) => {
