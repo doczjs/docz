@@ -7,9 +7,12 @@ import { EntryMap } from '../state'
 import { ComponentsMap } from './DocPreview'
 import { AsyncComponent } from './AsyncComponent'
 
-export async function loadFromImports(path: string): Promise<SFC<any>> {
+export type Imports = Record<string, () => Promise<any>>
+export async function loadFromImports(
+  path: string,
+  imports: Imports
+): Promise<SFC<any>> {
   // tslint:disable-next-line
-  const { imports } = await import('~imports')
   const { default: Component, getInitialData } = await imports[path]()
   const ExportedComponent: SFC<any> = props => (
     <AsyncComponent
@@ -22,9 +25,13 @@ export async function loadFromImports(path: string): Promise<SFC<any>> {
   return withMDXComponents(ExportedComponent)
 }
 
-export const loadRoute: any = (path: string, LoadingComponent: any) => {
+export const loadRoute: any = (
+  path: string,
+  imports: Imports,
+  LoadingComponent: any
+) => {
   const opts: any = { LoadingComponent }
-  return importedComponent(async () => loadFromImports(path), opts)
+  return importedComponent(async () => loadFromImports(path, imports), opts)
 }
 
 interface AsyncRouteProps {

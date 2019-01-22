@@ -90,8 +90,6 @@ export const createConfig = (args: Args, env: Env) => async (hooks: Hooks) => {
     .add('.mdx')
     .end()
 
-  config.resolve.alias.set('~db', paths.db)
-  config.resolve.alias.set('~imports', paths.importsJs)
   config.resolve.alias.set('react-native$', 'react-native-web')
 
   const inYarnWorkspaces = __dirname.includes('/docz/core/docz-core')

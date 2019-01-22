@@ -1,11 +1,9 @@
 import * as React from 'react'
 import { Fragment, SFC, ComponentType as CT } from 'react'
-import { Switch, Route, RouteComponentProps } from 'react-router-dom'
+import { RouteComponentProps } from 'react-router-dom'
 import { MDXProvider } from '@mdx-js/tag'
-import { get } from 'lodash/fp'
 
-import { AsyncRoute, loadRoute } from './AsyncRoute'
-import { state, Entry } from '../state'
+import { Entry } from '../state'
 
 export type PageProps = RouteComponentProps<any> & {
   doc: Entry
@@ -46,27 +44,23 @@ export interface ComponentsMap {
   [key: string]: any
 }
 
+export type NotFoundComponent = CT<RouteComponentProps<any>>
+const DefaultNotFound: NotFoundComponent = () => <Fragment>Not found</Fragment>
 const DefaultLoading: SFC = () => <Fragment>Loading</Fragment>
 
-export const Identity: SFC<any> = ({ children }) => (
-  <Fragment>{children}</Fragment>
-)
-
-export const DefaultRender: RenderComponent = ({ component, code }) => (
+const DefaultPage: SFC<any> = ({ children }) => <Fragment>{children}</Fragment>
+const DefaultRender: RenderComponent = ({ component, code }) => (
   <Fragment>
     {component}
     {code}
   </Fragment>
 )
 
-export type NotFoundComponent = CT<RouteComponentProps<any>>
-const DefaultNotFound: NotFoundComponent = () => <Fragment>Not found</Fragment>
-
 const defaultComponents: ComponentsMap = {
   loading: DefaultLoading,
   render: DefaultRender,
   notFound: DefaultNotFound,
-  page: Identity,
+  page: DefaultPage,
 }
 
 export interface DocPreviewProps {
@@ -75,45 +69,11 @@ export interface DocPreviewProps {
 
 export const DocPreview: SFC<DocPreviewProps> = ({
   components: themeComponents = {},
+  children,
 }) => {
-  const components = {
-    ...defaultComponents,
-    ...themeComponents,
-  }
-
-  const NotFound: any = components.notFound
-
   return (
-    <MDXProvider components={components}>
-      {state.get(({ entries }) => {
-        if (!entries) return null
-        return (
-          <Switch>
-            {Object.keys(entries).map(path => {
-              const entry = get(path, entries)
-              const props = { path, entries, components }
-              const component: any = loadRoute(path, components.loading)
-
-              component.preload()
-              return (
-                <Route
-                  exact
-                  key={entry.id}
-                  path={entry.route}
-                  render={routeProps => (
-                    <AsyncRoute
-                      {...routeProps}
-                      {...props}
-                      asyncComponent={component}
-                    />
-                  )}
-                />
-              )
-            })}
-            {NotFound && <Route component={NotFound} />}
-          </Switch>
-        )
-      })}
+    <MDXProvider components={{ ...defaultComponents, ...themeComponents }}>
+      {children}
     </MDXProvider>
   )
 }

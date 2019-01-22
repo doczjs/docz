@@ -1,60 +1,46 @@
 import * as React from 'react'
-import { SFC, ComponentType as CT } from 'react'
-import { HashRouter, BrowserRouter } from 'react-router-dom'
-import { StaticRouterProps } from 'react-router'
+import { Fragment, Component, ComponentType as CT } from 'react'
+import equal from 'fast-deep-equal'
 
-import { state, ThemeConfig, TransformFn } from './state'
+import { state, Database, ThemeConfig, TransformFn } from './state'
 import { DataServer } from './components/DataServer'
-import { ScrollToTop } from './utils/ScrollToTop'
 
-// tslint:disable-next-line
-import db from '~db'
-
-declare var DOCZ_BASE_URL: string
-declare var DOCZ_HASH_ROUTER: boolean
 declare var DOCZ_WEBSOCKET_URL: string
 
 interface ThemeProps {
   wrapper?: CT
   hashRouter?: boolean
   websocketUrl?: string
+  db: Database
   children(WrappedComponent: CT): JSX.Element
 }
 
 export type ThemeReturn = (WrappedComponent: CT) => CT<ThemeProps>
-
-const Router: SFC<StaticRouterProps> = (props: any) =>
-  Boolean(DOCZ_HASH_ROUTER) ? (
-    <HashRouter {...props} />
-  ) : (
-    <BrowserRouter {...props} />
-  )
 
 export function theme(
   themeConfig: ThemeConfig,
   transform: TransformFn = c => c
 ): ThemeReturn {
   return WrappedComponent => {
-    const Theme: SFC<ThemeProps> = props => {
-      const { wrapper: Wrapper } = props
+    class Theme extends Component<ThemeProps> {
+      public static displayName = WrappedComponent.displayName || 'DoczTheme'
 
-      const wrapped = Wrapper ? (
-        <Wrapper>
-          <WrappedComponent />
-        </Wrapper>
-      ) : (
-        <WrappedComponent />
-      )
+      public shouldComponentUpdate(nextProps: ThemeProps): boolean {
+        return !equal(nextProps.db, this.props.db)
+      }
 
-      return (
-        <state.Provider initial={{ ...db, themeConfig, transform }}>
-          <DataServer websocketUrl={DOCZ_WEBSOCKET_URL}>
-            <Router basename={DOCZ_BASE_URL}>
-              <ScrollToTop>{wrapped}</ScrollToTop>
-            </Router>
-          </DataServer>
-        </state.Provider>
-      )
+      public render(): React.ReactNode {
+        const { db, wrapper: Wrapper = Fragment, children } = this.props
+        return (
+          <state.Provider initial={{ ...db, themeConfig, transform }}>
+            <DataServer websocketUrl={DOCZ_WEBSOCKET_URL}>
+              <Wrapper>
+                <WrappedComponent>{children}</WrappedComponent>
+              </Wrapper>
+            </DataServer>
+          </state.Provider>
+        )
+      }
     }
 
     return Theme

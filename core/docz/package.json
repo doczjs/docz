@@ -27,8 +27,6 @@
     "@mdx-js/tag": "^0.16.6",
     "@sindresorhus/slugify": "^0.8.0",
     "array-sort": "^1.0.0",
-    "callbag-observe": "^1.0.0",
-    "callbag-subject": "^1.0.2",
     "capitalize": "^2.0.0",
     "deepmerge": "^3.1.0",
     "docz-core": "^0.13.5",

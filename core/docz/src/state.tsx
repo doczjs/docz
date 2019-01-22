@@ -47,10 +47,13 @@ export interface Config {
 export type EntryMap = Record<string, Entry>
 export type TransformFn = (config: ThemeConfig) => ThemeConfig
 
-export interface State {
+export interface Database {
   config?: Config
   entries?: EntryMap
   props?: any
+}
+
+export interface State extends Database {
   themeConfig?: ThemeConfig
   transform?: TransformFn
 }
