@@ -20,8 +20,8 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@babel/generator": "^7.2.2",
-    "@babel/parser": "^7.2.3",
+    "@babel/generator": "^7.3.0",
+    "@babel/parser": "^7.3.1",
     "@babel/traverse": "^7.2.3",
     "art-template": "^4.13.2",
     "codesandboxer-fs": "^0.4.7",

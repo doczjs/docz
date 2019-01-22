@@ -35,7 +35,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-imported-component": "^5.4.0",
+    "react-imported-component": "^5.4.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-router-hash-link": "^1.2.1",
