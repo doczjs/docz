@@ -1,4 +1,4 @@
-import { SFC, Fragment, Component, ComponentType } from 'react'
+import { SFC, Fragment, Component } from 'react'
 import { RenderComponentProps, ThemeConfig } from 'docz'
 import { LiveProvider, LiveError, LivePreview } from 'react-live'
 import { css, jsx } from '@emotion/core'
@@ -260,13 +260,10 @@ class RenderBase extends Component<RenderProps, RenderState> {
     }
   }
 
-  get userWrapper(): ComponentType<any> {
-    return this.props.wrapper || Fragment
-  }
-
   public render(): JSX.Element {
     const { className, style, scope } = this.props
     const { fullscreen, showEditor } = this.state
+    const CustomWrapper = this.props.wrapper || Fragment
 
     const editorProps = {
       css: editorStyle,
@@ -286,22 +283,24 @@ class RenderBase extends Component<RenderProps, RenderState> {
             <Wrapper full={fullscreen}>
               <PreviewWrapper full={fullscreen}>
                 <StyledPreviewWrapper>
-                  <this.userWrapper>
+                  <CustomWrapper>
                     <LivePreview className={className} style={style} />
-                  </this.userWrapper>
+                  </CustomWrapper>
                 </StyledPreviewWrapper>
                 <StyledError />
               </PreviewWrapper>
               {this.actions}
-              <EditorWrapper showing={showEditor}>
-                <Pre
-                  {...editorProps}
-                  onChange={(code: any) => this.setState({ code })}
-                  readOnly={false}
-                >
-                  {this.state.code}
-                </Pre>
-              </EditorWrapper>
+              {showEditor && (
+                <EditorWrapper showing={showEditor}>
+                  <Pre
+                    {...editorProps}
+                    onChange={(code: any) => this.setState({ code })}
+                    readOnly={false}
+                  >
+                    {this.state.code}
+                  </Pre>
+                </EditorWrapper>
+              )}
             </Wrapper>
           </Resizable>
         </Overlay>
