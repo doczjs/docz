@@ -53,7 +53,7 @@ export class Bundler<C = ConfigObj> {
 
     this.hooks = {
       onCreateWebpackChain<C>(config: C, dev: boolean, args: Args): void {
-        run('onCreateApp', config, dev, args)
+        run('onCreateWebpackChain', config, dev, args)
       },
       onPreCreateApp<A>(app: A): void {
         run('onPreCreateApp', app)
