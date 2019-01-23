@@ -1,6 +1,7 @@
 import chalk from 'chalk'
 import logger from 'signale'
 import WebpackDevServer from 'webpack-dev-server'
+
 import { Configuration as Config } from 'webpack'
 import PrettyError from 'pretty-error'
 

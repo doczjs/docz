@@ -41,11 +41,10 @@ export const state = (entries: Entries, config: Config): State => {
 
   return {
     id: 'entries',
-    init: updateEntries(entries),
-    close: () => watcher.close(),
-    update: async params => {
+    start: async params => {
       const update = updateEntries(entries)
 
+      watcher.on('add', async () => update(params))
       watcher.on('change', async () => update(params))
       watcher.on('unlink', async () => update(params))
       watcher.on('raw', async (event: string, path: string, details: any) => {
@@ -53,8 +52,9 @@ export const state = (entries: Entries, config: Config): State => {
           await update(params)
         }
       })
-
-      return () => watcher.close()
+    },
+    close: () => {
+      watcher.close()
     },
   }
 }

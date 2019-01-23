@@ -25,15 +25,16 @@ export const build = async (args: Arguments<any>) => {
 
   try {
     await Entries.writeApp(config, true)
-    await dataServer.init()
+    await dataServer.start()
 
     await run('onPreBuild', config)
     await bundler.build(bundlerConfig)
 
     await run('onPostBuild', config)
-    await dataServer.close()
+    dataServer.close()
   } catch (err) {
     pe.render(err)
     process.exit(1)
+    dataServer.close()
   }
 }

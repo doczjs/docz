@@ -7,6 +7,7 @@ import PrettyError from 'pretty-error'
 
 import { Entries } from '../lib/Entries'
 import { DataServer } from '../lib/DataServer'
+import { Socket } from '../lib/Socket'
 import { parseConfig } from '../config/docz'
 import { onSignal } from '../utils/on-signal'
 import { bundler as webpack } from '../bundler'
@@ -18,6 +19,7 @@ export const dev = async (args: Arguments<any>) => {
   const config = await parseConfig(args)
   const bundler = webpack(config, env)
   const entries = new Entries(config)
+  const { websocketHost, websocketPort } = config
 
   const bundlerConfig = await bundler.mountConfig(env)
   const app = await bundler.createApp(bundlerConfig)
@@ -31,31 +33,35 @@ export const dev = async (args: Arguments<any>) => {
   }
 
   const server = await app.start()
-  const dataServer = new DataServer(
-    server,
-    config.websocketPort,
-    config.websocketHost
-  )
+  const dataServer = new DataServer()
+  const socket = new Socket(server, websocketHost, websocketPort)
 
   if (args.propsParser) dataServer.register([states.props(config)])
   dataServer.register([states.config(config), states.entries(entries, config)])
 
   try {
-    await dataServer.init()
-    await dataServer.listen()
+    await dataServer.start()
   } catch (err) {
     logger.fatal('Failed to process data server')
-    pe.render(err)
-    await dataServer.close()
+    logger.error(err)
+    dataServer.close()
     process.exit(1)
   }
 
+  socket.onConnection((_, emit) => {
+    const subscribe = dataServer.onStateChange(action => {
+      emit(action.type, action.payload)
+    })
+
+    return () => subscribe()
+  })
+
   onSignal(async () => {
-    await dataServer.close()
+    dataServer.close()
     server.close()
   })
 
   server.on('close', async () => {
-    await dataServer.close()
+    dataServer.close()
   })
 }

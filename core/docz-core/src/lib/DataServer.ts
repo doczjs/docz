@@ -1,24 +1,7 @@
 import * as fs from 'fs-extra'
-import WS from 'ws'
 import { isFunction } from 'lodash/fp'
 
 import * as paths from '../config/paths'
-import { onSignal } from '../utils/on-signal'
-
-export type Send = (type: string, payload: any) => void
-export type On = (type: string) => Promise<any>
-
-const isSocketOpened = (socket: WS) => socket.readyState === WS.OPEN
-const sender = (socket?: WS) => (type: string, payload: any) => {
-  if (socket && isSocketOpened(socket)) {
-    socket.send(JSON.stringify({ type, payload }))
-  }
-}
-
-export interface Action {
-  type: string
-  payload: any
-}
 
 export interface Params {
   state: Record<string, any>
@@ -27,27 +10,26 @@ export interface Params {
 
 export interface State {
   id: string
-  init: (params: Params) => Promise<any>
-  update: (params: Params) => any
-  close: (params: Params) => any
+  start: (params: Params) => Promise<void>
+  close: () => void
 }
 
+export interface Action {
+  type: string
+  payload: any
+}
+
+export type Listener = (action: Action) => void
+
 export class DataServer {
-  private client?: WS.Server
   private states: Set<State>
-  private state: Record<string, any>
+  private state: Map<string, any>
+  private listeners: Set<Listener>
 
-  constructor(server?: any, port?: number, host?: string) {
+  constructor() {
     this.states = new Set()
-    this.state = {}
-
-    if (server) {
-      this.client = new WS.Server({
-        server,
-        port,
-        host,
-      })
-    }
+    this.state = new Map()
+    this.listeners = new Set<Listener>()
   }
 
   public register(states: State[]): DataServer {
@@ -55,75 +37,47 @@ export class DataServer {
     return this
   }
 
-  public async init(): Promise<void> {
+  public async start(): Promise<void> {
+    const setState = (key: string, val: any) => this.setState(key, val)
+
     await Promise.all(
       Array.from(this.states).map(async state => {
-        if (!isFunction(state.init)) return
-        return state.init({
-          state: { ...this.state },
-          setState: this.setState(),
+        if (!isFunction(state.start)) return
+        return state.start({
+          setState,
+          state: this.mapToObject(this.state),
         })
       })
     )
-
-    this.updateStateFile()
   }
 
-  public async listen(): Promise<void> {
-    if (this.client) {
-      this.client.on('connection', socket => {
-        const close = this.handleConnection(socket)
-        const handleClose = async () => {
-          await close()
-          socket.terminate()
-        }
-
-        this.client!.on('close', handleClose)
-        onSignal(handleClose)
-      })
+  public close(): void {
+    for (const state of this.states) {
+      isFunction(state.close) && state.close()
     }
   }
 
-  public async close(): Promise<void> {
-    await Promise.all(
-      Array.from(this.states).map(
-        async state =>
-          isFunction(state.close) &&
-          state.close({
-            state: { ...this.state },
-            setState: this.setState(),
-          })
-      )
+  public onStateChange(listener: Listener): () => void {
+    this.listeners.add(listener)
+    return () => this.listeners.clear()
+  }
+
+  private setState(key: string, val: any): void {
+    this.state.set(key, val)
+    this.writeDbFile()
+    this.listeners.forEach(listener => {
+      listener({ type: `state.${key}`, payload: val })
+    })
+  }
+
+  private async writeDbFile(): Promise<void> {
+    fs.outputJSONSync(paths.db, this.mapToObject(this.state), { spaces: 2 })
+  }
+
+  private mapToObject<T>(map: Map<string, any>): T {
+    return Array.from(map.entries()).reduce(
+      (obj, [key, val]) => ({ ...obj, [key]: val }),
+      {} as T
     )
-  }
-
-  private handleConnection(socket: WS): () => void {
-    const states = Array.from(this.states).map(
-      async state =>
-        isFunction(state.update) &&
-        state.update({
-          state: this.state,
-          setState: this.setState(socket),
-        })
-    )
-
-    return async () => {
-      const fns = await Promise.all(states.filter(Boolean))
-      for (const fn of fns) isFunction(fn) && fn()
-    }
-  }
-
-  private setState(socket?: WS): (key: string, val: any) => void {
-    const send = sender(socket)
-
-    return (key: string, val: any): void => {
-      this.state[key] = val
-      send(`state.${key}`, val)
-      this.updateStateFile()
-    }
-  }
-
-  private async updateStateFile(): Promise<void> {
-    await fs.outputJSON(paths.db, this.state, { spaces: 2 })
   }
 }

@@ -33,7 +33,7 @@ const add = (config: Config) => (p: Params) => async (filepath: string) => {
   }
 }
 
-const remove = (config: Config) => (p: Params) => async (filepath: string) =>
+const remove = (p: Params) => async (filepath: string) =>
   p.setState('props', omit(filepath, get('state.props', p)))
 
 export const state = (config: Config): State => {
@@ -48,17 +48,17 @@ export const state = (config: Config): State => {
 
   return {
     id: 'props',
-    init: initial(config),
-    close: () => watcher.close(),
-    update: async params => {
+    start: async params => {
       const addFilepath = add(config)
-      const removeFilepath = remove(config)
+      const addInitial = initial(config)
 
+      await addInitial(params)
       watcher.on('add', addFilepath(params))
       watcher.on('change', addFilepath(params))
-      watcher.on('unlink', removeFilepath(params))
-
-      return () => watcher.close()
+      watcher.on('unlink', remove(params))
+    },
+    close: () => {
+      watcher.close()
     },
   }
 }
