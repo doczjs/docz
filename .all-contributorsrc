@@ -4,10 +4,7 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "badgeTemplate": "",
-  "files": [
-    "README.md",
-    "CONTRIBUTING.md"
-  ],
+  "files": ["README.md", "CONTRIBUTING.md"],
   "imageSize": 60,
   "commit": true,
   "contributors": [
@@ -16,34 +13,7 @@
       "name": "Pedro Nauck",
       "avatar_url": "https://avatars3.githubusercontent.com/u/2029172?v=4",
       "profile": "https://github.com/pedronauck",
-      "contributions": [
-        "code",
-        "doc",
-        "bug",
-        "review"
-      ]
-    },
-    {
-      "login": "nicholasess",
-      "name": "Nicholas Eduardo",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/3238901?s=460&v=4",
-      "profile": "https://github.com/nicholasess",
-      "contributions": [
-        "code",
-        "doc",
-        "bug"
-      ]
-    },
-    {
-      "login": "mpivaa",
-      "name": "Marcelo Piva",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/2096216?s=460&v=4",
-      "profile": "https://github.com/mpivaa",
-      "contributions": [
-        "code",
-        "doc",
-        "bug"
-      ]
+      "contributions": ["code", "doc", "bug", "review"]
     }
   ]
 }

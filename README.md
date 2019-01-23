@@ -48,7 +48,7 @@ Thanks for all people that support us 🙏🏻
 
 ## 🚀 &nbsp; Roadmap
 
-We still have a *long road to go*, this is just the beginning. So to further improve **docz** we've created a roadmap that you can see the next features and improvements. **Give us your feedback**:
+We still have a _long road to go_, this is just the beginning. So to further improve **docz** we've created a roadmap that you can see the next features and improvements. **Give us your feedback**:
 
 <a href="http://feedback.docz.site/roadmap" target="_blank">
   <img src="https://cdn-std.dprcdn.net/files/acc_649651/ogSCYY" alt="Docz Roadmap" width="300">
@@ -99,6 +99,7 @@ Documenting our things is one of the most important and heavy processes when you
 - **[React Spring](http://react-spring.surge.sh/)** - Helping react-motion and animated to become best friends
 - **[Smooth UI](https://smooth-ui.smooth-code.com/)** - Modern React UI library
 - **[Set Protocol Docs](https://docs.setprotocol.com/)** - Documentation site of Set Protocal
+- **[RBX](https://dfee.github.io/rbx)** - The Comprehensive Bulma UI Framework for React
 - **[Circuit UI](https://circuit.sumup.com/#/)** - React component library for [SumUp](https://sumup.com) web apps
 - **[Fannypack](https://fannypack.style)** - A friendly & accessible React UI Kit built with [Reakit](https://reakit.io/)
 - **[React Pixi](https://reactpixi.org/#/)** - React Fiber renderer for Pixi
@@ -112,6 +113,7 @@ Documenting our things is one of the most important and heavy processes when you
 ```bash
 npx babel-upgrade --write
 ```
+
 ## 📟 &nbsp; Install and Usage
 
 Simplicity is one of our core principles. Therefore, getting started with **docz** is something really easy and quick. First of all, you will need to install **docz** and some theme on your project using your favorite package manager (we'll asume yarn for this example):
@@ -171,6 +173,6 @@ If you need some help you can chat with us on [our Discord server](https://disco
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars3.githubusercontent.com/u/2029172?v=4" width="60px;"/><br /><sub><b>Pedro Nauck</b></sub>](https://github.com/pedronauck)<br />[💻](https://github.com/pedronauck/docz/commits?author=pedronauck "Code") [📖](https://github.com/pedronauck/docz/commits?author=pedronauck "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Apedronauck "Bug reports") [👀](#review-pedronauck "Reviewed Pull Requests") | [<img src="https://avatars0.githubusercontent.com/u/3238901?s=460&v=4" width="60px;"/><br /><sub><b>Nicholas Eduardo</b></sub>](https://github.com/nicholasess)<br />[💻](https://github.com/pedronauck/docz/commits?author=nicholasess "Code") [📖](https://github.com/pedronauck/docz/commits?author=nicholasess "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Anicholasess "Bug reports") | [<img src="https://avatars1.githubusercontent.com/u/2096216?s=460&v=4" width="60px;"/><br /><sub><b>Marcelo Piva</b></sub>](https://github.com/mpivaa)<br />[💻](https://github.com/pedronauck/docz/commits?author=mpivaa "Code") [📖](https://github.com/pedronauck/docz/commits?author=mpivaa "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Ampivaa "Bug reports") |
-| :---: | :---: | :---: |
+| [<img src="https://avatars3.githubusercontent.com/u/2029172?v=4" width="60px;" alt="Pedro Nauck"/><br /><sub><b>Pedro Nauck</b></sub>](https://github.com/pedronauck)<br />[💻](https://github.com/pedronauck/docz/commits?author=pedronauck "Code") [📖](https://github.com/pedronauck/docz/commits?author=pedronauck "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Apedronauck "Bug reports") [👀](#review-pedronauck "Reviewed Pull Requests") |
+| :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
