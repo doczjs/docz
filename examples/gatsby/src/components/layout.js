@@ -25,12 +25,12 @@ const Layout = ({ children, pageContext: ctx }) => (
       const entry = data.allDoczEntries.edges
         .map(edge => edge.node)
         .find(node => {
-          return node.filepath === ctx.filepath
+          return node && ctx && node.filepath === ctx.filepath
         })
 
       return (
         <div>
-          <SEO title={entry.name} />
+          {entry && <SEO title={entry.name} />}
           <Menu />
           {children}
         </div>

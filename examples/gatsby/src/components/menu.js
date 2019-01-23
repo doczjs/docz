@@ -19,10 +19,15 @@ const Menu = ({ data }) => (
     `}
     render={data => (
       <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
         {data.allDoczEntries.edges.map(({ node }) => (
-          <Link key={node.id} to={node.route}>
-            <li>{node.name}</li>
-          </Link>
+          <li>
+            <Link key={node.id} to={node.route}>
+              {node.name}
+            </Link>
+          </li>
         ))}
       </ul>
     )}
