@@ -20,12 +20,13 @@ export const getRepoUrl = () => {
 
   return (
     repo &&
-    repo.browsetemplate &&
-    repo.browsetemplate
-      .replace('{domain}', repo.domain)
-      .replace('{user}', repo.user)
-      .replace('{project}', repo.project)
-      .replace('{/tree/committish}', '')
+      ((repo.browsetemplate &&
+        repo.browsetemplate
+          .replace('{domain}', repo.domain)
+          .replace('{user}', repo.user)
+          .replace('{project}', repo.project)
+          .replace('{/tree/committish}', '')) ||
+    (repo.browse && repo.browse()))
   )
 }
 
