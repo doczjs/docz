@@ -11,7 +11,6 @@ import { ServerHooks } from '../Bundler'
 export const devServerConfig = (hooks: ServerHooks, args: Args) => {
   const srcPath = path.resolve(paths.root, args.src)
   const publicDirPath = path.resolve(paths.root, args.public)
-  const publicDir = path.join(paths.root, publicDirPath)
   const nonExistentDir = path.resolve(__dirname, 'non-existent')
 
   return {
@@ -36,7 +35,7 @@ export const devServerConfig = (hooks: ServerHooks, args: Args) => {
     before(app: any, server: any): void {
       app.use(evalSourceMapMiddleware(server))
       app.use(errorOverlayMiddleware())
-      app.use('/public', express.static(publicDir))
+      app.use('/public', express.static(publicDirPath))
       hooks.onPreCreateApp<any>(app)
     },
     after(app: any): void {
