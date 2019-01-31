@@ -19,14 +19,14 @@ export const getRepoUrl = () => {
   const repo = parseRepo()
 
   return (
-    (repo &&
-      (repo.browsetemplate &&
+    repo &&
+      ((repo.browsetemplate &&
         repo.browsetemplate
           .replace('{domain}', repo.domain)
           .replace('{user}', repo.user)
           .replace('{project}', repo.project)
-          .replace('{/tree/committish}', ''))) ||
-    (repo.browse && repo.browse())
+          .replace('{/tree/committish}', '')) ||
+    (repo.browse && repo.browse()))
   )
 }
 
