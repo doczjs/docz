@@ -67,4 +67,6 @@ const enhance = theme(config, ({ mode, codemirrorTheme, ...config }) => ({
   },
 }))
 
+export {components}
+
 export default enhance(Theme)
