@@ -24,7 +24,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@mdx-js/tag": "^0.16.6",
+    "@mdx-js/tag": "^0.16.8",
     "@sindresorhus/slugify": "^0.8.0",
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
@@ -35,7 +35,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-imported-component": "^5.4.1",
+    "react-imported-component": "^5.5.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-router-hash-link": "^1.2.1",

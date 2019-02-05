@@ -28,7 +28,7 @@
     "unist-util-is": "^2.1.2"
   },
   "devDependencies": {
-    "remark-docz": "^0.13.3",
-    "@mdx-js/mdx": "^0.16.6"
+    "@mdx-js/mdx": "^0.16.8",
+    "remark-docz": "^0.13.3"
   }
 }
