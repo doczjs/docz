@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, Routes } from 'docz'
+import { Link, Router, Routes } from 'docz'
 import { hot } from 'react-hot-loader'
 import Theme from '<%- theme %>'
 
@@ -8,7 +8,12 @@ import database from './db.json'
 <% if (wrapper) {%>import Wrapper from '<%- wrapper %>'<%}%>
 
 const Root = () => (
-  <Theme <% if (wrapper) {%>wrapper={Wrapper}<%}%> db={database}>
+  <Theme
+    <% if (wrapper) {%>wrapper={Wrapper}<%}%>
+    <% if (websocketUrl) {%>websocketUrl="<% websocketUrl %>"<%}%>
+    db={database}
+    linkComponent={Link}
+  >
     <Router>
       <Routes imports={imports} />
     </Router>

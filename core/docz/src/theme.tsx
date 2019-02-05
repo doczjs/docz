@@ -5,13 +5,11 @@ import equal from 'fast-deep-equal'
 import { state, Database, ThemeConfig, TransformFn } from './state'
 import { DataServer } from './components/DataServer'
 
-declare var DOCZ_WEBSOCKET_URL: string
-
 interface ThemeProps {
-  wrapper?: CT
-  hashRouter?: boolean
-  websocketUrl?: string
   db: Database
+  wrapper?: CT
+  websocketUrl?: string
+  linkComponent?: CT
   children(WrappedComponent: CT): JSX.Element
 }
 
@@ -30,10 +28,13 @@ export function theme(
       }
 
       public render(): React.ReactNode {
-        const { db, wrapper: Wrapper = Fragment, children } = this.props
+        const { linkComponent } = this.props
+        const { db, children, wrapper: Wrapper = Fragment } = this.props
+        const initial = { ...db, themeConfig, transform, linkComponent }
+
         return (
-          <state.Provider initial={{ ...db, themeConfig, transform }}>
-            <DataServer websocketUrl={DOCZ_WEBSOCKET_URL}>
+          <state.Provider initial={initial}>
+            <DataServer websocketUrl={this.props.websocketUrl}>
               <Wrapper>
                 <WrappedComponent>{children}</WrappedComponent>
               </Wrapper>

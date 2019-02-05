@@ -1,6 +1,6 @@
 import { jsx } from '@emotion/core'
-import { SFC } from 'react'
-import { Docs, Entry, Link } from 'docz'
+import { SFC, ComponentType } from 'react'
+import { Docs, Entry, ThemeConfig } from 'docz'
 import styled from '@emotion/styled'
 import get from 'lodash.get'
 
@@ -15,7 +15,7 @@ const Submenu = styled.div`
   margin: 5px 0 0 24px;
 `
 
-const SmallLink = styled(Link as any)`
+const createSmallLink = (component: ComponentType<any>) => styled(component)`
   position: relative;
   font-size: 14px;
   padding: 0 0 5px 16px;
@@ -72,20 +72,27 @@ export const MenuHeadings: SFC<MenuHeadingsProps> = ({ route, onClick }) => (
       const headings = getHeadings(route, docs)
 
       return (
-        headings.length > 0 && (
-          <Submenu>
-            {headings.map((heading: any) => (
-              <SmallLink
-                key={heading.slug}
-                onClick={onClick}
-                to={{ pathname: route, hash: heading.slug }}
-                isActive={isSmallLinkActive(heading.slug)}
-              >
-                {heading.value}
-              </SmallLink>
-            ))}
-          </Submenu>
-        )
+        <ThemeConfig>
+          {({ linkComponent: Link }) => {
+            const SmallLink = createSmallLink(Link)
+            return (
+              headings.length > 0 && (
+                <Submenu>
+                  {headings.map((heading: any) => (
+                    <SmallLink
+                      key={heading.slug}
+                      onClick={onClick}
+                      to={{ pathname: route, hash: heading.slug }}
+                      isActive={isSmallLinkActive(heading.slug)}
+                    >
+                      {heading.value}
+                    </SmallLink>
+                  ))}
+                </Submenu>
+              )
+            )
+          }}
+        </ThemeConfig>
       )
     }}
   </Docs>

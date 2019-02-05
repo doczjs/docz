@@ -1,5 +1,6 @@
 // tslint:disable-next-line
 import { create } from './utils/createState'
+import { ComponentType } from 'react'
 
 export interface Heading {
   depth: number
@@ -56,6 +57,7 @@ export interface Database {
 export interface State extends Database {
   themeConfig?: ThemeConfig
   transform?: TransformFn
+  linkComponent: ComponentType<any>
 }
 
 export const state = create<State>()
