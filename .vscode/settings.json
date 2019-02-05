@@ -1,5 +1,4 @@
 {
-  "eslint.enable": false,
   "javascript.validate.enable": false,
   "typescript.tsdk": "node_modules/typescript/lib"
 }
