@@ -10,7 +10,7 @@ import database from './db.json'
 const Root = () => (
   <Theme
     <% if (wrapper) {%>wrapper={Wrapper}<%}%>
-    <% if (websocketUrl) {%>websocketUrl="<% websocketUrl %>"<%}%>
+    <% if (websocketUrl) {%>websocketUrl="<%- websocketUrl %>"<%}%>
     db={database}
     linkComponent={Link}
   >
