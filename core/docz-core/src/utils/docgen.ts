@@ -4,7 +4,7 @@ import { isFunction } from 'lodash/fp'
 import logger from 'signale'
 import findUp from 'find-up'
 import externalProptypesHandler from 'react-docgen-external-proptypes-handler'
-import importedProptypesHandler from 'react-docgen-imported-proptype-handler'
+// import importedProptypesHandler from 'react-docgen-imported-proptype-handler'
 import actualNameHandler from 'react-docgen-actual-name-handler'
 import reactDocgenTs from 'react-docgen-typescript'
 import reactDocgen from 'react-docgen'
@@ -48,7 +48,7 @@ const jsParser = (files: string[], config: Config) => {
   return files.reduce((memo: any, filepath) => {
     const handlers = reactDocgen.defaultHandlers.concat([
       externalProptypesHandler(filepath),
-      importedProptypesHandler(filepath),
+      // importedProptypesHandler(filepath),
       actualNameHandler,
     ])
 

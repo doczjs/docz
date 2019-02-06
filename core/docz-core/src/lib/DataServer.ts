@@ -1,10 +1,10 @@
 import * as fs from 'fs-extra'
-import { isFunction } from 'lodash/fp'
+import { get, isFunction } from 'lodash/fp'
 
 import * as paths from '../config/paths'
 
 export interface Params {
-  state: Record<string, any>
+  getState: () => Record<string, any>
   setState: (key: string, val: any) => void
 }
 
@@ -39,13 +39,14 @@ export class DataServer {
 
   public async start(): Promise<void> {
     const setState = (key: string, val: any) => this.setState(key, val)
+    const getState = () => this.getState()
 
     await Promise.all(
       Array.from(this.states).map(async state => {
         if (!isFunction(state.start)) return
         return state.start({
           setState,
-          state: this.mapToObject(this.state),
+          getState,
         })
       })
     )
@@ -62,11 +63,18 @@ export class DataServer {
     return () => this.listeners.clear()
   }
 
+  public getState(): Map<string, any> {
+    return this.mapToObject(this.state)
+  }
+
   private setState(key: string, val: any): void {
-    this.state.set(key, val)
+    const prev = get(key, this.getState())
+    const next = typeof val === 'function' ? val(prev) : val
+
+    this.state.set(key, next)
     this.writeDbFile()
     this.listeners.forEach(listener => {
-      listener({ type: `state.${key}`, payload: val })
+      listener({ type: `state.${key}`, payload: next })
     })
   }
 

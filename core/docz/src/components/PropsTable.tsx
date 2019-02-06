@@ -111,9 +111,14 @@ export const getPropType = (prop: Prop, Tooltip?: TooltipComponent) => {
 
 const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => (
   <Fragment>
-    {state.get(s => {
+    {state.get(({ props: stateProps }) => {
       const filename = get('__filemeta.filename', component)
-      const definition: any = last(s.props[filename] || [])
+      const found =
+        stateProps &&
+        stateProps.length > 0 &&
+        stateProps.find(item => item.key === filename)
+
+      const definition: any = last(found ? found.value : [])
       const props = get('props', definition)
 
       if (!props) return null

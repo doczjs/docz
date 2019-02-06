@@ -41,7 +41,6 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
     theme,
     isProd: !dev,
     wrapper: config.wrapper,
-    hashRouter: config.hashRouter,
     websocketUrl,
   })
 

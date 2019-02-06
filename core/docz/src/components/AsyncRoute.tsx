@@ -3,7 +3,7 @@ import { SFC } from 'react'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 import importedComponent from 'react-imported-component'
 
-import { EntryMap } from '../state'
+import { Entry } from '../state'
 import { ComponentsMap } from './DocPreview'
 import { AsyncComponent } from './AsyncComponent'
 
@@ -38,19 +38,18 @@ interface AsyncRouteProps {
   asyncComponent: any
   components: ComponentsMap
   path: string
-  entries: EntryMap
+  entry: Entry
 }
 
 export const AsyncRoute: SFC<AsyncRouteProps> = ({
   components,
   asyncComponent,
   path,
-  entries,
+  entry,
   ...routeProps
 }) => {
   const Page: any = components.page
   const Component: any = asyncComponent
-  const entry = entries && entries[path]
   const props = { ...routeProps, doc: entry }
 
   return Page ? (
