@@ -33,7 +33,7 @@ export const H2: SFC<React.HTMLAttributes<any>> = ({ children, ...props }) => (
   <ThemeConfig>
     {({ linkComponent: Link }) => (
       <Heading {...props}>
-        <Link aria-hidden to={{ hash: `#${props.id}` }}>
+        <Link aria-hidden to={`#${props.id}`}>
           <Icon className="heading--Icon" height={20} />
         </Link>
         {children}
