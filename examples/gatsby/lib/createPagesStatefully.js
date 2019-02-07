@@ -1,5 +1,7 @@
 const path = require('path')
-const setupWatcher = require('./setupWatcher')
+const chokidar = require('chokidar')
+const { Entries } = require('docz-core')
+const parseConfig = require('./utils/parseConfig')
 
 const getEntry = async (filepath, entries) => {
   const map = await entries.get()
@@ -7,8 +9,16 @@ const getEntry = async (filepath, entries) => {
 }
 
 module.exports = async ({ store, actions }) => {
-  const { entries, watcher, config, paths } = await setupWatcher()
   const { createPage, deletePage } = actions
+  const { paths, ...config } = await parseConfig()
+  const src = path.relative(paths.root, config.src)
+  const files = path.join(src, config.files)
+  const entries = new Entries(config)
+  const watcher = chokidar.watch(files, {
+    cwd: paths.root,
+    ignored: /(((^|[\/\\])\..+)|(node_modules))/,
+    persistent: true,
+  })
 
   const handleCreatePage = async filepath => {
     const component = path.join(paths.root, filepath)
@@ -18,7 +28,9 @@ module.exports = async ({ store, actions }) => {
       createPage({
         component,
         path: entry.route,
-        context: entry,
+        context: {
+          entry,
+        },
       })
     }
   }

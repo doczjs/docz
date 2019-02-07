@@ -15,7 +15,7 @@ exports.mockArgv = {
   dest: '.docz/dist',
   editBranch: 'master',
   config: '',
-  title: 'Docz Example Basic',
+  title: 'Docz Gatsby',
   description: 'My awesome app using docz',
   theme: 'docz-theme-default',
   wrapper: null,

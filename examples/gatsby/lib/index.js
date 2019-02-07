@@ -5,6 +5,6 @@ exports.mdPlugins = [
 ]
 
 exports.hastPlugins = [
-  require('rehype-slug'),
   [require('rehype-docz'), { root: process.cwd() }],
+  require('rehype-slug'),
 ]

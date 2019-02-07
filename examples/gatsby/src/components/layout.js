@@ -1,45 +1,55 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { StaticQuery, graphql } from 'gatsby'
+import Theme from 'docz-theme-default'
+import { Link, StaticQuery, graphql } from 'gatsby'
+import { AsyncRoute } from 'docz'
 
 import SEO from './seo'
-import Menu from './menu'
 
-const Layout = ({ children, pageContext: ctx }) => (
-  <StaticQuery
-    query={graphql`
-      query Layout {
-        allDoczEntries {
-          edges {
-            node {
-              id
-              name
-              filepath
-              route
-            }
-          }
-        }
-      }
-    `}
-    render={data => {
-      const entry = data.allDoczEntries.edges
-        .map(edge => edge.node)
-        .find(node => {
-          return node && ctx && node.filepath === ctx.filepath
-        })
+const query = graphql`
+  query Layout {
+    doczDb {
+      id
+      db
+    }
+  }
+`
 
-      return (
-        <div>
-          {entry && <SEO title={entry.name} />}
-          <Menu />
-          {children}
-        </div>
-      )
-    }}
+const Route = ({ children, ...props }) => (
+  <AsyncRoute
+    {...props}
+    asyncComponent={() => <Fragment>{children}</Fragment>}
   />
 )
 
+const Layout = ({ children, ...defaultProps }) => {
+  const { pageContext: ctx } = defaultProps
+  return (
+    <StaticQuery
+      query={query}
+      render={data => {
+        const db = JSON.parse(data.doczDb.db)
+        const entry = db.entries.find(entry => entry.filepath === ctx.filepath)
+
+        return (
+          <Fragment>
+            {entry && <SEO title={entry.value.name} />}
+            <Theme db={db} linkComponent={Link}>
+              {components => (
+                <Route {...defaultProps} components={components} entry={entry}>
+                  {children}
+                </Route>
+              )}
+            </Theme>
+          </Fragment>
+        )
+      }}
+    />
+  )
+}
+
 Layout.propTypes = {
+  color: PropTypes.string,
   children: PropTypes.node.isRequired,
 }
 
