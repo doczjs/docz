@@ -11,8 +11,6 @@
     "docz"
   ],
   "scripts": {
-    "develop": "gatsby develop",
-    "build": "gatsby build",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.{json,jsx,js}\" --write"
   },
