@@ -8,15 +8,16 @@ function SEO({ description, lang, meta, keywords, title }) {
     <StaticQuery
       query={detailsQuery}
       render={data => {
-        const metaDescription =
-          description || data.site.siteMetadata.description
+        const db = JSON.parse(data.doczDb.db)
+        const metaDescription = description || db.config.title
+
         return (
           <Helmet
             htmlAttributes={{
               lang,
             }}
             title={title}
-            titleTemplate={`%s | ${data.site.siteMetadata.title}`}
+            titleTemplate={`%s | ${db.config.title}`}
             meta={[
               {
                 name: `description`,
@@ -37,10 +38,6 @@ function SEO({ description, lang, meta, keywords, title }) {
               {
                 name: `twitter:card`,
                 content: `summary`,
-              },
-              {
-                name: `twitter:creator`,
-                content: data.site.siteMetadata.author,
               },
               {
                 name: `twitter:title`,
@@ -85,12 +82,9 @@ export default SEO
 
 const detailsQuery = graphql`
   query DefaultSEOQuery {
-    site {
-      siteMetadata {
-        title
-        description
-        author
-      }
+    doczDb {
+      id
+      db
     }
   }
 `

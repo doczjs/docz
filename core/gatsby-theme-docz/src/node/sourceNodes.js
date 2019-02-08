@@ -1,8 +1,7 @@
 const crypto = require('crypto')
 const fs = require('fs-extra')
-
-const setupDataServer = require('./utils/setupDataServer')
-const parseConfig = require('./utils/parseConfig')
+const { Entries, DataServer, states } = require('docz-core')
+const { parseConfig } = require('../utils/parseConfig')
 
 const digest = str =>
   crypto
@@ -10,10 +9,14 @@ const digest = str =>
     .update(str)
     .digest('hex')
 
-module.exports = async ({ actions, createNodeId, createContentDigest }) => {
+module.exports = async ({ actions, createNodeId }, opts) => {
   const { createNode } = actions
-  const { paths } = await parseConfig()
-  const dataServer = await setupDataServer()
+  const config = await parseConfig(opts)
+  const entries = new Entries(config)
+  const dataServer = new DataServer()
+
+  if (config.propsParser) dataServer.register([states.props(config)])
+  dataServer.register([states.config(config), states.entries(entries, config)])
 
   try {
     await dataServer.start()
@@ -25,7 +28,7 @@ module.exports = async ({ actions, createNodeId, createContentDigest }) => {
   }
 
   dataServer.onStateChange(async ({ type, payload }) => {
-    const db = await fs.readJSON(paths.db)
+    const db = await fs.readJSON(config.paths.db)
     const contentDigest = digest(JSON.stringify(db))
 
     createNode({

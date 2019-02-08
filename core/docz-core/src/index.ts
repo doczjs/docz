@@ -2,8 +2,8 @@
 export { cli } from './cli'
 
 /** config exports */
-export { parseConfig } from './config/docz'
-export { Config } from './config/argv'
+export { parseConfig, getBaseConfig } from './config/docz'
+export { Config, setArgs } from './config/argv'
 export { BabelRC } from './config/babel'
 
 /** states */

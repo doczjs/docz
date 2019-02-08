@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Theme from 'docz-theme-default'
-import { Link, StaticQuery, graphql } from 'gatsby'
+import { StaticQuery, graphql } from 'gatsby'
 import { AsyncRoute } from 'docz'
 
-import SEO from './seo'
+import { Link } from './Link'
+import SEO from './Seo'
 
 const query = graphql`
   query Layout {

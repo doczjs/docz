@@ -31,13 +31,16 @@ const Heading = styled('h2')`
 
 export const H2: SFC<React.HTMLAttributes<any>> = ({ children, ...props }) => (
   <ThemeConfig>
-    {({ linkComponent: Link }) => (
-      <Heading {...props}>
-        <Link aria-hidden to={`#${props.id}`}>
-          <Icon className="heading--Icon" height={20} />
-        </Link>
-        {children}
-      </Heading>
-    )}
+    {({ linkComponent: Link }) => {
+      const pathname = typeof window !== 'undefined' ? location.pathname : '/'
+      return (
+        <Heading {...props}>
+          <Link aria-hidden to={`${pathname}#${props.id}`}>
+            <Icon className="heading--Icon" height={20} />
+          </Link>
+          {children}
+        </Heading>
+      )
+    }}
   </ThemeConfig>
 )

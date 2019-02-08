@@ -1,16 +1,20 @@
 const path = require('path')
 const chokidar = require('chokidar')
 const { Entries } = require('docz-core')
-const parseConfig = require('./utils/parseConfig')
+const { parseConfig } = require('../utils/parseConfig')
 
 const getEntry = async (filepath, entries) => {
   const map = await entries.get()
   return map[filepath]
 }
 
-module.exports = async ({ store, actions }) => {
+const mountRoute = (base = '/', route) => {
+  return `${base === '/' ? '' : base}${route}`
+}
+
+module.exports = async ({ store, actions }, opts) => {
   const { createPage, deletePage } = actions
-  const { paths, ...config } = await parseConfig()
+  const { paths, ...config } = await parseConfig(opts)
   const src = path.relative(paths.root, config.src)
   const files = path.join(src, config.files)
   const entries = new Entries(config)
@@ -27,7 +31,7 @@ module.exports = async ({ store, actions }) => {
     if (entry) {
       createPage({
         component,
-        path: entry.route,
+        path: mountRoute(config.base, entry.route),
         context: {
           entry,
         },
