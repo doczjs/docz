@@ -16,7 +16,7 @@ module.exports = {
   return {
     __experimentalThemes: [
       {
-        resolve: 'gatsby-theme-docs',
+        resolve: 'gatsby-theme-docz',
         options: {
           base: '/docs'
           themeConfig: {
