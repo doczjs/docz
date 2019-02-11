@@ -15,6 +15,7 @@
     "fix:prettier": "prettier \"src/**/*.{json,jsx,js}\" --write"
   },
   "dependencies": {
+    "@emotion/babel-preset-css-prop": "^10.0.7",
     "@emotion/core": "^10.0.7",
     "@emotion/styled": "^10.0.7",
     "babel-plugin-export-metadata": "^0.13.4",
@@ -24,12 +25,12 @@
     "docz-core": "^0.13.5",
     "docz-theme-default": "^0.13.5",
     "fs-extra": "^7.0.1",
-    "gatsby": "^2.0.117",
-    "gatsby-mdx": "^0.3.5",
+    "gatsby": "^2.0.118",
+    "gatsby-mdx": "^0.3.6",
     "gatsby-plugin-compile-es6-packages": "^1.0.6",
     "gatsby-plugin-manifest": "^2.0.17",
     "gatsby-plugin-react-helmet": "^3.0.6",
-    "prop-types": "^15.6.2",
+    "prop-types": "^15.7.1",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-helmet": "^5.2.0",
@@ -43,7 +44,7 @@
   "devDependencies": {
     "babel-eslint": "10.0.1",
     "eslint": "^5.13.0",
-    "eslint-config-react-app": "^3.0.6",
+    "eslint-config-react-app": "^3.0.7",
     "eslint-plugin-flowtype": "3.2.1",
     "eslint-plugin-import": "2.16.0",
     "eslint-plugin-jsx-a11y": "6.2.1",

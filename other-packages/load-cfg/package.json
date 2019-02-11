@@ -27,7 +27,7 @@
     "fs-extra": "^7.0.1"
   },
   "devDependencies": {
-    "@types/node": "^10.12.23",
+    "@types/node": "^10.12.24",
     "@types/react": "^16.8.2",
     "@types/webpack": "^4.4.24",
     "@types/yargs": "^12.0.8",
