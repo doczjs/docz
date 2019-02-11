@@ -1,8 +1,7 @@
-import { SFC, ReactNode } from 'react'
-import { ThemeConfig } from 'docz'
-import { jsx, css, ClassNames } from '@emotion/core'
+import { jsx } from '@emotion/core'
+import { SFC, ReactNode, Fragment } from 'react'
 import styled from '@emotion/styled'
-import BaseTooltip from 'rc-tooltip'
+import Tippy from '@tippy.js/react'
 
 import { get } from '@utils/theme'
 
@@ -11,39 +10,15 @@ interface TooltipProps {
   children: ReactNode
 }
 
-const overlayStyle = (colors: Record<string, any>) => css`
-  .rc-tooltip-inner {
-    background: ${colors.tooltipBg};
-    color: ${colors.tooltipColor};
-  }
-
-  .rc-tooltip-arrow {
-    border-top-color: ${colors.tooltipBg};
-  }
-`
-
 const Link = styled('a')`
   text-decoration: none;
   color: ${get('colors.primary')};
 `
 
 export const Tooltip: SFC<TooltipProps> = ({ text, children }) => (
-  <ThemeConfig>
-    {config => (
-      <ClassNames>
-        {({ css }) => (
-          <BaseTooltip
-            placement="top"
-            trigger={['hover']}
-            overlay={text}
-            overlayClassName={css(overlayStyle(config.themeConfig.colors))}
-          >
-            <Link href="#" onClick={(ev: any) => ev.preventDefault()}>
-              {children}
-            </Link>
-          </BaseTooltip>
-        )}
-      </ClassNames>
-    )}
-  </ThemeConfig>
+  <Tippy content={<Fragment>{text}</Fragment>}>
+    <Link href="#" onClick={(ev: any) => ev.preventDefault()}>
+      {children}
+    </Link>
+  </Tippy>
 )
