@@ -133,7 +133,7 @@ export const Menu: React.SFC<DocsProps> = ({ children }) => {
         }
 
         const reverse = config.ordering === 'descending'
-        const arr = Object.values(entries)
+        const arr = entries.map(({ value }) => value)
         const entriesMenu = menusFromEntries(arr)
         const merged = mergeMenus(entriesMenu as MenuItem[], config.menu)
         const menus = sortMenus(merged, config.menu, reverse)

@@ -1,0 +1,29 @@
+{
+  "name": "docz-example-gatsby",
+  "description": "Example of how to integrate docz with gatsby",
+  "version": "0.1.0",
+  "keywords": [
+    "gatsby",
+    "docz"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dev": "gatsby develop",
+    "build": "gatsby build",
+    "format": "prettier --write \"src/**/*.js\""
+  },
+  "devDependencies": {
+    "babel-eslint": "10.0.1",
+    "eslint": "^5.13.0",
+    "eslint-config-react-app": "^3.0.7",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-flowtype": "3.4.1",
+    "eslint-plugin-import": "2.16.0",
+    "eslint-plugin-jsx-a11y": "6.2.1",
+    "eslint-plugin-react": "7.x",
+    "gatsby": "^2.0.119",
+    "gatsby-mdx": "^0.3.6",
+    "gatsby-plugin-eslint": "^2.0.4",
+    "gatsby-theme-docz": "^0.13.5"
+  }
+}

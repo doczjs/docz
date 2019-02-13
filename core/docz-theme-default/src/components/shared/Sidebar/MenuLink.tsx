@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { Link, MenuItem, ThemeConfig } from 'docz'
+import { MenuItem, ThemeConfig } from 'docz'
 import { css, jsx } from '@emotion/core'
 import styled from '@emotion/styled'
 
@@ -116,7 +116,7 @@ export class MenuLink extends Component<LinkProps, LinkState> {
     return (
       <Wrapper active={active}>
         <ThemeConfig>
-          {config => {
+          {({ linkComponent: Link, ...config }) => {
             const route: any = item.route === '/' ? '/' : item.route
             const props = { ...commonProps(config) }
 

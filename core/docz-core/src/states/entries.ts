@@ -1,8 +1,10 @@
 import * as path from 'path'
 import chokidar from 'chokidar'
 import equal from 'fast-deep-equal'
+import { get } from 'lodash/fp'
 import { touch, compiled } from 'docz-utils/lib/fs'
 
+import { mapToArray } from './props'
 import { Params, State } from '../lib/DataServer'
 import { Entries, EntryMap, fromTemplates } from '../lib/Entries'
 import { Config } from '../config/argv'
@@ -16,12 +18,12 @@ const writeImports = async (map: EntryMap): Promise<void> => {
 }
 
 const updateEntries = (entries: Entries) => async (p: Params) => {
-  const old = p.state.entries
+  const prev = get('entries', p.getState())
   const map = await entries.get()
 
-  if (map && !equal(old, map)) {
+  if (map && !equal(prev, map)) {
     await writeImports(map)
-    p.setState('entries', map)
+    p.setState('entries', mapToArray(map))
   }
 }
 

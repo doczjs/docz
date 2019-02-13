@@ -1,0 +1,28 @@
+---
+name: Alert
+menu: Components
+---
+
+import { Playground, PropsTable } from 'docz'
+import { Alert } from './Alert'
+
+# Alert
+
+## Properties
+
+<PropsTable of={Alert} />
+
+## Basic usage
+
+<Playground>
+  <Alert>Some message</Alert>
+</Playground>
+
+## Using different kinds
+
+<Playground>
+  <Alert kind="info">Some message</Alert>
+  <Alert kind="positive">Some message</Alert>
+  <Alert kind="negative">Some message</Alert>
+  <Alert kind="warning">Some message</Alert>
+</Playground>

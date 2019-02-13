@@ -33,7 +33,7 @@ export const Docs: React.SFC<DocsProps> = ({ children }) => {
           )
         }
 
-        const arr = Object.values(entries)
+        const arr = entries.map(({ value }) => value)
 
         /** TODO: remove all order and  logic from here in a breaking change */
         const menusArr = flatArrFromObject<Entry>(arr, 'menu')

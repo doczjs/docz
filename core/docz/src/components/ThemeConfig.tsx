@@ -13,12 +13,14 @@ export const ThemeConfig: SFC<ThemeConfigProps> = ({ children }) => {
 
   return (
     <Fragment>
-      {state.get(({ transform, config, themeConfig = {} }) => {
+      {state.get(({ linkComponent, transform, config, themeConfig = {} }) => {
         const newConfig = merge(themeConfig, config ? config.themeConfig : {})
+        const transformed = transform ? transform(newConfig) : newConfig
 
         return children({
           ...config,
-          themeConfig: transform ? transform(newConfig) : newConfig,
+          linkComponent,
+          themeConfig: transformed,
         })
       })}
     </Fragment>

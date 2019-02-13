@@ -3,10 +3,10 @@ import { SFC } from 'react'
 import { jsx } from '@emotion/core'
 import styled from '@emotion/styled'
 import Hash from 'react-feather/dist/icons/hash'
-import { Link } from 'docz'
 
 import { get } from '@utils/theme'
 import { mq } from '@styles/responsive'
+import { ThemeConfig } from 'docz'
 
 const Icon = styled(Hash)`
   position: absolute;
@@ -30,10 +30,17 @@ const Heading = styled('h2')`
 `
 
 export const H2: SFC<React.HTMLAttributes<any>> = ({ children, ...props }) => (
-  <Heading {...props}>
-    <Link aria-hidden to={{ hash: `#${props.id}` }}>
-      <Icon className="heading--Icon" height={20} />
-    </Link>
-    {children}
-  </Heading>
+  <ThemeConfig>
+    {({ linkComponent: Link }) => {
+      const pathname = typeof window !== 'undefined' ? location.pathname : '/'
+      return (
+        <Heading {...props}>
+          <Link aria-hidden to={`${pathname}#${props.id}`}>
+            <Icon className="heading--Icon" height={20} />
+          </Link>
+          {children}
+        </Heading>
+      )
+    }}
+  </ThemeConfig>
 )

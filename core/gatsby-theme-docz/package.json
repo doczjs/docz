@@ -1,0 +1,52 @@
+{
+  "name": "gatsby-theme-docz",
+  "version": "0.13.5",
+  "description": "Gatsby theme created to use Docz",
+  "license": "MIT",
+  "author": "Pedro Nauck (pedronauck@gmail.com)",
+  "main": "gatsby-config.js",
+  "keywords": [
+    "gatsby",
+    "gatsby-theme",
+    "docz"
+  ],
+  "scripts": {
+    "fix": "run-s fix:*",
+    "fix:prettier": "prettier \"src/**/*.{json,jsx,js}\" --write"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.7",
+    "@emotion/styled": "^10.0.7",
+    "babel-plugin-export-metadata": "^0.13.4",
+    "change-case": "^3.1.0",
+    "chokidar": "^2.1.1",
+    "docz": "^0.13.5",
+    "docz-core": "^0.13.5",
+    "docz-theme-default": "^0.13.5",
+    "fs-extra": "^7.0.1",
+    "gatsby": "^2.0.119",
+    "gatsby-mdx": "^0.3.6",
+    "gatsby-plugin-compile-es6-packages": "^1.0.6",
+    "gatsby-plugin-manifest": "^2.0.17",
+    "gatsby-plugin-react-helmet": "^3.0.6",
+    "prop-types": "^15.7.1",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "react-helmet": "^5.2.0",
+    "rehype-docz": "^0.13.5",
+    "rehype-slug": "^2.0.2",
+    "remark-docz": "^0.13.3",
+    "remark-frontmatter": "^1.3.1",
+    "ulid": "^2.3.0",
+    "yargs": "^13.1.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "10.0.1",
+    "eslint": "^5.13.0",
+    "eslint-config-react-app": "^3.0.7",
+    "eslint-plugin-flowtype": "3.4.1",
+    "eslint-plugin-import": "2.16.0",
+    "eslint-plugin-jsx-a11y": "6.2.1",
+    "eslint-plugin-react": "7.x"
+  }
+}

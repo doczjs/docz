@@ -31,6 +31,10 @@ export function create<T = any>(initial: T = {} as T): State<T> {
     set: fn => dispatch(fn),
     Provider: class CustomProvider extends Component<ProviderProps<T>, T> {
       public static displayName = 'StateProvider'
+      public static getDerivedStateFromProps(props: any, state: any): any {
+        if (!equal(props.initial, state)) return props.initial
+        return null
+      }
       public state: T = this.props.initial || initial
       public componentDidMount(): void {
         listeners.add((fn: Dispatch<T>) => this.setState(fn))

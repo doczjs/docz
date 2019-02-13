@@ -7,11 +7,11 @@
     "build": "docz build"
   },
   "dependencies": {
-    "prop-types": "^15.6.2",
-    "react": "^16.7.0",
-    "react-art": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-native-web": "^0.10.0-alpha.2",
+    "prop-types": "^15.7.1",
+    "react": "^16.8.1",
+    "react-art": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "react-native-web": "^0.10.0",
     "styled-components": "^4.1.3"
   },
   "devDependencies": {

@@ -3,6 +3,7 @@ import { Arguments } from 'yargs'
 import { omit } from 'lodash/fp'
 import { load, loadFrom } from 'load-cfg'
 import detectPort from 'detect-port'
+import merge from 'lodash/merge'
 
 import * as paths from '../config/paths'
 import { BabelRC } from '../config/babel'
@@ -15,33 +16,47 @@ const htmlContext = {
   favicon: 'https://cdn-std.dprcdn.net/files/acc_649651/LUKiMl',
 }
 
-export const parseConfig = async (argv: Arguments<Argv>): Promise<Config> => {
+export const doczRcBaseConfig = {
+  htmlContext,
+  themeConfig: {},
+  docgenConfig: {},
+  modifyBundlerConfig: (config: any) => config,
+  modifyBabelRc: (babelrc: BabelRC) => babelrc,
+  onCreateWebpackChain: () => null,
+  menu: [],
+  plugins: [],
+  mdPlugins: [],
+  hastPlugins: [],
+  ignore: [
+    'readme.md',
+    'changelog.md',
+    'code_of_conduct.md',
+    'contributing.md',
+    'license.md',
+  ],
+}
+
+export const getBaseConfig = (
+  argv: Arguments<Argv>,
+  custom?: Partial<Config>
+): Config => {
+  const initial = omit<Arguments<Argv>, any>(toOmit, argv)
+  const base = { ...initial, ...doczRcBaseConfig }
+  return merge(base, custom) as Config
+}
+
+export const parseConfig = async (
+  argv: Arguments<Argv>,
+  custom?: Partial<Config>
+): Promise<Config> => {
   const port = await detectPort(argv.port)
   const websocketPort = await detectPort(argv.websocketPort)
-  const initial = omit<Arguments<Argv>, any>(toOmit, argv)
-
-  const defaultConfig: any = {
-    ...initial,
+  const defaultConfig = getBaseConfig(argv, {
     port,
     websocketPort,
     htmlContext,
-    menu: [],
-    plugins: [],
-    mdPlugins: [],
-    hastPlugins: [],
-    ignore: [
-      'readme.md',
-      'changelog.md',
-      'code_of_conduct.md',
-      'contributing.md',
-      'license.md',
-    ],
-    themeConfig: {},
-    docgenConfig: {},
-    modifyBundlerConfig: (config: any) => config,
-    modifyBabelRc: (babelrc: BabelRC) => babelrc,
-    onCreateWebpackChain: () => null,
-  }
+    ...custom,
+  })
 
   const config = argv.config
     ? loadFrom<Config>(path.resolve(argv.config), defaultConfig)

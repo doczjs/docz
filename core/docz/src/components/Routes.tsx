@@ -2,7 +2,6 @@ import * as React from 'react'
 import { Fragment, SFC } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
-import { get } from 'lodash/fp'
 
 import { state } from '../state'
 import { AsyncRoute, loadRoute, Imports } from './AsyncRoute'
@@ -24,8 +23,7 @@ export const Routes: SFC = withMDXComponents(
 
         return (
           <Switch>
-            {Object.keys(entries).map(path => {
-              const entry = get(path, entries)
+            {entries.map(({ key: path, value: entry }) => {
               const props = { path, entries, components }
               const component: any = loadRoute(path, imports, Loading)
 
@@ -39,6 +37,7 @@ export const Routes: SFC = withMDXComponents(
                     <AsyncRoute
                       {...routeProps}
                       {...props}
+                      entry={entry}
                       asyncComponent={component}
                     />
                   )}

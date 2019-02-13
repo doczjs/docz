@@ -36,7 +36,9 @@ const Theme: SFC = ({ children }) => (
   <ThemeConfig>
     {config => (
       <ThemeProvider theme={prev => ({ ...prev, docz: config.themeConfig })}>
-        <DocPreview components={componentsMap}>{children}</DocPreview>
+        <DocPreview components={componentsMap}>
+          {typeof children === 'function' ? children(componentsMap) : children}
+        </DocPreview>
       </ThemeProvider>
     )}
   </ThemeConfig>

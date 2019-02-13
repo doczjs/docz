@@ -10,8 +10,7 @@ import { ServerHooks } from '../lib/Bundler'
 
 export const devServerConfig = (hooks: ServerHooks, args: Args) => {
   const srcPath = path.resolve(paths.root, args.src)
-  const publicDirPath = path.resolve(paths.root, args.public)
-  const publicDir = path.join(paths.root, publicDirPath)
+  const publicDir = path.resolve(paths.root, args.public)
   const nonExistentDir = path.resolve(__dirname, 'non-existent')
 
   return {

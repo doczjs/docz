@@ -54,15 +54,12 @@ export const injections = (config: Config, args: Args, env: Env) => {
   const { stringify } = JSON
   const base = paths.servedPath(args.base)
   const plugin = require('webpack/lib/DefinePlugin')
-  const websocketUrl = `ws://${args.websocketHost}:${args.websocketPort}`
-  const isDev = env !== 'production'
 
   config.plugin('injections').use(plugin, [
     {
       ...getClientEnvironment(base).stringified,
       NODE_ENV: stringify(env),
       DOCZ_BASE_URL: args.hashRouter ? stringify('/') : stringify(base),
-      DOCZ_WEBSOCKET_URL: stringify(isDev && websocketUrl),
       DOCZ_HASH_ROUTER: stringify(args.hashRouter || false),
     },
   ])
