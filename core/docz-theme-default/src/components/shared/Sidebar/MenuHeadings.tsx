@@ -82,7 +82,7 @@ export const MenuHeadings: SFC<MenuHeadingsProps> = ({ route, onClick }) => (
                     <SmallLink
                       key={heading.slug}
                       onClick={onClick}
-                      to={`${route}${heading.slug}`}
+                      to={`${route}#${heading.slug}`}
                       isActive={isSmallLinkActive(heading.slug)}
                     >
                       {heading.value}
