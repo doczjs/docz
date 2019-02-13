@@ -1,9 +1,7 @@
 import * as React from 'react'
-import { Fragment, Component, ComponentType as CT } from 'react'
-import equal from 'fast-deep-equal'
-
-import { state, Database, ThemeConfig, TransformFn } from './state'
-import { DataServer } from './components/DataServer'
+import { Fragment, SFC, ComponentType as CT } from 'react'
+import { doczState, Database, ThemeConfig, TransformFn } from './state'
+import { useDataServer } from './hooks/useDataServer'
 
 interface ThemeProps {
   db: Database
@@ -20,28 +18,19 @@ export function theme(
   transform: TransformFn = c => c
 ): ThemeReturn {
   return WrappedComponent => {
-    class Theme extends Component<ThemeProps> {
-      public static displayName = WrappedComponent.displayName || 'DoczTheme'
+    const Theme: SFC<ThemeProps> = props => {
+      const { linkComponent } = props
+      const { db, children, wrapper: Wrapper = Fragment } = props
+      const initial = { ...db, themeConfig, transform, linkComponent }
 
-      public shouldComponentUpdate(nextProps: ThemeProps): boolean {
-        return !equal(nextProps, this.props)
-      }
-
-      public render(): React.ReactNode {
-        const { linkComponent } = this.props
-        const { db, children, wrapper: Wrapper = Fragment } = this.props
-        const initial = { ...db, themeConfig, transform, linkComponent }
-
-        return (
-          <state.Provider initial={initial}>
-            <DataServer websocketUrl={this.props.websocketUrl}>
-              <Wrapper>
-                <WrappedComponent>{children}</WrappedComponent>
-              </Wrapper>
-            </DataServer>
-          </state.Provider>
-        )
-      }
+      useDataServer(props.websocketUrl)
+      return (
+        <doczState.Provider initial={initial}>
+          <Wrapper>
+            <WrappedComponent>{children}</WrappedComponent>
+          </Wrapper>
+        </doczState.Provider>
+      )
     }
 
     return Theme

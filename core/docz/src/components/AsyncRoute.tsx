@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SFC, Component } from 'react'
+import { useEffect, SFC } from 'react'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 import importedComponent from 'react-imported-component'
 
@@ -41,34 +41,20 @@ interface AsyncRouteProps {
   entry: Entry
 }
 
-export class AsyncRoute extends Component<AsyncRouteProps> {
-  public componentDidMount(): void {
-    this.scrollToAnchor()
-  }
+export const AsyncRoute: SFC<AsyncRouteProps> = defaultProps => {
+  const {
+    components,
+    asyncComponent,
+    path,
+    entry,
+    ...routeProps
+  } = defaultProps
 
-  public render(): React.ReactNode {
-    const {
-      components,
-      asyncComponent,
-      path,
-      entry,
-      ...routeProps
-    } = this.props
+  const Page: any = components.page
+  const Component: any = asyncComponent
+  const props = { ...routeProps, doc: entry }
 
-    const Page: any = components.page
-    const Component: any = asyncComponent
-    const props = { ...routeProps, doc: entry }
-
-    return Page ? (
-      <Page {...props}>
-        <Component {...props} />
-      </Page>
-    ) : (
-      <Component {...props} />
-    )
-  }
-
-  private scrollToAnchor(): void {
+  useEffect(() => {
     setTimeout(() => {
       if (typeof window !== 'undefined' && location.hash) {
         const id: string = location.hash.substring(1)
@@ -76,5 +62,13 @@ export class AsyncRoute extends Component<AsyncRouteProps> {
         if (el) el.scrollIntoView()
       }
     })
-  }
+  }, [])
+
+  return Page ? (
+    <Page {...props}>
+      <Component {...props} />
+    </Page>
+  ) : (
+    <Component {...props} />
+  )
 }

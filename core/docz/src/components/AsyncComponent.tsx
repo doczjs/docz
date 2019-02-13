@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { ReactNode, ComponentType, Component } from 'react'
+import { SFC, ComponentType } from 'react'
+import { useState, useEffect } from 'react'
 
 import { isFn } from '../utils/helpers'
 
@@ -8,50 +9,30 @@ interface Props {
   getInitialData?: (props: any) => any
 }
 
-interface State {
-  loading: boolean
-  data: any
-  error: any
-}
+export const AsyncComponent: SFC<Props> = defaultProps => {
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [data, setData] = useState({})
 
-export class AsyncComponent extends Component<Props, State> {
-  public state = {
-    loading: true,
-    error: null,
-    data: {},
-  }
-
-  public componentDidMount(): void {
-    this.fetch()
-  }
-
-  public render(): ReactNode {
-    const { as: Comp, getInitialData, ...props } = this.props
-    const { data, loading, error } = this.state
-
-    return <Comp {...props} data={{ ...data, loading, error }} />
-  }
-
-  private async fetch(): Promise<void> {
-    const { getInitialData } = this.props
+  useEffect(() => {
+    const { getInitialData } = defaultProps
 
     if (getInitialData && isFn(getInitialData)) {
-      this.setState({ loading: true })
-
-      try {
-        const data = await getInitialData(this.props)
-        this.setState({
-          data,
-          error: null,
-          loading: false,
+      setLoading(true)
+      getInitialData(defaultProps)
+        .then((data: any) => {
+          setLoading(false)
+          setError(null)
+          setData(data)
         })
-      } catch (error) {
-        this.setState({
-          error,
-          data: {},
-          loading: false,
+        .catch((err: any) => {
+          setLoading(false)
+          setError(err)
+          setData({})
         })
-      }
     }
-  }
+  }, [])
+
+  const { as: Comp, getInitialData, ...props } = defaultProps
+  return <Comp {...props} data={{ ...data, loading, error }} />
 }

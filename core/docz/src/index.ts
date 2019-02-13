@@ -6,8 +6,9 @@ export { Playground } from './components/Playground'
 export { PropsTable } from './components/PropsTable'
 export { Router } from './components/Router'
 export { Routes } from './components/Routes'
-export { ThemeConfig } from './components/ThemeConfig'
+
 export * from './components/DocPreview'
+export * from './hooks'
 
 export { theme } from './theme'
-export { state, Entry, MenuItem } from './state'
+export { doczState, Entry, MenuItem } from './state'

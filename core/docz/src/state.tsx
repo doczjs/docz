@@ -55,10 +55,10 @@ export interface Database {
   props?: Props
 }
 
-export interface State extends Database {
+export interface DoczState extends Database {
   themeConfig?: ThemeConfig
   transform?: TransformFn
   linkComponent?: ComponentType<any>
 }
 
-export const state = create<State>()
+export const doczState = create<DoczState>()

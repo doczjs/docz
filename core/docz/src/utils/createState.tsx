@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { createContext, Component } from 'react'
+import { Component } from 'react'
+import { createContext } from 'react'
 import equal from 'fast-deep-equal'
 
 export interface ProviderProps<T> {
@@ -11,26 +12,24 @@ export type GetFn<T> = (state: T) => React.ReactNode
 export type Dispatch<T> = T | PrevState<T>
 
 export interface State<T> {
-  get: (fn: GetFn<T>) => React.ReactNode
+  context: React.Context<T>
   set: (param: Dispatch<T>) => void
   Provider: React.ComponentType<ProviderProps<T>>
 }
 
 export function create<T = any>(initial: T = {} as T): State<T> {
-  const { Provider, Consumer }: any = createContext<T>(initial)
+  const ctx = createContext<T>(initial)
   const listeners = new Set()
-
-  Consumer.displayName = 'StateConsumer'
 
   const dispatch = (fn: Dispatch<T>) => {
     listeners.forEach(listener => listener(fn))
   }
 
   return {
-    get: fn => <Consumer>{fn}</Consumer>,
+    context: ctx,
     set: fn => dispatch(fn),
-    Provider: class CustomProvider extends Component<ProviderProps<T>, T> {
-      public static displayName = 'StateProvider'
+    Provider: class Provider extends Component<ProviderProps<T>, T> {
+      public static displayName = 'DoczStateProvider'
       public static getDerivedStateFromProps(props: any, state: any): any {
         if (!equal(props.initial, state)) return props.initial
         return null
@@ -46,7 +45,9 @@ export function create<T = any>(initial: T = {} as T): State<T> {
         return !equal(this.state, nextState)
       }
       public render(): React.ReactNode {
-        return <Provider value={this.state}>{this.props.children}</Provider>
+        return (
+          <ctx.Provider value={this.state}>{this.props.children}</ctx.Provider>
+        )
       }
     },
   }

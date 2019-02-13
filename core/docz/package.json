@@ -32,6 +32,7 @@
     "docz-core": "^0.13.5",
     "fast-deep-equal": "^2.0.1",
     "lodash": "^4.17.11",
+    "match-sorter": "^2.3.0",
     "prop-types": "^15.7.1",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
@@ -40,6 +41,7 @@
     "react-router-dom": "^4.3.1",
     "react-router-hash-link": "^1.2.1",
     "ulid": "^2.3.0",
+    "use-react-router": "^1.0.3",
     "yargs": "^13.1.0"
   },
   "peerDependencies": {

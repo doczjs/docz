@@ -15,8 +15,10 @@ const BaseRouter: SFC<StaticRouterProps> = (props: any) =>
     <BrowserRouter {...props} />
   )
 
-export const Router: SFC = ({ children }) => (
-  <BaseRouter basename={DOCZ_BASE_URL}>
-    <ScrollToTop>{children}</ScrollToTop>
-  </BaseRouter>
-)
+export const Router: SFC = ({ children }) => {
+  return (
+    <BaseRouter basename={DOCZ_BASE_URL}>
+      <ScrollToTop>{children}</ScrollToTop>
+    </BaseRouter>
+  )
+}

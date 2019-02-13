@@ -16852,6 +16852,18 @@ url@^0.11.0:
     punycode "1.3.2"
     querystring "0.2.0"
 
+use-force-update@^1.0.0:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/use-force-update/-/use-force-update-1.0.2.tgz#9b9668f9dff2f4b8c7c04e26fd64a1bf05be7c28"
+  integrity sha512-/DOz91GCBRg/xMWx9+23JJvo4jLUiksnL4d+OFbbeJEm7BV5Ckn+y+1Z527niwhK8xcHh4zFgkPBtzWyrMkEyg==
+
+use-react-router@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/use-react-router/-/use-react-router-1.0.3.tgz#a6c1dfb7888cd9e1b44cb6732c1a8d050632489f"
+  integrity sha512-f/Y+8Oc7iuBA8+XLlKPukUOeN7T803ZeDM24zSh+LRAEIC9yx1rKlYjoQcYFBiXHNY4gWCO7T3hoTQCghtmn2A==
+  dependencies:
+    use-force-update "^1.0.0"
+
 use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.npmjs.org/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"

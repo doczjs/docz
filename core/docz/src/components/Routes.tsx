@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { Fragment, SFC } from 'react'
+import { SFC, useContext } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 
-import { state } from '../state'
-import { AsyncRoute, loadRoute, Imports } from './AsyncRoute'
+import { doczState } from '../state'
 import { ComponentsMap } from './DocPreview'
+import { AsyncRoute, loadRoute, Imports } from './AsyncRoute'
 
 export interface RoutesProps {
   components: ComponentsMap
@@ -13,41 +13,38 @@ export interface RoutesProps {
 }
 
 export const Routes: SFC = withMDXComponents(
-  ({ components, imports }: RoutesProps) => (
-    <Fragment>
-      {state.get(({ entries }) => {
-        if (!entries || !components) return null
+  ({ components, imports }: RoutesProps) => {
+    const { entries } = useContext(doczState.context)
+    if (!entries || !components) return null
 
-        const NotFound: any = components.notFound
-        const Loading: any = components.loading
+    const NotFound: any = components.notFound
+    const Loading: any = components.loading
 
-        return (
-          <Switch>
-            {entries.map(({ key: path, value: entry }) => {
-              const props = { path, entries, components }
-              const component: any = loadRoute(path, imports, Loading)
+    return (
+      <Switch>
+        {entries.map(({ key: path, value: entry }) => {
+          const props = { path, entries, components }
+          const component: any = loadRoute(path, imports, Loading)
+          component.preload()
 
-              component.preload()
-              return (
-                <Route
-                  exact
-                  key={entry.id}
-                  path={entry.route}
-                  render={routeProps => (
-                    <AsyncRoute
-                      {...routeProps}
-                      {...props}
-                      entry={entry}
-                      asyncComponent={component}
-                    />
-                  )}
+          return (
+            <Route
+              exact
+              key={entry.id}
+              path={entry.route}
+              render={routeProps => (
+                <AsyncRoute
+                  {...routeProps}
+                  {...props}
+                  entry={entry}
+                  asyncComponent={component}
                 />
-              )
-            })}
-            {NotFound && <Route component={NotFound} />}
-          </Switch>
-        )
-      })}
-    </Fragment>
-  )
+              )}
+            />
+          )
+        })}
+        {NotFound && <Route component={NotFound} />}
+      </Switch>
+    )
+  }
 )
