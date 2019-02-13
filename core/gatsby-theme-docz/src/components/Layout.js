@@ -23,13 +23,21 @@ const Route = ({ children, ...props }) => (
   />
 )
 
+const parseDatabase = data => {
+  try {
+    return JSON.parse(data.doczDb.db)
+  } catch (err) {
+    return {}
+  }
+}
+
 const Layout = ({ children, ...defaultProps }) => {
   const { pageContext: ctx } = defaultProps
   return (
     <StaticQuery
       query={query}
       render={data => {
-        const db = JSON.parse(data.doczDb.db)
+        const db = parseDatabase(data)
         const entry = db.entries.find(entry => entry.filepath === ctx.filepath)
 
         return (
