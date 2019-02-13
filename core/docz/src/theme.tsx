@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Fragment, Component, ComponentType as CT } from 'react'
+import equal from 'fast-deep-equal'
 
 import { state, Database, ThemeConfig, TransformFn } from './state'
 import { DataServer } from './components/DataServer'
@@ -21,6 +22,10 @@ export function theme(
   return WrappedComponent => {
     class Theme extends Component<ThemeProps> {
       public static displayName = WrappedComponent.displayName || 'DoczTheme'
+
+      public shouldComponentUpdate(nextProps: ThemeProps): boolean {
+        return !equal(nextProps, this.props)
+      }
 
       public render(): React.ReactNode {
         const { linkComponent } = this.props
