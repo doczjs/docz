@@ -15,7 +15,6 @@
     "fix:prettier": "prettier \"src/**/*.{json,jsx,js}\" --write"
   },
   "dependencies": {
-    "@emotion/babel-preset-css-prop": "^10.0.7",
     "@emotion/core": "^10.0.7",
     "@emotion/styled": "^10.0.7",
     "babel-plugin-export-metadata": "^0.13.4",
