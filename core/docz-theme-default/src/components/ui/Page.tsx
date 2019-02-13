@@ -1,16 +1,15 @@
-import { jsx } from '@emotion/core'
+import * as React from 'react'
 import { SFC, Fragment } from 'react'
-import { PageProps, ThemeConfig } from 'docz'
-import lighten from 'polished/lib/color/lighten'
+import { PageProps, useConfig } from 'docz'
 import Edit from 'react-feather/dist/icons/edit-2'
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 
 import { ButtonLink } from './Button'
 import { GithubLink, Sidebar, Main } from '../shared'
 import { get } from '@utils/theme'
 import { mq } from '@styles/responsive'
 
-const Wrapper = styled('div')`
+const Wrapper = styled.div`
   flex: 1;
   color: ${get('colors.text')};
   background: ${get('colors.background')};
@@ -18,10 +17,16 @@ const Wrapper = styled('div')`
   min-width: 0;
 `
 
-export const Container = styled('div')`
+export const Container = styled.div`
   box-sizing: border-box;
   margin: 0 auto;
-  ${p => mq(get('styles.container')(p))};
+
+  ${mq({
+    width: ['100%', '100%', 920],
+    padding: ['20px', '0 40px 40px'],
+  })}
+
+  ${get('styles.container')};
 `
 
 const EditPage = styled(ButtonLink.withComponent('a'))`
@@ -42,7 +47,7 @@ const EditPage = styled(ButtonLink.withComponent('a'))`
 
   &:hover {
     opacity: 1;
-    background: ${p => lighten(0.1, get('colors.border', '#CED4DE')(p))};
+    background: ${get('colors.border')};
   }
 
   ${mq({
@@ -60,6 +65,7 @@ export const Page: SFC<PageProps> = ({
   children,
   doc: { link, fullpage, edit = true },
 }) => {
+  const { repository } = useConfig()
   const content = (
     <Fragment>
       {link && edit && (
@@ -72,16 +78,10 @@ export const Page: SFC<PageProps> = ({
   )
 
   return (
-    <ThemeConfig>
-      {({ repository, ...config }) => (
-        <Main config={config}>
-          {repository && <GithubLink repository={repository} />}
-          {!fullpage && <Sidebar />}
-          <Wrapper>
-            {fullpage ? content : <Container>{content}</Container>}
-          </Wrapper>
-        </Main>
-      )}
-    </ThemeConfig>
+    <Main>
+      {repository && <GithubLink repository={repository} />}
+      {!fullpage && <Sidebar />}
+      <Wrapper>{fullpage ? content : <Container>{content}</Container>}</Wrapper>
+    </Main>
   )
 }

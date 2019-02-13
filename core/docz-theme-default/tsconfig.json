@@ -3,13 +3,13 @@
   "compilerOptions": {
     "target": "es6",
     "module": "esnext",
-    "jsxFactory": "jsx",
     "declaration": false,
     "baseUrl": "src",
     "rootDir": "src",
     "outDir": "dist",
     "typeRoots": ["../../node_modules/@types", "node_modules/@types"],
     "paths": {
+      "@components/*": ["components/*"],
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"]
     }

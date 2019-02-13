@@ -1,7 +1,7 @@
+import * as React from 'react'
 import { SFC } from 'react'
-import { keyframes, jsx } from '@emotion/core'
 import { get } from '@utils/theme'
-import styled from '@emotion/styled'
+import styled, { keyframes } from 'styled-components'
 
 const octocatWave = keyframes`
   0%, 100% {
@@ -15,7 +15,7 @@ const octocatWave = keyframes`
   }
 `
 
-const Link = styled('a')`
+const Link = styled.a`
   &:hover .octo-arm {
     animation: ${octocatWave} 560ms ease-in-out;
   }
@@ -34,7 +34,7 @@ const Link = styled('a')`
   }
 `
 
-const Svg = styled('svg')`
+const Svg = styled.svg`
   z-index: 99;
   fill: ${get('colors.primary')};
   color: ${get('colors.background')};

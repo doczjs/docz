@@ -1,10 +1,7 @@
-import { jsx } from '@emotion/core'
-import { Fragment, Component } from 'react'
-import { Menu as DocsMenu, MenuItem } from 'docz'
-import withSizes from 'react-sizes'
-import styled from '@emotion/styled'
-import match from 'match-sorter'
-import flattendepth from 'lodash.flattendepth'
+import * as React from 'react'
+import { Fragment, SFC, useState, useEffect } from 'react'
+import { useMenus, useWindowSize, usePrevious } from 'docz'
+import styled from 'styled-components'
 
 import { Logo } from '../Logo'
 import { Search } from '../Search'
@@ -33,7 +30,6 @@ const Wrapper = styled.div<WrapperProps>`
   transition: transform 0.2s, background 0.3s;
   z-index: 1000;
 
-  ${get('styles.sidebar')};
   ${mq({
     position: ['absolute', 'absolute', 'absolute', 'relative'],
   })};
@@ -50,9 +46,11 @@ const Wrapper = styled.div<WrapperProps>`
   @media screen and (max-width: ${breakpoints.desktop - 1}px) {
     transform: translateX(${p => (p.opened ? '-100%' : '0')});
   }
+
+  ${get('styles.sidebar')};
 `
 
-const Content = styled('div')`
+const Content = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -62,23 +60,22 @@ const Content = styled('div')`
   min-width: 280px;
   height: 100%;
   max-height: 100vh;
-  background: ${sidebarBg};
 `
 
-const Menus = styled('nav')`
+const Menus = styled.nav`
   flex: 1;
   overflow-y: auto;
   margin-bottom: 10px;
 `
 
-const Empty = styled('div')`
+const Empty = styled.div`
   flex: 1;
   opacity: 0.7;
   padding: 0 24px;
   color: ${sidebarText};
 `
 
-const Footer = styled('div')`
+const Footer = styled.div`
   padding: 10px 0;
   display: flex;
   align-items: center;
@@ -88,13 +85,13 @@ const Footer = styled('div')`
   border-top: 1px dashed ${sidebarBorder};
 `
 
-const FooterLink = styled('a')`
+const FooterLink = styled.a`
   padding: 0;
   margin: 0;
   margin-left: 5px;
 `
 
-const FooterLogo = styled(Docz as any)<{ width: number }>`
+const FooterLogo = styled(Docz)<{ width: number }>`
   fill: ${sidebarText};
 `
 
@@ -117,144 +114,67 @@ const ToggleBackground = styled.div<OpenProps>`
   z-index: 99;
 `
 
-interface SidebarState {
-  menus: MenuItem[] | null
-  searching: boolean
-  lastVal: string
-  hidden: boolean
-}
+export const Sidebar: SFC = () => {
+  const [hidden, setHidden] = useState(true)
+  const [query, setQuery] = useState('')
+  const menus = useMenus({ query })
+  const windowSize = useWindowSize()
+  const isDesktop = windowSize.outerWidth >= breakpoints.desktop
+  const prevIsDesktop = usePrevious(isDesktop)
 
-interface SidebarProps {
-  isDesktop: boolean
-}
-
-class SidebarBase extends Component<SidebarProps, SidebarState> {
-  public state = {
-    lastVal: '',
-    menus: null,
-    searching: false,
-    hidden: true,
-  }
-
-  public componentDidUpdate(pProps: SidebarProps, pState: SidebarState): void {
-    const { isDesktop } = this.props
-    const { hidden } = this.state
-
-    if (pState.hidden !== this.state.hidden) {
-      this.toggleOverlayClass()
+  useEffect(() => {
+    if (!hidden && !prevIsDesktop && isDesktop) {
+      setHidden(true)
+      document.documentElement!.classList.remove('with-overlay')
     }
-    if (pProps.isDesktop !== isDesktop && !hidden && isDesktop) {
-      this.setState({ hidden: true })
-      this.removeOverlayClass()
-    }
-  }
+  })
 
-  public componentDidMount(): void {
-    this.toggleOverlayClass()
-  }
-
-  public render(): React.ReactNode {
-    const { hidden } = this.state
-
-    return (
-      <DocsMenu>
-        {initial => {
-          const menus = this.state.menus || initial
-
-          return (
-            <Fragment>
-              <Wrapper opened={hidden}>
-                <Content>
-                  <Hamburguer
-                    opened={!hidden}
-                    onClick={this.handleSidebarToggle}
-                  />
-                  <Logo showBg={!hidden} />
-                  <Search onSearch={this.handleSearchDocs(initial, menus)} />
-
-                  {menus.length === 0 ? (
-                    <Empty>No documents found.</Empty>
-                  ) : (
-                    <Menus>
-                      {menus.map(menu => (
-                        <Menu
-                          key={menu.id}
-                          item={menu}
-                          sidebarToggle={this.handleSidebarToggle}
-                          collapseAll={Boolean(this.state.searching)}
-                        />
-                      ))}
-                    </Menus>
-                  )}
-                  <Footer>
-                    Built with
-                    <FooterLink href="https://docz.site" target="_blank">
-                      <FooterLogo width={40} />
-                    </FooterLink>
-                  </Footer>
-                </Content>
-              </Wrapper>
-              <ToggleBackground
-                opened={hidden}
-                onClick={this.handleSidebarToggle}
-              />
-            </Fragment>
-          )
-        }}
-      </DocsMenu>
-    )
-  }
-
-  private toggleOverlayClass = () => {
-    const { isDesktop } = this.props
-    const { hidden } = this.state
-    const method = !hidden ? this.addOverlayClass : this.removeOverlayClass
+  const addOverlayClass = (isHidden: boolean) => {
+    const method = !isHidden ? 'add' : 'remove'
 
     if (window && typeof window !== 'undefined' && !isDesktop) {
-      method()
+      document.documentElement!.classList[method]('with-overlay')
     }
   }
 
-  private removeOverlayClass(): void {
-    document.documentElement!.classList.remove('with-overlay')
-  }
-  private addOverlayClass(): void {
-    document.documentElement!.classList.add('with-overlay')
-  }
-
-  private match = (val: string, menu: MenuItem[]) => {
-    const items = menu.map(item => [item].concat(item.menu || []))
-    const flattened = flattendepth(items, 2)
-
-    return match(flattened, val, { keys: ['name'] })
+  const handleSidebarToggle = () => {
+    if (isDesktop) return
+    setHidden(s => !s)
+    addOverlayClass(!hidden)
   }
 
-  private search = (initial: MenuItem[], menus: MenuItem[], val: string) => {
-    const change = !val.startsWith(this.state.lastVal)
+  return (
+    <Fragment>
+      <Wrapper opened={hidden}>
+        <Content>
+          <Hamburguer opened={!hidden} onClick={handleSidebarToggle} />
+          <Logo showBg={!hidden} />
+          <Search onSearch={setQuery} />
 
-    this.setState({ lastVal: val })
-    return this.match(val, change ? initial : menus)
-  }
-
-  private handleSearchDocs = (initial: MenuItem[], menus: MenuItem[]) => (
-    val: string
-  ) => {
-    const isEmpty = val.length === 0
-
-    this.setState({
-      menus: isEmpty ? initial : this.search(initial, menus, val),
-      searching: !isEmpty,
-    })
-  }
-
-  private handleSidebarToggle = () => {
-    if (this.props.isDesktop) return
-    this.setState({ hidden: !this.state.hidden })
-  }
+          {menus && menus.length === 0 ? (
+            <Empty>No documents found.</Empty>
+          ) : (
+            <Menus>
+              {menus &&
+                menus.map(menu => (
+                  <Menu
+                    key={menu.id}
+                    item={menu}
+                    sidebarToggle={handleSidebarToggle}
+                    collapseAll={Boolean(query.length)}
+                  />
+                ))}
+            </Menus>
+          )}
+          <Footer>
+            Built with
+            <FooterLink href="https://docz.site" target="_blank">
+              <FooterLogo width={40} />
+            </FooterLink>
+          </Footer>
+        </Content>
+      </Wrapper>
+      <ToggleBackground opened={hidden} onClick={handleSidebarToggle} />
+    </Fragment>
+  )
 }
-
-const mapSizesToProps = ({ width }: { width: number }) => ({
-  isDesktop: width >= breakpoints.desktop,
-})
-
-export const Sidebar = withSizes(mapSizesToProps)(SidebarBase)

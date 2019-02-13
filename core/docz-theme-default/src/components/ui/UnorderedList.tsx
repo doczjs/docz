@@ -1,8 +1,7 @@
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 import { get } from '@utils/theme'
-import { mq } from '@styles/responsive'
 
-export const UnorderedList = styled('ul')`
+export const UnorderedList = styled.ul`
   list-style: none;
 
   & li::before {
@@ -12,5 +11,5 @@ export const UnorderedList = styled('ul')`
     margin-right: 5px;
   }
 
-  ${p => mq(get('styles.ul')(p))};
+  ${get('styles.ul')};
 `

@@ -1,4 +1,6 @@
-import { jsx } from '@emotion/core'
-import { Editor } from './Editor'
+import styled from 'styled-components'
+import { get } from '@utils/theme'
 
-export const Pre = (props: any) => <Editor {...props} />
+export const Pre = styled.pre`
+  ${get('styles.pre')};
+`

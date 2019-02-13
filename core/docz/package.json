@@ -25,7 +25,6 @@
   },
   "dependencies": {
     "@mdx-js/tag": "^0.17.0",
-    "@sindresorhus/slugify": "^0.8.0",
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
     "deepmerge": "^3.1.0",
@@ -41,7 +40,6 @@
     "react-router-dom": "^4.3.1",
     "react-router-hash-link": "^1.2.1",
     "ulid": "^2.3.0",
-    "use-react-router": "^1.0.3",
     "yargs": "^13.1.0"
   },
   "peerDependencies": {

@@ -1,16 +1,14 @@
+import * as React from 'react'
 import { SFC } from 'react'
-import { jsx } from '@emotion/core'
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 import SearchIcon from 'react-feather/dist/icons/search'
-import placeholder from 'polished/lib/mixins/placeholder'
-import rgba from 'polished/lib/color/rgba'
 
 import { get } from '@utils/theme'
 
 const sidebarBorder = get('colors.sidebarBorder', '#CED4DE')
 const sidebarText = get('colors.sidebarText', '#13161F')
 
-const Wrapper = styled('div')`
+const Wrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 5px 24px;
@@ -26,7 +24,7 @@ const Icon = styled(SearchIcon)`
   opacity: 0.5;
 `
 
-const Input = styled('input')`
+const Input = styled.input`
   outline: none;
   width: 100%;
   padding: 10px;
@@ -34,11 +32,6 @@ const Input = styled('input')`
   border: none;
   font-size: 16px;
   color: ${sidebarText};
-
-  ${p =>
-    placeholder({
-      color: rgba(sidebarText(p), 0.5),
-    })};
 `
 
 interface SearchProps {

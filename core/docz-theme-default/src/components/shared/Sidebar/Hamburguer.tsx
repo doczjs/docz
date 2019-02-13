@@ -1,6 +1,6 @@
+import * as React from 'react'
 import { SFC } from 'react'
-import { jsx } from '@emotion/core'
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 
 import { get } from '@utils/theme'
 import { mq } from '@styles/responsive'

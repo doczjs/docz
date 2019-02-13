@@ -1,10 +1,7 @@
-import { css } from '@emotion/core'
-import get from 'lodash.get'
+import { createGlobalStyle } from 'styled-components'
+import { get } from '@utils/theme'
 
-export const styles = (props: any) => css`
-  @import url('https://unpkg.com/rc-tooltip@3.7.3/assets/bootstrap.css');
-  @import url('https://unpkg.com/codemirror@5.42.0/lib/codemirror.css');
-
+export const Global = createGlobalStyle`
   .icon-link {
     display: none;
   }
@@ -12,7 +9,7 @@ export const styles = (props: any) => css`
   body {
     margin: 0;
     padding: 0;
-    ${get(props, 'config.themeConfig.styles.body')};
+    ${get('styles.body')};
   }
 
   .with-overlay {

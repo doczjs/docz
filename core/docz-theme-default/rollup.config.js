@@ -6,6 +6,7 @@ export default config({
     !id.startsWith('\0') &&
     !id.startsWith('.') &&
     !id.startsWith('/') &&
+    !id.startsWith('@components') &&
     !id.startsWith('@utils') &&
     !id.startsWith('@styles'),
 })

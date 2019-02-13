@@ -1,9 +1,10 @@
-import { css, keyframes, jsx } from '@emotion/core'
-import styled from '@emotion/styled'
+import * as React from 'react'
+import { css, keyframes } from 'styled-components'
+import styled from 'styled-components'
 
 import { get } from '@utils/theme'
 
-const Wrapper = styled('div')`
+const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,12 +24,12 @@ const spinnerClass = (delay: number = 0) => css`
     infinite;
 `
 
-const Lines = styled('path')`
+const Lines = styled.path<any>`
   stroke: ${get('colors.primary')};
   stroke-width: 3px;
 `
 
-const Path = styled('path')`
+const Path = styled.path`
   fill: ${get('colors.primary')};
 `
 

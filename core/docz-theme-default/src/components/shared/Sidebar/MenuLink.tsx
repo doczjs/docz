@@ -1,7 +1,7 @@
-import { Component } from 'react'
-import { MenuItem, ThemeConfig } from 'docz'
-import { css, jsx } from '@emotion/core'
-import styled from '@emotion/styled'
+import * as React from 'react'
+import { useMemo, useEffect, useRef, useState, SFC } from 'react'
+import { MenuItem, useConfig, usePrevious } from 'docz'
+import styled, { css } from 'styled-components'
 
 import { MenuHeadings } from './MenuHeadings'
 import { get } from '@utils/theme'
@@ -13,7 +13,6 @@ interface WrapperProps {
 
 const activeWrapper = css`
   padding-left: 0;
-
   &:after {
     width: 1px;
   }
@@ -22,7 +21,6 @@ const activeWrapper = css`
 const Wrapper = styled.div<WrapperProps>`
   position: relative;
   transition: padding 0.2s;
-
   &:after {
     position: absolute;
     display: block;
@@ -34,36 +32,31 @@ const Wrapper = styled.div<WrapperProps>`
     border-left: 1px dashed ${get('colors.sidebarBorder')};
     transition: width 0.2s;
   }
-
   ${p => p.active && activeWrapper};
 `
 
-export const linkStyle = ({ colors }: any) => css`
+export const createLink = (Link: React.ComponentType<any>) => styled(Link)`
   position: relative;
   display: block;
   padding: 4px 24px;
   font-weight: 600;
   font-size: 18px;
   letter-spacing: -0.02em;
-  color: ${colors.sidebarText};
+  color: ${get('colors.sidebarText')};
   text-decoration: none;
   transition: color 0.2s;
-
   &:hover,
   &:visited {
-    color: ${colors.sidebarText};
+    color: ${get('colors.sidebarText')};
   }
-
   &:hover,
   &.active {
-    color: ${colors.sidebarPrimary || colors.primary};
+    color: ${p => get('colors.sidebarPrimary')(p) || get('colors.primary')(p)};
     font-weight: 600;
   }
 `
 
-const LinkAnchor = styled('a')`
-  ${p => linkStyle(p.theme.docz)};
-`
+const LinkAnchor = createLink(styled.a``)
 
 export const getActiveFromClass = (el: HTMLElement | null) =>
   Boolean(el && el.classList.contains('active'))
@@ -75,70 +68,46 @@ interface LinkProps {
   innerRef?: (node: any) => void
 }
 
-interface LinkState {
-  active: boolean
-}
+export const MenuLink: SFC<LinkProps> = ({
+  item,
+  children,
+  onClick,
+  innerRef,
+}) => {
+  const { linkComponent } = useConfig()
+  const [active, setActive] = useState(false)
+  const prevActive = usePrevious(active)
+  const $el = useRef(null)
+  const Link = useMemo(() => createLink(linkComponent), [linkComponent])
 
-export class MenuLink extends Component<LinkProps, LinkState> {
-  public $el: HTMLElement | null
-  public state: LinkState = {
-    active: false,
+  const linkProps = {
+    children,
+    onClick,
   }
 
-  constructor(props: LinkProps) {
-    super(props)
-    this.$el = null
+  const refFn = (node: any) => {
+    innerRef && innerRef(node)
+    $el.current = node
   }
 
-  public componentDidUpdate(prevProps: LinkProps, prevState: LinkState): void {
-    this.updateActive(prevState.active)
-  }
+  useEffect(() => {
+    const isActive = getActiveFromClass($el.current)
+    if (prevActive !== isActive) setActive(isActive)
+  })
 
-  public componentDidMount(): void {
-    this.updateActive(this.state.active)
-  }
-
-  public render(): React.ReactNode {
-    const { active } = this.state
-    const { item, children, onClick, innerRef } = this.props
-
-    const commonProps = (config: any) => ({
-      children,
-      onClick,
-      css: linkStyle(config.themeConfig) as any,
-    })
-
-    const refFn = (node: any) => {
-      innerRef && innerRef(node)
-      this.$el = node
-    }
-
-    return (
-      <Wrapper active={active}>
-        <ThemeConfig>
-          {({ linkComponent: Link, ...config }) => {
-            const route: any = item.route === '/' ? '/' : item.route
-            const props = { ...commonProps(config) }
-
-            return item.route ? (
-              <Link {...props} innerRef={refFn} to={route} />
-            ) : (
-              <LinkAnchor
-                {...props}
-                ref={refFn}
-                href={item.href || '#'}
-                target={item.href ? '_blank' : '_self'}
-              />
-            )
-          }}
-        </ThemeConfig>
-        {active && item.route && <MenuHeadings route={item.route} />}
-      </Wrapper>
-    )
-  }
-
-  private updateActive = (prevActive: boolean): void => {
-    const active = getActiveFromClass(this.$el)
-    if (prevActive !== active) this.setState({ active })
-  }
+  return (
+    <Wrapper active={active}>
+      {item.route ? (
+        <Link {...linkProps} innerRef={refFn} to={item.route} />
+      ) : (
+        <LinkAnchor
+          {...linkProps}
+          ref={refFn}
+          href={item.href || '#'}
+          target={item.href ? '_blank' : '_self'}
+        />
+      )}
+      {active && item.route && <MenuHeadings route={item.route} />}
+    </Wrapper>
+  )
 }

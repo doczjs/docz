@@ -17,7 +17,7 @@ const output = (format, outputDir, { plugins = [], external, ...opts }) => ({
     chunkFileNames: `[name]${format !== 'cjs' ? '.[format]' : ''}.js`,
     entryFileNames: `[name]${format !== 'cjs' ? '.[format]' : ''}.js`,
   },
-  plugins: plugins.concat([
+  plugins: [
     babel({
       exclude: 'node_modules/**',
       runtimeHelpers: false,
@@ -26,7 +26,7 @@ const output = (format, outputDir, { plugins = [], external, ...opts }) => ({
       rollupCommonJSResolveHack: true,
     }),
     sizePlugin(outputDir),
-  ]),
+  ].concat(plugins),
 })
 
 exports.copy = copyPlugin

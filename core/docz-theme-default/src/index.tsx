@@ -1,18 +1,17 @@
+import * as React from 'react'
 import { SFC } from 'react'
-import { theme, DocPreview, ThemeConfig } from 'docz'
-import { ThemeProvider } from 'emotion-theming'
-import { jsx } from '@emotion/core'
+import { theme, DocPreview } from 'docz'
 import get from 'lodash.get'
 import webfont from 'webfontloader'
 
-import { config } from './config'
 import * as components from './components/ui'
 import * as modes from './styles/modes'
+import { Global } from './styles/global'
+import { config } from './config'
+import { ThemeProvider } from './utils/theme'
 
 const componentsMap = {
-  page: components.Page,
-  notFound: components.NotFound,
-  render: components.Render,
+  a: components.Link,
   blockquote: components.Blockquote,
   h1: components.H1,
   h2: components.H2,
@@ -21,28 +20,27 @@ const componentsMap = {
   h5: components.H5,
   h6: components.H6,
   hr: components.Hr,
-  ul: components.UnorderedList,
-  ol: components.OrderedList,
-  p: components.Paragraph,
-  a: components.Link,
   inlineCode: components.InlineCode,
   loading: components.Loading,
-  table: components.Table,
+  notFound: components.NotFound,
+  ol: components.OrderedList,
+  p: components.Paragraph,
+  page: components.Page,
   pre: components.Pre,
-  tooltip: components.Tooltip,
+  table: components.Table,
+  ul: components.UnorderedList,
 }
 
-const Theme: SFC = ({ children }) => (
-  <ThemeConfig>
-    {config => (
-      <ThemeProvider theme={prev => ({ ...prev, docz: config.themeConfig })}>
-        <DocPreview components={componentsMap}>
-          {typeof children === 'function' ? children(componentsMap) : children}
-        </DocPreview>
-      </ThemeProvider>
-    )}
-  </ThemeConfig>
-)
+const Theme: SFC = ({ children }) => {
+  return (
+    <ThemeProvider>
+      <Global />
+      <DocPreview components={componentsMap}>
+        {typeof children === 'function' ? children(componentsMap) : children}
+      </DocPreview>
+    </ThemeProvider>
+  )
+}
 
 webfont.load({
   google: {

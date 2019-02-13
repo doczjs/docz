@@ -1,12 +1,11 @@
 import * as React from 'react'
-import { SFC } from 'react'
-import { jsx } from '@emotion/core'
-import { Docs, ThemeConfig } from 'docz'
-import styled from '@emotion/styled'
+import { useMemo, SFC } from 'react'
+import { useConfig, useDocs } from 'docz'
+import styled from 'styled-components'
 
 import { get } from '@utils/theme'
 
-export const LinkStyled = styled('a')`
+export const LinkStyled = styled.a<any>`
   &,
   &:visited,
   &:active {
@@ -17,41 +16,34 @@ export const LinkStyled = styled('a')`
   &:hover {
     color: ${get('colors.link')};
   }
+
+  ${get('styles.link')};
 `
 
 type LinkProps = React.AnchorHTMLAttributes<any>
-export const Link: SFC<LinkProps> = ({ href, ...props }) => (
-  <Docs>
-    {({ docs }) => (
-      <ThemeConfig>
-        {({ separator, linkComponent: Link }) => {
-          // calculate matched route
-          const matched = docs.find(
-            doc =>
-              doc.filepath ===
-              [
-                location.pathname
-                  .split(separator)
-                  .slice(0, -1)
-                  .join(separator)
-                  .slice(1),
-                (href || '').replace(/^(?:\.\/)+/gi, ''),
-              ].join('/')
-          )
-          matched && (href = matched.route)
+export const Link: SFC<LinkProps> = ({ href, ...props }) => {
+  const { separator, linkComponent: Link } = useConfig()
+  const docs = useDocs()
+  const toCheck = useMemo(
+    () =>
+      [
+        location.pathname
+          .split(separator)
+          .slice(0, -1)
+          .join(separator)
+          .slice(1),
+        (href || '').replace(/^(?:\.\/)+/gi, ''),
+      ].join('/'),
+    [separator]
+  )
 
-          const isInternal = href && href.startsWith('/')
-          const Component = isInternal
-            ? LinkStyled.withComponent(Link)
-            : LinkStyled
+  const matched = docs && docs.find(doc => doc.filepath === toCheck)
+  const nHref = matched ? matched.route : href
+  const isInternal = nHref && nHref.startsWith('/')
 
-          return isInternal ? (
-            <Component {...props} to={href} />
-          ) : (
-            <Component {...props} href={href} />
-          )
-        }}
-      </ThemeConfig>
-    )}
-  </Docs>
-)
+  return isInternal ? (
+    <LinkStyled as={Link} {...props} to={nHref} />
+  ) : (
+    <LinkStyled {...props} href={nHref} />
+  )
+}

@@ -1,8 +1,8 @@
-import { jsx } from '@emotion/core'
+import * as React from 'react'
 import { Component } from 'react'
 import { MenuItem } from 'docz'
 import ChevronDown from 'react-feather/dist/icons/chevron-down'
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 
 import { MenuLink, getActiveFromClass } from './MenuLink'
 import { get } from '@utils/theme'

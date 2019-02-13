@@ -1,13 +1,13 @@
 import * as React from 'react'
-import { jsx } from '@emotion/core'
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 
 import { get } from '@utils/theme'
 import { mq } from '@styles/responsive'
 
-const Wrapper = styled('div')`
+const Wrapper = styled.div`
   overflow-x: auto;
   padding: 2px;
+  margin-bottom: 30px;
 
   ${mq({
     marginBottom: [20, 40],
@@ -15,7 +15,7 @@ const Wrapper = styled('div')`
   })};
 `
 
-const TableStyled = styled('table')`
+const TableStyled = styled.table`
   padding: 0;
   table-layout: auto;
   box-shadow: 0 0 0 1px ${get('colors.border')};
@@ -26,7 +26,11 @@ const TableStyled = styled('table')`
   border-radius: ${get('radii')};
   font-size: 14px;
   color: ${get('colors.tableColor')};
-  ${p => mq(get('styles.table')(p))};
+
+  ${mq({
+    overflowX: ['initial', 'initial', 'initial', 'hidden'],
+    display: ['block', 'block', 'block', 'table'],
+  })}
 
   & thead {
     color: ${get('colors.theadColor')};
@@ -79,7 +83,7 @@ const TableStyled = styled('table')`
     border-top: 1px solid ${get('colors.border')};
   }
 
-  ${p => mq(get('styles.table')(p))};
+  ${get('styles.table')};
 `
 
 export const Table = (props: React.TableHTMLAttributes<any>) => (

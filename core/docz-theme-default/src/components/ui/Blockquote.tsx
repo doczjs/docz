@@ -1,7 +1,7 @@
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 import { get } from '@utils/theme'
 
-export const Blockquote = styled('blockquote')`
+export const Blockquote = styled.blockquote`
   background: ${get('colors.blockquoteBg')};
   border-left: 5px solid ${get('colors.blockquoteBorder')};
   color: ${get('colors.blockquoteColor')};

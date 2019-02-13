@@ -1,6 +1,6 @@
 {
   "extends": "../../tslint.json",
   "rules": {
-    "no-implicit-dependencies": [false]
+    "no-implicit-dependencies": [true, ["@components", "@utils", "@styles"]]
   }
 }

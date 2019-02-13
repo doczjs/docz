@@ -7,23 +7,17 @@
         "extensions": [".ts", ".tsx"],
         "root": ["./src"],
         "alias": {
+          "@components": "./src/components",
           "@utils": "./src/utils",
           "@styles": "./src/styles"
         }
       }
+    ],
+    [
+      "babel-plugin-styled-components",
+      {
+        "ssr": false
+      }
     ]
-  ],
-  "env": {
-    "production": {
-      "presets": ["@emotion/babel-preset-css-prop"]
-    },
-    "development": {
-      "presets": [
-        [
-          "@emotion/babel-preset-css-prop",
-          { "sourceMap": true, "autoLabel": true }
-        ]
-      ]
-    }
-  }
+  ]
 }

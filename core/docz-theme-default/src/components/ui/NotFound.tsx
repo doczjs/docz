@@ -1,11 +1,10 @@
-import { ThemeConfig } from 'docz'
-import { jsx } from '@emotion/core'
-import styled from '@emotion/styled'
+import * as React from 'react'
+import styled from 'styled-components'
 
 import { Sidebar, Main } from '../shared'
 import { get } from '@utils/theme'
 
-const Wrapper = styled('div')`
+const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,30 +15,26 @@ const Wrapper = styled('div')`
   background: ${get('colors.background')};
 `
 
-const Title = styled('h1')`
+const Title = styled.h1`
   margin: 0;
   font-size: 42px;
   font-weight: 400;
   color: ${get('colors.primary')};
 `
 
-const Subtitle = styled('p')`
+const Subtitle = styled.p`
   margin: 0;
   font-size: 18px;
 `
 
 export const NotFound = () => (
-  <ThemeConfig>
-    {config => (
-      <Main config={config}>
-        <Sidebar />
-        <Wrapper>
-          <Title>Page Not Found</Title>
-          <Subtitle>
-            Check if you haven't changed the document route or deleted it!
-          </Subtitle>
-        </Wrapper>
-      </Main>
-    )}
-  </ThemeConfig>
+  <Main>
+    <Sidebar />
+    <Wrapper>
+      <Title>Page Not Found</Title>
+      <Subtitle>
+        Check if you haven't changed the document route or deleted it!
+      </Subtitle>
+    </Wrapper>
+  </Main>
 )

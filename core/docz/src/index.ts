@@ -1,7 +1,5 @@
 export { AsyncRoute } from './components/AsyncRoute'
-export { Docs, DocsRenderProps } from './components/Docs'
 export { Link, LinkProps } from './components/Link'
-export { Menu, MenuRenderProps } from './components/Menu'
 export { Playground } from './components/Playground'
 export { PropsTable } from './components/PropsTable'
 export { Router } from './components/Router'

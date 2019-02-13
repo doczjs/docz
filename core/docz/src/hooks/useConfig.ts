@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext } from 'react'
 import merge from 'deepmerge'
 
 import { doczState, ThemeConfig as ThemeConfigObj } from '../state'

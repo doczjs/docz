@@ -1,87 +1,86 @@
+import { css } from 'styled-components'
+
 export const styles = {
-  body: {
-    fontFamily: "'Source Sans Pro', Helvetica, sans-serif",
-    lineHeight: 1.6,
-  },
-  container: {
-    width: ['100%', '100%', 920],
-    padding: ['20px', '0 40px 40px'],
-  },
-  h1: {
-    margin: ['30px 0 20px', '60px 0 20px', '40px 0 30px'],
-    fontFamily: '"Playfair Display", serif',
-    fontSize: [50, 50, 70],
-    fontWeight: 700,
-    letterSpacing: '-0.02em',
-  },
-  h2: {
-    margin: ['40px 0 20px', '40px 0 30px'],
-    lineHeight: ['1.2em', '1.5em'],
-    fontFamily: '"Poppins", serif',
-    fontWeight: 400,
-    fontSize: 32,
-    letterSpacing: '-0.02em',
-  },
-  h3: {
-    margin: '25px 0 10px',
-    fontSize: 22,
-    fontWeight: 400,
-  },
-  h4: {
-    margin: '25px 0 10px',
-    fontSize: 18,
-    fontWeight: 400,
-  },
-  h5: {
-    margin: '20px 0 10px',
-    fontSize: 16,
-    fontWeight: 400,
-  },
-  h6: {
-    margin: '20px 0 10px',
-    fontSize: 16,
-    fontWeight: 400,
-    textTransform: 'uppercase',
-  },
-  ol: {
-    padding: 0,
-    margin: '10px 0 10px',
-  },
-  ul: {
-    padding: 0,
-    margin: '10px 0 10px',
-  },
-  playground: {
-    padding: ['1.5em', '2em'],
-  },
-  code: {
-    margin: '0 3px',
-    borderRadius: '3px',
-    fontFamily: '"Source Code Pro", monospace',
-    padding: `2px 5px`,
-    fontSize: '0.8em',
-    border: '1px solid rgba(0, 0, 0, 0.02)',
-  },
-  pre: {
-    fontFamily: '"Source Code Pro", monospace',
-    fontSize: 14,
-    lineHeight: 1.8,
-  },
-  paragraph: {
-    margin: '10px 0 20px 0',
-  },
-  table: {
-    overflowY: 'hidden',
-    overflowX: ['initial', 'initial', 'initial', 'hidden'],
-    display: ['block', 'block', 'block', 'table'],
-    width: '100%',
-    fontFamily: '"Source Code Pro", monospace',
-    fontSize: 14,
-  },
-  blockquote: {
-    margin: '25px 0',
-    padding: '20px',
-    fontStyle: 'italic',
-    fontSize: 18,
-  },
+  body: css`
+    font-family: 'Source Sans Pro', Helvetica, sans-serif;
+    font-size: 20px;
+    line-height: 1.6;
+  `,
+  h1: css`
+    margin: 40px 0 30px;
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  `,
+  h2: css`
+    margin: 40px 0 20px;
+    line-height: 1.4em;
+    font-family: 'Poppins', serif;
+    font-weight: 400;
+    font-size: 32px;
+    letter-spacing: -0.02em;
+  `,
+  h3: css`
+    margin: 25px 0 10px;
+    font-size: 22px;
+    font-weight: 400;
+  `,
+  h4: css`
+    margin: 25px 0 10px;
+    font-size: 18px;
+    font-weight: 400;
+  `,
+  h5: css`
+    margin: 20px 0 10px;
+    font-size: 16px;
+    font-weight: 400;
+  `,
+  h6: css`
+    margin: 20px 0 10px;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+  `,
+  ol: css`
+    padding: 0;
+    margin: 10px 0 10px;
+  `,
+  ul: css`
+    padding: 0;
+    margin: 10px 0 10px;
+  `,
+  playground: css`
+    padding: 1.5em;
+  `,
+  code: css`
+    margin: 0 3px;
+    border-radius: 3px;
+    font-family: 'Source Code Pro', monospace;
+    padding: 2px 5px;
+    font-size: 0.8em;
+    border: '1px solid rgba(0, 0, 0, 0.02)';
+  `,
+  pre: css`
+    font-family: 'Source Code Pro', monospace;
+    font-size: 14px;
+    line-height: 1.8;
+  `,
+  paragraph: css`
+    margin: 10px 0 20px 0;
+  `,
+  table: css`
+    overflow-y: hidden;
+    width: 100%;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 14px;
+    overflow-x: initial;
+    display: block;
+  `,
+  blockquote: css`
+    margin: 25px 0;
+    padding: 20px;
+    font-style: italic;
+    font-size: 18px;
+  `,
 }

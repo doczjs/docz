@@ -1,8 +1,7 @@
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 import { get } from '@utils/theme'
-import { mq } from '@styles/responsive'
 
-export const OrderedList = styled('ol')`
+export const OrderedList = styled.ol`
   list-style: none;
   counter-reset: my-awesome-counter;
 
@@ -18,5 +17,5 @@ export const OrderedList = styled('ol')`
     margin-right: 5px;
   }
 
-  ${p => mq(get('styles.ol')(p))};
+  ${get('styles.ol')};
 `
