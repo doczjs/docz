@@ -28,7 +28,7 @@
     "docz": "^0.13.5",
     "emotion-theming": "^10.0.7",
     "facepaint": "^1.2.1",
-    "hotkeys-js": "^3.4.3",
+    "hotkeys-js": "^3.4.4",
     "lodash.flattendepth": "^4.7.0",
     "lodash.get": "^4.4.2",
     "match-sorter": "^2.3.0",
