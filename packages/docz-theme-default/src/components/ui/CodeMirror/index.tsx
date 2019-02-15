@@ -1,5 +1,5 @@
 import { jsx } from '@emotion/core'
-import { SFC } from 'react'
+import { Component, ReactNode } from 'react'
 import { ThemeConfig } from 'docz'
 import { Controlled as BaseCodeMirror } from 'react-codemirror2'
 import PerfectScrollbar from 'react-perfect-scrollbar'
@@ -70,16 +70,76 @@ const scrollbarOpts = {
   suppressScrollX: true,
 }
 
-export const CodeMirror: SFC<any> = props => (
-  <ThemeConfig>
-    {({ themeConfig }) => (
-      <Scrollbar
-        option={scrollbarOpts}
-        linesToScroll={themeConfig.linesToScrollEditor || 14}
-      >
-        {global}
-        <EditorStyled {...props} />
-      </Scrollbar>
-    )}
-  </ThemeConfig>
-)
+export class CodeMirror extends Component {
+  private codeMirrorInstance: any;
+  private forceUpdateCodeMirrorTimeout = 0;
+  private previousCodeMirrorHeight = 0;
+
+  public componentWillUnmount(): void {
+    this.clearForceUpdateCodeMirror();
+  }
+
+  public render(): ReactNode {
+    this.forceUpdateCodeMirror();
+
+    const props = {
+      ...this.props,
+      editorDidMount: (editor: any) => {
+        this.codeMirrorInstance = editor;
+      },
+    }
+
+    return (
+      <ThemeConfig>
+        {({ themeConfig }) => (
+          <Scrollbar
+            option={scrollbarOpts}
+            linesToScroll={themeConfig.linesToScrollEditor || 14}
+          >
+            {global}
+            <EditorStyled {...props} />
+          </Scrollbar>
+        )}
+      </ThemeConfig>
+    )
+  }
+
+  private refreshCodeMirror = () => {
+    if (!this.codeMirrorInstance) {
+      return;
+    }
+
+    this.codeMirrorInstance.refresh();
+  }
+
+  private clearForceUpdateCodeMirror = () => {
+    if (!this.forceUpdateCodeMirrorTimeout) {
+      return;
+    }
+    clearTimeout(this.forceUpdateCodeMirrorTimeout);
+  }
+
+  private forceUpdateCodeMirror = () => {
+    if (!this.codeMirrorInstance) {
+      return;
+    }
+
+    this.clearForceUpdateCodeMirror();
+
+    this.forceUpdateCodeMirrorTimeout = setTimeout(() => {
+      const currentHeight = this.codeMirrorInstance.getScrollInfo().height || 0;
+
+      if (
+        // Don't refresh if no height (CodeMirror is not visible)
+        currentHeight <= 0
+        // Don't refresh if same height
+        || this.previousCodeMirrorHeight === currentHeight
+      ) {
+        return;
+      }
+
+      this.refreshCodeMirror();
+      this.previousCodeMirrorHeight = this.codeMirrorInstance.getScrollInfo().height || 0;
+    });
+  }
+}
