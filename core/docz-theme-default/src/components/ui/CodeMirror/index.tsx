@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SFC } from 'react'
+import { useEffect, useRef, SFC } from 'react'
 import { useConfig } from 'docz'
 import { Controlled as BaseCodeMirror } from 'react-codemirror2'
 import PerfectScrollbar from 'react-perfect-scrollbar'
@@ -73,14 +73,58 @@ const scrollbarOpts = {
   suppressScrollX: true,
 }
 
+const noCurrent = (val: any) => !val || !val.current
+
 const CodeMirror: SFC<any> = props => {
   const { themeConfig } = useConfig()
+  const editor = useRef<any>(null)
+  const forceUpdateEditorTimeout = useRef(0)
+  const previousEditor = useRef(0)
   const linesToScroll = themeConfig.linesToScrollEditor || 14
+
+  const editorProps = {
+    ...props,
+    editorDidMount: (codemirror: any) => {
+      editor.current = codemirror
+    },
+  }
+
+  const refreshCodeMirror = () => {
+    if (noCurrent(editor)) return
+    editor.current.refresh()
+  }
+
+  const clearForceUpdateCodeMirror = () => {
+    if (noCurrent(forceUpdateEditorTimeout)) return
+    clearTimeout(forceUpdateEditorTimeout.current)
+  }
+
+  const forceUpdateCodeMirror = () => {
+    if (noCurrent(editor)) return
+    clearForceUpdateCodeMirror()
+
+    forceUpdateEditorTimeout.current = setTimeout(() => {
+      const currentHeight = editor.current.getScrollInfo().height || 0
+      const hasNoHeight = currentHeight <= 0
+
+      // Don't refresh if no height (CodeMirror is not visible) or
+      // Don't refresh if same height
+      if (hasNoHeight || previousEditor === currentHeight) return
+      refreshCodeMirror()
+      previousEditor.current = editor.current.getScrollInfo().height || 0
+    })
+  }
+
+  useEffect(() => {
+    forceUpdateCodeMirror()
+    return () => clearForceUpdateCodeMirror()
+  }, [])
+
   return (
     <React.Fragment>
       <ScrollbarStyles />
       <Scrollbar option={scrollbarOpts} linesToScroll={linesToScroll}>
-        <EditorStyled {...props} />
+        <EditorStyled {...editorProps} />
       </Scrollbar>
     </React.Fragment>
   )
