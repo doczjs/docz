@@ -17,7 +17,7 @@ export interface State<T> {
   Provider: React.ComponentType<ProviderProps<T>>
 }
 
-export function create<T = any>(initial: T = {} as T): State<T> {
+export function create<T = any>(initial: T): State<T> {
   const ctx = createContext<T>(initial)
   const listeners = new Set()
 
@@ -34,7 +34,7 @@ export function create<T = any>(initial: T = {} as T): State<T> {
         if (!equal(props.initial, state)) return props.initial
         return null
       }
-      public state: T = this.props.initial || initial
+      public state = this.props.initial || initial || ({} as T)
       public componentDidMount(): void {
         listeners.add((fn: Dispatch<T>) => this.setState(fn))
       }

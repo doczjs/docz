@@ -1,6 +1,4 @@
-import styled from 'styled-components'
-import { get } from '@utils/theme'
+import * as React from 'react'
+import { Editor } from './Editor'
 
-export const Pre = styled.pre`
-  ${get('styles.pre')};
-`
+export const Pre: React.SFC<any> = props => <Editor {...props} />

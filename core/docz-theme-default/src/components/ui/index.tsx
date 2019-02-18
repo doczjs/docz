@@ -1,3 +1,4 @@
+export { AsyncPlayground } from './AsyncPlayground'
 export { Blockquote } from './Blockquote'
 export { H1 } from './H1'
 export { H2 } from './H2'

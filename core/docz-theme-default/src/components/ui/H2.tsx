@@ -31,6 +31,7 @@ const Heading = styled.h2`
 export const H2: SFC<React.HTMLAttributes<any>> = ({ children, ...props }) => {
   const pathname = typeof window !== 'undefined' ? location.pathname : '/'
   const { linkComponent: Link } = useConfig()
+  if (!Link) return null
   return (
     <Heading {...props}>
       <Link aria-hidden to={`${pathname}#${props.id}`}>

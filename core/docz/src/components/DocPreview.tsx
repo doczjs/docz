@@ -9,7 +9,7 @@ export type PageProps = RouteComponentProps<any> & {
   doc: Entry
 }
 
-export interface RenderComponentProps {
+export interface PlaygroundProps {
   className?: string
   style?: any
   wrapper?: CT<any>
@@ -21,13 +21,13 @@ export interface RenderComponentProps {
   scope: Record<string, any>
 }
 
-export type RenderComponent = CT<RenderComponentProps>
+export type PlaygroundComponent = CT<PlaygroundProps>
 
 export interface ComponentsMap {
   loading?: CT
   page?: CT<PageProps>
   notFound?: CT<RouteComponentProps<any>>
-  render?: RenderComponent
+  playground?: PlaygroundComponent
   h1?: CT<any> | string
   h2?: CT<any> | string
   h3?: CT<any> | string
@@ -45,11 +45,11 @@ export interface ComponentsMap {
 }
 
 export type NotFoundComponent = CT<RouteComponentProps<any>>
+
 const DefaultNotFound: NotFoundComponent = () => <Fragment>Not found</Fragment>
 const DefaultLoading: SFC = () => <Fragment>Loading</Fragment>
-
 const DefaultPage: SFC<any> = ({ children }) => <Fragment>{children}</Fragment>
-const DefaultRender: RenderComponent = ({ component, code }) => (
+const DefaultPlayground: PlaygroundComponent = ({ component, code }) => (
   <Fragment>
     {component}
     {code}
@@ -58,7 +58,7 @@ const DefaultRender: RenderComponent = ({ component, code }) => (
 
 const defaultComponents: ComponentsMap = {
   loading: DefaultLoading,
-  render: DefaultRender,
+  playground: DefaultPlayground,
   notFound: DefaultNotFound,
   page: DefaultPage,
 }

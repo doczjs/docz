@@ -40,15 +40,17 @@ export const createLink = (Link: React.ComponentType<any>) => styled(Link)`
   display: block;
   padding: 4px 24px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: -0.02em;
   color: ${get('colors.sidebarText')};
   text-decoration: none;
   transition: color 0.2s;
+
   &:hover,
   &:visited {
     color: ${get('colors.sidebarText')};
   }
+
   &:hover,
   &.active {
     color: ${p => get('colors.sidebarPrimary')(p) || get('colors.primary')(p)};
@@ -78,7 +80,7 @@ export const MenuLink: SFC<LinkProps> = ({
   const [active, setActive] = useState(false)
   const prevActive = usePrevious(active)
   const $el = useRef(null)
-  const Link = useMemo(() => createLink(linkComponent), [linkComponent])
+  const Link = useMemo(() => createLink(linkComponent!), [linkComponent])
 
   const linkProps = {
     children,

@@ -8,6 +8,7 @@ export const UnorderedList = styled.ul`
     content: '● ';
     color: ${get('colors.border')};
     font-weight: bold;
+    font-size: 0.5em;
     margin-right: 5px;
   }
 

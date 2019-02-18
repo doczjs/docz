@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import { MenuLink, getActiveFromClass } from './MenuLink'
 import { get } from '@utils/theme'
 
-const Wrapper = styled('div')`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 `

@@ -2,6 +2,8 @@ import { createGlobalStyle } from 'styled-components'
 import { get } from '@utils/theme'
 
 export const Global = createGlobalStyle`
+  @import url('https://unpkg.com/codemirror@5.42.0/lib/codemirror.css');
+
   .icon-link {
     display: none;
   }

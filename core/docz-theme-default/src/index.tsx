@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { SFC } from 'react'
 import { theme, DocPreview } from 'docz'
-import get from 'lodash.get'
-import webfont from 'webfontloader'
+import get from 'lodash/get'
 
 import * as components from './components/ui'
 import * as modes from './styles/modes'
@@ -26,32 +25,20 @@ const componentsMap = {
   ol: components.OrderedList,
   p: components.Paragraph,
   page: components.Page,
+  playground: components.AsyncPlayground,
   pre: components.Pre,
   table: components.Table,
   ul: components.UnorderedList,
 }
 
-const Theme: SFC = ({ children }) => {
-  return (
-    <ThemeProvider>
-      <Global />
-      <DocPreview components={componentsMap}>
-        {typeof children === 'function' ? children(componentsMap) : children}
-      </DocPreview>
-    </ThemeProvider>
-  )
-}
-
-webfont.load({
-  google: {
-    families: [
-      'Source Code Pro',
-      'Source Sans Pro:400,600',
-      'Poppins:400',
-      'Playfair Display:700',
-    ],
-  },
-})
+const Theme: SFC = ({ children }) => (
+  <ThemeProvider>
+    <Global />
+    <DocPreview components={componentsMap}>
+      {typeof children === 'function' ? children(componentsMap) : children}
+    </DocPreview>
+  </ThemeProvider>
+)
 
 const enhance = theme(config, ({ mode, codemirrorTheme, ...config }) => ({
   ...config,

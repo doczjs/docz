@@ -116,11 +116,11 @@ export const useMenus = ({ query = '' }: UseMenusParams) => {
   if (!entries || !config) return null
 
   const arr = entries.map(({ value }) => value)
+  const entriesMenu = menusFromEntries(arr)
   const sorted = useMemo(() => {
-    const entries = menusFromEntries(arr)
-    const merged = mergeMenus(entries as MenuItem[], config.menu)
+    const merged = mergeMenus(entriesMenu as MenuItem[], config.menu)
     return sortMenus(merged, config.menu)
-  }, [config.menu])
+  }, [config.menu, entriesMenu])
 
   return query.length > 0 ? (search(query, sorted) as MenuItem[]) : sorted
 }

@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { SFC } from 'react'
+import { SFC, useMemo } from 'react'
 import { Entry, useDocs, useConfig } from 'docz'
 import styled from 'styled-components'
-import get from 'lodash.get'
+import get from 'lodash/get'
 
 import { get as themeGet } from '@utils/theme'
 
@@ -62,10 +62,10 @@ interface MenuHeadingsProps {
 }
 
 export const MenuHeadings: SFC<MenuHeadingsProps> = ({ route, onClick }) => {
-  const { linkComponent: Link } = useConfig()
   const docs = useDocs()
+  const { linkComponent: Link } = useConfig()
   const headings = docs && getHeadings(route, docs)
-  const SmallLink = React.useMemo(() => createSmallLink(Link), [Link])
+  const SmallLink = useMemo(() => createSmallLink(Link!), [Link])
 
   return headings && headings.length > 0 ? (
     <Submenu>

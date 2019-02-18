@@ -76,7 +76,7 @@
     "titleize": "^1.0.1",
     "typescript": "^3.3.3",
     "url-loader": "^1.1.2",
-    "webpack": "^4.29.4",
+    "webpack": "^4.29.5",
     "webpack-bundle-analyzer": "^3.0.4",
     "webpack-chain": "^5.2.0",
     "webpack-dev-server": "^3.1.14",
@@ -84,7 +84,7 @@
     "webpack-manifest-plugin": "^2.0.4",
     "webpackbar": "^3.1.5",
     "ws": "^6.1.4",
-    "yargs": "^13.2.0"
+    "yargs": "^13.2.1"
   },
   "devDependencies": {
     "@types/chokidar": "^1.7.5",

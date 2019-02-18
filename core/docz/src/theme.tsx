@@ -1,12 +1,10 @@
 import * as React from 'react'
 import { Fragment, SFC, ComponentType as CT } from 'react'
 import { doczState, Database, ThemeConfig, TransformFn } from './state'
-import { useDataServer } from './hooks/useDataServer'
 
 interface ThemeProps {
   db: Database
   wrapper?: CT
-  websocketUrl?: string
   linkComponent?: CT
   children(WrappedComponent: CT): JSX.Element
 }
@@ -18,20 +16,19 @@ export function theme(
   transform: TransformFn = c => c
 ): ThemeReturn {
   return WrappedComponent => {
-    const Theme: SFC<ThemeProps> = props => {
+    const Theme: SFC<ThemeProps> = React.memo(props => {
       const { linkComponent } = props
       const { db, children, wrapper: Wrapper = Fragment } = props
       const initial = { ...db, themeConfig, transform, linkComponent }
 
-      useDataServer(props.websocketUrl)
       return (
-        <doczState.Provider initial={initial}>
+        <doczState.Provider initial={initial as any}>
           <Wrapper>
             <WrappedComponent>{children}</WrappedComponent>
           </Wrapper>
         </doczState.Provider>
       )
-    }
+    })
 
     return Theme
   }

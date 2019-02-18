@@ -13,7 +13,6 @@ const Wrapper = styled.div`
   flex: 1;
   color: ${get('colors.text')};
   background: ${get('colors.background')};
-  font-size: 18px;
   min-width: 0;
 `
 

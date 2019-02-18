@@ -20,10 +20,6 @@ export interface Entry {
   [key: string]: any
 }
 
-export interface ThemeConfig {
-  [key: string]: any
-}
-
 export interface MenuItem {
   id: string
   name: string
@@ -33,6 +29,7 @@ export interface MenuItem {
   order?: number
 }
 
+export type ThemeConfig = Record<string, any>
 export interface Config {
   title: string
   description: string
@@ -43,6 +40,7 @@ export interface Config {
   repository: string | null
   native: boolean
   separator: string
+  codeSandbox: boolean
 }
 
 export type Entries = Array<{ key: string; value: Entry }>
@@ -50,15 +48,15 @@ export type Props = Array<{ key: string; value: any }>
 export type TransformFn = (config: ThemeConfig) => ThemeConfig
 
 export interface Database {
-  config?: Config
-  entries?: Entries
+  config: Config
   props?: Props
+  entries?: Entries
 }
 
 export interface DoczState extends Database {
+  linkComponent: ComponentType<any>
   themeConfig?: ThemeConfig
   transform?: TransformFn
-  linkComponent?: ComponentType<any>
 }
 
-export const doczState = create<DoczState>()
+export const doczState = create<DoczState>({} as any)

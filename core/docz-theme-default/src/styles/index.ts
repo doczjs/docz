@@ -1,22 +1,23 @@
 import { css } from 'styled-components'
+import { get } from '@utils/theme'
 
 export const styles = {
   body: css`
-    font-family: 'Source Sans Pro', Helvetica, sans-serif;
-    font-size: 20px;
+    font-family: ${get('fonts.ui')};
+    font-size: 16px;
     line-height: 1.6;
   `,
   h1: css`
-    margin: 40px 0 30px;
-    font-family: 'Playfair Display', serif;
-    font-size: 60px;
+    margin: 40px 0 20px;
+    font-family: ${get('fonts.display')};
+    font-size: 48px;
     font-weight: 700;
     letter-spacing: -0.02em;
   `,
   h2: css`
-    margin: 40px 0 20px;
+    margin: 30px 0 20px;
     line-height: 1.4em;
-    font-family: 'Poppins', serif;
+    font-family: ${get('fonts.display')};
     font-weight: 400;
     font-size: 32px;
     letter-spacing: -0.02em;
@@ -28,7 +29,7 @@ export const styles = {
   `,
   h4: css`
     margin: 25px 0 10px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
   `,
   h5: css`
@@ -51,18 +52,18 @@ export const styles = {
     margin: 10px 0 10px;
   `,
   playground: css`
-    padding: 1.5em;
+    padding: 40px;
   `,
   code: css`
     margin: 0 3px;
     border-radius: 3px;
-    font-family: 'Source Code Pro', monospace;
+    font-family: ${get('fonts.mono')};
     padding: 2px 5px;
     font-size: 0.8em;
     border: '1px solid rgba(0, 0, 0, 0.02)';
   `,
   pre: css`
-    font-family: 'Source Code Pro', monospace;
+    font-family: ${get('fonts.mono')};
     font-size: 14px;
     line-height: 1.8;
   `,
@@ -72,7 +73,7 @@ export const styles = {
   table: css`
     overflow-y: hidden;
     width: 100%;
-    font-family: 'Source Code Pro', monospace;
+    font-family: ${get('fonts.mono')};
     font-size: 14px;
     overflow-x: initial;
     display: block;
@@ -81,6 +82,6 @@ export const styles = {
     margin: 25px 0;
     padding: 20px;
     font-style: italic;
-    font-size: 18px;
+    font-size: 16px;
   `,
 }

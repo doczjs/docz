@@ -9,4 +9,4 @@ export * from './components/DocPreview'
 export * from './hooks'
 
 export { theme } from './theme'
-export { doczState, Entry, MenuItem } from './state'
+export { doczState, Entry, MenuItem, ThemeConfig } from './state'

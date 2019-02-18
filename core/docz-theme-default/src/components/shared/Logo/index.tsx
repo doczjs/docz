@@ -68,6 +68,8 @@ export const Logo: SFC<LogoProps> = ({ showBg }) => {
     linkComponent: Link,
     themeConfig: { logo },
   } = useConfig()
+
+  if (!Link) return null
   return (
     <Wrapper showBg={showBg}>
       <Link to="/">
