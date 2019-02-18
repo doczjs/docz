@@ -22,7 +22,6 @@ export const Alert = props => <AlertStyled {...props} />
 Alert.propTypes = {
   /** `info`, `positive`, `negative`, or `warning` */
   kind: t.oneOf(['info', 'positive', 'negative', 'warning']),
-  color: t.string,
 }
 
 Alert.defaultProps = {

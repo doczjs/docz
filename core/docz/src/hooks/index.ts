@@ -1,3 +1,4 @@
+export * from './useComponents'
 export { useConfig, UseConfigObj } from './useConfig'
 export { useDataServer } from './useDataServer'
 export { useDocs } from './useDocs'

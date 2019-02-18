@@ -15,8 +15,7 @@
     "fix:prettier": "prettier \"src/**/*.{json,jsx,js}\" --write"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.7",
-    "@emotion/styled": "^10.0.7",
+    "@mdx-js/tag": "^0.17.5",
     "babel-plugin-export-metadata": "^0.13.4",
     "change-case": "^3.1.0",
     "chokidar": "^2.1.1",

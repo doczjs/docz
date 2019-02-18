@@ -2,7 +2,8 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Theme from 'docz-theme-default'
 import { StaticQuery, graphql } from 'gatsby'
-import { AsyncRoute } from 'docz'
+import { AsyncRoute, useComponents } from 'docz'
+import { MDXProvider } from '@mdx-js/tag'
 
 import { Link } from './Link'
 import SEO from './Seo'
@@ -16,12 +17,17 @@ const query = graphql`
   }
 `
 
-const Route = ({ children, ...props }) => (
-  <AsyncRoute
-    {...props}
-    asyncComponent={() => <Fragment>{children}</Fragment>}
-  />
-)
+const Route = ({ children, ...props }) => {
+  const components = useComponents()
+  return (
+    <MDXProvider components={components}>
+      <AsyncRoute
+        {...props}
+        asyncComponent={() => <Fragment>{children}</Fragment>}
+      />
+    </MDXProvider>
+  )
+}
 
 const parseDatabase = data => {
   try {
@@ -44,11 +50,9 @@ const Layout = ({ children, ...defaultProps }) => {
           <Fragment>
             {entry && <SEO title={entry.value.name} />}
             <Theme db={db} linkComponent={Link}>
-              {components => (
-                <Route {...defaultProps} components={components} entry={entry}>
-                  {children}
-                </Route>
-              )}
+              <Route {...defaultProps} entry={entry}>
+                {children}
+              </Route>
             </Theme>
           </Fragment>
         )

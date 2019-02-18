@@ -1,11 +1,9 @@
 import * as React from 'react'
 import { ComponentType, SFC } from 'react'
-import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 
-import { ComponentsMap } from './DocPreview'
+import { useComponents } from '../hooks'
 
 export interface PlaygroundProps {
-  components: ComponentsMap
   className?: string
   style?: any
   wrapper?: ComponentType<any>
@@ -16,8 +14,7 @@ export interface PlaygroundProps {
   __codesandbox: string
 }
 
-const BasePlayground: SFC<PlaygroundProps> = ({
-  components,
+export const Playground: SFC<PlaygroundProps> = ({
   className,
   style,
   wrapper: Wrapper,
@@ -27,6 +24,7 @@ const BasePlayground: SFC<PlaygroundProps> = ({
   __code,
   __codesandbox,
 }) => {
+  const components = useComponents()
   if (!components || !components.playground) return null
   const props = { className, style, components }
 
@@ -42,5 +40,3 @@ const BasePlayground: SFC<PlaygroundProps> = ({
     />
   )
 }
-
-export const Playground = withMDXComponents(BasePlayground)

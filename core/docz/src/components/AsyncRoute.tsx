@@ -1,10 +1,9 @@
 import * as React from 'react'
 import { SFC } from 'react'
-import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 import loadable from '@loadable/component'
 
 import { Entry } from '../state'
-import { ComponentsMap } from './DocPreview'
+import { useComponents, ComponentsMap } from '../hooks/useComponents'
 import { AsyncComponent } from './AsyncComponent'
 
 export type Imports = Record<string, () => Promise<any>>
@@ -19,7 +18,7 @@ export const loadRoute: any = (path: string, imports: Imports) => {
       />
     )
 
-    return withMDXComponents(ExportedComponent)
+    return ExportedComponent
   })
 }
 
@@ -31,14 +30,8 @@ interface AsyncRouteProps {
 }
 
 export const AsyncRoute: SFC<AsyncRouteProps> = defaultProps => {
-  const {
-    components,
-    asyncComponent,
-    path,
-    entry,
-    ...routeProps
-  } = defaultProps
-
+  const { asyncComponent, path, entry, ...routeProps } = defaultProps
+  const components = useComponents()
   const Page: any = components.page
   const Component: any = asyncComponent
   const props = { ...routeProps, doc: entry }

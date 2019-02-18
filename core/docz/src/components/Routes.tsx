@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { SFC, useMemo, useContext, useEffect } from 'react'
-import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
+import { MDXProvider } from '@mdx-js/tag'
 import {
   LocationProvider,
   Router,
@@ -11,7 +11,7 @@ import {
 declare var DOCZ_BASE_URL: string
 
 import { doczState } from '../state'
-import { ComponentsMap } from './DocPreview'
+import { useComponents, ComponentsMap } from '../hooks/useComponents'
 import { AsyncRoute, loadRoute, Imports } from './AsyncRoute'
 
 export interface RoutesProps {
@@ -29,20 +29,21 @@ const goToHash = ({ location }: HistoryListenerParameter) => {
   })
 }
 
-export const Routes: SFC = withMDXComponents(
-  ({ components, imports }: RoutesProps) => {
-    const { entries } = useContext(doczState.context)
-    if (!entries || !components) return null
+export const Routes: SFC<RoutesProps> = ({ imports }) => {
+  const components = useComponents()
+  const { entries } = useContext(doczState.context)
+  if (!entries || !components) return null
 
-    const NotFound: any = components.notFound
-    const Loading: any = components.loading
-    const history = useMemo(() => createHistory(window as any), [])
+  const NotFound: any = components.notFound
+  const Loading: any = components.loading
+  const history = useMemo(() => createHistory(window as any), [])
 
-    useEffect(() => {
-      history.listen(goToHash)
-    }, [])
+  useEffect(() => {
+    history.listen(goToHash)
+  }, [])
 
-    return (
+  return (
+    <MDXProvider components={components}>
       <LocationProvider history={history}>
         <React.Suspense fallback={<Loading />}>
           <Router basepath={DOCZ_BASE_URL}>
@@ -64,6 +65,6 @@ export const Routes: SFC = withMDXComponents(
           </Router>
         </React.Suspense>
       </LocationProvider>
-    )
-  }
-)
+    </MDXProvider>
+  )
+}

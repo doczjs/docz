@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { CSSProperties, Fragment, SFC, ComponentType } from 'react'
-import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 import { last, get } from 'lodash/fp'
 import capitalize from 'capitalize'
 
 import { doczState } from '../state'
+import { useComponents } from '../hooks'
 import { humanize } from '../utils/humanize-prop'
 
 export interface StylesMap {
@@ -109,7 +109,8 @@ export const getPropType = (prop: Prop, Tooltip?: TooltipComponent) => {
   )
 }
 
-const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
+export const PropsTable: SFC<PropsTable> = ({ of: component }) => {
+  const components = useComponents()
   const { props: stateProps } = React.useContext(doczState.context)
   const filename = get('__filemeta.filename', component)
   const found =
@@ -187,5 +188,3 @@ const BasePropsTable: SFC<PropsTable> = ({ of: component, components }) => {
     </Fragment>
   )
 }
-
-export const PropsTable = withMDXComponents(BasePropsTable)

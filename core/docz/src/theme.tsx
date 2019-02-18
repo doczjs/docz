@@ -19,10 +19,10 @@ export function theme(
     const Theme: SFC<ThemeProps> = React.memo(props => {
       const { linkComponent } = props
       const { db, children, wrapper: Wrapper = Fragment } = props
-      const initial = { ...db, themeConfig, transform, linkComponent }
+      const initial: any = { ...db, themeConfig, transform, linkComponent }
 
       return (
-        <doczState.Provider initial={initial as any}>
+        <doczState.Provider initial={initial}>
           <Wrapper>
             <WrappedComponent>{children}</WrappedComponent>
           </Wrapper>

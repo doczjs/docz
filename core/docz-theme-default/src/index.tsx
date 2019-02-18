@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { SFC } from 'react'
-import { theme, DocPreview } from 'docz'
+import { theme, ComponentsProvider } from 'docz'
 import get from 'lodash/get'
 
 import * as components from './components/ui'
@@ -34,9 +34,9 @@ const componentsMap = {
 const Theme: SFC = ({ children }) => (
   <ThemeProvider>
     <Global />
-    <DocPreview components={componentsMap}>
-      {typeof children === 'function' ? children(componentsMap) : children}
-    </DocPreview>
+    <ComponentsProvider components={componentsMap}>
+      {children}
+    </ComponentsProvider>
   </ThemeProvider>
 )
 

@@ -1,7 +1,7 @@
 import * as React from 'react'
+import { useContext, createContext } from 'react'
 import { Fragment, SFC, ComponentType as CT } from 'react'
 import { RouteComponentProps } from '@reach/router'
-import { MDXProvider } from '@mdx-js/tag'
 
 import { Entry } from '../state'
 
@@ -63,17 +63,21 @@ const defaultComponents: ComponentsMap = {
   page: DefaultPage,
 }
 
-export interface DocPreviewProps {
+const ctx = createContext<ComponentsMap>({})
+
+export interface ComponentsProviderProps {
   components: ComponentsMap
 }
 
-export const DocPreview: SFC<DocPreviewProps> = ({
+export const ComponentsProvider: SFC<ComponentsProviderProps> = ({
   components: themeComponents = {},
   children,
-}) => {
-  return (
-    <MDXProvider components={{ ...defaultComponents, ...themeComponents }}>
-      {children}
-    </MDXProvider>
-  )
+}) => (
+  <ctx.Provider value={{ ...defaultComponents, ...themeComponents }}>
+    {children}
+  </ctx.Provider>
+)
+
+export const useComponents = (): ComponentsMap => {
+  return useContext(ctx)
 }
