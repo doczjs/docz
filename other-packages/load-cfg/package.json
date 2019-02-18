@@ -22,15 +22,15 @@
   "dependencies": {
     "@babel/preset-env": "^7.3.1",
     "@babel/register": "^7.0.0",
-    "deepmerge": "^3.1.0",
+    "deepmerge": "^3.2.0",
     "find-up": "^3.0.0",
     "fs-extra": "^7.0.1"
   },
   "devDependencies": {
-    "@types/node": "^11.9.3",
-    "@types/react": "^16.8.2",
+    "@types/node": "^11.9.4",
+    "@types/react": "^16.8.3",
     "@types/webpack": "^4.4.24",
-    "@types/yargs": "^12.0.8",
-    "lerna": "3.11.1"
+    "@types/yargs": "^12.0.9",
+    "lerna": "3.13.0"
   }
 }

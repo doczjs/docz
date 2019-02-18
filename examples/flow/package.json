@@ -9,15 +9,15 @@
   "dependencies": {
     "@emotion/core": "^10.0.7",
     "@emotion/styled": "^10.0.7",
-    "prop-types": "^15.7.1",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1"
+    "prop-types": "^15.7.2",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2"
   },
   "devDependencies": {
     "@babel/preset-flow": "^7.0.0",
     "babel-plugin-emotion": "^10.0.7",
     "docz": "^0.13.5",
-    "flow-bin": "^0.92.1",
+    "flow-bin": "^0.93.0",
     "flow-typed": "^2.5.1"
   }
 }
