@@ -81,7 +81,6 @@ export interface Argv {
    * this property will be deleted in the v1.0
    */
   ordering: 'ascending' | 'descending'
-  hashRouter: boolean
   wrapper?: string
   indexHtml?: string
   /** slugify separator */
@@ -194,10 +193,6 @@ export const setArgs = (yargs: Yargs) => {
     .option('websocketPort', {
       type: 'number',
       default: getEnv('docz.websocket.port', 60505),
-    })
-    .option('hashRouter', {
-      type: 'boolean',
-      default: getEnv('docz.hash.router', false),
     })
     .option('native', {
       type: 'boolean',

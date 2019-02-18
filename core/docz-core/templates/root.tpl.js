@@ -15,9 +15,7 @@ const Root = () => {
       linkComponent={Link}
       db={database}
       >
-      <Router>
         <Routes imports={imports} />
-      </Router>
     </Theme>
   )
 }

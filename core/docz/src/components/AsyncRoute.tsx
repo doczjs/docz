@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useEffect, SFC } from 'react'
+import { SFC } from 'react'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 import loadable from '@loadable/component'
 
@@ -42,16 +42,6 @@ export const AsyncRoute: SFC<AsyncRouteProps> = defaultProps => {
   const Page: any = components.page
   const Component: any = asyncComponent
   const props = { ...routeProps, doc: entry }
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (typeof window !== 'undefined' && location.hash) {
-        const id: string = location.hash.substring(1)
-        const el: HTMLElement | null = document.getElementById(id)
-        if (el) el.scrollIntoView()
-      }
-    })
-  }, [])
 
   return Page ? (
     <Page {...props}>

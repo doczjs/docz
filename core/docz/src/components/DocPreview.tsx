@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Fragment, SFC, ComponentType as CT } from 'react'
-import { RouteComponentProps } from 'react-router-dom'
+import { RouteComponentProps } from '@reach/router'
 import { MDXProvider } from '@mdx-js/tag'
 
 import { Entry } from '../state'

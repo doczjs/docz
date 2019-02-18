@@ -47,9 +47,6 @@ const createSmallLink = (Link: React.ComponentType<any>) => styled(Link)`
   }
 `
 
-const isSmallLinkActive = (slug: string) => (m: any, location: any) =>
-  slug === location.hash.slice(1, Infinity)
-
 const getHeadings = (route: string, docs: Entry[]) => {
   const doc = docs.find(doc => doc.route === route)
   const headings = get(doc, 'headings')
@@ -74,7 +71,6 @@ export const MenuHeadings: SFC<MenuHeadingsProps> = ({ route, onClick }) => {
           key={heading.slug}
           onClick={onClick}
           to={`${route}#${heading.slug}`}
-          isActive={isSmallLinkActive(heading.slug)}
         >
           {heading.value}
         </SmallLink>

@@ -59,8 +59,7 @@ export const injections = (config: Config, args: Args, env: Env) => {
     {
       ...getClientEnvironment(base).stringified,
       NODE_ENV: stringify(env),
-      DOCZ_BASE_URL: args.hashRouter ? stringify('/') : stringify(base),
-      DOCZ_HASH_ROUTER: stringify(args.hashRouter || false),
+      DOCZ_BASE_URL: stringify(base),
     },
   ])
 }
