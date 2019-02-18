@@ -1,37 +1,26 @@
 import * as React from 'react'
 import { useEffect, SFC } from 'react'
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
-import importedComponent from 'react-imported-component'
+import loadable from '@loadable/component'
 
 import { Entry } from '../state'
 import { ComponentsMap } from './DocPreview'
 import { AsyncComponent } from './AsyncComponent'
 
 export type Imports = Record<string, () => Promise<any>>
-export async function loadFromImports(
-  path: string,
-  imports: Imports
-): Promise<SFC<any>> {
-  // tslint:disable-next-line
-  const { default: Component, getInitialData } = await imports[path]()
-  const ExportedComponent: SFC<any> = props => (
-    <AsyncComponent
-      {...props}
-      as={Component || 'div'}
-      getInitialData={getInitialData}
-    />
-  )
+export const loadRoute: any = (path: string, imports: Imports) => {
+  return loadable(async () => {
+    const { default: Component, getInitialData } = await imports[path]()
+    const ExportedComponent: SFC<any> = props => (
+      <AsyncComponent
+        {...props}
+        as={Component || 'div'}
+        getInitialData={getInitialData}
+      />
+    )
 
-  return withMDXComponents(ExportedComponent)
-}
-
-export const loadRoute: any = (
-  path: string,
-  imports: Imports,
-  LoadingComponent: any
-) => {
-  const opts: any = { LoadingComponent }
-  return importedComponent(async () => loadFromImports(path, imports), opts)
+    return withMDXComponents(ExportedComponent)
+  })
 }
 
 interface AsyncRouteProps {

@@ -21,30 +21,31 @@ export const Routes: SFC = withMDXComponents(
     const Loading: any = components.loading
 
     return (
-      <Switch>
-        {entries.map(({ key: path, value: entry }) => {
-          const props = { path, entries, components }
-          const component: any = loadRoute(path, imports, Loading)
-          component.preload()
+      <React.Suspense fallback={<Loading />}>
+        <Switch>
+          {entries.map(({ key: path, value: entry }) => {
+            const props = { path, entries, components }
+            const component = loadRoute(path, imports, Loading)
 
-          return (
-            <Route
-              exact
-              key={entry.id}
-              path={entry.route}
-              render={routeProps => (
-                <AsyncRoute
-                  {...routeProps}
-                  {...props}
-                  entry={entry}
-                  asyncComponent={component}
-                />
-              )}
-            />
-          )
-        })}
-        {NotFound && <Route component={NotFound} />}
-      </Switch>
+            return (
+              <Route
+                exact
+                key={entry.id}
+                path={entry.route}
+                render={routeProps => (
+                  <AsyncRoute
+                    {...routeProps}
+                    {...props}
+                    entry={entry}
+                    asyncComponent={component}
+                  />
+                )}
+              />
+            )
+          })}
+          {NotFound && <Route component={NotFound} />}
+        </Switch>
+      </React.Suspense>
     )
   }
 )

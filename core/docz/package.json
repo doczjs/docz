@@ -24,6 +24,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
+    "@loadable/component": "^5.6.0",
     "@mdx-js/tag": "^0.17.5",
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
@@ -35,7 +36,6 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
-    "react-imported-component": "^5.5.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-router-hash-link": "^1.2.1",
@@ -45,5 +45,8 @@
   "peerDependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "@types/loadable__component": "^5.6.0"
   }
 }
