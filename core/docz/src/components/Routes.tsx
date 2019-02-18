@@ -50,7 +50,7 @@ export const Routes: SFC<RoutesProps> = ({ imports }) => {
             <NotFound default />
             {entries.map(({ key: path, value: entry }) => {
               const props = { path, entries, components }
-              const component = loadRoute(path, imports, Loading)
+              const component = loadRoute(path, imports)
 
               return (
                 <AsyncRoute

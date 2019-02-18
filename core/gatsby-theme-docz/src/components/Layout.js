@@ -19,6 +19,9 @@ const query = graphql`
 
 const Route = ({ children, ...props }) => {
   const components = useComponents()
+  const NotFound = components.NotFound
+  if (!props.entry) return <NotFound />
+
   return (
     <MDXProvider components={components}>
       <AsyncRoute

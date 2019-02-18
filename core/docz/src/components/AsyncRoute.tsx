@@ -7,7 +7,7 @@ import { useComponents, ComponentsMap } from '../hooks/useComponents'
 import { AsyncComponent } from './AsyncComponent'
 
 export type Imports = Record<string, () => Promise<any>>
-export const loadRoute: any = (path: string, imports: Imports) => {
+export const loadRoute = (path: string, imports: Imports) => {
   return loadable(async () => {
     const { default: Component, getInitialData } = await imports[path]()
     const ExportedComponent: SFC<any> = props => (
