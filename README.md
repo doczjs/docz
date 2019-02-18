@@ -96,7 +96,6 @@ Documenting our things is one of the most important and heavy processes when you
 
 ## 🌍 &nbsp; Around the world
 
-- **[React Spring](http://react-spring.surge.sh/)** - Helping react-motion and animated to become best friends
 - **[Smooth UI](https://smooth-ui.smooth-code.com/)** - Modern React UI library
 - **[Set Protocol Docs](https://docs.setprotocol.com/)** - Documentation site of Set Protocal
 - **[RBX](https://dfee.github.io/rbx)** - The Comprehensive Bulma UI Framework for React
@@ -175,4 +174,5 @@ If you need some help you can chat with us on [our Discord server](https://disco
 <!-- prettier-ignore -->
 | [<img src="https://avatars3.githubusercontent.com/u/2029172?v=4" width="60px;" alt="Pedro Nauck"/><br /><sub><b>Pedro Nauck</b></sub>](https://github.com/pedronauck)<br />[💻](https://github.com/pedronauck/docz/commits?author=pedronauck "Code") [📖](https://github.com/pedronauck/docz/commits?author=pedronauck "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Apedronauck "Bug reports") [👀](#review-pedronauck "Reviewed Pull Requests") |
 | :---: |
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
