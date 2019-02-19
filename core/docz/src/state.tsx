@@ -33,7 +33,6 @@ export type ThemeConfig = Record<string, any>
 export interface Config {
   title: string
   description: string
-  ordering: string
   themeConfig: ThemeConfig
   menu: MenuItem[]
   version: string | null

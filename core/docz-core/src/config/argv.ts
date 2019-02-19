@@ -76,11 +76,6 @@ export interface Argv {
   title: string
   description: string
   theme: string
-  /**
-   * @deprecated since the new ordering using menu on config file
-   * this property will be deleted in the v1.0
-   */
-  ordering: 'ascending' | 'descending'
   wrapper?: string
   indexHtml?: string
   /** slugify separator */
@@ -168,10 +163,6 @@ export const setArgs = (yargs: Yargs) => {
     .option('indexHtml', {
       type: 'string',
       default: getEnv('docz.index.html', null),
-    })
-    .option('ordering', {
-      type: 'string',
-      default: getEnv('docz.ordering', 'descending'),
     })
     .option('debug', {
       type: 'boolean',

@@ -11,7 +11,6 @@ import { getRepoUrl } from '../utils/repo-info'
 interface Payload {
   title: string
   description: string
-  ordering: string
   menu: Menu[]
   version: string | null
   repository: string | null
@@ -29,7 +28,6 @@ const getInitialConfig = (config: Config): Payload => {
     title: config.title,
     description: config.description,
     menu: config.menu,
-    ordering: config.ordering,
     version: get(pkg, 'version'),
     repository: repoUrl,
     native: config.native,
