@@ -41,9 +41,6 @@ export function create<T = any>(initial: T): State<T> {
       public componentWillUnmount(): void {
         listeners.clear()
       }
-      public shouldComponentUpdate(nextProps: any, nextState: any): boolean {
-        return !equal(this.state, nextState)
-      }
       public render(): React.ReactNode {
         return (
           <ctx.Provider value={this.state}>{this.props.children}</ctx.Provider>

@@ -2,10 +2,11 @@ const path = require('path')
 const chokidar = require('chokidar')
 const { Entries } = require('docz-core')
 const { parseConfig } = require('../utils/parseConfig')
+const { get } = require('lodash/fp')
 
 const getEntry = async (filepath, entries) => {
   const map = await entries.get()
-  return map[filepath]
+  return get(filepath, map)
 }
 
 const mountRoute = (base = '/', route) => {
@@ -25,8 +26,8 @@ module.exports = async ({ store, actions }, opts) => {
   })
 
   const handleCreatePage = async filepath => {
-    const component = path.join(paths.root, filepath)
     const entry = await getEntry(filepath, entries)
+    const component = path.join(paths.root, filepath)
 
     if (entry) {
       createPage({
@@ -50,10 +51,16 @@ module.exports = async ({ store, actions }, opts) => {
     }
   }
 
+  const allEntries = await entries.get()
+  await Promise.all(
+    Object.values(allEntries).map(async value => {
+      handleCreatePage(value.filepath)
+    })
+  )
+
   return new Promise((resolve, reject) => {
     watcher
       .on('add', handleCreatePage)
-      .on('change', handleCreatePage)
       .on('unlink', handleDeletePage)
       .on('ready', () => resolve())
       .on('error', err => reject(err))

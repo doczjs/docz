@@ -28,6 +28,7 @@
     "gatsby-plugin-compile-es6-packages": "^1.0.6",
     "gatsby-plugin-manifest": "^2.0.17",
     "gatsby-plugin-react-helmet": "^3.0.6",
+    "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
