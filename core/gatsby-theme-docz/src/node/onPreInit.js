@@ -25,7 +25,10 @@ module.exports = async opts => {
   await fs.ensureDir(componentPath())
   await fs.copy(fromTemplates('Seo.tpl.js'), componentPath('Seo.js'))
   await fs.copy(fromTemplates('Link.tpl.js'), componentPath('Link.js'))
-  await touchTemplate('Layout.tpl.js', { theme: config.theme })
+  await touchTemplate('Layout.tpl.js', {
+    theme: config.theme,
+    wrapper: config.wrapper,
+  })
 
   return Promise.resolve()
 }

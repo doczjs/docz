@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 import { AsyncRoute, useComponents } from 'docz'
 import { MDXProvider } from '@mdx-js/tag'
+
 import Theme from '<%- theme %>'
+<% if (wrapper) {%>import Wrapper from '<%- wrapper %>'<%}%>
 
 import { Link } from './Link'
 import SEO from './Seo'
@@ -52,7 +54,7 @@ const Layout = ({ children, ...defaultProps }) => {
         return (
           <Fragment>
             {entry && <SEO title={entry.value.name} />}
-            <Theme db={db} linkComponent={Link}>
+            <Theme db={db} linkComponent={Link} <% if (wrapper) {%>wrapper={Wrapper}<%}%>>
               <Route {...defaultProps} entry={entry}>
                 {children}
               </Route>
