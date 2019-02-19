@@ -222,7 +222,7 @@ class SidebarBase extends Component<SidebarProps, SidebarState> {
   }
 
   private match = (val: string, menu: MenuItem[]) => {
-    const items = menu.map(item => [item].concat(item.menu || []))
+    const items = menu.map(item => (item.menu ? item.menu : [item]))
     const flattened = flattendepth(items, 2)
 
     return match(flattened, val, { keys: ['name'] })
