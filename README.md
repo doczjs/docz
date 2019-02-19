@@ -112,6 +112,18 @@ Simplicity is one of our core principles. Therefore, getting started with **docz
 $ yarn add docz docz-theme-default --dev
 ```
 
+> Special note for `create-react-app` and other users
+
+> There is a known temporary version mismatch issue in v0.13 of `docz` that causes an `Uncaught TypeError: Cannot read property 'close' of undefined` error. To fix, add this to your `package.json` and rerun `rm yarn.lock && yarn`:
+
+```json
+"resolutions": {
+  "ansi-styles": "^3.2.0"
+}
+```
+
+> See associated tracking issues for [`webpack v4.28.4`](https://github.com/pedronauck/docz/issues/596) and [`ansi-styles v3.2.0`](https://github.com/pedronauck/docz/issues/536). You can [track v0.14 development here](https://github.com/pedronauck/docz/tree/v0.14).
+
 Then create some `.mdx` anywhere inside your project:
 
 ```markdown
