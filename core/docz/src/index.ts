@@ -1,7 +1,7 @@
 export { AsyncRoute, loadRoute } from './components/AsyncRoute'
 export { Link, LinkProps } from './components/Link'
 export { Playground } from './components/Playground'
-export { PropsTable } from './components/PropsTable'
+export { Props, PropsComponentProps } from './components/Props'
 export { Routes } from './components/Routes'
 
 export * from './hooks'

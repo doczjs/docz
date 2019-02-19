@@ -1,6 +1,6 @@
 import capitalize from 'capitalize'
 
-import { PropType, FlowType } from '../components/PropsTable'
+import { PropType, FlowType } from '../components/Props'
 
 const RE_OBJECTOF = /(?:React\.)?(?:PropTypes\.)?objectOf\((?:React\.)?(?:PropTypes\.)?(\w+)\)/
 

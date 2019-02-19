@@ -128,12 +128,12 @@ Then create some `.mdx` anywhere inside your project:
 name: Button
 ---
 
-import { Playground, PropsTable } from 'docz'
+import { Playground, Props } from 'docz'
 import Button from './'
 
 # Button
 
-<PropsTable of={Button} />
+<Props of={Button} />
 
 ## Basic usage
 

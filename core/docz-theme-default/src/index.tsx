@@ -27,6 +27,7 @@ export const componentsMap = {
   page: components.Page,
   playground: components.AsyncPlayground,
   pre: components.Pre,
+  props: components.Props,
   table: components.Table,
   ul: components.UnorderedList,
 }

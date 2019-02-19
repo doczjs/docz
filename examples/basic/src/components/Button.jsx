@@ -63,9 +63,12 @@ export const Button = ({ children, ...props }) => (
 )
 
 Button.propTypes = {
+  /**
+   * This is a pretty fucking good description for this prop
+   */
   scales: t.oneOf(['small', 'normal', 'big']),
   kind: t.oneOf(['primary', 'secondary', 'cancel', 'dark', 'gray']),
-  outline: t.bool,
+  outline: t.bool.isRequired,
 }
 
 Button.defaultProps = {
