@@ -18,8 +18,6 @@ const Icon = styled(Hash)`
 
 const Heading = styled.h2`
   position: relative;
-  border-bottom: 1px dashed ${get('colors.border')};
-  padding-bottom: 5px;
 
   &:hover .heading--Icon {
     opacity: 1;

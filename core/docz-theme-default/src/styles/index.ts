@@ -11,20 +11,20 @@ export const styles = {
     margin: 40px 0 20px;
     font-family: ${get('fonts.display')};
     font-size: 48px;
-    font-weight: 700;
+    font-weight: 500;
     letter-spacing: -0.02em;
   `,
   h2: css`
     margin: 30px 0 20px;
     line-height: 1.4em;
     font-family: ${get('fonts.display')};
-    font-weight: 400;
-    font-size: 32px;
+    font-weight: 500;
+    font-size: 28px;
     letter-spacing: -0.02em;
   `,
   h3: css`
     margin: 25px 0 10px;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 400;
   `,
   h4: css`
