@@ -86,9 +86,7 @@ export const Editor: React.SFC<EditorProps> = ({
   }
 
   const onEditorDidMount = (editor: any) => {
-    if (editor) {
-      removeLastLine(editor)
-    }
+    if (editor) removeLastLine(editor)
   }
 
   const removeLastLine = useCallback(

@@ -85,6 +85,7 @@ const CodeMirror: SFC<any> = props => {
   const editorProps = {
     ...props,
     editorDidMount: (codemirror: any) => {
+      props.editorDidMount && props.editorDidMount(codemirror)
       editor.current = codemirror
     },
   }

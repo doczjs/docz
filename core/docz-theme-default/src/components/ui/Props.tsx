@@ -21,10 +21,11 @@ const Title = styled.div`
 
 const PropName = styled.span`
   background: ${get('colors.sidebarBg')};
-  color: ${get('colors.sidebarText')};
+  color: ${get('colors.primary')};
   padding: 5px 10px;
   border-radius: 4px 4px 0 0;
   font-size: 14px;
+  font-weight: 500;
 
   & ~ & {
     margin-left: 5px;
@@ -33,6 +34,8 @@ const PropName = styled.span`
 
 const PropType = styled(PropName)`
   color: ${get('colors.blockquoteColor')};
+  background: ${get('colors.sidebarBg')};
+  font-weight: 400;
 `
 
 const PropDefaultValue = styled(PropType)`
