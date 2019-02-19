@@ -41,7 +41,7 @@ export const getBaseConfig = (
   custom?: Partial<Config>
 ): Config => {
   const initial = omit<Arguments<Argv>, any>(toOmit, argv)
-  const base = { ...initial, ...doczRcBaseConfig }
+  const base = { ...initial, ...doczRcBaseConfig, paths }
   return merge(base, custom) as Config
 }
 
@@ -63,5 +63,5 @@ export const parseConfig = async (
     : load<Config>('docz', defaultConfig)
 
   const reduceAsync = Plugin.reduceFromPluginsAsync<Config>(config.plugins)
-  return reduceAsync('setConfig', { ...config, paths })
+  return reduceAsync('setConfig', config)
 }

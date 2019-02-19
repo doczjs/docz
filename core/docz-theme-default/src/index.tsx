@@ -9,7 +9,7 @@ import { Global } from './styles/global'
 import { config } from './config'
 import { ThemeProvider } from './utils/theme'
 
-const componentsMap = {
+export const componentsMap = {
   a: components.Link,
   blockquote: components.Blockquote,
   h1: components.H1,

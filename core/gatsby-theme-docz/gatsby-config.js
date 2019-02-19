@@ -4,7 +4,7 @@ const { mdPlugins, hastPlugins } = require('./src/utils/remark-plugins')
 const { getDoczConfig } = require('./src/utils/parseConfig')
 
 module.exports = opts => {
-  const config = getDoczConfig(opts)
+  const { paths, ...config } = getDoczConfig(opts)
   return {
     plugins: [
       {
@@ -14,12 +14,15 @@ module.exports = opts => {
           mdPlugins: config.mdPlugins.concat(mdPlugins),
           hastPlugins: config.hastPlugins.concat(hastPlugins),
           defaultLayouts: {
-            default: path.resolve(__dirname, 'src/components/Layout.js'),
+            default: path.join(paths.app, 'components/Layout.js'),
           },
         },
       },
       {
         resolve: 'gatsby-plugin-react-helmet',
+      },
+      {
+        resolve: 'gatsby-plugin-root-import',
       },
       {
         resolve: 'gatsby-plugin-compile-es6-packages',
