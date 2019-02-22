@@ -1,6 +1,6 @@
 {
   "name": "docz",
-  "version": "0.13.5",
+  "version": "0.13.6",
   "description": "It's has never been so easy to documents your things!",
   "license": "MIT",
   "main": "dist/index.js",
@@ -30,7 +30,7 @@
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
     "deepmerge": "^3.2.0",
-    "docz-core": "^0.13.5",
+    "docz-core": "^0.13.6",
     "fast-deep-equal": "^2.0.1",
     "lodash": "^4.17.11",
     "match-sorter": "^2.3.0",
