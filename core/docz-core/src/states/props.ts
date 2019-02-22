@@ -15,8 +15,10 @@ const getPattern = (ts: boolean) => {
   return [ts ? tsPattern : jsPattern, '!**/node_modules']
 }
 
-export const mapToArray = (map: any) =>
-  Object.entries(map).map(([key, value]) => ({ key, value }))
+export const mapToArray = (map: any = []) =>
+  Object.entries(map)
+    .map(entry => entry && { key: entry[0], value: entry[1] })
+    .filter(Boolean)
 
 const initial = (config: Config) => async (p: Params) => {
   const pattern = getPattern(config.typescript)
