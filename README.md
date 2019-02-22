@@ -29,14 +29,6 @@
   </a>
 </p>
 
-## 🙌🏻 &nbsp; Sponsors
-
-Thanks for all people that support us 🙏🏻
-
-<a href="https://impulso.work" target="_blank">
-  <img src="https://cdn-std.dprcdn.net/files/acc_649651/OosgCe" width="60">
-</a>
-
 ## 🎩 &nbsp; Features
 
 - 🧘 **Zero config and easy.** Don't worry about complex configurations steps.
@@ -56,26 +48,13 @@ We still have a _long road to go_, this is just the beginning. So to further imp
 
 ## 🤔 &nbsp; Why?
 
-Libraries that make our life easier coming up every day. Styleguides and design system are growing so fast. Today, tools that allow us to be quick and effective in what we are doing are really necessary. We can't lose time with tasks that should be trivial for us. Thinking about that **docz** came out.
+Libraries that make our life easier coming up every day. Styleguides and design system are growing so fast. Today, tools that allow us to be quick and effective are really necessary. We can't lose time with tasks that should be trivial for us. Thinking about that **docz** came out.
 
 Documenting our things is one of the most important and heavy processes when you're creating something new. We waste a lot of time with unnecessary setups to build something that can represent and we want with our own style.
 
 ## 👉🏻 &nbsp; More info on [our website](https://docz.site)
 
-- [Introduction](http://www.docz.site/introduction)
-  - [Getting Started](http://www.docz.site/introduction/getting-started)
-  - [Writing MDX](http://www.docz.site/introduction/writing-mdx)
-  - [Documenting your Things](http://www.docz.site/introduction/documenting-your-things)
-  - [Customizing](http://www.docz.site/introduction/customizing)
-  - [Deploying your docs](http://www.docz.site/introduction/deploying-your-docs)
-- [Documentation](http://www.docz.site/documentation)
-  - [Project Configuration](http://www.docz.site/documentation/project-configuration)
-  - [Components API](http://www.docz.site/documentation/components-api)
-  - [Creating Themes](http://www.docz.site/documentation/creating-themes)
-  - [CreatingPlugins](http://www.docz.site/documentation/creating-plugins)
-- [Themes](http://www.docz.site/themes)
-- [Plugins](http://www.docz.site/plugins)
-- [Repository of Website](https://github.com/pedronauck/docz-website)
+---
 
 ## 🎛 &nbsp; Plugins
 
@@ -104,14 +83,6 @@ Documenting our things is one of the most important and heavy processes when you
 - **[React Pixi](https://reactpixi.org/#/)** - React Fiber renderer for Pixi
 - **[React Hotkey Tooltip](https://react-hotkey-tooltip.netlify.com/#/)** - A global Hotkey provider with built in tooltip for React
 - **[Sajari React SDK](https://sajari-sdk-react.netlify.com/)** - Library of React Components for the Sajari
-
-## 🚧 &nbsp; Warning!
-
-> Due to performance issues **docz** uses babel 7 and webpack 4. So, if you're using some older version of this packages you'll probably get some errors! About webpack 4 we can't do anything, but about babel, we indicate that you update your babel version. You can do that just by running [babel-upgrade](https://github.com/babel/babel-upgrade):
-
-```bash
-npx babel-upgrade --write
-```
 
 ## 📟 &nbsp; Install and Usage
 

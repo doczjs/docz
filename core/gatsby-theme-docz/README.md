@@ -17,12 +17,6 @@ module.exports = {
     __experimentalThemes: [
       {
         resolve: 'gatsby-theme-docs',
-        options: {
-          base: '/docs'
-          themeConfig: {
-            mode: 'dark'
-          }
-        }
       }
     ]
   }
