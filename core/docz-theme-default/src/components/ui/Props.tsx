@@ -24,7 +24,7 @@ const PropName = styled.span`
   color: ${get('colors.primary')};
   padding: 5px 10px;
   border-radius: 4px 4px 0 0;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
 
   & ~ & {
@@ -60,7 +60,7 @@ export const Props: React.SFC<PropsComponentProps> = ({
   const components = useComponents()
   const Paragraph = useMemo(
     () => styled(components.P || 'p')`
-      font-size: 14px;
+      font-size: 16px;
       color: ${get('colors.sidebarTex')};
     `,
     []
