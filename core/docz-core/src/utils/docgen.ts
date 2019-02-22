@@ -8,34 +8,60 @@ import externalProptypesHandler from 'react-docgen-external-proptypes-handler'
 import actualNameHandler from 'react-docgen-actual-name-handler'
 import reactDocgenTs from 'react-docgen-typescript'
 import reactDocgen from 'react-docgen'
-import PrettyError from 'pretty-error'
+import ts from 'typescript'
 
 import * as paths from '../config/paths'
 import { Config } from '../config/argv'
 
-const pe = new PrettyError()
 const fileFullPath = (filepath: string) => path.join(paths.root, filepath)
+
+const tsProgram = (files: string[]) =>
+  ts.createProgram(files, {
+    jsx: ts.JsxEmit.React,
+    module: ts.ModuleKind.CommonJS,
+    target: ts.ScriptTarget.Latest,
+  })
+
+const tsDocgen = (config: Config, tsconfig: string, program: ts.Program) => (
+  filepath: string
+) =>
+  new Promise((resolve, reject) => {
+    try {
+      const opts = {
+        propFilter(prop: any): any {
+          if (prop.parent == null) return true
+          const propFilter = config.docgenConfig.propFilter
+          const val = propFilter && isFunction(propFilter) && propFilter(prop)
+          return !prop.parent.fileName.includes('node_modules') || Boolean(val)
+        },
+      }
+
+      const docs = reactDocgenTs
+        .withCustomConfig(tsconfig, opts)
+        .parseWithProgramProvider(filepath, () => program)
+
+      resolve(docs)
+    } catch (err) {
+      reject(err)
+    }
+  })
 
 const tsParser = async (files: string[], config: Config) => {
   const tsConfigPath = await findUp('tsconfig.json', { cwd: paths.root })
   if (!tsConfigPath) return {}
-
+  const program = tsProgram(files)
+  const parse = tsDocgen(config, tsConfigPath, program)
   try {
-    const { parse } = reactDocgenTs.withCustomConfig(tsConfigPath, {
-      propFilter(prop: any, component: any): any {
-        if (prop.parent == null) return true
-        const propFilter = config.docgenConfig.propFilter
-        const val = propFilter && isFunction(propFilter) && propFilter(prop)
-        return !prop.parent.fileName.includes('node_modules') || Boolean(val)
-      },
-    })
+    const operations = await Promise.all(
+      files.map(async filepath => ({
+        [fileFullPath(filepath)]: await parse(filepath),
+      }))
+    )
 
-    return files
-      .map(filepath => ({ [fileFullPath(filepath)]: parse(filepath) }))
-      .reduce((obj, val) => ({ ...obj, ...val }), {})
+    return operations.reduce((obj, val) => ({ ...obj, ...val }), {})
   } catch (err) {
     logger.fatal('Error parsing static types.')
-    pe.render(err)
+    logger.error(err)
     return {}
   }
 }
@@ -58,7 +84,8 @@ const jsParser = (files: string[], config: Config) => {
       const data = reactDocgen.parse(code, resolver, handlers)
       memo[fileFullPath(filepath)] = data
     } catch (err) {
-      pe.render(err)
+      logger.fatal('Error parsing static types.')
+      logger.error(err)
     }
 
     return memo

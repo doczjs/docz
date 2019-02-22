@@ -120,12 +120,12 @@ export const createConfig = (args: Args, env: Env) => async (hooks: Hooks) => {
    * loaders
    */
 
-  const jsBabelRc = await getBabelConfig(args, env)
-  const tsBabelRc = await getBabelConfig(args, env, true)
+  const jsBabelrc = await getBabelConfig(args, env)
+  const tsBabelrc = await getBabelConfig(args, env, true)
 
   config.when(args.sourcemaps, cfg => loaders.sourceMaps(cfg, args))
-  loaders.js(config, args, jsBabelRc)
-  loaders.mdx(config, args, jsBabelRc)
+  loaders.js(config, args, jsBabelrc)
+  loaders.mdx(config, args, jsBabelrc)
   loaders.images(config)
   loaders.svg(config)
   loaders.media(config)
@@ -154,7 +154,7 @@ export const createConfig = (args: Args, env: Env) => async (hooks: Hooks) => {
       .prepend('.tsx')
       .end()
 
-    loaders.ts(cfg, args, tsBabelRc)
+    loaders.ts(cfg, args, tsBabelrc)
   })
 
   /**

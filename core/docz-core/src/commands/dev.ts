@@ -3,7 +3,6 @@ process.setMaxListeners(Infinity)
 import { Arguments } from 'yargs'
 import * as logger from 'signale'
 import * as envDotProp from 'env-dot-prop'
-import PrettyError from 'pretty-error'
 
 import { Entries } from '../lib/Entries'
 import { DataServer } from '../lib/DataServer'
@@ -13,7 +12,6 @@ import { onSignal } from '../utils/on-signal'
 import { bundler as webpack } from '../bundler'
 import * as states from '../states'
 
-const pe = new PrettyError()
 export const dev = async (args: Arguments<any>) => {
   const env = envDotProp.get('node.env')
   const config = await parseConfig(args)
@@ -28,7 +26,7 @@ export const dev = async (args: Arguments<any>) => {
     await Entries.writeApp(config, true)
   } catch (err) {
     logger.fatal('Failed to build your files')
-    pe.render(err)
+    logger.error(err)
     process.exit(1)
   }
 

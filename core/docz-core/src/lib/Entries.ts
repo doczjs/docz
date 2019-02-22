@@ -1,9 +1,9 @@
 import * as path from 'path'
 import * as fs from 'fs-extra'
+import * as logger from 'signale'
 import { parseMdx } from 'docz-utils/lib/mdast'
 import { touch, compiled } from 'docz-utils/lib/fs'
 import glob from 'fast-glob'
-import PrettyError from 'pretty-error'
 
 import * as paths from '../config/paths'
 
@@ -14,7 +14,6 @@ import { getRepoEditUrl } from '../utils/repo-info'
 
 export const fromTemplates = (file: string) => path.join(paths.templates, file)
 
-const pe = new PrettyError()
 const mapToObj = (map: Map<any, any>) =>
   Array.from(map.entries()).reduce(
     (obj, [key, value]) => ({ ...obj, [`${key}`]: value }),
@@ -100,8 +99,7 @@ export class Entries {
           ...rest,
         }
       } catch (err) {
-        console.log(err)
-        config.debug && pe.render(err)
+        logger.error(err)
         return null
       }
     }
