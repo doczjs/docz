@@ -86,8 +86,12 @@ const compareWithMenu = (to: ToCompare = []) => (a: string, b: string) => {
   return compare(findPos(a, list), findPos(b, list))
 }
 
+const sortByName = (a: MenuItem, b: MenuItem) => {
+  return a.name < b.name ? -1 : a.name > b.name ? 1 : 0
+}
+
 const sortMenus = (first: Menus, second: Menus | undefined = []): Menus => {
-  const sorted: Menus = sort(first, compareWithMenu(second))
+  const sorted: Menus = sort(first, compareWithMenu(second), sortByName)
 
   return sorted.map(item => {
     if (!item.menu) return item
@@ -96,7 +100,9 @@ const sortMenus = (first: Menus, second: Menus | undefined = []): Menus => {
 
     return {
       ...item,
-      menu: foundMenu ? sortMenus(item.menu, foundMenu) : item.menu,
+      menu: foundMenu
+        ? sortMenus(item.menu, foundMenu)
+        : sort(item.menu, sortByName),
     }
   })
 }
@@ -121,7 +127,7 @@ export const useMenus = ({ query = '' }: UseMenusParams) => {
   const sorted = useMemo(() => {
     const merged = mergeMenus(entriesMenu as MenuItem[], config.menu)
     return sortMenus(merged, config.menu)
-  }, [config.menu, entriesMenu])
+  }, [entries, config])
 
   return query.length > 0 ? (search(query, sorted) as MenuItem[]) : sorted
 }
