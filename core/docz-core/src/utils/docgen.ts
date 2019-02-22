@@ -15,6 +15,11 @@ import { Config } from '../config/argv'
 
 const fileFullPath = (filepath: string) => path.join(paths.root, filepath)
 
+const throwError = (err: any) => {
+  logger.fatal(`Error parsing static types`)
+  logger.error(err)
+}
+
 const tsProgram = (files: string[]) =>
   ts.createProgram(files, {
     jsx: ts.JsxEmit.React,
@@ -60,8 +65,7 @@ const tsParser = async (files: string[], config: Config) => {
 
     return operations.reduce((obj, val) => ({ ...obj, ...val }), {})
   } catch (err) {
-    logger.fatal('Error parsing static types.')
-    logger.error(err)
+    if (config.debug) throwError(err)
     return {}
   }
 }
@@ -84,13 +88,13 @@ const jsParser = (files: string[], config: Config) => {
       const data = reactDocgen.parse(code, resolver, handlers)
       memo[fileFullPath(filepath)] = data
     } catch (err) {
-      logger.fatal('Error parsing static types.')
-      logger.error(err)
+      if (config.debug) throwError(err)
     }
 
     return memo
   }, {})
 }
 
-export const docgen = async (files: string[], config: Config) =>
+export const docgen = async (files: string[], config: Config) => {
   config.typescript ? tsParser(files, config) : jsParser(files, config)
+}
