@@ -89,23 +89,17 @@ export const Editor: React.SFC<EditorProps> = ({
     if (editor) removeLastLine(editor)
   }
 
-  const removeLastLine = useCallback(
-    (editor: any) => {
-      if (editor && !props.withLastLine && props.readOnly) {
-        const lastLine = editor.lastLine()
-        editor.doc.replaceRange('', { line: lastLine - 1 }, { line: lastLine })
-      }
-    },
-    [props.withLastLine, props.readOnly]
-  )
+  const removeLastLine = useCallback((editor: any) => {
+    if (editor && !props.withLastLine && props.readOnly) {
+      const lastLine = editor.lastLine()
+      editor.doc.replaceRange('', { line: lastLine - 1 }, { line: lastLine })
+    }
+  }, [props.withLastLine, props.readOnly])
 
-  const handleChange = useCallback(
-    (editor: any, data: any, code: string) => {
-      onChange && onChange(code)
-      setCode(code)
-    },
-    [code]
-  )
+  const handleChange = useCallback((editor: any, data: any, code: string) => {
+    onChange && onChange(code)
+    setCode(code)
+  }, [code])
 
   const editorProps = (config: UseConfigObj) => ({
     value: code,

@@ -116,56 +116,6 @@ export const mdx = (config: Config, args: Args, babelrc: BabelRC) => {
     })
 }
 
-<<<<<<< HEAD:core/docz-core/src/bundler/loaders.ts
-=======
-export const setupHappypack = (config: Config, args: Args, babelrc: any) => {
-  const happyThreadPool = happyPack.ThreadPool({ size: 6 })
-  const loaders = [
-    !args.debug && {
-      loader: require.resolve('cache-loader'),
-      options: {
-        cacheDirectory: paths.cache,
-      },
-    },
-    {
-      loader: require.resolve('babel-loader'),
-      options: babelrc,
-    },
-  ]
-
-  const loaderWithDocgen = [
-    args.propsParser &&
-      args.typescript && {
-        loader: require.resolve('react-docgen-typescript-loader'),
-        options: {
-          propFilter: (prop: any) => {
-            if (prop.parent == null) return true
-            return !prop.parent.fileName.includes('node_modules')
-          },
-        },
-      },
-  ]
-
-  config.plugin('happypack-jsx').use(happyPack, [
-    {
-      id: 'jsx',
-      verbose: args.debug,
-      threadPool: happyThreadPool,
-      loaders: loaders.concat(loaderWithDocgen).filter(Boolean),
-    },
-  ])
-
-  config.plugin('happypack-mdx').use(happyPack, [
-    {
-      id: 'mdx',
-      verbose: args.debug,
-      threadPool: happyThreadPool,
-      loaders: loaders.filter(Boolean),
-    },
-  ])
-}
-
->>>>>>> dev:packages/docz-core/src/webpack/loaders.ts
 const INLINE_LIMIT = 10000
 
 export const images = (config: Config) => {
