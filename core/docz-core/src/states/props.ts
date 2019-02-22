@@ -9,10 +9,13 @@ import * as paths from '../config/paths'
 import { Config } from '../config/argv'
 import { docgen } from '../utils/docgen'
 
-const getPattern = (ts: boolean) => {
-  const tsPattern = '**/*.{ts,tsx}'
-  const jsPattern = '**/*.{js,jsx,mjs}'
-  return [ts ? tsPattern : jsPattern, '!**/node_modules']
+const getPattern = (config: Config) => {
+  const { typescript } = config
+  return [
+    typescript ? '**/*.{ts,tsx}' : '**/*.{js,jsx,mjs}',
+    '!**/node_modules',
+    '!**/doczrc.js',
+  ]
 }
 
 export const mapToArray = (map: any = []) =>
@@ -21,9 +24,11 @@ export const mapToArray = (map: any = []) =>
     .filter(Boolean)
 
 const initial = (config: Config) => async (p: Params) => {
-  const pattern = getPattern(config.typescript)
+  const pattern = getPattern(config)
   const files = await fastglob<string>(pattern, { cwd: paths.root })
+  console.time('initial')
   const metadata = await docgen(files, config)
+  console.timeEnd('initial')
   p.setState('props', flatten(mapToArray(metadata)))
 }
 
@@ -44,7 +49,7 @@ const remove = (p: Params) => async (filepath: string) => {
 }
 
 export const state = (config: Config): State => {
-  const pattern = getPattern(config.typescript)
+  const pattern = getPattern(config)
   const watcher = chokidar.watch(pattern, {
     cwd: paths.root,
     ignored: /(((^|[\/\\])\..+)|(node_modules))/,

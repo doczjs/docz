@@ -51,50 +51,61 @@ const tsDocgen = (config: Config, tsconfig: string, program: ts.Program) => (
     }
   })
 
-const tsParser = async (files: string[], config: Config) => {
-  const tsConfigPath = await findUp('tsconfig.json', { cwd: paths.root })
-  if (!tsConfigPath) return {}
-  const program = tsProgram(files)
-  const parse = tsDocgen(config, tsConfigPath, program)
-  try {
-    const operations = await Promise.all(
-      files.map(async filepath => ({
-        [fileFullPath(filepath)]: await parse(filepath),
-      }))
-    )
+const tsParser = async (
+  filepath: string,
+  config: Config,
+  tsconfig?: string,
+  program?: ts.Program | null
+) => {
+  if (!program || !tsconfig) return
 
-    return operations.reduce((obj, val) => ({ ...obj, ...val }), {})
+  const parse = tsDocgen(config, tsconfig, program)
+  const fullpath = fileFullPath(filepath)
+
+  try {
+    const data = await parse(filepath)
+    return { [fullpath]: data }
   } catch (err) {
     if (config.debug) throwError(err)
-    return {}
+    return null
   }
 }
 
-const jsParser = (files: string[], config: Config) => {
+const jsParser = async (filepath: string, config: Config) => {
   const resolver =
     config.docgenConfig.resolver ||
     reactDocgen.resolver.findAllExportedComponentDefinitions
 
-  return files.reduce((memo: any, filepath) => {
-    const handlers = reactDocgen.defaultHandlers.concat([
-      externalProptypesHandler(filepath),
-      // importedProptypesHandler(filepath),
-      actualNameHandler,
-    ])
+  const handlers = reactDocgen.defaultHandlers.concat([
+    externalProptypesHandler(filepath),
+    // importedProptypesHandler(filepath),
+    actualNameHandler,
+  ])
 
-    const code = fs.readFileSync(filepath, 'utf-8')
-
+  return new Promise<any>(resolve => {
     try {
+      const code = fs.readFileSync(filepath, 'utf-8')
       const data = reactDocgen.parse(code, resolver, handlers)
-      memo[fileFullPath(filepath)] = data
+      const fullpath = fileFullPath(filepath)
+      resolve({ [fullpath]: data })
     } catch (err) {
       if (config.debug) throwError(err)
+      resolve(null)
     }
-
-    return memo
-  }, {})
+  })
 }
 
 export const docgen = async (files: string[], config: Config) => {
-  config.typescript ? tsParser(files, config) : jsParser(files, config)
+  const ts = config.typescript
+  const program = ts ? tsProgram(files) : null
+  const tsconfig = await findUp('tsconfig.json', { cwd: paths.root })
+  const docs = await Promise.all(
+    files.map(async filepath => {
+      return ts
+        ? tsParser(filepath, config, tsconfig, program)
+        : jsParser(filepath, config)
+    })
+  )
+
+  return docs.reduce((obj, doc) => (doc ? { ...obj, ...doc } : obj), {})
 }
