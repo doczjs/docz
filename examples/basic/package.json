@@ -10,8 +10,8 @@
     "@emotion/core": "^10.0.7",
     "@emotion/styled": "^10.0.7",
     "prop-types": "^15.7.2",
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2"
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
   },
   "devDependencies": {
     "babel-plugin-emotion": "^10.0.7",

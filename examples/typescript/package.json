@@ -11,11 +11,11 @@
     "@emotion/styled": "^10.0.7",
     "docz": "^0.13.5",
     "docz-core": "^0.13.5",
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2"
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
   },
   "devDependencies": {
-    "@types/react": "^16.8.3",
+    "@types/react": "^16.8.4",
     "@types/react-dom": "^16.8.2",
     "babel-plugin-emotion": "^10.0.7"
   }

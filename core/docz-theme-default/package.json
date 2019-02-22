@@ -19,9 +19,9 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@tippy.js/react": "^2.0.2",
     "@reach/router": "^1.2.1",
-    "codemirror": "^5.43.0",
+    "@tippy.js/react": "^2.0.2",
+    "codemirror": "^5.44.0",
     "copy-text-to-clipboard": "^1.0.4",
     "docz": "^0.13.5",
     "facepaint": "^1.2.1",
@@ -30,9 +30,9 @@
     "polished": "^3.0.0",
     "prop-types": "15.7.2",
     "re-resizable": "^4.11.0",
-    "react": "^16.8.2",
+    "react": "^16.8.3",
     "react-codemirror2": "^5.1.0",
-    "react-dom": "^16.8.2",
+    "react-dom": "^16.8.3",
     "react-feather": "^1.1.6",
     "react-live": "^1.12.0",
     "react-perfect-scrollbar": "^1.4.4",

@@ -24,7 +24,7 @@
     "@babel/parser": "^7.3.3",
     "@babel/traverse": "^7.2.3",
     "art-template": "^4.13.2",
-    "codesandboxer-fs": "^0.4.7",
+    "codesandboxer-fs": "^1.0.1",
     "fs-extra": "^7.0.1",
     "humanize-string": "^1.0.2",
     "js-string-escape": "^1.0.1",
