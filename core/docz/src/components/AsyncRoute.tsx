@@ -9,12 +9,12 @@ import { AsyncComponent } from './AsyncComponent'
 export type Imports = Record<string, () => Promise<any>>
 export const loadRoute = (path: string, imports: Imports) => {
   return loadable(async () => {
-    const { default: Component, getInitialData } = await imports[path]()
+    const { default: Component, getInitialProps } = await imports[path]()
     const ExportedComponent: SFC<any> = props => (
       <AsyncComponent
         {...props}
         as={Component || 'div'}
-        getInitialData={getInitialData}
+        getInitialProps={getInitialProps}
       />
     )
 

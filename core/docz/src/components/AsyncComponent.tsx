@@ -6,7 +6,7 @@ import { isFn } from '../utils/helpers'
 
 interface Props {
   as: ComponentType<any>
-  getInitialData?: (props: any) => any
+  getInitialProps?: (props: any) => any
 }
 
 export const AsyncComponent: SFC<Props> = defaultProps => {
@@ -15,11 +15,11 @@ export const AsyncComponent: SFC<Props> = defaultProps => {
   const [data, setData] = useState({})
 
   useEffect(() => {
-    const { getInitialData } = defaultProps
+    const { getInitialProps } = defaultProps
 
-    if (getInitialData && isFn(getInitialData)) {
+    if (getInitialProps && isFn(getInitialProps)) {
       setLoading(true)
-      getInitialData(defaultProps)
+      getInitialProps(defaultProps)
         .then((data: any) => {
           setLoading(false)
           setError(null)
@@ -33,6 +33,6 @@ export const AsyncComponent: SFC<Props> = defaultProps => {
     }
   }, [])
 
-  const { as: Comp, getInitialData, ...props } = defaultProps
+  const { as: Comp, getInitialProps, ...props } = defaultProps
   return <Comp {...props} data={{ ...data, loading, error }} />
 }
