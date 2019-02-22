@@ -6,7 +6,6 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import styled from 'styled-components'
 
 import { get } from '@utils/theme'
-import { mq } from '@styles/responsive'
 
 import { ScrollbarStyles } from './ps-scrollbar'
 import * as themes from './themes'
@@ -36,16 +35,10 @@ const EditorStyled = styled(BaseCodeMirror)`
   ${themes.light};
   position: relative;
   flex: 1;
-  font-size: 16px;
-  ${p => mq(preStyles(p))};
 
   .CodeMirror {
     max-width: 100%;
     height: 100%;
-  }
-
-  .CodeMirror pre {
-    ${p => mq(preStyles(p))};
   }
 
   .CodeMirror-gutters {
@@ -63,6 +56,11 @@ const EditorStyled = styled(BaseCodeMirror)`
 
   .CodeMirror-linenumber {
     padding: 0 7px 0 5px;
+  }
+
+  &,
+  .CodeMirror pre {
+    ${preStyles};
   }
 `
 

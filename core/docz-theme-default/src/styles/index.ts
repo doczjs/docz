@@ -11,7 +11,7 @@ export const styles = {
     margin: 40px 0 20px;
     font-family: ${get('fonts.display')};
     font-size: 48px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: -0.02em;
   `,
   h2: css`
@@ -59,12 +59,12 @@ export const styles = {
     border-radius: 3px;
     font-family: ${get('fonts.mono')};
     padding: 2px 5px;
-    font-size: 0.8em;
+    font-size: 16px;
     border: '1px solid rgba(0, 0, 0, 0.02)';
   `,
   pre: css`
     font-family: ${get('fonts.mono')};
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.8;
   `,
   paragraph: css`
@@ -74,7 +74,7 @@ export const styles = {
     overflow-y: hidden;
     width: 100%;
     font-family: ${get('fonts.mono')};
-    font-size: 14px;
+    font-size: 16px;
     overflow-x: initial;
     display: block;
   `,

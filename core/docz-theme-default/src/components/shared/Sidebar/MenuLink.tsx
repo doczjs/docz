@@ -21,6 +21,7 @@ const activeWrapper = css`
 const Wrapper = styled.div<WrapperProps>`
   position: relative;
   transition: padding 0.2s;
+
   &:after {
     position: absolute;
     display: block;
@@ -32,6 +33,7 @@ const Wrapper = styled.div<WrapperProps>`
     border-left: 1px dashed ${get('colors.sidebarBorder')};
     transition: width 0.2s;
   }
+
   ${p => p.active && activeWrapper};
 `
 
@@ -40,7 +42,7 @@ export const createLink = (Link: React.ComponentType<any>) => styled(Link)`
   display: block;
   padding: 4px 24px;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: -0.02em;
   color: ${get('colors.sidebarText')};
   text-decoration: none;

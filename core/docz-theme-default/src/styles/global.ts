@@ -3,6 +3,8 @@ import { get } from '@utils/theme'
 
 export const Global = createGlobalStyle`
   @import url('https://unpkg.com/codemirror@5.42.0/lib/codemirror.css');
+  @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600');
+  @import url('https://fonts.googleapis.com/css?family=Inconsolata');
 
   .icon-link {
     display: none;
