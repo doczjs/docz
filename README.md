@@ -171,7 +171,7 @@ This project exists thanks to all the people who contribute. [[Contribute](CONTR
 
 ## 💭 &nbsp; Needing Help?
 
-If you need some help you can chat with us on [our Discord server](https://discord.gg/Qec87en), you have a great team to help you:
+If you need some help you can chat with us on [our Discord server](https://discord.gg/Qec87en), we have a great team to help you:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
