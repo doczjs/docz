@@ -20,9 +20,9 @@
   </a>
 </p>
 
-## ✅️ &nbsp; v1 Migration Guide
+## ✅️ &nbsp; Migration Guide
 
-This documentation it's about our new v1. If you need to migrate your docz project, please read our [Migration Guide](/MIGRATION_GUIDE.md)
+This documentation it's about our [new v1](https://github.com/pedronauck/docz/pull/656). If you need to migrate your docz project, please read our [Migration Guide](/MIGRATION_GUIDE.md)
 
 ## 🎩 &nbsp; Features
 
