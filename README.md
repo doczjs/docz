@@ -15,9 +15,6 @@
   <img src="https://badgen.net/npm/v/docz" alt="">
   <img src="https://badgen.net/badge/license/MIT/blue" alt="">
   <img src="https://badgen.net/npm/dt/docz" alt="">
-  <a href="https://discord.gg/YQE4MbD">
-    <img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" alt="Chat">
-  </a>
   <a href="http://feedback.docz.site/roadmap">
     <img src="https://img.shields.io/badge/check-our%20roadmap-5362F5.svg" alt="Chat">
   </a>
@@ -29,6 +26,10 @@
   </a>
 </p>
 
+## ✅️ &nbsp; v1 Migration Guide
+
+This documentation it's about our new v1. If you need to migrate your docz project, please read our [Migration Guide](/MIGRATION_GUIDE.md)
+
 ## 🎩 &nbsp; Features
 
 - 🧘 **Zero config and easy.** Don't worry about complex configurations steps.
@@ -37,14 +38,6 @@
 - 📝 **[MDX](https://github.com/mdx-js/mdx) Based.** Write markdown with all power of components.
 - 🎛 **Pluggable.** With plugins, you can manipulate a lot of things through the docz flow and data.
 - 🔐 **Typescript Support.** We have a full support for your type definitions.
-
-## 🚀 &nbsp; Roadmap
-
-We still have a _long road to go_, this is just the beginning. So to further improve **docz** we've created a roadmap that you can see the next features and improvements. **Give us your feedback**:
-
-<a href="http://feedback.docz.site/roadmap" target="_blank">
-  <img src="https://cdn-std.dprcdn.net/files/acc_649651/ogSCYY" alt="Docz Roadmap" width="300">
-</a>
 
 ## 🤔 &nbsp; Why?
 
@@ -84,12 +77,16 @@ Documenting our things is one of the most important and heavy processes when you
 - **[React Hotkey Tooltip](https://react-hotkey-tooltip.netlify.com/#/)** - A global Hotkey provider with built in tooltip for React
 - **[Sajari React SDK](https://sajari-sdk-react.netlify.com/)** - Library of React Components for the Sajari
 
+## ⚠️ &nbsp; Warning
+
+Since our new v1, you need `react` and `react-dom` with `>= 16.8.0` installed.
+
 ## 📟 &nbsp; Install and Usage
 
 Simplicity is one of our core principles. Therefore, getting started with **docz** is something really easy and quick. First of all, you will need to install **docz** and some theme on your project using your favorite package manager (we'll asume yarn for this example):
 
 ```bash
-$ yarn add docz docz-theme-default --dev
+$ yarn add docz@next docz-theme-default@next --dev
 ```
 
 Then create some `.mdx` anywhere inside your project:
@@ -139,7 +136,7 @@ This project exists thanks to all the people who contribute. [[Contribute](CONTR
 
 ## 💭 &nbsp; Needing Help?
 
-If you need some help you can chat with us on [our Discord server](https://discord.gg/Qec87en), you have a great team to help you:
+If you need some help you can chat with us on [our Spectrum Community](https://spectrum.chat/docz), you have a great team to help you:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
