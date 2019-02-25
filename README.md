@@ -20,12 +20,6 @@
   </a>
 </p>
 
-<p align="center">
-  <a href="http://docz.site" target="_blank">
-    <img src="https://cdn-std.dprcdn.net/files/acc_649651/lvs55S" alt="Docz video">
-  </a>
-</p>
-
 ## ✅️ &nbsp; v1 Migration Guide
 
 This documentation it's about our new v1. If you need to migrate your docz project, please read our [Migration Guide](/MIGRATION_GUIDE.md)
