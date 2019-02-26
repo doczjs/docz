@@ -25,6 +25,6 @@
     "unist-util-visit": "^1.4.0"
   },
   "devDependencies": {
-    "@mdx-js/mdx": "^0.17.5"
+    "@mdx-js/mdx": "^0.18.0"
   }
 }

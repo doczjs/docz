@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
-    "@tippy.js/react": "^2.0.2",
+    "@tippy.js/react": "^2.1.1",
     "codemirror": "^5.44.0",
     "copy-text-to-clipboard": "^1.0.4",
     "docz": "^0.13.5",

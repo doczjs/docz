@@ -19,7 +19,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "react-docgen": "^4.0.0",
+    "react-docgen": "^4.0.1",
     "recast": "^0.17.3"
   }
 }

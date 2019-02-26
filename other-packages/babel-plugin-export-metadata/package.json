@@ -25,8 +25,8 @@
   },
   "dependencies": {
     "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.3",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
     "@babel/template": "^7.1.2",
     "babel-core": "7.0.0-bridge.0",
     "lodash": "^4.17.11"

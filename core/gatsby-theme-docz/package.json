@@ -4,7 +4,7 @@
   "description": "Gatsby theme created to use Docz",
   "license": "MIT",
   "author": "Pedro Nauck (pedronauck@gmail.com)",
-  "main": "gatsby-config.js",
+  "main": "n/a",
   "keywords": [
     "gatsby",
     "gatsby-theme",
@@ -15,7 +15,7 @@
     "fix:prettier": "prettier \"src/**/*.{json,jsx,js}\" --write"
   },
   "dependencies": {
-    "@mdx-js/tag": "^0.17.5",
+    "@mdx-js/tag": "^0.18.0",
     "babel-plugin-export-metadata": "^0.13.4",
     "change-case": "^3.1.0",
     "chokidar": "^2.1.2",
@@ -24,11 +24,11 @@
     "docz-theme-default": "^0.13.5",
     "docz-utils": "^0.13.5",
     "fs-extra": "^7.0.1",
-    "gatsby": "^2.1.17",
+    "gatsby": "^2.1.18",
     "gatsby-mdx": "^0.4.0",
     "gatsby-plugin-compile-es6-packages": "^1.0.6",
     "gatsby-plugin-manifest": "^2.0.19",
-    "gatsby-plugin-react-helmet": "^3.0.6",
+    "gatsby-plugin-react-helmet": "^3.0.7",
     "gatsby-plugin-root-import": "^2.0.5",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
