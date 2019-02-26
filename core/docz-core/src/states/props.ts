@@ -3,7 +3,6 @@ import chokidar from 'chokidar'
 import fastglob from 'fast-glob'
 import { State, Params } from '../lib/DataServer'
 import { flatten, get } from 'lodash/fp'
-import { Signale } from 'signale'
 
 import * as paths from '../config/paths'
 import { Config } from '../config/argv'
@@ -26,9 +25,7 @@ export const mapToArray = (map: any = []) =>
 const initial = (config: Config) => async (p: Params) => {
   const pattern = getPattern(config)
   const files = await fastglob<string>(pattern, { cwd: paths.root })
-  console.time('initial')
   const metadata = await docgen(files, config)
-  console.timeEnd('initial')
   p.setState('props', flatten(mapToArray(metadata)))
 }
 
@@ -61,14 +58,8 @@ export const state = (config: Config): State => {
   return {
     id: 'props',
     start: async params => {
-      const interactive = new Signale({ interactive: true, scope: 'props' })
-      interactive.await(
-        'Parsing initial props from your components (this could take a while)'
-      )
       const addInitial = initial(config)
       await addInitial(params)
-      interactive.success('Props parsed successfuly')
-
       watcher.on('change', add(params, config))
       watcher.on('unlink', remove(params))
     },
