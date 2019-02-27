@@ -2,11 +2,15 @@ const { default: template } = require('@babel/template')
 const { get } = require('lodash')
 
 const buildFileMeta = template(`
-  if (typeof ID !== 'undefined') {
-    ID.__filemeta = {
-      name: NAME,
-      filename: FILENAME
-    };
+  if (ID === Object(ID)) {
+    Object.defineProperty(ID, '__filemeta', {
+      enumerable: true,
+      configurable: true,
+      value: {
+        name: NAME,
+        filename: FILENAME
+      }
+    });
   }
 `)
 

@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`works 1`] = `
+"const foo = () => 'foo';
+
+export const bar = () => 'bar';
+
+if (bar === Object(bar)) {
+  Object.defineProperty(bar, '__filemeta', {
+    writable: false,
+    value: {
+      name: \\"bar\\",
+      filename: \\"/Volumes/Projects/dev/docz/docz/other-packages/babel-plugin-export-metadata/tests/fixtures/example.js\\"
+    }
+  });
+}
+
+if (bar === Object(bar)) {
+  Object.defineProperty(bar, '__filemeta', {
+    writable: false,
+    value: {
+      name: \\"bar\\",
+      filename: \\"/Volumes/Projects/dev/docz/docz/other-packages/babel-plugin-export-metadata/tests/fixtures/example.js\\"
+    }
+  });
+}
+
+const obj = {
+  foo: () => 'foo'
+  /**
+   * Some description
+   */
+
+};
+
+function get(object, path) {
+  return object[path];
+}
+
+export function getOther(object, path) {
+  return object[path];
+}
+
+if (getOther === Object(getOther)) {
+  Object.defineProperty(getOther, '__filemeta', {
+    writable: false,
+    value: {
+      name: \\"getOther\\",
+      filename: \\"/Volumes/Projects/dev/docz/docz/other-packages/babel-plugin-export-metadata/tests/fixtures/example.js\\"
+    }
+  });
+}
+
+const obj2 = {
+  get: () => null
+  /**
+   * Some description
+   */
+
+};
+
+class Abc {
+  /**
+   * Some description
+   */
+  method() {
+    return null;
+  }
+
+}
+
+export const component = styled.div\`
+  background: red;
+\`;
+
+if (component === Object(component)) {
+  Object.defineProperty(component, '__filemeta', {
+    writable: false,
+    value: {
+      name: \\"component\\",
+      filename: \\"/Volumes/Projects/dev/docz/docz/other-packages/babel-plugin-export-metadata/tests/fixtures/example.js\\"
+    }
+  });
+}
+
+export class Abcd {
+  /**
+   * Some description
+   */
+  method() {
+    return null;
+  }
+
+}
+
+if (Abcd === Object(Abcd)) {
+  Object.defineProperty(Abcd, '__filemeta', {
+    writable: false,
+    value: {
+      name: \\"Abcd\\",
+      filename: \\"/Volumes/Projects/dev/docz/docz/other-packages/babel-plugin-export-metadata/tests/fixtures/example.js\\"
+    }
+  });
+}
+
+const obj3 = {
+  method: class Abcd {
+    method() {
+      return null;
+    }
+
+  }
+};
+
+const log = fn => fn(1);
+
+log(id => console.log(id));
+export default (() => 'other');"
+`;

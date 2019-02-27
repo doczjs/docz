@@ -1,7 +1,7 @@
-import { transformSync } from '@babel/core'
-import * as fs from 'fs'
-import * as path from 'path'
-import plugin from '../src'
+const { transformSync } = require('@babel/core')
+const fs = require('fs')
+const path = require('path')
+const plugin = require('../src')
 
 const fixture = path.resolve('./tests/fixtures/example.js')
 const code = fs.readFileSync(fixture).toString()
@@ -12,5 +12,5 @@ it('works', () => {
     filename: fixture,
   })
 
-  expect(result!.code).toMatchSnapshot()
+  expect(result.code).toMatchSnapshot()
 })
