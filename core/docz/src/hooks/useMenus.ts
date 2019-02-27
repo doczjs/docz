@@ -118,7 +118,8 @@ export interface UseMenusParams {
   query?: string
 }
 
-export const useMenus = ({ query = '' }: UseMenusParams) => {
+export const useMenus = (opts?: UseMenusParams) => {
+  const { query = '' } = opts || {}
   const { entries, config } = useContext(doczState.context)
   if (!entries || !config) return null
 
@@ -129,5 +130,7 @@ export const useMenus = ({ query = '' }: UseMenusParams) => {
     return sortMenus(merged, config.menu)
   }, [entries, config])
 
-  return query.length > 0 ? (search(query, sorted) as MenuItem[]) : sorted
+  return query && query.length > 0
+    ? (search(query, sorted) as MenuItem[])
+    : sorted
 }
