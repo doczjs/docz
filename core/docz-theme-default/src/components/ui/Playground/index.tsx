@@ -202,15 +202,21 @@ const Playground: SFC<PlaygroundProps> = ({
     setKey(key + 1)
   }, [])
 
-  const transformCode = useCallback((code: string) => {
-    if (code.startsWith('()') || code.startsWith('class')) return code
-    return `<React.Fragment>${code}</React.Fragment>`
-  }, [code])
+  const transformCode = useCallback(
+    (code: string) => {
+      if (code.startsWith('()') || code.startsWith('class')) return code
+      return `<React.Fragment>${code}</React.Fragment>`
+    },
+    [code]
+  )
 
-  const codesandboxUrl = useCallback((native: boolean): string => {
-    const url = 'https://codesandbox.io/api/v1/sandboxes/define'
-    return `${url}?parameters=${codesandbox}${native ? `&editorsize=75` : ``}`
-  }, [codesandbox, native])
+  const codesandboxUrl = useCallback(
+    (native: boolean): string => {
+      const url = 'https://codesandbox.io/api/v1/sandboxes/define'
+      return `${url}?parameters=${codesandbox}${native ? `&editorsize=75` : ``}`
+    },
+    [codesandbox, native]
+  )
 
   const unloadListener = useCallback(() => {
     storage.delete()
