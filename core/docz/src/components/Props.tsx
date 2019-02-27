@@ -68,11 +68,12 @@ export interface PropsProps {
 }
 
 export const getPropType = (prop: Prop) => {
-  const propName = prop.flowType ? prop.flowType.name : prop.type.name
+  const propName = get('name', prop.flowType || prop.type)
+  if (!propName) return null
+
   const isEnum = propName.startsWith('"') || propName === 'enum'
   const name = capitalize(isEnum ? 'enum' : propName)
-  const value = prop.type && prop.type.value
-
+  const value = get('type.value', prop)
   if (!name) return null
 
   if (
@@ -101,7 +102,7 @@ export const Props: SFC<PropsProps> = ({ of: component }) => {
     stateProps.find(item => item.key === filename)
 
   const definition = last(found ? found.value : [])
-  const props = get('props', definition)
+  const props = get('props', definition) || []
 
   if (!props) return null
   if (!components.props) return null

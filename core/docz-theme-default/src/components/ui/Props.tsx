@@ -68,29 +68,32 @@ export const Props: React.SFC<PropsComponentProps> = ({
 
   return (
     <React.Fragment>
-      {entries.map(([key, prop]) => (
-        <Wrapper key={key}>
-          <Title>
-            <PropName>{key}</PropName>
-            <PropType>{getPropType(prop)}</PropType>
-            {prop.defaultValue && (
-              <PropDefaultValue>
-                {prop.defaultValue.value === "''" ? (
-                  <em>= [Empty String]</em>
-                ) : (
-                  <em>= {prop.defaultValue.value.replace(/\'/g, '"')}</em>
-                )}
-              </PropDefaultValue>
-            )}
-            {prop.required && (
-              <PropRequired>
-                <em>required</em>
-              </PropRequired>
-            )}
-          </Title>
-          {prop.description && <Paragraph>{prop.description}</Paragraph>}
-        </Wrapper>
-      ))}
+      {entries.map(([key, prop]) => {
+        if (!prop.type && !prop.flowType) return null
+        return (
+          <Wrapper key={key}>
+            <Title>
+              <PropName>{key}</PropName>
+              <PropType>{getPropType(prop)}</PropType>
+              {prop.defaultValue && (
+                <PropDefaultValue>
+                  {prop.defaultValue.value === "''" ? (
+                    <em>= [Empty String]</em>
+                  ) : (
+                    <em>= {prop.defaultValue.value.replace(/\'/g, '"')}</em>
+                  )}
+                </PropDefaultValue>
+              )}
+              {prop.required && (
+                <PropRequired>
+                  <em>required</em>
+                </PropRequired>
+              )}
+            </Title>
+            {prop.description && <Paragraph>{prop.description}</Paragraph>}
+          </Wrapper>
+        )
+      })}
     </React.Fragment>
   )
 }
