@@ -15,7 +15,7 @@ export const styles = {
     letter-spacing: -0.02em;
   `,
   h2: css`
-    margin: 30px 0 20px;
+    margin: 30px 0 15px;
     line-height: 1.4em;
     font-family: ${get('fonts.display')};
     font-weight: 500;
@@ -59,12 +59,12 @@ export const styles = {
     border-radius: 3px;
     font-family: ${get('fonts.mono')};
     padding: 2px 5px;
-    font-size: 16px;
+    font-size: 0.8em;
     border: '1px solid rgba(0, 0, 0, 0.02)';
   `,
   pre: css`
     font-family: ${get('fonts.mono')};
-    font-size: 16px;
+    font-size: 1em;
     line-height: 1.8;
   `,
   paragraph: css`
