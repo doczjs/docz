@@ -1,35 +1,42 @@
 const path = require('path')
 const { getDoczConfig } = require('../utils/parseConfig')
 
-const parseDatabase = data => {
-  try {
-    return JSON.parse(data.doczDb.db)
-  } catch (err) {
-    return null
-  }
-}
-
 const mountRoute = (base = '/', route) => {
   return `${base === '/' ? '' : base}${route}`
 }
 
+const ENTRIES_QUERY = `
+  {
+    allDoczEntries{
+      edges{
+        node{
+          id
+          filepath
+          route
+          slug
+          name
+          menu
+          order
+          headings {
+            slug
+            depth
+            value
+          }
+        }
+      }
+    }
+  }
+`
+
 module.exports = ({ graphql, actions }, opts) => {
   const { paths, ...config } = getDoczConfig(opts)
 
-  return graphql(`
-    {
-      doczDb {
-        id
-        db
-      }
-    }
-  `).then(({ data, errors }) => {
-    const db = parseDatabase(data)
+  return graphql(ENTRIES_QUERY).then(({ data, errors }) => {
     const hasErrors = errors && errors.length > 0
-    const hasEntries = db && db.entries && db.entries.length > 0
-    if (!hasEntries || hasErrors) return
+    const entries = data.allDoczEntries.edges
+    if (!entries || entries.length === 0 || hasErrors) return
 
-    db.entries.forEach(({ value: entry }) => {
+    entries.forEach(({ node: entry }) => {
       if (!entry) return
       const component = path.join(paths.root, entry.filepath)
       actions.createPage({

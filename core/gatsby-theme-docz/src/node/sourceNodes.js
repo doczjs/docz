@@ -2,6 +2,7 @@ const crypto = require('crypto')
 const fs = require('fs-extra')
 const { Entries, DataServer, states } = require('docz-core')
 const { parseConfig } = require('../utils/parseConfig')
+const { omit } = require('lodash/fp')
 
 const digest = str =>
   crypto
@@ -27,7 +28,7 @@ module.exports = async ({ actions, createNodeId }, opts) => {
     process.exit(1)
   }
 
-  dataServer.onStateChange(async ({ type, payload }) => {
+  const createDbNode = async () => {
     const db = await fs.readJSON(config.paths.db)
     const contentDigest = digest(JSON.stringify(db))
 
@@ -40,5 +41,30 @@ module.exports = async ({ actions, createNodeId }, opts) => {
         type: 'DoczDb',
       },
     })
+  }
+
+  const createEntriesNode = async () => {
+    const map = await entries.get()
+    const contentDigest = digest(JSON.stringify(map))
+    const values = Object.entries(map)
+
+    values.forEach(([key, entry]) => {
+      createNode({
+        ...entry,
+        children: [],
+        internal: {
+          contentDigest,
+          type: 'DoczEntries',
+        },
+      })
+    })
+  }
+
+  await createDbNode()
+  await createEntriesNode()
+
+  dataServer.onStateChange(async () => {
+    await createDbNode()
+    await createEntriesNode()
   })
 }
