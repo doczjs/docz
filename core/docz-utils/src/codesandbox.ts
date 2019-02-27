@@ -24,7 +24,6 @@ const checkCodeToRender = (code: string) => {
 
 const wrapCode = (code: string): string =>
   `import React from 'react';
-  import { jsx } from '@emotion/core'
 
   const doczStyles = {
     margin: '0 3px',

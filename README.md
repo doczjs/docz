@@ -45,6 +45,7 @@ Documenting our things is one of the most important and heavy processes when you
 
 ## 🎛 &nbsp; Plugins
 
+- **[gatsby-theme-docz](https://github.com/pedronauck/docz/tree/master/core/gatsby-theme-docz)** - Use docz as a theme for Gatsby
 - **[css](https://github.com/pedronauck/docz-plugin-css)** - Parse css files inside your documents
 - **[netlify](https://github.com/nicholasess/docz-plugin-netlify)** - Deploy your documentation to [Netlify](http://netlify.com/)
 - **[postcss](https://github.com/andreasonny83/docz-plugin-postcss)** - Use Docz with PostCSS
@@ -52,7 +53,9 @@ Documenting our things is one of the most important and heavy processes when you
 ## 🗃 &nbsp; Examples
 
 - **[basic](https://github.com/pedronauck/docz/tree/master/examples/basic)** - Some basic example
+- **[gatsby](https://github.com/pedronauck/docz/tree/master/examples/gatsby)** - Example using Docz as a theme for Gatsby
 - **[react native](https://github.com/pedronauck/docz/tree/master/examples/react-native)** - Using in a React Native project
+- **[styled-components](https://github.com/pedronauck/docz/tree/master/examples/styled-components)** - Using docz with styled-components
 - **[with typescript](https://github.com/pedronauck/docz/tree/master/examples/typescript)** - Using docz with Typescript
 - **[with flow](https://github.com/pedronauck/docz/tree/master/examples/flow)** - Using docz with Flow
 - **[with sass](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-sass)** - Using docz parsing css with Sass

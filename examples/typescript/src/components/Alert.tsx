@@ -1,5 +1,5 @@
 import React, { SFC } from 'react'
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 
 export type Kind = 'info' | 'positive' | 'negative' | 'warning'
 export type KindMap = Record<Kind, string>
