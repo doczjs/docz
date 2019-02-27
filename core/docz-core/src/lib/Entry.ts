@@ -25,7 +25,6 @@ export interface EntryObj {
   slug: string
   name: string
   route: string
-  order: number
   menu: string | null
   headings: Heading[]
   [key: string]: any
@@ -40,7 +39,6 @@ export class Entry {
   public slug: string
   public route: string
   public name: string
-  public order: number
   public menu: string | null
   public headings: Heading[]
   public settings: {
@@ -58,7 +56,6 @@ export class Entry {
     this.slug = this.slugify(filepath, config.separator)
     this.route = this.getRoute(parsed)
     this.name = name
-    this.order = parsed.order || 0
     this.menu = parsed.menu || null
     this.headings = headingsFromAst(ast)
     this.settings = parsed
