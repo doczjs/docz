@@ -25,6 +25,6 @@
     "gatsby": "^2.1.18",
     "gatsby-mdx": "^0.4.0",
     "gatsby-plugin-eslint": "^2.0.4",
-    "gatsby-theme-docz": "^0.13.5"
+    "gatsby-theme-docz": "^0.13.6"
   }
 }
