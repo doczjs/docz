@@ -1,4 +1,3 @@
-declare module 'deepmerge'
 declare module 'to-vfile'
 declare module 'unified'
 declare module 'remark-parse'

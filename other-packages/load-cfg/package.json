@@ -22,7 +22,7 @@
   "dependencies": {
     "@babel/preset-env": "^7.3.4",
     "@babel/register": "^7.0.0",
-    "deepmerge": "^3.2.0",
+    "lodash": "^4.17.11",
     "find-up": "^3.0.0",
     "fs-extra": "^7.0.1"
   },

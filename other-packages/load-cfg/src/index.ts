@@ -1,7 +1,7 @@
 import * as fs from 'fs-extra'
 import * as path from 'path'
 import * as findup from 'find-up'
-import merge from 'deepmerge'
+import { merge } from 'lodash/fp'
 
 export const loadFile = (filepath: string, noCache?: boolean) => {
   require('@babel/register')({
@@ -51,7 +51,7 @@ export function load<C = any>(
   const file = filepath ? loadFile(filepath, noCache) : {}
   const next = defaultConfig
     ? deep
-      ? merge(defaultConfig, file)
+      ? merge(file, defaultConfig)
       : { ...defaultConfig, ...file }
     : file
 
