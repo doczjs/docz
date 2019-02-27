@@ -33,7 +33,7 @@ module.exports = ({ graphql, actions }, opts) => {
 
   return graphql(ENTRIES_QUERY).then(({ data, errors }) => {
     const hasErrors = errors && errors.length > 0
-    const entries = data.allDoczEntries.edges
+    const entries = data && data.allDoczEntries.edges
     if (!entries || entries.length === 0 || hasErrors) return
 
     entries.forEach(({ node: entry }) => {
