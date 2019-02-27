@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.121",
-    "@types/styled-components": "^4.1.10",
+    "@types/styled-components": "^4.1.11",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-styled-components": "^1.10.0"
   }

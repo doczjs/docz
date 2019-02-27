@@ -28,9 +28,9 @@
   },
   "devDependencies": {
     "@types/node": "^11.9.5",
-    "@types/react": "^16.8.4",
-    "@types/webpack": "^4.4.24",
+    "@types/react": "^16.8.5",
+    "@types/webpack": "^4.4.25",
     "@types/yargs": "^12.0.9",
-    "lerna": "3.13.0"
+    "lerna": "3.13.1"
   }
 }
