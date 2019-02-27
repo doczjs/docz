@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 import t from 'prop-types'
 
 const kinds = {
@@ -9,7 +9,7 @@ const kinds = {
   warning: '#FFA502',
 }
 
-const AlertStyled = styled('div')`
+const AlertStyled = styled.div`
   padding: 15px 20px;
   background: white;
   border-radius: 3px;

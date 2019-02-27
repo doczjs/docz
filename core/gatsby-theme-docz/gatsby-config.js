@@ -25,6 +25,9 @@ module.exports = opts => {
         resolve: 'gatsby-plugin-root-import',
       },
       {
+        resolve: 'gatsby-plugin-styled-components',
+      },
+      {
         resolve: 'gatsby-plugin-compile-es6-packages',
         options: {
           modules: ['gatsby-theme-docz'],
