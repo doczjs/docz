@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@loadable/component": "^5.6.1",
-    "@mdx-js/tag": "^0.18.0",
+    "@mdx-js/tag": "^0.20.3",
     "@reach/router": "^1.2.1",
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
@@ -34,17 +34,29 @@
     "lodash": "^4.17.11",
     "match-sorter": "^2.3.0",
     "prop-types": "^15.7.2",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
     "ulid": "^2.3.0",
-    "yargs": "^13.2.1"
+    "yargs": "^13.2.2"
   },
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.11",
     "@types/loadable__component": "^5.6.0",
-    "@types/reach__router": "^1.2.3"
+    "@types/lodash": "^4.14.122",
+    "@types/lodash.flatten": "^4.4.6",
+    "@types/lodash.flattendepth": "^4.7.6",
+    "@types/lodash.get": "^4.4.6",
+    "@types/node": "^11.11.0",
+    "@types/reach__router": "^1.2.3",
+    "@types/react": "^16.8.7",
+    "babel-preset-react-app": "^7.0.2",
+    "jest": "^24.4.0",
+    "lint-staged": "^8.1.5",
+    "rollup": "^1.6.0",
+    "tslint": "^5.13.1"
   }
 }

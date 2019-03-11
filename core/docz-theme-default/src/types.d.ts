@@ -1,4 +1,3 @@
-declare module 'copy-text-to-clipboard'
 declare module 'facepaint'
 declare module 'hotkeys-js'
 declare module 'match-sorter'

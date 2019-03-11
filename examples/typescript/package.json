@@ -9,12 +9,12 @@
   "dependencies": {
     "docz": "^0.13.6",
     "docz-core": "^0.13.6",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
     "styled-components": "^4.1.3"
   },
   "devDependencies": {
-    "@types/react": "^16.8.5",
+    "@types/react": "^16.8.7",
     "@types/react-dom": "^16.8.2"
   }
 }

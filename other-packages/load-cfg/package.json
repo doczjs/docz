@@ -22,13 +22,13 @@
   "dependencies": {
     "@babel/preset-env": "^7.3.4",
     "@babel/register": "^7.0.0",
-    "lodash": "^4.17.11",
     "find-up": "^3.0.0",
-    "fs-extra": "^7.0.1"
+    "fs-extra": "^7.0.1",
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "@types/node": "^11.9.5",
-    "@types/react": "^16.8.5",
+    "@types/node": "^11.11.0",
+    "@types/react": "^16.8.7",
     "@types/webpack": "^4.4.25",
     "@types/yargs": "^12.0.9",
     "lerna": "3.13.1"

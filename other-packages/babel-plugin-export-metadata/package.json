@@ -32,7 +32,7 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "babel-jest": "^24.1.0",
-    "jest": "^24.1.0"
+    "babel-jest": "^24.4.0",
+    "jest": "^24.4.0"
   }
 }
