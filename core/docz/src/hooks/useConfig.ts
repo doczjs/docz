@@ -11,7 +11,7 @@ export interface UseConfigObj extends Config {
 export const useConfig = (): UseConfigObj => {
   const state = useContext(doczState.context)
   const { linkComponent, transform, config, themeConfig = {} } = state
-  const newConfig = merge(config ? config.themeConfig : {}, themeConfig)
+  const newConfig = merge(themeConfig, config ? config.themeConfig : {})
   const transformed = transform ? transform(newConfig) : newConfig
 
   return {
