@@ -61,7 +61,6 @@ const mergeNodeWithoutCloseTag = (tree: any, node: any, idx: any) => {
     // merge all values from node open tag until node with the close tag
     const mergeUntilCloseTag = valuesFromNodes(tree)
     const values = mergeUntilCloseTag(idx, tagCloseIdx)
-
     node.value = values.reverse().join('\n')
   }
 }
@@ -70,7 +69,7 @@ const mergeNodeWithoutCloseTag = (tree: any, node: any, idx: any) => {
 export default () => (tree: any) => {
   visit(
     tree,
-    'html',
+    'jsx',
     (node: any, idx: any): void => {
       // check if a node has just open tag
       mergeNodeWithoutCloseTag(tree, node, idx)
