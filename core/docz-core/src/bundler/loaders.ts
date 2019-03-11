@@ -5,7 +5,8 @@ import * as paths from '../config/paths'
 import { Config as Args } from '../config/argv'
 import { BabelRC } from '../config/babel'
 
-const excludeNodeModules = (filepath: string) => /node_modules/.test(filepath)
+const excludeNodeModules = (filepath: string) =>
+  /node_modules/.test(filepath) || /@babel(?:\/|\\{1,2})runtime/.test(filepath)
 
 export const sourceMaps = (config: Config, args: Args) => {
   const srcPath = path.resolve(paths.root, args.src)
@@ -60,9 +61,8 @@ export const js = (config: Config, args: Args, babelrc: BabelRC) => {
   const srcPath = path.resolve(paths.root, args.src)
   const rule = config.module
     .rule('js')
-    .test(/\.(js|mjs|jsx)$/)
+    .test(/\.(jsx?|mjs)$/)
     .include.add(srcPath)
-    .add(paths.root)
     .add(paths.app)
     .end()
     .exclude.add(excludeNodeModules)
@@ -75,9 +75,8 @@ export const ts = (config: Config, args: Args, babelrc: BabelRC) => {
   const srcPath = path.resolve(paths.root, args.src)
   const rule = config.module
     .rule('ts')
-    .test(/\.(ts|tsx?)$/)
+    .test(/\.tsx?$/)
     .include.add(srcPath)
-    .add(paths.root)
     .add(paths.app)
     .end()
     .exclude.add(excludeNodeModules)
@@ -94,6 +93,7 @@ export const mdx = (config: Config, args: Args, babelrc: BabelRC) => {
     .test(/\.(md|markdown|mdx)$/)
     .include.add(srcPath)
     .add(paths.root)
+    .add(paths.app)
     .end()
     .exclude.add(excludeNodeModules)
     .end()

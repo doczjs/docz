@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, Router, Routes, useDataServer } from 'docz'
-import { hot } from 'react-hot-loader'
+import { hot } from 'react-hot-loader/root'
 import Theme from '<%- theme %>'
 
 import { imports } from './imports'

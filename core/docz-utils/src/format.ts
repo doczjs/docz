@@ -17,6 +17,6 @@ export const format = (code: string): Promise<string> =>
       resolve(result)
     } catch (err) {
       logger.fatal(err)
-      resolve(err)
+      resolve(code)
     }
   })

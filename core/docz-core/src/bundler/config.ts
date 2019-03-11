@@ -72,7 +72,6 @@ export const createConfig = (args: Args, env: Env) => async (hooks: Hooks) => {
   config
     .entry('app')
     .add(require.resolve('react-dev-utils/webpackHotDevClient'))
-    .add(require.resolve('@babel/polyfill'))
     .add(paths.indexJs)
 
   /**
@@ -115,6 +114,12 @@ export const createConfig = (args: Args, env: Env) => async (hooks: Hooks) => {
     .add('node_modules')
     .add(doczDependenciesDir)
     .add(paths.root)
+
+  if (inYarnWorkspaces) {
+    config.module.noParse(content => {
+      return /docz\/core\/docz/.test(content)
+    })
+  }
 
   /**
    * loaders

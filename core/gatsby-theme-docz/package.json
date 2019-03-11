@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@mdx-js/tag": "^0.20.3",
+    "@mdx-js/mdx": "^0.20.3",
     "babel-plugin-export-metadata": "^0.13.4",
     "change-case": "^3.1.0",
     "chokidar": "^2.1.2",
