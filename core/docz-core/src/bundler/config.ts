@@ -115,12 +115,6 @@ export const createConfig = (args: Args, env: Env) => async (hooks: Hooks) => {
     .add(doczDependenciesDir)
     .add(paths.root)
 
-  if (inYarnWorkspaces) {
-    config.module.noParse(content => {
-      return /docz\/core\/docz/.test(content)
-    })
-  }
-
   /**
    * loaders
    */

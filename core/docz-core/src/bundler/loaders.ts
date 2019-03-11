@@ -1,6 +1,11 @@
 import * as path from 'path'
 import Config from 'webpack-chain'
 
+import frontmatter from 'remark-frontmatter'
+import remarkDocz from 'remark-docz'
+import rehypeDocz from 'rehype-docz'
+import slug from 'rehype-slug'
+
 import * as paths from '../config/paths'
 import { Config as Args } from '../config/argv'
 import { BabelRC } from '../config/babel'
@@ -103,15 +108,12 @@ export const mdx = (config: Config, args: Args, babelrc: BabelRC) => {
     .loader(require.resolve('@mdx-js/loader'))
     .options({
       mdPlugins: mdPlugins.concat([
-        [require('remark-frontmatter'), { type: 'yaml', marker: '-' }],
-        require('remark-docz'),
+        [frontmatter, { type: 'yaml', marker: '-' }],
+        remarkDocz,
       ]),
       hastPlugins: hastPlugins.concat([
-        [
-          require('rehype-docz'),
-          { root: paths.root, useCodeSandbox: args.codeSandbox },
-        ],
-        require('rehype-slug'),
+        [rehypeDocz, { root: paths.root, useCodeSandbox: args.codeSandbox }],
+        slug,
       ]),
     })
 }

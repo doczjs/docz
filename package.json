@@ -18,6 +18,7 @@
     "clean": "lerna clean",
     "bs": "lerna bootstrap",
     "packages": "run-s packages:*",
+    "packages:test": "lerna run --parallel test",
     "packages:fix": "lerna run --parallel fix && echo",
     "packages:lint": "lerna run --parallel tslint",
     "packages:build": "lerna run build --ignore docz-example-*",
