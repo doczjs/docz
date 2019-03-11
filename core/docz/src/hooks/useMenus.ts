@@ -1,10 +1,10 @@
 import { useMemo, useContext } from 'react'
-import { pipe, get, omit, flattenDepth } from 'lodash/fp'
+import { pipe, get, omit, flattenDepth, unionBy } from 'lodash/fp'
 import { ulid } from 'ulid'
 import match from 'match-sorter'
 import sort from 'array-sort'
 
-import { compare, flatArrFromObject, mergeArrBy } from '../utils/helpers'
+import { compare, flatArrFromObject } from '../utils/helpers'
 import { Entry, MenuItem, doczState } from '../state'
 
 const noMenu = (entry: Entry) => !entry.menu
@@ -25,9 +25,9 @@ const parseMenu = (entries: Entry[]) => (name: string) => ({
 type Menus = MenuItem[]
 
 const menusFromEntries = (entries: Entry[]) => {
-  const entriesWithoutMenu = entries.filter(noMenu).map(entryAsMenu)
+  const entriesWithoutMenu = entries.filter(noMenu).map(entryAsMenu) as any
   const menus = flatArrFromObject(entries, 'menu').map(parseMenu(entries))
-  return [...entriesWithoutMenu, ...menus]
+  return unionBy('name', menus, entriesWithoutMenu)
 }
 
 const parseItemStr = (item: MenuItem | string) =>
@@ -56,7 +56,7 @@ const normalizeAndClean = pipe(
 const mergeMenus = (entriesMenu: Menus, configMenu: Menus): Menus => {
   const first = entriesMenu.map(normalizeAndClean)
   const second = configMenu.map(normalizeAndClean)
-  const merged = mergeArrBy<MenuItem>('name', first, second)
+  const merged = unionBy('name', first, second) as MenuItem[]
 
   return merged.map(item => {
     if (!item.menu) return item
