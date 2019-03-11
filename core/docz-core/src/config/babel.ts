@@ -1,5 +1,5 @@
 import { load } from 'load-cfg'
-import { merge } from 'lodash'
+import { merge } from 'lodash/fp'
 import getCacheIdentifier from 'react-dev-utils/getCacheIdentifier'
 
 import { Config, Env } from '../config/argv'

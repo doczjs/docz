@@ -37,13 +37,13 @@ const getInitialConfig = (config: Config): Payload => {
   }
 }
 
-const updateConfig = (config: Config) => async (p: Params) => {
-  const initial = getInitialConfig(config)
+const update = async (params: Params, initial: Payload) => {
   const next = load('docz', initial, true, true)
-  p.setState('config', next)
+  params.setState('config', next)
 }
 
 export const state = (config: Config): State => {
+  const initial = getInitialConfig(config)
   const watcher = chokidar.watch(finds('docz'), {
     cwd: paths.root,
     ignored: /(((^|[\/\\])\..+)|(node_modules))/,
@@ -55,10 +55,8 @@ export const state = (config: Config): State => {
   return {
     id: 'config',
     start: async params => {
-      const update = updateConfig(config)
-      const fn = async () => update(params)
+      const fn = async () => update(params, initial)
 
-      await update(params)
       watcher.on('add', fn)
       watcher.on('change', fn)
       watcher.on('unlink', fn)

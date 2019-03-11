@@ -1,7 +1,7 @@
 import * as fs from 'fs-extra'
 import * as path from 'path'
 import * as findup from 'find-up'
-import { merge } from 'lodash'
+import { merge } from 'lodash/fp'
 
 export const loadFile = (filepath: string, noCache?: boolean) => {
   require('@babel/register')({
@@ -54,7 +54,6 @@ export function load<C = any>(
       ? merge(defaultConfig, file)
       : { ...defaultConfig, ...file }
     : file
-
   // tslint:disable
   return next
 }
