@@ -66,7 +66,7 @@ export const SmallLink: SFC<SmallLinkProps> = ({
   useEffect(() => {
     const currentHash = location.hash && location.hash.slice(1, Infinity)
     setActive(Boolean(slug === currentHash))
-  }, [])
+  }, [location])
 
   return <Link as={Component} {...props} className={isActive ? 'active' : ''} />
 }
