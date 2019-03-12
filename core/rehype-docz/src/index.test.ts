@@ -26,5 +26,7 @@ test('adding custom props on <Playground>', async () => {
   expect(result).toMatch(
     `__code={'() => {\\n  const foo = \\'foo\\'\\n  return <div>{foo}</div>\\n}'}`
   )
-  expect(result).toMatch(`__scope={{props: this ? this.props : props,}}`)
+  expect(result).toMatch(
+    `__scope={{props: this ? this.props : props,Playground}}`
+  )
 })
