@@ -17,7 +17,7 @@ const touchTemplateWithPaths = paths => async (filepath, opts) => {
   await touch(dest, raw)
 }
 
-module.exports = async opts => {
+module.exports = async (_, opts) => {
   const { paths, ...config } = await parseConfig(opts)
   const componentPath = mountComponentPath(paths)
   const touchTemplate = touchTemplateWithPaths(paths)
