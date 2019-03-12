@@ -1,7 +1,7 @@
 {
-  "name": "docz-theme-default",
-  "version": "0.13.7",
-  "description": "The default theme of docz",
+  "name": "@drifthq/tide-docs-theme",
+  "version": "1.0.0",
+  "description": "The theme for the Tide Docs",
   "license": "MIT",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",

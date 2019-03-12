@@ -1,7 +1,7 @@
 {
   "lerna": "2.9.0",
   "packages": [
-    "packages/**/*"
+    "packages/docz-theme-default"
   ],
   "version": "0.13.7",
   "npmClient": "yarn",
