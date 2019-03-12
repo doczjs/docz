@@ -27,6 +27,7 @@ export interface MenuItem {
   href?: string
   menu?: MenuItem[]
   order?: number
+  parent?: string
 }
 
 export type ThemeConfig = Record<string, any>

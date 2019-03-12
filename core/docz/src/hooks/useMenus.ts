@@ -12,6 +12,7 @@ const fromMenu = (menu: string) => (entry: Entry) => entry.menu === menu
 const entryAsMenu = (entry: Entry) => ({
   name: entry.name,
   route: entry.route,
+  parent: entry.parent,
 })
 
 const entriesOfMenu = (menu: string, entries: Entry[]) =>
@@ -35,10 +36,10 @@ const parseItemStr = (item: MenuItem | string) =>
 
 const normalize = (item: MenuItem | string): MenuItem => {
   const selected = parseItemStr(item) as MenuItem
-
   return {
     ...selected,
     id: selected.id || ulid(),
+    parent: get('parent', selected) || get('parent', item),
     menu: Array.isArray(selected.menu)
       ? selected.menu.map(normalize)
       : selected.menu,
@@ -114,8 +115,19 @@ const search = (val: string, menu: MenuItem[]) => {
   return match(flattenedDeduplicated, val, { keys: ['name'] })
 }
 
+type FilterFn = (item: MenuItem) => boolean
+
+const filterMenus = (items: MenuItem[], filter?: FilterFn) => {
+  if (!filter) return items
+  return items.filter(filter).map(item => {
+    if (!item.menu) return item
+    return { ...item, menu: item.menu.filter(filter) }
+  })
+}
+
 export interface UseMenusParams {
   query?: string
+  filter?: FilterFn
 }
 
 export const useMenus = (opts?: UseMenusParams) => {
@@ -127,7 +139,8 @@ export const useMenus = (opts?: UseMenusParams) => {
   const entriesMenu = menusFromEntries(arr)
   const sorted = useMemo(() => {
     const merged = mergeMenus(entriesMenu as MenuItem[], config.menu)
-    return sortMenus(merged, config.menu)
+    const result = sortMenus(merged, config.menu)
+    return filterMenus(result, opts && opts.filter)
   }, [entries, config])
 
   return query && query.length > 0
