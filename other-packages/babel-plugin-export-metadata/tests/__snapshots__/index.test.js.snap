@@ -5,9 +5,10 @@ exports[`works 1`] = `
 
 export const bar = () => 'bar';
 
-if (bar === Object(bar)) {
+if (typeof bar !== 'undefined' && bar && bar === Object(bar)) {
   Object.defineProperty(bar, '__filemeta', {
-    writable: false,
+    enumerable: true,
+    configurable: true,
     value: {
       name: \\"bar\\",
       filename: \\"/Volumes/Projects/dev/docz/docz/other-packages/babel-plugin-export-metadata/tests/fixtures/example.js\\"
@@ -15,9 +16,10 @@ if (bar === Object(bar)) {
   });
 }
 
-if (bar === Object(bar)) {
+if (typeof bar !== 'undefined' && bar && bar === Object(bar)) {
   Object.defineProperty(bar, '__filemeta', {
-    writable: false,
+    enumerable: true,
+    configurable: true,
     value: {
       name: \\"bar\\",
       filename: \\"/Volumes/Projects/dev/docz/docz/other-packages/babel-plugin-export-metadata/tests/fixtures/example.js\\"
@@ -41,9 +43,10 @@ export function getOther(object, path) {
   return object[path];
 }
 
-if (getOther === Object(getOther)) {
+if (typeof getOther !== 'undefined' && getOther && getOther === Object(getOther)) {
   Object.defineProperty(getOther, '__filemeta', {
-    writable: false,
+    enumerable: true,
+    configurable: true,
     value: {
       name: \\"getOther\\",
       filename: \\"/Volumes/Projects/dev/docz/docz/other-packages/babel-plugin-export-metadata/tests/fixtures/example.js\\"
@@ -73,9 +76,10 @@ export const component = styled.div\`
   background: red;
 \`;
 
-if (component === Object(component)) {
+if (typeof component !== 'undefined' && component && component === Object(component)) {
   Object.defineProperty(component, '__filemeta', {
-    writable: false,
+    enumerable: true,
+    configurable: true,
     value: {
       name: \\"component\\",
       filename: \\"/Volumes/Projects/dev/docz/docz/other-packages/babel-plugin-export-metadata/tests/fixtures/example.js\\"
@@ -93,9 +97,10 @@ export class Abcd {
 
 }
 
-if (Abcd === Object(Abcd)) {
+if (typeof Abcd !== 'undefined' && Abcd && Abcd === Object(Abcd)) {
   Object.defineProperty(Abcd, '__filemeta', {
-    writable: false,
+    enumerable: true,
+    configurable: true,
     value: {
       name: \\"Abcd\\",
       filename: \\"/Volumes/Projects/dev/docz/docz/other-packages/babel-plugin-export-metadata/tests/fixtures/example.js\\"
