@@ -16,9 +16,7 @@ const traverseOnImports = (fn: (path: any) => any[]) => (node: any) => {
     traverse(ast, {
       enter(path: any): void {
         if (path.isImportDeclaration()) {
-          if (get(path, 'node.source.value') !== 'docz') {
-            populated = populated.concat(fn(path))
-          }
+          populated = populated.concat(fn(path))
           return
         }
       },
