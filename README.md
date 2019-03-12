@@ -49,6 +49,8 @@ Documenting our things is one of the most important and heavy processes when you
 - **[css](https://github.com/pedronauck/docz-plugin-css)** - Parse css files inside your documents
 - **[netlify](https://github.com/nicholasess/docz-plugin-netlify)** - Deploy your documentation to [Netlify](http://netlify.com/)
 - **[postcss](https://github.com/andreasonny83/docz-plugin-postcss)** - Use Docz with PostCSS
+- **[svg sprite loader](https://github.com/trustedhousesitters/docz-plugin-svg-sprite-loader)** - Docz plugin for SVG sprite loader
+- **[snapshots](https://github.com/JosephConradBlack/docz-plugin-snapshots)** - A plugin for docz that creates jest snapshots for all documented component usages
 
 ## 🗃 &nbsp; Examples
 
