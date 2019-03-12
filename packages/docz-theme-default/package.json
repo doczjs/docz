@@ -1,6 +1,6 @@
 {
   "name": "@drifthq/tide-docs-theme",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The theme for the Tide Docs",
   "license": "MIT",
   "main": "dist/index.js",
