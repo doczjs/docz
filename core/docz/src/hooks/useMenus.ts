@@ -133,7 +133,7 @@ export interface UseMenusParams {
 export const useMenus = (opts?: UseMenusParams) => {
   const { query = '' } = opts || {}
   const { entries, config } = useContext(doczState.context)
-  if (!entries || !config) return null
+  if (!entries) return null
 
   const arr = entries.map(({ value }) => value)
   const entriesMenu = menusFromEntries(arr)
