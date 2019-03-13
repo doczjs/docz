@@ -43,7 +43,7 @@
     "react-dom": "^16.8.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.122",
+    "@types/lodash": "^4.14.123",
     "@types/styled-components": "^4.1.12",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-styled-components": "^1.10.0"
