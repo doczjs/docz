@@ -71,7 +71,9 @@ export const createConfig = (args: Args, env: Env) => async (hooks: Hooks) => {
 
   config
     .entry('app')
-    .add(require.resolve('react-dev-utils/webpackHotDevClient'))
+    .when(!isProd, entry =>
+      entry.add(require.resolve('react-dev-utils/webpackHotDevClient'))
+    )
     .add(paths.indexJs)
 
   /**
@@ -134,7 +136,7 @@ export const createConfig = (args: Args, env: Env) => async (hooks: Hooks) => {
   plugins.assets(config, args, env)
   plugins.ignore(config)
   plugins.injections(config, args, env)
-  plugins.hot(config)
+  isProd && plugins.hot(config)
 
   config.when(debug, cfg => plugins.analyzer(cfg))
   config.when(!isProd, cfg => plugins.watchNodeModulesPlugin(cfg))
@@ -178,6 +180,5 @@ export const createConfig = (args: Args, env: Env) => async (hooks: Hooks) => {
   config.when(isProd, cfg => minifier(cfg, args))
   hooks.onCreateWebpackChain<Config>(config, !isProd, args)
   args.onCreateWebpackChain<Config>(config, !isProd, args)
-
   return config.toConfig() as Configuration
 }
