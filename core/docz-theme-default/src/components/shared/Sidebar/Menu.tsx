@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { Component } from 'react'
+import { useState } from 'react'
 import { MenuItem } from 'docz'
 import ChevronDown from 'react-feather/dist/icons/chevron-down'
 import styled from 'styled-components'
 
-import { MenuLink, getActiveFromClass } from './MenuLink'
+import { MenuLink } from './MenuLink'
 import { get } from '@utils/theme'
 
 const Wrapper = styled.div`
@@ -49,72 +49,46 @@ export interface MenuState {
   hasActive: boolean
 }
 
-export class Menu extends Component<MenuProps, MenuState> {
-  public $els: HTMLElement[]
-  public state: MenuState = {
-    opened: false,
-    hasActive: false,
+export const Menu: React.SFC<MenuProps> = props => {
+  const [opened, setOpened] = useState(false)
+  const toggle = () => setOpened(s => !s)
+
+  const { item, sidebarToggle, collapseAll } = props
+  const show = collapseAll || opened
+  const hasChildren = !item.href && item.menu && item.menu.length > 0
+  const hasToggle = !item.href && !item.route
+
+  const handleToggle = (ev: any) => {
+    ev.preventDefault()
+    toggle()
   }
 
-  constructor(props: MenuProps) {
-    super(props)
-    this.$els = []
-  }
-
-  public componentDidMount(): void {
-    this.checkActiveLink()
-  }
-
-  public render(): React.ReactNode {
-    const { item, sidebarToggle, collapseAll } = this.props
-
-    const show = collapseAll || this.state.opened
-    const hasChildren = !item.href && item.menu && item.menu.length > 0
-    const hasToggle = !item.href && !item.route
-
-    const handleToggle = (ev: any) => {
-      ev.preventDefault()
-      this.toggle()
-    }
-
-    return (
-      <Wrapper>
-        <MenuLink item={item} {...hasToggle && { onClick: handleToggle }}>
-          {item.name}
-          {hasChildren && (
-            <Icon opened={show}>
-              <ChevronDown size={15} />
-            </Icon>
-          )}
-        </MenuLink>
+  return (
+    <Wrapper>
+      <MenuLink item={item} {...hasToggle && { onClick: handleToggle }}>
+        {item.name}
         {hasChildren && (
-          <List opened={show}>
-            {item.menu &&
-              item.menu.map(item => (
-                <dt key={item.id}>
-                  <MenuLink
-                    item={item}
-                    onClick={sidebarToggle}
-                    innerRef={(node: any) => {
-                      this.$els = this.$els.concat([node])
-                    }}
-                  >
-                    {item.name}
-                  </MenuLink>
-                </dt>
-              ))}
-          </List>
+          <Icon opened={show}>
+            <ChevronDown size={15} />
+          </Icon>
         )}
-      </Wrapper>
-    )
-  }
-
-  private toggle = (): void => {
-    this.setState(state => ({ opened: !state.opened }))
-  }
-
-  private checkActiveLink = (): void => {
-    const hasActive = this.$els.some((el: any) => getActiveFromClass(el))
-    if (hasActive) this.setState({ hasActive, opened: true })
-  }
+      </MenuLink>
+      {hasChildren && (
+        <List opened={show}>
+          {item.menu &&
+            item.menu.map(item => (
+              <dt key={item.id}>
+                <MenuLink
+                  item={item}
+                  onClick={sidebarToggle}
+                  onActiveChange={setOpened}
+                >
+                  {item.name}
+                </MenuLink>
+              </dt>
+            ))}
+        </List>
+      )}
+    </Wrapper>
+  )
 }

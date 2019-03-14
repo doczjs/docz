@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useMemo, useEffect, useRef, useState, SFC } from 'react'
+import { useMemo, useEffect, useRef, useState } from 'react'
 import { MenuItem, useConfig, usePrevious } from 'docz'
 import styled, { css } from 'styled-components'
 
@@ -70,48 +70,57 @@ interface LinkProps {
   onClick?: React.MouseEventHandler<any>
   className?: string
   innerRef?: (node: any) => void
+  children?: React.ReactNode
+  onActiveChange?: (active: boolean) => void
 }
 
-export const MenuLink: SFC<LinkProps> = ({
-  item,
-  children,
-  onClick,
-  innerRef,
-}) => {
-  const { linkComponent } = useConfig()
-  const [active, setActive] = useState(false)
-  const prevActive = usePrevious(active)
-  const $el = useRef(null)
-  const Link = useMemo(() => createLink(linkComponent!), [linkComponent])
+export const MenuLink = React.forwardRef<any, LinkProps>(
+  ({ item, children, onClick, onActiveChange }, ref) => {
+    const { linkComponent } = useConfig()
+    const [active, setActive] = useState(false)
+    const prevActive = usePrevious(active)
+    const $el = useRef<any>(ref)
+    const Link = useMemo(() => createLink(linkComponent!), [linkComponent])
 
-  const linkProps = {
-    children,
-    onClick,
+    const linkProps = {
+      children,
+      onClick,
+    }
+
+    useEffect(() => {
+      const isActive = getActiveFromClass($el.current)
+      if (prevActive !== isActive) {
+        setActive(isActive)
+        onActiveChange && onActiveChange(isActive)
+      }
+    })
+
+    return (
+      <Wrapper active={active}>
+        {item.route ? (
+          <Link
+            {...linkProps}
+            to={item.route}
+            innerRef={$el}
+            activeClassName="active"
+            partiallyActive={true}
+          />
+        ) : (
+          <LinkAnchor
+            {...linkProps}
+            ref={$el}
+            href={item.href || '#'}
+            target={item.href ? '_blank' : '_self'}
+            {...!item.href && {
+              onClick: (ev: any) => {
+                ev.preventDefault()
+                linkProps.onClick && linkProps.onClick(ev)
+              },
+            }}
+          />
+        )}
+        {active && item.route && <MenuHeadings route={item.route} />}
+      </Wrapper>
+    )
   }
-
-  const refFn = (node: any) => {
-    innerRef && innerRef(node)
-    $el.current = node
-  }
-
-  useEffect(() => {
-    const isActive = getActiveFromClass($el.current)
-    if (prevActive !== isActive) setActive(isActive)
-  })
-
-  return (
-    <Wrapper active={active}>
-      {item.route ? (
-        <Link {...linkProps} innerRef={refFn} to={item.route} />
-      ) : (
-        <LinkAnchor
-          {...linkProps}
-          ref={refFn}
-          href={item.href || '#'}
-          target={item.href ? '_blank' : '_self'}
-        />
-      )}
-      {active && item.route && <MenuHeadings route={item.route} />}
-    </Wrapper>
-  )
-}
+)
