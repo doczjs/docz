@@ -63,6 +63,12 @@ export class Entries {
     await writeAppFiles(config, Boolean(dev))
   }
 
+  public static async writeImports(map: EntryMap): Promise<void> {
+    const imports = await compiled(fromTemplates('imports.tpl.js'))
+    const rawImportsJs = imports({ entries: Object.values(map) })
+    await touch(path.join(paths.app, 'imports.js'), rawImportsJs)
+  }
+
   public all: Map<string, EntryObj>
   public get: () => Promise<EntryMap>
   public repoEditUrl: string | null

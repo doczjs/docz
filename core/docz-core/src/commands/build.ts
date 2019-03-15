@@ -24,6 +24,7 @@ export const build = async (args: Arguments<any>) => {
 
   try {
     await Entries.writeApp(config, true)
+    await Entries.writeImports(await entries.get())
     await dataServer.start()
     await run('onPreBuild', config)
     await bundler.build(bundlerConfig)
