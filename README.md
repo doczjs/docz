@@ -82,7 +82,8 @@ Since our new v1, you need `react` and `react-dom` with `>= 16.8.0` installed.
 
 ## 📟 &nbsp; Install and Usage
 
-Simplicity is one of our core principles. Therefore, getting started with **docz** is something really easy and quick. First of all, you will need to install **docz** and some theme on your project using your favorite package manager (we'll asume yarn for this example):
+Getting started with **docz** is something really easy and quick.
+First of all, you will need to install **docz** and some theme on your project using your favorite package manager (we'll asume yarn for this example):
 
 ```bash
 $ yarn add docz@next docz-theme-default@next --dev
