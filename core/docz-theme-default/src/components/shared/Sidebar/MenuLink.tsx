@@ -62,8 +62,26 @@ export const createLink = (Link: React.ComponentType<any>) => styled(Link)`
 
 const LinkAnchor = createLink(styled.a``)
 
-export const getActiveFromClass = (el: HTMLElement | null) =>
-  Boolean(el && el.classList.contains('active'))
+const getActiveByLocation = (route: string) => {
+  if (typeof window === 'undefined') return
+  return location.pathname.slice(0, location.pathname.length - 1) === route
+}
+
+const getActiveFromClass = (
+  el: HTMLElement | null,
+  route: string | undefined
+) => {
+  const activeByClass = el && el.classList.contains('active')
+  const activeByLocation = route && getActiveByLocation(route)
+  return Boolean(activeByClass || activeByLocation)
+}
+
+const checkActiveClass = ($el: any, isActive: boolean) => {
+  if (!isActive) return
+  if (isActive && !$el.classList.contains('active')) {
+    $el.classList.add('active')
+  }
+}
 
 interface LinkProps {
   item: MenuItem
@@ -88,9 +106,10 @@ export const MenuLink = React.forwardRef<any, LinkProps>(
     }
 
     useEffect(() => {
-      const isActive = getActiveFromClass($el.current)
+      const isActive = getActiveFromClass($el.current, item.route)
       if (prevActive !== isActive) {
         setActive(isActive)
+        $el && checkActiveClass($el.current, isActive)
         onActiveChange && onActiveChange(isActive)
       }
     })
