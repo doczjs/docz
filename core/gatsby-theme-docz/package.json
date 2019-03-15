@@ -25,7 +25,7 @@
     "docz-theme-default": "^0.13.6",
     "docz-utils": "^0.13.6",
     "fs-extra": "^7.0.1",
-    "gatsby": "^2.1.32",
+    "gatsby": "^2.1.35",
     "gatsby-mdx": "^0.4.3",
     "gatsby-plugin-compile-es6-packages": "^1.0.6",
     "gatsby-plugin-manifest": "^2.0.24",
@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "babel-eslint": "10.0.1",
-    "eslint": "^5.15.1",
+    "eslint": "^5.15.2",
     "eslint-config-react-app": "^3.0.8",
     "eslint-plugin-flowtype": "3.4.2",
     "eslint-plugin-import": "2.16.0",

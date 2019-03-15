@@ -15,7 +15,7 @@
   "devDependencies": {
     "@babel/preset-flow": "^7.0.0",
     "docz": "^0.13.6",
-    "flow-bin": "^0.94.0",
+    "flow-bin": "^0.95.1",
     "flow-typed": "^2.5.1"
   }
 }

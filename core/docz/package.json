@@ -24,7 +24,7 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@loadable/component": "^5.6.1",
+    "@loadable/component": "^5.7.0",
     "@mdx-js/tag": "^0.20.3",
     "@reach/router": "^1.2.1",
     "array-sort": "^1.0.0",
