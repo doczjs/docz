@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   color: ${get('colors.text')};
   background: ${get('colors.background')};
   min-width: 0;
+  position: relative;
 `
 
 export const Container = styled.div`

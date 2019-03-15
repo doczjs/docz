@@ -77,7 +77,7 @@ The are just two directories to care about if you would like to contribute:
 
 There are lots of [packages](https://github.com/pedronauck/docz/tree/master/packages) that are necessary to run docz, the most important packages that are important to care about:
 
-#### **[docz-core](https://github.com/pedronauck/docz/tree/master/packages/docz)**
+#### **[docz-core](https://github.com/pedronauck/docz/tree/master/packages/docz-core)**
 - This is the core of docz. All build algorithms, server process and parses belongs to here.
 - If you break this package, probably you'll break all packages! Please, be carefull.
 - All cli commands are built here and imported on `docz` package using `./bin` script.
