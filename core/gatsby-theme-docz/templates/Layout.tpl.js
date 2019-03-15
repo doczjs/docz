@@ -49,7 +49,7 @@ const Layout = ({ children, ...defaultProps }) => {
       query={query}
       render={data => {
         const db = parseDatabase(data)
-        const entry = db.entries.find(entry => entry.filepath === ctx.filepath)
+        const entry = db.entries && db.entries.find(entry => entry.filepath === ctx.filepath)
 
         return (
           <Fragment>
