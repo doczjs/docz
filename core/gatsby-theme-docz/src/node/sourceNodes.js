@@ -28,12 +28,12 @@ module.exports = async ({ actions, createNodeId }, opts) => {
   }
 
   const createDbNode = async () => {
-    const db = await fs.readJSON(config.paths.db)
-    const contentDigest = digest(JSON.stringify(db))
+    const db = await fs.readJSON(config.paths.db, { throws: false })
+    const contentDigest = digest(JSON.stringify(db || {}))
 
     createNode({
       id: createNodeId('docz-db'),
-      db: JSON.stringify(db),
+      db: JSON.stringify(db || {}),
       children: [],
       internal: {
         contentDigest,
