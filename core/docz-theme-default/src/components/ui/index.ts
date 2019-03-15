@@ -1,4 +1,4 @@
-import { AsyncPlayground } from './AsyncPlayground'
+import { Playground } from './Playground'
 import { Blockquote } from './Blockquote'
 import { H1 } from './H1'
 import { H2 } from './H2'
@@ -35,7 +35,7 @@ export const components = {
   ol: OrderedList,
   p: Paragraph,
   page: Page,
-  playground: AsyncPlayground,
+  playground: Playground,
   pre: Pre,
   props: Props,
   table: Table,

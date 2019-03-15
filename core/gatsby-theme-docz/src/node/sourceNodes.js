@@ -2,7 +2,6 @@ const crypto = require('crypto')
 const fs = require('fs-extra')
 const { Entries, DataServer, states } = require('docz-core')
 const { parseConfig } = require('../utils/parseConfig')
-const { omit } = require('lodash/fp')
 
 const digest = str =>
   crypto
@@ -60,11 +59,11 @@ module.exports = async ({ actions, createNodeId }, opts) => {
     })
   }
 
-  await createDbNode()
-  await createEntriesNode()
-
-  dataServer.onStateChange(async () => {
+  const createNodes = async () => {
     await createDbNode()
     await createEntriesNode()
-  })
+  }
+
+  await createNodes()
+  dataServer.onStateChange(async () => createNodes())
 }

@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "gatsby develop",
     "build": "gatsby build",
+    "serve": "gatsby serve",
     "format": "prettier --write \"src/**/*.js\""
   },
   "devDependencies": {

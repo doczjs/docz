@@ -100,7 +100,7 @@ export interface PlaygroundProps extends BasePlaygroundProps {
   showEditor?: boolean
 }
 
-const Playground: SFC<PlaygroundProps> = ({
+export const Playground: SFC<PlaygroundProps> = ({
   position,
   code: initialCode,
   codesandbox,
@@ -287,5 +287,3 @@ const Playground: SFC<PlaygroundProps> = ({
     </LiveProvider>
   )
 }
-
-export default Playground

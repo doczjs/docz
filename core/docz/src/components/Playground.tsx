@@ -14,7 +14,7 @@ export interface PlaygroundProps {
   __codesandbox: string
 }
 
-export const Playground: SFC<PlaygroundProps> = ({
+const Playground: SFC<PlaygroundProps> = ({
   className,
   style,
   wrapper: Wrapper,
@@ -40,3 +40,5 @@ export const Playground: SFC<PlaygroundProps> = ({
     />
   )
 }
+
+export default Playground

@@ -16,7 +16,6 @@ const ENTRIES_QUERY = `
           slug
           name
           menu
-          order
           headings {
             slug
             depth
