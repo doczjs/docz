@@ -65,6 +65,12 @@ const LinkAnchor = styled('a')`
   ${p => linkStyle(p.theme.docz)};
 `
 
+const isLinkActive = (slug: string) => (m: any, location: any) => {
+  const pos = location.pathname.indexOf(slug)
+
+  return pos > -1 && pos === location.pathname.length - slug.length
+}
+
 export const getActiveFromClass = (el: HTMLElement | null) =>
   Boolean(el && el.classList.contains('active'))
 
@@ -106,6 +112,7 @@ export class MenuLink extends Component<LinkProps, LinkState> {
       children,
       onClick,
       css: linkStyle(config.themeConfig) as any,
+      isActive: item.route ? isLinkActive(item.route) : undefined,
     })
 
     const refFn = (node: any) => {
