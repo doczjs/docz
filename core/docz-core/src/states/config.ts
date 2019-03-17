@@ -1,5 +1,6 @@
+import * as path from 'path'
 import * as fs from 'fs-extra'
-import { load, finds } from 'load-cfg'
+import { load, loadFrom, finds } from 'load-cfg'
 import chokidar from 'chokidar'
 import get from 'lodash/get'
 
@@ -37,14 +38,18 @@ const getInitialConfig = (config: Config): Payload => {
   }
 }
 
-const update = async (params: Params, initial: Payload) => {
-  const next = load('docz', initial, true, true)
+const update = async (params: Params, initial: Payload, { config }: Config) => {
+  const next = config
+    ? loadFrom(path.resolve(config), initial, true, true)
+    : load('docz', initial, true, true)
+
   params.setState('config', next)
 }
 
 export const state = (config: Config): State => {
   const initial = getInitialConfig(config)
-  const watcher = chokidar.watch(finds('docz'), {
+  const glob = config.config || finds('docz')
+  const watcher = chokidar.watch(glob, {
     cwd: paths.root,
     ignored: /(((^|[\/\\])\..+)|(node_modules))/,
     persistent: true,
@@ -55,8 +60,8 @@ export const state = (config: Config): State => {
   return {
     id: 'config',
     start: async params => {
-      const fn = async () => update(params, initial)
-      await update(params, initial)
+      const fn = async () => update(params, initial, config)
+      await update(params, initial, config)
       watcher.on('add', fn)
       watcher.on('change', fn)
       watcher.on('unlink', fn)
