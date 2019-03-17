@@ -32,7 +32,6 @@ const goToHash = ({ location }: HistoryListenerParameter) => {
 export const Routes: SFC<RoutesProps> = ({ imports }) => {
   const components = useComponents()
   const { entries } = useContext(doczState.context)
-  if (!entries || !components) return null
 
   const NotFound: any = components.notFound
   const Loading: any = components.loading
@@ -48,20 +47,21 @@ export const Routes: SFC<RoutesProps> = ({ imports }) => {
         <React.Suspense fallback={<Loading />}>
           <Router basepath={DOCZ_BASE_URL}>
             <NotFound default />
-            {entries.map(({ key: path, value: entry }) => {
-              const props = { path, entries, components }
-              const component = loadRoute(path, imports)
+            {entries &&
+              entries.map(({ key: path, value: entry }) => {
+                const props = { path, entries, components }
+                const component = loadRoute(path, imports)
 
-              return (
-                <AsyncRoute
-                  {...props}
-                  entry={entry}
-                  key={entry.id}
-                  path={entry.route}
-                  asyncComponent={component}
-                />
-              )
-            })}
+                return (
+                  <AsyncRoute
+                    {...props}
+                    entry={entry}
+                    key={entry.id}
+                    path={entry.route}
+                    asyncComponent={component}
+                  />
+                )
+              })}
           </Router>
         </React.Suspense>
       </LocationProvider>
