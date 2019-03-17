@@ -58,11 +58,11 @@ Get all components passed to `<ComponentsProvider>`
 const components = useComponents()
 ```
 
-## Removing order deprecated field
+## Order deprecated removed
 
 Since [v0.12.4](https://github.com/pedronauck/docz/releases/tag/v0.12.4) we launched `menu` property to create and sort your menu, and the `ordering` frontmatter field was deprecated. So, now we're removing this property. If you wanna see more information about the `menu` order property, you can take a look at the `Ordering` session on our website.
 
-## UseProps instead of PropsTable
+## Use Props instead of PropsTable
 
 Another change that we've made in this version is that now we have a `<Props>` component instead of `<PropsTable>`. So, the `<PropsTable>` component doesn't exist anymore and the new one don't have more a table format, instead of that, it's just a list with the props and their values. So, it became more simple and flexible to be stylized.
 
