@@ -70,8 +70,8 @@ const StyledError = styled(LiveError)`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
   padding: 20px;
   background: ${rgba('black', 0.8)};
   font-size: 16px;
