@@ -1,4 +1,5 @@
 import * as path from 'path'
+import * as fs from 'fs'
 import * as ctags from 'common-tags'
 import {
   generateCSSReferences,
@@ -32,10 +33,17 @@ const generateRawTags = (items: any[] = []) => {
   return items.map(item => item).join('')
 }
 
-const getHtmlFilepath = (indexHtml: string | undefined) =>
-  indexHtml
+const getHtmlFilepath = (indexHtml: string | undefined) => {
+  const htmlFilePath = indexHtml
     ? path.resolve(paths.root, indexHtml)
     : fromTemplates('index.tpl.html')
+
+  if (!fs.existsSync(htmlFilePath)) {
+    throw new Error(`indexHtml option: ${htmlFilePath} is not exist`)
+  }
+
+  return htmlFilePath
+}
 
 const getPublicUrl = (config: Config, dev: boolean): string => {
   const prefix = config.base === '/' ? '' : config.base
