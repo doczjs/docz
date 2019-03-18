@@ -42,28 +42,29 @@ module.exports = async ({ actions, createNodeId }, opts) => {
     })
   }
 
-  const createEntriesNode = async () => {
-    const map = await entries.get()
-    const contentDigest = digest(JSON.stringify(map))
-    const values = Object.entries(map)
-
-    values.forEach(([key, entry]) => {
+  const createEntriesNodes = payload => {
+    const values = Array.isArray(payload) ? payload : []
+    values.forEach(({ value: entry }) => {
+      const contentDigest = digest(JSON.stringify(entry))
       createNode({
         ...entry,
         children: [],
+        link: entry.link || false,
+        menu: entry.menu || false,
         internal: {
           contentDigest,
-          type: 'DoczEntries',
+          type: `DoczEntries`,
         },
       })
     })
   }
 
-  const createNodes = async () => {
-    await createDbNode()
-    await createEntriesNode()
+  const createStateNodes = async ({ type, payload }) => {
+    if (type === 'state.entries') createEntriesNodes(payload)
   }
 
-  await createNodes()
-  dataServer.onStateChange(async () => createNodes())
+  dataServer.onStateChange(async state => {
+    await createDbNode()
+    await createStateNodes(state)
+  })
 }

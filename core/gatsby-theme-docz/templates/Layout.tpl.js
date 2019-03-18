@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { StaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
 import { AsyncRoute, useComponents } from 'docz'
 import { MDXProvider } from '@mdx-js/tag'
 
@@ -44,25 +44,19 @@ const parseDatabase = data => {
 
 const Layout = ({ children, ...defaultProps }) => {
   const { pageContext: ctx } = defaultProps
-  return (
-    <StaticQuery
-      query={query}
-      render={data => {
-        const db = parseDatabase(data)
-        const entry = db.entries && db.entries.find(entry => entry.filepath === ctx.filepath)
+  const data = useStaticQuery(query)
+  const db = parseDatabase(data)
+  const entry = db.entries && db.entries.find(entry => entry.filepath === ctx.filepath)
 
-        return (
-          <Fragment>
-            {entry && <SEO title={entry.value.name} />}
-            <Theme db={db} linkComponent={Link} <% if (wrapper) {%>wrapper={Wrapper}<%}%>>
-              <Route {...defaultProps} entry={entry}>
-                {children}
-              </Route>
-            </Theme>
-          </Fragment>
-        )
-      }}
-    />
+  return (
+    <Fragment>
+      {entry && <SEO title={entry.value.name} />}
+      <Theme db={db} linkComponent={Link} <% if (wrapper) {%>wrapper={Wrapper}<%}%>>
+        <Route {...defaultProps} entry={entry}>
+          {children}
+        </Route>
+      </Theme>
+    </Fragment>
   )
 }
 
