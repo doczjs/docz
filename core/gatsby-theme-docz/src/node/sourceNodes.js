@@ -42,9 +42,12 @@ module.exports = async ({ actions, createNodeId }, opts) => {
     })
   }
 
-  const createEntriesNodes = payload => {
-    const values = Array.isArray(payload) ? payload : []
-    values.forEach(({ value: entry }) => {
+  const createEntriesNodes = async payload => {
+    const map = await entries.get()
+    const values = Object.entries(map)
+
+    values.forEach(([key, entry]) => {
+      if (!entry) return null
       const contentDigest = digest(JSON.stringify(entry))
       createNode({
         ...entry,
@@ -59,12 +62,11 @@ module.exports = async ({ actions, createNodeId }, opts) => {
     })
   }
 
-  const createStateNodes = async ({ type, payload }) => {
-    if (type === 'state.entries') createEntriesNodes(payload)
+  const createNodes = async () => {
+    await createDbNode()
+    await createEntriesNodes()
   }
 
-  dataServer.onStateChange(async state => {
-    await createDbNode()
-    await createStateNodes(state)
-  })
+  await createNodes()
+  dataServer.onStateChange(createNodes)
 }
