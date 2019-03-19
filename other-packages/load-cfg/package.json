@@ -20,8 +20,8 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@babel/preset-env": "^7.3.4",
-    "@babel/register": "^7.0.0",
+    "@babel/preset-env": "^7.4.0",
+    "@babel/register": "^7.4.0",
     "find-up": "^3.0.0",
     "fs-extra": "^7.0.1",
     "lodash": "^4.17.11"

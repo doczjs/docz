@@ -20,9 +20,9 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@babel/core": "7.3.4",
-    "@babel/polyfill": "7.2.5",
-    "@babel/runtime": "^7.3.4",
+    "@babel/core": "7.4.0",
+    "@babel/polyfill": "7.4.0",
+    "@babel/runtime": "^7.4.0",
     "@mdx-js/loader": "^0.20.3",
     "@sindresorhus/slugify": "^0.9.0",
     "@svgr/webpack": "^4.1.0",
