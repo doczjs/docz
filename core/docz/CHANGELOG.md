@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.0](https://github.com/pedronauck/docz/compare/v1.0.0-alpha.1...v1.0.0-beta.0) (2019-03-19)
+
+**Note:** Version bump only for package docz
+
+
+
+
+
 # [1.0.0-alpha.0](https://github.com/pedronauck/docz/compare/v0.13.5...v1.0.0-alpha.0) (2019-03-19)
 
 

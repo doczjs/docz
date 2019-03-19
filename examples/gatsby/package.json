@@ -1,7 +1,7 @@
 {
   "name": "docz-example-gatsby",
   "description": "Example of how to integrate docz with gatsby",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-beta.0",
   "keywords": [
     "gatsby",
     "docz"
@@ -26,6 +26,6 @@
     "gatsby": "^2.2.1",
     "gatsby-mdx": "^0.4.3",
     "gatsby-plugin-eslint": "^2.0.4",
-    "gatsby-theme-docz": "^1.0.0-alpha.1"
+    "gatsby-theme-docz": "^1.0.0-beta.0"
   }
 }
