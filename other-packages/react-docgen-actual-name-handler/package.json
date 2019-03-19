@@ -20,6 +20,6 @@
   },
   "dependencies": {
     "react-docgen": "^4.1.0",
-    "recast": "^0.17.3"
+    "recast": "^0.17.4"
   }
 }

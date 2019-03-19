@@ -2822,10 +2822,21 @@
     "@types/serve-static" "*"
     "@types/webpack" "*"
 
-"@types/webpack@*", "@types/webpack@^4.4.25":
+"@types/webpack@*":
   version "4.4.25"
   resolved "https://registry.npmjs.org/@types/webpack/-/webpack-4.4.25.tgz#c8a1eb968a33a3e6da641f529c5add0d44d34809"
   integrity sha512-YaYVbSK1bC3xiAWFLSgDQyVHdCTNq5cLlcx633basmrwSoUxJiv4SZ0SoT1uoF15zWx98afOcCbqA1YHeCdRYA==
+  dependencies:
+    "@types/anymatch" "*"
+    "@types/node" "*"
+    "@types/tapable" "*"
+    "@types/uglify-js" "*"
+    source-map "^0.6.0"
+
+"@types/webpack@^4.4.26":
+  version "4.4.26"
+  resolved "https://registry.npmjs.org/@types/webpack/-/webpack-4.4.26.tgz#b52f605351f2ed60e6ce24fa7df39ab7abd03470"
+  integrity sha512-vs8LjgEZUQTBxotXbMf8s4jgykozkqjv6P0JRi+1BLh0n7LQUkMXfvsoPb5U/dBL1ay5Lu0c46G6FRmAZBhAUA==
   dependencies:
     "@types/anymatch" "*"
     "@types/node" "*"
@@ -2840,6 +2851,11 @@
   dependencies:
     "@types/events" "*"
     "@types/node" "*"
+
+"@types/yargs@^12.0.10":
+  version "12.0.10"
+  resolved "https://registry.npmjs.org/@types/yargs/-/yargs-12.0.10.tgz#17a8ec65cd8e88f51b418ceb271af18d3137df67"
+  integrity sha512-WsVzTPshvCSbHThUduGGxbmnwcpkgSctHGHTqzWyFg4lYAuV5qXlyFPOsP3OWqCINfmg/8VXP+zJaa4OxEsBQQ==
 
 "@types/yargs@^12.0.2", "@types/yargs@^12.0.9":
   version "12.0.9"
@@ -3279,10 +3295,10 @@ ajv@^6.0.1, ajv@^6.1.0, ajv@^6.5.5, ajv@^6.9.1:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-all-contributors-cli@^6.1.2:
-  version "6.1.2"
-  resolved "https://registry.npmjs.org/all-contributors-cli/-/all-contributors-cli-6.1.2.tgz#ec45c0629900111f6911fd320de4e669e57c8013"
-  integrity sha512-IfX9BEbcSrn3/tZCpajxc8343Wnz29s9MaiFjN8KREHsDiLv/PLxuCVPSsdZSdS8ajhSM5b+u8kli8Dx6dK6pw==
+all-contributors-cli@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.npmjs.org/all-contributors-cli/-/all-contributors-cli-6.2.0.tgz#60d5c4a190ed330bb1905881a5095270433bde2d"
+  integrity sha512-ppAgu0gsyexeLR9vs9CrGJUZbQbP1ei6bRWkG3drvefjAjLOZeVq6Fjh/kSPDtsnWI/l6XAWWR2MQWuIwtd7Dg==
   dependencies:
     "@babel/runtime" "^7.2.0"
     async "^2.0.0-rc.1"
@@ -7064,10 +7080,10 @@ eslint-visitor-keys@^1.0.0:
   resolved "https://registry.npmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#3f3180fb2e291017716acb4c9d6d5b5c34a6a81d"
   integrity sha512-qzm/XxIbxm/FHyH341ZrbnMUpe+5Bocte9xkmFMzPMjRaZMcXww+MpBptFvtU+79L362nqiLhekCxCxDPaUMBQ==
 
-eslint@^5.15.2:
-  version "5.15.2"
-  resolved "https://registry.npmjs.org/eslint/-/eslint-5.15.2.tgz#0237bbb2362f89f4effef2f191eb0fea5279c0a5"
-  integrity sha512-I8VM4SILpMwUvsRt83bQVwIRQAJ2iPMXun1FVZ/lV1OHklH2tJaXqoDnNzdiFc6bnCtGKXvQIQNP3kj1eMskSw==
+eslint@^5.15.3:
+  version "5.15.3"
+  resolved "https://registry.npmjs.org/eslint/-/eslint-5.15.3.tgz#c79c3909dc8a7fa3714fb340c11e30fd2526b8b5"
+  integrity sha512-vMGi0PjCHSokZxE0NLp2VneGw5sio7SSiDNgIUn2tC0XkWJRNOIoHIg3CliLVfXnJsiHxGAYrkw0PieAu8+KYQ==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     ajv "^6.9.1"
@@ -8162,10 +8178,10 @@ gatsby-plugin-page-creator@^2.0.10:
     parse-filepath "^1.0.1"
     slash "^1.0.0"
 
-gatsby-plugin-react-helmet@^3.0.9:
-  version "3.0.9"
-  resolved "https://registry.npmjs.org/gatsby-plugin-react-helmet/-/gatsby-plugin-react-helmet-3.0.9.tgz#0305ac3149e23519af4f47fdeb6102937fdf1d9c"
-  integrity sha512-4TPidWOqGaZ/qo6lLv9p+DLxSMr9KtqBX1oGR8Btm+/0ZdGAW1MTTOQSiar1NMZw7FAmmVFqwjWpZNBKkYa3Qw==
+gatsby-plugin-react-helmet@^3.0.10:
+  version "3.0.10"
+  resolved "https://registry.npmjs.org/gatsby-plugin-react-helmet/-/gatsby-plugin-react-helmet-3.0.10.tgz#08a4f3f7d6ffd020d78817679535fb6548602302"
+  integrity sha512-YqxPNqfIS/xu+5ZO4URzWiszM6YqlyY1Xq8vvji0V/iP3XGDeQmABfFAoyd8vzAsQsWxIBDgTT2nxbBfLr7eSA==
   dependencies:
     "@babel/runtime" "^7.0.0"
 
@@ -8181,19 +8197,19 @@ gatsby-plugin-styled-components@^3.0.7:
   dependencies:
     "@babel/runtime" "^7.0.0"
 
-gatsby-react-router-scroll@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.npmjs.org/gatsby-react-router-scroll/-/gatsby-react-router-scroll-2.0.5.tgz#a6956796f430d539de658c90bdeb0d1423587cd3"
-  integrity sha512-NxyxjphvEOEj+NpYbjvqx4v96RuP+p2wJsER6utkCwKC6A90tr80CTNo4mxHPPeNeC56dxh1ilO1PVebfrvHyA==
+gatsby-react-router-scroll@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.npmjs.org/gatsby-react-router-scroll/-/gatsby-react-router-scroll-2.0.6.tgz#b04a8fe6ee77db5ca8f804b7ef476fd205dc4a40"
+  integrity sha512-Cn9Jlf3ikBQL4xRyxP/7Kl4WMNwqIO/kN8aHuvZd9wGYwI7AHylukkw3p7WJPNSqYWy3b76QggEvA7qzpJrglA==
   dependencies:
     "@babel/runtime" "^7.0.0"
     scroll-behavior "^0.9.9"
     warning "^3.0.0"
 
-gatsby@^2.1.35:
-  version "2.1.35"
-  resolved "https://registry.npmjs.org/gatsby/-/gatsby-2.1.35.tgz#cdff857886f1c84cd4b34fc2bbc630c8ba8ad65e"
-  integrity sha512-xXoQhkEjuoyX8OR5M3FQgHz5QaYV4rHEGMw+1uDkOsdS4vJqEfNk2QPeH7cYVOXEl5M3U+b2w5K4dMOHbcghkA==
+gatsby@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.npmjs.org/gatsby/-/gatsby-2.2.1.tgz#e5b8b0e46aabd7d9afc64a7486696d75e174de70"
+  integrity sha512-Z4LQ1h7U2pG+XkMoYaFGD3Ah43uROt/7LmXUoCWOGtDeYqDvISrgZbf7eTcki9xCh0IhO2T79NRCLXsPoQ2+DA==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@babel/core" "^7.0.0"
@@ -8252,18 +8268,18 @@ gatsby@^2.1.35:
     gatsby-cli "^2.4.16"
     gatsby-link "^2.0.16"
     gatsby-plugin-page-creator "^2.0.10"
-    gatsby-react-router-scroll "^2.0.5"
+    gatsby-react-router-scroll "^2.0.6"
     glob "^7.1.1"
     graphql "^14.1.1"
+    graphql-compose "^5.11.0"
     graphql-playground-middleware-express "^1.7.10"
     graphql-relay "^0.6.0"
-    graphql-skip-limit "^2.0.6"
     graphql-tools "^3.0.4"
-    graphql-type-json "^0.2.1"
     hash-mod "^0.0.5"
     invariant "^2.2.4"
     is-relative "^1.0.0"
     is-relative-url "^2.0.0"
+    is-wsl "^1.1.0"
     jest-worker "^23.2.0"
     joi "12.x.x"
     json-loader "^0.5.7"
@@ -8712,6 +8728,14 @@ graphlib@2.1.7:
   dependencies:
     lodash "^4.17.5"
 
+graphql-compose@^5.11.0:
+  version "5.12.0"
+  resolved "https://registry.npmjs.org/graphql-compose/-/graphql-compose-5.12.0.tgz#335341dd843657200081f84e76734d72a1ddaba7"
+  integrity sha512-U6H3JUBWR8WyYhtH9zRno2y5pHh4T5ypDzBYddGVq7IUukcTMQNlfVmydiElc4ktzPFRc+P/38Gh4MWT54qWmA==
+  dependencies:
+    graphql-type-json "^0.2.1"
+    object-path "^0.11.4"
+
 graphql-config@^2.0.1:
   version "2.2.1"
   resolved "https://registry.npmjs.org/graphql-config/-/graphql-config-2.2.1.tgz#5fd0ec77ac7428ca5fb2026cf131be10151a0cb2"
@@ -8756,13 +8780,6 @@ graphql-request@^1.5.0:
   integrity sha512-dDX2M+VMsxXFCmUX0Vo0TopIZIX4ggzOtiCsThgtrKR4niiaagsGTDIHj3fsOMFETpa064vzovI+4YV4QnMbcg==
   dependencies:
     cross-fetch "2.2.2"
-
-graphql-skip-limit@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.npmjs.org/graphql-skip-limit/-/graphql-skip-limit-2.0.6.tgz#67cdfbf33254db338aade6e7b44ea3e779b4b1c4"
-  integrity sha512-Jg/K/Tvxno5Rkq+KRwEZ0ME+PZBRrgDIvYIUvYMj8/hitc38hXen1XLuHEbqfrlkmrzPzQv6TB6W5utfZwJs+Q==
-  dependencies:
-    "@babel/runtime" "^7.0.0"
 
 graphql-tools@^3.0.4:
   version "3.1.1"
@@ -12584,7 +12601,7 @@ object-keys@^1.0.11, object-keys@^1.0.12:
   resolved "https://registry.npmjs.org/object-keys/-/object-keys-1.1.0.tgz#11bd22348dd2e096a045ab06f6c85bcc340fa032"
   integrity sha512-6OO5X1+2tYkNyNEx6TsCxEqFfRWaqx6EtMiSbGrw8Ob8v9Ne+Hl8rBAgLBZn5wjEz3s/s6U1WXFUFOcxxAwUpg==
 
-object-path@^0.11.2:
+object-path@^0.11.2, object-path@^0.11.4:
   version "0.11.4"
   resolved "https://registry.npmjs.org/object-path/-/object-path-0.11.4.tgz#370ae752fbf37de3ea70a861c23bba8915691949"
   integrity sha1-NwrnUvvzfePqcKhhwju6iRVpGUk=
@@ -14415,10 +14432,10 @@ react-live@^1.12.0:
     prop-types "^15.5.8"
     unescape "^0.2.0"
 
-react-native-web@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.npmjs.org/react-native-web/-/react-native-web-0.11.0.tgz#e89f4393c369471a35740a25d391a55cd1904db9"
-  integrity sha512-AbWtbyq9fb1mZDY71ziNbA5b+7JA06wmgUjq3pXTriXPsrMOrSfYpxOWcYzLN76Tcjpl2gRyzjBhGZMXWTXbVQ==
+react-native-web@^0.11.1:
+  version "0.11.1"
+  resolved "https://registry.npmjs.org/react-native-web/-/react-native-web-0.11.1.tgz#a70c8358e36f38a563a709f267c8f153ee7dc435"
+  integrity sha512-U607lxZRrl08vP/4+d717pXZyo7wdiDNOT5j3szj7behxiYvW9kw6OF2GQzU+Jw9twyeu+ZGsO2JOG9NeU+QyQ==
   dependencies:
     array-find-index "^1.0.2"
     create-react-class "^15.6.2"
@@ -14717,6 +14734,16 @@ recast@^0.17.3:
   version "0.17.3"
   resolved "https://registry.npmjs.org/recast/-/recast-0.17.3.tgz#f49a9c9a64c59b55f6c93b5a53e3cffd7a13354d"
   integrity sha512-NwQguXPwHqaVb6M7tsY11+8RDoAKHGRdymPGDxHJrsxOlNADQh0b08uz/MgYp1R1wmHuSBK4A4I5Oq+cE1J40g==
+  dependencies:
+    ast-types "0.12.2"
+    esprima "~4.0.0"
+    private "^0.1.8"
+    source-map "~0.6.1"
+
+recast@^0.17.4:
+  version "0.17.4"
+  resolved "https://registry.npmjs.org/recast/-/recast-0.17.4.tgz#b67f8abbfd4a1d8841485f03f41f2ccf2e051d88"
+  integrity sha512-94mbtFr2e4XoleJVCQQ138gK7xT2IScq25+thwEzNWd/hjOXQd6ejFiztgZZGVSByoV7/k3pLBXO3RK1BvJsIw==
   dependencies:
     ast-types "0.12.2"
     esprima "~4.0.0"
