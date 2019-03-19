@@ -22,7 +22,7 @@
     "chokidar": "^2.1.2",
     "docz": "^1.0.0-alpha.0",
     "docz-core": "^1.0.0-alpha.0",
-    "docz-theme-default": "^0.13.6",
+    "docz-theme-default": "^1.0.0-alpha.0",
     "docz-utils": "^1.0.0-alpha.0",
     "fs-extra": "^7.0.1",
     "gatsby": "^2.2.1",
