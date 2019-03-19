@@ -3,6 +3,56 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.0](https://github.com/pedronauck/docz/compare/v0.13.5...v1.0.0-alpha.0) (2019-03-19)
+
+
+### Bug Fixes
+
+* **docz:** remove null return on routes ([5bbbbb3](https://github.com/pedronauck/docz/commit/5bbbbb3))
+* gatsby theme fixes ([dcc5f19](https://github.com/pedronauck/docz/commit/dcc5f19))
+* **docz:** add window check to useWindowSize hook ([#669](https://github.com/pedronauck/docz/issues/669)) ([e4d7cb4](https://github.com/pedronauck/docz/commit/e4d7cb4))
+* **docz:** merge menus on useMenus ([af4afe2](https://github.com/pedronauck/docz/commit/af4afe2))
+* **docz:** merge new config for useConfig hook ([c63bbc8](https://github.com/pedronauck/docz/commit/c63bbc8))
+* **docz:** remove config conditional from hooks ([6b6f134](https://github.com/pedronauck/docz/commit/6b6f134))
+* a lot of bug fixes ([c10a8bd](https://github.com/pedronauck/docz/commit/c10a8bd))
+* prop types parser ([a3cc319](https://github.com/pedronauck/docz/commit/a3cc319))
+* scroll to anchor if url has hash ([389577f](https://github.com/pedronauck/docz/commit/389577f))
+* some general adjustments ([0c61f64](https://github.com/pedronauck/docz/commit/0c61f64))
+* use lodash merge instead of deepmerge ([18ac37b](https://github.com/pedronauck/docz/commit/18ac37b))
+* **docz:** optional opts for useMenus() ([571ffcd](https://github.com/pedronauck/docz/commit/571ffcd))
+* **docz:** remove deduplicated search results (thanks [@ivan-dalmet](https://github.com/ivan-dalmet)) ([1b456f7](https://github.com/pedronauck/docz/commit/1b456f7))
+* **docz:** sort menu and submenus alphabetically ([fbbd51c](https://github.com/pedronauck/docz/commit/fbbd51c))
+* **docz:** use @loadable/component instead of react-imported-component ([18f02f2](https://github.com/pedronauck/docz/commit/18f02f2))
+* **gatsby-theme-docz:** hot reload ([bf4e440](https://github.com/pedronauck/docz/commit/bf4e440))
+* use custom rollup config to build instead of libundler ([ee42a5a](https://github.com/pedronauck/docz/commit/ee42a5a))
+* wrapper property is ignored in <Playground> ([3cda0de](https://github.com/pedronauck/docz/commit/3cda0de))
+
+
+### Features
+
+* **docz:** add filter option for useMenus ([aeeb311](https://github.com/pedronauck/docz/commit/aeeb311))
+* **docz:** use getInitialProps instead of getInitialData ([d4406e0](https://github.com/pedronauck/docz/commit/d4406e0))
+* add playground component ([cde6511](https://github.com/pedronauck/docz/commit/cde6511))
+* new Props component ([80451b1](https://github.com/pedronauck/docz/commit/80451b1))
+* **docz-core:** remove ordering deprecated field ([39660bb](https://github.com/pedronauck/docz/commit/39660bb))
+* docgen refactoring ([#545](https://github.com/pedronauck/docz/issues/545)) ([85499a8](https://github.com/pedronauck/docz/commit/85499a8))
+* use @reach/router instead of react-router ([81a4a82](https://github.com/pedronauck/docz/commit/81a4a82))
+* **docz:** hooks migrations ([f57f987](https://github.com/pedronauck/docz/commit/f57f987))
+* **docz-theme-default:** use styled-components instead of emotion ([19047fd](https://github.com/pedronauck/docz/commit/19047fd))
+* add initial gatsby integration ([#630](https://github.com/pedronauck/docz/issues/630)) ([70d40cc](https://github.com/pedronauck/docz/commit/70d40cc)), closes [#609](https://github.com/pedronauck/docz/issues/609)
+* split router logic from theme ([a9c26e6](https://github.com/pedronauck/docz/commit/a9c26e6))
+
+
+### BREAKING CHANGES
+
+* <Playground> does not wrap the component anymore before
+passing it to the renderer. Instead it passes the wrapper explicitly to
+the renderer, making it the renderer's duty to apply the wrapper.
+
+
+
+
+
 ## [0.13.6](https://github.com/pedronauck/docz/compare/v0.13.5...v0.13.6) (2018-12-26)
 
 **Note:** Version bump only for package docz

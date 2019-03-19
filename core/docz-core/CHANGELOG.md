@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.0](https://github.com/pedronauck/docz/compare/v0.13.5...v1.0.0-alpha.0) (2019-03-19)
+
+
+### Bug Fixes
+
+* **docz-core:** config passed on argv ([12f6385](https://github.com/pedronauck/docz/commit/12f6385))
+* **docz-core:** hot loader and mdx plugins ([0531d65](https://github.com/pedronauck/docz/commit/0531d65))
+* **docz-core:** initialize config state on data server start ([#678](https://github.com/pedronauck/docz/issues/678)) ([8c740b8](https://github.com/pedronauck/docz/commit/8c740b8))
+* **docz-core:** remove dev things from prod build ([3f5b5d7](https://github.com/pedronauck/docz/commit/3f5b5d7))
+* **docz-core:** write first imports ([b856168](https://github.com/pedronauck/docz/commit/b856168))
+* immutable merge with lodash ([2fe94d4](https://github.com/pedronauck/docz/commit/2fe94d4))
+* some general adjustments ([0c61f64](https://github.com/pedronauck/docz/commit/0c61f64))
+* **docz-core:** remove order from Entry class ([e12c37d](https://github.com/pedronauck/docz/commit/e12c37d))
+* define right internal dependencies version ([30a91b4](https://github.com/pedronauck/docz/commit/30a91b4))
+* use lodash merge instead of deepmerge ([18ac37b](https://github.com/pedronauck/docz/commit/18ac37b))
+* **docz-core:** add spaces when write db.json ([3a84af3](https://github.com/pedronauck/docz/commit/3a84af3))
+* **docz-core:** add typescript as dependency ([9f314cd](https://github.com/pedronauck/docz/commit/9f314cd))
+* **docz-core:** apply mdast plugins to entries parse too ([c2554b8](https://github.com/pedronauck/docz/commit/c2554b8))
+* **docz-core:** docgen if file has not component definition ([b0fb846](https://github.com/pedronauck/docz/commit/b0fb846))
+* **docz-core:** exclude node modules from source map loader ([1c7c9f7](https://github.com/pedronauck/docz/commit/1c7c9f7))
+* **docz-core:** mdx loader options ([9114f9b](https://github.com/pedronauck/docz/commit/9114f9b))
+* **docz-core:** props state parser ([87767e8](https://github.com/pedronauck/docz/commit/87767e8))
+* **docz-core:** react docgen typescript performance ([2967e7c](https://github.com/pedronauck/docz/commit/2967e7c))
+* **docz-core:** return http server on bundler.start() ([cdba3bf](https://github.com/pedronauck/docz/commit/cdba3bf))
+* **docz-core:** run right hook name ([f500971](https://github.com/pedronauck/docz/commit/f500971))
+* **gatsby-theme-docz:** use createPages instead of createPagesStatefully ([37b73c6](https://github.com/pedronauck/docz/commit/37b73c6))
+* **load-cfg:** use babel register in order to require using es6 ([7ad3b64](https://github.com/pedronauck/docz/commit/7ad3b64))
+* a lot of bug fixes ([c10a8bd](https://github.com/pedronauck/docz/commit/c10a8bd))
+* use custom rollup config to build instead of libundler ([ee42a5a](https://github.com/pedronauck/docz/commit/ee42a5a))
+
+
+### Features
+
+* **docz-core:** remove ordering deprecated field ([39660bb](https://github.com/pedronauck/docz/commit/39660bb))
+* **gatsby-theme-docz:** add custom theme support ([fdfddcb](https://github.com/pedronauck/docz/commit/fdfddcb))
+* add initial gatsby integration ([#630](https://github.com/pedronauck/docz/issues/630)) ([70d40cc](https://github.com/pedronauck/docz/commit/70d40cc)), closes [#609](https://github.com/pedronauck/docz/issues/609)
+* add playground component ([cde6511](https://github.com/pedronauck/docz/commit/cde6511))
+* docgen refactoring ([#545](https://github.com/pedronauck/docz/issues/545)) ([85499a8](https://github.com/pedronauck/docz/commit/85499a8))
+* split router logic from theme ([a9c26e6](https://github.com/pedronauck/docz/commit/a9c26e6))
+* use @reach/router instead of react-router ([81a4a82](https://github.com/pedronauck/docz/commit/81a4a82))
+* **docz-core:** support for configuring the separator during slugifying ([10bb134](https://github.com/pedronauck/docz/commit/10bb134))
+
+
+
+
+
 ## [0.13.6](https://github.com/pedronauck/docz/compare/v0.13.5...v0.13.6) (2018-12-26)
 
 

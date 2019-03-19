@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.0](https://github.com/pedronauck/docz/compare/v0.13.5...v1.0.0-alpha.0) (2019-03-19)
+
+
+### Bug Fixes
+
+* immutable merge with lodash ([2fe94d4](https://github.com/pedronauck/docz/commit/2fe94d4))
+* **load-cfg:** merge default config on load ([d3b4bc6](https://github.com/pedronauck/docz/commit/d3b4bc6))
+* use lodash merge instead of deepmerge ([18ac37b](https://github.com/pedronauck/docz/commit/18ac37b))
+* **load-cfg:** use babel register in order to require using es6 ([7ad3b64](https://github.com/pedronauck/docz/commit/7ad3b64))
+* use custom rollup config to build instead of libundler ([ee42a5a](https://github.com/pedronauck/docz/commit/ee42a5a))
+
+
+### Features
+
+* add initial gatsby integration ([#630](https://github.com/pedronauck/docz/issues/630)) ([70d40cc](https://github.com/pedronauck/docz/commit/70d40cc)), closes [#609](https://github.com/pedronauck/docz/issues/609)
+
+
+
+
+
 ## [0.13.3](https://github.com/pedronauck/docz/compare/v0.13.2...v0.13.3) (2018-12-17)
 
 **Note:** Version bump only for package load-cfg

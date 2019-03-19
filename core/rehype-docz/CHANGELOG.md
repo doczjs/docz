@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.0](https://github.com/pedronauck/docz/compare/v0.13.5...v1.0.0-alpha.0) (2019-03-19)
+
+
+### Bug Fixes
+
+* **rehype-docz:** update tests ([548f940](https://github.com/pedronauck/docz/commit/548f940))
+* use custom rollup config to build instead of libundler ([ee42a5a](https://github.com/pedronauck/docz/commit/ee42a5a))
+
+
+### Features
+
+* add initial gatsby integration ([#630](https://github.com/pedronauck/docz/issues/630)) ([70d40cc](https://github.com/pedronauck/docz/commit/70d40cc)), closes [#609](https://github.com/pedronauck/docz/issues/609)
+
+
+
+
+
 ## [0.13.6](https://github.com/pedronauck/docz/compare/v0.13.5...v0.13.6) (2018-12-26)
 
 **Note:** Version bump only for package rehype-docz

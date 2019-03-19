@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.0](https://github.com/pedronauck/docz/compare/v0.13.5...v1.0.0-alpha.0) (2019-03-19)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** add active class manually for gatsby ([c3faed3](https://github.com/pedronauck/docz/commit/c3faed3))
+* **docz-theme-default:** react live error size ([7f2e0ff](https://github.com/pedronauck/docz/commit/7f2e0ff))
+* gatsby theme fixes ([dcc5f19](https://github.com/pedronauck/docz/commit/dcc5f19))
+* **docz-theme-default:** active menu link ([5e04e0d](https://github.com/pedronauck/docz/commit/5e04e0d))
+* **docz-theme-default:** fix padding in Playground elements ([4af7376](https://github.com/pedronauck/docz/commit/4af7376)), closes [/github.com/pedronauck/docz/issues/398#issuecomment-453663552](https://github.com//github.com/pedronauck/docz/issues/398/issues/issuecomment-453663552)
+* **docz-theme-default:** force codemirror to refresh ([#637](https://github.com/pedronauck/docz/issues/637)) ([#638](https://github.com/pedronauck/docz/issues/638)) ([e745c7d](https://github.com/pedronauck/docz/commit/e745c7d))
+* **docz-theme-default:** show cursor on playground editor focus ([9f99c30](https://github.com/pedronauck/docz/commit/9f99c30))
+* **docz-theme-default:** show heading anchor on hover ([3e453f5](https://github.com/pedronauck/docz/commit/3e453f5))
+* **docz-theme-default:** styles adjustments ([aca1bee](https://github.com/pedronauck/docz/commit/aca1bee))
+* **docz-theme-default:** support absolute page elements ([#683](https://github.com/pedronauck/docz/issues/683)) ([a4ced2b](https://github.com/pedronauck/docz/commit/a4ced2b))
+* **docz-theme-default:** toggle active links on location change ([#666](https://github.com/pedronauck/docz/issues/666)) ([1274b97](https://github.com/pedronauck/docz/commit/1274b97))
+* define right internal dependencies version ([30a91b4](https://github.com/pedronauck/docz/commit/30a91b4))
+* prop types parser ([a3cc319](https://github.com/pedronauck/docz/commit/a3cc319))
+* **load-cfg:** use babel register in order to require using es6 ([7ad3b64](https://github.com/pedronauck/docz/commit/7ad3b64))
+* use custom rollup config to build instead of libundler ([ee42a5a](https://github.com/pedronauck/docz/commit/ee42a5a))
+* wrapper property is ignored in <Playground> ([3cda0de](https://github.com/pedronauck/docz/commit/3cda0de))
+
+
+### Features
+
+* new Props component ([80451b1](https://github.com/pedronauck/docz/commit/80451b1))
+* **gatsby-theme-docz:** add custom theme support ([fdfddcb](https://github.com/pedronauck/docz/commit/fdfddcb))
+* add initial gatsby integration ([#630](https://github.com/pedronauck/docz/issues/630)) ([70d40cc](https://github.com/pedronauck/docz/commit/70d40cc)), closes [#609](https://github.com/pedronauck/docz/issues/609)
+* add playground component ([cde6511](https://github.com/pedronauck/docz/commit/cde6511))
+* use @reach/router instead of react-router ([81a4a82](https://github.com/pedronauck/docz/commit/81a4a82))
+* **docz-theme-default:** automatically render links with relative path ([624bbf0](https://github.com/pedronauck/docz/commit/624bbf0))
+* **docz-theme-default:** use styled-components instead of emotion ([19047fd](https://github.com/pedronauck/docz/commit/19047fd))
+* split router logic from theme ([a9c26e6](https://github.com/pedronauck/docz/commit/a9c26e6))
+
+
+### BREAKING CHANGES
+
+* <Playground> does not wrap the component anymore before
+passing it to the renderer. Instead it passes the wrapper explicitly to
+the renderer, making it the renderer's duty to apply the wrapper.
+
+
+
+
+
 ## [0.13.6](https://github.com/pedronauck/docz/compare/v0.13.5...v0.13.6) (2018-12-26)
 
 **Note:** Version bump only for package docz-theme-default

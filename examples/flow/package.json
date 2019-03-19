@@ -1,6 +1,6 @@
 {
   "name": "docz-example-flow",
-  "version": "0.13.6",
+  "version": "1.0.0-alpha.0",
   "license": "MIT",
   "scripts": {
     "dev": "docz dev",
@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@babel/preset-flow": "^7.0.0",
-    "docz": "^0.13.6",
+    "docz": "^1.0.0-alpha.0",
     "flow-bin": "^0.95.1",
     "flow-typed": "^2.5.1"
   }

@@ -3,6 +3,109 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.0](https://github.com/pedronauck/docz/compare/v0.13.5...v1.0.0-alpha.0) (2019-03-19)
+
+
+### Bug Fixes
+
+* **babel-plugin-export-metadata:** update snapshot test ([6ca7b87](https://github.com/pedronauck/docz/commit/6ca7b87))
+* **docz:** add window check to useWindowSize hook ([#669](https://github.com/pedronauck/docz/issues/669)) ([e4d7cb4](https://github.com/pedronauck/docz/commit/e4d7cb4))
+* **docz:** merge menus on useMenus ([af4afe2](https://github.com/pedronauck/docz/commit/af4afe2))
+* **docz:** merge new config for useConfig hook ([c63bbc8](https://github.com/pedronauck/docz/commit/c63bbc8))
+* **docz:** optional opts for useMenus() ([571ffcd](https://github.com/pedronauck/docz/commit/571ffcd))
+* **docz:** remove config conditional from hooks ([6b6f134](https://github.com/pedronauck/docz/commit/6b6f134))
+* **docz:** remove null return on routes ([5bbbbb3](https://github.com/pedronauck/docz/commit/5bbbbb3))
+* **docz-core:** config passed on argv ([12f6385](https://github.com/pedronauck/docz/commit/12f6385))
+* **docz-core:** hot loader and mdx plugins ([0531d65](https://github.com/pedronauck/docz/commit/0531d65))
+* **docz-core:** initialize config state on data server start ([#678](https://github.com/pedronauck/docz/issues/678)) ([8c740b8](https://github.com/pedronauck/docz/commit/8c740b8))
+* **docz-core:** remove dev things from prod build ([3f5b5d7](https://github.com/pedronauck/docz/commit/3f5b5d7))
+* **docz-core:** remove order from Entry class ([e12c37d](https://github.com/pedronauck/docz/commit/e12c37d))
+* **docz-core:** write first imports ([b856168](https://github.com/pedronauck/docz/commit/b856168))
+* **docz-theme-default:** active menu link ([5e04e0d](https://github.com/pedronauck/docz/commit/5e04e0d))
+* **docz-theme-default:** add active class manually for gatsby ([c3faed3](https://github.com/pedronauck/docz/commit/c3faed3))
+* **docz-theme-default:** react live error size ([7f2e0ff](https://github.com/pedronauck/docz/commit/7f2e0ff))
+* **docz-theme-default:** support absolute page elements ([#683](https://github.com/pedronauck/docz/issues/683)) ([a4ced2b](https://github.com/pedronauck/docz/commit/a4ced2b))
+* **docz-theme-default:** toggle active links on location change ([#666](https://github.com/pedronauck/docz/issues/666)) ([1274b97](https://github.com/pedronauck/docz/commit/1274b97))
+* **docz-utils:** add docz imports on react live scope ([01004ed](https://github.com/pedronauck/docz/commit/01004ed))
+* **gatsby-theme-docz:** add null fields for entries ([b0409a8](https://github.com/pedronauck/docz/commit/b0409a8))
+* **gatsby-theme-docz:** add ssr support for styled-components ([b490010](https://github.com/pedronauck/docz/commit/b490010))
+* **gatsby-theme-docz:** check entries before find on it ([8565128](https://github.com/pedronauck/docz/commit/8565128))
+* **gatsby-theme-docz:** create pages hook ([2f5765e](https://github.com/pedronauck/docz/commit/2f5765e))
+* **gatsby-theme-docz:** readme typo ([9e3314a](https://github.com/pedronauck/docz/commit/9e3314a))
+* **gatsby-theme-docz:** throws false for json stringify ([289ca75](https://github.com/pedronauck/docz/commit/289ca75))
+* gatsby theme fixes ([dcc5f19](https://github.com/pedronauck/docz/commit/dcc5f19))
+* **gatsby-theme-docz:** check data before access ([8f8ed12](https://github.com/pedronauck/docz/commit/8f8ed12))
+* **gatsby-theme-docz:** use options from gatsby-config ([#665](https://github.com/pedronauck/docz/issues/665)) ([c694bdf](https://github.com/pedronauck/docz/commit/c694bdf))
+* **rehype-docz:** update tests ([548f940](https://github.com/pedronauck/docz/commit/548f940))
+* immutable merge with lodash ([2fe94d4](https://github.com/pedronauck/docz/commit/2fe94d4))
+* **remark-docz:** visit correct nodes ([d5e243d](https://github.com/pedronauck/docz/commit/d5e243d))
+* some general adjustments ([0c61f64](https://github.com/pedronauck/docz/commit/0c61f64))
+* **load-cfg:** merge default config on load ([d3b4bc6](https://github.com/pedronauck/docz/commit/d3b4bc6))
+* use lodash merge instead of deepmerge ([18ac37b](https://github.com/pedronauck/docz/commit/18ac37b))
+* **docz-theme-default:** styles adjustments ([aca1bee](https://github.com/pedronauck/docz/commit/aca1bee))
+* **gatsby-theme-docz:** add specific nodes for entries ([26f7f90](https://github.com/pedronauck/docz/commit/26f7f90))
+* define right internal dependencies version ([30a91b4](https://github.com/pedronauck/docz/commit/30a91b4))
+* prop types parser ([a3cc319](https://github.com/pedronauck/docz/commit/a3cc319))
+* **babel-plugin-export-metadata:** just define pro non-primitive types ([ed78a13](https://github.com/pedronauck/docz/commit/ed78a13))
+* **babel-plugin-export-metadata:** prettier fix script ([3a34b72](https://github.com/pedronauck/docz/commit/3a34b72))
+* **docz:** remove deduplicated search results (thanks [@ivan-dalmet](https://github.com/ivan-dalmet)) ([1b456f7](https://github.com/pedronauck/docz/commit/1b456f7))
+* **docz:** sort menu and submenus alphabetically ([fbbd51c](https://github.com/pedronauck/docz/commit/fbbd51c))
+* **docz:** use @loadable/component instead of react-imported-component ([18f02f2](https://github.com/pedronauck/docz/commit/18f02f2))
+* **docz-core:** add spaces when write db.json ([3a84af3](https://github.com/pedronauck/docz/commit/3a84af3))
+* **docz-core:** add typescript as dependency ([9f314cd](https://github.com/pedronauck/docz/commit/9f314cd))
+* **docz-core:** apply mdast plugins to entries parse too ([c2554b8](https://github.com/pedronauck/docz/commit/c2554b8))
+* **docz-core:** docgen if file has not component definition ([b0fb846](https://github.com/pedronauck/docz/commit/b0fb846))
+* **docz-core:** exclude node modules from source map loader ([1c7c9f7](https://github.com/pedronauck/docz/commit/1c7c9f7))
+* **docz-core:** mdx loader options ([9114f9b](https://github.com/pedronauck/docz/commit/9114f9b))
+* **docz-core:** props state parser ([87767e8](https://github.com/pedronauck/docz/commit/87767e8))
+* **docz-core:** react docgen typescript performance ([2967e7c](https://github.com/pedronauck/docz/commit/2967e7c))
+* **docz-core:** return http server on bundler.start() ([cdba3bf](https://github.com/pedronauck/docz/commit/cdba3bf))
+* **docz-core:** run right hook name ([f500971](https://github.com/pedronauck/docz/commit/f500971))
+* **docz-theme-default:** fix padding in Playground elements ([4af7376](https://github.com/pedronauck/docz/commit/4af7376)), closes [/github.com/pedronauck/docz/issues/398#issuecomment-453663552](https://github.com//github.com/pedronauck/docz/issues/398/issues/issuecomment-453663552)
+* **docz-theme-default:** force codemirror to refresh ([#637](https://github.com/pedronauck/docz/issues/637)) ([#638](https://github.com/pedronauck/docz/issues/638)) ([e745c7d](https://github.com/pedronauck/docz/commit/e745c7d))
+* **docz-theme-default:** show cursor on playground editor focus ([9f99c30](https://github.com/pedronauck/docz/commit/9f99c30))
+* **docz-theme-default:** show heading anchor on hover ([3e453f5](https://github.com/pedronauck/docz/commit/3e453f5))
+* **docz-utils:** extract headings from ast ([9f8565b](https://github.com/pedronauck/docz/commit/9f8565b))
+* **docz-utils:** parser config for prettier ([54ad0fa](https://github.com/pedronauck/docz/commit/54ad0fa))
+* **gatsby-theme-docz:** hot reload ([bf4e440](https://github.com/pedronauck/docz/commit/bf4e440))
+* **gatsby-theme-docz:** use createPages instead of createPagesStatefully ([37b73c6](https://github.com/pedronauck/docz/commit/37b73c6))
+* **load-cfg:** use babel register in order to require using es6 ([7ad3b64](https://github.com/pedronauck/docz/commit/7ad3b64))
+* a lot of bug fixes ([c10a8bd](https://github.com/pedronauck/docz/commit/c10a8bd))
+* scroll to anchor if url has hash ([389577f](https://github.com/pedronauck/docz/commit/389577f))
+* trim whitespaces before and after class ([a184913](https://github.com/pedronauck/docz/commit/a184913))
+* use custom rollup config to build instead of libundler ([ee42a5a](https://github.com/pedronauck/docz/commit/ee42a5a))
+* wrapper property is ignored in <Playground> ([3cda0de](https://github.com/pedronauck/docz/commit/3cda0de))
+
+
+### Features
+
+* **docz:** add filter option for useMenus ([aeeb311](https://github.com/pedronauck/docz/commit/aeeb311))
+* **docz:** use getInitialProps instead of getInitialData ([d4406e0](https://github.com/pedronauck/docz/commit/d4406e0))
+* new Props component ([80451b1](https://github.com/pedronauck/docz/commit/80451b1))
+* **docz:** hooks migrations ([f57f987](https://github.com/pedronauck/docz/commit/f57f987))
+* **docz-core:** remove ordering deprecated field ([39660bb](https://github.com/pedronauck/docz/commit/39660bb))
+* **docz-core:** support for configuring the separator during slugifying ([10bb134](https://github.com/pedronauck/docz/commit/10bb134))
+* **docz-theme-default:** automatically render links with relative path ([624bbf0](https://github.com/pedronauck/docz/commit/624bbf0))
+* **docz-theme-default:** use styled-components instead of emotion ([19047fd](https://github.com/pedronauck/docz/commit/19047fd))
+* **gatsby-theme-docz:** add custom theme support ([fdfddcb](https://github.com/pedronauck/docz/commit/fdfddcb))
+* **gatsby-theme-docz:** add wrapper support ([a99d62f](https://github.com/pedronauck/docz/commit/a99d62f))
+* add initial gatsby integration ([#630](https://github.com/pedronauck/docz/issues/630)) ([70d40cc](https://github.com/pedronauck/docz/commit/70d40cc)), closes [#609](https://github.com/pedronauck/docz/issues/609)
+* add playground component ([cde6511](https://github.com/pedronauck/docz/commit/cde6511))
+* docgen refactoring ([#545](https://github.com/pedronauck/docz/issues/545)) ([85499a8](https://github.com/pedronauck/docz/commit/85499a8))
+* split router logic from theme ([a9c26e6](https://github.com/pedronauck/docz/commit/a9c26e6))
+* use @reach/router instead of react-router ([81a4a82](https://github.com/pedronauck/docz/commit/81a4a82))
+
+
+### BREAKING CHANGES
+
+* <Playground> does not wrap the component anymore before
+passing it to the renderer. Instead it passes the wrapper explicitly to
+the renderer, making it the renderer's duty to apply the wrapper.
+
+
+
+
+
 ## [0.13.6](https://github.com/pedronauck/docz/compare/v0.13.5...v0.13.6) (2018-12-26)
 
 
