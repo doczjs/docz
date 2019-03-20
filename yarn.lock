@@ -1057,10 +1057,10 @@
     js-levenshtein "^1.1.3"
     semver "^5.3.0"
 
-"@babel/preset-env@^7.4.0":
-  version "7.4.0"
-  resolved "https://registry.npmjs.org/@babel/preset-env/-/preset-env-7.4.0.tgz#8117e193876c646bc00c1333e0785c88e330db1a"
-  integrity sha512-0S+5y5FkdV/P98sjDW5QAnSjJL+FHEhPxMv8lioc7jjSasRQZhQrjyew41IbOOiytDVhCkz8oqzYZdqexYptHQ==
+"@babel/preset-env@^7.4.1":
+  version "7.4.1"
+  resolved "https://registry.npmjs.org/@babel/preset-env/-/preset-env-7.4.1.tgz#80e19ad76f62fb136d57ee4b963db3e8a6840bad"
+  integrity sha512-uC2DeVb6ljdjBGhJCyHxNZfSJEVgPdUm2R5cX85GCl1Qreo5sMM5g85ntqtzRF7XRYGgnRmV5we9cdlvo1wJvg==
   dependencies:
     "@babel/helper-module-imports" "^7.0.0"
     "@babel/helper-plugin-utils" "^7.0.0"
@@ -2723,20 +2723,22 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-11.11.0.tgz#070e9ce7c90e727aca0e0c14e470f9a93ffe9390"
   integrity sha512-D5Rt+HXgEywr3RQJcGlZUCTCx1qVbCZpVk3/tOOA6spLNZdGm8BU+zRgdRYDoF1pO3RuXLxADzMrF903JlQXqg==
 
-"@types/node@^11.11.3":
-  version "11.11.3"
-  resolved "https://registry.npmjs.org/@types/node/-/node-11.11.3.tgz#7c6b0f8eaf16ae530795de2ad1b85d34bf2f5c58"
-  integrity sha512-wp6IOGu1lxsfnrD+5mX6qwSwWuqsdkKKxTN4aQc4wByHAKZJf9/D4KXPQ1POUjEbnCP5LMggB0OEFNY9OTsMqg==
+"@types/node@^11.11.4":
+  version "11.11.4"
+  resolved "https://registry.npmjs.org/@types/node/-/node-11.11.4.tgz#8808bd5a82bbf6f5d412eff1c228d178e7c24bb3"
+  integrity sha512-02tIL+QIi/RW4E5xILdoAMjeJ9kYq5t5S2vciUdFPXv/ikFTb0zK8q9vXkg4+WAJuYXGiVT1H28AkD2C+IkXVw==
 
 "@types/node@^7.0.11":
   version "7.10.5"
   resolved "https://registry.npmjs.org/@types/node/-/node-7.10.5.tgz#6831006b2c87441d69e79b37ae9bc03246dfb379"
   integrity sha512-RYkagUUbxQBss46ElbEa+j4q4X3GR12QwB7a/PM5hmVuVkYoW1jENT1+taspKUv8ibwW8cw+kRFbOaTc/Key3w==
 
-"@types/p-reduce@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@types/p-reduce/-/p-reduce-1.0.0.tgz#dbf6b33fc8d45ebaba00e202e984d827f184b7ea"
-  integrity sha512-cxe/ds50jNfC1IuZAr+1cF8dE4AWSqIzxpBw2wkUGKS1VVCjattWnt9PL2T9QlRRsPx5GTt+5H2FGORphPGnMA==
+"@types/p-reduce@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@types/p-reduce/-/p-reduce-1.0.1.tgz#02950849c722ce1c6cae0f7fc642db9d08d999ec"
+  integrity sha512-1uWJHMwh5UNUu1VNzxJXsndaXD8DPs2zZuOnVIhIVgopW8CAt5EyhcW7+EDXtzRHmrZjEoavNbfyoR6uIALSUg==
+  dependencies:
+    p-reduce "*"
 
 "@types/prettier@^1.16.1":
   version "1.16.1"
@@ -8033,10 +8035,10 @@ gatsby-react-router-scroll@^2.0.6:
     scroll-behavior "^0.9.9"
     warning "^3.0.0"
 
-gatsby@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.npmjs.org/gatsby/-/gatsby-2.2.1.tgz#e5b8b0e46aabd7d9afc64a7486696d75e174de70"
-  integrity sha512-Z4LQ1h7U2pG+XkMoYaFGD3Ah43uROt/7LmXUoCWOGtDeYqDvISrgZbf7eTcki9xCh0IhO2T79NRCLXsPoQ2+DA==
+gatsby@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.npmjs.org/gatsby/-/gatsby-2.2.2.tgz#94706627fd0cc5c369fd0f2fdf6ca7ddb925522e"
+  integrity sha512-M5T+yCCKaTXiTKS/Uup2Bo0KE0imM+1vrGC8pqz9YvHS5K5l17DclwzHfP/J7B123L7JqLDiXH6YA0oCSvUzFA==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@babel/core" "^7.0.0"
@@ -12639,15 +12641,15 @@ p-pipe@^1.2.0:
   resolved "https://registry.npmjs.org/p-pipe/-/p-pipe-1.2.0.tgz#4b1a11399a11520a67790ee5a0c1d5881d6befe9"
   integrity sha1-SxoROZoRUgpneQ7loMHViB1r7+k=
 
+p-reduce@*, p-reduce@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/p-reduce/-/p-reduce-2.0.0.tgz#365a26916213650711124881a6bdc4e32c2bfe36"
+  integrity sha512-VcNNEqiYIkRCGeUHELY5dUrnQHCRwL6eIH/L9oSbl/PsvyHQXD1ws/MFwuEb+6dgH/URCfROVUqOYL37eHi2kQ==
+
 p-reduce@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/p-reduce/-/p-reduce-1.0.0.tgz#18c2b0dd936a4690a529f8231f58a0fdb6a47dfa"
   integrity sha1-GMKw3ZNqRpClKfgjH1ig/bakffo=
-
-p-reduce@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/p-reduce/-/p-reduce-2.0.0.tgz#365a26916213650711124881a6bdc4e32c2bfe36"
-  integrity sha512-VcNNEqiYIkRCGeUHELY5dUrnQHCRwL6eIH/L9oSbl/PsvyHQXD1ws/MFwuEb+6dgH/URCfROVUqOYL37eHi2kQ==
 
 p-timeout@^1.1.1:
   version "1.2.1"
@@ -16593,10 +16595,15 @@ typedarray@^0.0.6:
   resolved "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.2.2, typescript@^3.3.3333:
+typescript@^3.2.2:
   version "3.3.3333"
   resolved "https://registry.npmjs.org/typescript/-/typescript-3.3.3333.tgz#171b2c5af66c59e9431199117a3bcadc66fdcfd6"
   integrity sha512-JjSKsAfuHBE/fB2oZ8NxtRTk5iGcg6hkYXMnZ3Wc+b2RSqejEqTaem11mHASMnFilHrax3sLK0GDzcJrekZYLw==
+
+typescript@^3.3.4000:
+  version "3.3.4000"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-3.3.4000.tgz#76b0f89cfdbf97827e1112d64f283f1151d6adf0"
+  integrity sha512-jjOcCZvpkl2+z7JFn0yBOoLQyLoIkNZAs/fYJkUG6VKy6zLPHJGfQJYFHzibB6GJaF/8QrcECtlQ5cpvRHSMEA==
 
 ua-parser-js@^0.7.18:
   version "0.7.19"
