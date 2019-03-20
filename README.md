@@ -41,8 +41,6 @@ Documenting our things is one of the most important and heavy processes when you
 
 ## 👉🏻 &nbsp; More info on [our website](https://docz.site)
 
----
-
 ## 🎛 &nbsp; Plugins
 
 - **[gatsby-theme-docz](https://github.com/pedronauck/docz/tree/master/core/gatsby-theme-docz)** - Use docz as a theme for Gatsby
