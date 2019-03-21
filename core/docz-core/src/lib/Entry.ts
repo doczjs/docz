@@ -52,11 +52,11 @@ export class Entry {
 
     this.id = createId(file)
     this.filepath = filepath
-    this.link = null
+    this.link = ''
     this.slug = this.slugify(filepath, config.separator)
     this.route = this.getRoute(parsed)
     this.name = name
-    this.menu = parsed.menu || null
+    this.menu = parsed.menu || ''
     this.headings = headingsFromAst(ast)
     this.settings = parsed
   }

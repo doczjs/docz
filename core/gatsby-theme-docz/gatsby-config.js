@@ -1,18 +1,56 @@
 const path = require('path')
 
-const { mdPlugins, hastPlugins } = require('./src/utils/remark-plugins')
 const { getDoczConfig } = require('./src/utils/parseConfig')
+
+const getMdPlugins = () => {
+  let plugins = []
+
+  try {
+    plugins = [
+      [require('remark-frontmatter'), { type: 'yaml', marker: '-' }],
+      require('remark-docz'),
+    ]
+  } catch (err) {
+    plugins = []
+  }
+
+  return plugins
+}
+
+const getHastPlugins = () => {
+  let plugins = []
+
+  try {
+    plugins = [
+      [require('rehype-docz'), { root: process.cwd() }],
+      require('rehype-slug'),
+    ]
+  } catch (err) {
+    plugins = []
+  }
+
+  return plugins
+}
 
 module.exports = opts => {
   const { paths, ...config } = getDoczConfig(opts)
+  const mdPlugins = getMdPlugins()
+  const hastPlugins = getHastPlugins()
+
   return {
     plugins: [
       {
         resolve: 'gatsby-mdx',
         options: {
           extensions: ['.md', '.mdx'],
-          mdPlugins: config.mdPlugins.concat(mdPlugins),
-          hastPlugins: config.hastPlugins.concat(hastPlugins),
+          mdPlugins:
+            config && config.mdPlugins
+              ? config.mdPlugins.concat(mdPlugins)
+              : mdPlugins,
+          hastPlugins:
+            config && config.hastPlugins
+              ? config.hastPlugins.concat(hastPlugins)
+              : hastPlugins,
           defaultLayouts: {
             default: path.join(paths.app, 'components/Layout.js'),
           },

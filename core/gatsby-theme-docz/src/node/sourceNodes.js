@@ -42,18 +42,16 @@ module.exports = async ({ actions, createNodeId }, opts) => {
     })
   }
 
-  const createEntriesNodes = async payload => {
+  const createEntriesNodes = async () => {
     const map = await entries.get()
     const values = Object.entries(map)
+    const contentDigest = digest(JSON.stringify(values))
 
     values.forEach(([key, entry]) => {
       if (!entry) return null
-      const contentDigest = digest(JSON.stringify(entry))
       createNode({
         ...entry,
         children: [],
-        link: entry.link || false,
-        menu: entry.menu || false,
         internal: {
           contentDigest,
           type: `DoczEntries`,
