@@ -96,11 +96,11 @@ const ToggleButton = styled.button<OpenProps>`
   })};
 `
 
-interface HamburguerProps extends OpenProps {
+interface HamburgerProps extends OpenProps {
   onClick: (ev: React.SyntheticEvent<any>) => void
 }
 
-export const Hamburguer: SFC<HamburguerProps> = ({ opened, onClick }) => (
+export const Hamburger: SFC<HamburgerProps> = ({ opened, onClick }) => (
   <ToggleButton opened={opened} onClick={onClick}>
     <Icon opened={opened}>
       <IconLine opened={opened} />

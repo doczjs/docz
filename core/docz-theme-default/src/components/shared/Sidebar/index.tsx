@@ -7,7 +7,7 @@ import { Logo } from '../Logo'
 import { Search } from '../Search'
 import { Menu } from './Menu'
 import { Docz } from './Docz'
-import { Hamburguer } from './Hamburguer'
+import { Hamburger } from './Hamburger'
 
 import { get } from '@utils/theme'
 import { mq, breakpoints } from '@styles/responsive'
@@ -147,7 +147,7 @@ export const Sidebar: SFC = () => {
     <Fragment>
       <Wrapper opened={hidden}>
         <Content>
-          <Hamburguer opened={!hidden} onClick={handleSidebarToggle} />
+          <Hamburger opened={!hidden} onClick={handleSidebarToggle} />
           <Logo showBg={!hidden} />
           <Search onSearch={setQuery} />
 
