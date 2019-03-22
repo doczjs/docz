@@ -93,7 +93,7 @@ In the newest version of Docz, because of some performance and bundle issues, we
 The process to create themes for docz is very similar to the previous one; there are no big changes here, but you need to know a few changes that we made.
 
 - The first one, is you don't have `DocPreview` anymore. Instead, we introduced the `ComponentsProvider` component.
-- The second one, is that the `render` field previously passed in the components mapper now is called `playground`.
+- The second one is that the `render` field previously passed in the components mapper; now it is called `playground`.
 - And the last one, is now you need to pass a children for your theme.
 
 #### The old way
