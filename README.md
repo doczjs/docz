@@ -22,72 +22,81 @@
 
 ## ✅️ &nbsp; Migration Guide
 
-This documentation it's about [v1](https://github.com/pedronauck/docz/pull/656). If you need to migrate your project, please read our [Migration Guide](/MIGRATION_GUIDE.md)
+This documentation is for Docz [v1](https://github.com/pedronauck/docz/pull/656). Follow our [migration guide](/MIGRATION_GUIDE.md) if you haven't upgraded your project yet.
 
 ## 🎩 &nbsp; Features
 
 - 🧘 **Zero config and easy.** Don't worry about complex configurations steps.
 - ⚡️ **Blazing Fast.** Full hot reload support with webpack 4 and automatic code splitting.
 - 💅 **Easy to customize.** Create and use real customizable themes.
-- 📝 **[MDX](https://github.com/mdx-js/mdx) Based.** Write markdown with all power of components.
-- 🎛 **Pluggable.** With plugins, you can manipulate a lot of things through the docz flow and data.
-- 🔐 **Typescript Support.** We have a full support for your type definitions.
+- 📝 **[MDX](https://github.com/mdx-js/mdx) Based.** Write markdown enhanced by the power of components.
+- 🎛 **Pluggable.** Use plugins to manipulate and customise Docz to suit your needs.
+- 🔐 **Typescript Support.** Full support for TypeScript. Write your type definitions with no extra setup required.
 
 ## 🤔 &nbsp; Why?
 
-Libraries that make our life easier coming up every day. Styleguides and design system are growing so fast. Today, tools that allow us to be quick and effective are really necessary. We can't lose time with tasks that should be trivial for us. Thinking about that **docz** came out.
+Libraries that make development easier are appearing every day. Styleguides and design systems are growing in popularity. Today, tools that allow us to get our best work done and be efficient are necessary. We shouldn't be spending too much time on tasks that should be trivial. This is why we created **Docz**.
 
 Documenting our things is one of the most important and heavy processes when you're creating something new. We waste a lot of time with unnecessary setups to build something that can represent and we want with our own style.
+
+Documenting code is one of the most important and time-heavy processes when you're creating something new. A lot of time is wasted on unnecessarily attempting to build a documentation site that will match the style we want.
 
 ## 👉🏻 &nbsp; More info on [our website](https://docz.site)
 
 ## 🎛 &nbsp; Plugins
 
-- **[gatsby-theme-docz](https://github.com/pedronauck/docz/tree/master/core/gatsby-theme-docz)** - Use docz as a theme for Gatsby
-- **[css](https://github.com/pedronauck/docz-plugin-css)** - Parse css files inside your documents
-- **[netlify](https://github.com/nicholasess/docz-plugin-netlify)** - Deploy your documentation to [Netlify](http://netlify.com/)
-- **[postcss](https://github.com/andreasonny83/docz-plugin-postcss)** - Use Docz with PostCSS
-- **[svg sprite loader](https://github.com/trustedhousesitters/docz-plugin-svg-sprite-loader)** - Docz plugin for SVG sprite loader
-- **[snapshots](https://github.com/JosephConradBlack/docz-plugin-snapshots)** - A plugin for docz that creates jest snapshots for all documented component usages
+- **[gatsby-theme-docz](https://github.com/pedronauck/docz/tree/master/core/gatsby-theme-docz)** - Use Docz as a theme for Gatsby.
+- **[css](https://github.com/pedronauck/docz-plugin-css)** - Parse CSS files inside your documents.
+- **[netlify](https://github.com/nicholasess/docz-plugin-netlify)** - Deploy your Docz site to [Netlify](http://netlify.com/).
+- **[postcss](https://github.com/andreasonny83/docz-plugin-postcss)** - Use Docz with PostCSS.
+- **[svg sprite loader](https://github.com/trustedhousesitters/docz-plugin-svg-sprite-loader)** - Docz plugin for SVG sprite loader.
+- **[snapshots](https://github.com/JosephConradBlack/docz-plugin-snapshots)** - A plugin for Docz that creates jest snapshots for all documented component usages.
 
 ## 🗃 &nbsp; Examples
 
-- **[basic](https://github.com/pedronauck/docz/tree/master/examples/basic)** - Some basic example
-- **[gatsby](https://github.com/pedronauck/docz/tree/master/examples/gatsby)** - Example using Docz as a theme for Gatsby
-- **[react native](https://github.com/pedronauck/docz/tree/master/examples/react-native)** - Using in a React Native project
-- **[styled-components](https://github.com/pedronauck/docz/tree/master/examples/styled-components)** - Using docz with styled-components
-- **[with typescript](https://github.com/pedronauck/docz/tree/master/examples/typescript)** - Using docz with Typescript
-- **[with flow](https://github.com/pedronauck/docz/tree/master/examples/flow)** - Using docz with Flow
-- **[with sass](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-sass)** - Using docz parsing css with Sass
-- **[with less](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-less)** - Using docz parsing css with Less
-- **[with postcss](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-postcss)** - Using docz parsing css with PostCSS
-- **[with stylus](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-stylus)** - Using docz parsing css with Stylus
+- **[basic](https://github.com/pedronauck/docz/tree/master/examples/basic)** - Barebones example.
+- **[gatsby](https://github.com/pedronauck/docz/tree/master/examples/gatsby)** - Example using Docz as a theme for Gatsby.
+- **[react native](https://github.com/pedronauck/docz/tree/master/examples/react-native)** - Using Docz in a React Native project.
+- **[styled-components](https://github.com/pedronauck/docz/tree/master/examples/styled-components)** - Using Docz with `styled-components`.
+- **[with typescript](https://github.com/pedronauck/docz/tree/master/examples/typescript)** - Using Docz with Typescript.
+- **[with flow](https://github.com/pedronauck/docz/tree/master/examples/flow)** - Using Docz with Flow.
+- **[with sass](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-sass)** - Using Docz parsing CSS with SASS.
+- **[with less](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-less)** - Using Docz parsing CSS with LESS.
+- **[with postcss](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-postcss)** - Using Docz parsing CSS with PostCSS.
+- **[with stylus](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-stylus)** - Using Docz parsing CSS with Stylus.
 
 ## 🌍 &nbsp; Around the world
 
-- **[Smooth UI](https://smooth-ui.smooth-code.com/)** - Modern React UI library
-- **[Set Protocol Docs](https://docs.setprotocol.com/)** - Documentation site of Set Protocal
-- **[RBX](https://dfee.github.io/rbx)** - The Comprehensive Bulma UI Framework for React
-- **[Circuit UI](https://circuit.sumup.com/#/)** - React component library for [SumUp](https://sumup.com) web apps
-- **[Fannypack](https://fannypack.style)** - A friendly & accessible React UI Kit built with [Reakit](https://reakit.io/)
-- **[React Pixi](https://reactpixi.org/#/)** - React Fiber renderer for Pixi
-- **[React Hotkey Tooltip](https://react-hotkey-tooltip.netlify.com/#/)** - A global Hotkey provider with built in tooltip for React
-- **[Sajari React SDK](https://sajari-sdk-react.netlify.com/)** - Library of React Components for the Sajari
+- **[Smooth UI](https://smooth-ui.smooth-code.com/)** - Modern React UI library.
+- **[Set Protocol Docs](https://docs.setprotocol.com/)** - Documentation site of Set Protocol.
+- **[RBX](https://dfee.github.io/rbx)** - The Comprehensive Bulma UI Framework for React.
+- **[Circuit UI](https://circuit.sumup.com/#/)** - React component library for [SumUp](https://sumup.com) web apps.
+- **[Fannypack](https://fannypack.style)** - A friendly & accessible React UI Kit built with [Reakit](https://reakit.io/).
+- **[React Pixi](https://reactpixi.org/#/)** - React Fiber renderer for Pixi.
+- **[React Hotkey Tooltip](https://react-hotkey-tooltip.netlify.com/#/)** - A global Hotkey provider with built in tooltip for React.
+- **[Sajari React SDK](https://sajari-sdk-react.netlify.com/)** - Library of React Components for the Sajari.
 
 ## ⚠️ &nbsp; Warning
 
-Since our new v1, you need `react` and `react-dom` with `>= 16.8.0` installed.
+Since the release of v1 you need `react` and `react-dom` `v16.8.0` or later installed.
 
 ## 📟 &nbsp; Install and Usage
 
-Getting started with **docz** is something really easy and quick.
+Getting started with **Docz** is really quick and easy.
+
 First of all, you will need to install **docz** and some theme on your project using your favorite package manager (we'll asume yarn for this example):
 
+Firstly, install `docz` and a theme of your choosing using your favourite package manager:
+
 ```bash
-$ yarn add docz@next docz-theme-default@next --dev
+$ yarn add --dev docz@next docz-theme-default@next
+
+# or
+
+$ npm install --save-dev docz@next docz-theme-default@next
 ```
 
-Then create some `.mdx` anywhere inside your project:
+Next, add some `.mdx` files anywhere inside your project:
 
 ```markdown
 ---
@@ -109,17 +118,17 @@ import Button from './'
 </Playground>
 ```
 
-Now, just run your dev server:
+Finally, run the Docz development server:
 
 ```bash
 $ yarn docz dev
 ```
 
-That's it! Now you have a real badass documentation 👊
+That's it! Now you have some real badass documentation 👊
 
 ![](https://cdn-std.dprcdn.net/files/acc_649651/7RRXv)
 
-Any doubt? Check [our docs](http://docz.site) to see more about **docz**!
+Any doubt? Check [our docs](http://docz.site) to see more about **Docz**!
 
 ## 🤝 &nbsp; Contributions
 
@@ -134,7 +143,7 @@ This project exists thanks to all the people who contribute. [[Contribute](CONTR
 
 ## 💭 &nbsp; Needing Help?
 
-If you need some help you can chat with us on [our Spectrum Community](https://spectrum.chat/docz), you have a great team to help you:
+If you need some help you can chat with us on [our Spectrum Community](https://spectrum.chat/docz), we have a great team who would be more than happy to help you:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
