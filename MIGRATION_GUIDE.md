@@ -8,7 +8,7 @@ We made a [huge improvement](https://github.com/pedronauck/docz/commit/f57f987df
 
 ## Spectrum instead of Discord
 
-Another thing that we changed, it's now we're attending on Spectrum instead of Discord. You can check the [Docz community](https://spectrum.chat/docz) and ask us whatever you want!
+Another thing that has changed is our community is now on Spectrum instead of Discord. You can check the [Docz community](https://spectrum.chat/docz) and ask us whatever you want!
 
 ## No more render props
 
