@@ -86,7 +86,7 @@ import MyComponent from './my-components'
 
 ## Remove hash router support
 
-In the newest version of docz, because of some performance and bundle issues, we are now using `@reach/router` instead of `react-router`. As `@reach/router` doesn't have an official support for hash routing yet, and as there are lots of good free services to host static sites besides Github pages ([Surge](https://surge.sh/), for instance, is free and has full support for browser history navigation) we decided to deprecate the hash router support.
+In the newest version of Docz, because of some performance and bundle issues, we are now using `@reach/router` instead of `react-router`. As `@reach/router` doesn't have official support for hash routing yet, and as there are lots of good free services to host static sites besides Github pages ([Surge](https://surge.sh/), for instance, is free and has full support for browser history navigation) we have decided to deprecate hash router support.
 
 ## Creating and using Docz themes
 
