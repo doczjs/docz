@@ -1,6 +1,6 @@
 # Migration Guide
 
-The [v1 release](https://github.com/pedronauck/docz/pull/656) was one of our big releases so far and a lot of breaking changes was introduced. So, there's a few apis that changed and you need to update your code if you're coming from previous versions. It's not a big deal, but you need to follow this guide in order to get Docz running properly on your project after an upgrade.
+The [v1 release](https://github.com/pedronauck/docz/pull/656) was one of our big releases so far and a lot of breaking changes were introduced. A few APIs were changed and you will need to update your code if you're coming from a previous version. It's not a big deal, but you need to follow this guide in order to get Docz running properly on your project after the upgrade.
 
 ## Update React to use Hooks
 
