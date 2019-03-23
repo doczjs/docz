@@ -37,8 +37,6 @@ This documentation is for Docz [v1](https://github.com/pedronauck/docz/pull/656)
 
 Libraries that make development easier are appearing every day. Styleguides and design systems are growing in popularity. Today, tools that allow us to get our best work done and be efficient are necessary. We shouldn't be spending too much time on tasks that should be trivial. This is why we created **Docz**.
 
-Documenting our things is one of the most important and heavy processes when you're creating something new. We waste a lot of time with unnecessary setups to build something that can represent and we want with our own style.
-
 Documenting code is one of the most important and time-heavy processes when you're creating something new. A lot of time is wasted on unnecessarily attempting to build a documentation site that will match the style we want.
 
 ## 👉🏻 &nbsp; More info on [our website](https://docz.site)
@@ -83,8 +81,6 @@ Since the release of v1 you need `react` and `react-dom` `v16.8.0` or later inst
 ## 📟 &nbsp; Install and Usage
 
 Getting started with **Docz** is really quick and easy.
-
-First of all, you will need to install **docz** and some theme on your project using your favorite package manager (we'll asume yarn for this example):
 
 Firstly, install `docz` and a theme of your choosing using your favourite package manager:
 
