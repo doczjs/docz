@@ -13,4 +13,8 @@ export const UnorderedList = styled.ul`
   }
 
   ${get('styles.ul')};
+
+  ul li {
+    padding-left: 25px;
+  }
 `
