@@ -45,6 +45,7 @@ const Wrapper = styled.div<WrapperProps>`
 
   @media screen and (max-width: ${breakpoints.desktop - 1}px) {
     transform: translateX(${p => (p.opened ? '-100%' : '0')});
+    position: ${p => (p.opened ? 'auto' : 'fixed')};
   }
 
   ${get('styles.sidebar')};
