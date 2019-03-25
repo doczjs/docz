@@ -43,6 +43,8 @@ const Wrapper = styled.div<WrapperProps>`
       height: ${p => (p.showBg ? '3px' : 0)};
     }
   }
+
+  ${get('styles.logo')};
 `
 
 const LogoImg = styled('img')`
