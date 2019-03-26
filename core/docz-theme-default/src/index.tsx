@@ -16,15 +16,18 @@ const Theme: SFC = ({ children }) => (
   </ThemeProvider>
 )
 
-export const enhance = theme(config, ({ mode, codemirrorTheme, ...config }) => ({
-  ...config,
-  mode,
-  codemirrorTheme: codemirrorTheme || `docz-${mode}`,
-  colors: {
-    ...get(modes, mode),
-    ...config.colors,
-  },
-}))
+export const enhance = theme(
+  config,
+  ({ mode, codemirrorTheme, ...config }) => ({
+    ...config,
+    mode,
+    codemirrorTheme: codemirrorTheme || `docz-${mode}`,
+    colors: {
+      ...get(modes, mode),
+      ...config.colors,
+    },
+  })
+)
 
 export default enhance(Theme)
 export { components }

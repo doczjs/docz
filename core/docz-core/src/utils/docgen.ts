@@ -13,7 +13,8 @@ import ts from 'typescript'
 import * as paths from '../config/paths'
 import { Config } from '../config/argv'
 
-const fileFullPath = (filepath: string) => require.resolve(path.join(paths.root, filepath))
+const fileFullPath = (filepath: string) =>
+  require.resolve(path.join(paths.root, filepath))
 
 const throwError = (err: any) => {
   logger.fatal(`Error parsing static types`)

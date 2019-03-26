@@ -251,12 +251,7 @@ export const Playground: SFC<PlaygroundProps> = ({
   })
 
   return (
-    <LiveProvider
-      code={code}
-      scope={scope}
-      transformCode={transformCode}
-      mountStylesheet={false}
-    >
+    <LiveProvider code={code} scope={scope} transformCode={transformCode}>
       <Overlay full={fullscreen}>
         {fullscreen ? <ResizeBar onChangeSize={handleSetSize} /> : null}
         <Resizable {...resizableProps}>
