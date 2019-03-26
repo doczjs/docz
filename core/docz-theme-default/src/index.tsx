@@ -16,7 +16,7 @@ const Theme: SFC = ({ children }) => (
   </ThemeProvider>
 )
 
-const enhance = theme(config, ({ mode, codemirrorTheme, ...config }) => ({
+export const enhance = theme(config, ({ mode, codemirrorTheme, ...config }) => ({
   ...config,
   mode,
   codemirrorTheme: codemirrorTheme || `docz-${mode}`,

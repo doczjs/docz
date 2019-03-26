@@ -20,7 +20,7 @@ const Wrapper = styled.div`
 
 const Icon = styled(SearchIcon)`
   stroke: ${sidebarText};
-  width: 20px;
+  min-width: 20px;
   opacity: 0.5;
 `
 

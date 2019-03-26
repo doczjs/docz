@@ -9,12 +9,12 @@ import { Config } from '../config/argv'
 import { docgen } from '../utils/docgen'
 
 const getPattern = (config: Config) => {
-  const { typescript } = config
+  const { typescript, ignore } = config
   return [
     typescript ? '**/*.{ts,tsx}' : '**/*.{js,jsx,mjs}',
     '!**/node_modules',
     '!**/doczrc.js',
-  ]
+  ].concat(ignore.map(entry => `!**/${entry}`))
 }
 
 export const mapToArray = (map: any = []) =>
