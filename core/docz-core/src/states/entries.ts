@@ -38,7 +38,7 @@ export const state = (entries: Entries, config: Config): State => {
     start: async params => {
       const update = updateEntries(entries)
 
-      update(params);
+      await update(params)
       watcher.on('add', async () => update(params))
       watcher.on('change', async () => update(params))
       watcher.on('unlink', async () => update(params))
