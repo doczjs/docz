@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@babel/generator": "^7.4.0",
-    "@babel/parser": "^7.4.0",
+    "@babel/parser": "^7.4.2",
     "@babel/traverse": "^7.4.0",
     "art-template": "^4.13.2",
     "codesandboxer-fs": "^1.0.1",

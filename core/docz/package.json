@@ -34,8 +34,8 @@
     "lodash": "^4.17.11",
     "match-sorter": "^2.3.0",
     "prop-types": "^15.7.2",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
     "ulid": "^2.3.0",
     "yargs": "^13.2.2"
   },
@@ -50,13 +50,13 @@
     "@types/lodash.flatten": "^4.4.6",
     "@types/lodash.flattendepth": "^4.7.6",
     "@types/lodash.get": "^4.4.6",
-    "@types/node": "^11.11.4",
+    "@types/node": "^11.12.0",
     "@types/reach__router": "^1.2.3",
     "@types/react": "^16.8.8",
     "babel-preset-react-app": "^7.0.2",
     "jest": "^24.5.0",
     "lint-staged": "^8.1.5",
-    "rollup": "^1.6.0",
+    "rollup": "^1.7.3",
     "tslint": "^5.14.0"
   }
 }

@@ -20,14 +20,14 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@babel/preset-env": "^7.4.1",
+    "@babel/preset-env": "^7.4.2",
     "@babel/register": "^7.4.0",
     "find-up": "^3.0.0",
     "fs-extra": "^7.0.1",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "@types/node": "^11.11.4",
+    "@types/node": "^11.12.0",
     "@types/react": "^16.8.8",
     "@types/webpack": "^4.4.26",
     "@types/yargs": "^12.0.10",
