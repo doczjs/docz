@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { SFC } from 'react'
-import { useConfig } from 'docz'
 import styled from 'styled-components'
 import Hash from 'react-feather/dist/icons/hash'
 
@@ -28,13 +27,11 @@ const Heading = styled.h2`
 
 export const H2: SFC<React.HTMLAttributes<any>> = ({ children, ...props }) => {
   const pathname = typeof window !== 'undefined' ? location.pathname : '/'
-  const { linkComponent: Link } = useConfig()
-  if (!Link) return null
   return (
     <Heading {...props}>
-      <Link aria-hidden to={`${pathname}#${props.id}`}>
+      <a aria-hidden href={`${pathname}#${props.id}`}>
         <Icon className="heading--Icon" height={20} />
-      </Link>
+      </a>
       {children}
     </Heading>
   )
