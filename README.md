@@ -126,6 +126,41 @@ That's it! Now you have some real badass documentation 👊
 
 Any doubt? Check [our docs](http://docz.site) to see more about **Docz**!
 
+##  :mortar_board: &nbsp; clone repo and run examples
+
+tl;dr compile docz source packages before running demos.
+
+```bash
+# clone repo
+$ git clone https://github.com/pedronauck/docz.git
+
+# enter repo
+$ cd docz
+
+# install dependencies
+$ yarn install
+
+# lerna bootstrap
+$ yarn bs
+
+# compile all packages (besides examples)
+$ yarn run packages:build
+
+# try example!
+$ cd examples/typescript
+$ yarn run dev
+yarn run v1.13.0
+$ docz dev
+
+✔ Docz
+  Compiled successfully in 7.37s
+
+ DONE  Compiled successfully in 7371ms                                                                                                                        
+ 
+ I  Your application is running at http://localhost:3001
+```
+*note:* this monorepo uses both [lerna](https://github.com/lerna/lerna#readme) AND [yarn-workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
+
 ## 🤝 &nbsp; Contributions
 
 Contributions, issues and feature requests are very welcome.
