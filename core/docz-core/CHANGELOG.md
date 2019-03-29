@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.4](https://github.com/pedronauck/docz/compare/v1.0.0-rc.3...v1.0.0-rc.4) (2019-03-29)
+
+
+### Bug Fixes
+
+* **docz-core:** add src as prefix on ignore ([2bae93b](https://github.com/pedronauck/docz/commit/2bae93b))
+* **docz-core:** remove DataServer from production build ([b8770ec](https://github.com/pedronauck/docz/commit/b8770ec))
+* get component filename relative (fix [#706](https://github.com/pedronauck/docz/issues/706)) ([84b23ea](https://github.com/pedronauck/docz/commit/84b23ea))
+* remove data server from build ([8715129](https://github.com/pedronauck/docz/commit/8715129))
+* **docz-core:** base prop for router ([9ca39d7](https://github.com/pedronauck/docz/commit/9ca39d7))
+* **docz-core:** entries not initialized on build ([#725](https://github.com/pedronauck/docz/issues/725)) ([3e99db0](https://github.com/pedronauck/docz/commit/3e99db0))
+* **docz-core:** resolve symlinks right for the react-docgen ([#699](https://github.com/pedronauck/docz/issues/699)) ([783a836](https://github.com/pedronauck/docz/commit/783a836))
+* **docz-theme-default:** apply ignore in props parsing ([#723](https://github.com/pedronauck/docz/issues/723)) ([6dd068c](https://github.com/pedronauck/docz/commit/6dd068c))
+
+
+
+
+
 # [1.0.0-rc.3](https://github.com/pedronauck/docz/compare/v1.0.0-rc.2...v1.0.0-rc.3) (2019-03-21)
 
 

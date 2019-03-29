@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.4](https://github.com/pedronauck/docz/compare/v1.0.0-rc.3...v1.0.0-rc.4) (2019-03-29)
+
+
+### Bug Fixes
+
+* get component filename relative (fix [#706](https://github.com/pedronauck/docz/issues/706)) ([84b23ea](https://github.com/pedronauck/docz/commit/84b23ea))
+
+
+
+
+
 # [1.0.0-beta.0](https://github.com/pedronauck/docz/compare/v1.0.0-alpha.1...v1.0.0-beta.0) (2019-03-19)
 
 **Note:** Version bump only for package babel-plugin-export-metadata

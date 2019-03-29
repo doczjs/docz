@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.4](https://github.com/pedronauck/docz/compare/v1.0.0-rc.3...v1.0.0-rc.4) (2019-03-29)
+
+
+### Bug Fixes
+
+* **docz-core:** add src as prefix on ignore ([2bae93b](https://github.com/pedronauck/docz/commit/2bae93b))
+* **docz-core:** remove DataServer from production build ([b8770ec](https://github.com/pedronauck/docz/commit/b8770ec))
+* add missing dependency on examples ([af8ec2d](https://github.com/pedronauck/docz/commit/af8ec2d))
+* get component filename relative (fix [#706](https://github.com/pedronauck/docz/issues/706)) ([84b23ea](https://github.com/pedronauck/docz/commit/84b23ea))
+* remove data server from build ([8715129](https://github.com/pedronauck/docz/commit/8715129))
+* remove modularized lodash packages ([d81c568](https://github.com/pedronauck/docz/commit/d81c568))
+* **docz:** incompatible props on Link ([281cb13](https://github.com/pedronauck/docz/commit/281cb13))
+* **docz-core:** base prop for router ([9ca39d7](https://github.com/pedronauck/docz/commit/9ca39d7))
+* **docz-core:** entries not initialized on build ([#725](https://github.com/pedronauck/docz/issues/725)) ([3e99db0](https://github.com/pedronauck/docz/commit/3e99db0))
+* **docz-core:** resolve symlinks right for the react-docgen ([#699](https://github.com/pedronauck/docz/issues/699)) ([783a836](https://github.com/pedronauck/docz/commit/783a836))
+* **docz-theme-default:** allows hamburger menu to be opened on mobile ([#698](https://github.com/pedronauck/docz/issues/698)) ([fd06381](https://github.com/pedronauck/docz/commit/fd06381))
+* **docz-theme-default:** apply ignore in props parsing ([#723](https://github.com/pedronauck/docz/issues/723)) ([6dd068c](https://github.com/pedronauck/docz/commit/6dd068c))
+* **docz-theme-default:** mobile menu following anchor clicks ([#713](https://github.com/pedronauck/docz/issues/713)) ([e3bbf1a](https://github.com/pedronauck/docz/commit/e3bbf1a))
+* **docz-theme-default:** stop nested ul from rendering flat ([#714](https://github.com/pedronauck/docz/issues/714)) ([2711e6d](https://github.com/pedronauck/docz/commit/2711e6d))
+
+
+
+
+
 # [1.0.0-rc.3](https://github.com/pedronauck/docz/compare/v1.0.0-rc.2...v1.0.0-rc.3) (2019-03-21)
 
 

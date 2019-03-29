@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.4](https://github.com/pedronauck/docz/compare/v1.0.0-rc.3...v1.0.0-rc.4) (2019-03-29)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** allows hamburger menu to be opened on mobile ([#698](https://github.com/pedronauck/docz/issues/698)) ([fd06381](https://github.com/pedronauck/docz/commit/fd06381))
+* **docz-theme-default:** mobile menu following anchor clicks ([#713](https://github.com/pedronauck/docz/issues/713)) ([e3bbf1a](https://github.com/pedronauck/docz/commit/e3bbf1a))
+* **docz-theme-default:** stop nested ul from rendering flat ([#714](https://github.com/pedronauck/docz/issues/714)) ([2711e6d](https://github.com/pedronauck/docz/commit/2711e6d))
+
+
+
+
+
 # [1.0.0-rc.3](https://github.com/pedronauck/docz/compare/v1.0.0-rc.2...v1.0.0-rc.3) (2019-03-21)
 
 **Note:** Version bump only for package docz-theme-default

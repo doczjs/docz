@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.4](https://github.com/pedronauck/docz/compare/v1.0.0-rc.3...v1.0.0-rc.4) (2019-03-29)
+
+
+### Bug Fixes
+
+* remove modularized lodash packages ([d81c568](https://github.com/pedronauck/docz/commit/d81c568))
+
+
+
+
+
 # [1.0.0-beta.0](https://github.com/pedronauck/docz/compare/v1.0.0-alpha.1...v1.0.0-beta.0) (2019-03-19)
 
 **Note:** Version bump only for package rehype-docz
