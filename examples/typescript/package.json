@@ -7,14 +7,14 @@
     "build": "docz build"
   },
   "dependencies": {
-    "docz": "^1.0.0-rc.3",
-    "docz-core": "^1.0.0-rc.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "styled-components": "^4.2.0"
   },
   "devDependencies": {
     "@types/react": "^16.8.10",
-    "@types/react-dom": "^16.8.3"
+    "@types/react-dom": "^16.8.3",
+    "docz": "^1.0.0-rc.3",
+    "docz-theme-default": "^1.0.0-rc.3"
   }
 }

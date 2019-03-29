@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
-    "docz": "^1.0.0-rc.3"
+    "docz": "^1.0.0-rc.3",
+    "docz-theme-default": "^1.0.0-rc.3"
   }
 }

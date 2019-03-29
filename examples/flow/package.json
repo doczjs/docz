@@ -15,6 +15,7 @@
   "devDependencies": {
     "@babel/preset-flow": "^7.0.0",
     "docz": "^1.0.0-rc.3",
+    "docz-theme-default": "^1.0.0-rc.3",
     "flow-bin": "^0.95.1",
     "flow-typed": "^2.5.1"
   }

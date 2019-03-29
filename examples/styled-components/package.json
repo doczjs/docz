@@ -13,6 +13,7 @@
     "styled-components": "^4.2.0"
   },
   "devDependencies": {
-    "docz": "^1.0.0-rc.3"
+    "docz": "^1.0.0-rc.3",
+    "docz-theme-default": "^1.0.0-rc.3"
   }
 }
