@@ -1,4 +1,4 @@
-import { relative } from 'path'
+import { join, relative } from 'path'
 import chokidar from 'chokidar'
 import fastglob from 'fast-glob'
 import { State, Params } from '../lib/DataServer'
@@ -9,12 +9,15 @@ import { Config } from '../config/argv'
 import { docgen } from '../utils/docgen'
 
 const getPattern = (config: Config) => {
-  const { typescript, ignore } = config
-  return [
-    typescript ? '**/*.{ts,tsx}' : '**/*.{js,jsx,mjs}',
-    '!**/node_modules',
-    '!**/doczrc.js',
-  ].concat(ignore.map(entry => `!**/${entry}`))
+  const { typescript: ts, ignore, src: source } = config
+  const src = relative(paths.root, source)
+  return ignore
+    .map(entry => `!**/${entry}`)
+    .concat([
+      join(src, ts ? '**/*.{ts,tsx}' : '**/*.{js,jsx,mjs}'),
+      '!**/node_modules',
+      '!**/doczrc.js',
+    ])
 }
 
 export const mapToArray = (map: any = []) =>
@@ -24,8 +27,7 @@ export const mapToArray = (map: any = []) =>
     })
     .filter(Boolean)
 
-const initial = (config: Config) => async (p: Params) => {
-  const pattern = getPattern(config)
+const initial = (config: Config, pattern: string[]) => async (p: Params) => {
   const files = await fastglob<string>(pattern, { cwd: paths.root })
   const metadata = await docgen(files, config)
   p.setState('props', flatten(mapToArray(metadata)))
@@ -59,7 +61,7 @@ export const state = (config: Config): State => {
   return {
     id: 'props',
     start: async params => {
-      const addInitial = initial(config)
+      const addInitial = initial(config, pattern)
       await addInitial(params)
       watcher.on('change', add(params, config))
       watcher.on('unlink', remove(params))
