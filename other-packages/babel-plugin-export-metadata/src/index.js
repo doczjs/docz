@@ -1,3 +1,4 @@
+const path = require('path')
 const { default: template } = require('@babel/template')
 const { get } = require('lodash')
 
@@ -14,7 +15,10 @@ const buildFileMeta = template(`
   }
 `)
 
-const getFilename = state => get(state, 'file.opts.filename')
+const getFilename = state => {
+  const filename = get(state, 'file.opts.filename')
+  return filename && path.relative(process.cwd(), filename)
+}
 
 const getPathName = path =>
   get(path, 'node.id.name') || get(path, 'parent.id.name')

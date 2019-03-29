@@ -11,7 +11,7 @@ if (typeof bar !== 'undefined' && bar && bar === Object(bar)) {
     configurable: true,
     value: {
       name: \\"bar\\",
-      filename: \\"/Volumes/Projects/dev/docz/docz/other-packages/babel-plugin-export-metadata/tests/fixtures/example.js\\"
+      filename: \\"tests/fixtures/example.js\\"
     }
   });
 }
@@ -22,7 +22,7 @@ if (typeof bar !== 'undefined' && bar && bar === Object(bar)) {
     configurable: true,
     value: {
       name: \\"bar\\",
-      filename: \\"/Volumes/Projects/dev/docz/docz/other-packages/babel-plugin-export-metadata/tests/fixtures/example.js\\"
+      filename: \\"tests/fixtures/example.js\\"
     }
   });
 }
@@ -49,7 +49,7 @@ if (typeof getOther !== 'undefined' && getOther && getOther === Object(getOther)
     configurable: true,
     value: {
       name: \\"getOther\\",
-      filename: \\"/Volumes/Projects/dev/docz/docz/other-packages/babel-plugin-export-metadata/tests/fixtures/example.js\\"
+      filename: \\"tests/fixtures/example.js\\"
     }
   });
 }
@@ -82,7 +82,7 @@ if (typeof component !== 'undefined' && component && component === Object(compon
     configurable: true,
     value: {
       name: \\"component\\",
-      filename: \\"/Volumes/Projects/dev/docz/docz/other-packages/babel-plugin-export-metadata/tests/fixtures/example.js\\"
+      filename: \\"tests/fixtures/example.js\\"
     }
   });
 }
@@ -103,7 +103,7 @@ if (typeof Abcd !== 'undefined' && Abcd && Abcd === Object(Abcd)) {
     configurable: true,
     value: {
       name: \\"Abcd\\",
-      filename: \\"/Volumes/Projects/dev/docz/docz/other-packages/babel-plugin-export-metadata/tests/fixtures/example.js\\"
+      filename: \\"tests/fixtures/example.js\\"
     }
   });
 }

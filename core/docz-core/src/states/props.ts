@@ -19,7 +19,9 @@ const getPattern = (config: Config) => {
 
 export const mapToArray = (map: any = []) =>
   Object.entries(map)
-    .map(entry => entry && { key: entry[0], value: entry[1] })
+    .map(entry => {
+      return entry && { key: relative(paths.root, entry[0]), value: entry[1] }
+    })
     .filter(Boolean)
 
 const initial = (config: Config) => async (p: Params) => {
@@ -39,9 +41,8 @@ const add = (p: Params, config: Config) => async (filepath: string) => {
 }
 
 const remove = (p: Params) => async (filepath: string) => {
-  const root = paths.root
   const prev = get('props', p.getState())
-  const next = prev.filter((item: any) => relative(root, item.key) !== filepath)
+  const next = prev.filter((item: any) => item.key !== filepath)
   p.setState('props', next)
 }
 
