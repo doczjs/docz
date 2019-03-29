@@ -1,6 +1,6 @@
 import * as path from 'path'
 import is from 'unist-util-is'
-import flatten from 'lodash.flatten'
+import flatten from 'lodash/flatten'
 import nodeToString from 'hast-util-to-string'
 import { format } from 'docz-utils/lib/format'
 import { componentName, sanitizeCode, removeTags } from 'docz-utils/lib/jsx'

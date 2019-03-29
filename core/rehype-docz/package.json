@@ -24,7 +24,7 @@
     "docz-utils": "^1.0.0-rc.2",
     "hast-util-to-string": "^1.0.1",
     "jsx-ast-utils": "^2.0.1",
-    "lodash.flatten": "^4.4.0",
+    "lodash": "^4.17.11",
     "unist-util-is": "^2.1.2"
   },
   "devDependencies": {

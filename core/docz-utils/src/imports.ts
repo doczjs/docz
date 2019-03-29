@@ -1,7 +1,7 @@
 import * as parser from '@babel/parser'
 import * as generator from '@babel/generator'
 import traverse from '@babel/traverse'
-import get from 'lodash.get'
+import get from 'lodash/get'
 
 const fromSpecifiers = (specifiers: any = []) =>
   Array.isArray(specifiers) && specifiers.length > 0

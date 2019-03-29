@@ -8,8 +8,8 @@ import find from 'unist-util-find'
 import is from 'unist-util-is'
 import visit from 'unist-util-visit'
 import humanize from 'humanize-string'
-import flatten from 'lodash.flatten'
-import get from 'lodash.get'
+import flatten from 'lodash/flatten'
+import get from 'lodash/get'
 
 export const parseMdx = (file: string, plugins: any[]): Promise<string> => {
   const raw = vfile.readSync(file, 'utf-8')
