@@ -58,6 +58,10 @@ const ButtonStyled = styled('button')`
   border-radius: 3px;
 `
 
+/** 
+ * Buttons make common actions more obvious and help users more easily perform them. 
+ * Buttons use labels and sometimes icons to communicate the action that will occur when the user touches them.
+ */
 export const Button = ({ children, ...props }) => (
   <ButtonStyled {...props}>{children}</ButtonStyled>
 )

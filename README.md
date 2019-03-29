@@ -99,10 +99,12 @@ Next, add some `.mdx` files anywhere inside your project:
 name: Button
 ---
 
-import { Playground, Props } from 'docz'
+import { Description, Playground, Props } from 'docz'
 import Button from './'
 
 # Button
+
+<Description of={Button} />
 
 <Props of={Button} />
 
