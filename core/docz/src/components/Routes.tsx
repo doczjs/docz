@@ -8,8 +8,6 @@ import {
   HistoryListenerParameter,
 } from '@reach/router'
 
-declare var DOCZ_BASE_URL: string
-
 import { doczState } from '../state'
 import { useComponents, ComponentsMap } from '../hooks/useComponents'
 import { AsyncRoute, loadRoute, Imports } from './AsyncRoute'
@@ -45,7 +43,7 @@ export const Routes: SFC<RoutesProps> = ({ imports }) => {
     <MDXProvider components={components}>
       <LocationProvider history={history}>
         <React.Suspense fallback={<Loading />}>
-          <Router basepath={DOCZ_BASE_URL}>
+          <Router>
             <NotFound default />
             {entries &&
               entries.map(({ key: path, value: entry }) => {

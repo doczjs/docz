@@ -2,6 +2,8 @@ import * as path from 'path'
 import * as crypto from 'crypto'
 import slugify from '@sindresorhus/slugify'
 import humanize from 'humanize-string'
+import { get } from 'lodash/fp'
+
 import {
   getParsedData,
   headingsFromAst,
@@ -54,7 +56,7 @@ export class Entry {
     this.filepath = filepath
     this.link = ''
     this.slug = this.slugify(filepath, config.separator)
-    this.route = this.getRoute(parsed)
+    this.route = this.getRoute(parsed, config.base)
     this.name = name
     this.menu = parsed.menu || ''
     this.headings = headingsFromAst(ast)
@@ -90,7 +92,9 @@ export class Entry {
     return slugify(fileWithoutExt, { separator })
   }
 
-  private getRoute(parsed: any): string {
-    return parsed && parsed.route ? parsed.route : `/${this.slug}`
+  private getRoute(parsed: any, base: string): string {
+    const parsedRoute = get('route', parsed)
+    const route = parsedRoute || `/${this.slug}`
+    return path.join(base, route)
   }
 }
