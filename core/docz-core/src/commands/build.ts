@@ -23,7 +23,7 @@ export const build = async (args: Arguments<any>) => {
   dataServer.register([states.config(config), states.entries(entries, config)])
 
   try {
-    await Entries.writeApp(config, true)
+    await Entries.writeApp(config, false)
     await Entries.writeImports(await entries.get())
     await dataServer.start()
     await run('onPreBuild', config)

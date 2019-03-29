@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Router, Routes<% if (isProd) {%>, useDataServer<%}%> } from 'docz'
+import { Link, Router, Routes<% if (!isProd) {%>, useDataServer<%}%> } from 'docz'
 <% if (!isProd) {%>import { hot } from 'react-hot-loader'<%}%>
 import Theme from '<%- theme %>'
 
@@ -8,7 +8,7 @@ import database from './db.json'
 <% if (wrapper) {%>import Wrapper from '<%- wrapper %>'<%}%>
 
 const Root = () => {
-  <% if (websocketUrl || isProd) {%>useDataServer('<%- websocketUrl %>')<%}%>
+  <% if (!isProd && websocketUrl) {%>useDataServer('<%- websocketUrl %>')<%}%>
   return (
     <Theme
       <% if (wrapper) {%>wrapper={Wrapper}<%}%>

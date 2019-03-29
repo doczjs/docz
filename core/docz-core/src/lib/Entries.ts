@@ -32,13 +32,14 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
   const onPreRenders = props('onPreRender')
   const onPostRenders = props('onPostRender')
 
+  const isProd = !dev
   const root = await compiled(fromTemplates('root.tpl.js'), { minimize: false })
   const js = await compiled(fromTemplates('index.tpl.js'), { minimize: false })
   const websocketUrl = `ws://${config.websocketHost}:${config.websocketPort}`
 
   const rawRootJs = root({
     theme,
-    isProd: !dev,
+    isProd,
     wrapper: config.wrapper,
     websocketUrl,
   })
@@ -46,7 +47,7 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
   const rawIndexJs = js({
     onPreRenders,
     onPostRenders,
-    isProd: !dev,
+    isProd,
   })
 
   await fs.remove(paths.rootJs)
@@ -58,9 +59,9 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
 export type EntryMap = Record<string, EntryObj>
 
 export class Entries {
-  public static async writeApp(config: Config, dev?: boolean): Promise<void> {
+  public static async writeApp(config: Config, dev: boolean): Promise<void> {
     await fs.ensureDir(paths.app)
-    await writeAppFiles(config, Boolean(dev))
+    await writeAppFiles(config, dev)
   }
 
   public static async writeImports(map: EntryMap): Promise<void> {
