@@ -25,7 +25,7 @@
     "prerelease": "yarn run packages",
     "release": "lerna publish --conventional-commits",
     "release:beta": "yarn release --npm-tag=beta --preid=beta",
-    "release:canary": "yarn release --canary --force-publish=\"*\" --canary --exact --npm-client npm",
+    "release:canary": "yarn release --force-publish=\"*\" --canary --exact --npm-client npm",
     "precommit": "lint-staged",
     "commit": "git-cz",
     "contributors:add": "all-contributors add",
