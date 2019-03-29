@@ -47,9 +47,11 @@ const remove = (p: Params) => async (filepath: string) => {
 
 export const state = (config: Config): State => {
   const pattern = getPattern(config)
+  const ignored = config.watchIgnore || /(((^|[\/\\])\..+)|(node_modules))/
+
   const watcher = chokidar.watch(pattern, {
     cwd: paths.root,
-    ignored: /(((^|[\/\\])\..+)|(node_modules))/,
+    ignored,
     persistent: true,
   })
 

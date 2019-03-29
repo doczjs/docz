@@ -49,9 +49,11 @@ const update = async (params: Params, initial: Payload, { config }: Config) => {
 export const state = (config: Config): State => {
   const initial = getInitialConfig(config)
   const glob = config.config || finds('docz')
+  const ignored = config.watchIgnore || /(((^|[\/\\])\..+)|(node_modules))/
+
   const watcher = chokidar.watch(glob, {
     cwd: paths.root,
-    ignored: /(((^|[\/\\])\..+)|(node_modules))/,
+    ignored,
     persistent: true,
   })
 
