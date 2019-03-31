@@ -58,7 +58,7 @@
     "react-docgen-external-proptypes-handler": "^1.0.2",
     "react-docgen-imported-proptype-handler": "^1.0.4",
     "react-docgen-typescript": "^1.12.3",
-    "react-hot-loader": "^4.8.0",
+    "react-hot-loader": "^4.8.2",
     "recast": "^0.17.5",
     "rehype-docz": "1.0.0-rc.5",
     "rehype-slug": "^2.0.2",
@@ -98,7 +98,7 @@
     "commitizen": "^3.0.7",
     "cpy": "^7.1.0",
     "rollup": "^1.7.4",
-    "ts-jest": "^24.0.0",
+    "ts-jest": "^24.0.1",
     "typescript": "^3.4.1"
   }
 }

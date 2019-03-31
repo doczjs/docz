@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "babel-eslint": "10.0.1",
-    "eslint": "^5.15.3",
+    "eslint": "^5.16.0",
     "eslint-config-react-app": "^3.0.8",
     "eslint-plugin-flowtype": "3.4.2",
     "eslint-plugin-import": "2.16.0",
