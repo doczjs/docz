@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Fragment, SFC, ComponentType as CT } from 'react'
 import { doczState, Database, ThemeConfig, TransformFn } from './state'
 
-interface ThemeProps {
+export interface ThemeProps {
   db: Database
   wrapper?: CT
   linkComponent?: CT
