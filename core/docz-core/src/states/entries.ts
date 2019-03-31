@@ -24,10 +24,11 @@ export const state = (entries: Entries, config: Config): State => {
   const files = Array.isArray(config.files)
     ? config.files.map(filePath => path.join(src, filePath))
     : path.join(src, config.files)
+  const ignored = config.watchIgnore || /(((^|[\/\\])\..+)|(node_modules))/
 
   const watcher = chokidar.watch(files, {
     cwd: paths.root,
-    ignored: /(((^|[\/\\])\..+)|(node_modules))/,
+    ignored,
     persistent: true,
   })
 

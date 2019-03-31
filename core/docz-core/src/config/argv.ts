@@ -57,6 +57,7 @@ export interface Argv {
   src: string
   files: string | string[]
   ignore: string[]
+  watchIgnore: string
   public: string
   dest: string
   editBranch: string
