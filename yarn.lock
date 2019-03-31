@@ -11194,10 +11194,10 @@ log-update@^2.3.0:
     cli-cursor "^2.0.0"
     wrap-ansi "^3.0.1"
 
-log-update@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.npmjs.org/log-update/-/log-update-3.1.0.tgz#fa22abbbcb30f505906758bbbd0f292b71bc2ad9"
-  integrity sha512-7ttbZj4w165ZemmS9YngKbBh4/UEiW1gS+SPpfQQHIMYcPMybTDM6UDlmQLrjJ8+j23On173OFB+pXKfPRJP3A==
+log-update@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.npmjs.org/log-update/-/log-update-3.1.1.tgz#c8c86e44d9f0ecb816e364ed4e8dfc58760a4573"
+  integrity sha512-kqnFtiui/54LE2Sud9D/+p9vDXGUK9J2ISJ1kFd6LXHnodLWpsbLvf+iD1aQEpCniLPIAQpimg37mktmNkpNiA==
   dependencies:
     ansi-escapes "^3.2.0"
     cli-cursor "^2.1.0"
