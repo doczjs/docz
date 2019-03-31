@@ -22,14 +22,14 @@ const getPattern = (config: Config) => {
 
 export const mapToArray = (map: any = []) =>
   Object.entries(map)
-    .map(entry => {
-      return entry && { key: relative(paths.root, entry[0]), value: entry[1] }
-    })
+    .map(entry => entry && { key: entry[0], value: entry[1] })
     .filter(Boolean)
 
 const initial = (config: Config, pattern: string[]) => async (p: Params) => {
+  const { filterComponents } = config
   const files = await fastglob<string>(pattern, { cwd: paths.root })
-  const metadata = await docgen(files, config)
+  const filtered = filterComponents ? filterComponents(files) : files
+  const metadata = await docgen(filtered, config)
   p.setState('props', flatten(mapToArray(metadata)))
 }
 
@@ -51,7 +51,6 @@ const remove = (p: Params) => async (filepath: string) => {
 export const state = (config: Config): State => {
   const pattern = getPattern(config)
   const ignored = config.watchIgnore || /(((^|[\/\\])\..+)|(node_modules))/
-
   const watcher = chokidar.watch(pattern, {
     cwd: paths.root,
     ignored,

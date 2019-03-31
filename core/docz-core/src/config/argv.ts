@@ -92,6 +92,7 @@ export interface Config extends Argv {
   htmlContext: HtmlContext
   themeConfig: ThemeConfig
   docgenConfig: DocgenConfig
+  filterComponents: (files: string[]) => string[]
   modifyBundlerConfig<C>(config: C, dev: boolean, args: Config): C
   modifyBabelRc(babelrc: BabelRC, args: Config): BabelRC
   onCreateWebpackChain<C>(c: C, dev: boolean, args: Config): void
