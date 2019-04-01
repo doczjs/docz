@@ -95,6 +95,6 @@ export class Entry {
   private getRoute(parsed: any, base: string): string {
     const parsedRoute = get('route', parsed)
     const route = parsedRoute || `/${this.slug}`
-    return path.join(base, route)
+    return path.posix.join(base, route)
   }
 }
