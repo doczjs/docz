@@ -20,57 +20,86 @@ const getFilename = state => {
   return filename && path.relative(process.cwd(), filename)
 }
 
-const getPathName = path =>
-  get(path, 'node.id.name') || get(path, 'parent.id.name')
-
 const findPathToInsert = path =>
   path.parent.type === 'Program' && path.insertAfter
     ? path
     : findPathToInsert(path.parentPath)
 
-const checkReverseOnThree = (pred = () => false) => (path, is) => {
-  const parentType = path.parent.type
-  if (parentType === 'Program') return Boolean(is)
-  if (pred(parentType)) return true
-  return checkReverseOnThree(pred)(path.parentPath, false)
+const addFileMetaProperties = (t, path, filename, name) => {
+  if (!filename || !name) {
+    return
+  }
+
+  const pathToInsert = findPathToInsert(path)
+  const newNode = buildFileMeta({
+    ID: t.identifier(name),
+    NAME: t.stringLiteral(name),
+    FILENAME: t.stringLiteral(filename),
+  })
+
+  pathToInsert.insertAfter(newNode)
 }
 
-const checkIfIsInsideAnObject = checkReverseOnThree(
-  type => type === 'ObjectProperty' || type === 'ClassProperty'
-)
-
-const checkIfIsExported = checkReverseOnThree(
-  type =>
-    type === 'ExportNamedDeclaration' || type === 'ExportDefaultDeclaration'
-)
-
-const insertNode = t => (path, state) => {
+const insertNodeExport = t => (path, state) => {
   const filename = getFilename(state)
-  const name = getPathName(path)
-  const isInsideObject = checkIfIsInsideAnObject(path)
-  const isExported = checkIfIsExported(path)
+  const name = get(path, 'node.declaration.id.name')
+  const declarations = get(path, 'node.declaration.declarations')
+  const specifiers = get(path, 'node.specifiers')
 
-  if (filename && name && !isInsideObject && isExported) {
-    const pathToInsert = findPathToInsert(path)
-    const newNode = buildFileMeta({
-      ID: t.identifier(name),
-      NAME: t.stringLiteral(name),
-      FILENAME: t.stringLiteral(filename),
-    })
+  if (name) {
+    addFileMetaProperties(t, path, filename, name)
+  } else if (declarations) {
+    for (declaration of declarations) {
+      declarationName = get(declaration, 'id.name')
+      addFileMetaProperties(t, path, filename, declarationName)
+    }
+  } else if (specifiers) {
+    for (specifier of specifiers) {
+      specifierName = get(specifier, 'local.name')
+      addFileMetaProperties(t, path, filename, specifierName)
+    }
+  }
+}
 
-    pathToInsert.insertAfter(newNode)
+const insertNodeExportDefault = t => (path, state) => {
+  const filename = getFilename(state)
+  const declaration = get(path, 'node.declaration', {})
+
+  if (/Function|Class|Identifier/.test(declaration.type)) {
+    const name = declaration.name || get(declaration, 'id.name')
+    addFileMetaProperties(t, path, filename, name)
+    return
+  }
+
+  switch (declaration.type) {
+    case 'ObjectExpression': {
+      const { properties } = declaration
+      for (property of properties) {
+        const name = get(property, 'key.name')
+        addFileMetaProperties(t, path, filename, name)
+      }
+      break
+    }
+
+    case 'ArrayExpression': {
+      const { elements } = declaration
+      for (element of elements) {
+        const name = element.name
+        addFileMetaProperties(t, path, filename, name)
+      }
+      break
+    }
   }
 }
 
 module.exports = function({ types: t }) {
-  const insert = insertNode(t)
+  const insertExport = insertNodeExport(t)
+  const insertExportDefault = insertNodeExportDefault(t)
 
   return {
     visitor: {
-      FunctionDeclaration: insert,
-      ClassDeclaration: insert,
-      ArrowFunctionExpression: insert,
-      VariableDeclarator: insert,
+      ExportNamedDeclaration: insertExport,
+      ExportDefaultDeclaration: insertExportDefault,
     },
   }
 }
