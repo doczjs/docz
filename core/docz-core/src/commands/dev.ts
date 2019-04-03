@@ -35,7 +35,7 @@ export const dev = async (args: Arguments<any>) => {
   const dataServer = new DataServer()
   const socket = new Socket(server, websocketHost, websocketPort)
 
-  if (args.propsParser) dataServer.register([states.props(config)])
+  if (config.propsParser) dataServer.register([states.props(config)])
   dataServer.register([states.config(config), states.entries(entries, config)])
 
   try {

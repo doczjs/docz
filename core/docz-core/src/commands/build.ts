@@ -19,7 +19,7 @@ export const build = async (args: Arguments<any>) => {
   const run = Plugin.runPluginsMethod(config.plugins)
   const dataServer = new DataServer()
 
-  if (args.propsParser) dataServer.register([states.props(config)])
+  if (config.propsParser) dataServer.register([states.props(config)])
   dataServer.register([states.config(config), states.entries(entries, config)])
 
   try {

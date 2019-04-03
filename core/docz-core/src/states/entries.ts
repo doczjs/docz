@@ -3,11 +3,15 @@ import chokidar from 'chokidar'
 import equal from 'fast-deep-equal'
 import { get } from 'lodash/fp'
 
-import { mapToArray } from './props'
 import { Params, State } from '../lib/DataServer'
 import { Entries } from '../lib/Entries'
 import { Config } from '../config/argv'
 import * as paths from '../config/paths'
+
+const mapToArray = (map: any = []) =>
+  Object.entries(map)
+    .map(entry => entry && { key: entry[0], value: entry[1] })
+    .filter(Boolean)
 
 const updateEntries = (entries: Entries) => async (p: Params) => {
   const prev = get('entries', p.getState())
@@ -24,8 +28,8 @@ export const state = (entries: Entries, config: Config): State => {
   const files = Array.isArray(config.files)
     ? config.files.map(filePath => path.join(src, filePath))
     : path.join(src, config.files)
-  const ignored = config.watchIgnore || /(((^|[\/\\])\..+)|(node_modules))/
 
+  const ignored = config.watchIgnore || /(((^|[\/\\])\..+)|(node_modules))/
   const watcher = chokidar.watch(files, {
     cwd: paths.root,
     ignored,
