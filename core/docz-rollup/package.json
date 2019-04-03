@@ -19,8 +19,8 @@
     "fs-extra": "^7.0.1",
     "gzip-size": "^5.0.0",
     "lodash": "^4.17.11",
-    "log-update": "^3.1.1",
-    "rollup": "^1.7.4",
+    "log-update": "^3.2.0",
+    "rollup": "^1.8.0",
     "rollup-plugin-babel": "^4.3.2"
   }
 }
