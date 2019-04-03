@@ -58,8 +58,14 @@ const tsParser = async (
   const parse = tsDocgen(config, tsconfig, program)
 
   try {
-    const props = await parse(files)
-    return props.map((prop, idx) => ({ [files[idx]]: [prop] }))
+    const result: { [key: string]: reactDocgenTs.ComponentDoc[] } = {}
+
+    for (const file of files) {
+      const fileComponents = await parse([file])
+      result[file] = fileComponents
+    }
+
+    return result
   } catch (err) {
     if (config.debug) throwError(err)
     return null
@@ -92,7 +98,10 @@ export const docgen = async (files: string[], config: Config) => {
   const tsconfig = await findUp('tsconfig.json', { cwd: paths.root })
   const docs = ts
     ? await tsParser(files, config, tsconfig, program)
-    : await Promise.all(files.map(async filepath => jsParser(filepath, config)))
+    : await files.reduce(async (acc, filepath) => {
+        const parsed = await jsParser(filepath, config)
+        return { ...(await acc), ...parsed }
+      }, {})
 
-  return docs && docs.reduce((obj, doc) => (doc ? { ...obj, ...doc } : obj), {})
+  return docs
 }
