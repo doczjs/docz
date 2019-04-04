@@ -1,9 +1,135 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`works 1`] = `
-"const foo = () => 'foo';
+exports[`export-metadata export default works with Array expression 1`] = `
+"/* ExportDefaultDeclaration with Array expression */
+let foo5 = 5;
 
-export const bar = () => 'bar';
+let bar5 = () => {};
+
+export default [foo5, bar5];
+
+if (typeof bar5 !== 'undefined' && bar5 && bar5 === Object(bar5)) {
+  Object.defineProperty(bar5, '__filemeta', {
+    enumerable: true,
+    configurable: true,
+    value: {
+      name: \\"bar5\\",
+      filename: \\"tests/fixtures/export-default/with-arr-expression.js\\"
+    }
+  });
+}
+
+if (typeof foo5 !== 'undefined' && foo5 && foo5 === Object(foo5)) {
+  Object.defineProperty(foo5, '__filemeta', {
+    enumerable: true,
+    configurable: true,
+    value: {
+      name: \\"foo5\\",
+      filename: \\"tests/fixtures/export-default/with-arr-expression.js\\"
+    }
+  });
+}"
+`;
+
+exports[`export-metadata export default works with Class declaration 1`] = `
+"/* ExportDefaultDeclaration with Class declaration */
+export default class Bar6 {}
+
+if (typeof Bar6 !== 'undefined' && Bar6 && Bar6 === Object(Bar6)) {
+  Object.defineProperty(Bar6, '__filemeta', {
+    enumerable: true,
+    configurable: true,
+    value: {
+      name: \\"Bar6\\",
+      filename: \\"tests/fixtures/export-default/with-class-declaration.js\\"
+    }
+  });
+}"
+`;
+
+exports[`export-metadata export default works with Function declaration 1`] = `
+"/* ExportDefaultDeclaration with Function declaration */
+export default function foo6() {}
+
+if (typeof foo6 !== 'undefined' && foo6 && foo6 === Object(foo6)) {
+  Object.defineProperty(foo6, '__filemeta', {
+    enumerable: true,
+    configurable: true,
+    value: {
+      name: \\"foo6\\",
+      filename: \\"tests/fixtures/export-default/with-func-declaration.js\\"
+    }
+  });
+}"
+`;
+
+exports[`export-metadata export default works with Identifier 1`] = `
+"/* ExportDefaultDeclaration with Identifier */
+let foo3 = 5;
+export default foo3;
+
+if (typeof foo3 !== 'undefined' && foo3 && foo3 === Object(foo3)) {
+  Object.defineProperty(foo3, '__filemeta', {
+    enumerable: true,
+    configurable: true,
+    value: {
+      name: \\"foo3\\",
+      filename: \\"tests/fixtures/export-default/with-identifier.js\\"
+    }
+  });
+}"
+`;
+
+exports[`export-metadata export default works with Object expression 1`] = `
+"/* ExportDefaultDeclaration with Object expression */
+export default {
+  foo4: 5,
+  bar4: () => {}
+};
+
+if (typeof bar4 !== 'undefined' && bar4 && bar4 === Object(bar4)) {
+  Object.defineProperty(bar4, '__filemeta', {
+    enumerable: true,
+    configurable: true,
+    value: {
+      name: \\"bar4\\",
+      filename: \\"tests/fixtures/export-default/with-obj-expression.js\\"
+    }
+  });
+}
+
+if (typeof foo4 !== 'undefined' && foo4 && foo4 === Object(foo4)) {
+  Object.defineProperty(foo4, '__filemeta', {
+    enumerable: true,
+    configurable: true,
+    value: {
+      name: \\"foo4\\",
+      filename: \\"tests/fixtures/export-default/with-obj-expression.js\\"
+    }
+  });
+}"
+`;
+
+exports[`export-metadata export named works 1`] = `
+"/* ExportNamedDeclaration with Specifiers */
+let foo = 5;
+
+let bar = () => {};
+
+let baz = 'baz';
+export { foo as default, bar as foobar, baz };
+/* ExportNamedDeclaration with Variable declarations */
+
+if (typeof baz !== 'undefined' && baz && baz === Object(baz)) {
+  Object.defineProperty(baz, '__filemeta', {
+    enumerable: true,
+    configurable: true,
+    value: {
+      name: \\"baz\\",
+      filename: \\"tests/fixtures/export-named/index.js\\"
+    }
+  });
+}
 
 if (typeof bar !== 'undefined' && bar && bar === Object(bar)) {
   Object.defineProperty(bar, '__filemeta', {
@@ -11,114 +137,71 @@ if (typeof bar !== 'undefined' && bar && bar === Object(bar)) {
     configurable: true,
     value: {
       name: \\"bar\\",
-      filename: \\"tests/fixtures/example.js\\"
+      filename: \\"tests/fixtures/export-named/index.js\\"
     }
   });
 }
 
-if (typeof bar !== 'undefined' && bar && bar === Object(bar)) {
-  Object.defineProperty(bar, '__filemeta', {
+if (typeof foo !== 'undefined' && foo && foo === Object(foo)) {
+  Object.defineProperty(foo, '__filemeta', {
     enumerable: true,
     configurable: true,
     value: {
-      name: \\"bar\\",
-      filename: \\"tests/fixtures/example.js\\"
+      name: \\"foo\\",
+      filename: \\"tests/fixtures/export-named/index.js\\"
     }
   });
 }
 
-const obj = {
-  foo: () => 'foo'
-  /**
-   * Some description
-   */
+export let foo1 = 5,
+    bar1 = () => {};
+/* ExportNamedDeclaration with Function and Class declarations */
 
-};
-
-function get(object, path) {
-  return object[path];
-}
-
-export function getOther(object, path) {
-  return object[path];
-}
-
-if (typeof getOther !== 'undefined' && getOther && getOther === Object(getOther)) {
-  Object.defineProperty(getOther, '__filemeta', {
+if (typeof bar1 !== 'undefined' && bar1 && bar1 === Object(bar1)) {
+  Object.defineProperty(bar1, '__filemeta', {
     enumerable: true,
     configurable: true,
     value: {
-      name: \\"getOther\\",
-      filename: \\"tests/fixtures/example.js\\"
+      name: \\"bar1\\",
+      filename: \\"tests/fixtures/export-named/index.js\\"
     }
   });
 }
 
-const obj2 = {
-  get: () => null
-  /**
-   * Some description
-   */
-
-};
-
-class Abc {
-  /**
-   * Some description
-   */
-  method() {
-    return null;
-  }
-
-}
-
-export const component = styled.div\`
-  background: red;
-\`;
-
-if (typeof component !== 'undefined' && component && component === Object(component)) {
-  Object.defineProperty(component, '__filemeta', {
+if (typeof foo1 !== 'undefined' && foo1 && foo1 === Object(foo1)) {
+  Object.defineProperty(foo1, '__filemeta', {
     enumerable: true,
     configurable: true,
     value: {
-      name: \\"component\\",
-      filename: \\"tests/fixtures/example.js\\"
+      name: \\"foo1\\",
+      filename: \\"tests/fixtures/export-named/index.js\\"
     }
   });
 }
 
-export class Abcd {
-  /**
-   * Some description
-   */
-  method() {
-    return null;
-  }
+export function foo2() {}
 
-}
-
-if (typeof Abcd !== 'undefined' && Abcd && Abcd === Object(Abcd)) {
-  Object.defineProperty(Abcd, '__filemeta', {
+if (typeof foo2 !== 'undefined' && foo2 && foo2 === Object(foo2)) {
+  Object.defineProperty(foo2, '__filemeta', {
     enumerable: true,
     configurable: true,
     value: {
-      name: \\"Abcd\\",
-      filename: \\"tests/fixtures/example.js\\"
+      name: \\"foo2\\",
+      filename: \\"tests/fixtures/export-named/index.js\\"
     }
   });
 }
 
-const obj3 = {
-  method: class Abcd {
-    method() {
-      return null;
+export class Bar2 {}
+
+if (typeof Bar2 !== 'undefined' && Bar2 && Bar2 === Object(Bar2)) {
+  Object.defineProperty(Bar2, '__filemeta', {
+    enumerable: true,
+    configurable: true,
+    value: {
+      name: \\"Bar2\\",
+      filename: \\"tests/fixtures/export-named/index.js\\"
     }
-
-  }
-};
-
-const log = fn => fn(1);
-
-log(id => console.log(id));
-export default (() => 'other');"
+  });
+}"
 `;
