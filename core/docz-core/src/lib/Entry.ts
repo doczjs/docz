@@ -20,6 +20,13 @@ const createId = (file: string) =>
     .update(file)
     .digest('hex')
 
+const mountRoute = (base: string, route: string) => {
+  if (base === '/') return route
+  const baseHasSlash = base.endsWith('/')
+  if (baseHasSlash) return base.substr(0, base.length - 1) + route
+  return base + route
+}
+
 export interface EntryObj {
   id: string
   filepath: string
@@ -95,6 +102,6 @@ export class Entry {
   private getRoute(parsed: any, base: string): string {
     const parsedRoute = get('route', parsed)
     const route = parsedRoute || `/${this.slug}`
-    return path.posix.join(base, route)
+    return mountRoute(base, route)
   }
 }
