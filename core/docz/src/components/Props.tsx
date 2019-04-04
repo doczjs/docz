@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { SFC, ComponentType } from 'react'
-import { last, get } from 'lodash/fp'
+import { get } from 'lodash/fp'
 import capitalize from 'capitalize'
 
 import { doczState } from '../state'
@@ -96,12 +96,14 @@ export const Props: SFC<PropsProps> = ({ of: component }) => {
   const components = useComponents()
   const { props: stateProps } = React.useContext(doczState.context)
   const filename = get('__filemeta.filename', component)
+  const componentName = component.displayName || component.name
   const found =
     stateProps &&
     stateProps.length > 0 &&
     stateProps.find(item => item.key === filename)
 
-  const definition = last(found ? found.value : [])
+  const definition =
+    found && found.value.find((item: any) => item.displayName === componentName)
   const props = get('props', definition) || []
 
   if (!props) return null
