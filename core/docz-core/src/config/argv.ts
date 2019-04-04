@@ -64,6 +64,7 @@ export interface Argv {
   config: string
   /* bundler args */
   debug: boolean
+  clearConsole: boolean
   typescript: boolean
   propsParser: boolean
   host: string
@@ -169,6 +170,10 @@ export const setArgs = (yargs: Yargs) => {
     .option('debug', {
       type: 'boolean',
       default: getEnv('docz.debug', false),
+    })
+    .option('clearConsole', {
+      type: 'boolean',
+      default: getEnv('docz.clear.console', true),
     })
     .option('host', {
       type: 'string',
