@@ -57,7 +57,6 @@
     "react-docgen": "^4.1.0",
     "react-docgen-actual-name-handler": "1.0.0-rc.7",
     "react-docgen-external-proptypes-handler": "^1.0.2",
-    "react-docgen-imported-proptype-handler": "^1.0.4",
     "react-docgen-typescript": "^1.12.3",
     "react-hot-loader": "^4.8.2",
     "recast": "^0.17.5",

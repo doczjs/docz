@@ -14219,13 +14219,6 @@ react-docgen-external-proptypes-handler@^1.0.2:
   resolved "https://registry.npmjs.org/react-docgen-external-proptypes-handler/-/react-docgen-external-proptypes-handler-1.0.2.tgz#457d3e82a6899695482f4912036cc940577ab0aa"
   integrity sha512-vr8sXRp5hBmaEP0kdBED9p7mdnVX6LTRODNcGhUXUh1hBbGW2rgjm24e0eA4zVJs4cqCcA2pS0dEHujJ9rg3rw==
 
-react-docgen-imported-proptype-handler@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/react-docgen-imported-proptype-handler/-/react-docgen-imported-proptype-handler-1.0.4.tgz#a7c73df8ad516b633068e0e22cad474d17dac7d9"
-  integrity sha512-BlLV7+JCyfsR6c7fBqeGSlZDJBNkEgny5hvw2+CRI/aeSU2rCxpLb8YORLEO2Ky5ZnbmlXr1MY2aCquRd/6Pzg==
-  dependencies:
-    "@babel/runtime" "^7.2.0"
-
 react-docgen-typescript@^1.12.3:
   version "1.12.3"
   resolved "https://registry.npmjs.org/react-docgen-typescript/-/react-docgen-typescript-1.12.3.tgz#fe62a5ce82e93573e316366e53adfe8273121c70"
