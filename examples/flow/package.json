@@ -1,6 +1,6 @@
 {
   "name": "docz-example-flow",
-  "version": "1.0.0-rc.7",
+  "version": "1.0.0-rc.8",
   "license": "MIT",
   "scripts": {
     "dev": "docz dev",
@@ -14,8 +14,8 @@
   },
   "devDependencies": {
     "@babel/preset-flow": "^7.0.0",
-    "docz": "1.0.0-rc.7",
-    "docz-theme-default": "1.0.0-rc.7",
+    "docz": "1.0.0-rc.8",
+    "docz-theme-default": "1.0.0-rc.8",
     "flow-bin": "^0.96.0",
     "flow-typed": "^2.5.1"
   }

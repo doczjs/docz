@@ -1,6 +1,6 @@
 {
   "name": "rehype-docz",
-  "version": "1.0.0-rc.7",
+  "version": "1.0.0-rc.8",
   "description": "Rehype plugin used by docz",
   "license": "MIT",
   "main": "dist/index.js",
@@ -21,7 +21,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "docz-utils": "1.0.0-rc.7",
+    "docz-utils": "1.0.0-rc.8",
     "hast-util-to-string": "^1.0.1",
     "jsx-ast-utils": "^2.0.1",
     "lodash": "^4.17.11",
@@ -29,6 +29,6 @@
   },
   "devDependencies": {
     "@mdx-js/mdx": "^0.20.3",
-    "remark-docz": "1.0.0-rc.7"
+    "remark-docz": "1.0.0-rc.8"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "docz-utils",
-  "version": "1.0.0-rc.7",
+  "version": "1.0.0-rc.8",
   "description": "Some methods used and utilities used on docz",
   "license": "MIT",
   "main": "lib/index.js",
