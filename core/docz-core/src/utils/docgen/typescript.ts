@@ -169,21 +169,19 @@ const parseFiles = (files: string[], config: Config, tsconfig: string) => {
   loadFiles(files)
   const parser = reactDocgenTs.withCustomConfig(tsconfig, opts)
   const compilerOptions = _.get('options', getTSConfigFile(tsconfig))
-  const props = parser.parseWithProgramProvider(files, () => {
+
+  const programProvider = () => {
     if (languageService) return languageService.getProgram()!
     const servicesHost = createServiceHost(compilerOptions, filesMap)
     const documentRegistry = ts.createDocumentRegistry()
     languageService = ts.createLanguageService(servicesHost, documentRegistry)
     return languageService.getProgram()!
-  })
+  }
 
-  const parseFilepathProp = (prop: any, idx: number) =>
-    prop && {
-      key: _.get(idx, files),
-      value: [prop],
-    }
-
-  return props.map(parseFilepathProp).filter(Boolean)
+  return files.map(filepath => ({
+    key: filepath,
+    value: parser.parseWithProgramProvider(filepath, programProvider),
+  }))
 }
 
 export const tsParser = (
