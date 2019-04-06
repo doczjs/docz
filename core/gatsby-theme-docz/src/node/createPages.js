@@ -2,10 +2,6 @@ const path = require('path')
 const { getDoczConfig } = require('../utils/parseConfig')
 const { get } = require('lodash/fp')
 
-const mountRoute = (base = '/', route) => {
-  return `${base === '/' ? '' : base}${route}`
-}
-
 const ENTRIES_QUERY = `
   {
     allDoczEntries{
@@ -41,7 +37,7 @@ module.exports = ({ graphql, actions }, opts) => {
       const component = path.join(paths.root, entry.filepath)
       actions.createPage({
         component,
-        path: mountRoute(config.base, entry.route),
+        path: entry.route,
         context: {
           entry,
         },

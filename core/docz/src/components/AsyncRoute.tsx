@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { SFC } from 'react'
 import { get } from 'lodash/fp'
-import loadable from '@loadable/component'
+import {lazy} from '@loadable/component'
 
 import { Entry } from '../state'
 import { useComponents, ComponentsMap } from '../hooks/useComponents'
@@ -9,7 +9,7 @@ import { AsyncComponent } from './AsyncComponent'
 
 export type Imports = Record<string, () => Promise<any>>
 export const loadRoute = (path: string, imports: Imports) => {
-  return loadable(async () => {
+  return lazy(async () => {
     const importFn = get(path, imports)
     const { default: Component, getInitialProps } = await importFn()
     const ExportedComponent: SFC<any> = props => (

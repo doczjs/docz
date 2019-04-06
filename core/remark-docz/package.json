@@ -1,6 +1,6 @@
 {
   "name": "remark-docz",
-  "version": "1.0.0-rc.7",
+  "version": "1.0.0-rc.8",
   "description": "Remark plugin used by docz",
   "license": "MIT",
   "main": "dist/index.js",

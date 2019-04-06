@@ -2,7 +2,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as resolve from 'resolve'
 
-const ensureSlash = (filepath: any, needsSlash: boolean) => {
+export const ensureSlash = (filepath: any, needsSlash: boolean) => {
   const hasSlash = filepath.endsWith('/')
 
   if (hasSlash && !needsSlash) {

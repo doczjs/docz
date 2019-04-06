@@ -2,7 +2,7 @@ import { join, relative } from 'path'
 import chokidar from 'chokidar'
 import fastglob from 'fast-glob'
 import { State, Params } from '../lib/DataServer'
-import { flatten, get } from 'lodash/fp'
+import { get, propEq } from 'lodash/fp'
 
 import * as paths from '../config/paths'
 import { Config } from '../config/argv'
@@ -20,31 +20,28 @@ const getPattern = (config: Config) => {
     ])
 }
 
-export const mapToArray = (map: any = []) =>
-  Object.entries(map)
-    .map(entry => entry && { key: entry[0], value: entry[1] })
-    .filter(Boolean)
+const removeFilepath = (items: any[], filepath: string) =>
+  items.filter((item: any) => item.key !== filepath)
 
 const initial = (config: Config, pattern: string[]) => async (p: Params) => {
   const { filterComponents } = config
   const files = await fastglob<string>(pattern, { cwd: paths.root })
   const filtered = filterComponents ? filterComponents(files) : files
   const metadata = await docgen(filtered, config)
-  p.setState('props', flatten(mapToArray(metadata)))
+  p.setState('props', metadata)
 }
 
-const add = (p: Params, config: Config) => async (filepath: string) => {
+const change = (p: Params, config: Config) => async (filepath: string) => {
   const prev = get('props', p.getState())
-  const metadata = mapToArray(await docgen([filepath], config))
-  const keys = metadata.map(item => item.key)
-  const filtered = prev.filter((item: any) => keys.indexOf(item.key) === -1)
-  const next = flatten(filtered.concat([metadata]))
+  const metadata = await docgen([filepath], config)
+  const filtered = metadata.filter(propEq('key', filepath))
+  const next = removeFilepath(prev, filepath).concat(filtered)
   p.setState('props', next)
 }
 
 const remove = (p: Params) => async (filepath: string) => {
   const prev = get('props', p.getState())
-  const next = prev.filter((item: any) => item.key !== filepath)
+  const next = removeFilepath(prev, filepath)
   p.setState('props', next)
 }
 
@@ -64,7 +61,7 @@ export const state = (config: Config): State => {
     start: async params => {
       const addInitial = initial(config, pattern)
       await addInitial(params)
-      watcher.on('change', add(params, config))
+      watcher.on('change', change(params, config))
       watcher.on('unlink', remove(params))
     },
     close: () => {

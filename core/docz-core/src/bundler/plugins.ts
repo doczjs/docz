@@ -37,12 +37,14 @@ export const analyzer = (config: Config) => {
   ])
 }
 
-export const friendlyErrors = (config: Config, { host, port }: Args) => {
+export const friendlyErrors = (config: Config, args: Args) => {
+  const { host, port, clearConsole } = args
   const isLocalhost = host === '127.0.0.1' || host === '0.0.0.0'
   const hostname = isLocalhost ? 'localhost' : host
 
   config.plugin('friendly-errors').use(friendlyErrorsPlugin, [
     {
+      clearConsole,
       compilationSuccessInfo: {
         messages: [`Your application is running at http://${hostname}:${port}`],
       },
