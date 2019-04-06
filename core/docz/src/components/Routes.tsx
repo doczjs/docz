@@ -32,7 +32,6 @@ export const Routes: SFC<RoutesProps> = ({ imports }) => {
   const { entries } = useContext(doczState.context)
 
   const NotFound: any = components.notFound
-  const Loading: any = components.loading
   const history = useMemo(() => createHistory(window as any), [])
 
   useEffect(() => {
@@ -42,26 +41,24 @@ export const Routes: SFC<RoutesProps> = ({ imports }) => {
   return (
     <MDXProvider components={components}>
       <LocationProvider history={history}>
-        <React.Suspense fallback={<Loading />}>
-          <Router>
-            <NotFound default />
-            {entries &&
-              entries.map(({ key: path, value: entry }) => {
-                const props = { path, entries, components }
-                const component = loadRoute(path, imports)
+        <Router>
+          <NotFound default />
+          {entries &&
+            entries.map(({ key: path, value: entry }) => {
+              const props = { path, entries, components }
+              const component = loadRoute(path, imports, components)
 
-                return (
-                  <AsyncRoute
-                    {...props}
-                    entry={entry}
-                    key={entry.id}
-                    path={entry.route}
-                    asyncComponent={component}
-                  />
-                )
-              })}
-          </Router>
-        </React.Suspense>
+              return (
+                <AsyncRoute
+                  {...props}
+                  entry={entry}
+                  key={entry.id}
+                  path={entry.route}
+                  asyncComponent={component}
+                />
+              )
+            })}
+        </Router>
       </LocationProvider>
     </MDXProvider>
   )

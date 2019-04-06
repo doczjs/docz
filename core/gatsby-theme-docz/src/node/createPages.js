@@ -25,7 +25,7 @@ const ENTRIES_QUERY = `
 `
 
 module.exports = ({ graphql, actions }, opts) => {
-  const { paths, ...config } = getDoczConfig(opts)
+  const { paths } = getDoczConfig(opts)
 
   return graphql(ENTRIES_QUERY).then(({ data, errors }) => {
     const hasErrors = errors && errors.length > 0
