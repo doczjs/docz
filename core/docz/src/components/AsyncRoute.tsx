@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { SFC } from 'react'
 import { get } from 'lodash/fp'
-import {lazy} from '@loadable/component'
+import { lazy } from '@loadable/component'
 
 import { Entry } from '../state'
 import { useComponents, ComponentsMap } from '../hooks/useComponents'
