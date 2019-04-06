@@ -23,7 +23,7 @@
     "@reach/router": "^1.2.1",
     "@tippy.js/react": "^2.1.2",
     "codemirror": "^5.45.0",
-    "copy-text-to-clipboard": "^2.0.0",
+    "copy-text-to-clipboard": "^2.1.0",
     "docz": "1.0.0-rc.8",
     "facepaint": "^1.2.1",
     "hotkeys-js": "^3.6.2",
@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.123",
-    "@types/styled-components": "^4.1.12",
+    "@types/styled-components": "^4.1.13",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-styled-components": "^1.10.0"
   }

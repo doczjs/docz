@@ -20,7 +20,7 @@
     "gzip-size": "^5.0.0",
     "lodash": "^4.17.11",
     "log-update": "^3.2.0",
-    "rollup": "^1.8.0",
+    "rollup": "^1.9.0",
     "rollup-plugin-babel": "^4.3.2"
   }
 }
