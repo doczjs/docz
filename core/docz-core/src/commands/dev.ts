@@ -41,7 +41,7 @@ export const dev = async (args: Arguments<any>) => {
 
   try {
     await dataServer.start()
-    openBrowser(`http://${config.host}:${config.port}`)
+    if (args.open || args.o) openBrowser(`http://${config.host}:${config.port}`)
   } catch (err) {
     logger.fatal('Failed to process data server')
     logger.error(err)
