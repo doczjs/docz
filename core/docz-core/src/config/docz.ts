@@ -21,7 +21,7 @@ export const doczRcBaseConfig = {
   themeConfig: {},
   docgenConfig: {},
   filterComponents: (files: string[]) =>
-    files.filter(filepath => /\/[A-Z]\w*\.(js|jsx|ts|tsx)$/.test(filepath)),
+    files.filter(filepath => /\/\w*\.(js|jsx|ts|tsx)$/.test(filepath)),
   modifyBundlerConfig: (config: any) => config,
   modifyBabelRc: (babelrc: BabelRC) => babelrc,
   onCreateWebpackChain: () => null,
