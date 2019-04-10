@@ -27,10 +27,10 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "@types/node": "^11.13.0",
-    "@types/react": "^16.8.12",
+    "@types/node": "^11.13.2",
+    "@types/react": "^16.8.13",
     "@types/webpack": "^4.4.27",
-    "@types/yargs": "^12.0.11",
-    "lerna": "3.13.1"
+    "@types/yargs": "^13.0.0",
+    "lerna": "3.13.2"
   }
 }
