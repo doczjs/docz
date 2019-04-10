@@ -98,7 +98,6 @@
     "commitizen": "^3.0.7",
     "cpy": "^7.2.0",
     "rollup": "^1.9.3",
-    "ts-jest": "^24.0.2",
-    "typescript": "^3.4.1"
+    "ts-jest": "^24.0.2"
   }
 }
