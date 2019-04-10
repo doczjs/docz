@@ -68,7 +68,7 @@ module.exports = opts => {
       {
         resolve: 'gatsby-plugin-compile-es6-packages',
         options: {
-          modules: ['gatsby-theme-docz', 'react-live'],
+          modules: ['gatsby-theme-docz'],
         },
       },
     ],
