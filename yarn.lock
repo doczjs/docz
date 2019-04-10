@@ -2921,6 +2921,11 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-11.13.2.tgz#dc85dde46aa8740bb4aed54b8104250f8f849503"
   integrity sha512-HOtU5KqROKT7qX/itKHuTtt5fV0iXbheQvrgbLNXFJQBY/eh+VS5vmmTAVlo3qIGMsypm0G4N1t2AXjy1ZicaQ==
 
+"@types/node@^11.13.4":
+  version "11.13.4"
+  resolved "https://registry.npmjs.org/@types/node/-/node-11.13.4.tgz#f83ec3c3e05b174b7241fadeb6688267fe5b22ca"
+  integrity sha512-+rabAZZ3Yn7tF/XPGHupKIL5EcAbrLxnTr/hgQICxbeuAfWtT0UZSfULE+ndusckBItcv4o6ZeOJplQikVcLvQ==
+
 "@types/node@^7.0.11":
   version "7.10.5"
   resolved "https://registry.npmjs.org/@types/node/-/node-7.10.5.tgz#6831006b2c87441d69e79b37ae9bc03246dfb379"
@@ -2953,10 +2958,18 @@
   resolved "https://registry.npmjs.org/@types/range-parser/-/range-parser-1.2.3.tgz#7ee330ba7caafb98090bece86a5ee44115904c2c"
   integrity sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
 
-"@types/reach__router@^1.0.0", "@types/reach__router@^1.2.3":
+"@types/reach__router@^1.0.0":
   version "1.2.3"
   resolved "https://registry.npmjs.org/@types/reach__router/-/reach__router-1.2.3.tgz#679fa6968aab0314dc4b967808a23fd11af2ccce"
   integrity sha512-Zp0AdVhoJXjwsgp8pDPVEMnAH5eHU64hi5EnPT1Jerddqwiy0O87KFrnZKd1DKdO87cU120n2d3SnKKPtf4wFA==
+  dependencies:
+    "@types/history" "*"
+    "@types/react" "*"
+
+"@types/reach__router@^1.2.4":
+  version "1.2.4"
+  resolved "https://registry.npmjs.org/@types/reach__router/-/reach__router-1.2.4.tgz#44a701fdf15934880f6dfdef38ca49bc30e2d372"
+  integrity sha512-a+MFhebeSGi0LwHZ0UhH/ke77rWtNQnt8YmaHnquSaY3HmyEi+BPQi3GhPcUPnC9X5BLw/qORw3BPxGb1mCtEw==
   dependencies:
     "@types/history" "*"
     "@types/react" "*"
@@ -4365,7 +4378,7 @@ binary@~0.3.0:
     buffers "~0.1.1"
     chainsaw "~0.1.0"
 
-bindings@^1.5.0:
+bindings@^1.3.1:
   version "1.5.0"
   resolved "https://registry.npmjs.org/bindings/-/bindings-1.5.0.tgz#10353c9e945334bc0511a6d90b38fbc7c9c504df"
   integrity sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==
@@ -8250,13 +8263,13 @@ gatsby-plugin-eslint@^2.0.4:
   resolved "https://registry.npmjs.org/gatsby-plugin-eslint/-/gatsby-plugin-eslint-2.0.4.tgz#24bed84e9059310332a6fbfd3a41406d46755a29"
   integrity sha512-4aqUf+0NZ9pTE69tq2TNKPk0JHkMkjWB1Pd7r9k+LZMFUXRR2irxUQF2UpFoCCsktrsprb/5xqnGvoV2a2CH1Q==
 
-gatsby-plugin-manifest@^2.0.28:
-  version "2.0.28"
-  resolved "https://registry.npmjs.org/gatsby-plugin-manifest/-/gatsby-plugin-manifest-2.0.28.tgz#cf3022184cbe09dcd6739540515d8d83593bbdf2"
-  integrity sha512-UdMlunJYmZdl1XXNxtTz+FtyErSTj0E10YIEIPcNoNvp1ykPj1ItC3nvt1yWUmo/COzJpf4VAUoX6h4/LnmL5w==
+gatsby-plugin-manifest@^2.0.29:
+  version "2.0.29"
+  resolved "https://registry.npmjs.org/gatsby-plugin-manifest/-/gatsby-plugin-manifest-2.0.29.tgz#ce83b0ef1aa2d74b9027c3bdb26be2fbd25ef1bc"
+  integrity sha512-zxUuoKxjjdEyj8Xh/svTIOhaIjONB2txel441yJXoYfHmNndysEn+DcYUMkN4xQwZLIaVKoQZ/fCNcVhUOUGIg==
   dependencies:
     "@babel/runtime" "^7.0.0"
-    sharp "^0.22.0"
+    sharp "^0.21.3"
 
 gatsby-plugin-page-creator@^2.0.12:
   version "2.0.12"
@@ -8321,10 +8334,10 @@ gatsby-telemetry@^1.0.6:
     stack-utils "1.0.2"
     uuid "3.3.2"
 
-gatsby@^2.3.16:
-  version "2.3.16"
-  resolved "https://registry.npmjs.org/gatsby/-/gatsby-2.3.16.tgz#7b8ccfb8a585ea507eebe8b78ed3feb717045d85"
-  integrity sha512-wd3a3P1novSaoWPFO9pfPH6rUeUtKVWTaNRk4HgzluhQ4KtG63al3N/7joDe7KFSNJGLAft0pNlHftl3bBI+Ow==
+gatsby@^2.3.17:
+  version "2.3.17"
+  resolved "https://registry.npmjs.org/gatsby/-/gatsby-2.3.17.tgz#50007c66511fafdb7083997c29c058b674e9f597"
+  integrity sha512-onTrtEUUsLbpIpCWY6MbhMhm6FtdJs6enQxbGB0FZumfCmjHcEOCHedRw+KMexUx4mYY9ORvi2Qf/6axCGs8xg==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@babel/core" "^7.0.0"
@@ -12173,7 +12186,7 @@ name-all-modules-plugin@^1.0.1:
   resolved "https://registry.npmjs.org/name-all-modules-plugin/-/name-all-modules-plugin-1.0.1.tgz#0abfb6ad835718b9fb4def0674e06657a954375c"
   integrity sha1-Cr+2rYNXGLn7Te8GdOBmV6lUN1w=
 
-nan@^2.13.1:
+nan@^2.12.1:
   version "2.13.2"
   resolved "https://registry.npmjs.org/nan/-/nan-2.13.2.tgz#f51dc7ae66ba7d5d55e1e6d4d8092e802c9aefe7"
   integrity sha512-TghvYc72wlMGMVMluVo9WRJc0mB8KxxF/gZ4YYFy7V2ZQX9l7rgbPg7vjS9mt6U5HXODVFVI2bOduCzwOMv/lw==
@@ -13824,7 +13837,7 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.5:
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-prebuild-install@^5.2.5:
+prebuild-install@^5.2.2:
   version "5.2.5"
   resolved "https://registry.npmjs.org/prebuild-install/-/prebuild-install-5.2.5.tgz#c7485911fe98950b7f7cd15bb9daee11b875cc44"
   integrity sha512-6uZgMVg7yDfqlP5CPurVhtq3hUKBFNufiar4J5hZrlHTo59DDBEtyxw01xCdFss9j0Zb9+qzFVf/s4niayba3w==
@@ -15552,18 +15565,18 @@ shallowequal@^1.0.1, shallowequal@^1.0.2:
   resolved "https://registry.npmjs.org/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
   integrity sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==
 
-sharp@^0.22.0:
-  version "0.22.0"
-  resolved "https://registry.npmjs.org/sharp/-/sharp-0.22.0.tgz#cf4cfcb019941fd06ac24555d9f5bc84536d29be"
-  integrity sha512-yInpiWYvVbE0hJylso2Q2A7QaYFBxGdSlVVHGeUf1F9JsQNAUpmaqdnX54TImgKbSCy9mQpEAoGm1pcKCZhCsQ==
+sharp@^0.21.3:
+  version "0.21.3"
+  resolved "https://registry.npmjs.org/sharp/-/sharp-0.21.3.tgz#381937de66c123687f2ac7186f85921c6bb19cdd"
+  integrity sha512-5qZk8r+YgfyztLEKkNez20Wynq/Uh1oNyP5T/3gTYwt2lBYGs9iDs5m0yVsZEPm8eVBbAJhS08J1wp/g+Ai1Qw==
   dependencies:
-    bindings "^1.5.0"
+    bindings "^1.3.1"
     color "^3.1.0"
     detect-libc "^1.0.3"
     fs-copy-file-sync "^1.1.1"
-    nan "^2.13.1"
+    nan "^2.12.1"
     npmlog "^4.1.2"
-    prebuild-install "^5.2.5"
+    prebuild-install "^5.2.2"
     semver "^5.6.0"
     simple-get "^3.0.3"
     tar "^4.4.8"
