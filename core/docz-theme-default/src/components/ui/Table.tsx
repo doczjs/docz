@@ -29,7 +29,7 @@ const TableStyled = styled.table`
 
   ${mq({
     overflowX: ['initial', 'initial', 'initial', 'hidden'],
-    display: ['block', 'block', 'block', 'table'],
+    display: ['table', 'table', 'table', 'table'],
   })}
 
   & thead {
