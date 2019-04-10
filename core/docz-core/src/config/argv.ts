@@ -208,4 +208,10 @@ export const setArgs = (yargs: Yargs) => {
       type: 'string',
       default: getEnv('docz.separator', '-'),
     })
+    .option('open', {
+      alias: 'o',
+      describe: 'auto open browser in dev mode',
+      type: 'boolean',
+      default: false,
+    })
 }
