@@ -48,7 +48,7 @@ export interface ActionsBarProps {
   code: string
   showEditor: boolean
   fullscreen: boolean
-  codesandboxUrl: string
+  codesandboxUrl: string | null
   onClickRefresh: () => void
   onClickFullscreen: () => void
   onClickEditor: () => void

@@ -1,13 +1,14 @@
 import * as React from 'react'
 import { useMemo, useCallback, useState } from 'react'
 import { useConfig, UseConfigObj } from 'docz'
+import loadable from '@loadable/component'
 import styled from 'styled-components'
 import getter from 'lodash/get'
 
 import { ClipboardAction } from './elements'
 import { get } from '@utils/theme'
 
-const CodeMirror = React.lazy(() => import('../CodeMirror'))
+const CodeMirror = loadable(() => import('../CodeMirror'))
 
 const getLanguage = (children: any) => {
   const defaultLanguage = 'jsx'
@@ -123,9 +124,7 @@ export const Editor: React.SFC<EditorProps> = ({
 
   return (
     <Wrapper className={className}>
-      <React.Suspense fallback={null}>
-        <CodeMirror {...editorProps(config)} />
-      </React.Suspense>
+      <CodeMirror {...editorProps(config)} />
       <Actions>{actions || <ClipboardAction content={code} />}</Actions>
     </Wrapper>
   )
