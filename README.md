@@ -85,11 +85,11 @@ Getting started with **Docz** is really quick and easy.
 Firstly, install `docz` and a theme of your choosing using your favourite package manager:
 
 ```bash
-$ yarn add --dev docz@next docz-theme-default@next
+$ yarn add --dev docz docz-theme-default
 
 # or
 
-$ npm install --save-dev docz@next docz-theme-default@next
+$ npm install --save-dev docz docz-theme-default
 ```
 
 Next, add some `.mdx` files anywhere inside your project:
