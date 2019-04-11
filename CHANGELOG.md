@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/pedronauck/docz/compare/v1.0.0-rc.8...v1.0.0) (2019-04-11)
+
+
+### Bug Fixes
+
+* **babel-plugin-export-metadata:** remove cache folders from parse ([2978a26](https://github.com/pedronauck/docz/commit/2978a26))
+* **docz:** crash using suspense ([315f7ad](https://github.com/pedronauck/docz/commit/315f7ad))
+* **docz-core:** typescript doesn't work with several exports ([#771](https://github.com/pedronauck/docz/issues/771)) ([c96878d](https://github.com/pedronauck/docz/commit/c96878d))
+* **docz-theme-default:** styled error margin ([53104e8](https://github.com/pedronauck/docz/commit/53104e8))
+* **docz-theme-default:** table media query style ([#782](https://github.com/pedronauck/docz/issues/782)) ([205ce75](https://github.com/pedronauck/docz/commit/205ce75))
+
+
+### Features
+
+* **docz-core:** auto open browser when start dev mode ([#774](https://github.com/pedronauck/docz/issues/774)) ([c0e6c13](https://github.com/pedronauck/docz/commit/c0e6c13))
+
+
+
+
+
 # [1.0.0-rc.4](https://github.com/pedronauck/docz/compare/v1.0.0-rc.3...v1.0.0-rc.4) (2019-03-29)
 
 

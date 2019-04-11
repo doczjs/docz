@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/pedronauck/docz/compare/v1.0.0-rc.8...v1.0.0) (2019-04-11)
+
+**Note:** Version bump only for package rehype-docz
+
+
+
+
+
 # [1.0.0-rc.4](https://github.com/pedronauck/docz/compare/v1.0.0-rc.3...v1.0.0-rc.4) (2019-03-29)
 
 

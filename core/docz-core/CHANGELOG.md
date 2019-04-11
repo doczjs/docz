@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/pedronauck/docz/compare/v1.0.0-rc.8...v1.0.0) (2019-04-11)
+
+
+### Bug Fixes
+
+* **docz-core:** typescript doesn't work with several exports ([#771](https://github.com/pedronauck/docz/issues/771)) ([c96878d](https://github.com/pedronauck/docz/commit/c96878d))
+
+
+### Features
+
+* **docz-core:** auto open browser when start dev mode ([#774](https://github.com/pedronauck/docz/issues/774)) ([c0e6c13](https://github.com/pedronauck/docz/commit/c0e6c13))
+
+
+
+
+
 # [1.0.0-rc.4](https://github.com/pedronauck/docz/compare/v1.0.0-rc.3...v1.0.0-rc.4) (2019-03-29)
 
 

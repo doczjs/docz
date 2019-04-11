@@ -1,6 +1,6 @@
 {
   "name": "docz-theme-default",
-  "version": "1.0.0-rc.9",
+  "version": "1.0.0",
   "description": "The default theme of docz",
   "license": "MIT",
   "main": "dist/index.js",
@@ -25,7 +25,7 @@
     "@tippy.js/react": "^2.1.2",
     "codemirror": "^5.45.0",
     "copy-text-to-clipboard": "^2.1.0",
-    "docz": "1.0.0-rc.9",
+    "docz": "^1.0.0",
     "facepaint": "^1.2.1",
     "hotkeys-js": "^3.6.2",
     "lodash": "^4.17.11",
