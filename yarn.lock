@@ -14353,6 +14353,11 @@ react-perfect-scrollbar@^1.5.0:
     perfect-scrollbar "^1.4.0"
     prop-types "^15.6.1"
 
+react-runkit@^0.9.0:
+  version "0.9.0"
+  resolved "http://registry.npm.taobao.org/react-runkit/download/react-runkit-0.9.0.tgz#8a97aec60c2fcf9da17b0af2bb91a877e4336b05"
+  integrity sha1-ipeuxgwvz52hewryu5God+QzawU=
+
 react-side-effect@^1.1.0:
   version "1.1.5"
   resolved "https://registry.npmjs.org/react-side-effect/-/react-side-effect-1.1.5.tgz#f26059e50ed9c626d91d661b9f3c8bb38cd0ff2d"

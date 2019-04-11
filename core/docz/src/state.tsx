@@ -41,6 +41,7 @@ export interface Config {
   native: boolean
   separator: string
   codeSandbox: boolean
+  runKit: boolean
 }
 
 export type Entries = Array<{ key: string; value: Entry }>

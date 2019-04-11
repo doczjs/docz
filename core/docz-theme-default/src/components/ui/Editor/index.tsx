@@ -4,8 +4,9 @@ import { useConfig, UseConfigObj } from 'docz'
 import loadable from '@loadable/component'
 import styled from 'styled-components'
 import getter from 'lodash/get'
+import Embed from 'react-runkit'
 
-import { ClipboardAction } from './elements'
+import { ClipboardAction, RunKitAction } from './elements'
 import { get } from '@utils/theme'
 
 const CodeMirror = loadable(() => import('../CodeMirror'))
@@ -42,7 +43,7 @@ const Actions = styled.div`
   top: 0;
   right: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   padding: 5px 10px;
   background: transparent;
@@ -62,6 +63,11 @@ export interface EditorProps {
   withLastLine?: boolean
 }
 
+enum Panels {
+  CODE_MIRROR,
+  RUN_KIT,
+}
+
 export const Editor: React.SFC<EditorProps> = ({
   mode,
   children,
@@ -73,8 +79,10 @@ export const Editor: React.SFC<EditorProps> = ({
   ...props
 }) => {
   const config = useConfig()
+  console.log(config)
   const initialCode = useMemo(() => getChildren(children), [children])
   const [code, setCode] = useState(initialCode)
+  const [panel, setPanel] = useState(Panels.CODE_MIRROR)
   const language = defaultLanguage || getLanguage(children)
   const options = {
     ...props,
@@ -122,10 +130,25 @@ export const Editor: React.SFC<EditorProps> = ({
     },
   })
 
-  return (
+  return panel === Panels.RUN_KIT ? (
+    <Embed source={code} />
+  ) : (
     <Wrapper className={className}>
       <CodeMirror {...editorProps(config)} />
-      <Actions>{actions || <ClipboardAction content={code} />}</Actions>
+      <Actions>
+        {actions || (
+          <React.Fragment>
+            <ClipboardAction content={code} />
+            {config.runKit ? (
+              <RunKitAction
+                action={() => {
+                  setPanel(Panels.RUN_KIT)
+                }}
+              />
+            ) : null}
+          </React.Fragment>
+        )}
+      </Actions>
     </Wrapper>
   )
 }

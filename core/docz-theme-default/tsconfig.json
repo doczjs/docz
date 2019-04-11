@@ -8,13 +8,17 @@
     "baseUrl": "src",
     "rootDir": "src",
     "outDir": "dist",
-    "typeRoots": ["../../node_modules/@types", "node_modules/@types"],
+    "typeRoots": [
+      "../../node_modules/@types",
+      "node_modules/@types",
+      "./typings"
+    ],
     "paths": {
       "@components/*": ["components/*"],
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"]
     }
   },
-  "include": ["src/**/*", "src/types"],
+  "include": ["src/**/*", "src/types", "typings"],
   "exclude": ["node_modules/**"]
 }
