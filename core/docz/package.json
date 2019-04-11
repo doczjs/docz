@@ -1,6 +1,6 @@
 {
   "name": "docz",
-  "version": "1.0.0-rc.8",
+  "version": "1.0.0-rc.9",
   "description": "It's has never been so easy to documents your things!",
   "license": "MIT",
   "main": "dist/index.js",
@@ -29,7 +29,7 @@
     "@reach/router": "^1.2.1",
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
-    "docz-core": "1.0.0-rc.8",
+    "docz-core": "1.0.0-rc.9",
     "fast-deep-equal": "^2.0.1",
     "lodash": "^4.17.11",
     "match-sorter": "^2.3.0",

@@ -50,7 +50,7 @@
     "babel-preset-react-app": "^7.0.1",
     "commitizen": "^3.0.7",
     "cross-env": "^5.2.0",
-    "docz-rollup": "1.0.0-rc.8",
+    "docz-rollup": "1.0.0-rc.9",
     "husky": "^1.3.1",
     "jest": "^24.7.1",
     "lerna": "3.13.2",

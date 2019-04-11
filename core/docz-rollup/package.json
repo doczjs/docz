@@ -1,6 +1,6 @@
 {
   "name": "docz-rollup",
-  "version": "1.0.0-rc.8",
+  "version": "1.0.0-rc.9",
   "license": "MIT",
   "main": "src/index.js",
   "files": [
