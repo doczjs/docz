@@ -73,6 +73,7 @@ const StyledError = styled(LiveError)`
   width: calc(100% - 40px);
   height: calc(100% - 40px);
   padding: 20px;
+  margin: 0;
   background: ${rgba('black', 0.8)};
   font-size: 16px;
   color: white;
