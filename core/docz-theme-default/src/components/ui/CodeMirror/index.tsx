@@ -122,7 +122,7 @@ const CodeMirror: SFC<any> = props => {
   return (
     <React.Fragment>
       <ScrollbarStyles />
-      <Scrollbar option={scrollbarOpts} linesToScroll={linesToScroll}>
+      <Scrollbar options={scrollbarOpts} linesToScroll={linesToScroll}>
         <EditorStyled {...editorProps} />
       </Scrollbar>
     </React.Fragment>

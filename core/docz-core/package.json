@@ -25,7 +25,7 @@
     "@babel/runtime": "^7.4.3",
     "@mdx-js/loader": "^0.20.3",
     "@sindresorhus/slugify": "^0.9.1",
-    "@svgr/webpack": "^4.1.0",
+    "@svgr/webpack": "^4.2.0",
     "acorn": "6.0.5",
     "babel-loader": "^8.0.5",
     "babel-plugin-export-metadata": "1.0.0-rc.9",
@@ -74,7 +74,7 @@
     "typescript": "^3.4.3",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.6",
-    "webpack-bundle-analyzer": "^3.3.0",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-chain": "^5.2.4",
     "webpack-dev-server": "^3.3.1",
     "webpack-hot-client": "^4.1.1",
@@ -97,7 +97,7 @@
     "all-contributors-cli": "^6.2.0",
     "commitizen": "^3.0.7",
     "cpy": "^7.2.0",
-    "rollup": "^1.9.3",
+    "rollup": "^1.10.0",
     "ts-jest": "^24.0.2"
   }
 }

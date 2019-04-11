@@ -53,7 +53,7 @@
     "babel-preset-react-app": "^7.0.2",
     "jest": "^24.7.1",
     "lint-staged": "^8.1.5",
-    "rollup": "^1.9.3",
+    "rollup": "^1.10.0",
     "tslint": "^5.15.0",
     "typescript": "^3.4.3"
   }
