@@ -50,12 +50,17 @@ const insertNodeExport = t => (path, state) => {
     addFileMetaProperties(t, path, filename, name)
   } else if (declarations) {
     for (declaration of declarations) {
-      declarationName = get(declaration, 'id.name')
+      const declarationName = get(declaration, 'id.name')
       addFileMetaProperties(t, path, filename, declarationName)
     }
   } else if (specifiers) {
     for (specifier of specifiers) {
-      specifierName = get(specifier, 'local.name')
+      let specifierName = get(specifier, 'local.name')
+      specifierName =
+        specifierName === 'default'
+          ? get(specifier, 'exported.name')
+          : specifierName
+
       addFileMetaProperties(t, path, filename, specifierName)
     }
   }
