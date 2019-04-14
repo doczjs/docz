@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-export-metadata",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Add file metadata for function declarations",
   "license": "MIT",
   "author": {
@@ -32,8 +32,8 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "docz-rollup": "^1.0.0",
     "babel-jest": "^24.7.1",
+    "docz-rollup": "^1.0.0",
     "jest": "^24.7.1"
   }
 }
