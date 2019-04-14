@@ -21,5 +21,8 @@
   "dependencies": {
     "react-docgen": "^4.1.0",
     "recast": "^0.17.5"
+  },
+  "devDependencies": {
+    "docz-rollup": "^1.0.0"
   }
 }

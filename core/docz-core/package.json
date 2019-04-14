@@ -23,7 +23,7 @@
     "@babel/core": "7.4.3",
     "@babel/polyfill": "7.4.3",
     "@babel/runtime": "^7.4.3",
-    "@mdx-js/loader": "^0.20.3",
+    "@mdx-js/loader": "^1.0.4",
     "@sindresorhus/slugify": "^0.9.1",
     "@svgr/webpack": "^4.2.0",
     "acorn": "6.0.5",
@@ -71,9 +71,9 @@
     "terser-webpack-plugin": "^1.2.3",
     "thread-loader": "^2.1.2",
     "titleize": "^2.1.0",
-    "typescript": "^3.4.3",
+    "typescript": "^3.3.4000",
     "url-loader": "^1.1.2",
-    "webpack": "^4.29.6",
+    "webpack": "^4.30.0",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-chain": "^5.2.4",
     "webpack-dev-server": "^3.3.1",
@@ -85,6 +85,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.16.1",
+    "@types/find-up": "^2.1.1",
     "@types/html-minifier": "^3.5.3",
     "@types/p-reduce": "^1.0.1",
     "@types/react": "^16.8.13",
@@ -93,11 +94,7 @@
     "@types/webpack-chain": "^5.2.0",
     "@types/webpack-dev-server": "^3.1.5",
     "@types/ws": "^6.0.1",
-    "@types/yargs": "^13.0.0",
-    "all-contributors-cli": "^6.2.0",
-    "commitizen": "^3.0.7",
     "cpy": "^7.2.0",
-    "rollup": "^1.10.0",
-    "ts-jest": "^24.0.2"
+    "docz-rollup": "^1.0.0"
   }
 }

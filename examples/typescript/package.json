@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@types/react": "^16.8.13",
-    "@types/react-dom": "^16.8.3",
+    "@types/react-dom": "^16.8.4",
     "docz": "^1.0.0",
     "docz-theme-default": "^1.0.0"
   }

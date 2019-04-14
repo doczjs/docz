@@ -48,6 +48,7 @@
     "@types/lodash": "^4.14.123",
     "@types/styled-components": "^4.1.14",
     "babel-plugin-module-resolver": "^3.2.0",
-    "babel-plugin-styled-components": "^1.10.0"
+    "babel-plugin-styled-components": "^1.10.0",
+    "docz-rollup": "^1.0.0"
   }
 }
