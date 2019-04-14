@@ -10,6 +10,14 @@ import * as paths from '../config/paths'
 import { Config } from '../config/argv'
 import { fromTemplates } from '../lib/Entries'
 
+const runKitVendor = {
+  css: `<link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,700|Ubuntu+Mono:400"
+  type="text/css"
+  rel="stylesheet"
+/>`,
+  js: '<script type="text/javascript" src="https://embed.runkit.com"></script>',
+}
+
 const wrapItems = (item: any) =>
   Object.keys(item)
     .map(key => `${key}="${item[key]}"`)
@@ -59,7 +67,7 @@ interface ParseHtmlParams {
 }
 
 export const parseHtml = ({ config, ctx, dev, template }: ParseHtmlParams) => {
-  const { title, description } = config
+  const { title, description, runKit } = config
   const {
     publicPath,
     css,
@@ -75,7 +83,9 @@ export const parseHtml = ({ config, ctx, dev, template }: ParseHtmlParams) => {
     ${favicon ? `<link rel="icon" type="image/x-icon" href="${favicon}">` : ''}
     ${head.meta ? generateMetaTags(head.meta) : ''}
     ${head.links ? generateLinkTags(head.links) : ''}
+    ${runKit ? runKitVendor.css : ''}
     ${head.raw ? generateRawTags(head.raw) : ''}
+    ${runKit ? runKitVendor.js : ''}
     ${head.scripts ? generateScriptTags(head.scripts) : ''}
     ${generateCSSReferences(css, publicPath)}`
 

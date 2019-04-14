@@ -79,7 +79,6 @@ export const Editor: React.SFC<EditorProps> = ({
   ...props
 }) => {
   const config = useConfig()
-  console.log(config)
   const initialCode = useMemo(() => getChildren(children), [children])
   const [code, setCode] = useState(initialCode)
   const [panel, setPanel] = useState(Panels.CODE_MIRROR)

@@ -73,7 +73,6 @@ export interface Argv {
   websocketHost: string
   native: boolean
   codeSandbox: boolean
-  runKit: boolean
   sourcemaps: boolean
   /* template args */
   title: string
@@ -86,6 +85,7 @@ export interface Argv {
 }
 
 export interface Config extends Argv {
+  runKit: boolean
   paths: Record<string, any>
   plugins: Plugin[]
   mdPlugins: any[]
@@ -200,10 +200,6 @@ export const setArgs = (yargs: Yargs) => {
     .option('codeSandbox', {
       type: 'boolean',
       default: getEnv('docz.codeSandbox', true),
-    })
-    .option('runKit', {
-      type: 'boolean',
-      default: getEnv('docz.runKit', true),
     })
     .option('sourcemaps', {
       type: 'boolean',

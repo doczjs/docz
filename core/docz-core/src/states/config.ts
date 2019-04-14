@@ -17,7 +17,6 @@ interface Payload {
   repository: string | null
   native: boolean
   codeSandbox: boolean
-  runKit: boolean
   themeConfig: ThemeConfig
   separator: string
 }
@@ -34,7 +33,6 @@ const getInitialConfig = (config: Config): Payload => {
     repository: repoUrl,
     native: config.native,
     codeSandbox: config.codeSandbox,
-    runKit: config.runKit,
     themeConfig: config.themeConfig,
     separator: config.separator,
   }

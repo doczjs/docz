@@ -18,6 +18,7 @@ const htmlContext = {
 
 export const doczRcBaseConfig = {
   htmlContext,
+  runKit: false,
   themeConfig: {},
   docgenConfig: {},
   filterComponents: (files: string[]) =>
