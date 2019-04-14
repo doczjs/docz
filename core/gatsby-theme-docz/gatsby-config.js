@@ -43,11 +43,11 @@ module.exports = opts => {
         resolve: 'gatsby-mdx',
         options: {
           extensions: ['.md', '.mdx'],
-          mdPlugins:
+          remarkPlugins:
             config && config.mdPlugins
               ? config.mdPlugins.concat(mdPlugins)
               : mdPlugins,
-          hastPlugins:
+          rehypePlugins:
             config && config.hastPlugins
               ? config.hastPlugins.concat(hastPlugins)
               : hastPlugins,

@@ -107,11 +107,11 @@ export const mdx = (config: Config, args: Args, babelrc: BabelRC) => {
     .use('mdx-loader')
     .loader(require.resolve('@mdx-js/loader'))
     .options({
-      mdPlugins: mdPlugins.concat([
+      remarkPlugins: mdPlugins.concat([
         [frontmatter, { type: 'yaml', marker: '-' }],
         remarkDocz,
       ]),
-      hastPlugins: hastPlugins.concat([
+      rehypePlugins: hastPlugins.concat([
         [rehypeDocz, { root: paths.root, useCodeSandbox: args.codeSandbox }],
         slug,
       ]),

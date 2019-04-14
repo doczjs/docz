@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 import { AsyncRoute, useComponents } from 'docz'
-import { MDXProvider } from '@mdx-js/tag'
+import { MDXProvider } from '@mdx-js/react'
 
 import Theme from '<%- theme %>'
 <% if (wrapper) {%>import Wrapper from '<%- wrapper %>'<%}%>

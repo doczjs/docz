@@ -16,12 +16,6 @@ import { Playground } from 'docz'
 `
 
 test('rendering children as function', async () => {
-  const result = await mdx(content, { mdPlugins: [plugin] })
-  expect(result).toMatch(`
-  {() => {
-    const foo = 'foo'
-return (
-  <div>{foo}</div>
-)
-  }}`)
+  const result = await mdx(content, { remarkPlugins: [plugin] })
+  expect(result).toMatchSnapshot()
 })

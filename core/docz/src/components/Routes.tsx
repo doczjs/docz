@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { SFC, useMemo, useContext, useEffect } from 'react'
-import { MDXProvider } from '@mdx-js/tag'
+import { MDXProvider } from '@mdx-js/react'
 import {
   LocationProvider,
   Router,

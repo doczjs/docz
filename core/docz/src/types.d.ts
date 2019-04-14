@@ -1,5 +1,4 @@
-declare module '@mdx-js/tag'
-declare module '@mdx-js/tag/dist/mdx-provider'
+declare module '@mdx-js/react'
 declare module 'array-sort'
 declare module 'capitalize'
 declare module 'match-sorter'

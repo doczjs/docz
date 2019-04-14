@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Theme from 'docz-theme-default'
 import { StaticQuery, graphql } from 'gatsby'
 import { AsyncRoute, useComponents } from 'docz'
-import { MDXProvider } from '@mdx-js/tag'
+import { MDXProvider } from '@mdx-js/react'
 
 import { Link } from './Link'
 import SEO from './Seo'
