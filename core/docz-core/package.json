@@ -71,7 +71,7 @@
     "terser-webpack-plugin": "^1.2.3",
     "thread-loader": "^2.1.2",
     "titleize": "^2.1.0",
-    "typescript": "^3.3.4000",
+    "typescript": "3.3.4000",
     "url-loader": "^1.1.2",
     "webpack": "^4.30.0",
     "webpack-bundle-analyzer": "^3.3.2",

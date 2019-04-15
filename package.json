@@ -59,7 +59,7 @@
     "ts-jest": "^24.0.2",
     "tslint": "^5.15.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.3.4000"
+    "typescript": "3.3.4000"
   },
   "workspaces": [
     "core/*",
