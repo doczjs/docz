@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { SFC, ComponentType } from 'react'
-import { get } from 'lodash/fp'
+import { first, get } from 'lodash/fp'
 import capitalize from 'capitalize'
 
 import { doczState } from '../state'
@@ -95,6 +95,7 @@ export interface PropsComponentProps {
 export const Props: SFC<PropsProps> = ({ of: component }) => {
   const components = useComponents()
   const { props: stateProps } = React.useContext(doczState.context)
+  const PropsComponent = components.props
   const filename = get('__filemeta.filename', component)
   const componentName = component.displayName || component.name
   const found =
@@ -102,11 +103,12 @@ export const Props: SFC<PropsProps> = ({ of: component }) => {
     stateProps.length > 0 &&
     stateProps.find(item => item.key === filename)
 
-  const definition =
-    found && found.value.find((item: any) => item.displayName === componentName)
-  const props = get('props', definition) || []
+  const value = get('value', found) || []
+  const firstDefinition = first(value)
+  const definition = value.find((i: any) => i.displayName === componentName)
+  const props = get('props', definition || firstDefinition)
 
   if (!props) return null
-  if (!components.props) return null
-  return <components.props props={props} getPropType={getPropType} />
+  if (!PropsComponent) return null
+  return <PropsComponent props={props} getPropType={getPropType} />
 }
