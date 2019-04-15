@@ -224,13 +224,13 @@ export const Playground: SFC<PlaygroundProps> = ({
   }, [])
 
   const addUnloadListener = useCallback(() => {
-    if (window && typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       window.addEventListener('beforeunload', unloadListener, false)
     }
   }, [])
 
   const removeUnloadListener = useCallback(() => {
-    if (window && typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       window.removeEventListener('beforeunload', unloadListener, false)
     }
   }, [])
@@ -241,7 +241,7 @@ export const Playground: SFC<PlaygroundProps> = ({
   }, [])
 
   useEffect(() => {
-    if (window && typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       const method = fullscreen ? 'add' : 'remove'
       document.body.classList[method]('with-overlay')
     }

@@ -3,7 +3,7 @@ import hotkeys from 'hotkeys-js'
 
 export const useHotkeys = (key: string, cb: () => any, inputs?: any[]) => {
   useEffect(() => {
-    if (window && typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       hotkeys(key, cb)
       return () => hotkeys.unbind(key)
     }

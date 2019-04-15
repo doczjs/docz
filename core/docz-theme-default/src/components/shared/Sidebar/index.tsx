@@ -133,7 +133,7 @@ export const Sidebar: SFC = () => {
   const addOverlayClass = (isHidden: boolean) => {
     const method = !isHidden ? 'add' : 'remove'
 
-    if (window && typeof window !== 'undefined' && !isDesktop) {
+    if (typeof window !== 'undefined' && !isDesktop) {
       document.documentElement!.classList[method]('with-overlay')
     }
   }

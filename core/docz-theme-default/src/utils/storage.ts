@@ -5,7 +5,7 @@ export class Storage {
   }
 
   public get(): any {
-    if (window && typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       try {
         const item = window.localStorage.getItem(this.name)
         return typeof item === 'string' ? JSON.parse(item) : null
@@ -16,13 +16,13 @@ export class Storage {
   }
 
   public set(value: any): void {
-    if (window && typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       window.localStorage.setItem(this.name, JSON.stringify(value))
     }
   }
 
   public delete(): void {
-    if (window && typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       window.localStorage.removeItem(this.name)
     }
   }

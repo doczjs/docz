@@ -3,7 +3,7 @@ import loadable from '@loadable/component'
 
 const BasePlayground = loadable(() => import('./Playground'))
 export const Playground: React.SFC<any> = props =>
-  window && typeof window !== 'undefined' ? (
+  typeof window !== 'undefined' ? (
     <React.Suspense fallback={null}>
       <BasePlayground {...props} />
     </React.Suspense>
