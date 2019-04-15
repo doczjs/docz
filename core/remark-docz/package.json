@@ -25,7 +25,7 @@
     "unist-util-visit": "^1.4.0"
   },
   "devDependencies": {
-    "@mdx-js/mdx": "^1.0.4",
+    "@mdx-js/mdx": "^1.0.5",
     "docz-rollup": "^1.0.0"
   }
 }

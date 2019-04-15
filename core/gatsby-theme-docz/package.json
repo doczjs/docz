@@ -15,7 +15,7 @@
     "fix:prettier": "prettier \"src/**/*.{json,jsx,js}\" --write"
   },
   "dependencies": {
-    "@mdx-js/mdx": "^1.0.4",
+    "@mdx-js/mdx": "^1.0.5",
     "@mdx-js/react": "^1.0.2",
     "babel-plugin-export-metadata": "^1.0.1",
     "change-case": "^3.1.0",
@@ -25,7 +25,7 @@
     "docz-theme-default": "^1.0.1",
     "docz-utils": "^1.0.1",
     "fs-extra": "^7.0.1",
-    "gatsby": "^2.3.22",
+    "gatsby": "^2.3.23",
     "gatsby-mdx": "^0.6.2",
     "gatsby-plugin-compile-es6-packages": "^1.1.0",
     "gatsby-plugin-manifest": "^2.0.29",

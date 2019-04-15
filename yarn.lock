@@ -2366,19 +2366,19 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
-"@mdx-js/loader@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/@mdx-js/loader/-/loader-1.0.4.tgz#54adf35c9b2188eba71868f6919475e9660cfcc0"
-  integrity sha512-M2W5REaUTxP9vqsY0cIAwLhM08o2I2jSva7LzdsMUNwz2UFiPVrZ52vxt4+QWqkvXpWPqBzs0z70NGIWBirwkQ==
+"@mdx-js/loader@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/@mdx-js/loader/-/loader-1.0.5.tgz#e0ccaa265c49af46935ff344197cba034b4600ba"
+  integrity sha512-/UXIT9YBa8ryEtMHqZjo5a2YuPAtQsBV99cgk4ioF9YuqVJlnb18ncC+VDL8tEwe4No4/F1yvHiRuZAjiM2q+Q==
   dependencies:
-    "@mdx-js/mdx" "^1.0.4"
+    "@mdx-js/mdx" "^1.0.5"
     "@mdx-js/react" "^1.0.2"
     loader-utils "^1.1.0"
 
-"@mdx-js/mdx@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/@mdx-js/mdx/-/mdx-1.0.4.tgz#c3069c0a1000729a19dd0a56ffee80c7a7c2e7c5"
-  integrity sha512-jibL8e4J0+UmEPjZtgk5maaIcdPGqLmtCy79Floaj76TpBuf3at6JFn/4efJpMtL8U4ILgoSuwPs6+cUdsPttA==
+"@mdx-js/mdx@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/@mdx-js/mdx/-/mdx-1.0.5.tgz#380eb24d04c99f608b82cf4f4ef6bddca3342b45"
+  integrity sha512-vyqW9GDixcUhEKxuXzIMHpKFbKxc8HzJQQ86Piy5w2QFUSEedjZ2U1gqjkUWec3zUeD0PBBpCig3BH249CMwtw==
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-syntax-jsx" "^7.2.0"
@@ -3510,10 +3510,10 @@ ajv@^6.0.1, ajv@^6.1.0, ajv@^6.5.5, ajv@^6.9.1:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-all-contributors-cli@^6.2.0:
-  version "6.2.0"
-  resolved "https://registry.npmjs.org/all-contributors-cli/-/all-contributors-cli-6.2.0.tgz#60d5c4a190ed330bb1905881a5095270433bde2d"
-  integrity sha512-ppAgu0gsyexeLR9vs9CrGJUZbQbP1ei6bRWkG3drvefjAjLOZeVq6Fjh/kSPDtsnWI/l6XAWWR2MQWuIwtd7Dg==
+all-contributors-cli@^6.3.0:
+  version "6.3.0"
+  resolved "https://registry.npmjs.org/all-contributors-cli/-/all-contributors-cli-6.3.0.tgz#31e395aecc4c27bf5d482ce8ce99504a36d1e0db"
+  integrity sha512-9RVNwQbZya2Hsak78Qd5SmcLTd10E1zoDfW3d8A/hMkOu0CM7CoiHdm0KUiNhdR/CbC0bsFEhOl9CzpoQP1q1A==
   dependencies:
     "@babel/runtime" "^7.2.0"
     async "^2.0.0-rc.1"
@@ -8126,10 +8126,10 @@ g-status@^2.0.2:
     matcher "^1.0.0"
     simple-git "^1.85.0"
 
-gatsby-cli@^2.5.7:
-  version "2.5.7"
-  resolved "https://registry.npmjs.org/gatsby-cli/-/gatsby-cli-2.5.7.tgz#9b1d14507a08eb68af1346955f8bea56ef9918b7"
-  integrity sha512-nQ55ZIm15rfY8o7QMt56YiGg7iYAw0KOsAQ4Hxv0sa86+m8YSHHGSTrYb2BXvWpBdhwrQufBvxbBjVoNpFzuHg==
+gatsby-cli@^2.5.8:
+  version "2.5.8"
+  resolved "https://registry.npmjs.org/gatsby-cli/-/gatsby-cli-2.5.8.tgz#0e90e30ee2b212809f92dc2a20d120a13f92bf1c"
+  integrity sha512-XboFjDHiNlYHU6vgRTKRhkvLUAsgTOPwolux30njyjIuLr5wQzhwvLGiylpL97txRZ6qjSm5T9p1KNkwWt4pQg==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@babel/runtime" "^7.0.0"
@@ -8145,6 +8145,7 @@ gatsby-cli@^2.5.7:
     fs-extra "^4.0.1"
     gatsby-telemetry "^1.0.7"
     hosted-git-info "^2.6.0"
+    is-valid-path "^0.1.1"
     lodash "^4.17.10"
     meant "^1.0.1"
     node-fetch "2.3.0"
@@ -8283,10 +8284,10 @@ gatsby-telemetry@^1.0.7:
     stack-utils "1.0.2"
     uuid "3.3.2"
 
-gatsby@^2.3.22:
-  version "2.3.22"
-  resolved "https://registry.npmjs.org/gatsby/-/gatsby-2.3.22.tgz#5026f468ad7fbcafe936036017b3281f0afd169e"
-  integrity sha512-/Iyy4Qv1OzL6lJaj2syOQNC5i1t5DeXq2bb4sLPS9Pak8sTLuWQK+IIECRQK6r6ozTgi5/b+YRon2IywstSy1A==
+gatsby@^2.3.23:
+  version "2.3.23"
+  resolved "https://registry.npmjs.org/gatsby/-/gatsby-2.3.23.tgz#4e926d170e7fafcf2abf5fcb8c7e00f887bcfd10"
+  integrity sha512-O7gzDpMTmPiqez+KzRUAvUc4y1F19EqxoE8skBqvoPh92+FO1Je2OTHuYmGwci8S11teuylcT5qofdTHTp9Mmg==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@babel/core" "^7.0.0"
@@ -8343,14 +8344,14 @@ gatsby@^2.3.22:
     flat "^4.0.0"
     fs-exists-cached "1.0.0"
     fs-extra "^5.0.0"
-    gatsby-cli "^2.5.7"
+    gatsby-cli "^2.5.8"
     gatsby-link "^2.0.16"
     gatsby-plugin-page-creator "^2.0.12"
     gatsby-react-router-scroll "^2.0.7"
     gatsby-telemetry "^1.0.7"
     glob "^7.1.1"
     graphql "^14.1.1"
-    graphql-compose "^6.0.3"
+    graphql-compose "6.0.3"
     graphql-playground-middleware-express "^1.7.10"
     hash-mod "^0.0.5"
     invariant "^2.2.4"
@@ -8799,7 +8800,7 @@ graphlib@2.1.7:
   dependencies:
     lodash "^4.17.5"
 
-graphql-compose@^6.0.3:
+graphql-compose@6.0.3:
   version "6.0.3"
   resolved "https://registry.npmjs.org/graphql-compose/-/graphql-compose-6.0.3.tgz#fa5668a30694abef4166703aa03af07a741039a8"
   integrity sha512-QpywEtNvlEQS0a5VIseMA/tk67QmEN9NNUx1B1tzGR/p7MePyus9wvci2cIP/mwdDrvLRRbwpmidSKQXFD3SEA==
@@ -8891,6 +8892,14 @@ gzip-size@5.0.0, gzip-size@^5.0.0:
   dependencies:
     duplexer "^0.1.1"
     pify "^3.0.0"
+
+gzip-size@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.npmjs.org/gzip-size/-/gzip-size-5.1.0.tgz#2db0396c71f5c902d5cf6b52add5030b93c99bd2"
+  integrity sha512-wfSnvypBDRW94v5W3ckvvz/zFUNdJ81VgOP6tE4bPpRUcc0wGqU+y0eZjJEvKxwubJFix6P84sE8M51YWLT7rQ==
+  dependencies:
+    duplexer "^0.1.1"
+    pify "^4.0.1"
 
 handle-thing@^2.0.0:
   version "2.0.0"
@@ -9931,6 +9940,13 @@ is-installed-globally@^0.1.0:
     global-dirs "^0.1.0"
     is-path-inside "^1.0.0"
 
+is-invalid-path@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/is-invalid-path/-/is-invalid-path-0.1.0.tgz#307a855b3cf1a938b44ea70d2c61106053714f34"
+  integrity sha1-MHqFWzzxqTi0TqcNLGEQYFNxTzQ=
+  dependencies:
+    is-glob "^2.0.0"
+
 is-keyword-js@^1.0.3:
   version "1.0.3"
   resolved "https://registry.npmjs.org/is-keyword-js/-/is-keyword-js-1.0.3.tgz#ac30dcf35b671f4b27b17f5cb57235126021132d"
@@ -10154,6 +10170,13 @@ is-utf8@^0.2.0, is-utf8@^0.2.1:
   version "0.2.1"
   resolved "https://registry.npmjs.org/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
   integrity sha1-Sw2hRCEE0bM2NA6AeX6GXPOffXI=
+
+is-valid-path@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.npmjs.org/is-valid-path/-/is-valid-path-0.1.1.tgz#110f9ff74c37f663e1ec7915eb451f2db93ac9df"
+  integrity sha1-EQ+f90w39mPh7HkV60UfLbk6yd8=
+  dependencies:
+    is-invalid-path "^0.1.0"
 
 is-whitespace-character@^1.0.0:
   version "1.0.2"
@@ -14290,10 +14313,10 @@ react-hot-loader@^4.6.2:
     shallowequal "^1.0.2"
     source-map "^0.7.3"
 
-react-hot-loader@^4.8.3:
-  version "4.8.3"
-  resolved "https://registry.npmjs.org/react-hot-loader/-/react-hot-loader-4.8.3.tgz#14f018777a60ea9cfa60496c7341c2f967311253"
-  integrity sha512-Is8bKbSxuDLTqsWu1yjr+o1yA6yGDGjEQ2i1E8t/Nj1xJYC6QBRbyoofTn1xkMoKpcgXHuTJTqBhK0RY6moFJA==
+react-hot-loader@^4.8.4:
+  version "4.8.4"
+  resolved "https://registry.npmjs.org/react-hot-loader/-/react-hot-loader-4.8.4.tgz#357ba342e367fd42d6a870a9c0601c23fa0730c6"
+  integrity sha512-O98btZXcm24ZgP+aPBD0W9N+GEnkOg6vlLEy/IMZ53u3K/dGqO0I/RU4qrmQzE+wMDLpwNo5TwxaAjVw9Y+IBA==
   dependencies:
     fast-levenshtein "^2.0.6"
     global "^4.3.0"

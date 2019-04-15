@@ -43,7 +43,7 @@
     "@types/prettier": "^1.16.1",
     "@types/react": "^16.8.13",
     "@types/react-dom": "^16.8.4",
-    "all-contributors-cli": "^6.2.0",
+    "all-contributors-cli": "^6.3.0",
     "babel-plugin-lodash": "^3.3.4",
     "babel-preset-react-app": "^7.0.1",
     "commitizen": "^3.0.7",
