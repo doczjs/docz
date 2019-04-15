@@ -1,6 +1,6 @@
 {
   "name": "docz-example-react-native",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "scripts": {
     "dev": "docz dev",
@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
-    "docz": "^1.0.1",
-    "docz-theme-default": "^1.0.1"
+    "docz": "^1.0.2",
+    "docz-theme-default": "^1.0.2"
   }
 }

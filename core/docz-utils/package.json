@@ -1,6 +1,6 @@
 {
   "name": "docz-utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Some methods used and utilities used on docz",
   "license": "MIT",
   "main": "lib/index.js",
@@ -45,6 +45,6 @@
     "unist-util-visit": "^1.4.0"
   },
   "devDependencies": {
-    "docz-rollup": "^1.0.0"
+    "docz-rollup": "^1.0.2"
   }
 }
