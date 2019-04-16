@@ -32,6 +32,7 @@ export const devServerConfig = (hooks: ServerHooks, args: Args) => {
     historyApiFallback: {
       disableDotRule: true,
     },
+    disableHostCheck: true,
     before(app: any, server: any): void {
       app.use('/public', express.static(publicDir))
       app.use(evalSourceMapMiddleware(server))
