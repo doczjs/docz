@@ -75,18 +75,18 @@ The are just two directories to care about if you would like to contribute:
 
 #### Packages
 
-There are lots of [packages](https://github.com/pedronauck/docz/tree/master/packages) that are necessary to run docz, the most important packages that are important to care about:
+There are lots of [packages](https://github.com/pedronauck/docz/tree/master/core) that are necessary to run docz, the most important packages that are important to care about:
 
-#### **[docz-core](https://github.com/pedronauck/docz/tree/master/packages/docz-core)**
+#### **[docz-core](https://github.com/pedronauck/docz/tree/master/core/docz-core)**
 - This is the core of docz. All build algorithms, server process and parses belongs to here.
 - If you break this package, probably you'll break all packages! Please, be carefull.
 - All cli commands are built here and imported on `docz` package using `./bin` script.
 - Do not create scripts that's running on browser here, only node scripts.
 
-#### **[docz](https://github.com/pedronauck/docz/tree/master/packages/docz)**
+#### **[docz](https://github.com/pedronauck/docz/tree/master/core/docz)**
 - Main and top level package.
 - Scripts that's running on browser belongs to this package
-- Built-ins components are built here, most specifically on [this folder](https://github.com/pedronauck/docz/tree/master/packages/docz/src/components)
+- Built-ins components are built here, most specifically on [this folder](https://github.com/pedronauck/docz/tree/master/core/docz/src/components)
 - This package shouldn't have any component style, just boilerplate and logic!
 
 ### Watching projects
