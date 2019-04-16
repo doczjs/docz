@@ -6622,6 +6622,22 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
+docz-rollup@1.0.0-rc.9:
+  version "1.0.0-rc.9"
+  resolved "https://registry.yarnpkg.com/docz-rollup/-/docz-rollup-1.0.0-rc.9.tgz#5f7415a6a6c3195deecff773ef5056e33f68894c"
+  integrity sha512-RzCg7vGUK/+XL/QHDGXOo4oenfoQ0BPXIsJ0hS+Hr2NYBpSOKeT9uJ3M0Nc0LNJBiQ/GnePVIOwFmMxR8XRiXw==
+  dependencies:
+    "@pedronauck/rollup-plugin-typescript2" "0.18.3"
+    chalk "^2.4.2"
+    figures "2.0.0"
+    filesize "^4.1.2"
+    fs-extra "^7.0.1"
+    gzip-size "^5.0.0"
+    lodash "^4.17.11"
+    log-update "^3.2.0"
+    rollup "^1.9.3"
+    rollup-plugin-babel "^4.3.2"
+
 dom-converter@^0.2:
   version "0.2.0"
   resolved "https://registry.npmjs.org/dom-converter/-/dom-converter-0.2.0.tgz#6721a9daee2e293682955b6afe416771627bb768"
@@ -15227,9 +15243,9 @@ rollup-pluginutils@^2.3.0:
     estree-walker "^0.6.0"
     micromatch "^3.1.10"
 
-rollup@^1.10.0:
+rollup@^1.10.0, rollup@^1.9.3:
   version "1.10.0"
-  resolved "https://registry.npmjs.org/rollup/-/rollup-1.10.0.tgz#91d594aa4386c51ca0883ad4ef2050b469d3e8aa"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.10.0.tgz#91d594aa4386c51ca0883ad4ef2050b469d3e8aa"
   integrity sha512-U9t/JaKtO0+X0pSmLVKMrAZEixrbVzITf193TiEhfoVKCnd7pDimIFo94IxUCgbn6+v5VmduHkubx2VV1s0Ftw==
   dependencies:
     "@types/estree" "0.0.39"
