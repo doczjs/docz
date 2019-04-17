@@ -220,17 +220,6 @@ if (typeof __DOCZ_DUMMY_EXPORT_DEFAULT !== 'undefined' && __DOCZ_DUMMY_EXPORT_DE
       filename: \\"tests/fixtures/re-export/re-export-default.js\\"
     }
   });
-}
-
-if (typeof __DOCZ_DUMMY_EXPORT_DEFAULT !== 'undefined' && __DOCZ_DUMMY_EXPORT_DEFAULT && __DOCZ_DUMMY_EXPORT_DEFAULT === Object(__DOCZ_DUMMY_EXPORT_DEFAULT) && Object.isExtensible(__DOCZ_DUMMY_EXPORT_DEFAULT)) {
-  Object.defineProperty(__DOCZ_DUMMY_EXPORT_DEFAULT, '__filemeta', {
-    enumerable: true,
-    configurable: true,
-    value: {
-      name: \\"__DOCZ_DUMMY_EXPORT_DEFAULT\\",
-      filename: \\"tests/fixtures/re-export/re-export-default.js\\"
-    }
-  });
 }"
 `;
 
@@ -268,14 +257,15 @@ if (typeof a !== 'undefined' && a && a === Object(a) && Object.isExtensible(a)) 
 
 exports[`export-metadata re-export re export name to default 1`] = `
 "/* Re-export  */
-export { a as aDefault } from '../assets/a';
+import a from \\"../assets/a\\";
+export default a;
 
-if (typeof aDefault !== 'undefined' && aDefault && aDefault === Object(aDefault) && Object.isExtensible(aDefault)) {
-  Object.defineProperty(aDefault, '__filemeta', {
+if (typeof a !== 'undefined' && a && a === Object(a) && Object.isExtensible(a)) {
+  Object.defineProperty(a, '__filemeta', {
     enumerable: true,
     configurable: true,
     value: {
-      name: \\"aDefault\\",
+      name: \\"a\\",
       filename: \\"tests/fixtures/re-export/re-export-rename2.js\\"
     }
   });

@@ -45,14 +45,17 @@ const addFileMetaProperties = (t, path, filename, name) => {
   pathToInsert.insertAfter(newNode)
 }
 
-const renameDefaultAddFileMetaProperties = (t, path, state, filename, name) => {
+const renameDefaultAddFileMetaProperties = (t, path, filename, name) => {
   if (!filename || !name) {
     return
   }
 
   const sourceValue = get(path, 'node.source.value')
+  const localeName = get(path, 'node.specifiers[0].local.name')
   const pathToInsert = findPathToInsert(path)
-  const fallbackName = '__DOCZ_DUMMY_EXPORT_DEFAULT'
+
+  const fallbackName =
+    localeName === 'default' ? '__DOCZ_DUMMY_EXPORT_DEFAULT' : localeName
 
   // replace
   const nameExport = replaceExportDefault({
@@ -67,7 +70,6 @@ const renameDefaultAddFileMetaProperties = (t, path, state, filename, name) => {
     FILENAME: t.stringLiteral(filename),
   })
 
-  pathToInsert.insertAfter(newNode)
   pathToInsert.replaceWithMultiple(nameExport)
 }
 
@@ -91,9 +93,9 @@ const insertNodeExport = t => (path, state) => {
       const localName = get(specifier, 'local.name')
       const exportedName = get(specifier, 'exported.name')
       const source = get(path, 'node.source')
-      if (localName === 'default' && exportedName === 'default') {
+      if (source && exportedName === 'default') {
         // case for: export default from './a.js'. `default` is a keyword, rename it
-        renameDefaultAddFileMetaProperties(t, path, state, filename, 'default')
+        renameDefaultAddFileMetaProperties(t, path, filename, 'default')
       } else {
         // if there is `path.source`, the specifier is imported from another module. Then use its exportedName
         const specifierName = source ? exportedName : localName
