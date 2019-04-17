@@ -205,3 +205,97 @@ if (typeof Bar2 !== 'undefined' && Bar2 && Bar2 === Object(Bar2)) {
   });
 }"
 `;
+
+exports[`export-metadata re-export re export default 1`] = `
+"/* Re-export  */
+import __DOCZ_DUMMY_EXPORT_DEFAULT from \\"../assets/a\\";
+export default __DOCZ_DUMMY_EXPORT_DEFAULT;
+
+if (typeof __DOCZ_DUMMY_EXPORT_DEFAULT !== 'undefined' && __DOCZ_DUMMY_EXPORT_DEFAULT && __DOCZ_DUMMY_EXPORT_DEFAULT === Object(__DOCZ_DUMMY_EXPORT_DEFAULT)) {
+  Object.defineProperty(__DOCZ_DUMMY_EXPORT_DEFAULT, '__filemeta', {
+    enumerable: true,
+    configurable: true,
+    value: {
+      name: \\"__DOCZ_DUMMY_EXPORT_DEFAULT\\",
+      filename: \\"tests/fixtures/re-export/re-export-default.js\\"
+    }
+  });
+}
+
+if (typeof __DOCZ_DUMMY_EXPORT_DEFAULT !== 'undefined' && __DOCZ_DUMMY_EXPORT_DEFAULT && __DOCZ_DUMMY_EXPORT_DEFAULT === Object(__DOCZ_DUMMY_EXPORT_DEFAULT)) {
+  Object.defineProperty(__DOCZ_DUMMY_EXPORT_DEFAULT, '__filemeta', {
+    enumerable: true,
+    configurable: true,
+    value: {
+      name: \\"__DOCZ_DUMMY_EXPORT_DEFAULT\\",
+      filename: \\"tests/fixtures/re-export/re-export-default.js\\"
+    }
+  });
+}"
+`;
+
+exports[`export-metadata re-export re export default to name 1`] = `
+"/* Re-export  */
+export { default as aDefault } from '../assets/a';
+
+if (typeof aDefault !== 'undefined' && aDefault && aDefault === Object(aDefault)) {
+  Object.defineProperty(aDefault, '__filemeta', {
+    enumerable: true,
+    configurable: true,
+    value: {
+      name: \\"aDefault\\",
+      filename: \\"tests/fixtures/re-export/re-export-rename1.js\\"
+    }
+  });
+}"
+`;
+
+exports[`export-metadata re-export re export name 1`] = `
+"/* Re-export  */
+export { a } from '../assets/a';
+
+if (typeof a !== 'undefined' && a && a === Object(a)) {
+  Object.defineProperty(a, '__filemeta', {
+    enumerable: true,
+    configurable: true,
+    value: {
+      name: \\"a\\",
+      filename: \\"tests/fixtures/re-export/re-export.js\\"
+    }
+  });
+}"
+`;
+
+exports[`export-metadata re-export re export name to default 1`] = `
+"/* Re-export  */
+export { a as aDefault } from '../assets/a';
+
+if (typeof aDefault !== 'undefined' && aDefault && aDefault === Object(aDefault)) {
+  Object.defineProperty(aDefault, '__filemeta', {
+    enumerable: true,
+    configurable: true,
+    value: {
+      name: \\"aDefault\\",
+      filename: \\"tests/fixtures/re-export/re-export-rename2.js\\"
+    }
+  });
+}"
+`;
+
+exports[`export-metadata re-export re export name to name 1`] = `
+"/* Re-export  */
+export { a as aa } from '../assets/a';
+
+if (typeof aa !== 'undefined' && aa && aa === Object(aa)) {
+  Object.defineProperty(aa, '__filemeta', {
+    enumerable: true,
+    configurable: true,
+    value: {
+      name: \\"aa\\",
+      filename: \\"tests/fixtures/re-export/re-export-rename3.js\\"
+    }
+  });
+}"
+`;
+
+exports[`export-metadata re-export re-export default 1`] = `""`;

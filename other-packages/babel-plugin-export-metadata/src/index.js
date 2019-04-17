@@ -15,6 +15,11 @@ const buildFileMeta = template(`
   }
 `)
 
+const replaceExportDefault = template(`
+  import NAME from 'SOURCE'
+  export default NAME
+`)
+
 const getFilename = state => {
   const filename = get(state, 'file.opts.filename')
   return filename && path.relative(process.cwd(), filename)
@@ -40,6 +45,32 @@ const addFileMetaProperties = (t, path, filename, name) => {
   pathToInsert.insertAfter(newNode)
 }
 
+const renameDefaultAddFileMetaProperties = (t, path, state, filename, name) => {
+  if (!filename || !name) {
+    return
+  }
+
+  const sourceValue = get(path, 'node.source.value')
+  const pathToInsert = findPathToInsert(path)
+  const fallbackName = '__DOCZ_DUMMY_EXPORT_DEFAULT'
+
+  // replace
+  const nameExport = replaceExportDefault({
+    NAME: fallbackName,
+    SOURCE: sourceValue,
+  })
+
+  // insert
+  const newNode = buildFileMeta({
+    ID: t.identifier(fallbackName),
+    NAME: t.stringLiteral(fallbackName),
+    FILENAME: t.stringLiteral(filename),
+  })
+
+  pathToInsert.insertAfter(newNode)
+  pathToInsert.replaceWithMultiple(nameExport)
+}
+
 const insertNodeExport = t => (path, state) => {
   const filename = getFilename(state)
   if (/(\.cache|\.docz).+/.test(filename)) return
@@ -57,13 +88,17 @@ const insertNodeExport = t => (path, state) => {
     }
   } else if (specifiers) {
     for (specifier of specifiers) {
-      let specifierName = get(specifier, 'local.name')
-      specifierName =
-        specifierName === 'default'
-          ? get(specifier, 'exported.name')
-          : specifierName
-
-      addFileMetaProperties(t, path, filename, specifierName)
+      const localName = get(specifier, 'local.name')
+      const exportedName = get(specifier, 'exported.name')
+      const source = get(path, 'node.source')
+      if (localName === 'default' && exportedName === 'default') {
+        // case for: export default from './a.js'. `default` is a keyword, rename it
+        renameDefaultAddFileMetaProperties(t, path, state, filename, 'default')
+      } else {
+        // if there is `path.source`, the specifier is imported from another module. Then use its exportedName
+        const specifierName = source ? exportedName : localName
+        addFileMetaProperties(t, path, filename, specifierName)
+      }
     }
   }
 }
