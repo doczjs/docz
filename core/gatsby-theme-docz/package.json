@@ -15,8 +15,8 @@
     "fix:prettier": "prettier \"src/**/*.{json,jsx,js}\" --write"
   },
   "dependencies": {
-    "@mdx-js/mdx": "^1.0.5",
-    "@mdx-js/react": "^1.0.2",
+    "@mdx-js/mdx": "^1.0.10",
+    "@mdx-js/react": "^1.0.6",
     "babel-plugin-export-metadata": "^1.0.2",
     "change-case": "^3.1.0",
     "chokidar": "^2.1.5",
