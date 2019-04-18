@@ -66,6 +66,7 @@ interface LogoProps {
 
 export const Logo: SFC<LogoProps> = ({ showBg }) => {
   const {
+    base,
     title,
     linkComponent: Link,
     themeConfig: { logo },
@@ -74,7 +75,7 @@ export const Logo: SFC<LogoProps> = ({ showBg }) => {
   if (!Link) return null
   return (
     <Wrapper showBg={showBg}>
-      <Link to="/">
+      <Link to={typeof base === 'string' ? base : '/'}>
         {logo ? (
           <LogoImg src={logo.src} width={logo.width} alt={title} />
         ) : (
