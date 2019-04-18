@@ -5,8 +5,13 @@ const babel = require('rollup-plugin-babel')
 const sizePlugin = require('./plugins/size')
 const copyPlugin = require('./plugins/copy')
 
-const defaultExternal = id =>
-  !id.startsWith('\0') && !id.startsWith('.') && !id.startsWith('/')
+const defaultExternal = id => {
+  return (
+    !id.startsWith('\0') &&
+    !id.startsWith('.') &&
+    !id.startsWith(process.platform === 'win32' ? process.cwd() : '/')
+  )
+}
 
 const output = (format, outputDir, { plugins = [], external, ...opts }) => ({
   ...opts,
