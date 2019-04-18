@@ -75,23 +75,23 @@ The are just two directories to care about if you would like to contribute:
 
 #### Packages
 
-There are lots of [packages](https://github.com/pedronauck/docz/tree/master/packages) that are necessary to run docz, the most important packages that are important to care about:
+There are lots of [packages](https://github.com/pedronauck/docz/tree/master/core) that are necessary to run docz, the most important packages that are important to care about:
 
-#### **[docz-core](https://github.com/pedronauck/docz/tree/master/packages/docz-core)**
+#### **[docz-core](https://github.com/pedronauck/docz/tree/master/core/docz-core)**
 - This is the core of docz. All build algorithms, server process and parses belongs to here.
-- If you break this package, probably you'll break all packages! Please, be carefull.
-- All cli commands are built here and imported on `docz` package using `./bin` script.
-- Do not create scripts that's running on browser here, only node scripts.
+- If you break this package, probably you'll break all packages! Please, be careful.
+- All CLI commands are built here and imported on `docz` package using `./bin` script.
+- Do not create scripts that run on browser here, only node scripts.
 
-#### **[docz](https://github.com/pedronauck/docz/tree/master/packages/docz)**
+#### **[docz](https://github.com/pedronauck/docz/tree/master/core/docz)**
 - Main and top level package.
-- Scripts that's running on browser belongs to this package
-- Built-ins components are built here, most specifically on [this folder](https://github.com/pedronauck/docz/tree/master/packages/docz/src/components)
+- Scripts that run on browser belongs to this package
+- Built-ins components are built here, most specifically on [this folder](https://github.com/pedronauck/docz/tree/master/core/docz/src/components)
 - This package shouldn't have any component style, just boilerplate and logic!
 
 ### Watching projects
 
-To speed up your developing we recommended to run packages in a separated terminal process.
+To speed up your developing we recommended to run packages in separate terminals.
 
 - Split your terminal and open each package directory in a separate window.
 - Run `yarn dev` (or `npm run dev`) in each slice (or window) to watch tasks.
@@ -104,7 +104,7 @@ In the above example you're watching `docz`, `docz-core` and `docz-theme-default
 
 ### Creating plugins
 
-If there are some plugin that you want to create, please contact me before to talk about the possibility to make this plugin official!
+If there are some plugins that you want to create, please contact me before to talk about the possibility to make this plugin official!
 
 ## Commit messages
 
@@ -118,7 +118,7 @@ Commit messages should follow the [commit message convention](https://convention
 
 - If you are checking out from a feature or a topic different of `master` or `dev`, you have to merge back and push against the same feature.
 
-- Work in the **src** folder of respective package and **DO NOT** checkin dist in the commits.
+- Work in the **src** folder of a respective package and **DO NOT** check `dist` in the commits.
 
 - It's OK - and a very nice thing - to have multiple small commits as you work on the PR - we will let GitHub automatically squash it before merging.
 
