@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/pedronauck/docz/compare/v1.0.3...v1.0.4) (2019-04-18)
+
+
+### Bug Fixes
+
+* **babel-plugin-export-metadata:** avoid adding __filemeta to non-extensible objects ([#798](https://github.com/pedronauck/docz/issues/798)) ([794ebc4](https://github.com/pedronauck/docz/commit/794ebc4))
+* **babel-plugin-export-metadata:** re-export causes meta error ([#805](https://github.com/pedronauck/docz/issues/805)) ([9401676](https://github.com/pedronauck/docz/commit/9401676))
+* **docz-rollup:** fixed rollup configs to be Windows tolerant ([#812](https://github.com/pedronauck/docz/issues/812)) ([10f6bfd](https://github.com/pedronauck/docz/commit/10f6bfd))
+* **docz-theme-default:** logo link point to dynamic base ([#815](https://github.com/pedronauck/docz/issues/815)) ([f7cc750](https://github.com/pedronauck/docz/commit/f7cc750))
+
+
+
+
+
 ## [1.0.3](https://github.com/pedronauck/docz/compare/v1.0.2...v1.0.3) (2019-04-15)
 
 

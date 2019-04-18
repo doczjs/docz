@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/pedronauck/docz/compare/v1.0.3...v1.0.4) (2019-04-18)
+
+
+### Bug Fixes
+
+* **docz-rollup:** fixed rollup configs to be Windows tolerant ([#812](https://github.com/pedronauck/docz/issues/812)) ([10f6bfd](https://github.com/pedronauck/docz/commit/10f6bfd))
+
+
+
+
+
 ## [1.0.2](https://github.com/pedronauck/docz/compare/v1.0.1...v1.0.2) (2019-04-15)
 
 **Note:** Version bump only for package docz-rollup

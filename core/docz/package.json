@@ -1,6 +1,6 @@
 {
   "name": "docz",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "It's has never been so easy to documents your things!",
   "license": "MIT",
   "main": "dist/index.js",
@@ -29,7 +29,7 @@
     "@reach/router": "^1.2.1",
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
-    "docz-core": "^1.0.2",
+    "docz-core": "^1.0.4",
     "fast-deep-equal": "^2.0.1",
     "lodash": "^4.17.11",
     "match-sorter": "^2.3.0",
@@ -49,6 +49,6 @@
     "@types/node": "^11.13.4",
     "@types/reach__router": "^1.2.4",
     "@types/react": "^16.8.13",
-    "docz-rollup": "^1.0.2"
+    "docz-rollup": "^1.0.4"
   }
 }
