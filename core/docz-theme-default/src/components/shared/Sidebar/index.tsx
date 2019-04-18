@@ -120,7 +120,7 @@ export const Sidebar: SFC = () => {
   const [query, setQuery] = useState('')
   const menus = useMenus({ query })
   const windowSize = useWindowSize()
-  const isDesktop = windowSize.outerWidth >= breakpoints.desktop
+  const isDesktop = windowSize.innerWidth >= breakpoints.desktop
   const prevIsDesktop = usePrevious(isDesktop)
 
   useEffect(() => {
