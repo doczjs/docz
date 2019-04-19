@@ -29,10 +29,9 @@ export const devServerConfig = (hooks: ServerHooks, args: Args) => {
     // folder we won't consider accessing them a vulnerability. However, if you
     // use the `proxy` feature, it gets more dangerous because it can expose
     // remote code execution vulnerabilities in backends like Django and Rails.
-    // So we will disable the host check normally, but enable it if you have
-    // specified the `proxy` setting. Finally, we let you override it if you
-    // really know what you're doing with a special environment variable.
-    disableHostCheck: !args.proxy || args.disableHostCheck === 'true',
+    // So we will enable the host check normally. We let you override it if you
+    // really know what you're doing with `--disableHostCheck="true"`
+    disableHostCheck: args.disableHostCheck === 'true',
     publicPath: '/',
     compress: true,
     logLevel: args.debug ? 'debug' : 'silent',
