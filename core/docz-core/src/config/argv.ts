@@ -68,6 +68,8 @@ export interface Argv {
   typescript: boolean
   propsParser: boolean
   host: string
+  proxy: string
+  disableHostCheck: string
   port: number
   websocketPort: number
   websocketHost: string
