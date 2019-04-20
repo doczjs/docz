@@ -1,21 +1,14 @@
 const { omit, get } = require('lodash')
 const typescript = require('@pedronauck/rollup-plugin-typescript2')
 const babel = require('rollup-plugin-babel')
+const peerDepsExternal = require('rollup-plugin-peer-deps-external')
 
 const sizePlugin = require('./plugins/size')
 const copyPlugin = require('./plugins/copy')
 
-const defaultExternal = id => {
-  return (
-    !id.startsWith('\0') &&
-    !id.startsWith('.') &&
-    !id.startsWith(process.platform === 'win32' ? process.cwd() : '/')
-  )
-}
-
 const output = (format, outputDir, { plugins = [], external, ...opts }) => ({
   ...opts,
-  external: external || defaultExternal,
+  external,
   output: {
     format,
     dir: outputDir,
@@ -23,6 +16,9 @@ const output = (format, outputDir, { plugins = [], external, ...opts }) => ({
     entryFileNames: `[name]${format !== 'cjs' ? '.[format]' : ''}.js`,
   },
   plugins: [
+    peerDepsExternal({
+      includeDependencies: true,
+    }),
     babel({
       exclude: 'node_modules/**',
       runtimeHelpers: false,

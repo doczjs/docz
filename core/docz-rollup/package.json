@@ -21,6 +21,7 @@
     "lodash": "^4.17.11",
     "log-update": "^3.2.0",
     "rollup": "^1.10.0",
-    "rollup-plugin-babel": "^4.3.2"
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-peer-deps-external": "^2.2.0"
   }
 }
