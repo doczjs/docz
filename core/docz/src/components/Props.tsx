@@ -64,6 +64,9 @@ export type ComponentWithDocGenInfo = ComponentType & {
 }
 
 export interface PropsProps {
+  title?: Node,
+  isRaw?: boolean,
+  isToggle?: boolean,
   of: ComponentWithDocGenInfo
 }
 
@@ -88,11 +91,19 @@ export const getPropType = (prop: Prop) => {
 }
 
 export interface PropsComponentProps {
+  title?: Node,
+  isRaw?: boolean,
+  isToggle?: boolean,
   props: Record<string, Prop>
-  getPropType(prop: Prop): string
+  getPropType(prop: Prop): string,
 }
 
-export const Props: SFC<PropsProps> = ({ of: component }) => {
+export const Props: SFC<PropsProps> = ({
+  title,
+  isToggle,
+  isRaw,
+  of: component,
+}) => {
   const components = useComponents()
   const { props: stateProps } = React.useContext(doczState.context)
   const PropsComponent = components.props
@@ -110,5 +121,13 @@ export const Props: SFC<PropsProps> = ({ of: component }) => {
 
   if (!props) return null
   if (!PropsComponent) return null
-  return <PropsComponent props={props} getPropType={getPropType} />
+  return (
+    <PropsComponent
+      title={title}
+      isRaw={isRaw}
+      isToggle={isToggle}
+      props={props}
+      getPropType={getPropType}
+    />
+  )
 }
