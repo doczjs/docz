@@ -22,7 +22,11 @@ const replaceExportDefault = template(`
 
 const getFilename = state => {
   const filename = get(state, 'file.opts.filename')
-  return filename && path.relative(process.cwd(), filename)
+  let filePath = filename && path.relative(process.cwd(), filename)
+  if (process.platform === 'win32') {
+    filePath = filePath.split('\\').join('/')
+  }
+  return filePath
 }
 
 const findPathToInsert = path =>
