@@ -140,10 +140,7 @@ export const createConfig = (args: Args, env: Env) => async (hooks: Hooks) => {
 
   config.when(debug, cfg => plugins.analyzer(cfg))
   config.when(!isProd, cfg => plugins.watchNodeModulesPlugin(cfg))
-  config.when(!debug && !isProd, cfg => {
-    plugins.webpackBar(cfg, args)
-    plugins.friendlyErrors(cfg, args)
-  })
+  config.when(!debug && !isProd, cfg => plugins.webpackBar(cfg, args))
 
   /**
    * typescript setup
