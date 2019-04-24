@@ -23,12 +23,12 @@
   "dependencies": {
     "docz-utils": "^1.0.4",
     "hast-util-to-string": "^1.0.1",
-    "jsx-ast-utils": "^2.0.1",
+    "jsx-ast-utils": "^2.1.0",
     "lodash": "^4.17.11",
     "unist-util-is": "^2.1.2"
   },
   "devDependencies": {
-    "@mdx-js/mdx": "^1.0.10",
+    "@mdx-js/mdx": "^1.0.14",
     "docz-rollup": "^1.0.4",
     "remark-docz": "^1.0.4"
   }

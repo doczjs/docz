@@ -24,15 +24,15 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@loadable/component": "^5.7.0",
-    "@mdx-js/react": "^1.0.2",
+    "@loadable/component": "^5.9.0",
+    "@mdx-js/react": "^1.0.6",
     "@reach/router": "^1.2.1",
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
     "docz-core": "^1.0.4",
     "fast-deep-equal": "^2.0.1",
     "lodash": "^4.17.11",
-    "match-sorter": "^2.3.0",
+    "match-sorter": "^3.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -46,9 +46,9 @@
   "devDependencies": {
     "@types/loadable__component": "^5.6.0",
     "@types/lodash": "^4.14.123",
-    "@types/node": "^11.13.4",
+    "@types/node": "^11.13.7",
     "@types/reach__router": "^1.2.4",
-    "@types/react": "^16.8.13",
+    "@types/react": "^16.8.14",
     "docz-rollup": "^1.0.4"
   }
 }

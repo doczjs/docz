@@ -20,10 +20,10 @@
     "tslint": "tslint --project ."
   },
   "dependencies": {
-    "@loadable/component": "^5.7.0",
+    "@loadable/component": "^5.9.0",
     "@reach/router": "^1.2.1",
     "@tippy.js/react": "^2.1.2",
-    "codemirror": "^5.45.0",
+    "codemirror": "^5.46.0",
     "copy-text-to-clipboard": "^2.1.0",
     "docz": "^1.0.4",
     "facepaint": "^1.2.1",

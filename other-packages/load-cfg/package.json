@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@types/find-up": "^2.1.1",
-    "@types/node": "^11.13.4",
+    "@types/node": "^11.13.7",
     "docz-rollup": "^1.0.4"
   }
 }
