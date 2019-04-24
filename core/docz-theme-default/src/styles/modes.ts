@@ -23,6 +23,8 @@ export const light = {
   blockquoteBg: colors.grayExtraLight,
   blockquoteBorder: colors.grayLight,
   blockquoteColor: colors.gray,
+  propsText: colors.gray,
+  propsBg: colors.grayUltraLight,
 }
 
 export const dark = {
@@ -48,4 +50,6 @@ export const dark = {
   blockquoteBg: colors.grayDark,
   blockquoteBorder: colors.gray,
   blockquoteColor: colors.gray,
+  propsText: colors.grayLight,
+  propsBg: colors.dark,
 }
