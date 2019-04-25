@@ -23,7 +23,7 @@
     "@babel/core": "7.4.3",
     "@babel/polyfill": "7.4.3",
     "@babel/runtime": "^7.4.3",
-    "@mdx-js/loader": "^1.0.14",
+    "@mdx-js/loader": "^1.0.15",
     "@sindresorhus/slugify": "^0.9.1",
     "@svgr/webpack": "^4.2.0",
     "acorn": "6.0.5",
