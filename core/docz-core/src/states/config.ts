@@ -46,7 +46,7 @@ const update = async (params: Params, initial: Payload, { config }: Config) => {
   params.setState('config', next)
 }
 
-export const state = (config: Config): State => {
+export const state = (config: Config, dev?: boolean): State => {
   const initial = getInitialConfig(config)
   const glob = config.config || finds('docz')
   const ignored = config.watchIgnore || /(((^|[\/\\])\..+)|(node_modules))/
@@ -64,9 +64,12 @@ export const state = (config: Config): State => {
     start: async params => {
       const fn = async () => update(params, initial, config)
       await update(params, initial, config)
-      watcher.on('add', fn)
-      watcher.on('change', fn)
-      watcher.on('unlink', fn)
+
+      if (dev) {
+        watcher.on('add', fn)
+        watcher.on('change', fn)
+        watcher.on('unlink', fn)
+      }
     },
     close: () => {
       watcher.close()

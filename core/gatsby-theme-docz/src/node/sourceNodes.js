@@ -3,6 +3,9 @@ const fs = require('fs-extra')
 const { Entries, DataServer, states } = require('docz-core')
 const { parseConfig } = require('../utils/parseConfig')
 
+const NODE_ENV = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV
+const IS_DEV = NODE_ENV === 'development'
+
 const digest = str =>
   crypto
     .createHash('md5')
@@ -15,8 +18,11 @@ module.exports = async ({ actions, createNodeId }, opts) => {
   const entries = new Entries(config)
   const dataServer = new DataServer()
 
-  if (config.propsParser) dataServer.register([states.props(config)])
-  dataServer.register([states.config(config), states.entries(entries, config)])
+  if (config.propsParser) dataServer.register([states.props(config, IS_DEV)])
+  dataServer.register([
+    states.config(config, IS_DEV),
+    states.entries(entries, config, IS_DEV),
+  ])
 
   try {
     await dataServer.start()
