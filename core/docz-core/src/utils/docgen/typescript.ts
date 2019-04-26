@@ -179,7 +179,7 @@ const parseFiles = (files: string[], config: Config, tsconfig: string) => {
   }
 
   return files.map(filepath => ({
-    key: filepath,
+    key: path.normalize(filepath),
     value: parser.parseWithProgramProvider(filepath, programProvider),
   }))
 }
