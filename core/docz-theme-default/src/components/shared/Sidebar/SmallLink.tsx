@@ -64,7 +64,8 @@ export const SmallLink: SFC<SmallLinkProps> = ({
   const [isActive, setActive] = useState(false)
 
   useEffect(() => {
-    const currentHash = location.hash && location.hash.slice(1, Infinity)
+    const decodedHash = decodeURI(location.hash)
+    const currentHash = decodedHash && decodedHash.slice(1, Infinity)
     setActive(Boolean(slug === currentHash))
   }, [location])
 
