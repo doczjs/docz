@@ -11,8 +11,9 @@
     "docz"
   ],
   "scripts": {
-    "fix": "run-s fix:*",
-    "fix:prettier": "prettier \"src/**/*.{json,jsx,js}\" --write"
+    "fix": "yarn lint --fix",
+    "lint": "eslint . --ext .js",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.0.15",

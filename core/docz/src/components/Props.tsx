@@ -64,9 +64,9 @@ export type ComponentWithDocGenInfo = ComponentType & {
 }
 
 export interface PropsProps {
-  title?: Node,
-  isRaw?: boolean,
-  isToggle?: boolean,
+  title?: Node
+  isRaw?: boolean
+  isToggle?: boolean
   of: ComponentWithDocGenInfo
 }
 
@@ -91,11 +91,11 @@ export const getPropType = (prop: Prop) => {
 }
 
 export interface PropsComponentProps {
-  title?: Node,
-  isRaw?: boolean,
-  isToggle?: boolean,
+  title?: Node
+  isRaw?: boolean
+  isToggle?: boolean
   props: Record<string, Prop>
-  getPropType(prop: Prop): string,
+  getPropType(prop: Prop): string
 }
 
 export const Props: SFC<PropsProps> = ({

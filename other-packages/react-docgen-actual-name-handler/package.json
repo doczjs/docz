@@ -13,16 +13,16 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development yarn build -w",
     "build": "cross-env NODE_ENV=production rollup -c",
-    "fix": "run-s fix:*",
-    "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" --write",
-    "fix:tslint": "tslint --fix --project .",
-    "tslint": "tslint --project ."
+    "fix": "yarn lint --fix",
+    "lint": "eslint . --ext .ts,.tsx",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "react-docgen": "^4.1.0",
     "recast": "^0.17.5"
   },
   "devDependencies": {
-    "docz-rollup": "^1.0.4"
+    "docz-rollup": "^1.0.4",
+    "eslint-config-docz": "^1.0.4"
   }
 }

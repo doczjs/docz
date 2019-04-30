@@ -27,7 +27,6 @@ const Line = styled.div`
   }
 `
 
-
 const Column = styled.div`
   min-width: 0;
   padding: 2px 15px;
@@ -109,14 +108,10 @@ export const PropsTable: React.SFC<PropsComponentProps> = ({
           <Line key={key}>
             <Content>
               <ColumnName>
-                <PropName>
-                  {key}
-                </PropName>
+                <PropName>{key}</PropName>
               </ColumnName>
               <ColumnType>
-                <PropType>
-                  {getPropType(prop)}
-                </PropType>
+                <PropType>{getPropType(prop)}</PropType>
               </ColumnType>
               <ColumnValue>
                 {prop.defaultValue && (
@@ -135,11 +130,7 @@ export const PropsTable: React.SFC<PropsComponentProps> = ({
                 )}
               </ColumnValue>
             </Content>
-            {prop.description && (
-              <Paragraph>
-                {prop.description}
-              </Paragraph>
-            )}
+            {prop.description && <Paragraph>{prop.description}</Paragraph>}
           </Line>
         )
       })}

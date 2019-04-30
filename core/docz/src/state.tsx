@@ -1,4 +1,3 @@
-// tslint:disable-next-line
 import { create } from './utils/createState'
 import { ComponentType } from 'react'
 
@@ -44,8 +43,8 @@ export interface Config {
   base?: string
 }
 
-export type Entries = Array<{ key: string; value: Entry }>
-export type Props = Array<{ key: string; value: any }>
+export type Entries = { key: string; value: Entry }[]
+export type Props = { key: string; value: any }[]
 export type TransformFn = (config: ThemeConfig) => ThemeConfig
 
 export interface Database {

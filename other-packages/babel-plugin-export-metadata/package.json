@@ -19,8 +19,9 @@
     "package.json"
   ],
   "scripts": {
-    "fix": "run-s fix:*",
-    "fix:prettier": "prettier \"src/**/*.js\" --write",
+    "fix": "yarn lint --fix",
+    "lint": "eslint . --ext .js",
+    "precommit": "lint-staged",
     "test": "jest"
   },
   "dependencies": {

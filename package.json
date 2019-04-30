@@ -19,7 +19,7 @@
     "bs": "lerna bootstrap",
     "packages": "run-s packages:*",
     "packages:fix": "lerna run --parallel fix && echo",
-    "packages:lint": "lerna run --parallel tslint",
+    "packages:lint": "lerna run --parallel lint",
     "packages:build": "lerna run build --ignore docz-example-*",
     "packages:test": "lerna run --parallel test",
     "prerelease": "yarn run packages",
@@ -57,31 +57,11 @@
     "rollup": "^1.10.1",
     "trash-cli": "^2.0.0",
     "ts-jest": "^24.0.2",
-    "tslint": "^5.16.0",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "3.4.5"
+    "typescript": "3.3.4000"
   },
   "workspaces": [
     "core/*",
     "examples/*",
     "other-packages/*"
-  ],
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional",
-      "@commitlint/config-lerna-scopes"
-    ]
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,md,mdx}": [
-      "yarn packages:fix",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn packages:lint",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  }
+  ]
 }

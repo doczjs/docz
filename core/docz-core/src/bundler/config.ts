@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import * as path from 'path'
 import { Configuration } from 'webpack'
 import * as envDotProp from 'env-dot-prop'

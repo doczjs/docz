@@ -30,6 +30,7 @@ export function theme(
       )
     })
 
+    Theme.displayName = WrappedComponent.displayName || 'DoczTheme'
     return Theme
   }
 }

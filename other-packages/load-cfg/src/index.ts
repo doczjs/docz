@@ -49,13 +49,11 @@ export function load<C = any>(
 ): C {
   const filepath = findup.sync(finds(name))
   const file = filepath ? loadFile(filepath, noCache) : {}
-  const next = defaultConfig
+  return defaultConfig
     ? deep
       ? merge(defaultConfig, file)
       : { ...defaultConfig, ...file }
     : file
-  // tslint:disable
-  return next
 }
 
 export function loadFrom<C = any>(
@@ -65,8 +63,6 @@ export function loadFrom<C = any>(
   deep?: boolean
 ): C {
   const file = loadFile(filePath, noCache)
-
-  // tslint:disable
   return defaultConfig
     ? deep
       ? merge(defaultConfig, file)

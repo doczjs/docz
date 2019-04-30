@@ -8,8 +8,9 @@
     "package.json"
   ],
   "scripts": {
-    "fix": "run-s fix:*",
-    "fix:prettier": "prettier \"src/**/*.{ts,tsx,md,mdx,js,jsx,json}\" --write"
+    "fix": "yarn lint --fix",
+    "lint": "eslint . --ext .js",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "@pedronauck/rollup-plugin-typescript2": "0.18.3",

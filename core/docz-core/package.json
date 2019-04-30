@@ -14,10 +14,9 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development yarn build -w",
     "build": "cross-env NODE_ENV=production rollup -c",
-    "fix": "run-s fix:*",
-    "fix:prettier": "prettier \"src/**/*.{ts,tsx,md,mdx,js,jsx,json}\" --write",
-    "fix:tslint": "tslint --fix --project .",
-    "tslint": "tslint --project ."
+    "fix": "yarn lint --fix",
+    "lint": "eslint . --ext .ts,.tsx",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "@babel/core": "7.4.3",
@@ -70,7 +69,7 @@
     "terser-webpack-plugin": "^1.2.3",
     "thread-loader": "^2.1.2",
     "titleize": "^2.1.0",
-    "typescript": "3.4.5",
+    "typescript": "3.3.4000",
     "url-loader": "^1.1.2",
     "webpack": "^4.30.0",
     "webpack-bundle-analyzer": "^3.3.2",
