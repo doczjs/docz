@@ -45,9 +45,9 @@
   "devDependencies": {
     "@types/loadable__component": "^5.6.0",
     "@types/lodash": "^4.14.123",
-    "@types/node": "^11.13.7",
+    "@types/node": "^11.13.8",
     "@types/reach__router": "^1.2.4",
-    "@types/react": "^16.8.14",
+    "@types/react": "^16.8.15",
     "docz-rollup": "^1.0.4"
   }
 }

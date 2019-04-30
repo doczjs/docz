@@ -25,9 +25,9 @@
     "eslint-plugin-import": "2.17.2",
     "eslint-plugin-jsx-a11y": "6.2.1",
     "eslint-plugin-react": "7.x",
-    "gatsby": "^2.3.30",
-    "gatsby-mdx": "^0.6.2",
-    "gatsby-plugin-eslint": "^2.0.4",
+    "gatsby": "^2.3.34",
+    "gatsby-mdx": "^0.6.3",
+    "gatsby-plugin-eslint": "^2.0.5",
     "gatsby-theme-docz": "^1.0.4"
   }
 }
