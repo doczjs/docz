@@ -113,7 +113,9 @@ export const Props: SFC<PropsProps> = ({
   const found =
     stateProps &&
     stateProps.length > 0 &&
-    stateProps.find(item => filename ? item.key === filename : item.key.includes(`${componentName}.`))
+    stateProps.find(item =>
+      filename ? item.key === filename : item.key.includes(`${componentName}.`)
+    )
 
   const value = get('value', found) || []
   const firstDefinition = first(value)

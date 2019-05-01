@@ -26,7 +26,7 @@ export type ThemeConfig = Record<string, any>
 export interface DocgenConfig {
   handlers?: any[]
   resolver?: (ast: any, recast: any) => any
-  propFilter?: (prop: any) => boolean,
+  propFilter?: (prop: any) => boolean
   searchPath: string
 }
 

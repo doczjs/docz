@@ -9,8 +9,18 @@ import { Config } from '../config/argv'
 import { docgen } from '../utils/docgen'
 
 const getPattern = (config: Config) => {
-  const { typescript: ts, ignore, src: source, docgenConfig: docgenConfig } = config
-  const src = relative(paths.root, docgenConfig.searchPath ? docgenConfig.searchPath : source)
+  const {
+    ignore,
+    src: source,
+    typescript: ts,
+    docgenConfig: docgenConfig,
+  } = config
+
+  const src = relative(
+    paths.root,
+    docgenConfig.searchPath ? docgenConfig.searchPath : source
+  )
+
   return ignore
     .map(entry => `!**/${entry}`)
     .concat([
