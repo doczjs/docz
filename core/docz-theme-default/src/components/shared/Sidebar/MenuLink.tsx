@@ -143,3 +143,5 @@ export const MenuLink = React.forwardRef<any, LinkProps>(
     )
   }
 )
+
+MenuLink.displayName = 'MenuLink'

@@ -16,11 +16,11 @@ const Wrapper = styled.div`
 
 const Title = styled.div`
   display: flex;
-  border-bottom: 1px solid ${get('colors.sidebarBg')};
+  border-bottom: 1px solid ${get('colors.propsBg')};
 `
 
 const PropName = styled.span`
-  background: ${get('colors.sidebarBg')};
+  background: ${get('colors.propsBg')};
   color: ${get('colors.primary')};
   padding: 5px 10px;
   border-radius: 4px 4px 0 0;
@@ -33,8 +33,8 @@ const PropName = styled.span`
 `
 
 const PropType = styled(PropName)`
-  color: ${get('colors.blockquoteColor')};
-  background: ${get('colors.sidebarBg')};
+  color: ${get('colors.propsText')};
+  background: ${get('colors.propsBg')};
   font-weight: 400;
 `
 
@@ -48,11 +48,10 @@ const PropRequired = styled(PropType)`
   flex: 1;
   text-align: right;
   background: transparent;
-  color: ${get('colors.blockquoteColor')};
   opacity: 0.5;
 `
 
-export const Props: React.SFC<PropsComponentProps> = ({
+export const PropsRaw: React.SFC<PropsComponentProps> = ({
   props,
   getPropType,
 }) => {
@@ -61,7 +60,7 @@ export const Props: React.SFC<PropsComponentProps> = ({
   const Paragraph = useMemo(
     () => styled(components.P || 'p')`
       font-size: 16px;
-      color: ${get('colors.sidebarTex')};
+      color: ${get('colors.sidebarText')};
     `,
     []
   )

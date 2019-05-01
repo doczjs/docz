@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import * as path from 'path'
 import { Configuration } from 'webpack'
 import * as envDotProp from 'env-dot-prop'
@@ -140,10 +141,7 @@ export const createConfig = (args: Args, env: Env) => async (hooks: Hooks) => {
 
   config.when(debug, cfg => plugins.analyzer(cfg))
   config.when(!isProd, cfg => plugins.watchNodeModulesPlugin(cfg))
-  config.when(!debug && !isProd, cfg => {
-    plugins.webpackBar(cfg, args)
-    plugins.friendlyErrors(cfg, args)
-  })
+  config.when(!debug && !isProd, cfg => plugins.webpackBar(cfg, args))
 
   /**
    * typescript setup

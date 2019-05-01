@@ -158,7 +158,9 @@ export const Playground: SFC<PlaygroundProps> = ({
         topLeft: false,
       },
       handleComponent: {
+        // eslint-disable-next-line
         right: () => <Handle full={fullscreen} horizontal />,
+        // eslint-disable-next-line
         bottom: () => <Handle full={fullscreen} horizontal={false} />,
       },
       onResizeStop: (e: any, direction: any, ref: any, d: any) => {

@@ -20,7 +20,8 @@ export interface RoutesProps {
 const goToHash = ({ location }: HistoryListenerParameter) => {
   setTimeout(() => {
     if (location && location.hash) {
-      const id: string = location.hash.substring(1)
+      const decodedHash = decodeURI(location.hash)
+      const id: string = decodedHash.substring(1)
       const el: HTMLElement | null = document.getElementById(id)
       if (el) el.scrollIntoView()
     }

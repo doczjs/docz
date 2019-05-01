@@ -1,7 +1,6 @@
 import Config from 'webpack-chain'
 import { IgnorePlugin, HotModuleReplacementPlugin } from 'webpack'
 import webpackBarPlugin from 'webpackbar'
-import friendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
 import { minify } from 'html-minifier'
 import miniHtmlWebpack from 'mini-html-webpack-plugin'
 import manifestPlugin from 'webpack-manifest-plugin'
@@ -33,21 +32,6 @@ export const analyzer = (config: Config) => {
       generateStatsFile: true,
       openAnalyzer: false,
       analyzerMode: 'static',
-    },
-  ])
-}
-
-export const friendlyErrors = (config: Config, args: Args) => {
-  const { host, port, clearConsole } = args
-  const isLocalhost = host === '127.0.0.1' || host === '0.0.0.0'
-  const hostname = isLocalhost ? 'localhost' : host
-
-  config.plugin('friendly-errors').use(friendlyErrorsPlugin, [
-    {
-      clearConsole,
-      compilationSuccessInfo: {
-        messages: [`Your application is running at http://${hostname}:${port}`],
-      },
     },
   ])
 }

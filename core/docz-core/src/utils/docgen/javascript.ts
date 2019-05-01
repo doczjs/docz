@@ -1,4 +1,5 @@
 import * as fs from 'fs-extra'
+import * as path from 'path'
 import logger from 'signale'
 import externalProptypesHandler from 'react-docgen-external-proptypes-handler'
 import actualNameHandler from 'react-docgen-actual-name-handler'
@@ -25,7 +26,7 @@ export const jsParser = (files: string[], config: Config) => {
     try {
       const code = fs.readFileSync(filepath, 'utf-8')
       const props = reactDocgen.parse(code, resolver, handlers)
-      return { key: filepath, value: props }
+      return { key: path.normalize(filepath), value: props }
     } catch (err) {
       if (config.debug) throwError(err)
       return null

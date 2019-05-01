@@ -11,22 +11,23 @@
     "docz"
   ],
   "scripts": {
-    "fix": "run-s fix:*",
-    "fix:prettier": "prettier \"src/**/*.{json,jsx,js}\" --write"
+    "fix": "yarn lint --fix",
+    "lint": "eslint . --ext .js",
+    "precommit": "lint-staged"
   },
   "dependencies": {
-    "@mdx-js/mdx": "^1.0.10",
-    "@mdx-js/react": "^1.0.6",
+    "@mdx-js/mdx": "^1.0.16",
+    "@mdx-js/react": "^1.0.16",
     "babel-plugin-export-metadata": "^1.0.4",
     "change-case": "^3.1.0",
-    "chokidar": "^2.1.5",
+    "chokidar": "^3.0.0",
     "docz": "^1.0.4",
     "docz-core": "^1.0.4",
     "docz-theme-default": "^1.0.4",
     "docz-utils": "^1.0.4",
     "fs-extra": "^7.0.1",
-    "gatsby": "^2.3.23",
-    "gatsby-mdx": "^0.6.2",
+    "gatsby": "^2.3.34",
+    "gatsby-mdx": "^0.6.3",
     "gatsby-plugin-compile-es6-packages": "^1.1.0",
     "gatsby-plugin-manifest": "^2.0.29",
     "gatsby-plugin-react-helmet": "^3.0.12",
@@ -36,7 +37,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-helmet": "^5.2.0",
+    "react-helmet": "^5.2.1",
     "rehype-docz": "^1.0.4",
     "rehype-slug": "^2.0.2",
     "remark-docz": "^1.0.4",
@@ -47,10 +48,11 @@
   "devDependencies": {
     "babel-eslint": "10.0.1",
     "eslint": "^5.16.0",
-    "eslint-config-react-app": "^3.0.8",
+    "eslint-config-react-app": "^4.0.0",
     "eslint-plugin-flowtype": "3.6.1",
-    "eslint-plugin-import": "2.17.1",
+    "eslint-plugin-import": "2.17.2",
     "eslint-plugin-jsx-a11y": "6.2.1",
-    "eslint-plugin-react": "7.x"
+    "eslint-plugin-react": "7.x",
+    "eslint-plugin-react-hooks": "^1.6.0"
   }
 }

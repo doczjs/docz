@@ -8,19 +8,20 @@
     "package.json"
   ],
   "scripts": {
-    "fix": "run-s fix:*",
-    "fix:prettier": "prettier \"src/**/*.{ts,tsx,md,mdx,js,jsx,json}\" --write"
+    "fix": "yarn lint --fix",
+    "lint": "eslint . --ext .js",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "@pedronauck/rollup-plugin-typescript2": "0.18.3",
     "chalk": "^2.4.2",
-    "figures": "2.0.0",
+    "figures": "3.0.0",
     "filesize": "^4.1.2",
     "fs-extra": "^7.0.1",
     "gzip-size": "^5.1.0",
     "lodash": "^4.17.11",
     "log-update": "^3.2.0",
-    "rollup": "^1.10.0",
+    "rollup": "^1.10.1",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-peer-deps-external": "^2.2.0"
   }

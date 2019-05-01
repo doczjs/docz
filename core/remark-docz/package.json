@@ -14,10 +14,9 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development yarn build -w",
     "build": "cross-env NODE_ENV=production rollup -c",
-    "fix": "run-s fix:*",
-    "fix:prettier": "prettier \"src/**/*.{ts,tsx,md,mdx,js,jsx,json}\" --write",
-    "fix:tslint": "tslint --fix --project .",
-    "tslint": "tslint --project .",
+    "fix": "yarn lint --fix",
+    "lint": "eslint . --ext .ts,.tsx",
+    "precommit": "lint-staged",
     "test": "jest"
   },
   "dependencies": {
@@ -25,7 +24,7 @@
     "unist-util-visit": "^1.4.0"
   },
   "devDependencies": {
-    "@mdx-js/mdx": "^1.0.10",
+    "@mdx-js/mdx": "^1.0.16",
     "docz-rollup": "^1.0.4"
   }
 }

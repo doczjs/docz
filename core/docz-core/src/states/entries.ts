@@ -23,7 +23,11 @@ const updateEntries = (entries: Entries) => async (p: Params) => {
   }
 }
 
-export const state = (entries: Entries, config: Config): State => {
+export const state = (
+  entries: Entries,
+  config: Config,
+  dev?: boolean
+): State => {
   const src = path.relative(paths.root, config.src)
   const files = Array.isArray(config.files)
     ? config.files.map(filePath => path.join(src, filePath))
@@ -42,16 +46,18 @@ export const state = (entries: Entries, config: Config): State => {
     id: 'entries',
     start: async params => {
       const update = updateEntries(entries)
-
       await update(params)
-      watcher.on('add', async () => update(params))
-      watcher.on('change', async () => update(params))
-      watcher.on('unlink', async () => update(params))
-      watcher.on('raw', async (event: string, path: string, details: any) => {
-        if (details.event === 'moved' && details.type === 'directory') {
-          await update(params)
-        }
-      })
+
+      if (dev) {
+        watcher.on('add', async () => update(params))
+        watcher.on('change', async () => update(params))
+        watcher.on('unlink', async () => update(params))
+        watcher.on('raw', async (event: string, path: string, details: any) => {
+          if (details.event === 'moved' && details.type === 'directory') {
+            await update(params)
+          }
+        })
+      }
     },
     close: () => {
       watcher.close()
