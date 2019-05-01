@@ -1,8 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import { get } from '@utils/theme'
-import { mq } from '@styles/responsive'
+import { get } from '~utils/theme'
+import { mq } from '~styles/responsive'
 
 const Wrapper = styled.div`
   overflow-x: auto;

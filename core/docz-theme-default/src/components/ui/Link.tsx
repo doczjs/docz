@@ -3,7 +3,7 @@ import { useMemo, SFC } from 'react'
 import { useConfig, useDocs } from 'docz'
 import styled from 'styled-components'
 
-import { get } from '@utils/theme'
+import { get } from '~utils/theme'
 
 export const LinkStyled = styled.a<any>`
   &,

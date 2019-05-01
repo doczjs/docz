@@ -1,7 +1,6 @@
 import { config } from 'docz-rollup'
 
 export default config({
-  outputDir: 'lib',
   input: [
     'src/ast.ts',
     'src/codesandbox.ts',
@@ -12,4 +11,7 @@ export default config({
     'src/jsx.ts',
     'src/mdast.ts',
   ],
+  output: {
+    dir: 'lib',
+  },
 })

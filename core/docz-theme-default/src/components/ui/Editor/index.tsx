@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import getter from 'lodash/get'
 
 import { ClipboardAction } from './elements'
-import { get } from '@utils/theme'
+import { get } from '~utils/theme'
 
 const CodeMirror = loadable(() => import('../CodeMirror'))
 

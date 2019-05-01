@@ -1,5 +1,5 @@
 import { config } from 'docz-rollup'
 
 export default config({
-  input: 'src/index.ts'
+  input: 'src/index.ts',
 })

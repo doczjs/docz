@@ -8,14 +8,14 @@ import rgba from 'polished/lib/color/rgba'
 import Resizable from 're-resizable'
 import getter from 'lodash/get'
 
-import { Storage } from '@utils/storage'
-import { get as themeGet } from '@utils/theme'
+import { Storage } from '~utils/storage'
+import { get as themeGet } from '~utils/theme'
 
 import { ResizeBar } from './ResizeBar'
 import { ActionsBar } from './ActionsBar'
 import { Handle, HANDLE_SIZE } from './Handle'
 import { Editor as PreBase } from '../Editor'
-import { useHotkeys } from '@utils/hotkeys'
+import { useHotkeys } from '~utils/hotkeys'
 
 interface OverlayProps {
   full: boolean

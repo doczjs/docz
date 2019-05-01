@@ -7,7 +7,7 @@ import copy from 'copy-text-to-clipboard'
 import styled from 'styled-components'
 
 import { ButtonSwap } from './ButtonSwap'
-import { get } from '@utils/theme'
+import { get } from '~utils/theme'
 
 const textColor = get('colors.text', '#2D3747')
 

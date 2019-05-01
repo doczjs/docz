@@ -6,7 +6,7 @@ import Monitor from 'react-feather/dist/icons/monitor'
 import styled from 'styled-components'
 
 import { ActionButton } from '../Editor/elements'
-import { get } from '@utils/theme'
+import { get } from '~utils/theme'
 
 const Wrapper = styled.div`
   position: absolute;

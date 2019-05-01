@@ -9,8 +9,8 @@ import { Menu } from './Menu'
 import { Docz } from './Docz'
 import { Hamburger } from './Hamburger'
 
-import { get } from '@utils/theme'
-import { mq, breakpoints } from '@styles/responsive'
+import { get } from '~utils/theme'
+import { mq, breakpoints } from '~styles/responsive'
 
 interface WrapperProps {
   opened: boolean

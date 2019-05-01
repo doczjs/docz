@@ -4,7 +4,7 @@ import { MenuItem, useConfig, usePrevious } from 'docz'
 import styled, { css } from 'styled-components'
 
 import { MenuHeadings } from './MenuHeadings'
-import { get } from '@utils/theme'
+import { get } from '~utils/theme'
 
 interface WrapperProps {
   active: boolean

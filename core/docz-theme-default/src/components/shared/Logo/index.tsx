@@ -3,8 +3,8 @@ import { SFC } from 'react'
 import { useConfig } from 'docz'
 import styled from 'styled-components'
 
-import { breakpoints } from '@styles/responsive'
-import { get } from '@utils/theme'
+import { breakpoints } from '~styles/responsive'
+import { get } from '~utils/theme'
 
 interface WrapperProps {
   showBg: boolean

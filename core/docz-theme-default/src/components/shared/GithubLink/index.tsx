@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { SFC } from 'react'
-import { get } from '@utils/theme'
+import { get } from '~utils/theme'
 import styled, { keyframes } from 'styled-components'
 
 const octocatWave = keyframes`

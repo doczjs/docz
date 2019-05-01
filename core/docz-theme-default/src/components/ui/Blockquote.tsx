@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { get } from '@utils/theme'
+import { get } from '~utils/theme'
 
 export const Blockquote = styled.blockquote`
   background: ${get('colors.blockquoteBg')};

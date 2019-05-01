@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import { Sidebar, Main } from '../shared'
-import { get } from '@utils/theme'
+import { get } from '~utils/theme'
 
 const Wrapper = styled.div`
   display: flex;

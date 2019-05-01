@@ -2,7 +2,7 @@ import * as React from 'react'
 import { css, keyframes } from 'styled-components'
 import styled from 'styled-components'
 
-import { get } from '@utils/theme'
+import { get } from '~utils/theme'
 
 const Wrapper = styled.div`
   display: flex;

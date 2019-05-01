@@ -2,8 +2,8 @@ import * as React from 'react'
 import { SFC } from 'react'
 import styled from 'styled-components'
 
-import { get } from '@utils/theme'
-import { mq } from '@styles/responsive'
+import { get } from '~utils/theme'
+import { mq } from '~styles/responsive'
 
 interface OpenProps {
   opened: boolean

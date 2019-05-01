@@ -3,7 +3,7 @@ import { SFC } from 'react'
 import styled from 'styled-components'
 import SearchIcon from 'react-feather/dist/icons/search'
 
-import { get } from '@utils/theme'
+import { get } from '~utils/theme'
 
 const sidebarBorder = get('colors.sidebarBorder', '#CED4DE')
 const sidebarText = get('colors.sidebarText', '#13161F')

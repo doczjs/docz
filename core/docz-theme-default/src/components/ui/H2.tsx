@@ -4,7 +4,7 @@ import { useConfig } from 'docz'
 import styled from 'styled-components'
 import Hash from 'react-feather/dist/icons/hash'
 
-import { get } from '@utils/theme'
+import { get } from '~utils/theme'
 
 const Icon = styled(Hash)`
   position: absolute;

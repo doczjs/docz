@@ -13,7 +13,6 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@pedronauck/rollup-plugin-typescript2": "0.18.3",
     "chalk": "^2.4.2",
     "figures": "3.0.0",
     "filesize": "^4.1.2",
@@ -21,8 +20,15 @@
     "gzip-size": "^5.1.0",
     "lodash": "^4.17.11",
     "log-update": "^3.2.0",
-    "rollup": "^1.10.1",
+    "rollup": "^1.10.0",
+    "rollup-plugin-alias": "^1.5.1",
     "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-peer-deps-external": "^2.2.0"
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^4.2.3",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-progress": "^1.1.1",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-typescript2": "^0.21.0"
   }
 }

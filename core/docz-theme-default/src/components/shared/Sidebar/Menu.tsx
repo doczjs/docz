@@ -5,7 +5,7 @@ import ChevronDown from 'react-feather/dist/icons/chevron-down'
 import styled from 'styled-components'
 
 import { MenuLink } from './MenuLink'
-import { get } from '@utils/theme'
+import { get } from '~utils/theme'
 
 const Wrapper = styled.div`
   display: flex;

@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { PropsComponentProps, useComponents } from 'docz'
 import styled from 'styled-components'
 
-import { get } from '@utils/theme'
+import { get } from '~utils/theme'
 
 const breakpoint = '600px'
 

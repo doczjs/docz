@@ -3,7 +3,7 @@ import { SFC, useState, useEffect } from 'react'
 import { WindowLocation } from '@reach/router'
 import styled from 'styled-components'
 
-import { get as themeGet } from '@utils/theme'
+import { get as themeGet } from '~utils/theme'
 
 const sidebarPrimary = themeGet('colors.sidebarPrimary')
 const primaryColor = themeGet('colors.primary')

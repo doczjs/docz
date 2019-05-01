@@ -2,7 +2,7 @@ import lighten from 'polished/lib/color/lighten'
 import darken from 'polished/lib/color/darken'
 import styled, { css } from 'styled-components'
 
-import { get } from '@utils/theme'
+import { get } from '~utils/theme'
 
 export const HANDLE_SIZE = '20px'
 

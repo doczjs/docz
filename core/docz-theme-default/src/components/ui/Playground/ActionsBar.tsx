@@ -9,7 +9,7 @@ import Refresh from 'react-feather/dist/icons/refresh-cw'
 import Code from 'react-feather/dist/icons/code'
 import styled, { css } from 'styled-components'
 
-import { get as themeGet } from '@utils/theme'
+import { get as themeGet } from '~utils/theme'
 import { CodeSandboxLogo } from './CodeSandboxLogo'
 import { ActionButton, ClipboardAction } from '../Editor/elements'
 

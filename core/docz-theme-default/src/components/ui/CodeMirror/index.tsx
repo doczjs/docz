@@ -5,7 +5,7 @@ import { Controlled as BaseCodeMirror } from 'react-codemirror2'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import styled from 'styled-components'
 
-import { get } from '@utils/theme'
+import { get } from '~utils/theme'
 
 import { ScrollbarStyles } from './ps-scrollbar'
 import * as themes from './themes'

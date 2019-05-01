@@ -1,5 +1,5 @@
 import { css } from 'styled-components'
-import { get } from '@utils/theme'
+import { get } from '~utils/theme'
 
 export const styles = {
   body: css`

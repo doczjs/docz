@@ -6,8 +6,8 @@ import styled from 'styled-components'
 
 import { ButtonLink } from './Button'
 import { GithubLink, Sidebar, Main } from '../shared'
-import { get } from '@utils/theme'
-import { mq } from '@styles/responsive'
+import { get } from '~utils/theme'
+import { mq } from '~styles/responsive'
 
 const Wrapper = styled.div`
   flex: 1;
