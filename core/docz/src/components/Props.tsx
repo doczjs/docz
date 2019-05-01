@@ -108,7 +108,8 @@ export const Props: SFC<PropsProps> = ({
   const { props: stateProps } = React.useContext(doczState.context)
   const PropsComponent = components.props
   const filename = get('__filemeta.filename', component)
-  const componentName = get('__filemeta.name', component) || component.displayName || component.name
+  const filemetaName = get('__filemeta.name', component)
+  const componentName = filemetaName || component.displayName || component.name
   const found =
     stateProps &&
     stateProps.length > 0 &&
