@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/pedronauck/docz/compare/v1.0.4...v1.1.0) (2019-05-01)
+
+
+### Bug Fixes
+
+* correct props loading ([#836](https://github.com/pedronauck/docz/issues/836)) ([ed85f14](https://github.com/pedronauck/docz/commit/ed85f14))
+* **docz:** non latin menu headings ([#840](https://github.com/pedronauck/docz/issues/840)) ([80b186c](https://github.com/pedronauck/docz/commit/80b186c))
+* **docz-core:** prevent watch in production ([d673262](https://github.com/pedronauck/docz/commit/d673262))
+
+
+### Features
+
+* **docz-core:** extended path configuration for docgen ([#846](https://github.com/pedronauck/docz/issues/846)) ([aa96739](https://github.com/pedronauck/docz/commit/aa96739))
+* **docz-theme-default:** add options to the props component ([#823](https://github.com/pedronauck/docz/issues/823)) ([9edaac8](https://github.com/pedronauck/docz/commit/9edaac8))
+
+
+
+
+
 ## [1.0.4](https://github.com/pedronauck/docz/compare/v1.0.3...v1.0.4) (2019-04-18)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "load-cfg",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Method that can load project configurations based",
   "license": "MIT",
   "main": "dist/index.js",
@@ -28,6 +28,6 @@
   "devDependencies": {
     "@types/find-up": "^2.1.1",
     "@types/node": "^11.13.8",
-    "docz-rollup": "^1.0.4"
+    "docz-rollup": "^1.1.0"
   }
 }

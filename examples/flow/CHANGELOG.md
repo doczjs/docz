@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/pedronauck/docz/compare/v1.0.4...v1.1.0) (2019-05-01)
+
+**Note:** Version bump only for package docz-example-flow
+
+
+
+
+
 ## [1.0.4](https://github.com/pedronauck/docz/compare/v1.0.3...v1.0.4) (2019-04-18)
 
 **Note:** Version bump only for package docz-example-flow

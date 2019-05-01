@@ -1,6 +1,6 @@
 {
   "name": "docz-rollup",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "license": "MIT",
   "main": "src/index.js",
   "files": [
@@ -26,9 +26,9 @@
     "rollup-plugin-commonjs": "^9.3.4",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^4.2.3",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-progress": "^1.1.1",
-    "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-typescript2": "^0.21.0"
   }
 }

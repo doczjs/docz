@@ -1,6 +1,6 @@
 {
   "name": "docz-theme-default",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "The default theme of docz",
   "license": "MIT",
   "main": "dist/index.js",
@@ -24,7 +24,7 @@
     "@tippy.js/react": "^2.1.2",
     "codemirror": "^5.46.0",
     "copy-text-to-clipboard": "^2.1.0",
-    "docz": "^1.0.4",
+    "docz": "^1.1.0",
     "facepaint": "^1.2.1",
     "hotkeys-js": "^3.6.3",
     "lodash": "^4.17.11",
@@ -50,6 +50,6 @@
     "@types/styled-components": "^4.1.14",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-styled-components": "^1.10.0",
-    "docz-rollup": "^1.0.4"
+    "docz-rollup": "^1.1.0"
   }
 }
