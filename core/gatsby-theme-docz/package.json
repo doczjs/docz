@@ -16,8 +16,8 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@mdx-js/mdx": "^1.0.15",
-    "@mdx-js/react": "^1.0.15",
+    "@mdx-js/mdx": "^1.0.16",
+    "@mdx-js/react": "^1.0.16",
     "babel-plugin-export-metadata": "^1.0.4",
     "change-case": "^3.1.0",
     "chokidar": "^3.0.0",
@@ -37,7 +37,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-helmet": "^5.2.0",
+    "react-helmet": "^5.2.1",
     "rehype-docz": "^1.0.4",
     "rehype-slug": "^2.0.2",
     "remark-docz": "^1.0.4",

@@ -2165,19 +2165,19 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
-"@mdx-js/loader@^1.0.15":
-  version "1.0.15"
-  resolved "https://registry.npmjs.org/@mdx-js/loader/-/loader-1.0.15.tgz#6f8cce7f9be1ad7d4cb8b7b116c68d9cbdb1ad1e"
-  integrity sha512-fCNZ6WkD0bMV3WK0tPOCza6d0rGOzJ/NokcxgaH9u0YeWGO65jh321t0HELItMc7MQ8y5RvASF0hWHiU0jletg==
+"@mdx-js/loader@^1.0.16":
+  version "1.0.16"
+  resolved "https://registry.npmjs.org/@mdx-js/loader/-/loader-1.0.16.tgz#e72b3a9b422481747df2b990f91f8a434fe5e9c1"
+  integrity sha512-KHfhPEThHAkiUYDl+fRl2imd8iQoaBWqd6dOEOHirT86WGSX/oagtuOGERuM/3nl5tPGFnlzs7ylk8m6VHLWbQ==
   dependencies:
-    "@mdx-js/mdx" "^1.0.15"
-    "@mdx-js/react" "^1.0.15"
+    "@mdx-js/mdx" "^1.0.16"
+    "@mdx-js/react" "^1.0.16"
     loader-utils "^1.1.0"
 
-"@mdx-js/mdx@^1.0.15":
-  version "1.0.15"
-  resolved "https://registry.npmjs.org/@mdx-js/mdx/-/mdx-1.0.15.tgz#a78c084f73203e6062797ca2337de133f2f3ec29"
-  integrity sha512-7lbd2RS0s5TJvytPTbJ0YQqIkJokmggcla3hdOYUHJq2O6eG/IW6qNwf21IWEwNzRbI8IbWM6FflKEopYAPL+w==
+"@mdx-js/mdx@^1.0.16":
+  version "1.0.16"
+  resolved "https://registry.npmjs.org/@mdx-js/mdx/-/mdx-1.0.16.tgz#cfeca91a70b37bc5bfcf6f8e94dbf16048f1531e"
+  integrity sha512-d4YD7utmW850UVQdb4GjD6MRnRlB5NspheS6x48PiewuW7DuoNPTEnQ+ZjJYzZg5dWRy52yWtaZvDj39a7DMgg==
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-syntax-jsx" "^7.2.0"
@@ -2195,10 +2195,10 @@
     unist-builder "^1.0.1"
     unist-util-visit "^1.3.0"
 
-"@mdx-js/react@^1.0.15":
-  version "1.0.15"
-  resolved "https://registry.npmjs.org/@mdx-js/react/-/react-1.0.15.tgz#1b93bb233ed56e85b8dd1c537d09ca9ae3d7ffbc"
-  integrity sha512-JMiy65fmgQxju7DFwUoysZktFnLcN3jUk5Vfis/b/jxfvZJqMRz1VpUGw5bFBrOZeefoOJ+uZQV5h+Zu4K8EOQ==
+"@mdx-js/react@^1.0.16":
+  version "1.0.16"
+  resolved "https://registry.npmjs.org/@mdx-js/react/-/react-1.0.16.tgz#414c3fce49493a4c60e5590cfc0a2a07efc19f38"
+  integrity sha512-HJJO8LYogt9UT4TP3+TVeokMj0lgwCONKlcOfr7VMb38Z6DDE3Ydvi+M3iScUea2DfifS4kGztgJ7zH6HXynTw==
 
 "@mikaelkristiansson/domready@^1.0.9":
   version "1.0.9"
@@ -14175,19 +14175,24 @@ react-error-overlay@^5.1.5:
   resolved "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-5.1.5.tgz#884530fd055476c764eaa8ab13b8ecf1f57bbf2c"
   integrity sha512-O9JRum1Zq/qCPFH5qVEvDDrVun8Jv9vbHtZXCR1EuRj9sKg1xJTlHxBzU6AkCzpvxRLuiY4OKImy3cDLQ+UTdg==
 
+react-fast-compare@^2.0.2:
+  version "2.0.4"
+  resolved "https://registry.npmjs.org/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
+  integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
+
 react-feather@^1.1.6:
   version "1.1.6"
   resolved "https://registry.npmjs.org/react-feather/-/react-feather-1.1.6.tgz#2a547e3d5cd5e383d3da0128d593cbdb3c1b32f7"
   integrity sha512-iCofWhTjX+vQwvDmg7o6vg0XrUg1c41yBDZG+l83nz1FiCsleJoUgd3O+kHpOeWMXuPrRIFfCixvcqyOLGOgIg==
 
-react-helmet@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.npmjs.org/react-helmet/-/react-helmet-5.2.0.tgz#a81811df21313a6d55c5f058c4aeba5d6f3d97a7"
-  integrity sha1-qBgR3yExOm1VxfBYxK66XW89l6c=
+react-helmet@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.npmjs.org/react-helmet/-/react-helmet-5.2.1.tgz#16a7192fdd09951f8e0fe22ffccbf9bb3e591ffa"
+  integrity sha512-CnwD822LU8NDBnjCpZ4ySh8L6HYyngViTZLfBBb3NjtrpN8m49clH8hidHouq20I51Y6TpCTISCBbqiY5GamwA==
   dependencies:
-    deep-equal "^1.0.1"
     object-assign "^4.1.1"
     prop-types "^15.5.4"
+    react-fast-compare "^2.0.2"
     react-side-effect "^1.1.0"
 
 react-hot-loader@^4.6.2, react-hot-loader@^4.8.4:
