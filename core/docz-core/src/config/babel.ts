@@ -31,7 +31,12 @@ export const getBabelConfig = async (
   ]
 
   const defaultPlugins = [
-    require.resolve('babel-plugin-export-metadata'),
+    [
+      require.resolve('babel-plugin-export-metadata'),
+      {
+        notUseSpecifiers: args.notUseSpecifiers,
+      },
+    ],
     [
       require.resolve('babel-plugin-named-asset-import'),
       {
