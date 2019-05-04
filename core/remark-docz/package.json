@@ -20,6 +20,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "@babel/generator": "^7.4.0",
+    "@babel/types": "^7.4.0",
     "unist-util-remove": "^1.0.1",
     "unist-util-visit": "^1.4.0"
   },
