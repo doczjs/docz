@@ -12,10 +12,16 @@
 </p>
 
 <p align="center">
-  <img src="https://badgen.net/npm/v/docz" alt="">
-  <img src="https://badgen.net/badge/license/MIT/blue" alt="">
-  <img src="https://badgen.net/npm/dt/docz" alt="">
-  <a href="http://feedback.docz.site/roadmap">
+  <a href="https://www.npmjs.com/package/docz" target="_blank">
+    <img src="https://badgen.net/npm/v/docz" alt="">
+  </>
+  <a href="LICENSE.md" target="_blank">
+    <img src="https://badgen.net/badge/license/MIT/blue" alt="">
+  </a>
+  <a href="https://www.npmjs.com/package/docz" target="_blank">
+    <img src="https://badgen.net/npm/dt/docz" alt="">
+  </a>
+  <a href="http://feedback.docz.site/roadmap" target="_blank">
     <img src="https://img.shields.io/badge/check-our%20roadmap-5362F5.svg" alt="Chat">
   </a>
 </p>
