@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/pedronauck/docz/compare/v1.1.0...v1.2.0) (2019-05-08)
+
+
+### Features
+
+* **docz-core:** add config docgen ts resolver ([#848](https://github.com/pedronauck/docz/issues/848)) ([256b600](https://github.com/pedronauck/docz/commit/256b600))
+* **docz-core:** add config not use specifiers ([#849](https://github.com/pedronauck/docz/issues/849)) ([d8595a9](https://github.com/pedronauck/docz/commit/d8595a9))
+* **docz-core:** add serve command ([#855](https://github.com/pedronauck/docz/issues/855)) ([73311bd](https://github.com/pedronauck/docz/commit/73311bd))
+
+
+
+
+
 # [1.1.0](https://github.com/pedronauck/docz/compare/v1.0.4...v1.1.0) (2019-05-01)
 
 

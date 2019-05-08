@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/pedronauck/docz/compare/v1.1.0...v1.2.0) (2019-05-08)
+
+
+### Bug Fixes
+
+* **docz-theme-default:** allow use of link component in ssr ([#854](https://github.com/pedronauck/docz/issues/854)) ([90c27e0](https://github.com/pedronauck/docz/commit/90c27e0)), closes [#832](https://github.com/pedronauck/docz/issues/832)
+* **docz-theme-default:** useMemo with conditional ([3b653e5](https://github.com/pedronauck/docz/commit/3b653e5))
+
+
+
+
+
 # [1.1.0](https://github.com/pedronauck/docz/compare/v1.0.4...v1.1.0) (2019-05-01)
 
 

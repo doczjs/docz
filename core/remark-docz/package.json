@@ -1,6 +1,6 @@
 {
   "name": "remark-docz",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Remark plugin used by docz",
   "license": "MIT",
   "main": "dist/index.js",
@@ -27,6 +27,6 @@
   },
   "devDependencies": {
     "@mdx-js/mdx": "^1.0.18",
-    "docz-rollup": "^1.1.0"
+    "docz-rollup": "^1.2.0"
   }
 }
