@@ -75,6 +75,7 @@ export interface Argv {
   native: boolean
   codeSandbox: boolean
   sourcemaps: boolean
+  notUseSpecifiers: boolean
   /* template args */
   title: string
   description: string
