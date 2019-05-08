@@ -164,6 +164,14 @@ const parseFiles = (files: string[], config: Config, tsconfig: string) => {
       const val = propFilter && _.isFunction(propFilter) && propFilter(prop)
       return !prop.parent.fileName.includes('node_modules') || Boolean(val)
     },
+    componentNameResolver(exp: ts.Symbol, source: ts.SourceFile): any {
+      const componentNameResolver = config.docgenConfig.resolver
+      const val =
+        componentNameResolver &&
+        _.isFunction(componentNameResolver) &&
+        componentNameResolver(exp, source)
+      return val
+    },
   }
 
   loadFiles(files)
