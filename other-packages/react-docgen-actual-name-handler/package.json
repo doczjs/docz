@@ -18,7 +18,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "react-docgen": "^4.1.0",
+    "react-docgen": "^4.1.1",
     "recast": "^0.17.6"
   },
   "devDependencies": {

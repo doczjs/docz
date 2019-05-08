@@ -33,8 +33,8 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "babel-jest": "^24.7.1",
+    "babel-jest": "^24.8.0",
     "docz-rollup": "^1.1.0",
-    "jest": "^24.7.1"
+    "jest": "^24.8.0"
   }
 }
