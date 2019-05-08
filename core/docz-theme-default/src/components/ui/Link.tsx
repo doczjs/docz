@@ -20,25 +20,26 @@ export const LinkStyled = styled.a<any>`
   ${get('styles.link')};
 `
 
+const getSeparator = (separator: string, href?: string) => {
+  if (typeof window === 'undefined') return null
+  return [
+    location.pathname
+      .split(separator)
+      .slice(0, -1)
+      .join(separator)
+      .slice(1),
+    (href || '').replace(/^(?:\.\/)+/gi, ''),
+  ].join('/')
+}
+
 type LinkProps = React.AnchorHTMLAttributes<any>
 export const Link: SFC<LinkProps> = ({ href, ...props }) => {
   const { separator, linkComponent: Link } = useConfig()
   const docs = useDocs()
-  const toCheck =
-    typeof window === 'undefined'
-      ? null
-      : useMemo(
-          () =>
-            [
-              location.pathname
-                .split(separator)
-                .slice(0, -1)
-                .join(separator)
-                .slice(1),
-              (href || '').replace(/^(?:\.\/)+/gi, ''),
-            ].join('/'),
-          [separator]
-        )
+  const toCheck = useMemo(() => getSeparator(separator, href), [
+    separator,
+    href,
+  ])
 
   const matched = docs && docs.find(doc => doc.filepath === toCheck)
   const nHref = matched ? matched.route : href
