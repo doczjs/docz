@@ -1,5 +1,4 @@
 import pReduce from 'p-reduce'
-import WebpackChainConfig from 'webpack-chain'
 import { get, isFunction } from 'lodash/fp'
 
 import { Config } from '../config/argv'
@@ -17,7 +16,7 @@ export type ModifyBabelRC = (babelrc: BabelRC, args: Config) => BabelRC
 export type ModifyFiles = (files: string[], args: Config) => string[]
 
 export type OnCreateWebpackChain = (
-  config: WebpackChainConfig,
+  config: any,
   dev: boolean,
   args: Config
 ) => void

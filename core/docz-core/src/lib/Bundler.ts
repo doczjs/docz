@@ -1,5 +1,4 @@
 import * as path from 'path'
-import * as http from 'http'
 import logger from 'signale'
 
 import { Plugin } from './Plugin'
@@ -14,7 +13,7 @@ export interface ServerHooks {
 }
 
 export interface BundlerServer {
-  start(): Promise<http.Server>
+  start(): void
 }
 
 export type ConfigFn<C> = (hooks: ServerHooks) => Promise<C>
