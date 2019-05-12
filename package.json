@@ -31,6 +31,12 @@
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,md,mdx}": [
+      "yarn packages:fix",
+      "git add"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "7.4.4",
     "@commitlint/cli": "^7.6.0",
