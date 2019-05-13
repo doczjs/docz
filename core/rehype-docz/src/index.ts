@@ -13,13 +13,14 @@ const addComponentsProps = (
   scopes: string[],
   imports: string[],
   cwd: string,
-  useCodeSandbox: boolean
+  useCodeSandbox: boolean,
+  formatFiles: boolean
 ) => async (node: any, idx: number) => {
   const name = componentName(node.value)
   const tagOpen = new RegExp(`^\\<${name}`)
 
   if (isPlayground(name)) {
-    const formatted = await format(nodeToString(node))
+    const formatted = await format(nodeToString(node), formatFiles)
     const code = formatted.slice(1, Infinity)
     const scope = `{props: this ? this.props : props,${scopes.join(',')}}`
     const child = sanitizeCode(removeTags(code))
@@ -42,11 +43,12 @@ const addComponentsProps = (
 
 export interface PluginOpts {
   root: string
-  useCodeSandbox: boolean
+  codeSandbox: boolean
+  formatFiles: boolean
 }
 
 export default (opts: PluginOpts) => (tree: any, fileInfo: any) => {
-  const { root, useCodeSandbox } = opts
+  const { root, codeSandbox, formatFiles } = opts
   const importNodes = tree.children.filter((node: any) => is('import', node))
   const imports: string[] = flatten(importNodes.map(getFullImports))
   const scopes: string[] = flatten(importNodes.map(getImportsVariables))
@@ -55,7 +57,7 @@ export default (opts: PluginOpts) => (tree: any, fileInfo: any) => {
 
   const nodes = tree.children
     .filter((node: any) => is('jsx', node))
-    .map(addComponentsProps(scopes, imports, fileCwd, useCodeSandbox))
+    .map(addComponentsProps(scopes, imports, fileCwd, codeSandbox, formatFiles))
 
   return Promise.all(nodes).then(() => tree)
 }
