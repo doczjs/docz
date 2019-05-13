@@ -25,7 +25,7 @@ export const dev = async (args: Arguments<any>) => {
 
   try {
     await Entries.writeApp(config, true)
-    await Entries.writeImports(await entries.get())
+    await Entries.writeImports(await entries.get(), config)
   } catch (err) {
     logger.fatal('Failed to build your files')
     logger.error(err)

@@ -13,12 +13,14 @@ const mapToArray = (map: any = []) =>
     .map(entry => entry && { key: entry[0], value: entry[1] })
     .filter(Boolean)
 
-const updateEntries = (entries: Entries) => async (p: Params) => {
+const updateEntries = (entries: Entries, config: Config) => async (
+  p: Params
+) => {
   const prev = get('entries', p.getState())
   const map = await entries.get()
 
   if (map && !equal(prev, map)) {
-    await Entries.writeImports(map)
+    await Entries.writeImports(map, config)
     p.setState('entries', mapToArray(map))
   }
 }
@@ -45,7 +47,7 @@ export const state = (
   return {
     id: 'entries',
     start: async params => {
-      const update = updateEntries(entries)
+      const update = updateEntries(entries, config)
       await update(params)
 
       if (dev) {

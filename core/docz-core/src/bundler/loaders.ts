@@ -91,7 +91,7 @@ export const ts = (config: Config, args: Args, babelrc: BabelRC) => {
 }
 
 export const mdx = (config: Config, args: Args, babelrc: BabelRC) => {
-  const { mdPlugins, hastPlugins } = args
+  const { mdPlugins, hastPlugins, formatFiles, codeSandbox } = args
   const srcPath = path.resolve(paths.root, args.src)
   const rule = config.module
     .rule('mdx')
@@ -112,7 +112,7 @@ export const mdx = (config: Config, args: Args, babelrc: BabelRC) => {
         remarkDocz,
       ]),
       rehypePlugins: hastPlugins.concat([
-        [rehypeDocz, { root: paths.root, useCodeSandbox: args.codeSandbox }],
+        [rehypeDocz, { root: paths.root, codeSandbox, formatFiles }],
         slug,
       ]),
     })

@@ -26,7 +26,7 @@ const matchFilesWithSrc = (config: Config) => (files: string[]) => {
 }
 
 const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
-  const { plugins, theme } = config
+  const { plugins, theme, formatFiles } = config
   const props = Plugin.propsOfPlugins(plugins)
 
   const onPreRenders = props('onPreRender')
@@ -52,8 +52,8 @@ const writeAppFiles = async (config: Config, dev: boolean): Promise<void> => {
 
   await fs.remove(paths.rootJs)
   await fs.remove(paths.indexJs)
-  await touch(paths.rootJs, rawRootJs)
-  await touch(paths.indexJs, rawIndexJs)
+  await touch(paths.rootJs, rawRootJs, formatFiles)
+  await touch(paths.indexJs, rawIndexJs, formatFiles)
 }
 
 export type EntryMap = Record<string, EntryObj>
@@ -64,10 +64,17 @@ export class Entries {
     await writeAppFiles(config, dev)
   }
 
-  public static async writeImports(map: EntryMap): Promise<void> {
+  public static async writeImports(
+    map: EntryMap,
+    config: Config
+  ): Promise<void> {
     const imports = await compiled(fromTemplates('imports.tpl.js'))
     const rawImportsJs = imports({ entries: Object.values(map) })
-    await touch(path.join(paths.app, 'imports.js'), rawImportsJs)
+    await touch(
+      path.join(paths.app, 'imports.js'),
+      rawImportsJs,
+      config.formatFiles
+    )
   }
 
   public all: Map<string, EntryObj>

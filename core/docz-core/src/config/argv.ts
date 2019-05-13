@@ -57,6 +57,7 @@ export interface Argv {
   base: string
   src: string
   files: string | string[]
+  formatFiles: boolean
   ignore: string[]
   watchIgnore: string
   public: string
@@ -117,6 +118,10 @@ export const setArgs = (yargs: Yargs) => {
     .option('files', {
       type: 'string',
       default: getEnv('docz.files', '**/*.{md,markdown,mdx}'),
+    })
+    .option('formatFiles', {
+      type: 'boolean',
+      default: getEnv('docz.formatFiles', true),
     })
     .option('ignore', {
       type: 'array',
