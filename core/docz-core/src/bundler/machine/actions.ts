@@ -12,18 +12,10 @@ export const assignFirstInstall = assign((ctx: ServerMachineCtx) => {
   return assoc('firstInstall', firstInstall, ctx)
 })
 
-export const copyLocalPackages = async ({ firstInstall }: ServerMachineCtx) => {
-  if (!firstInstall) return
+export const checkIsDoczRepo = assign((ctx: ServerMachineCtx) => {
   const isDoczRepo = sh.test('-e', path.join(paths.root, '../../core'))
-  const relativeTo = isDoczRepo ? '../../' : './'
-  const appNodeModules = path.join(paths.root, relativeTo, 'node_modules')
-  const nodeModules = path.join(paths.docz, 'node_modules')
-  sh.cp('-RL', appNodeModules, nodeModules)
-}
-
-export const logServerInfo = (ctx: ServerMachineCtx) => {
-  log.success(`Your app is up and running on localhost:${ctx.args.port}`)
-}
+  return assoc('isDoczRepo', isDoczRepo, ctx)
+})
 
 export const logError = (ctx: ServerMachineCtx, ev: Event<any>) => {
   log.fatal(ev.data)

@@ -54,10 +54,11 @@ export interface HtmlContext {
 
 export interface Argv {
   /* io args */
+  root: string
   base: string
   src: string
   files: string | string[]
-  ignore: string[]
+  ignore: any[]
   watchIgnore: string
   public: string
   dest: string
@@ -105,6 +106,10 @@ export const setArgs = (yargs: Yargs) => {
   const pkg = fs.readJsonSync(paths.appPackageJson, { throws: false })
 
   return yargs
+    .option('root', {
+      type: 'string',
+      default: getEnv('docz.root', paths.root),
+    })
     .option('base', {
       type: 'string',
       default: getEnv('docz.base', '/'),

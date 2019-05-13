@@ -7,7 +7,9 @@ import { devServerMachine } from './machine'
 export const server = (args: Args) => async (config: any, hooks: Hooks) => ({
   start: async () => {
     const machine = devServerMachine.withContext({ args, config })
-    const service = interpret(machine)
+    const service = interpret(machine).onTransition(state => {
+      args.debug && console.log(state.value)
+    })
 
     service.start()
     service.send('INITIALIZE')

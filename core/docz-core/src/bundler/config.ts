@@ -1,6 +1,8 @@
 import { Config as Args, Env } from '../config/argv'
 import { ServerHooks as Hooks } from '../lib/Bundler'
 
+import * as paths from '../config/paths'
+
 export const createConfig = (args: Args, env: Env) => async (hooks: Hooks) => {
   return {
     gatsbyConfig: {
@@ -11,7 +13,10 @@ export const createConfig = (args: Args, env: Env) => async (hooks: Hooks) => {
       __experimentalThemes: [
         {
           resolve: 'gatsby-theme-docz',
-          options: args,
+          options: {
+            ...args,
+            root: paths.docz,
+          },
         },
       ],
     },

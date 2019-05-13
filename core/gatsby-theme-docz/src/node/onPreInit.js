@@ -6,11 +6,13 @@ const { parseConfig } = require('../utils/parseConfig')
 const fromTemplates = filepath =>
   path.resolve(__dirname, '../../templates', filepath)
 
-const mountComponentPath = paths => component =>
-  path.join(paths.app, 'components', component || '')
+const mountComponentPath = ({ paths, ...config }) => component => {
+  const appPath = path.relative(paths.root, paths.app)
+  return path.join(config.root, appPath, 'components', component || '')
+}
 
-const touchTemplateWithPaths = paths => async (filepath, opts) => {
-  const componentPath = mountComponentPath(paths)
+const touchTemplateWithPaths = config => async (filepath, opts) => {
+  const componentPath = mountComponentPath(config)
   const dest = componentPath(filepath.replace('.tpl', ''))
   const template = await compiled(fromTemplates(filepath), { minimize: false })
   const raw = template(opts)
@@ -18,9 +20,9 @@ const touchTemplateWithPaths = paths => async (filepath, opts) => {
 }
 
 module.exports = async (_, opts) => {
-  const { paths, ...config } = await parseConfig(opts)
-  const componentPath = mountComponentPath(paths)
-  const touchTemplate = touchTemplateWithPaths(paths)
+  const config = await parseConfig(opts)
+  const componentPath = mountComponentPath(config)
+  const touchTemplate = touchTemplateWithPaths(config)
 
   await fs.ensureDir(componentPath())
   await fs.copy(fromTemplates('Seo.tpl.js'), componentPath('Seo.js'))

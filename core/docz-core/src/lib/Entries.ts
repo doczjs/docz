@@ -3,6 +3,8 @@ import * as fs from 'fs-extra'
 import * as logger from 'signale'
 import { parseMdx } from 'docz-utils/lib/mdast'
 import { touch, compiled } from 'docz-utils/lib/fs'
+import { isRegExp, isString } from 'lodash/fp'
+import minimatch from 'minimatch'
 import glob from 'fast-glob'
 
 import * as paths from '../config/paths'
@@ -85,12 +87,20 @@ export class Entries {
     const arr = Array.isArray(pattern) ? pattern : [pattern]
     const toMatch = matchFilesWithSrc(config)
 
-    const files = await glob<string>(toMatch(arr), {
-      ignore: ['**/node_modules/**'].concat(ignore),
+    const initialFiles = await glob<string>(toMatch(arr), {
+      ignore: ['**/node_modules/**'],
       onlyFiles: true,
+      matchBase: false,
       unique: true,
-      nocase: true,
-      matchBase: true,
+      case: false,
+    })
+
+    const files = initialFiles.filter((value: string) => {
+      return !ignore.some(pattern => {
+        if (isString(pattern)) return minimatch(value, pattern)
+        if (isRegExp(pattern)) return pattern.test(value)
+        return false
+      })
     })
 
     const createEntry = async (file: string) => {

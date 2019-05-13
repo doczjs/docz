@@ -1,7 +1,7 @@
 import { pipe } from 'lodash/fp'
-import log from 'signale'
+import spawn from 'cross-spawn'
 import chalk from 'chalk'
-import shell from 'shelljs'
+import sh from 'shelljs'
 import ora from 'ora'
 
 import * as paths from '../../../config/paths'
@@ -21,16 +21,14 @@ export const installDeps = async ({ firstInstall }: ServerMachineCtx) => {
     warn('----------------\n')
   }
 
-  return new Promise((resolve, reject) => {
-    const checking = !firstInstall && ora('Checking dependencies...').start()
-    firstInstall && log.await('Installing dependencies\n')
+  return new Promise(async (resolve, reject) => {
+    sh.cd(paths.docz)
 
-    shell.cd(paths.docz)
-    shell.exec('yarn install', { silent: !firstInstall }, code => {
-      if (firstInstall) log.success('\nDependencies installed successfully!\n')
-      if (checking) checking.succeed('Dependencies checked!')
-      if (code !== 0) return reject()
-      return resolve()
-    })
+    const checking = !firstInstall && ora('Checking dependencies...').start()
+    const result = spawn.sync('yarn', [], { stdio: 'inherit' })
+
+    if (checking) checking.succeed('Dependencies checked!')
+    if (result.error) return reject(result.error)
+    return resolve()
   })
 }

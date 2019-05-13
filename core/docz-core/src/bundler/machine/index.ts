@@ -14,7 +14,7 @@ const machine = Machine<ServerMachineCtx>({
         idle: {
           on: {
             INITIALIZE: {
-              actions: ['assignFirstInstall', 'copyLocalPackages'],
+              actions: ['assignFirstInstall', 'checkIsDoczRepo'],
               target: 'ensuringDirs',
             },
           },
@@ -28,7 +28,7 @@ const machine = Machine<ServerMachineCtx>({
         creatingResources: {
           invoke: {
             src: 'createResources',
-            onDone: 'copyingLocalPackages',
+            onDone: 'installingDeps',
             onError: 'exiting',
           },
         },
@@ -42,9 +42,6 @@ const machine = Machine<ServerMachineCtx>({
         executingCommand: {
           invoke: {
             src: 'execDevCommand',
-            onDone: {
-              actions: 'logServerInfo',
-            },
             onError: 'exiting',
           },
         },

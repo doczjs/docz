@@ -24,7 +24,7 @@
     "@babel/traverse": "^7.4.4",
     "art-template": "^4.13.2",
     "codesandboxer-fs": "^1.0.1",
-    "fs-extra": "^7.0.1",
+    "fs-extra": "^8.0.0",
     "humanize-string": "^2.1.0",
     "js-string-escape": "^1.0.1",
     "jsx-ast-utils": "^2.1.0",

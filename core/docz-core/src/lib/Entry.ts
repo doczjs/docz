@@ -30,6 +30,7 @@ const mountRoute = (base: string, route: string) => {
 export interface EntryObj {
   id: string
   filepath: string
+  fullpath: string
   link: string | null
   slug: string
   name: string
@@ -44,6 +45,7 @@ export class Entry {
 
   public id: string
   public filepath: string
+  public fullpath: string
   public link: string | null
   public slug: string
   public route: string
@@ -61,6 +63,7 @@ export class Entry {
 
     this.id = createId(file)
     this.filepath = filepath
+    this.fullpath = path.resolve(config.root, file)
     this.link = ''
     this.slug = this.slugify(filepath, config.separator)
     this.route = this.getRoute(parsed, config.base)
