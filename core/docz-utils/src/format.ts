@@ -9,10 +9,10 @@ export const formatter = (code: string) =>
     trailingComma: 'all',
   } as any)
 
-export const format = (code: string): Promise<string> =>
+export const format = (code: string, formatFiles: boolean): Promise<string> =>
   new Promise((resolve, reject) => {
     try {
-      const result = formatter(code)
+      const result = formatFiles ? formatter(code) : code
 
       resolve(result)
     } catch (err) {

@@ -4,9 +4,11 @@ import { compile } from 'art-template'
 
 import { format } from './format'
 
-export const touch = (file: string, raw: string) =>
+export const touch = (file: string, raw: string, formatFiles: boolean) =>
   new Promise(async (resolve, reject) => {
-    const content = /jsx?$/.test(path.extname(file)) ? await format(raw) : raw
+    const content = /jsx?$/.test(path.extname(file))
+      ? await format(raw, formatFiles)
+      : raw
     const stream = fs.createWriteStream(file)
 
     stream.write(content, 'utf-8')
