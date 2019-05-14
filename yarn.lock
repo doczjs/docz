@@ -14101,11 +14101,6 @@ react-dev-utils@^9.0.1:
     strip-ansi "5.2.0"
     text-table "0.2.0"
 
-react-docgen-external-proptypes-handler@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/react-docgen-external-proptypes-handler/-/react-docgen-external-proptypes-handler-1.0.2.tgz#457d3e82a6899695482f4912036cc940577ab0aa"
-  integrity sha512-vr8sXRp5hBmaEP0kdBED9p7mdnVX6LTRODNcGhUXUh1hBbGW2rgjm24e0eA4zVJs4cqCcA2pS0dEHujJ9rg3rw==
-
 react-docgen-typescript@^1.12.4:
   version "1.12.4"
   resolved "https://registry.npmjs.org/react-docgen-typescript/-/react-docgen-typescript-1.12.4.tgz#9ec8080e9ef41067ff17153bf42b3b2d49ae5503"
