@@ -7,6 +7,7 @@ import { get, propEq } from 'lodash/fp'
 import * as paths from '../config/paths'
 import { Config } from '../config/argv'
 import { docgen } from '../utils/docgen'
+import { WATCH_IGNORE } from './config'
 
 const getPattern = (config: Config) => {
   const {
@@ -57,7 +58,7 @@ const remove = (p: Params) => async (filepath: string) => {
 
 export const state = (config: Config, dev?: boolean): State => {
   const pattern = getPattern(config)
-  const ignored = config.watchIgnore || /(((^|[\/\\])\..+)|(node_modules))/
+  const ignored = config.watchIgnore || WATCH_IGNORE
   const watcher = chokidar.watch(pattern, {
     cwd: paths.root,
     ignored,
