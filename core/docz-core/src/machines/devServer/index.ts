@@ -42,7 +42,9 @@ const machine = Machine<ServerMachineCtx>({
         executingCommand: {
           invoke: {
             src: 'execDevCommand',
-            onDone: 'openBrowser',
+            // onDone: {
+            //   actions: 'openBrowser',
+            // },
             onError: 'exiting',
           },
         },

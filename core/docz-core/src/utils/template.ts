@@ -18,6 +18,6 @@ export const outputFileFromTemplate = async (
   const filepath = fromTemplates(templatePath)
   const template = await compiled(filepath, compileProps || { minimize: false })
   const file = template(templateProps || {})
-  const raw = format(file)
+  const raw = await format(file)
   await fs.outputFile(outputPath, raw)
 }

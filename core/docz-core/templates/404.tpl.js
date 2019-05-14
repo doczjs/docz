@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-export default NotFound = () => {
+const NotFound = () => {
   const style = {
-    display: 'flex';
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     height: '100vh',
@@ -11,6 +11,8 @@ export default NotFound = () => {
   }
 
   return (
-    <div style={}>Not Found</div>
+    <div style={style}>Not Found</div>
   )
 }
+
+export default NotFound

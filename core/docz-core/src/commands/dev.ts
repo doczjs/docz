@@ -6,7 +6,6 @@ import * as envDotProp from 'env-dot-prop'
 
 import { parseConfig } from '../config/docz'
 import { bundler as gatsby } from '../bundler'
-import { openBrowser } from '../utils/open-browser'
 
 export const dev = async (args: Arguments<any>) => {
   const env = envDotProp.get('node.env')
@@ -17,7 +16,6 @@ export const dev = async (args: Arguments<any>) => {
 
   try {
     await app.start()
-    if (args.open || args.o) openBrowser(`http://${config.host}:${config.port}`)
   } catch (err) {
     logger.fatal('Failed to process data server')
     logger.error(err)

@@ -95,9 +95,10 @@ const copyAndModifyPkgJson = async (ctx: ServerMachineCtx) => {
   await fs.outputJSON(movePath, newPkgJSON, { spaces: 2 })
 }
 
-export const writeNotFound = async () => {
-  const outputPath = path.join(paths.docz, 'src/404.js')
-  await outputFileFromTemplate('404.tpl.js', outputPath, {})
+const writeEslintRc = async ({ isDoczRepo }: ServerMachineCtx) => {
+  if (!isDoczRepo) return
+  const filepath = path.join(paths.docz, '.eslintrc')
+  await fs.outputJSON(filepath, { extends: 'react-app' })
 }
 
 const writeConfigFile = async ({ args, isDoczRepo }: ServerMachineCtx) => {
@@ -108,10 +109,9 @@ const writeConfigFile = async ({ args, isDoczRepo }: ServerMachineCtx) => {
   })
 }
 
-const writeEslintRc = async ({ isDoczRepo }: ServerMachineCtx) => {
-  if (!isDoczRepo) return
-  const filepath = path.join(paths.docz, '.eslintrc')
-  await fs.outputJSON(filepath, { extends: 'react-app' })
+export const writeNotFound = async () => {
+  const outputPath = path.join(paths.docz, 'src/pages/404.js')
+  await outputFileFromTemplate('404.tpl.js', outputPath, {})
 }
 
 const writeGatsbyNode = async () => {
@@ -120,7 +120,7 @@ const writeGatsbyNode = async () => {
 }
 
 const writeGatsbyHTML = async () => {
-  const outputPath = path.join(paths.docz, 'gatsby-html.js')
+  const outputPath = path.join(paths.docz, 'src/html.js')
   await outputFileFromTemplate('gatsby-html.tpl.js', outputPath)
 }
 
@@ -135,9 +135,9 @@ export const createResources = async (ctx: ServerMachineCtx) => {
     copyPkgJSON()
     await copyDoczRc()
     await copyAndModifyPkgJson(ctx)
-    await writeNotFound()
-    await writeConfigFile(ctx)
     await writeEslintRc(ctx)
+    await writeConfigFile(ctx)
+    await writeNotFound()
     await fixDuplicatedReact(ctx)
     return Promise.resolve()
   } catch (err) {
