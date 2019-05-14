@@ -2,7 +2,7 @@ import { interpret } from 'xstate'
 
 import { Config as Args } from '../config/argv'
 import { ServerHooks as Hooks } from '../lib/Bundler'
-import { devServerMachine } from './machine'
+import { devServerMachine } from '../machines/devServer'
 
 export const server = (args: Args) => async (config: any, hooks: Hooks) => ({
   start: async () => {

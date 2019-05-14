@@ -67,6 +67,7 @@ export interface Argv {
   /* bundler args */
   debug: boolean
   clearConsole: boolean
+  openBrowser: boolean
   typescript: boolean
   propsParser: boolean
   host: string
@@ -181,6 +182,11 @@ export const setArgs = (yargs: Yargs) => {
     .option('clearConsole', {
       type: 'boolean',
       default: getEnv('docz.clear.console', true),
+    })
+    .option('openBrowser', {
+      type: 'boolean',
+      alias: 'o',
+      default: getEnv('docz.open.browser', true),
     })
     .option('host', {
       type: 'string',

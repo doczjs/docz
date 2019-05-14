@@ -5,22 +5,15 @@ import logger from 'signale'
 import * as envDotProp from 'env-dot-prop'
 
 import { parseConfig } from '../config/docz'
-import { bundler as webpack } from '../bundler'
+import { bundler as gatsby } from '../bundler'
 import { openBrowser } from '../utils/open-browser'
 
 export const dev = async (args: Arguments<any>) => {
   const env = envDotProp.get('node.env')
   const config = await parseConfig(args)
-  const bundler = webpack(config, env)
+  const bundler = gatsby(config, env)
   const bundlerConfig = await bundler.mountConfig(env)
   const app = await bundler.createApp(bundlerConfig)
-
-  try {
-  } catch (err) {
-    logger.fatal('Failed to build your files')
-    logger.error(err)
-    process.exit(1)
-  }
 
   try {
     await app.start()

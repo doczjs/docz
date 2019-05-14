@@ -1,8 +1,6 @@
 import * as path from 'path'
 import * as fs from 'fs-extra'
 import { finds } from 'load-cfg'
-import { format } from 'docz-utils/lib/format'
-import { compiled } from 'docz-utils/lib/fs'
 import { getOr, fromPairs } from 'lodash/fp'
 import latestVersion from 'latest-version'
 import findUp from 'find-up'
@@ -10,6 +8,7 @@ import sh from 'shelljs'
 
 import * as paths from '../../../config/paths'
 import { ServerMachineCtx } from '../context'
+import { outputFileFromTemplate } from '../../../utils/template'
 
 const REQUIRED_DEPS = ['react', 'react-dom']
 const REQUIRED_DEV_DEPS = ['gatsby', 'gatsby-mdx']
@@ -57,10 +56,6 @@ const getCoreDeps = async ({ isDoczRepo }: ServerMachineCtx) => {
   return depsFromPairs(CORE_DEV_DEPS, fn)
 }
 
-export const fromTemplates = (file: string) => {
-  return path.join(paths.templates, file)
-}
-
 const copyPkgJSON = () => {
   const pkgJSON = path.join(paths.root, 'package.json')
   sh.cp(pkgJSON, paths.docz)
@@ -100,22 +95,17 @@ const copyAndModifyPkgJson = async (ctx: ServerMachineCtx) => {
   await fs.outputJSON(movePath, newPkgJSON, { spaces: 2 })
 }
 
-const writeIndexFile = async () => {
-  const filepath = path.join(paths.docz, 'src/pages/index.mdx')
-  await fs.outputFile(filepath, `# Hello world`)
+export const writeNotFound = async () => {
+  const outputPath = path.join(paths.docz, 'src/404.js')
+  await outputFileFromTemplate('404.tpl.js', outputPath, {})
 }
 
 const writeConfigFile = async ({ args, isDoczRepo }: ServerMachineCtx) => {
-  const filepath = path.join(paths.docz, 'gatsby-config.js')
-  const configFilepath = fromTemplates('gatsby-config.tpl.js')
-  const gatsbyConfig = await compiled(configFilepath, { minimize: false })
-  const file = gatsbyConfig({
+  const outputPath = path.join(paths.docz, 'gatsby-config.js')
+  await outputFileFromTemplate('gatsby-config.tpl.js', outputPath, {
     isDoczRepo,
     config: JSON.stringify({ ...args, root: paths.docz }),
   })
-
-  const raw = await format(file)
-  await fs.outputFile(filepath, raw)
 }
 
 const writeEslintRc = async ({ isDoczRepo }: ServerMachineCtx) => {
@@ -124,20 +114,20 @@ const writeEslintRc = async ({ isDoczRepo }: ServerMachineCtx) => {
   await fs.outputJSON(filepath, { extends: 'react-app' })
 }
 
-const doczFilepath = (filepath: string) => path.join(paths.docz, filepath)
+const writeGatsbyNode = async () => {
+  const outputPath = path.join(paths.docz, 'gatsby-node.js')
+  await outputFileFromTemplate('gatsby-node.tpl.js', outputPath)
+}
+
+const writeGatsbyHTML = async () => {
+  const outputPath = path.join(paths.docz, 'gatsby-html.js')
+  await outputFileFromTemplate('gatsby-html.tpl.js', outputPath)
+}
+
 const fixDuplicatedReact = async ({ isDoczRepo }: ServerMachineCtx) => {
   if (!isDoczRepo) return
-  const gatsbyNodeFilepath = fromTemplates('gatsby-node.tpl.js')
-  const gatsbyHTMLFilepath = fromTemplates('gatsby-html.tpl.js')
-
-  const opts = { minimize: false }
-  const gatsbyNode = await compiled(gatsbyNodeFilepath, opts)
-  const gatsbyHTML = await compiled(gatsbyHTMLFilepath, opts)
-  const gatsbyNodeRaw = await format(gatsbyNode({}))
-  const gatsbyHTMLRaw = await format(gatsbyHTML({}))
-
-  await fs.outputFile(doczFilepath('gatsby-node.js'), gatsbyNodeRaw)
-  await fs.outputFile(doczFilepath('src/html.js'), gatsbyHTMLRaw)
+  await writeGatsbyNode()
+  await writeGatsbyHTML()
 }
 
 export const createResources = async (ctx: ServerMachineCtx) => {
@@ -145,7 +135,7 @@ export const createResources = async (ctx: ServerMachineCtx) => {
     copyPkgJSON()
     await copyDoczRc()
     await copyAndModifyPkgJson(ctx)
-    await writeIndexFile()
+    await writeNotFound()
     await writeConfigFile(ctx)
     await writeEslintRc(ctx)
     await fixDuplicatedReact(ctx)
