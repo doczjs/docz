@@ -124,6 +124,7 @@ export const Sidebar: SFC = () => {
   const prevIsDesktop = usePrevious(isDesktop)
 
   useEffect(() => {
+    if (hidden) document.documentElement!.classList.remove('with-overlay')
     if (!hidden && !prevIsDesktop && isDesktop) {
       setHidden(true)
       document.documentElement!.classList.remove('with-overlay')
