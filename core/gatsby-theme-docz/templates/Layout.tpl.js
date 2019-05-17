@@ -46,7 +46,7 @@ const Layout = ({ children, ...defaultProps }) => {
   const { pageContext: ctx } = defaultProps
   const data = useStaticQuery(query)
   const db = parseDatabase(data)
-  const entry = db.entries && db.entries.find(entry => entry.filepath === ctx.filepath)
+  const entry = db.entries && db.entries.find(entry => entry.value.filepath === ctx.entry.filepath)
 
   return (
     <Fragment>
