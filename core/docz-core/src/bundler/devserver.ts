@@ -17,7 +17,7 @@ export const devServerConfig = (hooks: ServerHooks, args: Args) => {
     publicPath: '/',
     compress: true,
     logLevel: args.debug ? 'debug' : 'silent',
-    clientLogLevel: args.debug ? 'info' : 'none',
+    clientLogLevel: args.debug ? 'info' : 'silent',
     contentBase: [nonExistentDir],
     watchContentBase: true,
     hot: true,
