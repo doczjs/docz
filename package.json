@@ -59,6 +59,10 @@
     "ts-jest": "^24.0.2",
     "typescript": "3.3.4000"
   },
+  "peerDependencies": {
+    "@types/react": ">=16.8.0",
+    "@types/react-dom": ">=16.8.0"
+  },
   "workspaces": [
     "core/*",
     "examples/*",
