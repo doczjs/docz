@@ -58,7 +58,7 @@ export default {
 
 ## Default `themeConfig`
 
-As explained on [Customizing](https://www.docz.site/introduction/customizing) section of docz website, you can customize the theme that you're using by changing `themeConfig` property on your `doczrc.js`. So, each theme has your own specific configuration and for this theme, is that the default config and what you can change:
+As explained on [Customizing](https://www.docz.site/docs/customizing) section of docz website, you can customize the theme that you're using by changing `themeConfig` property on your `doczrc.js`. So, each theme has your own specific configuration and for this theme, is that the default config and what you can change:
 
 ```js
 const config = {
