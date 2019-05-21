@@ -123,7 +123,7 @@ export const PropsTable: React.SFC<PropsComponentProps> = ({
                     )}
                   </PropDefaultValue>
                 )}
-                {prop.required && (
+                {prop.required && !prop.defaultValue && (
                   <PropRequired>
                     <strong>required</strong>
                   </PropRequired>
