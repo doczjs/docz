@@ -10,7 +10,6 @@ import { Socket } from '../lib/Socket'
 import { parseConfig } from '../config/docz'
 import { onSignal } from '../utils/on-signal'
 import { bundler as webpack } from '../bundler'
-import { openBrowser } from '../utils/open-browser'
 import * as states from '../states'
 
 export const dev = async (args: Arguments<any>) => {
@@ -44,7 +43,6 @@ export const dev = async (args: Arguments<any>) => {
 
   try {
     await dataServer.start()
-    if (args.open || args.o) openBrowser(`http://${config.host}:${config.port}`)
   } catch (err) {
     logger.fatal('Failed to process data server')
     logger.error(err)

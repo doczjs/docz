@@ -84,6 +84,7 @@ export interface Argv {
   indexHtml?: string
   /** slugify separator */
   separator: string
+  open: boolean
 }
 
 export interface Config extends Argv {
