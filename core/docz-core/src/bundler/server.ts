@@ -1,4 +1,6 @@
 import { interpret } from 'xstate'
+import { finds } from 'load-cfg'
+import findUp from 'find-up'
 
 import { Config as Args } from '../config/argv'
 import { ServerHooks as Hooks } from '../lib/Bundler'
@@ -6,7 +8,13 @@ import { devServerMachine } from '../machines/devServer'
 
 export const server = (args: Args) => async (config: any, hooks: Hooks) => ({
   start: async () => {
-    const machine = devServerMachine.withContext({ args, config })
+    const doczrcFilepath = await findUp(finds('docz'))
+    const machine = devServerMachine.withContext({
+      args,
+      config,
+      doczrcFilepath,
+    })
+
     const service = interpret(machine).onTransition(state => {
       args.debug && console.log(state.value)
     })

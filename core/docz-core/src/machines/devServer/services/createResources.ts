@@ -61,7 +61,7 @@ const copyPkgJSON = () => {
   sh.cp(pkgJSON, paths.docz)
 }
 
-const copyDoczRc = async () => {
+export const copyDoczRc = async () => {
   const filepath = await findUp(finds('docz'))
   sh.cp(filepath, paths.docz)
 }

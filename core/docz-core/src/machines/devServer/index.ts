@@ -8,6 +8,11 @@ const machine = Machine<ServerMachineCtx>({
   id: 'devServer',
   type: 'parallel',
   states: {
+    watch: {
+      invoke: {
+        src: 'watchConfig',
+      },
+    },
     server: {
       initial: 'idle',
       states: {

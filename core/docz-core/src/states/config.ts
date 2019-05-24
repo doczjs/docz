@@ -48,11 +48,9 @@ const update = async (params: Params, initial: Payload, { config }: Config) => {
 
 export const WATCH_IGNORE = /(((^|[\/\\])\.((?!docz)(.+)))|(node_modules))/
 
-export const state = (config: Config, dev?: boolean): State => {
-  const initial = getInitialConfig(config)
+export const configWatcher = (config: Config) => {
   const glob = config.config || finds('docz')
   const ignored = config.watchIgnore || WATCH_IGNORE
-
   const watcher = chokidar.watch(glob, {
     ignored,
     cwd: paths.root,
@@ -60,6 +58,12 @@ export const state = (config: Config, dev?: boolean): State => {
   })
 
   watcher.setMaxListeners(Infinity)
+  return watcher
+}
+
+export const state = (config: Config, dev?: boolean): State => {
+  const initial = getInitialConfig(config)
+  const watcher = configWatcher(config)
 
   return {
     id: 'config',
