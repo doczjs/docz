@@ -85,6 +85,7 @@ const copyAndModifyPkgJson = async (ctx: ServerMachineCtx) => {
     scripts: {
       dev: 'gatsby develop',
       build: 'gatsby build',
+      serve: 'gatsby serve',
     },
     ...(ctx.isDoczRepo && {
       private: true,

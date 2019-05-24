@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "docz dev",
-    "build": "docz build"
+    "build": "docz build",
+    "serve": "docz serve"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
