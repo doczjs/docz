@@ -22,11 +22,11 @@
   "dependencies": {
     "@babel/generator": "^7.4.4",
     "@babel/types": "^7.4.4",
-    "unist-util-remove": "^1.0.1",
-    "unist-util-visit": "^1.4.0"
+    "unist-util-remove": "^1.0.2",
+    "unist-util-visit": "^1.4.1"
   },
   "devDependencies": {
-    "@mdx-js/mdx": "^1.0.18",
+    "@mdx-js/mdx": "^1.0.19",
     "docz-rollup": "^1.2.0"
   }
 }

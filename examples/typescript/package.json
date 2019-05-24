@@ -12,7 +12,7 @@
     "styled-components": "^4.2.0"
   },
   "devDependencies": {
-    "@types/react": "^16.8.17",
+    "@types/react": "^16.8.18",
     "@types/react-dom": "^16.8.4",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0"

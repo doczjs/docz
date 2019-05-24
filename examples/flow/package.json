@@ -17,6 +17,6 @@
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
     "flow-bin": "^0.98.1",
-    "flow-typed": "^2.5.1"
+    "flow-typed": "^2.5.2"
   }
 }
