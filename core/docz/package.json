@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@loadable/component": "^5.10.1",
-    "@mdx-js/react": "^1.0.16",
+    "@mdx-js/react": "^1.0.20",
     "@reach/router": "^1.2.1",
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
@@ -46,9 +46,9 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@types/loadable__component": "^5.9.0",
     "@types/lodash": "^4.14.132",
-    "@types/node": "^12.0.2",
+    "@types/node": "^12.0.3",
     "@types/reach__router": "^1.2.4",
-    "@types/react": "^16.8.18",
+    "@types/react": "^16.8.19",
     "docz-rollup": "^1.2.0"
   },
   "resolutions": {
