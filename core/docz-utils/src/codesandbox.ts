@@ -68,6 +68,7 @@ function getSandboxFiles(
       '.less',
       '.sass',
       '.scss',
+      '.styl',
       '.svg',
       '.png',
       '.jpg',
