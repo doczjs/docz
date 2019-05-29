@@ -33,10 +33,10 @@ const getHastPlugins = rootPath => {
 }
 
 module.exports = opts => {
-  const { paths, ...config } = getDoczConfig(opts)
+  const config = getDoczConfig(opts)
+  const { paths } = config
   const mdPlugins = getMdPlugins()
   const hastPlugins = getHastPlugins(paths.root)
-  const appPath = path.relative(paths.root, paths.app)
 
   return {
     plugins: [
@@ -53,7 +53,7 @@ module.exports = opts => {
               ? config.hastPlugins.concat(hastPlugins)
               : hastPlugins,
           defaultLayouts: {
-            default: path.join(config.root, appPath, 'components/Layout.js'),
+            default: path.join(paths.app, 'components/Layout.js'),
           },
         },
       },

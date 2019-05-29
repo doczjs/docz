@@ -4,6 +4,7 @@ import getPkgRepo from 'get-pkg-repo'
 import findup from 'find-up'
 
 import * as paths from '../config/paths'
+import { Config } from '../config/argv'
 
 // TODO: type repo object returned from get-pkg-repo
 export const parseRepo = (): any => {
@@ -44,13 +45,13 @@ const getTree = (repo: any, branch: string, relative: string) => {
   return defaultPath
 }
 
-export const getRepoEditUrl = (src: string, branch: string): string | null => {
+export const getRepoEditUrl = (config: Config): string | null => {
   try {
     const repo = parseRepo()
     const project = path.parse(findup.sync('.git')).dir
-    const root = path.join(paths.root, src)
+    const root = path.join(paths.getRootDir(config), config.src)
     const relative = path.relative(project, root)
-    const tree = getTree(repo, branch, relative)
+    const tree = getTree(repo, config.editBranch, relative)
 
     return (
       repo &&

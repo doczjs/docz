@@ -21,8 +21,9 @@ const replaceExportDefault = template(`
 `)
 
 const getFilename = state => {
+  const rootDir = get(state, 'opts.root', process.cwd())
   const filename = get(state, 'file.opts.filename')
-  return filename && path.relative(process.cwd(), filename)
+  return filename && path.relative(rootDir, filename)
 }
 
 const findPathToInsert = path =>

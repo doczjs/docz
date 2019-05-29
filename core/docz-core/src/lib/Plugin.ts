@@ -1,7 +1,6 @@
 import { get, isFunction } from 'lodash/fp'
 
-import { Config } from '../config/argv'
-import { BabelRC } from '../config/babel'
+import { Config, BabelRC } from '../config/argv'
 import { pReduce } from '../utils/p-reduce'
 
 export type SetConfig = (config: Config) => Config | Promise<Config>

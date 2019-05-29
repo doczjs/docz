@@ -104,9 +104,13 @@ const writeEslintRc = async ({ isDoczRepo }: ServerMachineCtx) => {
 
 const writeConfigFile = async ({ args, isDoczRepo }: ServerMachineCtx) => {
   const outputPath = path.join(paths.docz, 'gatsby-config.js')
+
   await outputFileFromTemplate('gatsby-config.tpl.js', outputPath, {
     isDoczRepo,
-    config: JSON.stringify({ ...args, root: paths.docz }),
+    config: JSON.stringify({
+      ...args,
+      root: paths.docz,
+    }),
   })
 }
 

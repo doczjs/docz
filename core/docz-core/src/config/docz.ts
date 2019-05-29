@@ -6,8 +6,7 @@ import { merge } from 'lodash/fp'
 import detectPort from 'detect-port'
 
 import * as paths from '../config/paths'
-import { BabelRC } from '../config/babel'
-import { Config, Argv } from '../config/argv'
+import { BabelRC, Config, Argv } from '../config/argv'
 import { Plugin } from '../lib/Plugin'
 
 const toOmit = ['_', '$0', 'version', 'help']

@@ -6,9 +6,8 @@ const { parseConfig } = require('../utils/parseConfig')
 const fromTemplates = filepath =>
   path.resolve(__dirname, '../../templates', filepath)
 
-const mountComponentPath = ({ paths, ...config }) => component => {
-  const appPath = path.relative(paths.root, paths.app)
-  return path.join(config.root, appPath, 'components', component || '')
+const mountComponentPath = ({ paths }) => component => {
+  return path.resolve(paths.app, 'components', component || '')
 }
 
 const touchTemplateWithPaths = config => async (filepath, opts) => {

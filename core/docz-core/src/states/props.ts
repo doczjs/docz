@@ -1,4 +1,4 @@
-import { join, relative } from 'path'
+import * as path from 'path'
 import chokidar from 'chokidar'
 import fastglob from 'fast-glob'
 import { State, Params } from '../lib/DataServer'
@@ -17,18 +17,19 @@ const getPattern = (config: Config) => {
     docgenConfig: docgenConfig,
   } = config
 
-  const src = relative(
-    paths.root,
-    docgenConfig.searchPath ? docgenConfig.searchPath : source
-  )
+  const searchPath = docgenConfig.searchPath ? docgenConfig.searchPath : source
+  const root = paths.getRootDir(config)
+  const srcDir = path.resolve(root, searchPath)
+  const src = path.relative(root, srcDir)
 
   return ignore
-    .map(entry => `!**/${entry}`)
+    .map(entry => typeof entry === 'string' && `!**/${entry}`)
+    .filter(Boolean)
     .concat([
-      join(src, ts ? '**/*.{ts,tsx}' : '**/*.{js,jsx,mjs}'),
+      path.join(src, ts ? '**/*.{ts,tsx}' : '**/*.{js,jsx,mjs}'),
       '!**/node_modules',
       '!**/doczrc.js',
-    ])
+    ]) as string[]
 }
 
 const removeFilepath = (items: any[], filepath: string) =>
@@ -36,7 +37,8 @@ const removeFilepath = (items: any[], filepath: string) =>
 
 const initial = (config: Config, pattern: string[]) => async (p: Params) => {
   const { filterComponents } = config
-  const files = await fastglob<string>(pattern, { cwd: paths.root })
+  const cwd = paths.getRootDir(config)
+  const files = await fastglob<string>(pattern, { cwd })
   const filtered = filterComponents ? filterComponents(files) : files
   const metadata = await docgen(filtered, config)
   p.setState('props', metadata)
@@ -59,8 +61,9 @@ const remove = (p: Params) => async (filepath: string) => {
 export const state = (config: Config, dev?: boolean): State => {
   const pattern = getPattern(config)
   const ignored = config.watchIgnore || WATCH_IGNORE
+  const cwd = paths.getRootDir(config)
   const watcher = chokidar.watch(pattern, {
-    cwd: paths.root,
+    cwd,
     ignored,
     persistent: true,
   })

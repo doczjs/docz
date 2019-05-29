@@ -6,8 +6,14 @@ import titleize from 'titleize'
 import { get } from 'lodash/fp'
 
 import { Plugin } from '../lib/Plugin'
-import { BabelRC } from '../config/babel'
 import * as paths from '../config/paths'
+
+export interface BabelRC {
+  presets: any[]
+  plugins: any[]
+  cacheDirectory?: boolean
+  babelrc?: boolean
+}
 
 const getEnv = (val: string | string[], defaultValue: any = null): any =>
   envDotProp.get(val, defaultValue, { parse: true })
@@ -89,7 +95,7 @@ export interface Argv {
 }
 
 export interface Config extends Argv {
-  paths: Record<string, any>
+  paths: paths.Paths
   plugins: Plugin[]
   mdPlugins: any[]
   hastPlugins: any[]

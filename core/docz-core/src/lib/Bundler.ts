@@ -82,8 +82,9 @@ export class Bundler<C = ConfigObj> {
 
   public async build(config: C): Promise<void> {
     const dist = paths.getDist(this.args.dest)
+    const root = paths.getRootDir(config)
 
-    if (paths.root === path.resolve(dist)) {
+    if (root === path.resolve(dist)) {
       logger.fatal(
         new Error(
           'Unexpected option: "dest" cannot be set to the current working directory.'

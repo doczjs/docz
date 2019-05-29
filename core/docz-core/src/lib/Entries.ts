@@ -5,8 +5,6 @@ import { isRegExp, isString } from 'lodash/fp'
 import minimatch from 'minimatch'
 import glob from 'fast-glob'
 
-import * as paths from '../config/paths'
-
 import { Entry, EntryObj } from './Entry'
 import { Plugin } from './Plugin'
 import { Config } from '../config/argv'
@@ -18,9 +16,21 @@ const mapToObj = (map: Map<any, any>) =>
     {}
   )
 
-const matchFilesWithSrc = (config: Config) => (files: string[]) => {
-  const src = path.relative(paths.root, config.src)
-  return files.map(file => (file.startsWith(src) ? file : path.join(src, file)))
+export const matchFilesWithSrc = (config: Config) => (files: string[]) => {
+  const { paths, src } = config
+  const rootDir = paths.getRootDir(config)
+  const srcDir = path.resolve(rootDir, src)
+  const prefix = path.relative(rootDir, srcDir)
+  return files.map(file =>
+    file.startsWith(prefix) ? file : path.join(prefix, file)
+  )
+}
+
+export const getFilesToMatch = (config: Config) => {
+  const { files: pattern } = config
+  const arr = Array.isArray(pattern) ? pattern : [pattern]
+  const toMatch = matchFilesWithSrc(config)
+  return toMatch(arr)
 }
 
 export type EntryMap = Record<string, EntryObj>
@@ -31,17 +41,15 @@ export class Entries {
   public repoEditUrl: string | null
 
   constructor(config: Config) {
-    this.repoEditUrl = getRepoEditUrl(config.src, config.editBranch)
+    this.repoEditUrl = getRepoEditUrl(config)
     this.all = new Map()
     this.get = async () => this.getMap(config)
   }
 
   private async getMap(config: Config): Promise<EntryMap> {
-    const { src, files: pattern, ignore, plugins, mdPlugins } = config
-    const arr = Array.isArray(pattern) ? pattern : [pattern]
-    const toMatch = matchFilesWithSrc(config)
-
-    const initialFiles = await glob<string>(toMatch(arr), {
+    const { paths, ignore, plugins, mdPlugins } = config
+    const initialFiles = await glob<string>(getFilesToMatch(config), {
+      cwd: paths.getRootDir(config),
       ignore: ['**/node_modules/**'],
       onlyFiles: true,
       matchBase: false,
@@ -57,10 +65,12 @@ export class Entries {
       })
     })
 
+    const rootDir = paths.getRootDir(config)
     const createEntry = async (file: string) => {
       try {
-        const ast = await parseMdx(file, mdPlugins)
-        const entry = new Entry(ast, file, src, config)
+        const fullpath = path.resolve(rootDir, file)
+        const ast = await parseMdx(fullpath, mdPlugins)
+        const entry = new Entry(ast, file, config)
 
         if (this.repoEditUrl) entry.setLink(this.repoEditUrl)
         const { settings, ...rest } = entry
