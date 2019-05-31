@@ -8,6 +8,7 @@ export interface PlaygroundProps {
   style?: any
   wrapper?: ComponentType<any>
   children: any
+  editorCode?: string
   __scope: Record<string, any>
   __position: number
   __code: string
@@ -19,6 +20,7 @@ const Playground: SFC<PlaygroundProps> = ({
   style,
   wrapper: Wrapper,
   children,
+  editorCode,
   __scope,
   __position,
   __code,
@@ -26,7 +28,7 @@ const Playground: SFC<PlaygroundProps> = ({
 }) => {
   const components = useComponents()
   if (!components || !components.playground) return null
-  const props = { className, style, components }
+  const props = { className, style, components, editorCode }
 
   return (
     <components.playground

@@ -19,6 +19,7 @@ export interface PlaygroundProps {
   code: string
   codesandbox: string
   scope: Record<string, any>
+  editorCode?: string
 }
 
 export type PlaygroundComponent = CT<PlaygroundProps>
