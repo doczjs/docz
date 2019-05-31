@@ -71,6 +71,10 @@ const config = {
    */
   showPlaygroundEditor: true,
   /**
+   * Show/hide the LiveError overlay when errors are detected 
+   */
+  showLiveError: true,
+  /**
    * Set the numbers of max lines before scroll editor
    */
   linesToScrollEditor: 14

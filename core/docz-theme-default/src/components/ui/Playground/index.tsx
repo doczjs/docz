@@ -124,6 +124,7 @@ export const Playground: SFC<PlaygroundProps> = ({
   const [width, setWidth] = useState(() => initialWidth)
   const [height, setHeight] = useState(() => initialHeight)
   const [showEditor, setShowEditor] = useState(() => Boolean(initialShowEditor))
+  const showErrors = getter(themeConfig, 'showLiveError')
 
   const state = {
     fullscreen,
@@ -265,7 +266,7 @@ export const Playground: SFC<PlaygroundProps> = ({
                   <LivePreview className={className} style={style} />
                 </CustomWrapper>
               </StyledPreviewWrapper>
-              <StyledError />
+              {showErrors && <StyledError />}
             </PreviewWrapper>
             <ActionsBar
               {...{ fullscreen, showEditor, code }}
