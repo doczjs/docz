@@ -57,10 +57,13 @@ export const PropsRaw: React.SFC<PropsComponentProps> = ({
 }) => {
   const entries = Object.entries(props)
   const components = useComponents()
-  const Paragraph = useMemo(
-    () => styled(components.P || 'p')`
-      font-size: 16px;
-      color: ${get('colors.sidebarText')};
+  const Description = useMemo(
+    () => styled.div`
+      &,
+      & ${components.p || 'p'} {
+        font-size: 16px;
+        color: ${get('colors.sidebarText')};
+      }
     `,
     []
   )
@@ -89,7 +92,7 @@ export const PropsRaw: React.SFC<PropsComponentProps> = ({
                 </PropRequired>
               )}
             </Title>
-            {prop.description && <Paragraph>{prop.description}</Paragraph>}
+            {prop.description && <Description>{prop.description}</Description>}
           </Wrapper>
         )
       })}
