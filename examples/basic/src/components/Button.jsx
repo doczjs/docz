@@ -64,14 +64,26 @@ export const Button = ({ children, ...props }) => (
 
 Button.propTypes = {
   /**
-   * This is a pretty good description for this prop
+   * Button type. Learn more about `type` attribute [at MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type)
+   */
+  type: t.oneOf(['button', 'submit', 'reset']),
+  /**
+   * This is a __pretty good__ description for this prop
    */
   scales: t.oneOf(['small', 'normal', 'big']),
+  /**
+   * There are different kinds of buttons.
+   * 
+   * All of them are pretty cool.
+   * 
+   * Choose the one that suis you best.
+   */
   kind: t.oneOf(['primary', 'secondary', 'cancel', 'dark', 'gray']),
   outline: t.bool.isRequired,
 }
 
 Button.defaultProps = {
+  type: 'button',
   scales: 'normal',
   kind: 'primary',
   outline: false,
