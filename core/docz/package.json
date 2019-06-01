@@ -31,6 +31,7 @@
     "docz-core": "^1.2.0",
     "fast-deep-equal": "^2.0.1",
     "lodash": "^4.17.11",
+    "marksy": "^8.0.0",
     "match-sorter": "^3.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",

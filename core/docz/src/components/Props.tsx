@@ -2,6 +2,7 @@ import * as React from 'react'
 import { SFC, ComponentType } from 'react'
 import { first, get } from 'lodash/fp'
 import capitalize from 'capitalize'
+import marksy from 'marksy'
 
 import { doczState } from '../state'
 import { useComponents } from '../hooks'
@@ -120,7 +121,25 @@ export const Props: SFC<PropsProps> = ({
   const value = get('value', found) || []
   const firstDefinition = first(value)
   const definition = value.find((i: any) => i.displayName === componentName)
-  const props = get('props', definition || firstDefinition)
+
+  const compileMarkdown = React.useMemo(
+    () => marksy({ createElement: React.createElement, elements: components }),
+    [components]
+  )
+
+  const props = React.useMemo(() => {
+    const props = get('props', definition || firstDefinition)
+
+    if (props) {
+      for (const key of Object.keys(props)) {
+        if (props[key].description) {
+          props[key].description = compileMarkdown(props[key].description).tree
+        }
+      }
+    }
+
+    return props
+  }, [compileMarkdown, definition || firstDefinition])
 
   if (!props) return null
   if (!PropsComponent) return null
