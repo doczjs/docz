@@ -90,12 +90,16 @@ export const PropsTable: React.SFC<PropsComponentProps> = ({
 }) => {
   const entries = Object.entries(props)
   const components = useComponents()
-  const Paragraph = useMemo(
-    () => styled(components.P || 'p')`
+  const Description = useMemo(
+    () => styled.div`
       margin: 0;
-      font-size: 16px;
-      color: ${get('colors.blockquoteColor')};
       padding: 0 15px 8px 15px;
+
+      &,
+      & ${components.p || 'p'} {
+        font-size: 16px;
+        color: ${get('colors.blockquoteColor')};
+      }
     `,
     []
   )
@@ -130,7 +134,7 @@ export const PropsTable: React.SFC<PropsComponentProps> = ({
                 )}
               </ColumnValue>
             </Content>
-            {prop.description && <Paragraph>{prop.description}</Paragraph>}
+            {prop.description && <Description>{prop.description}</Description>}
           </Line>
         )
       })}
