@@ -22,7 +22,7 @@
   "dependencies": {
     "@babel/generator": "^7.4.4",
     "@babel/types": "^7.4.4",
-    "unist-util-remove": "^1.0.2",
+    "unist-util-remove": "^1.0.3",
     "unist-util-visit": "^1.4.1"
   },
   "devDependencies": {

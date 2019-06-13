@@ -21,7 +21,7 @@
   "dependencies": {
     "@loadable/component": "^5.10.1",
     "@reach/router": "^1.2.1",
-    "@tippy.js/react": "^2.2.0",
+    "@tippy.js/react": "^2.2.1",
     "codemirror": "^5.47.0",
     "copy-text-to-clipboard": "^2.1.0",
     "docz": "^1.2.0",
@@ -30,15 +30,15 @@
     "lodash": "^4.17.11",
     "polished": "^3.4.0",
     "prop-types": "15.7.2",
-    "re-resizable": "^4.11.0",
+    "re-resizable": "^5.0.1",
     "react": "^16.8.6",
     "react-codemirror2": "^6.0.0",
     "react-dom": "^16.8.6",
     "react-feather": "^1.1.6",
     "react-live": "2.1.2",
-    "react-perfect-scrollbar": "^1.5.2",
-    "styled-components": "^4.2.0",
-    "typescript": "3.3.4000"
+    "react-perfect-scrollbar": "^1.5.3",
+    "styled-components": "^4.3.1",
+    "typescript": "3.5.2"
   },
   "peerDependencies": {
     "react": "^16.8.0",
@@ -46,8 +46,8 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@types/lodash": "^4.14.132",
-    "@types/styled-components": "^4.1.15",
+    "@types/lodash": "^4.14.134",
+    "@types/styled-components": "^4.1.16",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-styled-components": "^1.10.0",
     "docz-rollup": "^1.2.0"
