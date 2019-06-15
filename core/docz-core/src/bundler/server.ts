@@ -6,20 +6,25 @@ import { Config as Args } from '../config/argv'
 import { ServerHooks as Hooks } from '../lib/Bundler'
 import { devServerMachine } from '../machines/devServer'
 
-export const server = (args: Args) => async (config: any, hooks: Hooks) => ({
-  start: async () => {
-    const doczrcFilepath = await findUp(finds('docz'))
-    const machine = devServerMachine.withContext({
-      args,
-      config,
-      doczrcFilepath,
-    })
+export const server = (args: Args) => async (config: any, hooks: Hooks) => {
+  const doczrcFilepath = await findUp(finds('docz'))
+  const machine = devServerMachine.withContext({
+    args,
+    config,
+    doczrcFilepath,
+  })
 
-    const service = interpret(machine).onTransition(state => {
-      args.debug && console.log(state.value)
-    })
+  const service = interpret(machine).onTransition(state => {
+    args.debug && console.log(state.value)
+  })
 
-    service.start()
-    service.send('INITIALIZE')
-  },
-})
+  return {
+    start: async () => {
+      service.start()
+      service.send('START_MACHINE')
+      process.on('exit', () => {
+        service.stop()
+      })
+    },
+  }
+}

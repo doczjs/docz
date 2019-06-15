@@ -4,6 +4,29 @@ import { ServerMachineCtx } from './context'
 import * as services from './services'
 import * as actions from './actions'
 
+const asyncState = (src: string, onDoneTarget?: string) => ({
+  initial: 'exec',
+  states: {
+    exec: {
+      invoke: {
+        src,
+        onDone: 'success',
+        onError: 'failure',
+      },
+    },
+    success: {
+      type: 'final',
+    },
+    failure: {
+      actions: ['logError'],
+      type: 'final',
+    },
+  },
+  onDone: {
+    target: onDoneTarget || 'exit',
+  },
+})
+
 const machine = Machine<ServerMachineCtx>({
   id: 'devServer',
   type: 'parallel',
@@ -18,43 +41,17 @@ const machine = Machine<ServerMachineCtx>({
       states: {
         idle: {
           on: {
-            INITIALIZE: {
+            START_MACHINE: {
               actions: ['assignFirstInstall', 'checkIsDoczRepo'],
               target: 'ensuringDirs',
             },
           },
         },
-        ensuringDirs: {
-          invoke: {
-            src: 'ensureDirs',
-            onDone: 'creatingResources',
-          },
-        },
-        creatingResources: {
-          invoke: {
-            src: 'createResources',
-            onDone: 'installingDeps',
-            onError: 'exiting',
-          },
-        },
-        installingDeps: {
-          invoke: {
-            src: 'installDeps',
-            onDone: 'executingCommand',
-            onError: 'exiting',
-          },
-        },
-        executingCommand: {
-          invoke: {
-            src: 'execDevCommand',
-            // onDone: {
-            //   actions: 'openBrowser',
-            // },
-            onError: 'exiting',
-          },
-        },
-        exiting: {
-          onEntry: 'logError',
+        ensuringDirs: asyncState('ensureDirs', 'creatingResources'),
+        creatingResources: asyncState('createResources', 'installingDeps'),
+        installingDeps: asyncState('installDeps', 'executingCommand'),
+        executingCommand: asyncState('execDevCommand'),
+        exit: {
           type: 'final',
         },
       },

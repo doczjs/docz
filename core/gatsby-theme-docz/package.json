@@ -26,7 +26,7 @@
     "docz-theme-default": "^1.2.0",
     "docz-utils": "^1.2.0",
     "fs-extra": "^8.0.1",
-    "gatsby": "^2.9.2",
+    "gatsby": "^2.9.4",
     "gatsby-mdx": "^0.6.3",
     "gatsby-plugin-compile-es6-packages": "^1.1.0",
     "gatsby-plugin-manifest": "^2.1.1",

@@ -11,7 +11,7 @@ import { ServerMachineCtx } from '../context'
 import { outputFileFromTemplate } from '../../../utils/template'
 
 const REQUIRED_DEPS = ['react', 'react-dom']
-const REQUIRED_DEV_DEPS = ['gatsby', 'gatsby-mdx']
+const REQUIRED_DEV_DEPS = ['gatsby', 'gatsby-mdx', 'gatsby-plugin-typescript']
 const CORE_DEV_DEPS = ['docz', 'docz-theme-default', 'gatsby-theme-docz']
 
 const LOCAL_DEV_DEPS = [
@@ -107,10 +107,7 @@ const writeConfigFile = async ({ args, isDoczRepo }: ServerMachineCtx) => {
 
   await outputFileFromTemplate('gatsby-config.tpl.js', outputPath, {
     isDoczRepo,
-    config: JSON.stringify({
-      ...args,
-      root: paths.docz,
-    }),
+    config: JSON.stringify({ ...args, root: paths.docz }),
   })
 }
 
@@ -124,15 +121,9 @@ const writeGatsbyNode = async () => {
   await outputFileFromTemplate('gatsby-node.tpl.js', outputPath)
 }
 
-const writeGatsbyHTML = async () => {
-  const outputPath = path.join(paths.docz, 'src/html.js')
-  await outputFileFromTemplate('gatsby-html.tpl.js', outputPath)
-}
-
 const fixDuplicatedReact = async ({ isDoczRepo }: ServerMachineCtx) => {
   if (!isDoczRepo) return
   await writeGatsbyNode()
-  await writeGatsbyHTML()
 }
 
 export const createResources = async (ctx: ServerMachineCtx) => {

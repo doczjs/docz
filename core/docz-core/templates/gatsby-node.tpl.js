@@ -1,10 +1,14 @@
+const path = require('path')
+
 exports.onCreateWebpackConfig = ({ stage, actions }) => {
   if (stage === 'develop') {
     actions.setWebpackConfig({
-      externals: {
-        react: 'React',
-        'react-dom': 'ReactDOM',
-      },
+      resolve: {
+        modules: [
+          path.resolve(__dirname, 'node_modules'),
+          path.resolve(__dirname, '../../../node_modules'),
+        ]
+      }
     })
   }
 }

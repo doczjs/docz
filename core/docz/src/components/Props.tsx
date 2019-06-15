@@ -109,7 +109,9 @@ export const Props: SFC<PropsProps> = ({
   const PropsComponent = components.props
   const filename = get('__filemeta.filename', component)
   const filemetaName = get('__filemeta.name', component)
-  const componentName = filemetaName || component.displayName || component.name
+  const componentName =
+    filemetaName || get('displayName', component) || get('name', component)
+
   const found =
     stateProps &&
     stateProps.length > 0 &&

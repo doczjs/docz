@@ -62,8 +62,8 @@ export const servedPath = (base: string) => ensureSlash(base, true)
 const IS_DOCZ_PROJECT = path.parse(root).base === '.docz'
 
 export const docz = resolveApp(IS_DOCZ_PROJECT ? './' : '.docz')
+export const cache = path.resolve(docz, '.cache/')
 export const app = path.resolve(docz, 'app/')
-export const cache = path.resolve(docz, 'cache/')
 export const appPublic = path.resolve(docz, 'public/')
 export const appNodeModules = resolveApp('node_modules')
 export const appPackageJson = resolveApp('package.json')

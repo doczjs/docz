@@ -5,8 +5,9 @@ module.exports = {
   },
   __experimentalThemes: [
     { resolve: 'gatsby-theme-docz', options: <%- config %>}
-  ],<% if (isDoczRepo) {%>
+  ],
   plugins: [
+    <% if (isDoczRepo) {%>
     {
       resolve: 'gatsby-plugin-eslint',
       options: {
@@ -25,5 +26,15 @@ module.exports = {
         modules: ['docz', 'docz-theme-default'],
       },
     },
-  ],<%}%>
+    <%}%>
+    <% if (config.typescript) {%>
+    {
+      resolve: 'gatsby-plugin-typescript',
+      options: {
+        isTSX: true,
+        allExtensions: true
+      }
+    }
+    <%}%>
+  ],
 }
