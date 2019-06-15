@@ -2,7 +2,7 @@ import * as React from 'react'
 import { SFC } from 'react'
 import { Entry, useDocs, useConfig } from 'docz'
 import { Location } from '@reach/router'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 import get from 'lodash/get'
 
 import { SmallLink } from './SmallLink'

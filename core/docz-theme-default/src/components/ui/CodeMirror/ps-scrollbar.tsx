@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components'
+import { css } from '@emotion/core'
 
-export const ScrollbarStyles = createGlobalStyle`
+export const scrollbarStyles = css`
   /*
   * Container style
   */
@@ -48,8 +48,7 @@ export const ScrollbarStyles = createGlobalStyle`
     background-color: #aaa;
     border-radius: 4px;
     transition: background-color 0.2s linear, height 0.2s ease-in-out;
-    -webkit-transition: background-color 0.2s linear,
-      height 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s linear, height 0.2s ease-in-out;
     height: 6px;
     /* there must be 'bottom' for ps__thumb-x */
     bottom: 2px;

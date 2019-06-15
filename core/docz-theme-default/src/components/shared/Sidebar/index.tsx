@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Fragment, SFC, useState, useEffect } from 'react'
 import { useMenus, useWindowSize, usePrevious } from 'docz'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 import { Logo } from '../Logo'
 import { Search } from '../Search'

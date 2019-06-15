@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useMemo } from 'react'
 import { PropsComponentProps, useComponents } from 'docz'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 import { get } from '~utils/theme'
 

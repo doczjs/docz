@@ -19,12 +19,15 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.10",
+    "@emotion/styled": "^10.0.12",
     "@loadable/component": "^5.10.1",
     "@reach/router": "^1.2.1",
     "@tippy.js/react": "^2.2.1",
     "codemirror": "^5.47.0",
     "copy-text-to-clipboard": "^2.1.0",
     "docz": "^1.2.0",
+    "emotion-theming": "^10.0.10",
     "facepaint": "^1.2.1",
     "hotkeys-js": "^3.6.11",
     "lodash": "^4.17.11",
@@ -37,7 +40,6 @@
     "react-feather": "^1.1.6",
     "react-live": "2.1.2",
     "react-perfect-scrollbar": "^1.5.3",
-    "styled-components": "^4.3.1",
     "typescript": "3.5.2"
   },
   "peerDependencies": {
@@ -47,9 +49,8 @@
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@types/lodash": "^4.14.134",
-    "@types/styled-components": "^4.1.16",
     "babel-plugin-module-resolver": "^3.2.0",
-    "babel-plugin-styled-components": "^1.10.0",
+    "babel-plugin-emotion": "^10.0.13",
     "docz-rollup": "^1.2.0"
   }
 }

@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css } from '@emotion/core'
 
 export const theme = css`
   .cm-s-docz-light.CodeMirror {

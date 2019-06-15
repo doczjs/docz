@@ -1,15 +1,15 @@
-import { css } from 'styled-components'
+import { css } from '@emotion/core'
 import { get } from '~utils/theme'
 
-export const styles = {
+export const styles = (p: any) => ({
   body: css`
-    font-family: ${get('fonts.ui')};
+    font-family: ${get('fonts.ui')(p)};
     font-size: 16px;
     line-height: 1.6;
   `,
   h1: css`
     margin: 40px 0 20px;
-    font-family: ${get('fonts.display')};
+    font-family: ${get('fonts.display')(p)};
     font-size: 48px;
     font-weight: 600;
     letter-spacing: -0.02em;
@@ -17,7 +17,7 @@ export const styles = {
   h2: css`
     margin: 30px 0 15px;
     line-height: 1.4em;
-    font-family: ${get('fonts.display')};
+    font-family: ${get('fonts.display')(p)};
     font-weight: 500;
     font-size: 28px;
     letter-spacing: -0.02em;
@@ -57,13 +57,13 @@ export const styles = {
   code: css`
     margin: 0 3px;
     border-radius: 3px;
-    font-family: ${get('fonts.mono')};
+    font-family: ${get('fonts.mono')(p)};
     padding: 2px 5px;
     font-size: 0.8em;
     border: '1px solid rgba(0, 0, 0, 0.02)';
   `,
   pre: css`
-    font-family: ${get('fonts.mono')};
+    font-family: ${get('fonts.mono')(p)};
     font-size: 1em;
     line-height: 1.8;
   `,
@@ -73,7 +73,7 @@ export const styles = {
   table: css`
     overflow-y: hidden;
     width: 100%;
-    font-family: ${get('fonts.mono')};
+    font-family: ${get('fonts.mono')(p)};
     font-size: 16px;
     overflow-x: initial;
     display: block;
@@ -84,4 +84,4 @@ export const styles = {
     font-style: italic;
     font-size: 16px;
   `,
-}
+})

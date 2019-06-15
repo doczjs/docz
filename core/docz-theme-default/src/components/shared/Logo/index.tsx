@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { SFC } from 'react'
 import { useConfig } from 'docz'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 import { breakpoints } from '~styles/responsive'
 import { get } from '~utils/theme'

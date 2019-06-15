@@ -12,12 +12,14 @@
           "~styles": "./src/styles"
         }
       }
-    ],
-    [
-      "babel-plugin-styled-components",
-      {
-        "ssr": false
-      }
     ]
-  ]
+  ],
+  "env": {
+    "production": {
+      "plugins": ["emotion"]
+    },
+    "development": {
+      "plugins": [["emotion", { "sourceMap": true }]]
+    }
+  }
 }

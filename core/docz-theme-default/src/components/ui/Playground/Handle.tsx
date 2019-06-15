@@ -1,6 +1,7 @@
 import lighten from 'polished/lib/color/lighten'
 import darken from 'polished/lib/color/darken'
-import styled, { css } from 'styled-components'
+import { css } from '@emotion/core'
+import styled from '@emotion/styled'
 
 import { get } from '~utils/theme'
 
@@ -29,7 +30,7 @@ const line = (position: string) => (p: HandleProps) => css`
   left: ${p.horizontal ? position : '50%'};
   width: ${p.horizontal ? '2px' : '25px'};
   height: ${p.horizontal ? '25px' : '2px'};
-  background: ${getLineBackground};
+  background: ${getLineBackground(p)};
   transform: translate(-50%, -50%);
 `
 

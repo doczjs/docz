@@ -5,13 +5,11 @@ import get from 'lodash/get'
 
 import * as modes from './styles/modes'
 import { components } from './components/ui'
-import { Global } from './styles/global'
 import { config } from './config'
 import { ThemeProvider } from './utils/theme'
 
 const Theme: SFC = ({ children }) => (
   <ThemeProvider>
-    <Global />
     <ComponentsProvider components={components}>{children}</ComponentsProvider>
   </ThemeProvider>
 )

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { SFC } from 'react'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 import SearchIcon from 'react-feather/dist/icons/search'
 
 import { get } from '~utils/theme'

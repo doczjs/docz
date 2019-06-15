@@ -7,15 +7,16 @@ import Maximize from 'react-feather/dist/icons/maximize'
 import Minimize from 'react-feather/dist/icons/minimize'
 import Refresh from 'react-feather/dist/icons/refresh-cw'
 import Code from 'react-feather/dist/icons/code'
-import styled, { css } from 'styled-components'
+import { css } from '@emotion/core'
+import styled from '@emotion/styled'
 
 import { get as themeGet } from '~utils/theme'
 import { CodeSandboxLogo } from './CodeSandboxLogo'
 import { ActionButton, ClipboardAction } from '../Editor/elements'
 
 interface ActionsProps {
-  theme: any
   withRadius: boolean
+  theme?: any
 }
 
 const borderColor = themeGet('colors.border')
@@ -31,12 +32,12 @@ const Actions = styled.div<ActionsProps>`
   background: ${getActionsBg};
 `
 
-const actionStyle = css`
+const actionStyle = (p: any) => css`
   padding: 3px 10px;
-  border-left: 1px solid ${borderColor};
+  border-left: 1px solid ${borderColor(p)};
 `
 
-const Action = styled(ActionButton)<React.ButtonHTMLAttributes<any>>`
+const Action = styled(ActionButton)<any>`
   ${actionStyle};
 `
 

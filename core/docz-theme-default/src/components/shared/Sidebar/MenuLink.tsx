@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { useMemo, useEffect, useRef, useState } from 'react'
 import { MenuItem, useConfig, usePrevious } from 'docz'
-import styled, { css } from 'styled-components'
+import { css } from '@emotion/core'
+import styled from '@emotion/styled'
 
 import { MenuHeadings } from './MenuHeadings'
 import { get } from '~utils/theme'
@@ -87,7 +88,6 @@ interface LinkProps {
   item: MenuItem
   onClick?: React.MouseEventHandler<any>
   className?: string
-  innerRef?: (node: any) => void
   children?: React.ReactNode
   onActiveChange?: (active: boolean) => void
 }
@@ -120,7 +120,7 @@ export const MenuLink = React.forwardRef<any, LinkProps>(
           <Link
             {...linkProps}
             to={item.route}
-            innerRef={$el}
+            ref={$el}
             activeClassName="active"
             partiallyActive={true}
           />
@@ -130,12 +130,12 @@ export const MenuLink = React.forwardRef<any, LinkProps>(
             ref={$el}
             href={item.href || '#'}
             target={item.href ? '_blank' : '_self'}
-            {...!item.href && {
+            {...(!item.href && {
               onClick: (ev: any) => {
                 ev.preventDefault()
                 linkProps.onClick && linkProps.onClick(ev)
               },
-            }}
+            })}
           />
         )}
         {active && item.route && <MenuHeadings route={item.route} />}

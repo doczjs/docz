@@ -2,7 +2,7 @@ import * as React from 'react'
 import { SFC, Fragment } from 'react'
 import { PageProps, useConfig } from 'docz'
 import Edit from 'react-feather/dist/icons/edit-2'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 import { ButtonLink } from './Button'
 import { GithubLink, Sidebar, Main } from '../shared'

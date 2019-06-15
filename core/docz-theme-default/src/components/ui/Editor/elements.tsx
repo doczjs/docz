@@ -4,7 +4,7 @@ import BaseCheck from 'react-feather/dist/icons/check'
 import Clipboard from 'react-feather/dist/icons/clipboard'
 import rgba from 'polished/lib/color/rgba'
 import copy from 'copy-text-to-clipboard'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 import { ButtonSwap } from './ButtonSwap'
 import { get } from '~utils/theme'
@@ -29,7 +29,7 @@ export const ActionButton = styled(ButtonSwap)`
   }
 `
 
-const Check = styled(BaseCheck)`
+const Check = styled(BaseCheck)<any>`
   stroke: ${get('colors.primary')};
 `
 

@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useMemo, useCallback, useState } from 'react'
 import { useConfig, UseConfigObj } from 'docz'
 import loadable from '@loadable/component'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 import getter from 'lodash/get'
 
 import { ClipboardAction } from './elements'

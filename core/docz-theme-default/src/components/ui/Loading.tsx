@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { css, keyframes } from 'styled-components'
-import styled from 'styled-components'
+import { css, keyframes } from '@emotion/core'
+import styled from '@emotion/styled'
 
 import { get } from '~utils/theme'
 

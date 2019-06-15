@@ -3,7 +3,7 @@ import { SFC } from 'react'
 import Smartphone from 'react-feather/dist/icons/smartphone'
 import Tablet from 'react-feather/dist/icons/tablet'
 import Monitor from 'react-feather/dist/icons/monitor'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 import { ActionButton } from '../Editor/elements'
 import { get } from '~utils/theme'

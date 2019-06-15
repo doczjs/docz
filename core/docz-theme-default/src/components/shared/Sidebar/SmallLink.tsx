@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { SFC, useState, useEffect } from 'react'
 import { WindowLocation } from '@reach/router'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 import { get as themeGet } from '~utils/theme'
 
@@ -13,7 +13,7 @@ export interface LinkProps {
   onClick?: React.MouseEventHandler<any>
 }
 
-const Link = styled.a<LinkProps>`
+const Link = styled.a<any>`
   position: relative;
   font-size: 14px;
   padding: 0 0 5px 16px;

@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { SFC } from 'react'
 import { get } from '~utils/theme'
-import styled, { keyframes } from 'styled-components'
+import { keyframes } from '@emotion/core'
+import styled from '@emotion/styled'
 
 const octocatWave = keyframes`
   0%, 100% {

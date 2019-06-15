@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useState } from 'react'
 import { MenuItem } from 'docz'
 import ChevronDown from 'react-feather/dist/icons/chevron-down'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 import { MenuLink } from './MenuLink'
 import { get } from '~utils/theme'
@@ -65,7 +65,7 @@ export const Menu: React.SFC<MenuProps> = props => {
 
   return (
     <Wrapper>
-      <MenuLink item={item} {...hasToggle && { onClick: handleToggle }}>
+      <MenuLink item={item} {...(hasToggle && { onClick: handleToggle })}>
         {item.name}
         {hasChildren && (
           <Icon opened={show}>

@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components'
-import { get } from '~utils/theme'
+import { css } from '@emotion/core'
+import { get } from 'lodash/fp'
 
-export const Global = createGlobalStyle`
+export const globalStyles = (p: any) => css`
   @import url('https://unpkg.com/codemirror@5.42.0/lib/codemirror.css');
   @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600');
   @import url('https://fonts.googleapis.com/css?family=Inconsolata');
@@ -13,7 +13,7 @@ export const Global = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    ${get('styles.body')};
+    ${get('theme.docz.styles.body', p)};
   }
 
   .with-overlay {
