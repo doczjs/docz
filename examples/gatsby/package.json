@@ -7,6 +7,13 @@
     "docz"
   ],
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pedronauck/docz/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pedronauck/docz.git"
+  },
   "scripts": {
     "dev": "gatsby develop",
     "build": "gatsby build",
@@ -15,7 +22,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.0.0",
-    "babel-eslint": "10.0.1",
+    "babel-eslint": "10.0.2",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
     "eslint": "^5.16.0",

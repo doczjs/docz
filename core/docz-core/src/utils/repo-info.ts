@@ -48,7 +48,10 @@ const getTree = (repo: any, branch: string, relative: string) => {
 export const getRepoEditUrl = (config: Config): string | null => {
   try {
     const repo = parseRepo()
-    const project = path.parse(findup.sync('.git')).dir
+    const gitDir = findup.sync('.git', { type: 'directory' })
+    if (!gitDir) return null
+
+    const project = path.parse(gitDir).dir
     const root = path.join(paths.getRootDir(config), config.src)
     const relative = path.relative(project, root)
     const tree = getTree(repo, config.editBranch, relative)
@@ -63,6 +66,7 @@ export const getRepoEditUrl = (config: Config): string | null => {
         .replace('{/tree/committish}', tree)
     )
   } catch (err) {
+    console.log(err)
     return null
   }
 }

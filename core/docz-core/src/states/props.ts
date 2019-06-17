@@ -38,7 +38,7 @@ const removeFilepath = (items: any[], filepath: string) =>
 const initial = (config: Config, pattern: string[]) => async (p: Params) => {
   const { filterComponents } = config
   const cwd = paths.getRootDir(config)
-  const files = await fastglob<string>(pattern, { cwd })
+  const files = await fastglob(pattern, { cwd })
   const filtered = filterComponents ? filterComponents(files) : files
   const metadata = await docgen(filtered, config)
   p.setState('props', metadata)

@@ -16,7 +16,7 @@
     "@babel/preset-flow": "^7.0.0",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
-    "flow-bin": "^0.101.0",
+    "flow-bin": "^0.102.0-rc",
     "flow-typed": "^2.5.2"
   }
 }

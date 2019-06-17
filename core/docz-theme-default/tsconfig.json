@@ -3,6 +3,7 @@
   "compilerOptions": {
     "target": "es6",
     "module": "esnext",
+    "jsxFactory": "jsx",
     "declaration": true,
     "sourceMap": false,
     "baseUrl": "src",
@@ -10,7 +11,10 @@
     "outDir": "dist",
     "typeRoots": ["../../node_modules/@types", "node_modules/@types"],
     "paths": {
+      "~styles": ["styles"],
       "~styles/*": ["styles/*"],
+      "~theme": ["theme"],
+      "~theme/*": ["theme/*"],
       "~utils/*": ["utils/*"]
     }
   },

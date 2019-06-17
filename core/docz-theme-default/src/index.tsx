@@ -1,31 +1,20 @@
-import * as React from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import { SFC } from 'react'
-import { theme, ComponentsProvider } from 'docz'
-import get from 'lodash/get'
+import { theme as createTheme, ComponentsProvider } from 'docz'
+import { Styled } from 'theme-ui'
 
-import * as modes from './styles/modes'
-import { components } from './components/ui'
-import { config } from './config'
-import { ThemeProvider } from './utils/theme'
+import theme from '~theme'
+import { Layout } from './Layout'
+import { componentsMap } from './components/ui'
 
 const Theme: SFC = ({ children }) => (
-  <ThemeProvider>
-    <ComponentsProvider components={components}>{children}</ComponentsProvider>
-  </ThemeProvider>
+  <Layout>
+    <ComponentsProvider components={componentsMap}>
+      <Styled.root>{children}</Styled.root>
+    </ComponentsProvider>
+  </Layout>
 )
 
-export const enhance = theme(
-  config,
-  ({ mode, codemirrorTheme, ...config }) => ({
-    ...config,
-    mode,
-    codemirrorTheme: codemirrorTheme || `docz-${mode}`,
-    colors: {
-      ...get(modes, mode),
-      ...config.colors,
-    },
-  })
-)
-
+export const enhance = createTheme(theme)
 export default enhance(Theme)
-export { components }

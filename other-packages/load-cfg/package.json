@@ -21,7 +21,7 @@
   "dependencies": {
     "@babel/preset-env": "^7.4.5",
     "@babel/register": "^7.4.4",
-    "find-up": "^4.0.0",
+    "find-up": "^4.1.0",
     "fs-extra": "^8.0.1",
     "lodash": "^4.17.11"
   },

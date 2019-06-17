@@ -5,9 +5,9 @@ import { ServerMachineCtx as Context } from '../context'
 import { configWatcher } from '../../../states/config'
 import * as paths from '../../../config/paths'
 
-export const watchConfig = (ctx: Context) => () => {
-  const watcher = configWatcher(ctx.args)
-  const copyDoczrc = () => sh.cp(ctx.doczrcFilepath, paths.docz)
+export const watchConfig = ({ args, doczrcFilepath }: Context) => () => {
+  const watcher = configWatcher(args)
+  const copyDoczrc = () => doczrcFilepath && sh.cp(doczrcFilepath, paths.docz)
   const deleteDoczrc = () => sh.rm(path.join(paths.docz, 'doczrc.js'))
 
   watcher

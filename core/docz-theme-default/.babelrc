@@ -8,8 +8,9 @@
         "extensions": [".ts", ".tsx"],
         "root": ["./src"],
         "alias": {
-          "~utils": "./src/utils",
-          "~styles": "./src/styles"
+          "~styles": "./src/styles",
+          "~theme": "./src/theme",
+          "~utils": "./src/utils"
         }
       }
     ]

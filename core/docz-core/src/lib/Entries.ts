@@ -48,13 +48,13 @@ export class Entries {
 
   private async getMap(config: Config): Promise<EntryMap> {
     const { paths, ignore, plugins, mdPlugins } = config
-    const initialFiles = await glob<string>(getFilesToMatch(config), {
+    const initialFiles = await glob(getFilesToMatch(config), {
       cwd: paths.getRootDir(config),
       ignore: ['**/node_modules/**'],
       onlyFiles: true,
-      matchBase: false,
       unique: true,
-      case: false,
+      baseNameMatch: false,
+      caseSensitiveMatch: false,
     })
 
     const files = initialFiles.filter((value: string) => {
