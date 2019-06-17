@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { SFC, ComponentType } from 'react'
 import { first, get } from 'lodash/fp'
-import capitalize from 'capitalize'
 
 import { doczState } from '../state'
 import { useComponents } from '../hooks'
@@ -74,8 +73,10 @@ export const getPropType = (prop: Prop) => {
   const propName = get('name', prop.flowType || prop.type)
   if (!propName) return null
 
-  const isEnum = propName.startsWith('"') || propName === 'enum'
-  const name = capitalize(isEnum ? 'enum' : propName)
+  const isNamedEnum = propName.startsWith('"')
+  const isOpaqueEnum = propName === 'enum'
+  const isEnum = isNamedEnum || isOpaqueEnum
+  const name = isOpaqueEnum ? 'Enum' : propName
   const value = get('type.value', prop)
   if (!name) return null
 

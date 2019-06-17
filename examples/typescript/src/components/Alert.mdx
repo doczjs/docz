@@ -4,7 +4,7 @@ menu: Components
 ---
 
 import { Playground, Props } from 'docz'
-import { Alert } from './Alert'
+import { Alert, AlertKind } from './Alert'
 
 # Alert
 
@@ -21,10 +21,10 @@ import { Alert } from './Alert'
 ## Using different kinds
 
 <Playground>
-  <Alert kind="info">Some message</Alert>
-  <Alert kind="positive">Some message</Alert>
-  <Alert kind="negative">Some message</Alert>
-  <Alert kind="warning">Some message</Alert>
+  <Alert kind={AlertKind.Info}>Some message</Alert>
+  <Alert kind={AlertKind.Positive}>Some message</Alert>
+  <Alert kind={AlertKind.Negative}>Some message</Alert>
+  <Alert kind={AlertKind.Warning}>Some message</Alert>
 </Playground>
 
 ## Use with children as a function
