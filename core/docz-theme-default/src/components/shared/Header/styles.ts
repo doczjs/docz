@@ -2,7 +2,7 @@ import { css } from 'theme-ui'
 import * as mixins from '~utils/mixins'
 
 export const wrapper = css({
-  bg: 'sidebarBg',
+  bg: 'sidebar.bg',
 })
 
 export const innerContainer = css({
@@ -13,14 +13,14 @@ export const innerContainer = css({
 
 export const menuButton = css({
   ...mixins.ghostButton,
-  color: 'sidebarText',
+  color: 'sidebar.text',
   opacity: 0.5,
 })
 
 export const link = css({
   fontSize: 3,
   fontWeight: 600,
-  color: 'sidebarText',
+  color: 'sidebar.text',
   textDecoration: 'none',
   ':hover': {
     color: 'primary',
@@ -33,8 +33,8 @@ export const headerButton = css({
   p: '12px',
   border: 'none',
   borderRadius: 9999,
-  bg: 'buttonBg',
-  color: 'buttonColor',
+  bg: 'sidebar.button.bg',
+  color: 'sidebar.button.color',
   fontSize: 0,
   fontWeight: 600,
   ':hover': {

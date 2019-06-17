@@ -12,7 +12,7 @@ import { themeProp } from '~utils/theme'
 import * as styles from './styles'
 
 const Wrapper = styled(Box)`
-  border-bottom: 1px solid ${themeProp('colors.sidebarBorder')};
+  border-bottom: 1px solid ${themeProp('colors.sidebar.border')};
 `
 
 export const Header: SFC<PageProps> = ({
