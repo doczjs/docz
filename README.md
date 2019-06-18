@@ -91,12 +91,14 @@ Getting started with **Docz** is really quick and easy.
 Firstly, install `docz` and a theme of your choosing using your favourite package manager:
 
 ```bash
-$ yarn add --dev docz docz-theme-default
+$ yarn add --dev docz docz-theme-default react react-dom
 
 # or
 
-$ npm install --save-dev docz docz-theme-default
+$ npm install --save-dev docz docz-theme-default react react-dom
 ```
+
+**Note**: `react` and `react-dom` will not be installed automatically. You'll have to install them yourself.
 
 Next, add some `.mdx` files anywhere inside your project:
 
