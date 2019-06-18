@@ -1,27 +1,24 @@
 /** @jsx jsx */
-import { SFC } from 'react'
 import { jsx, Box, Flex, Container, useColorMode } from 'theme-ui'
-import { useConfig, PageProps } from 'docz'
-import Edit from 'react-feather/dist/icons/edit-2'
-import Sun from 'react-feather/dist/icons/sun'
-import Menu from 'react-feather/dist/icons/menu'
-import Github from 'react-feather/dist/icons/github'
+import { useConfig } from 'docz'
 import styled from '@emotion/styled'
 
-import { themeProp } from '~utils/theme'
+import { themeProp } from '@docz/utils/theme'
+import { Edit, Sun, Menu, Github } from '@docz/components/shared/Icons'
+
 import * as styles from './styles'
 
 const Wrapper = styled(Box)`
   border-bottom: 1px solid ${themeProp('colors.sidebar.border')};
 `
 
-export const Header: SFC<PageProps> = ({
+export const Header = ({
   doc: {
     value: { link, edit = true },
   },
 }) => {
   const config = useConfig()
-  const Link: any = config.linkComponent
+  const Link = config.linkComponent
   const [colorMode, setColorMode] = useColorMode()
 
   const toggleColorMode = () => {

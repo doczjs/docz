@@ -1,5 +1,4 @@
 const path = require('path')
-
 const { getDoczConfig } = require('./src/utils/parseConfig')
 
 const getMdPlugins = () => {
@@ -53,7 +52,7 @@ module.exports = opts => {
               ? config.hastPlugins.concat(hastPlugins)
               : hastPlugins,
           defaultLayouts: {
-            default: path.join(paths.app, 'components/Layout.js'),
+            default: path.join(__dirname, 'src/base/Layout.js'),
           },
         },
       },
@@ -64,7 +63,18 @@ module.exports = opts => {
         resolve: 'gatsby-plugin-root-import',
       },
       {
-        resolve: 'gatsby-plugin-styled-components',
+        resolve: 'gatsby-plugin-emotion',
+      },
+      {
+        resolve: 'gatsby-plugin-alias-imports',
+        options: {
+          alias: {
+            '@docz/components': path.resolve(__dirname, 'src/docz/components'),
+            '@docz/styles': path.resolve(__dirname, 'src/docz/styles'),
+            '@docz/theme': path.resolve(__dirname, 'src/docz/theme'),
+            '@docz/utils': path.resolve(__dirname, 'src/docz/utils'),
+          },
+        },
       },
       {
         resolve: 'gatsby-plugin-compile-es6-packages',

@@ -1,5 +1,5 @@
 import { css } from 'theme-ui'
-import * as mixins from '~utils/mixins'
+import * as mixins from '@docz/utils/mixins'
 
 export const wrapper = css({
   bg: 'sidebar.bg',

@@ -1,14 +1,13 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
-import { SFC } from 'react'
 import { theme as createTheme, ComponentsProvider } from 'docz'
 import { Styled } from 'theme-ui'
 
-import theme from '~theme'
-import { Layout } from './Layout'
-import { componentsMap } from './components/ui'
+import { componentsMap } from '@docz/components/ui'
+import theme from '@docz/theme'
+import { Layout } from './layout'
 
-const Theme: SFC = ({ children }) => (
+const Theme = ({ children }) => (
   <Layout>
     <ComponentsProvider components={componentsMap}>
       <Styled.root>{children}</Styled.root>

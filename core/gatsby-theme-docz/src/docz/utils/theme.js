@@ -1,5 +1,5 @@
 import { get } from 'lodash/fp'
 
-export const themeProp = (str: string) => (props: any) => {
+export const themeProp = str => props => {
   return get(`theme.${str}`, props)
 }

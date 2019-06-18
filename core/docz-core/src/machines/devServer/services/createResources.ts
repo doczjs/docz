@@ -12,7 +12,7 @@ import { outputFileFromTemplate } from '../../../utils/template'
 
 const REQUIRED_DEPS = ['react', 'react-dom']
 const REQUIRED_DEV_DEPS = ['gatsby', 'gatsby-mdx', 'gatsby-plugin-typescript']
-const CORE_DEV_DEPS = ['docz', 'docz-theme-default', 'gatsby-theme-docz']
+const CORE_DEV_DEPS = ['docz', 'gatsby-theme-docz']
 
 const LOCAL_DEV_DEPS = [
   'babel-eslint',

@@ -1,7 +1,0 @@
-declare module 'theme-ui'
-declare module 'theme-ui-typography'
-declare module 'typography-theme-moraga'
-declare module 'react-feather/dist/icons/edit-2'
-declare module 'react-feather/dist/icons/sun'
-declare module 'react-feather/dist/icons/menu'
-declare module 'react-feather/dist/icons/github'

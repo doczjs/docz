@@ -4,9 +4,9 @@ import { jsx, css, Layout as BaseLayout } from 'theme-ui'
 import { ThemeProvider } from 'theme-ui'
 import { useConfig } from 'docz'
 
-import global from '~styles/global'
+import global from '@docz/styles/global'
 
-export const Layout: React.SFC = props => {
+export const Layout = props => {
   const config = useConfig()
   return (
     <ThemeProvider theme={config.themeConfig}>
