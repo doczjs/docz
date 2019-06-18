@@ -35,8 +35,6 @@
     "gatsby-plugin-styled-components": "^3.0.7",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "rehype-docz": "^1.2.0",
     "rehype-slug": "^2.0.2",
@@ -54,5 +52,9 @@
     "eslint-plugin-jsx-a11y": "6.2.1",
     "eslint-plugin-react": "7.13.0",
     "eslint-plugin-react-hooks": "^1.6.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   }
 }
