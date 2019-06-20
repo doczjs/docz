@@ -26,7 +26,7 @@
     "docz-utils": "^1.2.0",
     "env-dot-prop": "^2.0.1",
     "fast-deep-equal": "^2.0.1",
-    "fast-glob": "^3.0.0",
+    "fast-glob": "^3.0.1",
     "find-up": "^4.1.0",
     "fs-extra": "^8.0.1",
     "get-pkg-repo": "^4.1.0",
@@ -46,7 +46,7 @@
     "signale": "^1.4.0",
     "titleize": "^2.1.0",
     "typescript": "3.5.2",
-    "xstate": "^4.6.1",
+    "xstate": "^4.6.2",
     "yargs": "^13.2.4"
   },
   "devDependencies": {

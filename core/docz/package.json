@@ -24,12 +24,12 @@
   },
   "dependencies": {
     "@loadable/component": "^5.10.1",
-    "@mdx-js/react": "^1.0.20",
+    "@mdx-js/react": "^1.0.21",
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
     "docz-core": "^1.2.0",
     "fast-deep-equal": "^2.0.1",
-    "gatsby": "^2.9.4",
+    "gatsby": "^2.10.0",
     "lodash": "^4.17.11",
     "match-sorter": "^3.1.1",
     "prop-types": "^15.7.2",
@@ -48,7 +48,7 @@
     "@types/lodash": "^4.14.134",
     "@types/node": "^12.0.8",
     "@types/reach__router": "^1.2.4",
-    "@types/react": "^16.8.20",
+    "@types/react": "^16.8.21",
     "docz-rollup": "^1.2.0"
   },
   "resolutions": {

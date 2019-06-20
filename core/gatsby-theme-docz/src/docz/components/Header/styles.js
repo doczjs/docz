@@ -1,23 +1,22 @@
-import { css } from 'theme-ui'
 import * as mixins from '@docz/utils/mixins'
 
-export const wrapper = css({
+export const wrapper = {
   bg: 'header.bg',
-})
+}
 
-export const innerContainer = css({
+export const innerContainer = {
   ...mixins.centerAlign,
   position: 'relative',
   justifyContent: 'space-between',
-})
+}
 
-export const menuButton = css({
+export const menuButton = {
   ...mixins.ghostButton,
   color: 'header.text',
   opacity: 0.5,
-})
+}
 
-export const link = css({
+export const link = {
   fontSize: 3,
   fontWeight: 600,
   color: 'header.text',
@@ -25,9 +24,9 @@ export const link = css({
   ':hover': {
     color: 'primary',
   },
-})
+}
 
-export const headerButton = css({
+export const headerButton = {
   ...mixins.centerAlign,
   outline: 'none',
   p: '12px',
@@ -40,9 +39,9 @@ export const headerButton = css({
   ':hover': {
     cursor: 'pointer',
   },
-})
+}
 
-export const editButton = css({
+export const editButton = {
   ...mixins.centerAlign,
   position: 'absolute',
   bottom: -70,
@@ -52,4 +51,4 @@ export const editButton = css({
   fontSize: 1,
   textDecoration: 'none',
   borderRadius: 'radius',
-})
+}

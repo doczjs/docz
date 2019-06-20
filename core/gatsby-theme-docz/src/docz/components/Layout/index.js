@@ -6,7 +6,7 @@ import global from '@docz/theme/global'
 import { Header } from '../Header'
 
 export const Layout = ({ children }) => (
-  <BaseLayout css={css({ '> div': { flex: '1 1 auto' } })}>
+  <BaseLayout css={{ '> div': { flex: '1 1 auto' } }}>
     <Global styles={global} />
     <Main>
       <Header />
