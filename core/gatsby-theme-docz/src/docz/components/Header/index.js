@@ -1,24 +1,19 @@
 /** @jsx jsx */
 import { jsx, Box, Flex, Container, useColorMode } from 'theme-ui'
-import { useConfig } from 'docz'
+import { Link, useConfig, useCurrentDoc } from 'docz'
 import styled from '@emotion/styled'
 
 import { themeProp } from '@docz/utils/theme'
-import { Edit, Sun, Menu, Github } from '@docz/components/shared/Icons'
-
+import { Edit, Sun, Menu, Github } from '../Icons'
 import * as styles from './styles'
 
 const Wrapper = styled(Box)`
-  border-bottom: 1px solid ${themeProp('colors.sidebar.border')};
+  border-bottom: 1px solid ${themeProp('colors.header.border')};
 `
 
-export const Header = ({
-  doc: {
-    value: { link, edit = true },
-  },
-}) => {
+export const Header = () => {
   const config = useConfig()
-  const Link = config.linkComponent
+  const { edit = true, ...doc } = useCurrentDoc()
   const [colorMode, setColorMode] = useColorMode()
 
   const toggleColorMode = () => {
@@ -56,10 +51,10 @@ export const Header = ({
               <Sun size={15} />
             </button>
           </Flex>
-          {link && edit && (
+          {edit && doc.link && (
             <a
               css={styles.editButton}
-              href={link}
+              href={doc.link}
               target="_blank"
               rel="noopener noreferrer"
             >

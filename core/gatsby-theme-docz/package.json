@@ -41,6 +41,7 @@
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-root-import": "^2.0.5",
     "hotkeys-js": "^3.6.11",
+    "is-absolute-url": "^3.0.0",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "re-resizable": "^5.0.1",

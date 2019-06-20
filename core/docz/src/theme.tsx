@@ -1,31 +1,25 @@
 import * as React from 'react'
-import { Fragment, SFC, ComponentType as CT } from 'react'
-import { doczState, Database, ThemeConfig, TransformFn } from './state'
+import { SFC, ComponentType as CT } from 'react'
+import { doczState, Database, ThemeConfig, TransformFn, Entry } from './state'
 
 export interface ThemeProps {
   db: Database
-  wrapper?: CT
-  linkComponent?: CT
+  currentEntry: Entry
   children(WrappedComponent: CT): JSX.Element
 }
-
-export type ThemeReturn = (WrappedComponent: CT) => CT<ThemeProps>
 
 export function theme(
   themeConfig: ThemeConfig,
   transform: TransformFn = c => c
-): ThemeReturn {
+): (WrappedComponent: CT) => CT<ThemeProps> {
   return WrappedComponent => {
     const Theme: SFC<ThemeProps> = React.memo(props => {
-      const { linkComponent } = props
-      const { db, children, wrapper: Wrapper = Fragment } = props
-      const initial: any = { ...db, themeConfig, transform, linkComponent }
+      const { db, currentEntry, children } = props
+      const initial: any = { ...db, currentEntry, themeConfig, transform }
 
       return (
         <doczState.Provider initial={initial}>
-          <Wrapper>
-            <WrappedComponent>{children}</WrappedComponent>
-          </Wrapper>
+          <WrappedComponent>{children}</WrappedComponent>
         </doczState.Provider>
       )
     })

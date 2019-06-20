@@ -6,7 +6,6 @@ export const gray = '#7D899C'
 export const grayDark = '#2D3747'
 export const grayExtraDark = '#1D2330'
 export const dark = '#13161F'
-
 export const blueLight = '#e9f2fa'
 export const blue = '#0B5FFF'
 export const skyBlue = '#1FB6FF'

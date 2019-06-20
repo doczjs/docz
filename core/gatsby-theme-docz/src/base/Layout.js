@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
-import { AsyncRoute, useComponents } from 'docz'
+import { useComponents } from 'docz'
 import { MDXProvider } from '@mdx-js/react'
 
-import { Link } from './Link'
-import SEO from './Seo'
 import Theme from '../docz'
+import Wrapper from '../docz/wrapper'
+import SEO from './Seo'
 
 const query = graphql`
   query Layout {
@@ -17,17 +17,19 @@ const query = graphql`
   }
 `
 
-const Route = ({ children, ...props }) => {
+const Route = ({ children, entry, ...defaultProps }) => {
+  if (!entry) return <NotFound />
+
   const components = useComponents()
-  const NotFound = components.NotFound
-  if (!props.entry) return <NotFound />
+  const NotFound = components.notFound
+  const Layout = components.layout
+  const props = { ...defaultProps, doc: entry }
 
   return (
     <MDXProvider components={components}>
-      <AsyncRoute
-        {...props}
-        asyncComponent={() => <Fragment>{children}</Fragment>}
-      />
+      <Wrapper>
+        <Layout {...props}>{children}</Layout>
+      </Wrapper>
     </MDXProvider>
   )
 }
@@ -50,7 +52,7 @@ const Layout = ({ children, ...defaultProps }) => {
   return (
     <Fragment>
       {entry && <SEO title={entry.value.name} />}
-      <Theme db={db} linkComponent={Link}>
+      <Theme db={db} currentEntry={entry}>
         <Route {...defaultProps} entry={entry}>
           {children}
         </Route>

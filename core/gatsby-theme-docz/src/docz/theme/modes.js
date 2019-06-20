@@ -8,7 +8,7 @@ export const light = {
   link: colors.blue,
   background: colors.white,
   border: colors.grayLight,
-  sidebar: {
+  header: {
     bg: colors.grayExtraLight,
     text: colors.dark,
     border: colors.grayLight,
@@ -27,7 +27,7 @@ export const dark = {
   link: colors.skyBlue,
   background: colors.grayExtraDark,
   border: colors.grayDark,
-  sidebar: {
+  header: {
     bg: colors.dark,
     text: colors.grayLight,
     border: colors.grayDark,

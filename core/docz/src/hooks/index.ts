@@ -1,5 +1,6 @@
 export * from './useComponents'
 export { useConfig, UseConfigObj } from './useConfig'
+export { useCurrentDoc } from './useCurrentDoc'
 export { useDataServer } from './useDataServer'
 export { useDocs } from './useDocs'
 export { useMenus } from './useMenus'

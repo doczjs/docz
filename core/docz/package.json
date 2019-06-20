@@ -25,11 +25,11 @@
   "dependencies": {
     "@loadable/component": "^5.10.1",
     "@mdx-js/react": "^1.0.20",
-    "@reach/router": "^1.2.1",
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
     "docz-core": "^1.2.0",
     "fast-deep-equal": "^2.0.1",
+    "gatsby": "^2.9.4",
     "lodash": "^4.17.11",
     "match-sorter": "^3.1.1",
     "prop-types": "^15.7.2",
