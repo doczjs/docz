@@ -5,8 +5,8 @@ import { useComponents } from 'docz'
 import { MDXProvider } from '@mdx-js/react'
 import { propEq, get } from 'lodash/fp'
 
-import Theme from '../docz'
-import Wrapper from '../docz/wrapper'
+import Wrapper from '../wrapper'
+import Theme from '../index'
 import SEO from './Seo'
 
 const query = graphql`

@@ -1,5 +1,5 @@
 const path = require('path')
-const { getDoczConfig } = require('./src/utils/parseConfig')
+const { getDoczConfig } = require('./lib/utils/parseConfig')
 
 const getMdPlugins = () => {
   let plugins = []
@@ -69,10 +69,10 @@ module.exports = opts => {
         resolve: 'gatsby-plugin-alias-imports',
         options: {
           alias: {
-            '@docz/components': path.resolve(__dirname, 'src/docz/components'),
-            '@docz/styles': path.resolve(__dirname, 'src/docz/styles'),
-            '@docz/theme': path.resolve(__dirname, 'src/docz/theme'),
-            '@docz/utils': path.resolve(__dirname, 'src/docz/utils'),
+            '~components': path.resolve(__dirname, 'src/components'),
+            '~styles': path.resolve(__dirname, 'src/styles'),
+            '~theme': path.resolve(__dirname, 'src/theme'),
+            '~utils': path.resolve(__dirname, 'src/utils'),
           },
         },
       },

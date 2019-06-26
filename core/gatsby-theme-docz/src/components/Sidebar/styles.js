@@ -1,4 +1,4 @@
-import { media } from '@docz/theme/breakpoints'
+import { media } from '~theme/breakpoints'
 
 export const global = {
   body: {

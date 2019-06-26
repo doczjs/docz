@@ -1,5 +1,5 @@
-import * as mixins from '@docz/utils/mixins'
-import { media } from '@docz/theme/breakpoints'
+import * as mixins from '~utils/mixins'
+import { media } from '~theme/breakpoints'
 
 export const menuIcon = {
   mr: 3,

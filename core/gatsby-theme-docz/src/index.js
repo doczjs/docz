@@ -3,8 +3,8 @@ import { jsx } from 'theme-ui'
 import { theme, useConfig, ComponentsProvider } from 'docz'
 import { Styled, ThemeProvider } from 'theme-ui'
 
-import defaultTheme from '@docz/theme'
-import { componentsMap } from '@docz/components'
+import defaultTheme from '~theme'
+import { componentsMap } from '~components'
 
 const Theme = ({ children }) => {
   const config = useConfig()

@@ -3,8 +3,8 @@ import { jsx, Box, Flex, Container, useColorMode } from 'theme-ui'
 import { Link, useConfig, useCurrentDoc } from 'docz'
 import styled from '@emotion/styled'
 
-import { themeProp } from '@docz/utils/theme'
-import { breakpoints } from '@docz/theme/breakpoints'
+import { themeProp } from '~utils/theme'
+import { breakpoints } from '~theme/breakpoints'
 
 import { Edit, Sun, Menu, Github } from '../Icons'
 import * as styles from './styles'

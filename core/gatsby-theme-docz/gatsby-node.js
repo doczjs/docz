@@ -1,3 +1,3 @@
-exports.createPages = require('./src/node/createPages')
-exports.onCreateBabelConfig = require('./src/node/onCreateBabelConfig')
-exports.sourceNodes = require('./src/node/sourceNodes')
+exports.createPages = require('./lib/createPages')
+exports.onCreateBabelConfig = require('./lib/onCreateBabelConfig')
+exports.sourceNodes = require('./lib/sourceNodes')
