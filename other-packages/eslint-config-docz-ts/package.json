@@ -1,15 +1,15 @@
 {
-  "name": "eslint-config-docz",
+  "name": "eslint-config-docz-ts",
   "version": "1.2.0",
-  "description": "Eslint config of Docz",
+  "description": "Eslint config of Docz for Typescript",
   "license": "MIT",
   "author": {
     "name": "Pedro Nauck",
     "email": "pedronauck@gmail.com"
   },
-  "main": "src/index.js",
+  "main": "index.js",
   "files": [
-    "src/",
+    "index.js",
     "package.json"
   ],
   "scripts": {

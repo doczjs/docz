@@ -1,0 +1,26 @@
+{
+  "name": "eslint-config-docz-js",
+  "version": "1.2.0",
+  "description": "Eslint config of Docz for Javascript",
+  "license": "MIT",
+  "author": {
+    "name": "Pedro Nauck",
+    "email": "pedronauck@gmail.com"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "package.json"
+  ],
+  "scripts": {
+    "fix": "run-s fix:*",
+    "fix:prettier": "prettier \"src/**/*.js\" --write"
+  },
+  "dependencies": {
+    "babel-eslint": "^10.0.2",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^5.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.13.0"
+  }
+}

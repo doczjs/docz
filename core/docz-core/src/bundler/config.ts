@@ -3,7 +3,9 @@ import { ServerHooks as Hooks } from '../lib/Bundler'
 
 import * as paths from '../config/paths'
 
-export const createConfig = (args: Args, env: Env) => async (hooks: Hooks) => {
+export const createConfig = (args: Args, _env: Env) => async (
+  _hooks: Hooks
+) => {
   return {
     gatsbyConfig: {
       siteMetadata: {

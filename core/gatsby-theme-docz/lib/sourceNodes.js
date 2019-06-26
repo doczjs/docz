@@ -53,7 +53,7 @@ module.exports = async ({ actions, createNodeId }, opts) => {
     const values = Object.entries(map)
     const contentDigest = digest(JSON.stringify(values))
 
-    values.forEach(([key, entry]) => {
+    values.forEach(([, entry]) => {
       if (!entry) return null
       createNode({
         ...entry,

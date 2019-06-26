@@ -7,9 +7,7 @@ const filesize = require('filesize')
 const gzip = require('gzip-size')
 const logUpdate = require('log-update')
 
-const cwd = process.cwd()
 const label = `${chalk.cyan.bold(figures.arrowRight)}`
-
 const placeholder = text => chalk.gray(`${text}:`)
 const getFilesize = file => filesize(fs.statSync(file).size)
 const getGzipSize = file => filesize(gzip.sync(fs.readFileSync(file, 'utf-8')))
@@ -19,7 +17,6 @@ module.exports = dest => ({
   generateBundle(opts, bundle, isWrite) {
     if (!isWrite) return
 
-    const destDir = path.join(cwd, dest)
     const keys = Object.keys(bundle)
     const builds = keys.map(key => bundle[key])
 

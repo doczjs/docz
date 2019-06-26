@@ -56,6 +56,7 @@
     "@types/shelljs": "^0.8.5",
     "@types/signale": "^1.2.1",
     "cpy": "^7.3.0",
-    "docz-rollup": "^1.2.0"
+    "docz-rollup": "^1.2.0",
+    "eslint-config-docz-ts": "^1.2.0"
   }
 }

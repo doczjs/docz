@@ -64,13 +64,6 @@ const renameDefaultAddFileMetaProperties = (t, path, filename, name) => {
     SOURCE: sourceValue,
   })
 
-  // insert
-  const newNode = buildFileMeta({
-    ID: t.identifier(fallbackName),
-    NAME: t.stringLiteral(fallbackName),
-    FILENAME: t.stringLiteral(filename),
-  })
-
   pathToInsert.replaceWithMultiple(nameExport)
 }
 

@@ -6,7 +6,7 @@ import { Config as Args } from '../config/argv'
 import { ServerHooks as Hooks } from '../lib/Bundler'
 import { devServerMachine } from '../machines/devServer'
 
-export const server = (args: Args) => async (config: any, hooks: Hooks) => {
+export const server = (args: Args) => async (config: any, _hooks: Hooks) => {
   const doczrcFilepath = await findUp(finds('docz'))
   const machine = devServerMachine.withContext({
     args,

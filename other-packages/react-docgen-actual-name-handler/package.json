@@ -23,6 +23,6 @@
   },
   "devDependencies": {
     "docz-rollup": "^1.2.0",
-    "eslint-config-docz": "^1.2.0"
+    "eslint-config-docz-ts": "^1.2.0"
   }
 }

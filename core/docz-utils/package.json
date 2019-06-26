@@ -44,6 +44,7 @@
     "unist-util-visit": "^1.4.1"
   },
   "devDependencies": {
-    "docz-rollup": "^1.2.0"
+    "docz-rollup": "^1.2.0",
+    "eslint-config-docz-ts": "^1.2.0"
   }
 }

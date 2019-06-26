@@ -99,21 +99,13 @@ const imageToJsx = (node: any): string =>
 
 // turns `html` nodes into `jsx` nodes
 export default () => (tree: any) => {
-  visit(
-    tree,
-    'image',
-    (node: any, idx: any): void => {
-      // check if a node has just open tag
-      node.type = 'jsx'
-      node.value = imageToJsx(node)
-    }
-  )
-  visit(
-    tree,
-    'jsx',
-    (node: any, idx: any): void => {
-      // check if a node has just open tag
-      mergeNodeWithoutCloseTag(tree, node, idx)
-    }
-  )
+  visit(tree, 'image', (node: any): void => {
+    // check if a node has just open tag
+    node.type = 'jsx'
+    node.value = imageToJsx(node)
+  })
+  visit(tree, 'jsx', (node: any, idx: any): void => {
+    // check if a node has just open tag
+    mergeNodeWithoutCloseTag(tree, node, idx)
+  })
 }

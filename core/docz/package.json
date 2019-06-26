@@ -49,7 +49,8 @@
     "@types/node": "^12.0.10",
     "@types/reach__router": "^1.2.4",
     "@types/react": "^16.8.22",
-    "docz-rollup": "^1.2.0"
+    "docz-rollup": "^1.2.0",
+    "eslint-config-docz-ts": "^1.2.0"
   },
   "resolutions": {
     "react": "^16.8.6"
