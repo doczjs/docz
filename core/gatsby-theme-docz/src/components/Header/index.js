@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Box, Flex, Container, useColorMode } from 'theme-ui'
+import { jsx, Box, Flex, useColorMode } from 'theme-ui'
 import { Link, useConfig, useCurrentDoc } from 'docz'
 import styled from '@emotion/styled'
 
@@ -30,48 +30,46 @@ export const Header = ({ onOpen, nav }) => {
 
   return (
     <Wrapper sx={styles.wrapper}>
-      <Container>
-        <div sx={styles.innerContainer}>
-          <Flex aligmItems="center">
-            <Box sx={styles.menuIcon}>
-              <button sx={styles.menuButton} onClick={handleMenu}>
-                <Menu size={30} />
-              </button>
-            </Box>
-            <Link to="/" sx={styles.link}>
-              {config.title}
-            </Link>
-          </Flex>
-          <Flex>
-            {config.repository && (
-              <Box sx={{ mr: 2 }}>
-                <a
-                  href={config.repository}
-                  sx={styles.headerButton}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Github size={15} />
-                </a>
-              </Box>
-            )}
-            <button sx={styles.headerButton} onClick={toggleColorMode}>
-              <Sun size={15} />
+      <div sx={styles.innerContainer}>
+        <Flex aligmItems="center">
+          <Box sx={styles.menuIcon}>
+            <button sx={styles.menuButton} onClick={handleMenu}>
+              <Menu size={30} />
             </button>
-          </Flex>
-          {edit && doc.link && (
-            <a
-              sx={styles.editButton}
-              href={doc.link}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Edit width={14} />
-              <Box sx={{ pl: 2 }}>Edit page</Box>
-            </a>
+          </Box>
+          <Link to="/" sx={styles.link}>
+            {config.title}
+          </Link>
+        </Flex>
+        <Flex>
+          {config.repository && (
+            <Box sx={{ mr: 2 }}>
+              <a
+                href={config.repository}
+                sx={styles.headerButton}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github size={15} />
+              </a>
+            </Box>
           )}
-        </div>
-      </Container>
+          <button sx={styles.headerButton} onClick={toggleColorMode}>
+            <Sun size={15} />
+          </button>
+        </Flex>
+        {edit && doc.link && (
+          <a
+            sx={styles.editButton}
+            href={doc.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Edit width={14} />
+            <Box sx={{ pl: 2 }}>Edit page</Box>
+          </a>
+        )}
+      </div>
     </Wrapper>
   )
 }

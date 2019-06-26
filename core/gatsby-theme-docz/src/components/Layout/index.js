@@ -15,9 +15,9 @@ export const Layout = ({ children }) => {
   return (
     <BaseLayout sx={{ '& > div': { flex: '1 1 auto' } }}>
       <Global styles={global} />
-      <Main>
+      <Main sx={styles.main}>
         <Header nav={nav} onOpen={setOpen} />
-        <Container sx={styles.container}>
+        <div sx={styles.wrapper}>
           <Sidebar
             ref={nav}
             open={open}
@@ -25,8 +25,8 @@ export const Layout = ({ children }) => {
             onBlur={() => setOpen(false)}
             onClick={() => setOpen(false)}
           />
-          <div sx={styles.content}>{children}</div>
-        </Container>
+          <Container sx={styles.content}>{children}</Container>
+        </div>
       </Main>
     </BaseLayout>
   )

@@ -15,6 +15,7 @@ export const wrapper = {
 
 export const innerContainer = {
   ...mixins.centerAlign,
+  p: 4,
   position: 'relative',
   justifyContent: 'space-between',
 }
@@ -53,8 +54,8 @@ export const headerButton = {
 export const editButton = {
   ...mixins.centerAlign,
   position: 'absolute',
-  bottom: -70,
-  right: 0,
+  bottom: -40,
+  right: 30,
   bg: 'transparent',
   color: 'muted',
   fontSize: 1,
