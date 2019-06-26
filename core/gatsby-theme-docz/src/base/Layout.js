@@ -19,13 +19,12 @@ const query = graphql`
 `
 
 const Route = ({ children, entry, ...defaultProps }) => {
-  if (!entry) return <NotFound />
-
   const components = useComponents()
   const NotFound = components.notFound
   const Layout = components.layout
   const props = { ...defaultProps, doc: entry }
 
+  if (!entry) return <NotFound />
   return (
     <MDXProvider components={components}>
       <Wrapper>
@@ -44,6 +43,9 @@ const parseDatabase = data => {
 }
 
 const findEntry = (db, ctx) => {
+  const isIndex = ctx.frontmatter.route === '/'
+  const eqIndex = propEq('value.route', '/')
+  if (!ctx.entry && isIndex) return db.entries.find(eqIndex)
   const filepath = get('entry.filepath', ctx)
   return db.entries.find(propEq('value.filepath', filepath))
 }
