@@ -80,6 +80,6 @@ export interface ParsedData {
 }
 
 export const getParsedData = (ast: any): ParsedData => {
-  const node = find(ast, (node: any) => is('yaml', node))
+  const node = find(ast, (node: any) => is(node, 'yaml'))
   return get(node, `data.parsedValue`) || {}
 }

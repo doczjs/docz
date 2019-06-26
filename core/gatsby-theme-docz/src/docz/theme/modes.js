@@ -8,6 +8,13 @@ export const light = {
   link: colors.blue,
   background: colors.white,
   border: colors.grayLight,
+  sidebar: {
+    navGroup: colors.grayLight,
+    navLink: colors.grayDark,
+    navLinkActive: colors.blue,
+    tocLink: colors.gray,
+    tocLinkActive: colors.grayDark,
+  },
   header: {
     bg: colors.grayExtraLight,
     text: colors.dark,
@@ -27,6 +34,13 @@ export const dark = {
   link: colors.skyBlue,
   background: colors.grayExtraDark,
   border: colors.grayDark,
+  sidebar: {
+    navGroup: colors.gray,
+    navLink: colors.grayLight,
+    navLinkActive: colors.skyBlue,
+    tocLink: colors.gray,
+    tocLinkActive: colors.grayLight,
+  },
   header: {
     bg: colors.dark,
     text: colors.grayLight,

@@ -1,4 +1,13 @@
 import * as mixins from '@docz/utils/mixins'
+import { media } from '@docz/theme/breakpoints'
+
+export const menuIcon = {
+  mr: 3,
+  display: 'none',
+  [media.tablet]: {
+    display: 'block',
+  },
+}
 
 export const wrapper = {
   bg: 'header.bg',

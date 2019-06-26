@@ -62,4 +62,4 @@ const machine = Machine<ServerMachineCtx>({
 export const devServerMachine = machine.withConfig({
   services,
   actions,
-})
+} as any)

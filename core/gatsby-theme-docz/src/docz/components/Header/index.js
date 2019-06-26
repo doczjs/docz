@@ -4,6 +4,8 @@ import { Link, useConfig, useCurrentDoc } from 'docz'
 import styled from '@emotion/styled'
 
 import { themeProp } from '@docz/utils/theme'
+import { breakpoints } from '@docz/theme/breakpoints'
+
 import { Edit, Sun, Menu, Github } from '../Icons'
 import * as styles from './styles'
 
@@ -11,7 +13,7 @@ const Wrapper = styled(Box)`
   border-bottom: 1px solid ${themeProp('colors.header.border')};
 `
 
-export const Header = () => {
+export const Header = ({ onOpen, nav }) => {
   const config = useConfig()
   const { edit = true, ...doc } = useCurrentDoc()
   const [colorMode, setColorMode] = useColorMode()
@@ -20,26 +22,33 @@ export const Header = () => {
     setColorMode(colorMode === 'light' ? 'dark' : 'light')
   }
 
+  const handleMenu = () => {
+    onOpen(s => !s)
+    if (!nav.current) return
+    const navLink = nav.current.querySelector('a')
+    if (navLink) navLink.focus()
+  }
+
   return (
-    <Wrapper css={styles.wrapper}>
+    <Wrapper sx={styles.wrapper}>
       <Container>
-        <div css={styles.innerContainer}>
+        <div sx={styles.innerContainer}>
           <Flex aligmItems="center">
-            <button css={styles.menuButton}>
-              <Menu size={30} />
-            </button>
-            <Box pl={3}>
-              <Link to="/" css={styles.link}>
-                {config.title}
-              </Link>
+            <Box sx={styles.menuIcon}>
+              <button sx={styles.menuButton} onClick={handleMenu}>
+                <Menu size={30} />
+              </button>
             </Box>
+            <Link to="/" sx={styles.link}>
+              {config.title}
+            </Link>
           </Flex>
           <Flex>
             {config.repository && (
-              <Box mr={3}>
+              <Box sx={{ mr: 2 }}>
                 <a
                   href={config.repository}
-                  css={styles.headerButton}
+                  sx={styles.headerButton}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -47,19 +56,19 @@ export const Header = () => {
                 </a>
               </Box>
             )}
-            <button css={styles.headerButton} onClick={toggleColorMode}>
+            <button sx={styles.headerButton} onClick={toggleColorMode}>
               <Sun size={15} />
             </button>
           </Flex>
           {edit && doc.link && (
             <a
-              css={styles.editButton}
+              sx={styles.editButton}
               href={doc.link}
               target="_blank"
               rel="noopener noreferrer"
             >
               <Edit width={14} />
-              <Box pl={2}>Edit page</Box>
+              <Box sx={{ pl: 2 }}>Edit page</Box>
             </a>
           )}
         </div>

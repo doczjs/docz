@@ -1,5 +1,5 @@
 import moraga from 'typography-theme-moraga'
-import { toTheme } from 'theme-ui-typography'
+import { toTheme } from '@theme-ui/typography'
 import { merge } from 'lodash/fp'
 
 import * as modes from './modes'

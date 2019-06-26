@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 import { useComponents } from 'docz'
 import { MDXProvider } from '@mdx-js/react'
+import { propEq, get } from 'lodash/fp'
 
 import Theme from '../docz'
 import Wrapper from '../docz/wrapper'
@@ -42,12 +43,16 @@ const parseDatabase = data => {
   }
 }
 
+const findEntry = (db, ctx) => {
+  const filepath = get('entry.filepath', ctx)
+  return db.entries.find(propEq('value.filepath', filepath))
+}
+
 const Layout = ({ children, ...defaultProps }) => {
   const { pageContext: ctx } = defaultProps
   const data = useStaticQuery(query)
   const db = parseDatabase(data)
-  const entry =
-    db.entries && db.entries.find(entry => entry.filepath === ctx.filepath)
+  const entry = findEntry(db, ctx)
 
   return (
     <Fragment>

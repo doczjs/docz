@@ -23,7 +23,7 @@ const ENTRIES_QUERY = `
   }
 `
 
-module.exports = ({ graphql, actions }) => {
+module.exports = ({ graphql, actions, ...props }) => {
   return graphql(ENTRIES_QUERY).then(({ data, errors }) => {
     const hasErrors = errors && errors.length > 0
     const entries = get('allDoczEntries.edges', data)
