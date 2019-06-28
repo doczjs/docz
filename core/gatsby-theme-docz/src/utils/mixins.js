@@ -5,6 +5,7 @@ export const centerAlign = {
 }
 
 export const ghostButton = {
+  p: 0,
   outline: 'none',
   background: 'transparent',
   border: 'none',

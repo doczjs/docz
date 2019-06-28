@@ -1,0 +1,93 @@
+import { breakpoints } from '~theme/breakpoints'
+import * as mixins from '~utils/mixins'
+
+export const container = {
+  my: 4,
+  border: '1px solid #000',
+  borderColor: 'border',
+  borderRadius: 'radius',
+  overflow: 'hidden',
+  bg: 'props.bg',
+  color: 'props.text',
+  fontSize: 3,
+}
+
+export const content = {
+  position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
+  [`@media (min-width: ${breakpoints.tablet}px)`]: {
+    flexWrap: 'nowrap',
+    flexDirection: 'row',
+  },
+}
+
+export const line = {
+  pt: 2,
+  '& + &': {
+    borderTop: '1px solid #000',
+    borderColor: 'border',
+  },
+}
+
+export const column = {
+  minWidth: 0,
+  pb: 2,
+  px: 3,
+  wordWrap: 'break-word',
+  '& ~ &': {
+    bg: 'red',
+  },
+}
+
+export const propName = {
+  ...column,
+  color: 'props.highlight',
+}
+
+export const propType = {
+  ...column,
+  colors: 'props.text',
+}
+
+export const defaultValue = {
+  ...column,
+  color: 'props.defaultValue',
+}
+
+export const right = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  px: 3,
+  flex: 1,
+  [`@media (max-width: ${breakpoints.tablet}px)`]: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+  },
+}
+
+export const propRequired = {
+  color: 'props.text',
+  fontSize: 1,
+  opacity: 0.5,
+}
+
+export const openDescBtn = {
+  ...mixins.ghostButton,
+  mt: -2,
+  ml: 3,
+  color: 'props.defaultValue',
+}
+
+export const description = {
+  fontSize: 2,
+  m: 0,
+  py: 2,
+  px: 3,
+  borderTop: '1px solid #000',
+  borderColor: 'border',
+  color: 'props.descriptionText',
+  bg: 'props.descriptionBg',
+}

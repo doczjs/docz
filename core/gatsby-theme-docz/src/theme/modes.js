@@ -25,6 +25,14 @@ export const light = {
       color: colors.grayDark,
     },
   },
+  props: {
+    bg: colors.grayUltraLight,
+    text: colors.grayDark,
+    highlight: colors.blue,
+    defaultValue: colors.gray,
+    descriptionText: colors.grayDark,
+    descriptionBg: colors.white,
+  },
 }
 
 export const dark = {
@@ -51,5 +59,13 @@ export const dark = {
       bg: colors.grayDark,
       color: colors.white,
     },
+  },
+  props: {
+    bg: colors.dark,
+    text: colors.gray,
+    highlight: colors.skyBlue,
+    defaultValue: colors.grayDark,
+    descriptionText: colors.gray,
+    descriptionBg: colors.grayExtraDark,
   },
 }
