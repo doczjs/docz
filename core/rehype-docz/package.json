@@ -20,10 +20,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "brace": "^0.11.1",
     "docz-utils": "^1.2.0",
     "hast-util-to-string": "^1.0.2",
-    "jsx-ast-utils": "^2.2.0",
+    "jsx-ast-utils": "^2.2.1",
     "lodash": "^4.17.11",
+    "react-ace": "^7.0.2",
     "unist-util-is": "^3.0.0"
   },
   "devDependencies": {
