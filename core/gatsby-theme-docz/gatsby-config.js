@@ -1,7 +1,7 @@
 const path = require('path')
 const { getDoczConfig } = require('./lib/utils/parseConfig')
 
-const getMdPlugins = () => {
+const getRemarkPlugins = () => {
   let plugins = []
 
   try {
@@ -16,7 +16,7 @@ const getMdPlugins = () => {
   return plugins
 }
 
-const getHastPlugins = rootPath => {
+const getRehypePlugins = rootPath => {
   let plugins = []
 
   try {
@@ -34,13 +34,13 @@ const getHastPlugins = rootPath => {
 module.exports = opts => {
   const config = getDoczConfig(opts)
   const { paths } = config
-  const mdPlugins = getMdPlugins()
-  const hastPlugins = getHastPlugins(paths.root)
+  const mdPlugins = getRemarkPlugins()
+  const hastPlugins = getRehypePlugins(paths.root)
 
   return {
     plugins: [
       {
-        resolve: 'gatsby-mdx',
+        resolve: 'gatsby-plugin-mdx',
         options: {
           extensions: ['.md', '.mdx'],
           remarkPlugins:

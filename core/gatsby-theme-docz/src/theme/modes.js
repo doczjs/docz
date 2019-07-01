@@ -33,6 +33,10 @@ export const light = {
     descriptionText: colors.grayDark,
     descriptionBg: colors.white,
   },
+  playground: {
+    bg: colors.white,
+    border: colors.grayLight,
+  },
 }
 
 export const dark = {
@@ -67,5 +71,9 @@ export const dark = {
     defaultValue: colors.grayDark,
     descriptionText: colors.gray,
     descriptionBg: colors.grayExtraDark,
+  },
+  playground: {
+    bg: colors.dark,
+    border: colors.grayDark,
   },
 }
