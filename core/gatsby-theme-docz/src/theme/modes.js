@@ -37,6 +37,11 @@ export const light = {
     bg: colors.white,
     border: colors.grayLight,
   },
+  blockquote: {
+    bg: colors.grayExtraLight,
+    border: colors.grayLight,
+    color: colors.gray,
+  },
 }
 
 export const dark = {
@@ -75,5 +80,10 @@ export const dark = {
   playground: {
     bg: colors.dark,
     border: colors.grayDark,
+  },
+  blockquote: {
+    bg: colors.grayDark,
+    border: colors.gray,
+    color: colors.gray,
   },
 }

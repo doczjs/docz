@@ -77,6 +77,20 @@ export default merge(typography, {
     li: {
       marginBottom: 1,
     },
+    blockquote: {
+      my: 4,
+      mx: 0,
+      py: 3,
+      px: 4,
+      bg: 'blockquote.bg',
+      borderLeft: '5px solid #000',
+      borderColor: 'blockquote.border',
+      color: 'blockquote.color',
+      fontStyle: 'italic',
+      '> p': {
+        m: 0,
+      },
+    },
     code: {
       fontFamily: 'monospace',
     },
@@ -92,6 +106,33 @@ export default merge(typography, {
         lineHeight: '1.5em',
         height: '1.5em',
       },
+    },
+    table: {
+      width: '100%',
+      my: 4,
+      borderCollapse: 'separate',
+      borderSpacing: 0,
+      [['th', 'td']]: {
+        textAlign: 'left',
+        py: '4px',
+        pr: '4px',
+        pl: 0,
+        borderColor: 'muted',
+        borderBottomStyle: 'solid',
+      },
+    },
+    th: {
+      verticalAlign: 'bottom',
+      borderBottomWidth: '2px',
+    },
+    td: {
+      verticalAlign: 'top',
+      borderBottomWidth: '1px',
+    },
+    hr: {
+      border: 0,
+      borderBottom: '1px solid',
+      borderColor: 'muted',
     },
   },
 })
