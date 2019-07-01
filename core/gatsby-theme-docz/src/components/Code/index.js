@@ -1,5 +1,7 @@
 /** @jsx jsx */
 import { jsx, useColorMode } from 'theme-ui'
+import { useConfig } from 'docz'
+import { get } from 'lodash/fp'
 import AceEditor from 'react-ace'
 
 import 'brace/theme/dracula'
@@ -10,26 +12,22 @@ import 'brace/ext/searchbox'
 
 import * as styles from './styles'
 
-const languages = [
+const LANGUAGES = [
   'javascript',
-  'java',
   'python',
-  'xml',
   'ruby',
   'sass',
   'markdown',
   'mysql',
   'json',
   'html',
-  'handlebars',
   'golang',
-  'csharp',
   'elixir',
   'typescript',
   'css',
 ]
 
-languages.forEach(lang => {
+LANGUAGES.forEach(lang => {
   require(`brace/mode/${lang}`)
   require(`brace/snippets/${lang}`)
 })
@@ -61,7 +59,10 @@ export const Code = ({
   onChange,
 }) => {
   const [colorMode] = useColorMode()
+  const config = useConfig()
   const lang = getLanguage(language)
+  const theme = get('themeConfig.editorTheme', config)
+
   return (
     <AceEditor
       className={className}
@@ -71,7 +72,7 @@ export const Code = ({
       readOnly={readOnly}
       onChange={onChange}
       highlightActiveLine={false}
-      theme={themes[colorMode]}
+      theme={theme || themes[colorMode]}
       name="code-editor"
       fontSize={16}
       style={{

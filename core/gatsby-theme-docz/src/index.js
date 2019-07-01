@@ -17,5 +17,11 @@ const Theme = ({ children }) => {
   )
 }
 
-export const enhance = theme(defaultTheme)
+export const enhance = theme(defaultTheme, ({ mode = 'light', ...config }) => {
+  return {
+    ...config,
+    initialColorMode: mode,
+  }
+})
+
 export default enhance(Theme)
