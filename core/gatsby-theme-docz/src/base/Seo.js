@@ -3,21 +3,20 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
-function SEO({ description, lang, meta, keywords, title }) {
+function SEO({ description, lang, meta, keywords, title: initialTitle }) {
   return (
     <StaticQuery
       query={detailsQuery}
       render={data => {
         const db = JSON.parse(data.doczDb.db)
-        const metaDescription = description || db.config.title
+        const title = initialTitle || db.config.title
+        const metaDescription = description || db.config.description
 
         return (
           <Helmet
-            htmlAttributes={{
-              lang,
-            }}
             title={title}
             titleTemplate={`%s | ${db.config.title}`}
+            htmlAttributes={{ lang }}
             meta={[
               {
                 name: `description`,
