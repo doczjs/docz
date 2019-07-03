@@ -1,14 +1,12 @@
-import { Bundler } from '../lib/Bundler'
-import { Config as Args, Env } from '../config/argv'
+import EventEmitter from 'events'
 
-import { createConfig } from './config'
+import { Bundler } from '../lib/Bundler'
+import { Config as Args } from '../config/argv'
+
 import { server } from './server'
 import { build } from './build'
 
-export const bundler = (args: Args, env: Env): Bundler<any> =>
-  new Bundler({
-    args,
-    build,
-    config: createConfig(args, env),
-    server: server(args),
-  })
+export const emitter = new EventEmitter()
+export const bundler = (args: Args) => {
+  return new Bundler({ args, build, server: server(args) })
+}

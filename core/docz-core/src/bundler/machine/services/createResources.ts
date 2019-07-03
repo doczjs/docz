@@ -102,6 +102,11 @@ const writeEslintRc = async ({ isDoczRepo }: ServerMachineCtx) => {
   await fs.outputJSON(filepath, { extends: 'react-app' })
 }
 
+export const writeNotFound = async () => {
+  const outputPath = path.join(paths.docz, 'src/pages/404.js')
+  await outputFileFromTemplate('404.tpl.js', outputPath, {})
+}
+
 const writeConfigFile = async ({ args, isDoczRepo }: ServerMachineCtx) => {
   const outputPath = path.join(paths.docz, 'gatsby-config.js')
 
@@ -111,19 +116,25 @@ const writeConfigFile = async ({ args, isDoczRepo }: ServerMachineCtx) => {
   })
 }
 
-export const writeNotFound = async () => {
-  const outputPath = path.join(paths.docz, 'src/pages/404.js')
-  await outputFileFromTemplate('404.tpl.js', outputPath, {})
-}
-
-const writeGatsbyNode = async () => {
+const writeGatsbyNode = async (ctx: ServerMachineCtx) => {
   const outputPath = path.join(paths.docz, 'gatsby-node.js')
-  await outputFileFromTemplate('gatsby-node.tpl.js', outputPath)
+  await outputFileFromTemplate('gatsby-node.tpl.js', outputPath, {
+    keys: Object.keys(ctx.args.gatsbyNode),
+  })
 }
 
-const fixDuplicatedReact = async ({ isDoczRepo }: ServerMachineCtx) => {
-  if (!isDoczRepo) return
-  await writeGatsbyNode()
+const writeGatsbySSR = async (ctx: ServerMachineCtx) => {
+  const outputPath = path.join(paths.docz, 'gatsby-ssr.js')
+  await outputFileFromTemplate('gatsby-ssr.tpl.js', outputPath, {
+    keys: Object.keys(ctx.args.gatsbySSR),
+  })
+}
+
+const writeGatsbyBrowser = async (ctx: ServerMachineCtx) => {
+  const outputPath = path.join(paths.docz, 'gatsby-browser.js')
+  await outputFileFromTemplate('gatsby-browser.tpl.js', outputPath, {
+    keys: Object.keys(ctx.args.gatsbyBrowser),
+  })
 }
 
 export const createResources = async (ctx: ServerMachineCtx) => {
@@ -134,9 +145,10 @@ export const createResources = async (ctx: ServerMachineCtx) => {
     await writeEslintRc(ctx)
     await writeConfigFile(ctx)
     await writeNotFound()
-    await fixDuplicatedReact(ctx)
-    return Promise.resolve()
+    await writeGatsbyBrowser(ctx)
+    await writeGatsbyNode(ctx)
+    await writeGatsbySSR(ctx)
   } catch (err) {
-    return Promise.reject(err)
+    console.log(err)
   }
 }

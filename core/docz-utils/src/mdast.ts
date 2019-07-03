@@ -5,7 +5,6 @@ import matter from 'remark-frontmatter'
 import slug from 'remark-slug'
 import parseFrontmatter from 'remark-parse-yaml'
 import find from 'unist-util-find'
-import is from 'unist-util-is'
 import visit from 'unist-util-visit'
 import humanize from 'humanize-string'
 import flatten from 'lodash/flatten'
@@ -80,6 +79,6 @@ export interface ParsedData {
 }
 
 export const getParsedData = (ast: any): ParsedData => {
-  const node = find(ast, (node: any) => is(node, 'yaml'))
+  const node = find(ast, { type: 'yaml' })
   return get(node, `data.parsedValue`) || {}
 }

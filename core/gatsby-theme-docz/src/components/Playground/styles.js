@@ -38,7 +38,7 @@ export const buttons = {
   zIndex: 9,
   position: 'absolute',
   bottom: -24,
-  right: 6,
+  right: 3,
 }
 
 export const button = {

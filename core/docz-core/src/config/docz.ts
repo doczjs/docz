@@ -6,24 +6,17 @@ import { merge } from 'lodash/fp'
 import detectPort from 'detect-port'
 
 import * as paths from '../config/paths'
-import { BabelRC, Config, Argv } from '../config/argv'
+import { Config, Argv } from '../config/argv'
 import { Plugin } from '../lib/Plugin'
 
 const toOmit = ['_', '$0', 'version', 'help']
-const htmlContext = {
-  lang: 'en',
-  favicon: 'https://cdn-std.dprcdn.net/files/acc_649651/LUKiMl',
-}
-
 export const doczRcBaseConfig = {
-  htmlContext,
   themeConfig: {},
   docgenConfig: {},
-  filterComponents: (files: string[]) =>
-    files.filter(filepath => /\/[A-Z]\w*\.(js|jsx|ts|tsx)$/.test(filepath)),
-  modifyBundlerConfig: (config: any) => config,
-  modifyBabelRc: (babelrc: BabelRC) => babelrc,
-  onCreateWebpackChain: () => null,
+  gatsbyConfig: {},
+  gatsbyNode: {},
+  gatsbyBrowser: {},
+  gatsbySSR: {},
   menu: [],
   plugins: [],
   mdPlugins: [],
@@ -35,6 +28,8 @@ export const doczRcBaseConfig = {
     /contributing.md/i,
     /license.md/i,
   ],
+  filterComponents: (files: string[]) =>
+    files.filter(filepath => /\/[A-Z]\w*\.(js|jsx|ts|tsx)$/.test(filepath)),
 }
 
 export const getBaseConfig = (
@@ -51,13 +46,7 @@ export const parseConfig = async (
   custom?: Partial<Config>
 ): Promise<Config> => {
   const port = await detectPort(argv.port)
-  const websocketPort = await detectPort(argv.websocketPort)
-  const defaultConfig = getBaseConfig(argv, {
-    port,
-    websocketPort,
-    htmlContext,
-    ...custom,
-  })
+  const defaultConfig = getBaseConfig(argv, { port, ...custom })
 
   const config = argv.config
     ? loadFrom<Config>(path.resolve(argv.config), defaultConfig)

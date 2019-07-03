@@ -143,7 +143,6 @@ export const useMenus = (opts?: UseMenusParams) => {
     return filterMenus(result, opts && opts.filter)
   }, [entries, config])
 
-  console.log(query)
   return query && query.length > 0
     ? (search(query, sorted) as MenuItem[])
     : sorted

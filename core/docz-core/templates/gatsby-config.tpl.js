@@ -1,14 +1,16 @@
-module.exports = {
+const { merge } = require('lodash/fp')
+
+module.exports = merge(<%- config.gatsbyConfig -%>, {
   siteMetadata: {
     title: "<%- config.title %>",
     description: "<%- config.description %>"
   },
-  __experimentalThemes: [
-    { resolve: 'gatsby-theme-docz', options: <%- config %>}
-  ],
   plugins: [
-    <% if (isDoczRepo) {%>
     {
+      resolve: 'gatsby-theme-docz',
+      options: <%- config %>
+    },
+    <% if (isDoczRepo) {%>{
       resolve: 'gatsby-plugin-eslint',
       options: {
         test: /\.js$|\.jsx$/,
@@ -23,18 +25,15 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-compile-es6-packages',
       options: {
-        modules: ['docz', 'docz-theme-default'],
+        modules: ['docz', 'gatsby-theme-docz'],
       },
-    },
-    <%}%>
-    <% if (config.typescript) {%>
-    {
+    },<%}%>
+    <% if (config.typescript) {%>{
       resolve: 'gatsby-plugin-typescript',
       options: {
         isTSX: true,
         allExtensions: true
       }
-    }
-    <%}%>
+    }<%}%>
   ],
-}
+})

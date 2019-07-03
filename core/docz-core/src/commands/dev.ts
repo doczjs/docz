@@ -2,17 +2,14 @@ process.setMaxListeners(Infinity)
 
 import { Arguments } from 'yargs'
 import logger from 'signale'
-import * as envDotProp from 'env-dot-prop'
 
 import { parseConfig } from '../config/docz'
 import { bundler as gatsby } from '../bundler'
 
 export const dev = async (args: Arguments<any>) => {
-  const env = envDotProp.get('node.env')
   const config = await parseConfig(args)
-  const bundler = gatsby(config, env)
-  const bundlerConfig = await bundler.mountConfig(env)
-  const app = await bundler.createApp(bundlerConfig)
+  const bundler = gatsby(config)
+  const app = await bundler.createApp()
 
   try {
     await app.start()

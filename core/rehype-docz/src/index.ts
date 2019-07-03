@@ -1,5 +1,4 @@
 import * as path from 'path'
-import is from 'unist-util-is'
 import flatten from 'lodash/flatten'
 import nodeToString from 'hast-util-to-string'
 import { format } from 'docz-utils/lib/format'
@@ -47,14 +46,14 @@ export interface PluginOpts {
 
 export default (opts: PluginOpts) => (tree: any, fileInfo: any) => {
   const { root, useCodeSandbox } = opts
-  const importNodes = tree.children.filter((node: any) => is(node, 'import'))
+  const importNodes = tree.children.filter((n: any) => n.type === 'import')
   const imports: string[] = flatten(importNodes.map(getFullImports))
   const scopes: string[] = flatten(importNodes.map(getImportsVariables))
   const fileInfoHistory = fileInfo.history[0] ? fileInfo.history[0] : ''
   const fileCwd = path.relative(root, path.dirname(fileInfoHistory))
 
   const nodes = tree.children
-    .filter((node: any) => is(node, 'jsx'))
+    .filter((node: any) => node.type === 'jsx')
     .map(addComponentsProps(scopes, imports, fileCwd, useCodeSandbox))
 
   return Promise.all(nodes).then(() => tree)

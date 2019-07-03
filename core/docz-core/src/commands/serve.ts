@@ -1,5 +1,5 @@
-import spawn from 'cross-spawn'
 import { Arguments } from 'yargs'
+import spawn from 'cross-spawn'
 import sh from 'shelljs'
 
 import * as paths from '../config/paths'

@@ -8,13 +8,6 @@ import { get } from 'lodash/fp'
 import { Plugin } from '../lib/Plugin'
 import * as paths from '../config/paths'
 
-export interface BabelRC {
-  presets: any[]
-  plugins: any[]
-  cacheDirectory?: boolean
-  babelrc?: boolean
-}
-
 const getEnv = (val: string | string[], defaultValue: any = null): any =>
   envDotProp.get(val, defaultValue, { parse: true })
 
@@ -43,21 +36,6 @@ export interface Menu {
   menu?: Menu[]
 }
 
-export interface HtmlContext {
-  lang: string
-  favicon?: string
-  head?: {
-    meta: any[]
-    links: any[]
-    raw: string
-    scripts: any[]
-  }
-  body?: {
-    raw: string
-    scripts: any[]
-  }
-}
-
 export interface Argv {
   /* io args */
   root: string
@@ -72,24 +50,17 @@ export interface Argv {
   config: string
   /* bundler args */
   debug: boolean
-  clearConsole: boolean
-  openBrowser: boolean
   typescript: boolean
   propsParser: boolean
   host: string
   port: number
-  websocketPort: number
-  websocketHost: string
   native: boolean
   codeSandbox: boolean
-  sourcemaps: boolean
   notUseSpecifiers: boolean
+  openBrowser: boolean
   /* template args */
   title: string
   description: string
-  theme: string
-  wrapper?: string
-  indexHtml?: string
   /** slugify separator */
   separator: string
 }
@@ -100,13 +71,13 @@ export interface Config extends Argv {
   mdPlugins: any[]
   hastPlugins: any[]
   menu: Menu[]
-  htmlContext: HtmlContext
   themeConfig: ThemeConfig
   docgenConfig: DocgenConfig
+  gatsbyConfig: Record<string, any>
+  gatsbyNode: Record<string, (params: any) => void>
+  gatsbyBrowser: Record<string, (params: any) => void>
+  gatsbySSR: Record<string, (params: any) => void>
   filterComponents: (files: string[]) => string[]
-  modifyBundlerConfig<C>(config: C, dev: boolean, args: Config): C
-  modifyBabelRc(babelrc: BabelRC, args: Config): BabelRC
-  onCreateWebpackChain<C>(c: C, dev: boolean, args: Config): void
 }
 
 export const setArgs = (yargs: Yargs) => {
@@ -160,10 +131,6 @@ export const setArgs = (yargs: Yargs) => {
       type: 'string',
       default: getEnv('docz.description', getInitialDescription(pkg)),
     })
-    .option('theme', {
-      type: 'string',
-      default: getEnv('docz.theme', 'docz-theme-default'),
-    })
     .option('typescript', {
       alias: 'ts',
       type: 'boolean',
@@ -173,26 +140,9 @@ export const setArgs = (yargs: Yargs) => {
       type: 'boolean',
       default: getEnv('docz.props.parser', true),
     })
-    .option('wrapper', {
-      type: 'string',
-      default: getEnv('docz.wrapper', null),
-    })
-    .option('indexHtml', {
-      type: 'string',
-      default: getEnv('docz.index.html', null),
-    })
     .option('debug', {
       type: 'boolean',
       default: getEnv('docz.debug', false),
-    })
-    .option('clearConsole', {
-      type: 'boolean',
-      default: getEnv('docz.clear.console', true),
-    })
-    .option('openBrowser', {
-      type: 'boolean',
-      alias: 'o',
-      default: getEnv('docz.open.browser', true),
     })
     .option('host', {
       type: 'string',
@@ -202,14 +152,6 @@ export const setArgs = (yargs: Yargs) => {
       alias: 'p',
       type: 'number',
       default: getEnv('docz.port', 3000),
-    })
-    .option('websocketHost', {
-      type: 'string',
-      default: getEnv('docz.websocket.host', '127.0.0.1'),
-    })
-    .option('websocketPort', {
-      type: 'number',
-      default: getEnv('docz.websocket.port', 60505),
     })
     .option('native', {
       type: 'boolean',
@@ -227,8 +169,8 @@ export const setArgs = (yargs: Yargs) => {
       type: 'string',
       default: getEnv('docz.separator', '-'),
     })
-    .option('open', {
-      alias: 'o',
+    .option('openBrowser', {
+      alias: ['o', 'open'],
       describe: 'auto open browser in dev mode',
       type: 'boolean',
       default: false,

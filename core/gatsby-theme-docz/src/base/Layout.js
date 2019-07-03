@@ -1,22 +1,13 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { useStaticQuery, graphql } from 'gatsby'
 import { useComponents } from 'docz'
 import { MDXProvider } from '@mdx-js/react'
 import { propEq, get } from 'lodash/fp'
 
+import { useDbQuery } from './useDbQuery'
 import Wrapper from '../wrapper'
 import Theme from '../index'
 import SEO from './Seo'
-
-const query = graphql`
-  query Layout {
-    doczDb {
-      id
-      db
-    }
-  }
-`
 
 const Route = ({ children, entry, ...defaultProps }) => {
   const components = useComponents()
@@ -34,14 +25,6 @@ const Route = ({ children, entry, ...defaultProps }) => {
   )
 }
 
-const parseDatabase = data => {
-  try {
-    return JSON.parse(data.doczDb.db)
-  } catch (err) {
-    return {}
-  }
-}
-
 const findEntry = (db, ctx) => {
   const isIndex = ctx.frontmatter.route === '/'
   const eqIndex = propEq('value.route', '/')
@@ -52,8 +35,7 @@ const findEntry = (db, ctx) => {
 
 const Layout = ({ children, ...defaultProps }) => {
   const { pageContext: ctx } = defaultProps
-  const data = useStaticQuery(query)
-  const db = parseDatabase(data)
+  const db = useDbQuery()
   const entry = findEntry(db, ctx)
 
   return (
