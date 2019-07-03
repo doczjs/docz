@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@types/find-up": "^2.1.1",
-    "@types/node": "^12.0.10",
+    "@types/node": "^12.0.12",
     "docz-rollup": "^1.2.0",
     "eslint-config-docz-ts": "^1.2.0"
   }

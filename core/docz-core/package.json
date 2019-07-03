@@ -46,7 +46,7 @@
     "signale": "^1.4.0",
     "titleize": "^2.1.0",
     "typescript": "3.5.2",
-    "xstate": "^4.6.3",
+    "xstate": "^4.6.4",
     "yargs": "^13.2.4"
   },
   "devDependencies": {

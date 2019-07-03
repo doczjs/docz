@@ -13,7 +13,7 @@
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "@types/react": "^16.8.22",
+    "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0"
