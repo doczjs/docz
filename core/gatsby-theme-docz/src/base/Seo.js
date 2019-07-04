@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
-import { useDbQuery } from './useDbQuery'
+import { useDbQuery } from '../hooks/useDbQuery'
 
 const SEO = ({ description, lang, meta, keywords, title: initialTitle }) => {
   const db = useDbQuery()

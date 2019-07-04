@@ -83,8 +83,7 @@ export default merge(typography, {
       py: 3,
       px: 4,
       bg: 'blockquote.bg',
-      borderLeft: '5px solid #000',
-      borderColor: 'blockquote.border',
+      borderLeft: t => `5px solid ${t.colors.blockquote.boder}`,
       color: 'blockquote.color',
       fontStyle: 'italic',
       '> p': {
@@ -131,8 +130,7 @@ export default merge(typography, {
     },
     hr: {
       border: 0,
-      borderBottom: '1px solid',
-      borderColor: 'muted',
+      borderBottom: t => `1px solid ${t.colors.border}`,
     },
   },
 })

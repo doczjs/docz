@@ -2,9 +2,9 @@ import { breakpoints } from '~theme/breakpoints'
 import * as mixins from '~utils/mixins'
 
 export const container = {
-  my: 4,
-  border: '1px solid #000',
-  borderColor: 'border',
+  mt: 3,
+  mb: 4,
+  border: t => `1px solid ${t.colors.border}`,
   borderRadius: 'radius',
   overflow: 'hidden',
   bg: 'props.bg',
@@ -25,8 +25,7 @@ export const content = {
 export const line = {
   pt: 2,
   '& + &': {
-    borderTop: '1px solid #000',
-    borderColor: 'border',
+    border: t => `1px solid ${t.colors.border}`,
   },
 }
 
@@ -86,8 +85,7 @@ export const description = {
   m: 0,
   py: 2,
   px: 3,
-  borderTop: '1px solid #000',
-  borderColor: 'border',
+  borderTop: t => `1px solid ${t.colors.border}`,
   color: 'props.descriptionText',
   bg: 'props.descriptionBg',
 }

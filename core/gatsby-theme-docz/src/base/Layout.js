@@ -4,7 +4,7 @@ import { useComponents } from 'docz'
 import { MDXProvider } from '@mdx-js/react'
 import { propEq, get } from 'lodash/fp'
 
-import { useDbQuery } from './useDbQuery'
+import { useDbQuery } from '../hooks/useDbQuery'
 import Wrapper from '../wrapper'
 import Theme from '../index'
 import SEO from './Seo'

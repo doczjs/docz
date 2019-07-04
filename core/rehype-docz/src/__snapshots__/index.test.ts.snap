@@ -20,7 +20,7 @@ export default function MDXContent({
   return <MDXLayout {...layoutProps} {...props} components={components} mdxType=\\"MDXLayout\\">
 
     <Playground __position={0} __code={'() => {\\\\n  const foo = \\\\'foo\\\\'\\\\n  return <div>{foo}</div>\\\\n}'} __scope={{
-      props: this ? this.props : props,
+      props,
       Playground
     }} mdxType=\\"Playground\\">
   {() => {
@@ -54,7 +54,7 @@ export default function MDXContent({
   return <MDXLayout {...layoutProps} {...props} components={components} mdxType=\\"MDXLayout\\">
 
     <Playground __position={0} __code={'() => {\\\\n  const foo = \\\\'foo\\\\'\\\\n  return <div>{foo}</div>\\\\n}'} __scope={{
-      props: this ? this.props : props,
+      props,
       Playground
     }} mdxType=\\"Playground\\">
   {() => {

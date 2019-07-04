@@ -1,8 +1,7 @@
 import * as mixins from '~utils/mixins'
 
 const border = {
-  border: '1px solid black',
-  borderColor: 'playground.border',
+  border: t => `1px solid ${t.colors.playground.border}`,
 }
 
 export const editor = showingCode => ({
