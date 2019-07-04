@@ -16,7 +16,7 @@
     "react-native-web": "^0.11.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
+    "@babel/core": "^7.5.0",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0"
   }

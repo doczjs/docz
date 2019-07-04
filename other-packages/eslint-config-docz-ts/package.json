@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "fix": "run-s fix:*",
-    "fix:prettier": "prettier \"src/**/*.js\" --write"
+    "fix:prettier": "prettier \"**/*.js\" --write"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^1.10.2",

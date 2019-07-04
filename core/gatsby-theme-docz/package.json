@@ -43,7 +43,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-feather": "^1.1.6",
+    "react-feather": "^2.0.3",
     "react-helmet": "^5.2.1",
     "react-live": "^2.1.2",
     "rehype-docz": "^1.2.0",

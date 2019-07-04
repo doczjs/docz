@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "fix": "run-s fix:*",
-    "fix:prettier": "prettier \"src/**/*.js\" --write"
+    "fix:prettier": "prettier \"**/*.js\" --write"
   },
   "dependencies": {
     "babel-eslint": "^10.0.2",

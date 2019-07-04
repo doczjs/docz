@@ -19,7 +19,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-env": "^7.5.0",
     "@babel/register": "^7.4.4",
     "find-up": "^4.1.0",
     "fs-extra": "^8.1.0",

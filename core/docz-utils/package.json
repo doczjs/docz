@@ -19,9 +19,9 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@babel/generator": "^7.4.4",
+    "@babel/generator": "^7.5.0",
     "@babel/parser": "^7.4.5",
-    "@babel/traverse": "^7.4.5",
+    "@babel/traverse": "^7.5.0",
     "art-template": "^4.13.2",
     "codesandboxer-fs": "^1.0.1",
     "fs-extra": "^8.1.0",
