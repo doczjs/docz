@@ -1,7 +1,7 @@
 import * as path from 'path'
 import * as fs from 'fs-extra'
 import { finds } from 'load-cfg'
-import { getOr, fromPairs } from 'lodash/fp'
+import { omit, getOr, fromPairs } from 'lodash/fp'
 import latestVersion from 'latest-version'
 import findUp from 'find-up'
 import sh from 'shelljs'
@@ -107,35 +107,35 @@ export const writeNotFound = async () => {
   await outputFileFromTemplate('404.tpl.js', outputPath, {})
 }
 
-const writeConfigFile = async ({ args, isDoczRepo }: ServerMachineCtx) => {
+const writeGatsbyConfig = async ({ args, isDoczRepo }: ServerMachineCtx) => {
   const outputPath = path.join(paths.docz, 'gatsby-config.js')
-
+  const config = omit(['plugins'], args)
+  const newConfig = JSON.stringify({ ...config, root: paths.docz })
   await outputFileFromTemplate('gatsby-config.tpl.js', outputPath, {
     isDoczRepo,
-    config: JSON.stringify({ ...args, root: paths.docz }),
+    config: newConfig,
   })
 }
 
-const writeGatsbyNode = async (ctx: ServerMachineCtx) => {
-  const outputPath = path.join(paths.docz, 'gatsby-node.js')
-  await outputFileFromTemplate('gatsby-node.tpl.js', outputPath, {
-    keys: Object.keys(ctx.args.gatsbyNode),
-  })
+const copyGatsbyConfigFile = async (from: string, to: string) => {
+  const filepath = path.join(paths.root, from)
+  const dest = path.join(paths.docz, to)
+  if (fs.pathExistsSync(filepath)) {
+    await fs.copy(filepath, dest)
+  }
 }
 
-const writeGatsbySSR = async (ctx: ServerMachineCtx) => {
-  const outputPath = path.join(paths.docz, 'gatsby-ssr.js')
-  await outputFileFromTemplate('gatsby-ssr.tpl.js', outputPath, {
-    keys: Object.keys(ctx.args.gatsbySSR),
-  })
-}
+const writeGatsbyConfigCustom = async () =>
+  copyGatsbyConfigFile('gatsby-config.js', 'gatsby-config.custom.js')
 
-const writeGatsbyBrowser = async (ctx: ServerMachineCtx) => {
-  const outputPath = path.join(paths.docz, 'gatsby-browser.js')
-  await outputFileFromTemplate('gatsby-browser.tpl.js', outputPath, {
-    keys: Object.keys(ctx.args.gatsbyBrowser),
-  })
-}
+const writeGatsbyNode = async () =>
+  copyGatsbyConfigFile('gatsby-node.js', 'gatsby-node.js')
+
+const writeGatsbySSR = async () =>
+  copyGatsbyConfigFile('gatsby-ssr.js', 'gatsby-ssr.js')
+
+const writeGatsbyBrowser = async () =>
+  copyGatsbyConfigFile('gatsby-browser.js', 'gatsby-browser.js')
 
 export const createResources = async (ctx: ServerMachineCtx) => {
   try {
@@ -143,11 +143,12 @@ export const createResources = async (ctx: ServerMachineCtx) => {
     await copyDoczRc()
     await copyAndModifyPkgJson(ctx)
     await writeEslintRc(ctx)
-    await writeConfigFile(ctx)
     await writeNotFound()
-    await writeGatsbyBrowser(ctx)
-    await writeGatsbyNode(ctx)
-    await writeGatsbySSR(ctx)
+    await writeGatsbyConfig(ctx)
+    await writeGatsbyConfigCustom()
+    await writeGatsbyNode()
+    await writeGatsbyBrowser()
+    await writeGatsbySSR()
   } catch (err) {
     console.log(err)
   }

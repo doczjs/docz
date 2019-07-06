@@ -40,6 +40,10 @@ export interface Paths {
   appNodeModules: string
   appPackageJson: string
   appYarnLock: string
+  gatsbyConfig: string
+  gatsbyBrowser: string
+  gatsbyNode: string
+  gatsbySSR: string
   ownNodeModules: string
 
   checkIsDoczProject: (config: any) => boolean
@@ -69,6 +73,10 @@ export const appNodeModules = resolveApp('node_modules')
 export const appPackageJson = resolveApp('package.json')
 export const appYarnLock = resolveOwn('yarn.lock')
 export const ownNodeModules = resolveOwn('node_modules')
+export const gatsbyConfig = resolveApp('gatsby-config.js')
+export const gatsbyBrowser = resolveApp('gatsby-browser.js')
+export const gatsbyNode = resolveApp('gatsby-node.js')
+export const gatsbySSR = resolveApp('gatsby-ssr.js')
 
 export const getDist = (dest: string) => path.join(root, dest)
 export const distPublic = (dest: string) => path.join(dest, 'public/')
