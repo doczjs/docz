@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@babel/generator": "^7.5.0",
-    "@babel/parser": "^7.4.5",
+    "@babel/parser": "^7.5.0",
     "@babel/traverse": "^7.5.0",
     "art-template": "^4.13.2",
     "codesandboxer-fs": "^1.0.1",
