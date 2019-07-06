@@ -33,7 +33,7 @@ const machine = Machine<ServerMachineCtx>({
   states: {
     watch: {
       invoke: {
-        src: 'watchConfigFiles',
+        src: 'watchFiles',
       },
     },
     server: {
