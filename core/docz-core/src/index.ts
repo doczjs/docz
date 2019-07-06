@@ -14,6 +14,3 @@ export { Plugin, createPlugin } from './lib/Plugin'
 export { DataServer } from './lib/DataServer'
 export { Entries } from './lib/Entries'
 export { Entry } from './lib/Entry'
-
-/** bundler exports */
-export { emitter } from './bundler'

@@ -1,17 +1,57 @@
 import { get, isFunction } from 'lodash/fp'
 
-import { Config } from '../config/argv'
 import { pReduce } from '../utils/p-reduce'
+import { Config } from '../config/argv'
 
 export type SetConfig = (config: Config) => Config | Promise<Config>
+export type onCreateBabelConfig = (params: any, dev: boolean) => void
+
+export type onCreateWebpack<C = any> = (
+  config: C,
+  dev: boolean,
+  args: Config
+) => C
+
 export type ModifyFiles = (files: string[], args: Config) => string[]
+export type onCreateDevServer = <A>(app: A) => void
+export type OnPreBuild = (args: Config) => void
+export type OnPostBuild = (args: Config) => void
+export type OnPreRender = () => void
+export type OnPostRender = () => void
 
 export interface PluginFactory {
   setConfig?: SetConfig
+  onCreateBabelConfig?: onCreateBabelConfig
+  onCreateWebpack?: onCreateWebpack
   modifyFiles?: ModifyFiles
+  onCreateDevServer?: onCreateDevServer
+  onPreBuild?: OnPreBuild
+  onPostBuild?: OnPostBuild
 }
 
 export class Plugin<C = any> implements PluginFactory {
+  public static runPluginsMethod(
+    plugins: Plugin[] | undefined
+  ): (method: keyof Plugin, ...args: any[]) => void {
+    return (method, ...args) => {
+      if (plugins && plugins.length > 0) {
+        for (const plugin of plugins) {
+          const fn = get<Plugin, any>(method, plugin)
+          isFunction(fn) && fn(...args)
+        }
+      }
+    }
+  }
+
+  public static propsOfPlugins(
+    plugins: Plugin[]
+  ): (prop: keyof Plugin) => any[] {
+    return prop =>
+      plugins && plugins.length > 0
+        ? plugins.map(p => get(prop, p)).filter(Boolean)
+        : []
+  }
+
   public static reduceFromPlugins<C>(
     plugins: Plugin[] | undefined
   ): (method: keyof Plugin, initial: C, ...args: any[]) => C {
@@ -39,11 +79,21 @@ export class Plugin<C = any> implements PluginFactory {
   }
 
   public readonly setConfig?: SetConfig
+  public readonly onCreateWebpack?: onCreateWebpack<C>
+  public readonly onCreateBabelConfig?: onCreateBabelConfig
   public readonly modifyFiles?: ModifyFiles
+  public readonly onCreateDevServer?: onCreateDevServer
+  public readonly onPreBuild?: OnPreBuild
+  public readonly onPostBuild?: OnPostBuild
 
   constructor(p: PluginFactory) {
     this.setConfig = p.setConfig
+    this.onCreateWebpack = p.onCreateWebpack
+    this.onCreateBabelConfig = p.onCreateBabelConfig
     this.modifyFiles = p.modifyFiles
+    this.onCreateDevServer = p.onCreateDevServer
+    this.onPreBuild = p.onPreBuild
+    this.onPostBuild = p.onPostBuild
   }
 }
 

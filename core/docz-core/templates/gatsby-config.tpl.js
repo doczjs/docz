@@ -1,6 +1,13 @@
 const { merge } = require('lodash/fp')
 
-module.exports = merge(<%- config.gatsbyConfig -%>, {
+let custom
+try {
+  custom = require('./gatsby-config.custom')
+} catch(err) {
+  custom = {}
+}
+
+const config = {
   siteMetadata: {
     title: "<%- config.title %>",
     description: "<%- config.description %>"
@@ -36,4 +43,6 @@ module.exports = merge(<%- config.gatsbyConfig -%>, {
       }
     }<%}%>
   ],
-})
+}
+
+module.exports = merge(config, custom)
