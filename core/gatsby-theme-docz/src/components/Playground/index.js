@@ -1,16 +1,18 @@
 /** @jsx jsx */
-import { jsx } from 'theme-ui'
+import { jsx, useThemeUI } from 'theme-ui'
 import { useState } from 'react'
-import { LiveProvider, LiveError, LivePreview } from 'react-live'
+import { LiveProvider, LiveError, LivePreview, LiveEditor } from 'react-live'
+import { get, merge } from 'lodash/fp'
 import copy from 'copy-text-to-clipboard'
 
+import { usePrismTheme } from '~utils/theme'
 import * as styles from './styles'
 import * as Icons from '../Icons'
-import { Code } from '../Code'
 
-export const Playground = ({ code: initialCode, scope }) => {
-  const [code, setCode] = useState(() => initialCode)
+export const Playground = ({ code, scope }) => {
   const [showingCode, setShowingCode] = useState(false)
+  const theme = usePrismTheme()
+  const ctx = useThemeUI()
 
   const transformCode = code => {
     if (code.startsWith('()') || code.startsWith('class')) return code
@@ -22,7 +24,17 @@ export const Playground = ({ code: initialCode, scope }) => {
   }
 
   return (
-    <LiveProvider code={code} scope={scope} transformCode={transformCode}>
+    <LiveProvider
+      code={code}
+      scope={scope}
+      transformCode={transformCode}
+      theme={merge(theme, {
+        plain: {
+          fontFamily: get('theme.fonts.monospace', ctx),
+          fontSize: 18,
+        },
+      })}
+    >
       <div sx={styles.previewWrapper}>
         <LivePreview sx={styles.preview(showingCode)} />
         <div sx={styles.buttons}>
@@ -35,12 +47,11 @@ export const Playground = ({ code: initialCode, scope }) => {
         </div>
       </div>
       <LiveError sx={styles.error} />
-      <Code
-        sx={styles.editor(showingCode)}
-        codeString={code}
-        onChange={setCode}
-        language="jsx"
-      />
+      {showingCode && (
+        <div sx={styles.editor(theme)}>
+          <LiveEditor />
+        </div>
+      )}
     </LiveProvider>
   )
 }

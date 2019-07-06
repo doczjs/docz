@@ -1,4 +1,6 @@
 import * as colors from './colors'
+import prismDark from './prism/dark'
+import prismLight from './prism/light'
 
 export const light = {
   ...colors,
@@ -41,6 +43,9 @@ export const light = {
     bg: colors.grayExtraLight,
     border: colors.grayLight,
     color: colors.gray,
+  },
+  prism: {
+    ...prismLight,
   },
 }
 
@@ -85,5 +90,8 @@ export const dark = {
     bg: colors.grayDark,
     border: colors.gray,
     color: colors.gray,
+  },
+  prism: {
+    ...prismDark,
   },
 }

@@ -4,12 +4,14 @@ const border = {
   border: t => `1px solid ${t.colors.playground.border}`,
 }
 
-export const editor = showingCode => ({
-  ...border,
-  display: showingCode ? 'block' : 'none',
-  m: 0,
-  mt: '-1px',
-  borderRadius: '0 0 5px 5px',
+export const editor = theme => ({
+  p: 2,
+  border: t => `1px solid ${t.colors.border}`,
+  background: theme.plain.backgroundColor,
+  borderTop: 0,
+  '.npm__react-simple-code-editor__textarea': {
+    outline: 'none !important',
+  },
 })
 
 export const error = {

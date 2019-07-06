@@ -1,95 +1,35 @@
 /** @jsx jsx */
-import { jsx, useColorMode } from 'theme-ui'
-import { useConfig } from 'docz'
-import { get } from 'lodash/fp'
-import AceEditor from 'react-ace'
+/* eslint react/jsx-key: 0 */
+import Highlight, { defaultProps } from 'prism-react-renderer'
+import { jsx, Styled } from 'theme-ui'
 
-import 'brace/theme/dracula'
-import 'brace/theme/textmate'
-import 'brace/mode/jsx'
-import 'brace/ext/language_tools'
-import 'brace/ext/searchbox'
+import { usePrismTheme } from '~utils/theme'
 
-import * as styles from './styles'
-
-const LANGUAGES = [
-  'javascript',
-  'python',
-  'ruby',
-  'sass',
-  'markdown',
-  'mysql',
-  'json',
-  'html',
-  'golang',
-  'elixir',
-  'typescript',
-  'css',
-]
-
-LANGUAGES.forEach(lang => {
-  require(`brace/mode/${lang}`)
-  require(`brace/snippets/${lang}`)
-})
-
-const themes = {
-  light: 'textmate',
-  dark: 'dracula',
-}
-
-const getLanguage = lang => {
-  const defaultLanguage = 'jsx'
-  if (typeof lang === 'string') return defaultLanguage
-
-  const language = getter(lang, 'props.props.className') || defaultLanguage
-  const result = language.replace('language-', '')
-
-  if (result === 'js' || result === 'javascript') return 'jsx'
-  if (result === 'ts' || result === 'tsx' || result === 'typescript') {
-    return 'text/typescript'
-  }
-  return result
-}
-
-export const Code = ({
-  className,
-  codeString,
-  language = 'jsx',
-  readOnly,
-  onChange,
-}) => {
-  const [colorMode] = useColorMode()
-  const config = useConfig()
-  const lang = getLanguage(language)
-  const theme = get('themeConfig.editorTheme', config)
+export const Code = ({ children, className: outerClassName }) => {
+  const [language] = outerClassName.replace(/language-/, '').split(' ')
+  const theme = usePrismTheme()
 
   return (
-    <AceEditor
-      className={className}
-      sx={styles.editor}
-      value={codeString}
-      mode={lang}
-      readOnly={readOnly}
-      onChange={onChange}
-      highlightActiveLine={false}
-      theme={theme || themes[colorMode]}
-      name="code-editor"
-      fontSize={16}
-      style={{
-        width: 'calc(100% - 2px)',
-        height: 200,
-      }}
-      setOptions={{
-        tabSize: 2,
-        minLines: 5,
-        maxLines: 20,
-        wrap: true,
-        autoScrollEditorIntoView: true,
-        printMargin: false,
-      }}
-      editorProps={{
-        $blockScrolling: Infinity,
-      }}
-    />
+    <Highlight
+      {...defaultProps}
+      code={children.trim()}
+      language={language}
+      theme={theme}
+    >
+      {({ className, style, tokens, getLineProps, getTokenProps }) => (
+        <Styled.pre className={`${outerClassName} ${className}`} style={style}>
+          {tokens.map((line, i) => (
+            <div {...getLineProps({ line, key: i })}>
+              {line.map((token, key) => (
+                <span
+                  {...getTokenProps({ token, key })}
+                  sx={{ display: 'inline-block' }}
+                />
+              ))}
+            </div>
+          ))}
+        </Styled.pre>
+      )}
+    </Highlight>
   )
 }

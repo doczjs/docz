@@ -3,11 +3,13 @@ import { toTheme } from '@theme-ui/typography'
 import { merge } from 'lodash/fp'
 
 import * as modes from './modes'
+import prism from './prism'
 
 moraga.headerWeight = 700
 const typography = toTheme(moraga)
 
 export default merge(typography, {
+  prism,
   initialColorMode: 'light',
   colors: {
     ...modes.light,
@@ -98,8 +100,10 @@ export default merge(typography, {
     },
     pre: {
       my: 4,
-      fontFamily: 'monospace',
+      p: 3,
+      variant: 'prism',
       textAlign: 'left',
+      fontFamily: 'monospace',
       borderRadius: 'radius',
       '.token-line': {
         lineHeight: '1.5em',

@@ -3345,11 +3345,6 @@
     "@webassemblyjs/wast-parser" "1.8.5"
     "@xtuc/long" "4.2.2"
 
-"@xstate/react@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.npmjs.org/@xstate/react/-/react-0.7.0.tgz#946986a65da73f41faaf9cfa7748dff761e1acd1"
-  integrity sha512-1ZWG/rpmA3AgtrRu9Zqz6hOF1av+McffC+LLQjESyrFYawz9pFlFB6+DqJgcID9NPnjl+S9PGzfAVpa9P02QTw==
-
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "https://registry.npmjs.org/@xtuc/ieee754/-/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"
@@ -6399,11 +6394,6 @@ deepmerge@3.2.0:
   resolved "https://registry.npmjs.org/deepmerge/-/deepmerge-3.2.0.tgz#58ef463a57c08d376547f8869fdc5bcee957f44e"
   integrity sha512-6+LuZGU7QCNUnAJyX8cIrlzoEgggTM6B7mm+znKOX4t5ltluT9KLjN6g61ECMS0LTsLW7yDpNoxhix5FZcrIow==
 
-deepmerge@^1.5.2:
-  version "1.5.2"
-  resolved "https://registry.npmjs.org/deepmerge/-/deepmerge-1.5.2.tgz#10499d868844cdad4fee0842df8c7f6f0c95a753"
-  integrity sha512-95k0GDqvBjZavkuvzx/YqVLv/6YYa17fz6ILMSf7neqQITCPbnfEnQvEgMPNjH4kgobe7+WIL0yJEHku+H3qtQ==
-
 deepmerge@^3.2.0:
   version "3.3.0"
   resolved "https://registry.npmjs.org/deepmerge/-/deepmerge-3.3.0.tgz#d3c47fd6f3a93d517b14426b0628a17b0125f5f7"
@@ -9365,7 +9355,7 @@ hosted-git-info@^2.1.4, hosted-git-info@^2.6.0:
   resolved "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.7.1.tgz#97f236977bd6e125408930ff6de3eec6281ec047"
   integrity sha512-7T/BxH19zbcCTa8XkMlbK5lTo1WtgkFi3GvdWEyNuc4Vex7/9Dqbnpsf4JMydcfj9HCg4zUWFTL3Za6lapg5/w==
 
-hotkeys-js@^3.6.11, hotkeys-js@^3.6.6:
+hotkeys-js@^3.6.6:
   version "3.6.11"
   resolved "https://registry.npmjs.org/hotkeys-js/-/hotkeys-js-3.6.11.tgz#fbedbda3005f3f4a2f36c20c4e1b4f1ede999f94"
   integrity sha512-CQiE9t0OFTL1sEH4UAPpCwWYCVOBIBePeRjNeNMndsLdZyXal5jR0rDv8Y+GLMcztN2Gudvuy+V0v3oUFWV5QQ==
@@ -10530,11 +10520,6 @@ iterall@^1.2.2:
   version "1.2.2"
   resolved "https://registry.npmjs.org/iterall/-/iterall-1.2.2.tgz#92d70deb8028e0c39ff3164fdbf4d8b088130cd7"
   integrity sha512-yynBb1g+RFUPY64fTrFv7nsjRrENBQJaX2UL+2Szc9REFrSNm1rpSXHGzhmAy7a9uv3vlvgBlXnf9RqmPH1/DA==
-
-javascript-stringify@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/javascript-stringify/-/javascript-stringify-2.0.0.tgz#ef750216ae66504ffd670b68c8b8aa07bdf7b588"
-  integrity sha512-zzK8+ByrzvOL6N92hRewwUKL0wN0TOaIuUjX0Jj8lraxWvr5wHYs2YTjaj2lstF+8qMv5cmPPef47va8NT8lDw==
 
 jest-changed-files@^24.8.0:
   version "24.8.0"
@@ -17898,14 +17883,6 @@ webidl-conversions@^4.0.2:
   version "4.0.2"
   resolved "https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-4.0.2.tgz#a855980b1f0b6b359ba1d5d9fb39ae941faa63ad"
   integrity sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==
-
-webpack-chain@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.npmjs.org/webpack-chain/-/webpack-chain-6.0.0.tgz#9c36525a1271a54e7bfd1791199b395f400ae4f1"
-  integrity sha512-NK62XgJOOSmYs4kaXFIKKeClpuOVHY7m6e4XwxbVX/2HAUboH6xFCTVXMVv8+jB6K8o/UGjlo1Cv3XXOyNAAGw==
-  dependencies:
-    deepmerge "^1.5.2"
-    javascript-stringify "^2.0.0"
 
 webpack-dev-middleware@^3.0.1, webpack-dev-middleware@^3.6.2:
   version "3.6.2"

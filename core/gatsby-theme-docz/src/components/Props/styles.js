@@ -25,7 +25,7 @@ export const content = {
 export const line = {
   pt: 2,
   '& + &': {
-    border: t => `1px solid ${t.colors.border}`,
+    borderTop: t => `1px solid ${t.colors.border}`,
   },
 }
 
