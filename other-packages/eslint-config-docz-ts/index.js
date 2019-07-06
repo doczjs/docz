@@ -10,7 +10,6 @@ module.exports = {
     'comma-dangle': ['error', 'always-multiline'],
     'no-mixed-operators': 'error',
     'no-console': 'off',
-    'no-undef': 'off',
     'react/prop-types': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
