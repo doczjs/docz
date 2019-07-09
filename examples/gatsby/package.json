@@ -32,7 +32,7 @@
     "eslint-plugin-import": "2.18.0",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.14.2",
-    "gatsby": "^2.13.6",
+    "gatsby": "^2.13.10",
     "gatsby-mdx": "^0.6.3",
     "gatsby-plugin-eslint": "^2.0.5",
     "gatsby-theme-docz": "^1.2.0"

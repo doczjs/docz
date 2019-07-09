@@ -38,8 +38,8 @@
     "@commitlint/config-lerna-scopes": "^8.0.0",
     "@types/fs-extra": "^8.0.0",
     "@types/jest": "^24.0.15",
-    "@types/lodash": "^4.14.135",
-    "@types/node": "^12.0.12",
+    "@types/lodash": "^4.14.136",
+    "@types/node": "^12.6.1",
     "@types/prettier": "^1.16.4",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
@@ -54,10 +54,10 @@
     "lint-staged": "^9.1.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.18.2",
-    "rollup": "^1.16.6",
+    "rollup": "^1.16.7",
     "trash-cli": "^3.0.0",
     "ts-jest": "^24.0.2",
-    "typescript": "3.5.2"
+    "typescript": "3.5.3"
   },
   "workspaces": [
     "core/*",
