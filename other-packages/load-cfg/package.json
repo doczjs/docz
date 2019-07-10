@@ -19,15 +19,15 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@babel/preset-env": "^7.5.3",
+    "@babel/preset-env": "^7.5.4",
     "@babel/register": "^7.4.4",
     "find-up": "^4.1.0",
     "fs-extra": "^8.1.0",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.14"
   },
   "devDependencies": {
     "@types/find-up": "^2.1.1",
-    "@types/node": "^12.6.1",
+    "@types/node": "^12.6.2",
     "docz-rollup": "^1.2.0",
     "eslint-config-docz-ts": "^1.2.0"
   }

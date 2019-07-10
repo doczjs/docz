@@ -18,7 +18,7 @@
     "filesize": "^4.1.2",
     "fs-extra": "^8.1.0",
     "gzip-size": "^5.1.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.14",
     "log-update": "^3.2.0",
     "rollup": "^1.16.7",
     "rollup-plugin-alias": "^1.5.2",

@@ -26,7 +26,7 @@
     "unist-util-visit": "^1.4.1"
   },
   "devDependencies": {
-    "@mdx-js/mdx": "^1.0.21",
+    "@mdx-js/mdx": "^1.0.23",
     "docz-rollup": "^1.2.0",
     "eslint-config-docz-ts": "^1.2.0"
   }

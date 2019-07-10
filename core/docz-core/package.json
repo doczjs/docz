@@ -33,7 +33,7 @@
     "humanize-string": "^2.1.0",
     "latest-version": "^5.1.0",
     "load-cfg": "^1.2.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.14",
     "minimatch": "^3.0.4",
     "ora": "^3.4.0",
     "react-docgen": "^4.1.1",
@@ -46,7 +46,7 @@
     "signale": "^1.4.0",
     "titleize": "^2.1.0",
     "typescript": "3.5.3",
-    "xstate": "^4.6.4",
+    "xstate": "^4.6.7",
     "yargs": "^13.2.4"
   },
   "devDependencies": {
