@@ -12,6 +12,14 @@ module.exports = async (params, opts) => {
   const run = Plugin.runPluginsMethod(args.plugins)
   const config = getConfig()
 
+  if (args.typescript) {
+    actions.setWebpackConfig({
+      resolve: {
+        extensions: config.resolve.extensions.concat(['.ts', '.tsx']),
+      },
+    })
+  }
+
   if (hasParentNodeModules && stage === 'develop') {
     actions.setWebpackConfig({
       resolve: {

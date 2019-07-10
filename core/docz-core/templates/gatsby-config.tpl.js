@@ -15,9 +15,16 @@ const config = {
   plugins: [
     {
       resolve: 'gatsby-theme-docz',
-      options: <%- config %>
-    },
-    <% if (isDoczRepo) {%>{
+      options: <%- opts %>
+    },<% if (config.typescript) {%>
+    {
+      resolve: 'gatsby-plugin-typescript',
+      options: {
+        isTSX: true,
+        allExtensions: true
+      }
+    },<%}%><% if (isDoczRepo) {%>
+    {
       resolve: 'gatsby-plugin-eslint',
       options: {
         test: /\.js$|\.jsx$/,
@@ -35,13 +42,6 @@ const config = {
         modules: ['docz', 'gatsby-theme-docz'],
       },
     },<%}%>
-    <% if (config.typescript) {%>{
-      resolve: 'gatsby-plugin-typescript',
-      options: {
-        isTSX: true,
-        allExtensions: true
-      }
-    }<%}%>
   ],
 }
 

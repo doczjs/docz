@@ -110,10 +110,15 @@ export const writeNotFound = async () => {
 const writeGatsbyConfig = async ({ args, isDoczRepo }: ServerMachineCtx) => {
   const outputPath = path.join(paths.docz, 'gatsby-config.js')
   const config = omit(['plugins'], args)
-  const newConfig = JSON.stringify({ ...config, root: paths.docz })
+  const newConfig = {
+    ...config,
+    root: paths.docz,
+  }
+
   await outputFileFromTemplate('gatsby-config.tpl.js', outputPath, {
     isDoczRepo,
     config: newConfig,
+    opts: JSON.stringify(newConfig),
   })
 }
 
