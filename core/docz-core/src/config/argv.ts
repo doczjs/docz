@@ -8,6 +8,7 @@ import { get } from 'lodash/fp'
 import { Plugin } from '../lib/Plugin'
 import { BabelRC } from '../config/babel'
 import * as paths from '../config/paths'
+import { ProxyConfigMap, ProxyConfigArray } from 'webpack-dev-server'
 
 const getEnv = (val: string | string[], defaultValue: any = null): any =>
   envDotProp.get(val, defaultValue, { parse: true })
@@ -70,6 +71,7 @@ export interface Argv {
   propsParser: boolean
   host: string
   port: number
+  proxy?: ProxyConfigMap | ProxyConfigArray
   websocketPort: number
   websocketHost: string
   native: boolean

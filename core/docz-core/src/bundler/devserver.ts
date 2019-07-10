@@ -29,6 +29,7 @@ export const devServerConfig = (hooks: ServerHooks, args: Args) => {
     overlay: false,
     host: args.host,
     port: args.port,
+    proxy: args.proxy,
     historyApiFallback: {
       disableDotRule: true,
     },
