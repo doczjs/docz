@@ -18,9 +18,9 @@ The most expressive changes here is about the configuration for `doczrc.js` and 
 
 * **`websocketHost`** ▶︎ _no longer need_
 * **`websocketPort`** ︎︎︎▶︎ _no longer need_
-* **`wrapper`** ▶︎ _removed_ (see [how to use]() now)
-* **`theme`** ▶︎ _removed_ (see [how to use]() now)
-* **`indexHtml`** ▶︎ _removed_ (see [how to use]() now)
+* **`wrapper`** ▶︎ _removed_
+* **`theme`** ▶︎ _removed_
+* **`indexHtml`** ▶︎ _removed_
 * **`codeSandbox`** ▶︎ _removed_
 * **`onCreateWebpackChain`** ▶︎ _removed_
 * **`modifyBundlerConfig`** ▶︎ use Gatsby [`onCreateWebpackConfig`](https://www.gatsbyjs.org/docs/node-apis/#onCreateWebpackConfig) hook
@@ -72,3 +72,38 @@ Theme UI it's a library for build consistent, themeable React apps based on cons
 So, in order to integration it with our new theme, a lot of changes are made inside the `themeConfig` object.
 
 Check [here]() for more information.
+
+### `theme` property removed
+
+The property used to define your Docz theme inside the `doczrc.js` was removed. But you can still
+create and use your own theme from scratch if you want.
+
+If you want to use your own theme, just create a file called `src/gatsby-theme-docz/index.js` in order
+to use component shadowing and replace it with your new theme.
+
+```js
+// src/gatsby-theme-docz/index.js
+import React from 'react'
+import Theme from './my-custom-theme'
+
+export default (props) => <Theme {...props} />
+```
+
+Check [here](https://www.docz.site/docs/creating-themes) for more information about how to create themes.
+
+### `wrapper` property removed
+
+The same thing happened here for the oldest `wrapper` property. Now you can wrap your entire application
+by just creating a file called `src/gatsby-theme-docz/wrapper.js`
+
+```js
+// src/gatsby-theme-docz/index.js
+import React from 'react'
+
+export default ({ children }) => (
+  <div>
+    <h1>My custom wrapper</h1>
+    {children}
+  </div>
+)
+```
