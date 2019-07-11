@@ -15,18 +15,32 @@ yarn add gatsby gatsby-theme-docz react react-dom
 ```js
 // gatsby-config.js
 module.exports = {
-  plugins: 'gatsby-theme-docz',
+  plugins: ['gatsby-theme-docz'],
 }
 ```
 
 ### Configuration
 
-You can usually set your config using `doczrc.js` file ([see all available](https://www.docz.site/docs/project-configuration)) or if you want to
-set some default options for your theme, you can set `options` on plugin definition.
+Set your config by using `doczrc.js` file ([see all available](https://www.docz.site/docs/project-configuration)) or if you want to
+set some defaults for your theme, use `options` on plugin definition:
+
+```js
+// gatsby-config.js
+module.exports = {
+  plugins: [
+    {
+      resolve: 'gatsby-theme-docz',
+      options: {
+        /* your custom options */
+      },
+    },
+  ],
+}
+```
 
 ### Dark Mode
 
-To change your project to use a darker version of default theme, just set your `doczrc.js` like that:
+To set the dark version as default, just set your `doczrc.js` like that:
 
 ```js
 // doczrc.js
@@ -39,10 +53,10 @@ export default {
 
 ### Customizing components
 
-Components shadowing is one of the best things included in the new Gatsby theme features, with it is possible to replace
+Components shadowing is one of the best things included in the new Gatsby theme feature, with it is possible to replace
 theme files just by creating your own file following a file naming convetion.
 
-Example: If you're using `gatsby-theme-docz` which uses a `Header` component located at `src/components/Header/index.js`
+Example: If you're using our `gatsby-theme-docz` which has a `Header` component located at `src/components/Header/index.js`
 you can override the component by creating `src/gatsby-theme-docz/components/Header/index.js`. Cool right?
 
 So, now that you know about how component shadowing works on Gatsby themes, you can override anything inside the `gatsby-theme-docz`.
