@@ -131,14 +131,10 @@ export const Props: SFC<PropsProps> = ({
 
   const props = useMemo(() => {
     const props = get('props', definition || firstDefinition)
-    if (props) {
-      for (const key of Object.keys(props)) {
-        if (props[key].description) {
-          props[key].description = compileMarkdown(props[key].description).tree
-        }
-      }
-    }
-    return props
+    return Object.entries(props).reduce((obj, [key, value]) => {
+      if (key !== 'description') return obj
+      return { ...obj, description: compileMarkdown(value).tree }
+    }, props)
   }, [compileMarkdown, definition || firstDefinition])
 
   if (!props) return null
