@@ -12,7 +12,7 @@ import * as Icons from '../Icons'
 
 export const Playground = ({ code, scope }) => {
   const {
-    themeConfig: { showPlaygroundEditor },
+    themeConfig: { showPlaygroundEditor, showLiveError },
   } = useConfig()
 
   const [showingCode, setShowingCode] = useState(() => showPlaygroundEditor)
@@ -51,7 +51,7 @@ export const Playground = ({ code, scope }) => {
           </button>
         </div>
       </div>
-      <LiveError sx={styles.error} />
+      {showLiveError && <LiveError sx={styles.error} />}
       {showingCode && (
         <div sx={styles.editor(theme)}>
           <LiveEditor />

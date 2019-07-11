@@ -19,8 +19,14 @@ const Theme = ({ children }) => {
 
 export const enhance = theme(
   defaultTheme,
-  ({ mode = 'light', showPlaygroundEditor = true, ...config }) => ({
+  ({
+    mode = 'light',
+    showPlaygroundEditor = true,
+    showLiveError = true,
+    ...config
+  }) => ({
     ...config,
+    showLiveError,
     showPlaygroundEditor,
     initialColorMode: mode,
   })
