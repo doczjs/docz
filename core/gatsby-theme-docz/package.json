@@ -40,8 +40,6 @@
     "mdx-utils": "^0.2.0",
     "prop-types": "^15.7.2",
     "re-resizable": "^5.0.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
     "react-feather": "^2.0.3",
     "react-helmet": "^5.2.1",
     "react-live": "^2.1.2",
@@ -58,5 +56,9 @@
     "babel-eslint": "10.0.2",
     "eslint": "^5.16.0",
     "eslint-config-docz-js": "^1.2.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   }
 }
