@@ -32,7 +32,7 @@ The `createPlugin` method also changed in order to fit with Gatsby now.
 
 ### List of removed/changed properties from `createPlugin()`
 
-* **`modifyBundlerConfig`** ▶︎ `onCreateWebpack`
+* **`modifyBundlerConfig`** ▶︎ `onCreateWebpackConfig`
 * **`modifyBabelRc`** ▶︎ `onCreateBabelConfig`
 * **`onCreateApp`** ▶︎ `onCreateDevServer`
 * **`onPreCreateApp`** ▶︎ _removed_

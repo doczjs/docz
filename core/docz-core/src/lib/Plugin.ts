@@ -6,7 +6,7 @@ import { Config } from '../config/argv'
 export type SetConfig = (config: Config) => Config | Promise<Config>
 export type onCreateBabelConfig = (params: any, dev: boolean) => void
 
-export type onCreateWebpack<C = any> = (
+export type onCreateWebpackConfig<C = any> = (
   config: C,
   dev: boolean,
   args: Config
@@ -23,7 +23,7 @@ export interface PluginFactory {
   setConfig?: SetConfig
   onCreateBabelConfig?: onCreateBabelConfig
   onCreateDevServer?: onCreateDevServer
-  onCreateWebpack?: onCreateWebpack
+  onCreateWebpackConfig?: onCreateWebpackConfig
   modifyFiles?: ModifyFiles
   onPreBuild?: OnPreBuild
   onPostBuild?: OnPostBuild
@@ -79,7 +79,7 @@ export class Plugin<C = any> implements PluginFactory {
   }
 
   public readonly setConfig?: SetConfig
-  public readonly onCreateWebpack?: onCreateWebpack<C>
+  public readonly onCreateWebpackConfig?: onCreateWebpackConfig<C>
   public readonly onCreateBabelConfig?: onCreateBabelConfig
   public readonly modifyFiles?: ModifyFiles
   public readonly onCreateDevServer?: onCreateDevServer
@@ -88,7 +88,7 @@ export class Plugin<C = any> implements PluginFactory {
 
   constructor(p: PluginFactory) {
     this.setConfig = p.setConfig
-    this.onCreateWebpack = p.onCreateWebpack
+    this.onCreateWebpackConfig = p.onCreateWebpackConfig
     this.onCreateBabelConfig = p.onCreateBabelConfig
     this.modifyFiles = p.modifyFiles
     this.onCreateDevServer = p.onCreateDevServer
