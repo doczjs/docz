@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/pedronauck/docz/compare/v1.1.0...v1.2.0) (2019-05-08)
+
+
+### Features
+
+* **docz-core:** add config not use specifiers ([#849](https://github.com/pedronauck/docz/issues/849)) ([d8595a9](https://github.com/pedronauck/docz/commit/d8595a9))
+
+
+
+
+
+# [1.1.0](https://github.com/pedronauck/docz/compare/v1.0.4...v1.1.0) (2019-05-01)
+
+**Note:** Version bump only for package babel-plugin-export-metadata
+
+
+
+
+
+## [1.0.4](https://github.com/pedronauck/docz/compare/v1.0.3...v1.0.4) (2019-04-18)
+
+
+### Bug Fixes
+
+* **babel-plugin-export-metadata:** avoid adding __filemeta to non-extensible objects ([#798](https://github.com/pedronauck/docz/issues/798)) ([794ebc4](https://github.com/pedronauck/docz/commit/794ebc4))
+* **babel-plugin-export-metadata:** re-export causes meta error ([#805](https://github.com/pedronauck/docz/issues/805)) ([9401676](https://github.com/pedronauck/docz/commit/9401676))
+
+
+
+
+
 ## [1.0.2](https://github.com/pedronauck/docz/compare/v1.0.1...v1.0.2) (2019-04-15)
 
 **Note:** Version bump only for package babel-plugin-export-metadata

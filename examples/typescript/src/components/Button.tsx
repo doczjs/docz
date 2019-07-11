@@ -1,5 +1,5 @@
 import React, { SFC } from 'react'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 const scales = {
   small: `
@@ -58,7 +58,7 @@ const getScale = ({ scale = 'normal' }: ButtonProps) => scales[scale]
 const getKind = ({ kind = 'primary', outline = false }: ButtonProps) =>
   kinds(outline)[kind]
 
-const ButtonStyled = styled('button')`
+const ButtonStyled = styled('button')<ButtonProps>`
   ${getKind};
   ${getScale};
   cursor: pointer;

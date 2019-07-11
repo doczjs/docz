@@ -1,4 +1,4 @@
-import { join, relative } from 'path'
+import * as path from 'path'
 import chokidar from 'chokidar'
 import fastglob from 'fast-glob'
 import { State, Params } from '../lib/DataServer'
@@ -7,17 +7,29 @@ import { get, propEq } from 'lodash/fp'
 import * as paths from '../config/paths'
 import { Config } from '../config/argv'
 import { docgen } from '../utils/docgen'
+import { WATCH_IGNORE } from './config'
 
 const getPattern = (config: Config) => {
-  const { typescript: ts, ignore, src: source } = config
-  const src = relative(paths.root, source)
+  const {
+    ignore,
+    src: source,
+    typescript: ts,
+    docgenConfig: docgenConfig,
+  } = config
+
+  const searchPath = docgenConfig.searchPath ? docgenConfig.searchPath : source
+  const root = paths.getRootDir(config)
+  const srcDir = path.resolve(root, searchPath)
+  const src = path.relative(root, srcDir)
+
   return ignore
-    .map(entry => `!**/${entry}`)
+    .map(entry => typeof entry === 'string' && `!**/${entry}`)
+    .filter(Boolean)
     .concat([
-      join(src, ts ? '**/*.{ts,tsx}' : '**/*.{js,jsx,mjs}'),
+      path.join(src, ts ? '**/*.{ts,tsx}' : '**/*.{js,jsx,mjs}'),
       '!**/node_modules',
       '!**/doczrc.js',
-    ])
+    ]) as string[]
 }
 
 const removeFilepath = (items: any[], filepath: string) =>
@@ -25,7 +37,8 @@ const removeFilepath = (items: any[], filepath: string) =>
 
 const initial = (config: Config, pattern: string[]) => async (p: Params) => {
   const { filterComponents } = config
-  const files = await fastglob<string>(pattern, { cwd: paths.root })
+  const cwd = paths.getRootDir(config)
+  const files = await fastglob(pattern, { cwd })
   const filtered = filterComponents ? filterComponents(files) : files
   const metadata = await docgen(filtered, config)
   p.setState('props', metadata)
@@ -45,11 +58,12 @@ const remove = (p: Params) => async (filepath: string) => {
   p.setState('props', next)
 }
 
-export const state = (config: Config): State => {
+export const state = (config: Config, dev?: boolean): State => {
   const pattern = getPattern(config)
-  const ignored = config.watchIgnore || /(((^|[\/\\])\..+)|(node_modules))/
+  const ignored = config.watchIgnore || WATCH_IGNORE
+  const cwd = paths.getRootDir(config)
   const watcher = chokidar.watch(pattern, {
-    cwd: paths.root,
+    cwd,
     ignored,
     persistent: true,
   })
@@ -61,8 +75,11 @@ export const state = (config: Config): State => {
     start: async params => {
       const addInitial = initial(config, pattern)
       await addInitial(params)
-      watcher.on('change', change(params, config))
-      watcher.on('unlink', remove(params))
+
+      if (dev) {
+        watcher.on('change', change(params, config))
+        watcher.on('unlink', remove(params))
+      }
     },
     close: () => {
       watcher.close()

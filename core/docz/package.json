@@ -1,6 +1,6 @@
 {
   "name": "docz",
-  "version": "1.0.3",
+  "version": "1.2.0",
   "description": "It's has never been so easy to documents your things!",
   "license": "MIT",
   "main": "dist/index.js",
@@ -18,37 +18,41 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development yarn build -w",
     "build": "cross-env NODE_ENV=production rollup -c",
-    "fix": "run-s fix:*",
-    "fix:prettier": "prettier \"src/**/*.{ts,tsx,md,mdx,js,jsx,json}\" --write",
-    "fix:tslint": "tslint --fix --project .",
-    "tslint": "tslint --project ."
+    "fix": "yarn lint --fix",
+    "lint": "eslint . --ext .ts,.tsx",
+    "precommit": "lint-staged"
   },
   "dependencies": {
-    "@loadable/component": "^5.7.0",
-    "@mdx-js/react": "^1.0.2",
-    "@reach/router": "^1.2.1",
+    "@loadable/component": "^5.10.1",
+    "@mdx-js/react": "^1.0.23",
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
-    "docz-core": "^1.0.2",
+    "docz-core": "^1.2.0",
     "fast-deep-equal": "^2.0.1",
-    "lodash": "^4.17.11",
-    "match-sorter": "^2.3.0",
+    "gatsby": "^2.13.14",
+    "lodash": "^4.17.14",
+    "match-sorter": "^3.1.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "ulid": "^2.3.0",
-    "yargs": "^13.2.2"
+    "yargs": "^13.2.4"
   },
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },
   "devDependencies": {
-    "@types/loadable__component": "^5.6.0",
-    "@types/lodash": "^4.14.123",
-    "@types/node": "^11.13.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@types/loadable__component": "^5.9.0",
+    "@types/lodash": "^4.14.136",
+    "@types/node": "^12.6.2",
     "@types/reach__router": "^1.2.4",
-    "@types/react": "^16.8.13",
-    "docz-rollup": "^1.0.2"
+    "@types/react": "^16.8.23",
+    "docz-rollup": "^1.2.0",
+    "eslint-config-docz-ts": "^1.2.0"
+  },
+  "resolutions": {
+    "react": "^16.8.6"
   }
 }

@@ -1,8 +1,7 @@
 const path = require('path')
+const { getDoczConfig } = require('./lib/utils/parseConfig')
 
-const { getDoczConfig } = require('./src/utils/parseConfig')
-
-const getMdPlugins = () => {
+const getRemarkPlugins = () => {
   let plugins = []
 
   try {
@@ -17,14 +16,11 @@ const getMdPlugins = () => {
   return plugins
 }
 
-const getHastPlugins = () => {
+const getRehypePlugins = () => {
   let plugins = []
 
   try {
-    plugins = [
-      [require('rehype-docz'), { root: process.cwd() }],
-      require('rehype-slug'),
-    ]
+    plugins = [require('rehype-docz'), require('rehype-slug')]
   } catch (err) {
     plugins = []
   }
@@ -33,14 +29,14 @@ const getHastPlugins = () => {
 }
 
 module.exports = opts => {
-  const { paths, ...config } = getDoczConfig(opts)
-  const mdPlugins = getMdPlugins()
-  const hastPlugins = getHastPlugins()
+  const config = getDoczConfig(opts)
+  const mdPlugins = getRemarkPlugins()
+  const hastPlugins = getRehypePlugins()
 
   return {
     plugins: [
       {
-        resolve: 'gatsby-mdx',
+        resolve: 'gatsby-plugin-mdx',
         options: {
           extensions: ['.md', '.mdx'],
           remarkPlugins:
@@ -52,7 +48,7 @@ module.exports = opts => {
               ? config.hastPlugins.concat(hastPlugins)
               : hastPlugins,
           defaultLayouts: {
-            default: path.join(paths.app, 'components/Layout.js'),
+            default: path.join(__dirname, 'src/base/Layout.js'),
           },
         },
       },
@@ -63,12 +59,23 @@ module.exports = opts => {
         resolve: 'gatsby-plugin-root-import',
       },
       {
-        resolve: 'gatsby-plugin-styled-components',
+        resolve: 'gatsby-plugin-emotion',
+      },
+      {
+        resolve: 'gatsby-plugin-alias-imports',
+        options: {
+          alias: {
+            '~components': path.resolve(__dirname, 'src/components'),
+            '~styles': path.resolve(__dirname, 'src/styles'),
+            '~theme': path.resolve(__dirname, 'src/theme'),
+            '~utils': path.resolve(__dirname, 'src/utils'),
+          },
+        },
       },
       {
         resolve: 'gatsby-plugin-compile-es6-packages',
         options: {
-          modules: ['gatsby-theme-docz'],
+          modules: ['docz', 'docz-core', 'gatsby-theme-docz'],
         },
       },
     ],

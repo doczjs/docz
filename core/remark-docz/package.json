@@ -1,6 +1,6 @@
 {
   "name": "remark-docz",
-  "version": "1.0.2",
+  "version": "1.2.0",
   "description": "Remark plugin used by docz",
   "license": "MIT",
   "main": "dist/index.js",
@@ -14,18 +14,20 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development yarn build -w",
     "build": "cross-env NODE_ENV=production rollup -c",
-    "fix": "run-s fix:*",
-    "fix:prettier": "prettier \"src/**/*.{ts,tsx,md,mdx,js,jsx,json}\" --write",
-    "fix:tslint": "tslint --fix --project .",
-    "tslint": "tslint --project .",
+    "fix": "yarn lint --fix",
+    "lint": "eslint . --ext .ts,.tsx",
+    "precommit": "lint-staged",
     "test": "jest"
   },
   "dependencies": {
-    "unist-util-remove": "^1.0.1",
-    "unist-util-visit": "^1.4.0"
+    "@babel/generator": "^7.5.0",
+    "@babel/types": "^7.5.0",
+    "unist-util-remove": "^1.0.3",
+    "unist-util-visit": "^1.4.1"
   },
   "devDependencies": {
-    "@mdx-js/mdx": "^1.0.10",
-    "docz-rollup": "^1.0.2"
+    "@mdx-js/mdx": "^1.0.23",
+    "docz-rollup": "^1.2.0",
+    "eslint-config-docz-ts": "^1.2.0"
   }
 }

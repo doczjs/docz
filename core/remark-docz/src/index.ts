@@ -1,3 +1,7 @@
+import * as url from 'url'
+
+import generate from '@babel/generator'
+import t from '@babel/types'
 import visit from 'unist-util-visit'
 import remove from 'unist-util-remove'
 
@@ -65,14 +69,43 @@ const mergeNodeWithoutCloseTag = (tree: any, node: any, idx: any) => {
   }
 }
 
+const createImgSrc = (src: string) => {
+  const parsed = url.parse(src)
+
+  if (parsed.protocol) {
+    return t.stringLiteral(src)
+  }
+
+  let { pathname } = parsed as { pathname: string }
+  if (!/^\.[./]+/.test(pathname)) {
+    pathname = `./${pathname}`
+  }
+  return t.jsxExpressionContainer(
+    t.callExpression(t.identifier('require'), [t.stringLiteral(pathname)])
+  )
+}
+
+const imageToJsx = (node: any): string =>
+  generate(
+    t.jsxOpeningElement(
+      t.jsxIdentifier('img'),
+      [
+        t.jsxAttribute(t.jsxIdentifier('alt'), t.stringLiteral(node.alt)),
+        t.jsxAttribute(t.jsxIdentifier('src'), createImgSrc(node.url)),
+      ],
+      true
+    )
+  ).code
+
 // turns `html` nodes into `jsx` nodes
 export default () => (tree: any) => {
-  visit(
-    tree,
-    'jsx',
-    (node: any, idx: any): void => {
-      // check if a node has just open tag
-      mergeNodeWithoutCloseTag(tree, node, idx)
-    }
-  )
+  visit(tree, 'image', (node: any): void => {
+    // check if a node has just open tag
+    node.type = 'jsx'
+    node.value = imageToJsx(node)
+  })
+  visit(tree, 'jsx', (node: any, idx: any): void => {
+    // check if a node has just open tag
+    mergeNodeWithoutCloseTag(tree, node, idx)
+  })
 }

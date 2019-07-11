@@ -28,22 +28,26 @@ const digest = (str: string) =>
 const cacheFilepath = path.join(paths.cache, 'propsParser.json')
 const readCacheFile = () => fs.readJSONSync(cacheFilepath, { throws: false })
 
-function checkFilesOnCache(files: string[]): string[] {
+function checkFilesOnCache(files: string[], config: Config): string[] {
   const cache = readCacheFile()
+  const root = paths.getRootDir(config)
   if (_.isEmpty(cache)) return files
   return files.filter(filepath => {
     const normalized = path.normalize(filepath)
-    const hash = digest(fs.readFileSync(normalized, 'utf-8'))
+    const fullpath = path.resolve(root, normalized)
+    const hash = digest(fs.readFileSync(fullpath, 'utf-8'))
     const found = _.get(normalized, cache)
     return found && hash !== found.hash
   })
 }
 
-function writePropsOnCache(items: PropItem[]): void {
+function writePropsOnCache(items: PropItem[], config: Config): void {
   const cache = readCacheFile()
+  const root = paths.getRootDir(config)
   const newCache = items.reduce((obj, { key: filepath, value }) => {
     const normalized = path.normalize(filepath)
-    const hash = digest(fs.readFileSync(normalized, 'utf-8'))
+    const fullpath = path.resolve(root, normalized)
+    const hash = digest(fs.readFileSync(fullpath, 'utf-8'))
     return { ...obj, [normalized]: { hash, props: value } }
   }, {})
 
@@ -108,12 +112,14 @@ function getTSConfigFile(tsconfigPath: string): ts.ParsedCommandLine {
   )
 }
 
-function loadFiles(filesToLoad: string[]): void {
+function loadFiles(filesToLoad: string[], config: Config): void {
+  const root = paths.getRootDir(config)
   filesToLoad.forEach(filepath => {
     const normalized = path.normalize(filepath)
+    const fullpath = path.resolve(root, normalized)
     const found = filesMap.get(normalized)
     filesMap.set(normalized, {
-      text: fs.readFileSync(normalized, 'utf-8'),
+      text: fs.readFileSync(fullpath, 'utf-8'),
       version: found ? found.version + 1 : 0,
     })
   })
@@ -121,8 +127,10 @@ function loadFiles(filesToLoad: string[]): void {
 
 function createServiceHost(
   compilerOptions: ts.CompilerOptions,
-  files: Map<string, TSFile>
+  files: Map<string, TSFile>,
+  config: Config
 ): ts.LanguageServiceHost {
+  const root = paths.getRootDir(config)
   return {
     getScriptFileNames: () => {
       return [...files.keys()]
@@ -132,14 +140,14 @@ function createServiceHost(
       return (file && file.version.toString()) || ''
     },
     getScriptSnapshot: fileName => {
-      if (!fs.existsSync(fileName)) {
+      const fullpath = path.resolve(root, fileName)
+      if (!fs.existsSync(fullpath)) {
         return undefined
       }
 
       let file = files.get(fileName)
-
       if (file === undefined) {
-        const text = fs.readFileSync(fileName).toString()
+        const text = fs.readFileSync(fullpath).toString()
 
         file = { version: 0, text }
         files.set(fileName, file)
@@ -147,7 +155,7 @@ function createServiceHost(
 
       return ts.ScriptSnapshot.fromString(file!.text!)
     },
-    getCurrentDirectory: () => process.cwd(),
+    getCurrentDirectory: () => root,
     getCompilationSettings: () => compilerOptions,
     getDefaultLibFileName: options => ts.getDefaultLibFilePath(options),
     fileExists: ts.sys.fileExists,
@@ -164,22 +172,30 @@ const parseFiles = (files: string[], config: Config, tsconfig: string) => {
       const val = propFilter && _.isFunction(propFilter) && propFilter(prop)
       return !prop.parent.fileName.includes('node_modules') || Boolean(val)
     },
+    componentNameResolver(exp: ts.Symbol, source: ts.SourceFile): any {
+      const componentNameResolver = config.docgenConfig.resolver
+      const val =
+        componentNameResolver &&
+        _.isFunction(componentNameResolver) &&
+        componentNameResolver(exp, source)
+      return val
+    },
   }
 
-  loadFiles(files)
+  loadFiles(files, config)
   const parser = reactDocgenTs.withCustomConfig(tsconfig, opts)
   const compilerOptions = _.get('options', getTSConfigFile(tsconfig))
 
   const programProvider = () => {
     if (languageService) return languageService.getProgram()!
-    const servicesHost = createServiceHost(compilerOptions, filesMap)
+    const servicesHost = createServiceHost(compilerOptions, filesMap, config)
     const documentRegistry = ts.createDocumentRegistry()
     languageService = ts.createLanguageService(servicesHost, documentRegistry)
     return languageService.getProgram()!
   }
 
   return files.map(filepath => ({
-    key: filepath,
+    key: path.normalize(filepath),
     value: parser.parseWithProgramProvider(filepath, programProvider),
   }))
 }
@@ -190,11 +206,11 @@ export const tsParser = (
   tsconfig?: string
 ) => {
   if (!tsconfig) return null
-  const filesToLoad = checkFilesOnCache(files)
+  const filesToLoad = checkFilesOnCache(files, config)
   const propsOnCache = getPropsOnCache()
   if (!filesToLoad.length) return propsOnCache
 
   const next = parseFiles(filesToLoad, config, tsconfig)
-  writePropsOnCache(next)
+  writePropsOnCache(next, config)
   return mergeWithCache(propsOnCache, next)
 }

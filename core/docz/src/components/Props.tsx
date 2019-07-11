@@ -64,6 +64,9 @@ export type ComponentWithDocGenInfo = ComponentType & {
 }
 
 export interface PropsProps {
+  title?: Node
+  isRaw?: boolean
+  isToggle?: boolean
   of: ComponentWithDocGenInfo
 }
 
@@ -88,20 +91,33 @@ export const getPropType = (prop: Prop) => {
 }
 
 export interface PropsComponentProps {
+  title?: Node
+  isRaw?: boolean
+  isToggle?: boolean
   props: Record<string, Prop>
   getPropType(prop: Prop): string
 }
 
-export const Props: SFC<PropsProps> = ({ of: component }) => {
+export const Props: SFC<PropsProps> = ({
+  title,
+  isToggle,
+  isRaw,
+  of: component,
+}) => {
   const components = useComponents()
   const { props: stateProps } = React.useContext(doczState.context)
   const PropsComponent = components.props
   const filename = get('__filemeta.filename', component)
-  const componentName = component.displayName || component.name
+  const filemetaName = get('__filemeta.name', component)
+  const componentName =
+    filemetaName || get('displayName', component) || get('name', component)
+
   const found =
     stateProps &&
     stateProps.length > 0 &&
-    stateProps.find(item => item.key === filename)
+    stateProps.find(item =>
+      filename ? item.key === filename : item.key.includes(`${componentName}.`)
+    )
 
   const value = get('value', found) || []
   const firstDefinition = first(value)
@@ -110,5 +126,13 @@ export const Props: SFC<PropsProps> = ({ of: component }) => {
 
   if (!props) return null
   if (!PropsComponent) return null
-  return <PropsComponent props={props} getPropType={getPropType} />
+  return (
+    <PropsComponent
+      title={title}
+      isRaw={isRaw}
+      isToggle={isToggle}
+      props={props}
+      getPropType={getPropType}
+    />
+  )
 }

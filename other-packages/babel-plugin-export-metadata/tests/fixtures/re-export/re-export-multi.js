@@ -1,2 +1,4 @@
 /* Re-export  */
-export aDefault, { a } from '../assets/a'
+import aDefault, { a } from '../assets/a'
+export { a }
+export default aDefault

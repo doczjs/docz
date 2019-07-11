@@ -1,6 +1,4 @@
-// tslint:disable-next-line
 import { create } from './utils/createState'
-import { ComponentType } from 'react'
 
 export interface Heading {
   depth: number
@@ -40,22 +38,21 @@ export interface Config {
   repository: string | null
   native: boolean
   separator: string
-  codeSandbox: boolean
   base?: string
 }
 
-export type Entries = Array<{ key: string; value: Entry }>
-export type Props = Array<{ key: string; value: any }>
+export type Entries = { key: string; value: Entry }[]
+export type Props = { key: string; value: any }[]
 export type TransformFn = (config: ThemeConfig) => ThemeConfig
 
 export interface Database {
   config: Config
+  currentEntry: Entry
   props?: Props
   entries?: Entries
 }
 
 export interface DoczState extends Database {
-  linkComponent: ComponentType<any>
   themeConfig?: ThemeConfig
   transform?: TransformFn
 }

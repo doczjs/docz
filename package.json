@@ -19,7 +19,7 @@
     "bs": "lerna bootstrap",
     "packages": "run-s packages:*",
     "packages:fix": "lerna run --parallel fix && echo",
-    "packages:lint": "lerna run --parallel tslint",
+    "packages:lint": "lerna run --parallel lint",
     "packages:build": "lerna run build --ignore docz-example-*",
     "packages:test": "lerna run --parallel test",
     "prerelease": "yarn run packages",
@@ -31,57 +31,43 @@
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate"
   },
-  "devDependencies": {
-    "@babel/core": "7.4.3",
-    "@commitlint/cli": "^7.5.2",
-    "@commitlint/config-conventional": "^7.5.0",
-    "@commitlint/config-lerna-scopes": "^7.5.1",
-    "@types/fs-extra": "^5.0.5",
-    "@types/jest": "^24.0.9",
-    "@types/lodash": "^4.14.123",
-    "@types/node": "^11.13.4",
-    "@types/prettier": "^1.16.1",
-    "@types/react": "^16.8.13",
-    "@types/react-dom": "^16.8.4",
-    "all-contributors-cli": "^6.3.0",
-    "babel-plugin-lodash": "^3.3.4",
-    "babel-preset-react-app": "^7.0.1",
-    "commitizen": "^3.0.7",
-    "cross-env": "^5.2.0",
-    "husky": "^1.3.1",
-    "jest": "^24.7.1",
-    "lerna": "3.13.2",
-    "lint-staged": "^8.1.4",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^1.17.0",
-    "rollup": "^1.10.0",
-    "trash-cli": "^1.4.0",
-    "ts-jest": "^24.0.2",
-    "tslint": "^5.15.0",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "3.3.4000"
-  },
-  "workspaces": [
-    "core/*",
-    "examples/*",
-    "other-packages/*"
-  ],
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional",
-      "@commitlint/config-lerna-scopes"
-    ]
-  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,md,mdx}": [
       "yarn packages:fix",
       "git add"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn packages:lint",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  }
+  "devDependencies": {
+    "@babel/core": "7.5.4",
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
+    "@commitlint/config-lerna-scopes": "^8.0.0",
+    "@types/fs-extra": "^8.0.0",
+    "@types/jest": "^24.0.15",
+    "@types/lodash": "^4.14.136",
+    "@types/node": "^12.6.2",
+    "@types/prettier": "^1.16.4",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.4",
+    "all-contributors-cli": "^6.7.0",
+    "babel-plugin-lodash": "^3.3.4",
+    "babel-preset-react-app": "^9.0.0",
+    "commitizen": "^3.1.1",
+    "cross-env": "^5.2.0",
+    "husky": "^3.0.0",
+    "jest": "^24.8.0",
+    "lerna": "3.15.0",
+    "lint-staged": "^9.2.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.18.2",
+    "rollup": "^1.16.7",
+    "trash-cli": "^3.0.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "3.5.3"
+  },
+  "workspaces": [
+    "core/*",
+    "examples/*",
+    "other-packages/*"
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "name": "rehype-docz",
-  "version": "1.0.2",
+  "version": "1.2.0",
   "description": "Rehype plugin used by docz",
   "license": "MIT",
   "main": "dist/index.js",
@@ -14,22 +14,24 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development yarn build -w",
     "build": "cross-env NODE_ENV=production rollup -c",
-    "fix": "run-s fix:*",
-    "fix:prettier": "prettier \"src/**/*.{ts,tsx,md,mdx,js,jsx,json}\" --write",
-    "fix:tslint": "tslint --fix --project .",
-    "tslint": "tslint --project .",
+    "fix": "yarn lint --fix",
+    "lint": "eslint . --ext .ts,.tsx",
+    "precommit": "lint-staged",
     "test": "jest"
   },
   "dependencies": {
-    "docz-utils": "^1.0.2",
-    "hast-util-to-string": "^1.0.1",
-    "jsx-ast-utils": "^2.0.1",
-    "lodash": "^4.17.11",
-    "unist-util-is": "^2.1.2"
+    "brace": "^0.11.1",
+    "docz-utils": "^1.2.0",
+    "hast-util-to-string": "^1.0.2",
+    "jsx-ast-utils": "^2.2.1",
+    "lodash": "^4.17.14",
+    "react-ace": "^7.0.2",
+    "unist-util-is": "^3.0.0"
   },
   "devDependencies": {
-    "@mdx-js/mdx": "^1.0.10",
-    "docz-rollup": "^1.0.2",
-    "remark-docz": "^1.0.2"
+    "@mdx-js/mdx": "^1.0.23",
+    "docz-rollup": "^1.2.0",
+    "eslint-config-docz-ts": "^1.2.0",
+    "remark-docz": "^1.2.0"
   }
 }

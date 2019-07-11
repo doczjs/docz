@@ -18,6 +18,15 @@ export const root = fs.realpathSync(process.cwd())
 export const resolveApp = (to: string) => path.resolve(root, to)
 export const resolveOwn = (to: string) => path.resolve(__dirname, '../', to)
 
+export const checkIsDoczProject = (config: any) => {
+  return path.parse(config.root || root).base === '.docz'
+}
+
+export const getRootDir = (config: any) => {
+  const isDoczProject = checkIsDoczProject(config)
+  return isDoczProject ? path.resolve(root, '../') : root
+}
+
 export interface Paths {
   root: string
   templates: string
@@ -31,8 +40,14 @@ export interface Paths {
   appNodeModules: string
   appPackageJson: string
   appYarnLock: string
+  gatsbyConfig: string
+  gatsbyBrowser: string
+  gatsbyNode: string
+  gatsbySSR: string
   ownNodeModules: string
 
+  checkIsDoczProject: (config: any) => boolean
+  getRootDir: (config: any) => string
   getDist: (dest: string) => string
   distPublic: (dest: string) => string
 
@@ -48,14 +63,20 @@ export const templates = path.join(resolve.sync('docz-core'), '../templates')
 export const packageJson = resolveApp('package.json')
 export const servedPath = (base: string) => ensureSlash(base, true)
 
-export const docz = resolveApp('.docz')
+const IS_DOCZ_PROJECT = path.parse(root).base === '.docz'
+
+export const docz = resolveApp(IS_DOCZ_PROJECT ? './' : '.docz')
+export const cache = path.resolve(docz, '.cache/')
 export const app = path.resolve(docz, 'app/')
-export const cache = path.resolve(docz, 'cache/')
 export const appPublic = path.resolve(docz, 'public/')
 export const appNodeModules = resolveApp('node_modules')
 export const appPackageJson = resolveApp('package.json')
 export const appYarnLock = resolveOwn('yarn.lock')
 export const ownNodeModules = resolveOwn('node_modules')
+export const gatsbyConfig = resolveApp('gatsby-config.js')
+export const gatsbyBrowser = resolveApp('gatsby-browser.js')
+export const gatsbyNode = resolveApp('gatsby-node.js')
+export const gatsbySSR = resolveApp('gatsby-ssr.js')
 
 export const getDist = (dest: string) => path.join(root, dest)
 export const distPublic = (dest: string) => path.join(dest, 'public/')

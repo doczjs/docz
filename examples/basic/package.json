@@ -1,19 +1,21 @@
 {
   "name": "docz-example-basic",
-  "version": "1.0.3",
+  "version": "1.2.0",
   "license": "MIT",
   "scripts": {
     "dev": "docz dev",
-    "build": "docz build"
+    "build": "docz build",
+    "serve": "docz serve"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.14",
+    "@emotion/styled": "^10.0.14",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "styled-components": "^4.2.0"
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "docz": "^1.0.3",
-    "docz-theme-default": "^1.0.3"
+    "docz": "^1.2.0",
+    "docz-theme-default": "^1.2.0"
   }
 }
