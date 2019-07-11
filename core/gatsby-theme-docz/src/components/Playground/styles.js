@@ -1,13 +1,9 @@
 import * as mixins from '~utils/mixins'
-import { isAbsolute } from 'upath'
-
-const border = {
-  border: t => `1px solid ${t.colors.playground.border}`,
-}
 
 export const editor = theme => ({
   p: 2,
   border: t => `1px solid ${t.colors.border}`,
+  borderRadius: '0 0 4px 4px',
   background: theme.plain.backgroundColor,
   borderTop: 0,
   fontFamily: 'monospace',
@@ -32,13 +28,11 @@ export const previewWrapper = {
   position: 'relative',
 }
 
-export const preview = showingCode => ({
-  ...border,
+export const preview = {
   m: 0,
-  p: 4,
+  p: '20px',
   bg: 'playground.bg',
-  borderRadius: showingCode ? '5px 5px 0 0' : '5px',
-})
+}
 
 export const buttons = {
   zIndex: 9,
