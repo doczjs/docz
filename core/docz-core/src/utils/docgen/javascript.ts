@@ -1,7 +1,7 @@
 import * as fs from 'fs-extra'
 import * as path from 'path'
 import logger from 'signale'
-import externalProptypesHandler from 'react-docgen-external-proptypes-handler'
+import externalProptypesHandler from './externalProptypesHandler'
 import actualNameHandler from 'react-docgen-actual-name-handler'
 import reactDocgen from 'react-docgen'
 
