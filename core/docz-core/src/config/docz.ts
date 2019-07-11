@@ -13,10 +13,6 @@ const toOmit = ['_', '$0', 'version', 'help']
 export const doczRcBaseConfig = {
   themeConfig: {},
   docgenConfig: {},
-  gatsbyConfig: {},
-  gatsbyNode: {},
-  gatsbyBrowser: {},
-  gatsbySSR: {},
   menu: [],
   plugins: [],
   mdPlugins: [],

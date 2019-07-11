@@ -72,10 +72,6 @@ export interface Config extends Argv {
   menu: Menu[]
   themeConfig: ThemeConfig
   docgenConfig: DocgenConfig
-  gatsbyConfig: Record<string, any>
-  gatsbyNode: Record<string, (params: any) => void>
-  gatsbyBrowser: Record<string, (params: any) => void>
-  gatsbySSR: Record<string, (params: any) => void>
   filterComponents: (files: string[]) => string[]
 }
 
@@ -155,10 +151,6 @@ export const setArgs = (yargs: Yargs) => {
     .option('native', {
       type: 'boolean',
       default: getEnv('docz.native', false),
-    })
-    .option('sourcemaps', {
-      type: 'boolean',
-      default: getEnv('docz.sourcemaps', true),
     })
     .option('separator', {
       type: 'string',
