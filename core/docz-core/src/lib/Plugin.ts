@@ -22,9 +22,9 @@ export type OnPostRender = () => void
 export interface PluginFactory {
   setConfig?: SetConfig
   onCreateBabelConfig?: onCreateBabelConfig
+  onCreateDevServer?: onCreateDevServer
   onCreateWebpack?: onCreateWebpack
   modifyFiles?: ModifyFiles
-  onCreateDevServer?: onCreateDevServer
   onPreBuild?: OnPreBuild
   onPostBuild?: OnPostBuild
 }
