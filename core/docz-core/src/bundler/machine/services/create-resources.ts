@@ -13,21 +13,7 @@ import { outputFileFromTemplate } from '../../../utils/template'
 const REQUIRED_DEPS = ['react', 'react-dom']
 const REQUIRED_DEV_DEPS = ['gatsby', 'gatsby-mdx', 'gatsby-plugin-typescript']
 const CORE_DEV_DEPS = ['docz', 'gatsby-theme-docz']
-
-const LOCAL_DEV_DEPS = [
-  'babel-eslint',
-  'eslint',
-  'eslint-loader',
-  'eslint-config-react-app',
-  'eslint-loader',
-  'eslint-plugin-flowtype',
-  'eslint-plugin-import',
-  'eslint-plugin-jsx-a11y',
-  'eslint-plugin-react',
-  'gatsby-plugin-compile-es6-packages',
-  'gatsby-plugin-eslint',
-  'p-reduce',
-]
+const LOCAL_DEV_DEPS = ['gatsby-plugin-compile-es6-packages', 'p-reduce']
 
 const depsFromPairs = async (deps: any[], callback: (dep: string) => any) => {
   return fromPairs(await Promise.all(deps.map(callback)))

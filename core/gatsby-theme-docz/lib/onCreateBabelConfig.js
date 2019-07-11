@@ -9,7 +9,9 @@ module.exports = async (params, opts = {}) => {
 
   actions.setBabelPlugin({
     name: 'babel-plugin-export-metadata',
-    options: { root: paths.getRootDir(config) },
+    options: {
+      root: paths.getRootDir(config),
+    },
   })
 
   run('onCreateBabelConfig', params, stage === 'develop')

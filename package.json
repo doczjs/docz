@@ -47,8 +47,6 @@
     "@types/lodash": "^4.14.136",
     "@types/node": "^12.6.2",
     "@types/prettier": "^1.16.4",
-    "@types/react": "^16.8.23",
-    "@types/react-dom": "^16.8.4",
     "all-contributors-cli": "^6.7.0",
     "babel-plugin-lodash": "^3.3.4",
     "babel-preset-react-app": "^9.0.0",
