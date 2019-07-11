@@ -32,6 +32,7 @@ const machine = Machine<ServerMachineCtx>({
   type: 'parallel',
   states: {
     watch: {
+      onEntry: 'ensureFiles',
       invoke: {
         src: 'watchFiles',
       },
