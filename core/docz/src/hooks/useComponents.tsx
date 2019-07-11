@@ -12,7 +12,6 @@ export interface PlaygroundProps {
   component: JSX.Element
   position: number
   code: string
-  codesandbox: string
   scope: Record<string, any>
 }
 

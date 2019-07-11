@@ -3,7 +3,6 @@ import { config } from 'docz-rollup'
 export default config({
   input: [
     './src/ast.ts',
-    './src/codesandbox.ts',
     './src/format.ts',
     './src/fs.ts',
     './src/index.ts',

@@ -11,7 +11,6 @@ export interface PlaygroundProps {
   __scope: Record<string, any>
   __position: number
   __code: string
-  __codesandbox: string
 }
 
 const Playground: SFC<PlaygroundProps> = ({
@@ -22,7 +21,6 @@ const Playground: SFC<PlaygroundProps> = ({
   __scope,
   __position,
   __code,
-  __codesandbox,
 }) => {
   const components = useComponents()
   if (!components || !components.playground) return null
@@ -36,7 +34,6 @@ const Playground: SFC<PlaygroundProps> = ({
       scope={__scope}
       position={__position}
       code={__code}
-      codesandbox={__codesandbox}
     />
   )
 }

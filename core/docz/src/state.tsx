@@ -38,7 +38,6 @@ export interface Config {
   repository: string | null
   native: boolean
   separator: string
-  codeSandbox: boolean
   base?: string
 }
 

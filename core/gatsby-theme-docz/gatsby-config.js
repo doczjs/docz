@@ -16,14 +16,11 @@ const getRemarkPlugins = () => {
   return plugins
 }
 
-const getRehypePlugins = rootPath => {
+const getRehypePlugins = () => {
   let plugins = []
 
   try {
-    plugins = [
-      [require('rehype-docz'), { root: rootPath }],
-      require('rehype-slug'),
-    ]
+    plugins = [require('rehype-docz'), require('rehype-slug')]
   } catch (err) {
     plugins = []
   }
@@ -33,9 +30,8 @@ const getRehypePlugins = rootPath => {
 
 module.exports = opts => {
   const config = getDoczConfig(opts)
-  const { paths } = config
   const mdPlugins = getRemarkPlugins()
-  const hastPlugins = getRehypePlugins(paths.root)
+  const hastPlugins = getRehypePlugins()
 
   return {
     plugins: [

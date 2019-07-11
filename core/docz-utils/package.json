@@ -23,7 +23,6 @@
     "@babel/parser": "^7.5.0",
     "@babel/traverse": "^7.5.0",
     "art-template": "^4.13.2",
-    "codesandboxer-fs": "^1.0.1",
     "fs-extra": "^8.1.0",
     "humanize-string": "^2.1.0",
     "js-string-escape": "^1.0.1",

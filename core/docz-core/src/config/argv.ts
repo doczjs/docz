@@ -55,7 +55,6 @@ export interface Argv {
   host: string
   port: number
   native: boolean
-  codeSandbox: boolean
   notUseSpecifiers: boolean
   openBrowser: boolean
   /* template args */
@@ -146,7 +145,7 @@ export const setArgs = (yargs: Yargs) => {
     })
     .option('host', {
       type: 'string',
-      default: getEnv('docz.host', '127.0.0.1'),
+      default: getEnv('docz.host', 'localhost'),
     })
     .option('port', {
       alias: 'p',
@@ -156,10 +155,6 @@ export const setArgs = (yargs: Yargs) => {
     .option('native', {
       type: 'boolean',
       default: getEnv('docz.native', false),
-    })
-    .option('codeSandbox', {
-      type: 'boolean',
-      default: getEnv('docz.codeSandbox', true),
     })
     .option('sourcemaps', {
       type: 'boolean',
