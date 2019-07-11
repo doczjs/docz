@@ -75,7 +75,7 @@ export const propRequired = {
 
 export const openDescBtn = {
   ...mixins.ghostButton,
-  mt: -2,
+  mt: 0,
   ml: 3,
   color: 'props.defaultValue',
 }
