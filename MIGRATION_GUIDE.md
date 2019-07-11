@@ -73,7 +73,7 @@ So, in order to integration it with our new theme, a lot of changes are made ins
 
 Check [here]() for more information.
 
-### `theme` property removed
+## `theme` property removed
 
 The property used to define your Docz theme inside the `doczrc.js` was removed. But you can still
 create and use your own theme from scratch if you want.
@@ -91,7 +91,7 @@ export default (props) => <Theme {...props} />
 
 Check [here](https://www.docz.site/docs/creating-themes) for more information about how to create themes.
 
-### `wrapper` property removed
+## `wrapper` property removed
 
 The same thing happened here for the oldest `wrapper` property. Now you can wrap your entire application
 by just creating a file called `src/gatsby-theme-docz/wrapper.js`

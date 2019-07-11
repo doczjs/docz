@@ -61,7 +61,66 @@ you can override the component by creating `src/gatsby-theme-docz/components/Hea
 
 So, now that you know about how component shadowing works on Gatsby themes, you can override anything inside the `gatsby-theme-docz`.
 
-### Customizing theme
+### Creating your own Docz theme
+
+One of the coolest thing of Docz is that you can create your own theme if you want from scratch and use all benefits of it.
+The oldest way to acomplish that is by using the `theme` property inside the `doczrc.js` file. Now, if you want to create
+your own theme, just create a file located at `src/gatsby-theme-docz/index.js`
+
+```js
+import React from 'react'
+import { theme, useConfig, ComponentsProvider } from 'docz'
+import { ThemeProvider } from 'emotion-theming'
+import baseComponents from 'gatsby-theme-docz/src/components'
+
+import { Menu } from './MyBeautifulMenu'
+
+const componentsMap = {
+  ...baseComponents,
+  /* your custom components */,
+}
+
+const Theme = ({ children }) => {
+  const config = useConfig()
+  return (
+    <ThemeProvider theme={config}>
+      <Menu />
+      <ComponentsProvider components={baseComponents}>
+        {children}
+      </ComponentsProvider>
+    </ThemeProvider>
+  )
+}
+
+const themeConfig = {
+  colors: {
+    primary: 'tomato',
+    secondary: 'khaki',
+    gray: 'lightslategray',
+  },
+}
+
+export default theme(themeConfig)(Theme)
+```
+
+### Wrapping the entire app
+
+Sometime you need to wrap your entire application in order to add some `Provider` or just to load some script.
+You can do this easily inside our theme by creating a file located at `src/gatsby-theme-docz/wrapper.js`
+
+```js
+// src/gatsby-theme-docz/index.js
+import React from 'react'
+
+export default ({ children }) => (
+  <div>
+    <h1>My custom wrapper</h1>
+    {children}
+  </div>
+)
+```
+
+### Customizing design tokens
 
 As default theme system we are using the [Theme-UI](https://theme-ui.com/), it's a library for build consistent, themeable React apps
 based on constraint-based design principles. So, you can modify our based theme in order to make you own style and combining
@@ -76,7 +135,7 @@ You can modify the theme object by using `doczrc.js` files and changing the `the
 export default {
   themeConfig: {
     colors: {
-      hedaer: {
+      header: {
         bg: 'tomato',
       },
     },
