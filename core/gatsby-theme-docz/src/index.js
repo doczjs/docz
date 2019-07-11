@@ -4,13 +4,13 @@ import { theme, useConfig, ComponentsProvider } from 'docz'
 import { Styled, ThemeProvider } from 'theme-ui'
 
 import defaultTheme from '~theme'
-import { componentsMap } from '~components'
+import components from '~components'
 
 const Theme = ({ children }) => {
   const config = useConfig()
   return (
     <ThemeProvider theme={config.themeConfig}>
-      <ComponentsProvider components={componentsMap}>
+      <ComponentsProvider components={components}>
         <Styled.root>{children}</Styled.root>
       </ComponentsProvider>
     </ThemeProvider>

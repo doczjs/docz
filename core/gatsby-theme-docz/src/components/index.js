@@ -6,7 +6,7 @@ import { Playground } from './Playground'
 import { Pre } from './Pre'
 import { Props } from './Props'
 
-export const componentsMap = {
+export default {
   ...headings,
   code: Code,
   playground: Playground,
