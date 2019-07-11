@@ -5229,27 +5229,6 @@ codemirror@^5.46.0:
   resolved "https://registry.npmjs.org/codemirror/-/codemirror-5.47.0.tgz#c13a521ae5660d3acc655af252f4955065293789"
   integrity sha512-kV49Fr+NGFHFc/Imsx6g180hSlkGhuHxTSDDmDHOuyln0MQYFLixDY4+bFkBVeCEiepYfDimAF/e++9jPJk4QA==
 
-codesandboxer-fs@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/codesandboxer-fs/-/codesandboxer-fs-1.0.1.tgz#201ac92261f12ce9efa7185df9638bb6f50e6e84"
-  integrity sha512-jXmeYuV+hEsrDTP1hFiWInHdzxWgKIC2QObnN30KkLgwJQNLLnpg1DDQH4js61MF0PKevNxQT0b8kVR2yUimnA==
-  dependencies:
-    codesandboxer "^1.0.1"
-    meow "^5.0.0"
-    pkg-dir "^2.0.0"
-    resolve "^1.7.1"
-
-codesandboxer@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/codesandboxer/-/codesandboxer-1.0.1.tgz#b294a55de488da2eae5cfc6fdd663f07fbe6bb3c"
-  integrity sha512-5V/MGuAPyrdlkrjRZsyBGeBeyyW0a4a+EgmlmyWttgN+AiOB/i0LLNhzVx0DlwYu/fZ38e+hdiLCe0DJQNa6oA==
-  dependencies:
-    babel-runtime "^6.26.0"
-    form-data "^2.3.2"
-    isomorphic-unfetch "^2.0.0"
-    lz-string "^1.4.4"
-    path-browserify "^1.0.0"
-
 collapse-white-space@^1.0.0, collapse-white-space@^1.0.2:
   version "1.0.5"
   resolved "https://registry.npmjs.org/collapse-white-space/-/collapse-white-space-1.0.5.tgz#c2495b699ab1ed380d29a1091e01063e75dbbe3a"
@@ -8063,7 +8042,7 @@ forever-agent@~0.6.1:
   resolved "https://registry.npmjs.org/forever-agent/-/forever-agent-0.6.1.tgz#fbc71f0c41adeb37f96c577ad1ed42d8fdacca91"
   integrity sha1-+8cfDEGt6zf5bFd60e1C2P2sypE=
 
-form-data@^2.3.2, form-data@~2.3.2:
+form-data@~2.3.2:
   version "2.3.3"
   resolved "https://registry.npmjs.org/form-data/-/form-data-2.3.3.tgz#dcce52c05f644f298c6a7ab936bd724ceffbf3a6"
   integrity sha512-1lLKB2Mu3aGP1Q/2eCOx0fNbRMe7XdwktwOruhfqqd0rIJWwN4Dh+E3hrPSlDCXnSR7UtZ1N38rVXm+6+MEhJQ==
@@ -10448,14 +10427,6 @@ isomorphic-fetch@^2.1.1:
     node-fetch "^1.0.1"
     whatwg-fetch ">=0.10.0"
 
-isomorphic-unfetch@^2.0.0:
-  version "2.1.1"
-  resolved "https://registry.npmjs.org/isomorphic-unfetch/-/isomorphic-unfetch-2.1.1.tgz#c321770bcd682c5c8550f31146fc7dd21ac33e7b"
-  integrity sha512-nd8AULy4i2rA8dv0nOBT9xieIegd3xi7NDxTQ9+iNXDTyaG6VbUYW3F+TdMRqxqXhDFWM2k7fttKx9W2Wd8JpQ==
-  dependencies:
-    node-fetch "^2.1.2"
-    unfetch "^3.1.0"
-
 isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.npmjs.org/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
@@ -11654,11 +11625,6 @@ ltcdr@^2.2.1:
   resolved "https://registry.npmjs.org/ltcdr/-/ltcdr-2.2.1.tgz#5ab87ad1d4c1dab8e8c08bbf037ee0c1902287cf"
   integrity sha1-Wrh60dTB2rjowIu/A37gwZAih88=
 
-lz-string@^1.4.4:
-  version "1.4.4"
-  resolved "https://registry.npmjs.org/lz-string/-/lz-string-1.4.4.tgz#c0d8eaf36059f705796e1e344811cf4c498d3a26"
-  integrity sha1-wNjq82BZ9wV5bh40SBHPTEmNOiY=
-
 macos-release@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/macos-release/-/macos-release-2.2.0.tgz#ab58d55dd4714f0a05ad4b0e90f4370fef5cdea8"
@@ -12434,7 +12400,7 @@ node-fetch@^1.0.1:
     encoding "^0.1.11"
     is-stream "^1.0.1"
 
-node-fetch@^2.1.1, node-fetch@^2.1.2, node-fetch@^2.3.0:
+node-fetch@^2.1.1, node-fetch@^2.3.0:
   version "2.5.0"
   resolved "https://registry.npmjs.org/node-fetch/-/node-fetch-2.5.0.tgz#8028c49fc1191bba56a07adc6e2a954644a48501"
   integrity sha512-YuZKluhWGJwCcUu4RlZstdAxr8bFfOVHakc1mplwHkk8J+tqM1Y5yraYvIUpeX8aY7+crCwiELJq7Vl0o0LWXw==
@@ -13368,11 +13334,6 @@ path-browserify@0.0.0:
   version "0.0.0"
   resolved "https://registry.npmjs.org/path-browserify/-/path-browserify-0.0.0.tgz#a0b870729aae214005b7d5032ec2cbbb0fb4451a"
   integrity sha1-oLhwcpquIUAFt9UDLsLLuw+0RRo=
-
-path-browserify@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/path-browserify/-/path-browserify-1.0.0.tgz#40702a97af46ae00b0ea6fa8998c0b03c0af160d"
-  integrity sha512-Hkavx/nY4/plImrZPHRk2CL9vpOymZLgEbMNX1U0bjcBL7QN9wODxyx0yaMZURSQaUtSEvDrfAvxa9oPb0at9g==
 
 path-case@^2.1.0:
   version "2.1.1"
@@ -15313,7 +15274,7 @@ resolve@1.1.7:
   resolved "https://registry.npmjs.org/resolve/-/resolve-1.1.7.tgz#203114d82ad2c5ed9e8e0411b3932875e889e97b"
   integrity sha1-IDEU2CrSxe2ejgQRs5ModeiJ6Xs=
 
-resolve@1.10.1, resolve@1.x, resolve@^1.1.6, resolve@^1.10.1, resolve@^1.3.2, resolve@^1.5.0, resolve@^1.7.1, resolve@^1.8.1:
+resolve@1.10.1, resolve@1.x, resolve@^1.1.6, resolve@^1.10.1, resolve@^1.3.2, resolve@^1.5.0, resolve@^1.8.1:
   version "1.10.1"
   resolved "https://registry.npmjs.org/resolve/-/resolve-1.10.1.tgz#664842ac960795bbe758221cdccda61fb64b5f18"
   integrity sha512-KuIe4mf++td/eFb6wkaPbMDnP6kObCaEtIDuHOUED6MNUo4K670KZUHuuvYPZDxNF0WVLw49n06M2m2dXphEzA==
@@ -17274,11 +17235,6 @@ unescape@^0.2.0:
   version "0.2.0"
   resolved "https://registry.npmjs.org/unescape/-/unescape-0.2.0.tgz#b78b9b60c86f1629df181bf53eee3bc8d6367ddf"
   integrity sha1-t4ubYMhvFinfGBv1Pu47yNY2fd8=
-
-unfetch@^3.1.0:
-  version "3.1.2"
-  resolved "https://registry.npmjs.org/unfetch/-/unfetch-3.1.2.tgz#dc271ef77a2800768f7b459673c5604b5101ef77"
-  integrity sha512-L0qrK7ZeAudGiKYw6nzFjnJ2D5WHblUBwmHIqtPS6oKUd+Hcpk7/hKsSmcHsTlpd1TbTNsiRBUKRq3bHLNIqIw==
 
 unherit@^1.0.4:
   version "1.1.2"
