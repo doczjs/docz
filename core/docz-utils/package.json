@@ -37,7 +37,7 @@
     "strip-indent": "^3.0.0",
     "to-vfile": "^6.0.0",
     "unescape-js": "^1.1.1",
-    "unified": "^8.0.1",
+    "unified": "^8.1.0",
     "unist-util-find": "^1.0.1",
     "unist-util-is": "^3.0.0",
     "unist-util-visit": "^1.4.1"
