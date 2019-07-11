@@ -1,7 +1,7 @@
 # Migration Guide
 
-The [v2 release](https://github.com/pedronauck/docz/pull/950) is our biggest release in terms of changes on our core scripts
-A few APIs were changed, our bundler system was entirely changed in order to use Gatsby as default bundler and you will need to update
+The [v2 release](https://github.com/pedronauck/docz/pull/950) is our biggest release in terms of changes on our core scripts.
+Our bundler system was entirely modified in order to use Gatsby as default bundler and you will need to update
 your code if you're coming from a previous version. It's not a big deal, but you need to follow this guide in order to get Docz running
 properly on your project after the upgrade.
 
@@ -9,36 +9,36 @@ properly on your project after the upgrade.
 
 The biggest change in the new v2 is that now our core is entirely build using Gatsby behind the scenes.
 This is a huge win for Docz, since now we can focus on build new features instead of handling with
-a lot of bundlers issues (our biggest bottleneck) and enjoy all Gatsby ecossystem like features, plugins and themes.
+a lot of bundlers issues (our biggest bottleneck) and enjoy all Gatsby ecosystem.
 
 So, in order to refactoring our core, we need to change a lot of things and remove others that no longer make sense.
 The most expressive changes here is about the configuration for `doczrc.js` and the plugin system.
 
 ### List of removed properties from `doczrc.js`
 
-* *`websocketHost`* no longer need
-* *`websocketPort`* no longer need
-* *`wrapper`* see [how to use]() now
-* *`theme`* see [how to use]() now
-* *`indexHtml`* see [how to use]() now
-* *`codeSandbox`* removed
-* *`onCreateWebpackChain`* removed
-* *`modifyBundlerConfig`* use Gatsby [`onCreateWebpackConfig`](https://www.gatsbyjs.org/docs/node-apis/#onCreateWebpackConfig) hook
-* *`modifyBabelRc`* use Gatsby [`onCreateBabelConfig`](https://www.gatsbyjs.org/docs/node-apis/#onCreateBabelConfig) hook
+* **`websocketHost`** ▶︎ _no longer need_
+* **`websocketPort`** ︎︎︎▶︎ _no longer need_
+* **`wrapper`** ▶︎ _removed_ (see [how to use]() now)
+* **`theme`** ▶︎ _removed_ (see [how to use]() now)
+* **`indexHtml`** ▶︎ _removed_ (see [how to use]() now)
+* **`codeSandbox`** ▶︎ _removed_
+* **`onCreateWebpackChain`** ▶︎ _removed_
+* **`modifyBundlerConfig`** ▶︎ use Gatsby [`onCreateWebpackConfig`](https://www.gatsbyjs.org/docs/node-apis/#onCreateWebpackConfig) hook
+* **`modifyBabelRc`** ▶︎ use Gatsby [`onCreateBabelConfig`](https://www.gatsbyjs.org/docs/node-apis/#onCreateBabelConfig) hook
 
 ## New hooks for plugins
 
 The `createPlugin` method also changed in order to fit with Gatsby now.
 
-### List of removed properties from `createPlugin()`
+### List of removed/changed properties from `createPlugin()`
 
-* *`modifyBundlerConfig`* -> `onCreateWebpack`
-* *`modifyBabelRc`* -> `onCreateBabelConfig`
-* *`onCreateApp`* -> `onCreateDevServer`
-* *`onPreCreateApp`* _removed_
-* *`onServerListening`* _removed_
-* *`onPreRender`* _removed_
-* *`onPostRender`* _removed_
+* **`modifyBundlerConfig`** ▶︎ `onCreateWebpack`
+* **`modifyBabelRc`** ▶︎ `onCreateBabelConfig`
+* **`onCreateApp`** ▶︎ `onCreateDevServer`
+* **`onPreCreateApp`** ▶︎ _removed_
+* **`onServerListening`** ▶︎ _removed_
+* **`onPreRender`** ▶︎ _removed_
+* **`onPostRender`** ▶︎ _removed_
 
 > All methods that changed now are using the same API of Gatsby hooks.
 > You can have more details about then [here](https://www.gatsbyjs.org/docs/node-apis).
