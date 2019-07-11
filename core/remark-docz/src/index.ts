@@ -77,7 +77,7 @@ const createImgSrc = (src: string) => {
   }
 
   let { pathname } = parsed as { pathname: string }
-  if (!/^\.[./]+/.test(pathname)) {
+  if (!/^(?:\.[./]+|@)/.test(pathname)) {
     pathname = `./${pathname}`
   }
   return t.jsxExpressionContainer(
