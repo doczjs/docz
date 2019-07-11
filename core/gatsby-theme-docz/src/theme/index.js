@@ -105,10 +105,6 @@ export default merge(typography, {
       textAlign: 'left',
       fontFamily: 'monospace',
       borderRadius: 'radius',
-      '.token-line': {
-        lineHeight: '1.5em',
-        height: '1.5em',
-      },
     },
     table: {
       width: '100%',

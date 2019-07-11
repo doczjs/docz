@@ -1,4 +1,5 @@
 import * as mixins from '~utils/mixins'
+import { isAbsolute } from 'upath'
 
 const border = {
   border: t => `1px solid ${t.colors.playground.border}`,
@@ -9,8 +10,12 @@ export const editor = theme => ({
   border: t => `1px solid ${t.colors.border}`,
   background: theme.plain.backgroundColor,
   borderTop: 0,
-  '.npm__react-simple-code-editor__textarea': {
-    outline: 'none !important',
+  fontFamily: 'monospace',
+  fontSize: 18,
+  '* > textarea:focus': {
+    font: '400 18px Inconsolata !important',
+    lineHeight: '1.5em !important',
+    outline: 'none',
   },
 })
 
@@ -37,13 +42,16 @@ export const preview = showingCode => ({
 
 export const buttons = {
   zIndex: 9,
+  display: 'flex',
   position: 'absolute',
-  bottom: -24,
-  right: 3,
+  bottom: -20,
+  right: 4,
 }
 
 export const button = {
   ...mixins.ghostButton,
+  display: 'flex',
+  alignItems: 'center',
   py: 1,
   p: 2,
   bg: 'border',
@@ -52,4 +60,10 @@ export const button = {
   '& ~ &': {
     ml: 1,
   },
+}
+
+export const link = {
+  py: 0,
+  ml: 1,
+  height: 22,
 }

@@ -1,8 +1,9 @@
 /** @jsx jsx */
-import { jsx, useThemeUI } from 'theme-ui'
+import { jsx } from 'theme-ui'
 import { useState } from 'react'
+import { useConfig } from 'docz'
 import { LiveProvider, LiveError, LivePreview, LiveEditor } from 'react-live'
-import { get, merge } from 'lodash/fp'
+import { merge } from 'lodash/fp'
 import copy from 'copy-text-to-clipboard'
 
 import { usePrismTheme } from '~utils/theme'
@@ -10,9 +11,12 @@ import * as styles from './styles'
 import * as Icons from '../Icons'
 
 export const Playground = ({ code, scope }) => {
-  const [showingCode, setShowingCode] = useState(false)
+  const {
+    themeConfig: { showPlaygroundEditor },
+  } = useConfig()
+
+  const [showingCode, setShowingCode] = useState(() => showPlaygroundEditor)
   const theme = usePrismTheme()
-  const ctx = useThemeUI()
 
   const transformCode = code => {
     if (code.startsWith('()') || code.startsWith('class')) return code
@@ -30,8 +34,9 @@ export const Playground = ({ code, scope }) => {
       transformCode={transformCode}
       theme={merge(theme, {
         plain: {
-          fontFamily: get('theme.fonts.monospace', ctx),
+          fontFamily: 'Inconsolata',
           fontSize: 18,
+          lineHeight: '1.5em',
         },
       })}
     >
