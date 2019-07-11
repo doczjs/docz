@@ -5,14 +5,14 @@ import styled from '@emotion/styled'
 
 import { themeProp } from '~utils/theme'
 
-import { Edit, Sun, Menu, Github } from '../Icons'
+import { Edit, Sun, Github } from '../Icons'
 import * as styles from './styles'
 
 const Wrapper = styled(Box)`
   border-bottom: 1px solid ${themeProp('colors.header.border')};
 `
 
-export const Header = ({ onOpen, nav }) => {
+export const Header = () => {
   const config = useConfig()
   const { edit = true, ...doc } = useCurrentDoc()
   const [colorMode, setColorMode] = useColorMode()
@@ -21,22 +21,10 @@ export const Header = ({ onOpen, nav }) => {
     setColorMode(colorMode === 'light' ? 'dark' : 'light')
   }
 
-  const handleMenu = () => {
-    onOpen(s => !s)
-    if (!nav.current) return
-    const navLink = nav.current.querySelector('a')
-    if (navLink) navLink.focus()
-  }
-
   return (
     <Wrapper sx={styles.wrapper}>
       <div sx={styles.innerContainer}>
         <Flex aligmItems="center">
-          <Box sx={styles.menuIcon}>
-            <button sx={styles.menuButton} onClick={handleMenu}>
-              <Menu size={30} />
-            </button>
-          </Box>
           <Link to="/" sx={styles.link}>
             {config.title}
           </Link>

@@ -1,13 +1,4 @@
 import * as mixins from '~utils/mixins'
-import { media } from '~theme/breakpoints'
-
-export const menuIcon = {
-  mr: 3,
-  display: 'none',
-  [media.tablet]: {
-    display: 'block',
-  },
-}
 
 export const wrapper = {
   bg: 'header.bg',
@@ -18,12 +9,6 @@ export const innerContainer = {
   p: 4,
   position: 'relative',
   justifyContent: 'space-between',
-}
-
-export const menuButton = {
-  ...mixins.ghostButton,
-  color: 'header.text',
-  opacity: 0.5,
 }
 
 export const link = {

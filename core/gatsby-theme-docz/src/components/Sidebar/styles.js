@@ -7,6 +7,7 @@ export const global = {
 }
 
 export const overlay = ({ open }) => ({
+  zIndex: 999,
   position: 'fixed',
   top: 104,
   right: 0,
@@ -33,6 +34,7 @@ export const wrapper = ({ open }) => ({
   bg: 'sidebar.bg',
 
   [media.tablet]: {
+    zIndex: 9999,
     display: 'block',
     position: 'fixed',
     top: 104,
