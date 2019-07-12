@@ -21,7 +21,6 @@
   "devDependencies": {
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
-    "docz": "^1.2.0",
-    "docz-theme-default": "^1.2.0"
+    "docz": "^1.2.0"
   }
 }

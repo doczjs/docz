@@ -20,7 +20,6 @@
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "docz": "^1.2.0",
-    "docz-theme-default": "^1.2.0"
+    "docz": "^1.2.0"
   }
 }

@@ -17,7 +17,6 @@
     "styled-components": "^4.3.2"
   },
   "devDependencies": {
-    "docz": "^1.2.0",
-    "docz-theme-default": "^1.2.0"
+    "docz": "^1.2.0"
   }
 }

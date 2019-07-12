@@ -33,7 +33,6 @@
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "10.0.2",
     "docz": "^1.2.0",
-    "docz-theme-default": "^1.2.0",
     "eslint": "^5.16.0",
     "eslint-config-react-app": "^4.0.1",
     "eslint-loader": "^2.2.0",
