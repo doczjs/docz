@@ -2,6 +2,11 @@
   "name": "docz-example-images",
   "version": "1.2.0",
   "license": "MIT",
+  "files": [
+    "src/",
+    "doczrc.js",
+    "package.json"
+  ],
   "scripts": {
     "dev": "docz dev",
     "build": "docz build"

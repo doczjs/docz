@@ -2,6 +2,15 @@
   "name": "docz-example-gatsby",
   "description": "Example of how to integrate docz with gatsby",
   "version": "1.2.0",
+  "files": [
+    "src/",
+    ".eslintrc.json",
+    ".gitignore",
+    "doczrc.js",
+    "gatsby-config.js",
+    "package.json",
+    "README.md"
+  ],
   "keywords": [
     "gatsby",
     "docz"

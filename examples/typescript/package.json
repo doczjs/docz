@@ -2,6 +2,12 @@
   "name": "docz-example-typescript",
   "version": "1.2.0",
   "license": "MIT",
+  "files": [
+    "src/",
+    "doczrc.js",
+    "tsconfig.json",
+    "package.json"
+  ],
   "scripts": {
     "dev": "docz dev",
     "build": "docz build"
