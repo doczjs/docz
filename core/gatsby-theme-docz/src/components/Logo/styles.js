@@ -1,7 +1,6 @@
-import './index.css'
-
 export const logo = {
-  fontFamily: 'DM Serif Display',
+  letterSpacing: '-0.02em',
+  fontWeight: 600,
   fontSize: 4,
 }
 
