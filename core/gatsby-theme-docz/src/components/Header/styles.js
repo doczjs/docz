@@ -1,16 +1,15 @@
 import * as mixins from '~utils/mixins'
 
-export const wrapper = mode => ({
-  backgroundSize: '400px auto',
-  background:
-    mode === 'dark'
-      ? `url(https://cdn-std.dprcdn.net/files/acc_649651/ykOjN7)`
-      : `url(https://cdn-std.dprcdn.net/files/acc_649651/zPkIFZ)`,
-})
+export const wrapper = {
+  bg: 'header.bg',
+  position: 'relative',
+  borderBottom: t => `1px solid ${t.colors.border}`,
+}
 
 export const innerContainer = {
   ...mixins.centerAlign,
-  p: 4,
+  px: 4,
+  py: '24px',
   position: 'relative',
   justifyContent: 'space-between',
 }

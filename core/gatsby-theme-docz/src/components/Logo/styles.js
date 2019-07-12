@@ -1,8 +1,8 @@
 import './index.css'
 
 export const logo = {
-  fontFamily: 'Merriweather',
-  fontSize: 3,
+  fontFamily: 'DM Serif Display',
+  fontSize: 4,
 }
 
 export const link = {

@@ -20,7 +20,7 @@ export const light = {
   },
   header: {
     bg: colors.grayExtraLight,
-    text: colors.dark,
+    text: colors.grayDark,
     border: colors.grayLight,
     button: {
       bg: colors.blue,
