@@ -29,7 +29,7 @@
     "capitalize": "^2.0.0",
     "docz-core": "^1.2.0",
     "fast-deep-equal": "^2.0.1",
-    "gatsby": "^2.13.14",
+    "gatsby": "^2.13.18",
     "lodash": "^4.17.14",
     "marksy": "^8.0.0",
     "match-sorter": "^3.1.1",
@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@types/loadable__component": "^5.9.0",
+    "@types/loadable__component": "^5.10.0",
     "@types/lodash": "^4.14.136",
     "@types/node": "^12.6.2",
     "@types/reach__router": "^1.2.4",

@@ -29,7 +29,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-progress": "^1.1.1",
-    "rollup-plugin-typescript2": "^0.21.2"
+    "rollup-plugin-typescript2": "^0.22.0"
   },
   "devDependencies": {
     "eslint-config-docz-js": "^1.2.0"
