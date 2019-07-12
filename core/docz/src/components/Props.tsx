@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { createElement, SFC, ComponentType, useMemo } from 'react'
-import { first, get } from 'lodash/fp'
+import { assoc, first, get, mapValues } from 'lodash/fp'
 import capitalize from 'capitalize'
 import marksy from 'marksy'
 
@@ -124,18 +124,20 @@ export const Props: SFC<PropsProps> = ({
   const firstDefinition = first(value)
   const definition = value.find((i: any) => i.displayName === componentName)
 
-  const compileMarkdown = useMemo(
+  const compile = useMemo(
     () => marksy({ createElement, elements: components }),
     [components]
   )
 
   const props = useMemo(() => {
     const props = get('props', definition || firstDefinition)
-    return Object.entries(props).reduce((obj, [key, value]) => {
-      if (key !== 'description') return obj
-      return { ...obj, description: compileMarkdown(value).tree }
-    }, props)
-  }, [compileMarkdown, definition || firstDefinition])
+    const parseDescs = mapValues((prop: any) => {
+      const desc = get('description', prop)
+      return !desc ? prop : assoc('description', compile(desc).tree, prop)
+    })
+
+    return parseDescs(props)
+  }, [compile, definition || firstDefinition])
 
   if (!props) return null
   if (!PropsComponent) return null
