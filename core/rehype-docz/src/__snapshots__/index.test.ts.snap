@@ -31,6 +31,7 @@ export default function MDXContent({
     </MDXLayout>;
 }
 
+;
 MDXContent.isMDXComponent = true;"
 `;
 
@@ -65,5 +66,6 @@ export default function MDXContent({
     </MDXLayout>;
 }
 
+;
 MDXContent.isMDXComponent = true;"
 `;
