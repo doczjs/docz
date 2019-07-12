@@ -59,7 +59,20 @@ theme files just by creating your own file following a file naming convetion.
 Example: If you're using our `gatsby-theme-docz` which has a `Header` component located at `src/components/Header/index.js`
 you can override the component by creating `src/gatsby-theme-docz/components/Header/index.js`. Cool right?
 
-So, now that you know about how component shadowing works on Gatsby themes, you can override anything inside the `gatsby-theme-docz`.
+### Adding your logo
+
+So, now that you know about how component shadowing works on Gatsby themes, if you don't want to override the entire `<Header>` component
+but just change your logo inside it, your can shadow the `<Logo>` component used in the header just by creating your own at `src/gatsby-theme-docz/components/Logo/index.js`
+
+```js
+// src/gatsby-theme-docz/components/Logo/index.js
+import React from 'react'
+import logo from './logo.svg'
+
+export const Logo = () => <img src={logo} alt="That's my logo" />
+```
+
+Easy, right?
 
 ### Creating your own Docz theme
 

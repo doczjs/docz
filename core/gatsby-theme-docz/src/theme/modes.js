@@ -23,8 +23,8 @@ export const light = {
     text: colors.dark,
     border: colors.grayLight,
     button: {
-      bg: colors.grayLight,
-      color: colors.grayDark,
+      bg: colors.blue,
+      color: colors.white,
     },
   },
   props: {
@@ -70,7 +70,7 @@ export const dark = {
     text: colors.grayLight,
     border: colors.grayDark,
     button: {
-      bg: colors.grayDark,
+      bg: colors.skyBlue,
       color: colors.white,
     },
   },

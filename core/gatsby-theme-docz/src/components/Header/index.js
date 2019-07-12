@@ -1,12 +1,13 @@
 /** @jsx jsx */
 import { jsx, Box, Flex, useColorMode } from 'theme-ui'
-import { Link, useConfig, useCurrentDoc } from 'docz'
+import { useConfig, useCurrentDoc } from 'docz'
 import styled from '@emotion/styled'
 
 import { themeProp } from '~utils/theme'
 
-import { Edit, Sun, Github } from '../Icons'
 import * as styles from './styles'
+import { Edit, Sun, Github } from '../Icons'
+import { Logo } from '../Logo'
 
 const Wrapper = styled(Box)`
   border-bottom: 1px solid ${themeProp('colors.header.border')};
@@ -22,13 +23,9 @@ export const Header = () => {
   }
 
   return (
-    <Wrapper sx={styles.wrapper}>
+    <Wrapper sx={styles.wrapper(colorMode)}>
       <div sx={styles.innerContainer}>
-        <Flex aligmItems="center">
-          <Link to="/" sx={styles.link}>
-            {config.title}
-          </Link>
-        </Flex>
+        <Logo />
         <Flex>
           {config.repository && (
             <Box sx={{ mr: 2 }}>

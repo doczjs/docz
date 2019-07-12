@@ -1,24 +1,18 @@
 import * as mixins from '~utils/mixins'
 
-export const wrapper = {
-  bg: 'header.bg',
-}
+export const wrapper = mode => ({
+  backgroundSize: '400px auto',
+  background:
+    mode === 'dark'
+      ? `url(https://cdn-std.dprcdn.net/files/acc_649651/ykOjN7)`
+      : `url(https://cdn-std.dprcdn.net/files/acc_649651/zPkIFZ)`,
+})
 
 export const innerContainer = {
   ...mixins.centerAlign,
   p: 4,
   position: 'relative',
   justifyContent: 'space-between',
-}
-
-export const link = {
-  fontSize: 3,
-  fontWeight: 600,
-  color: 'header.text',
-  textDecoration: 'none',
-  ':hover': {
-    color: 'primary',
-  },
 }
 
 export const headerButton = {
