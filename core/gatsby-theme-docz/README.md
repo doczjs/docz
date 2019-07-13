@@ -133,15 +133,16 @@ export default ({ children }) => (
 )
 ```
 
-### Customizing design tokens
+## Theme UI integrated
 
-As default theme system we are using the [Theme-UI](https://theme-ui.com/), it's a library for build consistent, themeable React apps
-based on constraint-based design principles. So, you can modify our based theme in order to make you own style and combining
-these modifications with the component shadowing, you can create a totally differente documentation very quickly.
+As default theme systeAs default theme system we are using the [Theme-UI](https://theme-ui.com/), it's a library for build consistent, themeable React apps
+based on constraint-based design principles.
+
+You can modify our based theme creating your own style, combining these modifications with the component shadowing and creating a totally differente documentation.
 
 Check our [base theme object](https://github.com/pedronauck/docz/blob/feat/gatsby/core/gatsby-theme-docz/src/theme/index.js) to see the properties.
 
-You can modify the theme object by using `doczrc.js` files and changing the `themeConfig` property:
+To create your own theme definition use the `doczrc.js` and set your properties in the `themeConfig` like that:
 
 ```js
 // doczrc.js
@@ -222,3 +223,37 @@ export default {
   h1: MyCustomH1,
 }
 ```
+
+## Getting data
+
+Using our Gatsby Theme you can enjoy all our hooks to get data for your pages and also get data from Gatsby.
+So, you can create isolated pages on Gatsby using gatsby pages and get data from Docz or maybe pass data
+for your Docz documents using source from gatsby.
+
+Imagine, that you have your home page inside `/pages` and you want to show all documents parsed from Docz. You can easy get this by doing:
+
+```js
+import React from 'react'
+import { useDocs } from 'docz'
+
+const Home = () => {
+  const docs = useDocs()
+  return <div>{/* my coolest home */}</div>
+}
+
+export default Home
+```
+
+Or you can have a mdx document inside Docz that has data from Gatsby too:
+
+```markdown
+---
+name: MyDoc
+---
+
+import { MyComponentWithSomeData } from './my-component-with-data'
+
+<MyComponentWithSomeData />
+```
+
+Cool right?
