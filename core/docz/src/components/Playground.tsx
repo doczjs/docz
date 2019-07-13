@@ -13,7 +13,7 @@ export interface PlaygroundProps {
   __code: string
 }
 
-const Playground: SFC<PlaygroundProps> = ({
+export const Playground: SFC<PlaygroundProps> = ({
   className,
   style,
   wrapper: Wrapper,
@@ -37,5 +37,3 @@ const Playground: SFC<PlaygroundProps> = ({
     />
   )
 }
-
-export default Playground
