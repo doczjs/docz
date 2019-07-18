@@ -1,6 +1,6 @@
 {
   "name": "docz-example-typescript",
-  "version": "2.0.0-rc.0",
+  "version": "2.0.0-rc.1",
   "license": "MIT",
   "files": [
     "src/",
@@ -21,6 +21,6 @@
   "devDependencies": {
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
-    "docz": "^2.0.0-rc.0"
+    "docz": "^2.0.0-rc.1"
   }
 }

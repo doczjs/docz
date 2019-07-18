@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.1](https://github.com/pedronauck/docz/compare/v1.2.0...v2.0.0-rc.1) (2019-07-18)
+
+
+### Bug Fixes
+
+* bump version ([a346b59](https://github.com/pedronauck/docz/commit/a346b59))
+* eslint configs ([280981f](https://github.com/pedronauck/docz/commit/280981f))
+
+
+### Features
+
+* **gatsby-theme-docz:** add new Props component ([8eb780d](https://github.com/pedronauck/docz/commit/8eb780d))
+* add typescript support (need fix) ([13947f9](https://github.com/pedronauck/docz/commit/13947f9))
+* docz running using gatsby under the hood ([10ffd48](https://github.com/pedronauck/docz/commit/10ffd48))
+
+
+
+
+
 # [1.2.0](https://github.com/pedronauck/docz/compare/v1.1.0...v1.2.0) (2019-05-08)
 
 **Note:** Version bump only for package docz-rollup

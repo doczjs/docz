@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.1](https://github.com/pedronauck/docz/compare/v1.2.0...v2.0.0-rc.1) (2019-07-18)
+
+
+### Bug Fixes
+
+* bump version ([a346b59](https://github.com/pedronauck/docz/commit/a346b59))
+* **docz:** component Props false positives when looking in state ([baa9bb3](https://github.com/pedronauck/docz/commit/baa9bb3))
+* **docz:** parse description of props ([0672c3e](https://github.com/pedronauck/docz/commit/0672c3e))
+* **docz:** props markdown compiler ([99ba83c](https://github.com/pedronauck/docz/commit/99ba83c))
+* eslint configs ([280981f](https://github.com/pedronauck/docz/commit/280981f))
+* packages rollup config ([534d7bf](https://github.com/pedronauck/docz/commit/534d7bf))
+* remove react & react-dom from dependencies [#924](https://github.com/pedronauck/docz/issues/924) ([faf4288](https://github.com/pedronauck/docz/commit/faf4288))
+
+
+### Features
+
+* a lot of improvements ([64f75da](https://github.com/pedronauck/docz/commit/64f75da))
+* add markdown parsing on props description ([1087539](https://github.com/pedronauck/docz/commit/1087539))
+* **gatsby-theme-docz:** add new Props component ([8eb780d](https://github.com/pedronauck/docz/commit/8eb780d))
+* add main package improvements ([8c8005d](https://github.com/pedronauck/docz/commit/8c8005d))
+* add new theme sidebar ([a01d100](https://github.com/pedronauck/docz/commit/a01d100))
+* add typescript support (need fix) ([13947f9](https://github.com/pedronauck/docz/commit/13947f9))
+* docz running using gatsby under the hood ([10ffd48](https://github.com/pedronauck/docz/commit/10ffd48))
+
+
+
+
+
 # [1.2.0](https://github.com/pedronauck/docz/compare/v1.1.0...v1.2.0) (2019-05-08)
 
 **Note:** Version bump only for package docz

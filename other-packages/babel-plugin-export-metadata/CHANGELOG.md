@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.1](https://github.com/pedronauck/docz/compare/v1.2.0...v2.0.0-rc.1) (2019-07-18)
+
+
+### Bug Fixes
+
+* bump version ([a346b59](https://github.com/pedronauck/docz/commit/a346b59))
+* **babel-plugin-export-metadata:** fix root relative path ([eccbac4](https://github.com/pedronauck/docz/commit/eccbac4))
+* **babel-plugin-export-metadata:** transform to Unix slash ([#825](https://github.com/pedronauck/docz/issues/825)) ([#829](https://github.com/pedronauck/docz/issues/829)) ([f823cc6](https://github.com/pedronauck/docz/commit/f823cc6))
+* eslint configs ([280981f](https://github.com/pedronauck/docz/commit/280981f))
+* **babel-plugin-export-metadata:** disable enumerable for __filemeta ([38d10fc](https://github.com/pedronauck/docz/commit/38d10fc))
+
+
+### Features
+
+* dynamic src and root path ([c071556](https://github.com/pedronauck/docz/commit/c071556))
+
+
+
+
+
 # [1.2.0](https://github.com/pedronauck/docz/compare/v1.1.0...v1.2.0) (2019-05-08)
 
 

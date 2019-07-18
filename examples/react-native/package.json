@@ -1,6 +1,6 @@
 {
   "name": "docz-example-react-native",
-  "version": "2.0.0-rc.0",
+  "version": "2.0.0-rc.1",
   "license": "MIT",
   "files": [
     "src/",
@@ -22,6 +22,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "docz": "^2.0.0-rc.0"
+    "docz": "^2.0.0-rc.1"
   }
 }

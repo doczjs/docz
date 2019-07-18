@@ -1,7 +1,7 @@
 {
   "name": "docz-example-gatsby",
   "description": "Example of how to integrate docz with gatsby",
-  "version": "2.0.0-rc.0",
+  "version": "2.0.0-rc.1",
   "files": [
     "src/",
     ".eslintrc.json",
@@ -32,7 +32,7 @@
   "devDependencies": {
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "10.0.2",
-    "docz": "^2.0.0-rc.0",
+    "docz": "^2.0.0-rc.1",
     "eslint": "^6.0.1",
     "eslint-config-react-app": "^4.0.1",
     "eslint-loader": "^2.2.0",
@@ -43,6 +43,6 @@
     "gatsby": "^2.13.27",
     "gatsby-mdx": "^0.6.3",
     "gatsby-plugin-eslint": "^2.0.5",
-    "gatsby-theme-docz": "^2.0.0-rc.0"
+    "gatsby-theme-docz": "^2.0.0-rc.1"
   }
 }

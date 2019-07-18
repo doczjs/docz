@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.1](https://github.com/pedronauck/docz/compare/v1.2.0...v2.0.0-rc.1) (2019-07-18)
+
+
+### Bug Fixes
+
+* bump version ([a346b59](https://github.com/pedronauck/docz/commit/a346b59))
+* resizable props import ([2926896](https://github.com/pedronauck/docz/commit/2926896))
+* **docz-core:** create deps algorithm ([a4b8eb9](https://github.com/pedronauck/docz/commit/a4b8eb9))
+* eslint configs ([280981f](https://github.com/pedronauck/docz/commit/280981f))
+* on create webpack plugin hook ([56e974a](https://github.com/pedronauck/docz/commit/56e974a))
+* packages rollup config ([534d7bf](https://github.com/pedronauck/docz/commit/534d7bf))
+* some typescript adjustments ([4ba6eaf](https://github.com/pedronauck/docz/commit/4ba6eaf))
+* **docz-core:** some adjustments ([86f95b5](https://github.com/pedronauck/docz/commit/86f95b5))
+* **docz-core:** vendor react-docgen-external-proptypes-handler ([#866](https://github.com/pedronauck/docz/issues/866)) ([efb89ee](https://github.com/pedronauck/docz/commit/efb89ee)), closes [#727](https://github.com/pedronauck/docz/issues/727)
+
+
+### Features
+
+* open browser integration ([132c472](https://github.com/pedronauck/docz/commit/132c472))
+* **docz-core:** add initial gatsby bundler algorithm ([9249e34](https://github.com/pedronauck/docz/commit/9249e34))
+* **docz-core:** ensure files before running machine ([1876540](https://github.com/pedronauck/docz/commit/1876540))
+* **docz-core:** watch custom theme files ([5ee7abe](https://github.com/pedronauck/docz/commit/5ee7abe))
+* **docz-core:** watch gatsby config files ([1539378](https://github.com/pedronauck/docz/commit/1539378))
+* a lot of improvements ([64f75da](https://github.com/pedronauck/docz/commit/64f75da))
+* adapt core plugins to gatsby hooks ([4caa47a](https://github.com/pedronauck/docz/commit/4caa47a))
+* **gatsby-theme-docz:** add new Props component ([8eb780d](https://github.com/pedronauck/docz/commit/8eb780d))
+* add new theme sidebar ([a01d100](https://github.com/pedronauck/docz/commit/a01d100))
+* add typescript support (need fix) ([13947f9](https://github.com/pedronauck/docz/commit/13947f9))
+* docz running using gatsby under the hood ([10ffd48](https://github.com/pedronauck/docz/commit/10ffd48))
+* dynamic src and root path ([c071556](https://github.com/pedronauck/docz/commit/c071556))
+* **docz-core:** add build and serve command with gatsby ([e85c82b](https://github.com/pedronauck/docz/commit/e85c82b))
+* **docz-core:** add doczrc config watcher on dev ([5aa0455](https://github.com/pedronauck/docz/commit/5aa0455))
+
+
+
+
+
 # [1.2.0](https://github.com/pedronauck/docz/compare/v1.1.0...v1.2.0) (2019-05-08)
 
 

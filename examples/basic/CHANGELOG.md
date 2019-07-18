@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.1](https://github.com/pedronauck/docz/compare/v1.2.0...v2.0.0-rc.1) (2019-07-18)
+
+
+### Bug Fixes
+
+* bump version ([a346b59](https://github.com/pedronauck/docz/commit/a346b59))
+
+
+### Features
+
+* add markdown parsing on props description ([1087539](https://github.com/pedronauck/docz/commit/1087539))
+* **gatsby-theme-docz:** improve code highlight ([d265444](https://github.com/pedronauck/docz/commit/d265444))
+* dynamic src and root path ([c071556](https://github.com/pedronauck/docz/commit/c071556))
+* **docz-core:** add build and serve command with gatsby ([e85c82b](https://github.com/pedronauck/docz/commit/e85c82b))
+* docz running using gatsby under the hood ([10ffd48](https://github.com/pedronauck/docz/commit/10ffd48))
+
+
+
+
+
 # [1.2.0](https://github.com/pedronauck/docz/compare/v1.1.0...v1.2.0) (2019-05-08)
 
 **Note:** Version bump only for package docz-example-basic

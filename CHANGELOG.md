@@ -3,6 +3,67 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.1](https://github.com/pedronauck/docz/compare/v1.2.0...v2.0.0-rc.1) (2019-07-18)
+
+
+### Bug Fixes
+
+* bump version ([a346b59](https://github.com/pedronauck/docz/commit/a346b59))
+* resizable props import ([2926896](https://github.com/pedronauck/docz/commit/2926896))
+* **babel-plugin-export-metadata:** disable enumerable for __filemeta ([38d10fc](https://github.com/pedronauck/docz/commit/38d10fc))
+* **babel-plugin-export-metadata:** fix root relative path ([eccbac4](https://github.com/pedronauck/docz/commit/eccbac4))
+* **babel-plugin-export-metadata:** transform to Unix slash ([#825](https://github.com/pedronauck/docz/issues/825)) ([#829](https://github.com/pedronauck/docz/issues/829)) ([f823cc6](https://github.com/pedronauck/docz/commit/f823cc6))
+* **docz:** component Props false positives when looking in state ([baa9bb3](https://github.com/pedronauck/docz/commit/baa9bb3))
+* **docz:** parse description of props ([0672c3e](https://github.com/pedronauck/docz/commit/0672c3e))
+* **docz:** props markdown compiler ([99ba83c](https://github.com/pedronauck/docz/commit/99ba83c))
+* **docz-core:** create deps algorithm ([a4b8eb9](https://github.com/pedronauck/docz/commit/a4b8eb9))
+* **docz-core:** some adjustments ([86f95b5](https://github.com/pedronauck/docz/commit/86f95b5))
+* **docz-core:** vendor react-docgen-external-proptypes-handler ([#866](https://github.com/pedronauck/docz/issues/866)) ([efb89ee](https://github.com/pedronauck/docz/commit/efb89ee)), closes [#727](https://github.com/pedronauck/docz/issues/727)
+* **gatsby-theme-docz:** entry not in context ([e582221](https://github.com/pedronauck/docz/commit/e582221))
+* **gatsby-theme-docz:** resizable import ([3916265](https://github.com/pedronauck/docz/commit/3916265))
+* on create webpack plugin hook ([56e974a](https://github.com/pedronauck/docz/commit/56e974a))
+* packages rollup config ([534d7bf](https://github.com/pedronauck/docz/commit/534d7bf))
+* remove react & react-dom from dependencies [#924](https://github.com/pedronauck/docz/issues/924) ([faf4288](https://github.com/pedronauck/docz/commit/faf4288))
+* **remark-docz:** fix alias in the src of a mdx's image [#897](https://github.com/pedronauck/docz/issues/897) ([058732d](https://github.com/pedronauck/docz/commit/058732d))
+* some typescript adjustments ([4ba6eaf](https://github.com/pedronauck/docz/commit/4ba6eaf))
+* **gatsby-theme-docz:** prisms theme by themeConfig ([c0b5c34](https://github.com/pedronauck/docz/commit/c0b5c34))
+* eslint configs ([280981f](https://github.com/pedronauck/docz/commit/280981f))
+* no-undef eslint rule ([125c5cf](https://github.com/pedronauck/docz/commit/125c5cf))
+
+
+### Features
+
+* **docz-core:** ensure files before running machine ([1876540](https://github.com/pedronauck/docz/commit/1876540))
+* **docz-core:** watch custom theme files ([5ee7abe](https://github.com/pedronauck/docz/commit/5ee7abe))
+* **docz-core:** watch gatsby config files ([1539378](https://github.com/pedronauck/docz/commit/1539378))
+* **gatsby-theme-docz:** add blockquote styles ([b9f11a1](https://github.com/pedronauck/docz/commit/b9f11a1))
+* **gatsby-theme-docz:** add custom logo support ([dec4b2b](https://github.com/pedronauck/docz/commit/dec4b2b))
+* **gatsby-theme-docz:** add iframe and re-resizable on playground ([6922717](https://github.com/pedronauck/docz/commit/6922717))
+* **gatsby-theme-docz:** add new Pre component ([a6be6a1](https://github.com/pedronauck/docz/commit/a6be6a1))
+* **gatsby-theme-docz:** add new Props component ([8eb780d](https://github.com/pedronauck/docz/commit/8eb780d))
+* **gatsby-theme-docz:** add showLiveError on Playground ([e593897](https://github.com/pedronauck/docz/commit/e593897))
+* **gatsby-theme-docz:** add some improvements ([03d9fec](https://github.com/pedronauck/docz/commit/03d9fec))
+* **gatsby-theme-docz:** improve documentation ([80b35f8](https://github.com/pedronauck/docz/commit/80b35f8))
+* a lot of improvements ([64f75da](https://github.com/pedronauck/docz/commit/64f75da))
+* adapt core plugins to gatsby hooks ([4caa47a](https://github.com/pedronauck/docz/commit/4caa47a))
+* add main package improvements ([8c8005d](https://github.com/pedronauck/docz/commit/8c8005d))
+* add markdown parsing on props description ([1087539](https://github.com/pedronauck/docz/commit/1087539))
+* add new Playground component ([7bf03b2](https://github.com/pedronauck/docz/commit/7bf03b2))
+* add new theme sidebar ([a01d100](https://github.com/pedronauck/docz/commit/a01d100))
+* add typescript support (need fix) ([13947f9](https://github.com/pedronauck/docz/commit/13947f9))
+* docz running using gatsby under the hood ([10ffd48](https://github.com/pedronauck/docz/commit/10ffd48))
+* dynamic src and root path ([c071556](https://github.com/pedronauck/docz/commit/c071556))
+* open browser integration ([132c472](https://github.com/pedronauck/docz/commit/132c472))
+* some playground improvements ([afa00df](https://github.com/pedronauck/docz/commit/afa00df))
+* **docz-core:** add build and serve command with gatsby ([e85c82b](https://github.com/pedronauck/docz/commit/e85c82b))
+* **docz-core:** add doczrc config watcher on dev ([5aa0455](https://github.com/pedronauck/docz/commit/5aa0455))
+* **docz-core:** add initial gatsby bundler algorithm ([9249e34](https://github.com/pedronauck/docz/commit/9249e34))
+* **gatsby-theme-docz:** improve code highlight ([d265444](https://github.com/pedronauck/docz/commit/d265444))
+
+
+
+
+
 # [1.2.0](https://github.com/pedronauck/docz/compare/v1.1.0...v1.2.0) (2019-05-08)
 
 
