@@ -51,7 +51,6 @@
   },
   "devDependencies": {
     "@types/cross-spawn": "^6.0.0",
-    "@types/find-up": "^4.0.0",
     "@types/resolve": "^0.0.8",
     "@types/shelljs": "^0.8.5",
     "@types/signale": "^1.2.1",

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useConfig } from 'docz'
 import { LiveProvider, LiveError, LivePreview, LiveEditor } from 'react-live'
 import { merge } from 'lodash/fp'
-import Resizable from 're-resizable'
+import { Resizable } from 're-resizable'
 import copy from 'copy-text-to-clipboard'
 
 import { usePrismTheme } from '~utils/theme'

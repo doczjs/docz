@@ -8,7 +8,11 @@ import { ServerMachineCtx } from '../bundler/machine/context'
 
 const CORE_DEV_DEPS = ['gatsby-theme-docz']
 const LOCAL_DEV_DEPS = ['gatsby-plugin-compile-es6-packages', 'p-reduce']
-const REQUIRED_DEV_DEPS = ['gatsby', 'gatsby-plugin-typescript']
+const REQUIRED_DEV_DEPS = [
+  'gatsby',
+  'gatsby-plugin-typescript',
+  'gatsby-plugin-eslint',
+]
 
 const depsFromPairs = async (deps: any[], callback: (dep: string) => any) => {
   return fromPairs(await Promise.all(deps.map(callback)))
