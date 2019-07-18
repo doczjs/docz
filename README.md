@@ -90,11 +90,11 @@ Getting started with **Docz** is really quick and easy.
 Firstly, install `docz` using your favourite package manager:
 
 ```bash
-$ yarn add --dev docz react react-dom
+$ yarn add --dev docz@next react react-dom
 
 # or
 
-$ npm install --save-dev docz react react-dom
+$ npm install --save-dev docz@next react react-dom
 ```
 
 **Note**: `react` and `react-dom` will not be installed automatically. You'll have to install them yourself.
