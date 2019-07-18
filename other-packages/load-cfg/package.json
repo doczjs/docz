@@ -1,6 +1,6 @@
 {
   "name": "load-cfg",
-  "version": "1.2.0",
+  "version": "2.0.0-rc.0",
   "description": "Method that can load project configurations based",
   "license": "MIT",
   "main": "dist/index.js",
@@ -29,7 +29,7 @@
   "devDependencies": {
     "@types/find-up": "^4.0.0",
     "@types/node": "^12.6.8",
-    "docz-rollup": "^1.2.0",
-    "eslint-config-docz-ts": "^1.2.0"
+    "docz-rollup": "^2.0.0-rc.0",
+    "eslint-config-docz-ts": "^2.0.0-rc.0"
   }
 }
