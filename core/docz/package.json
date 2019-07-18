@@ -23,18 +23,18 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@mdx-js/react": "^1.0.23",
+    "@mdx-js/react": "^1.0.27",
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
     "docz-core": "^1.2.0",
     "fast-deep-equal": "^2.0.1",
-    "gatsby": "^2.13.18",
+    "gatsby": "^2.13.27",
     "lodash": "^4.17.14",
     "marksy": "^8.0.0",
     "match-sorter": "^3.1.1",
     "prop-types": "^15.7.2",
     "ulid": "^2.3.0",
-    "yargs": "^13.2.4"
+    "yargs": "^13.3.0"
   },
   "peerDependencies": {
     "react": "^16.8.0",
@@ -43,7 +43,7 @@
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@types/lodash": "^4.14.136",
-    "@types/node": "^12.6.2",
+    "@types/node": "^12.6.8",
     "@types/reach__router": "^1.2.4",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",

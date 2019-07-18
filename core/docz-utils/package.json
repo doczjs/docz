@@ -19,9 +19,9 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@babel/generator": "^7.5.0",
-    "@babel/parser": "^7.5.0",
-    "@babel/traverse": "^7.5.0",
+    "@babel/generator": "^7.5.5",
+    "@babel/parser": "^7.5.5",
+    "@babel/traverse": "^7.5.5",
     "art-template": "^4.13.2",
     "fs-extra": "^8.1.0",
     "humanize-string": "^2.1.0",
@@ -37,7 +37,7 @@
     "strip-indent": "^3.0.0",
     "to-vfile": "^6.0.0",
     "unescape-js": "^1.1.1",
-    "unified": "^8.1.0",
+    "unified": "^8.3.2",
     "unist-util-find": "^1.0.1",
     "unist-util-is": "^3.0.0",
     "unist-util-visit": "^1.4.1"

@@ -20,13 +20,13 @@
     "test": "jest"
   },
   "dependencies": {
-    "@babel/generator": "^7.5.0",
-    "@babel/types": "^7.5.0",
+    "@babel/generator": "^7.5.5",
+    "@babel/types": "^7.5.5",
     "unist-util-remove": "^1.0.3",
     "unist-util-visit": "^1.4.1"
   },
   "devDependencies": {
-    "@mdx-js/mdx": "^1.0.25",
+    "@mdx-js/mdx": "^1.1.0",
     "docz-rollup": "^1.2.0",
     "eslint-config-docz-ts": "^1.2.0"
   }

@@ -25,9 +25,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@babel/cli": "^7.5.0",
-    "@babel/core": "^7.5.4",
-    "@babel/preset-env": "^7.5.4",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "@babel/template": "^7.4.4",
     "babel-core": "7.0.0-bridge.0",
     "lodash": "^4.17.14"

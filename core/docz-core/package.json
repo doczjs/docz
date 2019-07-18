@@ -47,11 +47,11 @@
     "titleize": "^2.1.0",
     "typescript": "3.5.3",
     "xstate": "^4.6.7",
-    "yargs": "^13.2.4"
+    "yargs": "^13.3.0"
   },
   "devDependencies": {
     "@types/cross-spawn": "^6.0.0",
-    "@types/find-up": "^2.1.1",
+    "@types/find-up": "^4.0.0",
     "@types/resolve": "^0.0.8",
     "@types/shelljs": "^0.8.5",
     "@types/signale": "^1.2.1",
