@@ -6,7 +6,8 @@ import { jsParser } from './javascript'
 import { tsParser } from './typescript'
 
 export const docgen = async (files: string[], config: Config) => {
-  const tsconfig = await findUp('tsconfig.json', { cwd: paths.root })
+  const cwd = paths.getRootDir(config)
+  const tsconfig = await findUp('tsconfig.json', { cwd })
   return config.typescript
     ? tsParser(files, config, tsconfig)
     : jsParser(files, config)

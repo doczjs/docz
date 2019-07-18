@@ -1,7 +1,8 @@
 import * as React from 'react'
-import { SFC, ComponentType } from 'react'
-import { first, get } from 'lodash/fp'
+import { createElement, SFC, ComponentType, useMemo } from 'react'
+import { assoc, first, get, mapValues } from 'lodash/fp'
 import capitalize from 'capitalize'
+import marksy from 'marksy'
 
 import { doczState } from '../state'
 import { useComponents } from '../hooks'
@@ -109,18 +110,34 @@ export const Props: SFC<PropsProps> = ({
   const PropsComponent = components.props
   const filename = get('__filemeta.filename', component)
   const filemetaName = get('__filemeta.name', component)
-  const componentName = filemetaName || component.displayName || component.name
+  const componentName =
+    filemetaName || get('displayName', component) || get('name', component)
+
   const found =
     stateProps &&
     stateProps.length > 0 &&
     stateProps.find(item =>
-      filename ? item.key === filename : item.key.includes(`${componentName}.`)
+      filename ? item.key === filename : item.key.includes(`/${componentName}.`)
     )
 
   const value = get('value', found) || []
   const firstDefinition = first(value)
   const definition = value.find((i: any) => i.displayName === componentName)
-  const props = get('props', definition || firstDefinition)
+
+  const compile = useMemo(
+    () => marksy({ createElement, elements: components }),
+    [components]
+  )
+
+  const props = useMemo(() => {
+    const props = get('props', definition || firstDefinition)
+    const parseDescs = mapValues((prop: any) => {
+      const desc = get('description', prop)
+      return !desc ? prop : assoc('description', compile(desc).tree, prop)
+    })
+
+    return parseDescs(props)
+  }, [compile, definition || firstDefinition])
 
   if (!props) return null
   if (!PropsComponent) return null

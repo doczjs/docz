@@ -1,10 +1,10 @@
-import * as path from 'path'
 import chokidar from 'chokidar'
 import equal from 'fast-deep-equal'
 import { get } from 'lodash/fp'
 
+import { WATCH_IGNORE } from './config'
 import { Params, State } from '../lib/DataServer'
-import { Entries } from '../lib/Entries'
+import { Entries, getFilesToMatch } from '../lib/Entries'
 import { Config } from '../config/argv'
 import * as paths from '../config/paths'
 
@@ -18,7 +18,6 @@ const updateEntries = (entries: Entries) => async (p: Params) => {
   const map = await entries.get()
 
   if (map && !equal(prev, map)) {
-    await Entries.writeImports(map)
     p.setState('entries', mapToArray(map))
   }
 }
@@ -28,16 +27,11 @@ export const state = (
   config: Config,
   dev?: boolean
 ): State => {
-  const src = path.relative(paths.root, config.src)
-  const files = Array.isArray(config.files)
-    ? config.files.map(filePath => path.join(src, filePath))
-    : path.join(src, config.files)
-
-  const ignored = config.watchIgnore || /(((^|[\/\\])\..+)|(node_modules))/
-  const watcher = chokidar.watch(files, {
-    cwd: paths.root,
+  const ignored = config.watchIgnore || WATCH_IGNORE
+  const watcher = chokidar.watch(getFilesToMatch(config), {
     ignored,
     persistent: true,
+    cwd: paths.getRootDir(config),
   })
 
   watcher.setMaxListeners(Infinity)

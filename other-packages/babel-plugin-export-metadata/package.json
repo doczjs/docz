@@ -25,16 +25,17 @@
     "test": "jest"
   },
   "dependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "@babel/template": "^7.4.4",
     "babel-core": "7.0.0-bridge.0",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.14"
   },
   "devDependencies": {
     "babel-jest": "^24.8.0",
     "docz-rollup": "^1.2.0",
+    "eslint-config-docz-js": "^1.2.0",
     "jest": "^24.8.0"
   }
 }

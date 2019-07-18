@@ -28,10 +28,11 @@
 
 ## ✅️ &nbsp; Migration Guide
 
-This documentation is for Docz [v1](https://github.com/pedronauck/docz/pull/656). Follow our [migration guide](/MIGRATION_GUIDE.md) if you haven't upgraded your project yet.
+This documentation is for Docz [v2](https://github.com/pedronauck/docz/pull/950). Follow our [migration guide](/MIGRATION_GUIDE.md) if you haven't upgraded your project yet.
 
 ## 🎩 &nbsp; Features
 
+- 🔩 **Powered by Gatsby.** Bundling and ecossystem powered by [Gatsby](https://gatsbyjs.org).
 - 🧘 **Zero config and easy.** Don't worry about complex configurations steps.
 - ⚡️ **Blazing Fast.** Full hot reload support with webpack 4 and automatic code splitting.
 - 💅 **Easy to customize.** Create and use real customizable themes.
@@ -50,16 +51,14 @@ Documenting code is one of the most important and time-heavy processes when you'
 ## 🎛 &nbsp; Plugins
 
 - **[gatsby-theme-docz](https://github.com/pedronauck/docz/tree/master/core/gatsby-theme-docz)** - Use Docz as a theme for Gatsby.
-- **[css](https://github.com/pedronauck/docz-plugin-css)** - Parse CSS files inside your documents.
 - **[netlify](https://github.com/nicholasess/docz-plugin-netlify)** - Deploy your Docz site to [Netlify](http://netlify.com/).
-- **[postcss](https://github.com/andreasonny83/docz-plugin-postcss)** - Use Docz with PostCSS.
 - **[svg sprite loader](https://github.com/trustedhousesitters/docz-plugin-svg-sprite-loader)** - Docz plugin for SVG sprite loader.
 - **[snapshots](https://github.com/JosephConradBlack/docz-plugin-snapshots)** - A plugin for Docz that creates jest snapshots for all documented component usages.
 
 ## 🗃 &nbsp; Examples
 
 - **[basic](https://github.com/pedronauck/docz/tree/master/examples/basic)** - Barebones example.
-- **[gatsby](https://github.com/pedronauck/docz/tree/master/examples/gatsby)** - Example using Docz as a theme for Gatsby.
+- **[gatsby](https://github.com/pedronauck/docz/tree/master/examples/gatsby)** - Example using Docz in a Gastby project.
 - **[react native](https://github.com/pedronauck/docz/tree/master/examples/react-native)** - Using Docz in a React Native project.
 - **[styled-components](https://github.com/pedronauck/docz/tree/master/examples/styled-components)** - Using Docz with `styled-components`.
 - **[with typescript](https://github.com/pedronauck/docz/tree/master/examples/typescript)** - Using Docz with Typescript.
@@ -88,19 +87,21 @@ Since the release of v1 you need `react` and `react-dom` `v16.8.0` or later inst
 
 Getting started with **Docz** is really quick and easy.
 
-Firstly, install `docz` and a theme of your choosing using your favourite package manager:
+Firstly, install `docz` using your favourite package manager:
 
 ```bash
-$ yarn add --dev docz docz-theme-default
+$ yarn add --dev docz react react-dom
 
 # or
 
-$ npm install --save-dev docz docz-theme-default
+$ npm install --save-dev docz react react-dom
 ```
+
+**Note**: `react` and `react-dom` will not be installed automatically. You'll have to install them yourself.
 
 Next, add some `.mdx` files anywhere inside your project:
 
-```markdown
+```mdx
 ---
 name: Button
 ---
@@ -128,7 +129,7 @@ $ yarn docz dev
 
 That's it! Now you have some real badass documentation 👊
 
-![](https://cdn-std.dprcdn.net/files/acc_649651/7RRXv)
+![](https://cdn-std.dprcdn.net/files/acc_649651/S2YCID)
 
 Any doubt? Check [our docs](http://docz.site) to see more about **Docz**!
 

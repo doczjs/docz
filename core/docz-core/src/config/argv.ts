@@ -6,7 +6,6 @@ import titleize from 'titleize'
 import { get } from 'lodash/fp'
 
 import { Plugin } from '../lib/Plugin'
-import { BabelRC } from '../config/babel'
 import * as paths from '../config/paths'
 
 const getEnv = (val: string | string[], defaultValue: any = null): any =>
@@ -37,27 +36,13 @@ export interface Menu {
   menu?: Menu[]
 }
 
-export interface HtmlContext {
-  lang: string
-  favicon?: string
-  head?: {
-    meta: any[]
-    links: any[]
-    raw: string
-    scripts: any[]
-  }
-  body?: {
-    raw: string
-    scripts: any[]
-  }
-}
-
 export interface Argv {
   /* io args */
+  root: string
   base: string
   src: string
   files: string | string[]
-  ignore: string[]
+  ignore: any[]
   watchIgnore: string
   public: string
   dest: string
@@ -65,46 +50,39 @@ export interface Argv {
   config: string
   /* bundler args */
   debug: boolean
-  clearConsole: boolean
   typescript: boolean
   propsParser: boolean
   host: string
   port: number
-  websocketPort: number
-  websocketHost: string
   native: boolean
-  codeSandbox: boolean
-  sourcemaps: boolean
   notUseSpecifiers: boolean
+  openBrowser: boolean
   /* template args */
   title: string
   description: string
-  theme: string
-  wrapper?: string
-  indexHtml?: string
   /** slugify separator */
   separator: string
 }
 
 export interface Config extends Argv {
-  paths: Record<string, any>
+  paths: paths.Paths
   plugins: Plugin[]
   mdPlugins: any[]
   hastPlugins: any[]
   menu: Menu[]
-  htmlContext: HtmlContext
   themeConfig: ThemeConfig
   docgenConfig: DocgenConfig
   filterComponents: (files: string[]) => string[]
-  modifyBundlerConfig<C>(config: C, dev: boolean, args: Config): C
-  modifyBabelRc(babelrc: BabelRC, args: Config): BabelRC
-  onCreateWebpackChain<C>(c: C, dev: boolean, args: Config): void
 }
 
 export const setArgs = (yargs: Yargs) => {
   const pkg = fs.readJsonSync(paths.appPackageJson, { throws: false })
 
   return yargs
+    .option('root', {
+      type: 'string',
+      default: getEnv('docz.root', paths.root),
+    })
     .option('base', {
       type: 'string',
       default: getEnv('docz.base', '/'),
@@ -148,10 +126,6 @@ export const setArgs = (yargs: Yargs) => {
       type: 'string',
       default: getEnv('docz.description', getInitialDescription(pkg)),
     })
-    .option('theme', {
-      type: 'string',
-      default: getEnv('docz.theme', 'docz-theme-default'),
-    })
     .option('typescript', {
       alias: 'ts',
       type: 'boolean',
@@ -161,57 +135,29 @@ export const setArgs = (yargs: Yargs) => {
       type: 'boolean',
       default: getEnv('docz.props.parser', true),
     })
-    .option('wrapper', {
-      type: 'string',
-      default: getEnv('docz.wrapper', null),
-    })
-    .option('indexHtml', {
-      type: 'string',
-      default: getEnv('docz.index.html', null),
-    })
     .option('debug', {
       type: 'boolean',
       default: getEnv('docz.debug', false),
     })
-    .option('clearConsole', {
-      type: 'boolean',
-      default: getEnv('docz.clear.console', true),
-    })
     .option('host', {
       type: 'string',
-      default: getEnv('docz.host', '127.0.0.1'),
+      default: getEnv('docz.host', 'localhost'),
     })
     .option('port', {
       alias: 'p',
       type: 'number',
       default: getEnv('docz.port', 3000),
     })
-    .option('websocketHost', {
-      type: 'string',
-      default: getEnv('docz.websocket.host', '127.0.0.1'),
-    })
-    .option('websocketPort', {
-      type: 'number',
-      default: getEnv('docz.websocket.port', 60505),
-    })
     .option('native', {
       type: 'boolean',
       default: getEnv('docz.native', false),
-    })
-    .option('codeSandbox', {
-      type: 'boolean',
-      default: getEnv('docz.codeSandbox', true),
-    })
-    .option('sourcemaps', {
-      type: 'boolean',
-      default: getEnv('docz.sourcemaps', true),
     })
     .option('separator', {
       type: 'string',
       default: getEnv('docz.separator', '-'),
     })
-    .option('open', {
-      alias: 'o',
+    .option('openBrowser', {
+      alias: ['o', 'open'],
       describe: 'auto open browser in dev mode',
       type: 'boolean',
       default: false,

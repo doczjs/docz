@@ -16,7 +16,6 @@ interface Payload {
   version: string | null
   repository: string | null
   native: boolean
-  codeSandbox: boolean
   themeConfig: ThemeConfig
   separator: string
 }
@@ -32,7 +31,6 @@ const getInitialConfig = (config: Config): Payload => {
     version: get(pkg, 'version'),
     repository: repoUrl,
     native: config.native,
-    codeSandbox: config.codeSandbox,
     themeConfig: config.themeConfig,
     separator: config.separator,
   }
@@ -46,18 +44,24 @@ const update = async (params: Params, initial: Payload, { config }: Config) => {
   params.setState('config', next)
 }
 
-export const state = (config: Config, dev?: boolean): State => {
-  const initial = getInitialConfig(config)
-  const glob = config.config || finds('docz')
-  const ignored = config.watchIgnore || /(((^|[\/\\])\..+)|(node_modules))/
+export const WATCH_IGNORE = /(((^|[\/\\])\.((?!docz)(.+)))|(node_modules))/
 
+export const createWatcher = (glob: any, config: Config) => {
+  const ignored = config.watchIgnore || WATCH_IGNORE
   const watcher = chokidar.watch(glob, {
-    cwd: paths.root,
     ignored,
+    cwd: paths.root,
     persistent: true,
   })
 
   watcher.setMaxListeners(Infinity)
+  return watcher
+}
+
+export const state = (config: Config, dev?: boolean): State => {
+  const glob = config.config || finds('docz')
+  const initial = getInitialConfig(config)
+  const watcher = createWatcher(glob, config)
 
   return {
     id: 'config',

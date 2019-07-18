@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components/native'
+import styled from '@emotion/primitives'
 import * as t from 'prop-types'
 
 const scales = {

@@ -10,7 +10,7 @@ export const formatter = (code: string) =>
   } as any)
 
 export const format = (code: string): Promise<string> =>
-  new Promise((resolve, reject) => {
+  new Promise(resolve => {
     try {
       const result = formatter(code)
 

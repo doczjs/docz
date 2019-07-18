@@ -111,7 +111,7 @@ const sortMenus = (first: Menus, second: Menus | undefined = []): Menus => {
 const search = (val: string, menu: MenuItem[]) => {
   const items = menu.map(item => [item].concat(item.menu || []))
   const flattened = flattenDepth(2, items)
-  const flattenedDeduplicated = [...new Set(flattened)]
+  const flattenedDeduplicated = Array.from(new Set(flattened))
   return match(flattenedDeduplicated, val, { keys: ['name'] })
 }
 

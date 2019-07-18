@@ -2,6 +2,10 @@
   "name": "docz-example-styled-components",
   "version": "1.2.0",
   "license": "MIT",
+  "files": [
+    "src/",
+    "package.json"
+  ],
   "scripts": {
     "dev": "docz dev",
     "build": "docz build"
@@ -10,10 +14,9 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.3.2"
   },
   "devDependencies": {
-    "docz": "^1.2.0",
-    "docz-theme-default": "^1.2.0"
+    "docz": "^1.2.0"
   }
 }

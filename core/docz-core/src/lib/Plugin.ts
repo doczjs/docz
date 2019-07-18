@@ -1,30 +1,19 @@
-import pReduce from 'p-reduce'
-import WebpackChainConfig from 'webpack-chain'
 import { get, isFunction } from 'lodash/fp'
 
+import { pReduce } from '../utils/p-reduce'
 import { Config } from '../config/argv'
-import { BabelRC } from '../config/babel'
 
 export type SetConfig = (config: Config) => Config | Promise<Config>
+export type onCreateBabelConfig = (params: any, dev: boolean) => void
 
-export type ModifyBundlerConfig<C = any> = (
+export type onCreateWebpackConfig<C = any> = (
   config: C,
   dev: boolean,
   args: Config
 ) => C
 
-export type ModifyBabelRC = (babelrc: BabelRC, args: Config) => BabelRC
 export type ModifyFiles = (files: string[], args: Config) => string[]
-
-export type OnCreateWebpackChain = (
-  config: WebpackChainConfig,
-  dev: boolean,
-  args: Config
-) => void
-
-export type onPreCreateApp = <A>(app: A) => void
-export type onCreateApp = <A>(app: A) => void
-export type OnServerListening = <S>(server: S) => void
+export type onCreateDevServer = <A>(app: A) => void
 export type OnPreBuild = (args: Config) => void
 export type OnPostBuild = (args: Config) => void
 export type OnPreRender = () => void
@@ -32,17 +21,12 @@ export type OnPostRender = () => void
 
 export interface PluginFactory {
   setConfig?: SetConfig
-  modifyBundlerConfig?: ModifyBundlerConfig
-  modifyBabelRc?: ModifyBabelRC
+  onCreateBabelConfig?: onCreateBabelConfig
+  onCreateDevServer?: onCreateDevServer
+  onCreateWebpackConfig?: onCreateWebpackConfig
   modifyFiles?: ModifyFiles
-  onCreateWebpackChain?: OnCreateWebpackChain
-  onPreCreateApp?: onPreCreateApp
-  onCreateApp?: onCreateApp
-  onServerListening?: OnServerListening
   onPreBuild?: OnPreBuild
   onPostBuild?: OnPostBuild
-  onPreRender?: OnPreRender
-  onPostRender?: OnPostRender
 }
 
 export class Plugin<C = any> implements PluginFactory {
@@ -95,31 +79,21 @@ export class Plugin<C = any> implements PluginFactory {
   }
 
   public readonly setConfig?: SetConfig
-  public readonly modifyBundlerConfig?: ModifyBundlerConfig<C>
-  public readonly modifyBabelRc?: ModifyBabelRC
+  public readonly onCreateWebpackConfig?: onCreateWebpackConfig<C>
+  public readonly onCreateBabelConfig?: onCreateBabelConfig
   public readonly modifyFiles?: ModifyFiles
-  public readonly onCreateWebpackChain?: OnCreateWebpackChain
-  public readonly onPreCreateApp?: onPreCreateApp
-  public readonly onCreateApp?: onCreateApp
-  public readonly onServerListening?: OnServerListening
+  public readonly onCreateDevServer?: onCreateDevServer
   public readonly onPreBuild?: OnPreBuild
   public readonly onPostBuild?: OnPostBuild
-  public readonly onPreRender?: OnPreRender
-  public readonly onPostRender?: OnPostRender
 
   constructor(p: PluginFactory) {
     this.setConfig = p.setConfig
-    this.modifyBundlerConfig = p.modifyBundlerConfig
-    this.modifyBabelRc = p.modifyBabelRc
+    this.onCreateWebpackConfig = p.onCreateWebpackConfig
+    this.onCreateBabelConfig = p.onCreateBabelConfig
     this.modifyFiles = p.modifyFiles
-    this.onPreCreateApp = p.onPreCreateApp
-    this.onCreateWebpackChain = p.onCreateWebpackChain
-    this.onCreateApp = p.onCreateApp
-    this.onServerListening = p.onServerListening
+    this.onCreateDevServer = p.onCreateDevServer
     this.onPreBuild = p.onPreBuild
     this.onPostBuild = p.onPostBuild
-    this.onPreRender = p.onPreRender
-    this.onPostRender = p.onPostRender
   }
 }
 

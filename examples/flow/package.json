@@ -2,21 +2,27 @@
   "name": "docz-example-flow",
   "version": "1.2.0",
   "license": "MIT",
+  "files": [
+    "src/",
+    ".babelrc",
+    ".flowconfig",
+    "package.json"
+  ],
   "scripts": {
     "dev": "docz dev",
     "build": "docz build"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.14",
+    "@emotion/styled": "^10.0.14",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "styled-components": "^4.2.0"
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@babel/preset-flow": "^7.0.0",
     "docz": "^1.2.0",
-    "docz-theme-default": "^1.2.0",
-    "flow-bin": "^0.98.1",
-    "flow-typed": "^2.5.1"
+    "flow-bin": "^0.102.0",
+    "flow-typed": "^2.6.0"
   }
 }

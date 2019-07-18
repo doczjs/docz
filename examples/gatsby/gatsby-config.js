@@ -5,19 +5,14 @@ module.exports = {
     author: 'Pedro Nauck',
   },
   /**
-   * This is just what you need to get docz running inside Gatsby!
-   */
-  __experimentalThemes: [
-    {
-      resolve: 'gatsby-theme-docz',
-    },
-  ],
-  /**
    * ## IMPORTANT ##
    * Do you shouldn't need this plugins
    * You need them just because of our monorepo
    * */
   plugins: [
+    {
+      resolve: 'gatsby-theme-docz',
+    },
     {
       resolve: 'gatsby-plugin-eslint',
       options: {

@@ -30,6 +30,7 @@ const mountRoute = (base: string, route: string) => {
 export interface EntryObj {
   id: string
   filepath: string
+  fullpath: string
   link: string | null
   slug: string
   name: string
@@ -44,6 +45,7 @@ export class Entry {
 
   public id: string
   public filepath: string
+  public fullpath: string
   public link: string | null
   public slug: string
   public route: string
@@ -54,13 +56,15 @@ export class Entry {
     [key: string]: any
   }
 
-  constructor(ast: any, file: string, src: string, config: Config) {
-    const filepath = this.getFilepath(file, src)
+  constructor(ast: any, file: string, config: Config) {
+    const filepath = this.getFilepath(config, file)
     const parsed = getParsedData(ast)
     const name = this.getName(filepath, parsed)
+    const root = paths.getRootDir(config)
 
     this.id = createId(file)
     this.filepath = filepath
+    this.fullpath = path.resolve(root, file)
     this.link = ''
     this.slug = this.slugify(filepath, config.separator)
     this.route = this.getRoute(parsed, config.base)
@@ -76,9 +80,10 @@ export class Entry {
     }
   }
 
-  private getFilepath(file: string, src: string): string {
-    const srcPath = path.resolve(paths.root, src)
-    const filepath = path.relative(srcPath, file)
+  private getFilepath(config: Config, file: string): string {
+    const root = paths.getRootDir(config)
+    const fullpath = path.resolve(root, config.src, file)
+    const filepath = path.relative(root, fullpath)
 
     if (process.platform === 'win32') {
       return filepath.split('\\').join('/')

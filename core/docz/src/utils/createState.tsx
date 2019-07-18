@@ -22,7 +22,7 @@ export function create<T = any>(initial: T): State<T> {
   const listeners = new Set()
 
   const dispatch = (fn: Dispatch<T>) => {
-    listeners.forEach(listener => listener(fn))
+    listeners.forEach((listener: any) => listener(fn))
   }
 
   return {

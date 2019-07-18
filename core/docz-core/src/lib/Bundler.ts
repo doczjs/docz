@@ -1,91 +1,48 @@
 import * as path from 'path'
-import * as http from 'http'
 import logger from 'signale'
 
-import { Plugin } from './Plugin'
-import { Config as Args, Env } from '../config/argv'
+import { Config as Args } from '../config/argv'
 import * as paths from '../config/paths'
 
-export interface ServerHooks {
-  onCreateWebpackChain<C>(config: C, dev: boolean, args: Args): void
-  onPreCreateApp<A>(app: A): void
-  onCreateApp<A>(app: A): void
-  onServerListening<S>(server: S): void
-}
-
 export interface BundlerServer {
-  start(): Promise<http.Server>
+  start(): void
 }
 
-export type ConfigFn<C> = (hooks: ServerHooks) => Promise<C>
-export type BuildFn<C> = (config: C, dist: string, publicDir: string) => void
-export type ServerFn<C> = (
-  config: C,
-  hooks: ServerHooks
-) => BundlerServer | Promise<BundlerServer>
+export type BuildFn = (dist: string) => void
+export type ServerFn = () => BundlerServer | Promise<BundlerServer>
 
-export interface BundlerConstructor<Config> {
+export interface BundlerConstructor {
   args: Args
-  config: ConfigFn<Config>
-  server: ServerFn<Config>
-  build: BuildFn<Config>
+  server: ServerFn
+  build: BuildFn
 }
 
 export interface ConfigObj {
   [key: string]: any
 }
 
-export class Bundler<C = ConfigObj> {
+export class Bundler {
   private readonly args: Args
-  private config: ConfigFn<C>
-  private server: ServerFn<C>
-  private builder: BuildFn<C>
-  private hooks: ServerHooks
+  private server: ServerFn
+  private builder: BuildFn
 
-  constructor(params: BundlerConstructor<C>) {
-    const { args, config, server, build } = params
-    const run = Plugin.runPluginsMethod(args.plugins)
+  constructor(params: BundlerConstructor) {
+    const { args, server, build } = params
 
     this.args = args
-    this.config = config
     this.server = server
     this.builder = build
-
-    this.hooks = {
-      onCreateWebpackChain<C>(config: C, dev: boolean, args: Args): void {
-        run('onCreateWebpackChain', config, dev, args)
-      },
-      onPreCreateApp<A>(app: A): void {
-        run('onPreCreateApp', app)
-      },
-      onCreateApp<A>(app: A): void {
-        run('onCreateApp', app)
-      },
-      onServerListening<S>(server: S): void {
-        run('onServerListening', server)
-      },
-    }
   }
 
-  public async mountConfig(env: Env): Promise<C> {
-    const { plugins } = this.args
-    const isDev = env !== 'production'
-    const reduce = Plugin.reduceFromPlugins<C>(plugins)
-    const userConfig = await this.config(this.hooks)
-    const config = reduce('modifyBundlerConfig', userConfig, isDev, this.args)
-
-    return this.args.modifyBundlerConfig(config, isDev, this.args)
+  public async createApp(): Promise<BundlerServer> {
+    return this.server()
   }
 
-  public async createApp(config: C): Promise<BundlerServer> {
-    return this.server(config, this.hooks)
-  }
-
-  public async build(config: C): Promise<void> {
+  public async build(): Promise<void> {
     const dist = paths.getDist(this.args.dest)
-    const publicDir = path.join(paths.root, this.args.public)
+    const root = paths.getRootDir(this.args)
 
-    if (paths.root === path.resolve(dist)) {
+    if (root === path.resolve(dist)) {
       logger.fatal(
         new Error(
           'Unexpected option: "dest" cannot be set to the current working directory.'
@@ -94,6 +51,6 @@ export class Bundler<C = ConfigObj> {
       process.exit(1)
     }
 
-    await this.builder(config, dist, publicDir)
+    await this.builder(dist)
   }
 }

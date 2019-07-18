@@ -5,7 +5,6 @@ const { get } = require('lodash')
 const buildFileMeta = template(`
   if (typeof ID !== 'undefined' && ID && ID === Object(ID) && Object.isExtensible(ID)) {
     Object.defineProperty(ID, '__filemeta', {
-      enumerable: true,
       configurable: true,
       value: {
         name: NAME,
@@ -21,8 +20,11 @@ const replaceExportDefault = template(`
 `)
 
 const getFilename = state => {
+  const rootDir = get(state, 'opts.root', process.cwd())
   const filename = get(state, 'file.opts.filename')
-  return filename && path.relative(process.cwd(), filename)
+  let filepath = filename && path.relative(rootDir, filename)
+  if (process.platform === 'win32') filepath = filepath.split('\\').join('/')
+  return filepath
 }
 
 const findPathToInsert = path =>
@@ -61,13 +63,6 @@ const renameDefaultAddFileMetaProperties = (t, path, filename, name) => {
   const nameExport = replaceExportDefault({
     NAME: fallbackName,
     SOURCE: sourceValue,
-  })
-
-  // insert
-  const newNode = buildFileMeta({
-    ID: t.identifier(fallbackName),
-    NAME: t.stringLiteral(fallbackName),
-    FILENAME: t.stringLiteral(filename),
   })
 
   pathToInsert.replaceWithMultiple(nameExport)
