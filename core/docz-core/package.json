@@ -1,6 +1,6 @@
 {
   "name": "docz-core",
-  "version": "1.2.0",
+  "version": "2.0.0-rc.0",
   "description": "All docz core logic of bundle and parsing is included on this package",
   "license": "MIT",
   "main": "dist/index.js",
@@ -23,7 +23,7 @@
     "chalk": "^2.4.2",
     "chokidar": "^3.0.2",
     "detect-port": "^1.3.0",
-    "docz-utils": "^1.2.0",
+    "docz-utils": "^2.0.0-rc.0",
     "env-dot-prop": "^2.0.1",
     "fast-deep-equal": "^2.0.1",
     "fast-glob": "^3.0.4",
@@ -32,12 +32,12 @@
     "get-pkg-repo": "^4.1.0",
     "humanize-string": "^2.1.0",
     "latest-version": "^5.1.0",
-    "load-cfg": "^1.2.0",
+    "load-cfg": "^2.0.0-rc.0",
     "lodash": "^4.17.14",
     "minimatch": "^3.0.4",
     "ora": "^3.4.0",
     "react-docgen": "^4.1.1",
-    "react-docgen-actual-name-handler": "^1.2.0",
+    "react-docgen-actual-name-handler": "^2.0.0-rc.0",
     "react-docgen-external-proptypes-handler": "^1.0.3",
     "react-docgen-typescript": "^1.12.5",
     "recast": "^0.18.1",
@@ -55,7 +55,7 @@
     "@types/shelljs": "^0.8.5",
     "@types/signale": "^1.2.1",
     "cpy": "^7.3.0",
-    "docz-rollup": "^1.2.0",
-    "eslint-config-docz-ts": "^1.2.0"
+    "docz-rollup": "^2.0.0-rc.0",
+    "eslint-config-docz-ts": "^2.0.0-rc.0"
   }
 }
