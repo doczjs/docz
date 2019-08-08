@@ -22,7 +22,7 @@ export const NavLink = ({ item, ...props }) => {
   const showHeadings = isCurrent && headings && headings.length > 0
 
   return (
-    <React.Fragment>
+    <>
       <Link {...props} to={to} sx={styles.link} activeClassName="active" />
       {showHeadings &&
         headings.map(heading => (
@@ -35,6 +35,6 @@ export const NavLink = ({ item, ...props }) => {
             {heading.value}
           </Link>
         ))}
-    </React.Fragment>
+    </>
   )
 }
