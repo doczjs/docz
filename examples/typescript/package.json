@@ -16,7 +16,8 @@
     "@emotion/core": "^10.0.14",
     "@emotion/styled": "^10.0.14",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "scheduler": "^0.15.0"
   },
   "devDependencies": {
     "@types/react": "^16.8.23",
