@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.5.5",
+    "@babel/preset-typescript": "^7.3.3",
     "@commitlint/cli": "^8.1.0",
     "@commitlint/config-conventional": "^8.1.0",
     "@commitlint/config-lerna-scopes": "^8.1.0",
