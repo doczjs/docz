@@ -12,11 +12,12 @@
     "README.md"
   ],
   "scripts": {
-    "dev": "cross-env NODE_ENV=development yarn build -w",
     "build": "cross-env NODE_ENV=production rollup -c",
+    "dev": "cross-env NODE_ENV=development yarn build -w",
     "fix": "yarn lint --fix",
     "lint": "eslint . --ext .ts,.tsx",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "test": "jest"
   },
   "dependencies": {
     "@sindresorhus/slugify": "^0.9.1",
