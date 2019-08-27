@@ -10,7 +10,7 @@ export const execDevCommand = async ({ args }: ServerMachineCtx) => {
   spawn('yarn', ['dev', '--port', `${args.port}`], { stdio: 'inherit' })
   const url = `http://${args.host}:${args.port}`
   console.log()
-  console.log('Buiding app')
+  console.log('Building app')
   await waitOn({
     resources: [url],
     timeout: 30000,
