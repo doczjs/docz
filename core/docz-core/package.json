@@ -47,6 +47,7 @@
     "signale": "^1.4.0",
     "titleize": "^2.1.0",
     "typescript": "3.5.3",
+    "wait-on": "^3.3.0",
     "xstate": "^4.6.7",
     "yargs": "^13.3.0"
   },
@@ -55,6 +56,7 @@
     "@types/resolve": "^0.0.8",
     "@types/shelljs": "^0.8.5",
     "@types/signale": "^1.2.1",
+    "@types/wait-on": "^3.2.0",
     "cpy": "^7.3.0",
     "docz-rollup": "^2.0.0-rc.1",
     "eslint-config-docz-ts": "^2.0.0-rc.1"
