@@ -12,7 +12,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "echo build",
+    "build": "cross-env NODE_ENV=production rollup -c",
     "dev": "cross-env NODE_ENV=development yarn build -w",
     "fix": "yarn lint --fix",
     "lint": "eslint . --ext .ts,.tsx",
