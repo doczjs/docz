@@ -1,5 +1,13 @@
 # Typescript Docz example
 
+## Using `create-docz-app`
+
+```sh
+npx create-docz-app docz-app-typescript --example typescript
+# or
+yarn create docz-app docz-app-typescript --example typescript
+```
+
 ## Download manually
 
 ```sh

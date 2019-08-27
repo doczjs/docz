@@ -1,5 +1,13 @@
 # Basic Docz example
 
+## Using `create-docz-app`
+
+```sh
+npx create-docz-app docz-app-basic
+# or
+yarn create docz-app docz-app-basic
+```
+
 ## Download manually
 
 ```sh

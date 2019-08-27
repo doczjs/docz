@@ -2,6 +2,15 @@
 
 This example shows you how you can use docz as a [Gatsby Theme](https://www.gatsbyjs.org/blog/2018-11-11-introducing-gatsby-themes/) inside your project.
 
+
+## Using `create-docz-app`
+
+```sh
+npx create-docz-app docz-app-gatsby --example gatsby
+# or
+yarn create docz-app docz-app-gatsby --example gatsby
+```
+
 ## Download
 
 ```sh
