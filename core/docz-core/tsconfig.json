@@ -8,6 +8,6 @@
     "types": ["node"],
     "typeRoots": ["../../node_modules/@types", "node_modules/@types"]
   },
-  "include": ["src/**/*", "src/types.d.ts", "__tests__"],
+  "include": ["src/**/*", "src/types.d.ts"],
   "exclude": ["node_modules/**"]
 }

@@ -15,6 +15,7 @@
     "url": "https://github.com/pedronauck/docz.git"
   },
   "scripts": {
+    "ci": "npm run packages:lint && npm run packages:test",
     "clean": "lerna clean",
     "bs": "lerna bootstrap",
     "packages": "run-s packages:*",
