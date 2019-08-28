@@ -91,7 +91,15 @@ Since the release of v1 you need `react` and `react-dom` `v16.8.0` or later inst
 
 Getting started with **Docz** is really quick and easy.
 
-Firstly, install `docz` using your favourite package manager:
+If you're starting from scratch use [create-docz-app](https://www.npmjs.com/package/create-docz-app) to create your project.
+
+```sh
+npx create-docz-app my-docz-app 
+# or
+yarn create docz-app my-docz-app --example typescript
+```
+
+If you want to add `docz` to a codebase, then add docz using your favourite package manager:
 
 ```bash
 $ yarn add --dev docz@next react react-dom
@@ -101,17 +109,18 @@ $ yarn add --dev docz@next react react-dom
 $ npm install --save-dev docz@next react react-dom
 ```
 
-**Note**: `react` and `react-dom` will not be installed automatically. You'll have to install them yourself.
+> **Note**: `react` and `react-dom` will not be installed automatically. You'll have to install them yourself.
 
-Next, add some `.mdx` files anywhere inside your project:
+Next, add some `.mdx` files anywhere in your project:
 
 ```mdx
 ---
 name: Button
+route: /
 ---
 
-import { Playground, Props } from 'docz'
-import Button from './'
+import { Playground, Props } from "docz";
+import Button from "./Button";
 
 # Button
 
@@ -120,9 +129,32 @@ import Button from './'
 ## Basic usage
 
 <Playground>
-  <Button>Click me</Button>
-  <Button kind="secondary">Click me</Button>
+  <Button type="submit">Click me</Button>
+  <Button>No, click me</Button>
 </Playground>
+
+```
+
+And a Button component `Button.jsx`:
+
+```typescript
+import React from "react";
+import t from "prop-types";
+
+const Button = ({ children, type }) => <button type={type}>{children}</button>;
+
+Button.propTypes = {
+  /**
+   * This is a pretty good description for this prop
+   * Button type. Learn more about `type` attribute [at MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type)
+   */
+  type: t.oneOf(["button", "submit", "reset"])
+};
+Button.defaultProps = {
+  type: "button"
+};
+export default Button;
+
 ```
 
 Finally, run the Docz development server:
