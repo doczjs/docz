@@ -41,12 +41,12 @@ If you're still using v1, you can find the docs [here](https://docz-v1.surge.sh)
 - ⚡️ **Blazing Fast.** Full hot reload support with webpack 4 and automatic code splitting.
 - 💅 **Easy to customize.** Create and use real customizable themes.
 - 📝 **[MDX](https://github.com/mdx-js/mdx) Based.** Write markdown enhanced by the power of components.
-- 🎛 **Pluggable.** Use plugins to manipulate and customise Docz to suit your needs.
+- 🎛 **Pluggable.** Use plugins to manipulate and customize Docz to suit your needs.
 - 🔐 **Typescript Support.** Full support for TypeScript. Write your type definitions with no extra setup required.
 
 ## 🤔 &nbsp; Why?
 
-Libraries that make development easier are appearing every day. Styleguides and design systems are growing in popularity. Today, tools that allow us to get our best work done and be efficient are necessary. We shouldn't be spending too much time on tasks that should be trivial. This is why we created **Docz**.
+Libraries that make development easier are appearing every day. Style guides and design systems are growing in popularity. Today, tools that allow us to get our best work done and be efficient are necessary. We shouldn't be spending too much time on tasks that should be trivial. This is why we created **Docz**.
 
 Documenting code is one of the most important and time-heavy processes when you're creating something new. A lot of time is wasted on unnecessarily attempting to build a documentation site that will match the style we want.
 
