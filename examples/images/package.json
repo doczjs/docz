@@ -20,6 +20,6 @@
     "scheduler": "^0.15.0"
   },
   "devDependencies": {
-    "docz": "2.0.0-rc.4"
+    "docz": "2.0.0-rc.5"
   }
 }
