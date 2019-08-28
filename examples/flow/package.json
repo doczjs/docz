@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@babel/preset-flow": "^7.0.0",
-    "docz": "2.0.0-rc.2",
+    "docz": "2.0.0-rc.3",
     "flow-bin": "^0.102.0",
     "flow-typed": "^2.6.0"
   }
