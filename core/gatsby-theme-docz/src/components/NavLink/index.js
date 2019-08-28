@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
+import * as React from 'react' // eslint-disable-line
 import { Link } from 'gatsby'
 import { useDocs, useCurrentDoc } from 'docz'
 import { get } from 'lodash/fp'

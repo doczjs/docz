@@ -22,6 +22,6 @@
   "devDependencies": {
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
-    "docz": "2.0.0-rc.3"
+    "docz": "2.0.0-rc.4"
   }
 }

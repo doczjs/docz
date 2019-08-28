@@ -18,6 +18,6 @@
     "styled-components": "^4.3.2"
   },
   "devDependencies": {
-    "docz": "2.0.0-rc.3"
+    "docz": "2.0.0-rc.4"
   }
 }
