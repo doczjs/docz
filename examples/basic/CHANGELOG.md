@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.2](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.2) (2019-08-28)
+
+
+### Bug Fixes
+
+* **docz-example-basic:** add explicit dependency to scheduler ([a4c5f9c](https://github.com/pedronauck/docz/commit/a4c5f9c))
+
+
+
+
+
 # [2.0.0-rc.1](https://github.com/pedronauck/docz/compare/v1.2.0...v2.0.0-rc.1) (2019-07-18)
 
 

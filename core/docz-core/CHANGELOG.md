@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.2](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.2) (2019-08-28)
+
+
+### Bug Fixes
+
+* **docz-core:** extend base config instead of overwriting user config ([#1028](https://github.com/pedronauck/docz/issues/1028)) ([7b46c2b](https://github.com/pedronauck/docz/commit/7b46c2b))
+* **docz-core:** wait for app to be ready before opening the browser ([c5cd14d](https://github.com/pedronauck/docz/commit/c5cd14d))
+
+
+### Features
+
+* **docz-core:** setup jest and add first test ([bf02ac1](https://github.com/pedronauck/docz/commit/bf02ac1))
+
+
+
+
+
 # [2.0.0-rc.1](https://github.com/pedronauck/docz/compare/v1.2.0...v2.0.0-rc.1) (2019-07-18)
 
 

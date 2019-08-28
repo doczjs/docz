@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import { Global } from '@emotion/core'
 import { jsx, Box } from 'theme-ui'
 import { useMenus } from 'docz'
@@ -18,7 +18,7 @@ export const Sidebar = React.forwardRef((props, ref) => {
   }
 
   return (
-    <Fragment>
+    <>
       <Box onClick={props.onClick} sx={styles.overlay(props)}>
         {props.open && <Global styles={styles.global} />}
       </Box>
@@ -38,6 +38,6 @@ export const Sidebar = React.forwardRef((props, ref) => {
             )
           })}
       </Box>
-    </Fragment>
+    </>
   )
 })

@@ -26,15 +26,3 @@ import { Alert } from './Alert'
   <Alert kind="negative">Some message</Alert>
   <Alert kind="warning">Some message</Alert>
 </Playground>
-
-## Use with children as a function
-
-<Playground>
-  {() => {
-    const message = 'Hello world'
-
-    return (
-      <Alert>{message}</Alert>
-    )
-  }}
-</Playground>

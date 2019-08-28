@@ -33,7 +33,7 @@ export const getBaseConfig = (
   custom?: Partial<Config>
 ): Config => {
   const initial = omit<Arguments<Argv>, any>(toOmit, argv)
-  const base = { ...initial, ...doczRcBaseConfig, paths }
+  const base = { ...doczRcBaseConfig, ...initial, paths }
   return merge(base, custom) as Config
 }
 

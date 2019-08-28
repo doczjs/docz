@@ -1,6 +1,6 @@
 {
   "name": "docz-example-flow",
-  "version": "2.0.0-rc.1",
+  "version": "2.0.0-rc.2",
   "license": "MIT",
   "files": [
     "src/",
@@ -17,11 +17,12 @@
     "@emotion/styled": "^10.0.14",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "scheduler": "^0.15.0"
   },
   "devDependencies": {
     "@babel/preset-flow": "^7.0.0",
-    "docz": "^2.0.0-rc.1",
+    "docz": "2.0.0-rc.5",
     "flow-bin": "^0.102.0",
     "flow-typed": "^2.6.0"
   }

@@ -30,6 +30,10 @@
 
 This documentation is for Docz [v2](https://github.com/pedronauck/docz/pull/950). Follow our [migration guide](/MIGRATION_GUIDE.md) if you haven't upgraded your project yet.
 
+## 📕 v1 docs
+
+If you're still using v1, you can find the docs [here](https://docz-v1.surge.sh).
+
 ## 🎩 &nbsp; Features
 
 - 🔩 **Powered by Gatsby.** Bundling and ecosystem powered by [Gatsby](https://gatsbyjs.org).
