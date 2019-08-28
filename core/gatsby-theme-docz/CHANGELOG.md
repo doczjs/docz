@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.2](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.2) (2019-08-28)
+
+
+### Bug Fixes
+
+* **gatsby-theme-docz:** add missing source sans pro font ([#991](https://github.com/pedronauck/docz/issues/991)) ([51240df](https://github.com/pedronauck/docz/commit/51240df))
+* **gatsby-theme-docz:** replace fragment tag to the short syntax ([#992](https://github.com/pedronauck/docz/issues/992)) ([044f351](https://github.com/pedronauck/docz/commit/044f351))
+
+
+
+
+
 # [2.0.0-rc.1](https://github.com/pedronauck/docz/compare/v1.2.0...v2.0.0-rc.1) (2019-07-18)
 
 

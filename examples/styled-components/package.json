@@ -1,6 +1,6 @@
 {
   "name": "docz-example-styled-components",
-  "version": "2.0.0-rc.1",
+  "version": "2.0.0-rc.2",
   "license": "MIT",
   "files": [
     "src/",
@@ -14,10 +14,10 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "styled-components": "^4.3.2",
-    "scheduler": "^0.15.0"
+    "scheduler": "^0.15.0",
+    "styled-components": "^4.3.2"
   },
   "devDependencies": {
-    "docz": "^2.0.0-rc.1"
+    "docz": "2.0.0-rc.2"
   }
 }

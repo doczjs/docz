@@ -1,6 +1,6 @@
 {
   "name": "docz",
-  "version": "2.0.0-rc.1",
+  "version": "2.0.0-rc.2",
   "description": "It's has never been so easy to documents your things!",
   "license": "MIT",
   "main": "dist/index.js",
@@ -26,7 +26,7 @@
     "@mdx-js/react": "^1.0.27",
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
-    "docz-core": "^2.0.0-rc.1",
+    "docz-core": "2.0.0-rc.2",
     "fast-deep-equal": "^2.0.1",
     "gatsby": "^2.13.27",
     "lodash": "^4.17.14",

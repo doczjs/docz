@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.2](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.2) (2019-08-28)
+
+
+### Bug Fixes
+
+* **docz-example-flow:** add scheduler dep ([5063fc2](https://github.com/pedronauck/docz/commit/5063fc2))
+* **docz-example-typescript:** add scheduler dep and docs [#1020](https://github.com/pedronauck/docz/issues/1020) ([fbc8e89](https://github.com/pedronauck/docz/commit/fbc8e89))
+
+
+
+
+
 # [2.0.0-rc.1](https://github.com/pedronauck/docz/compare/v1.2.0...v2.0.0-rc.1) (2019-07-18)
 
 

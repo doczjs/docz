@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.2](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.2) (2019-08-28)
+
+
+### Bug Fixes
+
+* **docz:** make scheduler dependency explicit ([84918d8](https://github.com/pedronauck/docz/commit/84918d8))
+* **docz:** remove window check from useCurrentDoc fixes [#985](https://github.com/pedronauck/docz/issues/985) ([#1023](https://github.com/pedronauck/docz/issues/1023)) ([b90ea82](https://github.com/pedronauck/docz/commit/b90ea82))
+
+
+
+
+
 # [2.0.0-rc.1](https://github.com/pedronauck/docz/compare/v1.2.0...v2.0.0-rc.1) (2019-07-18)
 
 

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.2](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.2) (2019-08-28)
+
+
+### Bug Fixes
+
+* **docz:** make scheduler dependency explicit ([84918d8](https://github.com/pedronauck/docz/commit/84918d8))
+* **docz:** remove window check from useCurrentDoc fixes [#985](https://github.com/pedronauck/docz/issues/985) ([#1023](https://github.com/pedronauck/docz/issues/1023)) ([b90ea82](https://github.com/pedronauck/docz/commit/b90ea82))
+* **docz-core:** extend base config instead of overwriting user config ([#1028](https://github.com/pedronauck/docz/issues/1028)) ([7b46c2b](https://github.com/pedronauck/docz/commit/7b46c2b))
+* **docz-core:** wait for app to be ready before opening the browser ([c5cd14d](https://github.com/pedronauck/docz/commit/c5cd14d))
+* **docz-example-basic:** add explicit dependency to scheduler ([a4c5f9c](https://github.com/pedronauck/docz/commit/a4c5f9c))
+* **docz-example-flow:** add scheduler dep ([5063fc2](https://github.com/pedronauck/docz/commit/5063fc2))
+* **docz-example-styled-components:** add scheduler and remove caaf ([1d66cad](https://github.com/pedronauck/docz/commit/1d66cad))
+* **docz-example-typescript:** add extension of tsx file in mdx ([f43f454](https://github.com/pedronauck/docz/commit/f43f454))
+* **docz-example-typescript:** add externally usable tsconfig ([1806abb](https://github.com/pedronauck/docz/commit/1806abb))
+* **docz-example-typescript:** add scheduler dep and docs [#1020](https://github.com/pedronauck/docz/issues/1020) ([fbc8e89](https://github.com/pedronauck/docz/commit/fbc8e89))
+* **gatsby-theme-docz:** add missing source sans pro font ([#991](https://github.com/pedronauck/docz/issues/991)) ([51240df](https://github.com/pedronauck/docz/commit/51240df))
+* **gatsby-theme-docz:** replace fragment tag to the short syntax ([#992](https://github.com/pedronauck/docz/issues/992)) ([044f351](https://github.com/pedronauck/docz/commit/044f351))
+
+
+### Features
+
+* **docz-core:** setup jest and add first test ([bf02ac1](https://github.com/pedronauck/docz/commit/bf02ac1))
+
+
+
+
+
 # [2.0.0-rc.1](https://github.com/pedronauck/docz/compare/v1.2.0...v2.0.0-rc.1) (2019-07-18)
 
 

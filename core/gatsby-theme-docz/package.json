@@ -1,6 +1,6 @@
 {
   "name": "gatsby-theme-docz",
-  "version": "2.0.0-rc.1",
+  "version": "2.0.0-rc.2",
   "description": "Gatsby theme created to use Docz",
   "license": "MIT",
   "author": "Pedro Nauck (pedronauck@gmail.com)",
@@ -23,8 +23,8 @@
     "@theme-ui/typography": "^0.2.5",
     "babel-plugin-export-metadata": "^2.0.0-rc.1",
     "copy-text-to-clipboard": "^2.1.0",
-    "docz": "^2.0.0-rc.1",
-    "docz-core": "^2.0.0-rc.1",
+    "docz": "2.0.0-rc.2",
+    "docz-core": "2.0.0-rc.2",
     "emotion-theming": "^10.0.14",
     "fs-extra": "^8.1.0",
     "gatsby": "^2.13.27",
