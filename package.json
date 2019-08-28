@@ -25,6 +25,7 @@
     "packages:test": "lerna run --parallel test",
     "prerelease": "yarn run packages",
     "release": "lerna publish --conventional-commits",
+    "release:next": "yarn release --npm-tag=next --exact --npm-client npm",
     "release:beta": "yarn release --npm-tag=beta --preid=beta",
     "release:canary": "yarn release --force-publish=\"*\" --canary --exact --npm-client npm",
     "precommit": "lint-staged",
