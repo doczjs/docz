@@ -96,7 +96,7 @@ If you're starting from scratch use [create-docz-app](https://www.npmjs.com/pack
 ```sh
 npx create-docz-app my-docz-app 
 # or
-npx create-docz-app my-docz-app --example typescript
+yarn create docz-app my-docz-app --example typescript
 ```
 
 If you want to add `docz` to a codebase, then add docz using your favourite package manager:
