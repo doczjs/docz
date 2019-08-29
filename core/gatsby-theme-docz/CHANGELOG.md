@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.6](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.6) (2019-08-29)
+
+
+### Bug Fixes
+
+* **gatsby-theme-docz:** replace iframe in playground with div [#984](https://github.com/pedronauck/docz/issues/984) [#1035](https://github.com/pedronauck/docz/issues/1035) ([cf9ea90](https://github.com/pedronauck/docz/commit/cf9ea90))
+
+
+
+
+
 # [2.0.0-rc.2](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.2) (2019-08-28)
 
 
