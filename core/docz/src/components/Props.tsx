@@ -116,8 +116,8 @@ export const Props: SFC<PropsProps> = ({
   const found =
     stateProps &&
     stateProps.length > 0 &&
-    stateProps.find(item =>
-      item.key.includes(`/${componentName}.`) || item.key === filename 
+    stateProps.find(
+      item => item.key.includes(`/${componentName}.`) || item.key === filename
     )
 
   const value = get('value', found) || []
