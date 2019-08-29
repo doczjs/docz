@@ -1,6 +1,6 @@
 {
   "name": "docz",
-  "version": "2.0.0-rc.6",
+  "version": "2.0.0-rc.7",
   "description": "It's has never been so easy to documents your things!",
   "license": "MIT",
   "main": "dist/index.js",
