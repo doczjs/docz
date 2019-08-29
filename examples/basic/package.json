@@ -1,6 +1,6 @@
 {
   "name": "docz-example-basic",
-  "version": "2.0.0-rc.2",
+  "version": "2.0.0-rc.6",
   "license": "MIT",
   "files": [
     "src/",
@@ -21,6 +21,6 @@
     "scheduler": "^0.15.0"
   },
   "devDependencies": {
-    "docz": "2.0.0-rc.5"
+    "docz": "2.0.0-rc.6"
   }
 }
