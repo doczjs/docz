@@ -46,7 +46,7 @@ export interface ComponentsProviderProps {
   components: ComponentsMap
 }
 
-const ctx = createContext<ComponentsMap>({})
+const ctx = createContext<ComponentsMap>(defaultComponents)
 export const ComponentsProvider: SFC<ComponentsProviderProps> = ({
   components: themeComponents = {},
   children,
