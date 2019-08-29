@@ -23,7 +23,7 @@
     "scheduler": "^0.15.0"
   },
   "devDependencies": {
-    "docz": "2.0.0-rc.7",
+    "docz": "2.0.0-rc.8",
     "now": "^16.1.2"
   }
 }
