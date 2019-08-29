@@ -8,7 +8,7 @@ import { Resizable } from 're-resizable'
 import copy from 'copy-text-to-clipboard'
 
 import { usePrismTheme } from '~utils/theme'
-import { IframeWrapper } from './IframeWrapper'
+import { LivePreviewWrapper } from './LivePreviewWrapper'
 import * as styles from './styles'
 import * as Icons from '../Icons'
 
@@ -69,9 +69,9 @@ export const Playground = ({ code, scope }) => {
         })}
       >
         <div sx={styles.previewWrapper}>
-          <IframeWrapper showingCode={showingCode}>
+          <LivePreviewWrapper showingCode={showingCode}>
             <LivePreview sx={styles.preview} />
-          </IframeWrapper>
+          </LivePreviewWrapper>
           <div sx={styles.buttons}>
             <button sx={styles.button} onClick={() => copy(code)}>
               <Icons.Clipboard size={12} />
