@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.9](https://github.com/pedronauck/docz/compare/v2.0.0-rc.7...v2.0.0-rc.9) (2019-08-30)
+
+
+### Bug Fixes
+
+* **docz:** better default playground component ([f90d7a9](https://github.com/pedronauck/docz/commit/f90d7a9))
+* **docz:** bump docz-core version ([f60fce8](https://github.com/pedronauck/docz/commit/f60fce8))
+
+
+
+
+
 # [2.0.0-rc.7](https://github.com/pedronauck/docz/compare/v2.0.0-rc.6...v2.0.0-rc.7) (2019-08-29)
 
 
