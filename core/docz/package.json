@@ -23,6 +23,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.16",
     "@mdx-js/react": "^1.0.27",
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
