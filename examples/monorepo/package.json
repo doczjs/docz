@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/my-super-special-button",
+    "packages/docs-site"
+  ],
+  "name": "docz-gatsby-monorepo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "lerna run build",
+    "dev": "lerna run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lerna": "^3.16.4"
+  }
+}
