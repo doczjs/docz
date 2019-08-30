@@ -1,3 +1,6 @@
 # gatsby files
 .cache/
 public
+
+# dependencies
+node_modules
