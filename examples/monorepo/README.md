@@ -28,11 +28,11 @@ yarn # npm i
 ## Start developing
 
 ```sh
-yarn dev # npm run dev
+yarn lerna:dev # npm run lerna:dev
 ```
 
 ## Build
 
 ```sh
-yarn build # npm run build
+yarn lerna:build # npm run lerna:build
 ```
