@@ -30,10 +30,10 @@ export interface ComponentsMap {
 const DefNotFound: SFC = () => <Fragment>Not found</Fragment>
 const DefLayout: SFC = ({ children }) => <Fragment>{children}</Fragment>
 const DefPlayground: SFC<PlaygroundProps> = ({ component, code }) => (
-  <Fragment>
+  <div>
     {component}
-    {code}
-  </Fragment>
+    <pre>{code}</pre>
+  </div>
 )
 
 const defaultComponents: ComponentsMap = {
