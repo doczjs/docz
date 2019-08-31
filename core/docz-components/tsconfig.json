@@ -16,14 +16,18 @@
     "noImplicitThis": true,
     "alwaysStrict": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedParameters": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
     "baseUrl": "./",
-    "paths": {
-      "*": ["src/*", "node_modules/*"]
-    },
+    "skipLibCheck": true,
+    // "exclude": ["node_modules"],
+    // "paths": {
+    //   "*": ["src/*", "node_modules/*"]
+    // },
+
+    "noEmit": true,
     "jsx": "react",
     "esModuleInterop": true
   }
