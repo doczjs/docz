@@ -1,19 +1,23 @@
-import * as mixins from '~utils/mixins';
+import get from 'lodash/get';
 
-export const editor = theme => ({
-  p: 2,
-  border: t => `1px solid ${t.colors.border}`,
-  borderRadius: '0 0 4px 4px',
-  background: theme.plain.backgroundColor,
-  borderTop: 0,
-  fontFamily: 'monospace',
-  fontSize: 18,
-  '* > textarea:focus': {
-    font: '400 18px Inconsolata !important',
-    lineHeight: '1.5em !important',
-    outline: 'none',
-  },
-});
+import { Theme } from '../../types';
+import * as mixins from '../../utils/mixins';
+
+export const editor = (theme: Theme) =>
+  ({
+    p: 2,
+    border: (t: Theme) => `1px solid ${get(t, 'colors.border', 'transparent')}`,
+    borderRadius: '0 0 4px 4px',
+    background: get(theme, 'plain.backgroundColor', 'none'),
+    borderTop: 0,
+    fontFamily: 'monospace',
+    fontSize: 18,
+    '* > textarea:focus': {
+      font: '400 18px Inconsolata',
+      lineHeight: '1.5em ',
+      outline: 'none',
+    },
+  } as any);
 
 export const error = {
   m: 0,

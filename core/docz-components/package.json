@@ -1,6 +1,6 @@
 {
   "name": "docz-components",
-  "version": "0.1.0",
+  "version": "2.0.0-rc.8",
   "main": "dist/index.js",
   "module": "dist/docz-components.esm.js",
   "typings": "dist/index.d.ts",
@@ -11,7 +11,8 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test --env=jsdom",
-    "lint": "tsdx lint"
+    "lint": "tsdx lint",
+    "prepare": "npm run build"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -31,6 +32,7 @@
     "@types/jest": "^24.0.18",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
+    "@types/theme-ui": "^0.2.2",
     "husky": "^3.0.4",
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",
@@ -39,5 +41,16 @@
     "tsdx": "^0.9.0",
     "tslib": "^1.10.0",
     "typescript": "^3.6.2"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.16",
+    "@mdx-js/react": "^1.4.0",
+    "copy-text-to-clipboard": "^2.1.0",
+    "lodash": "^4.17.15",
+    "lodash-es": "^4.17.15",
+    "re-resizable": "^6.0.0",
+    "react-feather": "^2.0.3",
+    "react-live": "^2.2.0",
+    "theme-ui": "^0.2.38"
   }
 }

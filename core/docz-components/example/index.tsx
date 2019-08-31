@@ -6,7 +6,7 @@ import { Playground } from '../';
 const App = () => {
   return (
     <div>
-      <Playground />
+      <Playground code={'<h1>asd</h1>'} showPlaygroundEditor={true} />
     </div>
   );
 };
