@@ -28,7 +28,7 @@
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
     "docz-components": "^2.0.0-rc.12",
-    "docz-core": "^2.0.0-rc.12",
+    "docz-core": "^2.0.0-rc.13",
     "fast-deep-equal": "^2.0.1",
     "gatsby": "^2.13.27",
     "lodash": "^4.17.14",
