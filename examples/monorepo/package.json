@@ -9,8 +9,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "lerna run build",
-    "dev": "lerna run dev"
+    "lerna:build": "lerna run build",
+    "lerna:dev": "lerna run dev"
   },
   "keywords": [],
   "author": "",
