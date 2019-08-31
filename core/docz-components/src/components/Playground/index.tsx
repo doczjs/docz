@@ -1,29 +1,41 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
 import { useState } from 'react';
-import { useConfig } from 'docz';
 import { LiveProvider, LiveError, LivePreview, LiveEditor } from 'react-live';
-import { merge } from 'lodash/fp';
+import { merge } from 'lodash';
 import { Resizable } from 're-resizable';
 import copy from 'copy-text-to-clipboard';
 
-import { usePrismTheme } from '~utils/theme';
+import { usePrismTheme } from '../../utils/theme';
 import { LivePreviewWrapper } from './LivePreviewWrapper';
 import * as styles from './styles';
 import * as Icons from '../Icons';
 
-export const Playground = ({ code, scope }) => {
-  const {
-    themeConfig: { showPlaygroundEditor, showLiveError },
-  } = useConfig();
+type Props = {
+  code: string;
+  scope:
+    | {
+        [key: string]: any;
+      }
+    | undefined;
+  showPlaygroundEditor: boolean;
+  showLiveError: boolean;
+};
 
+export const Playground = ({
+  code,
+  scope,
+  showPlaygroundEditor = true,
+  showLiveError,
+}: Props) => {
   const theme = usePrismTheme();
   const [showingCode, setShowingCode] = useState(() => showPlaygroundEditor);
   const [width, setWidth] = useState(() => '100%');
 
-  const transformCode = code => {
-    if (code.startsWith('()') || code.startsWith('class')) return code;
-    return `<React.Fragment>${code}</React.Fragment>`;
+  const transformCode = (codeToTransform: string) => {
+    if (codeToTransform.startsWith('()') || codeToTransform.startsWith('class'))
+      return codeToTransform;
+    return `<React.Fragment>${codeToTransform}</React.Fragment>`;
   };
 
   const toggleCode = () => {
@@ -35,6 +47,7 @@ export const Playground = ({ code, scope }) => {
     maxWidth: '100%',
     size: {
       width,
+      height: 'auto',
     },
     style: {
       margin: '0 auto ',
@@ -49,11 +62,10 @@ export const Playground = ({ code, scope }) => {
       bottomLeft: false,
       topLeft: false,
     },
-    onResizeStop: (e, direction, ref) => {
+    onResizeStop: (e: any, direction: any, ref: any) => {
       setWidth(ref.style.width);
     },
   };
-
   return (
     <Resizable {...resizableProps}>
       <LiveProvider
@@ -61,9 +73,10 @@ export const Playground = ({ code, scope }) => {
         scope={scope}
         transformCode={transformCode}
         theme={merge(theme, {
+          styles: [],
           plain: {
             fontFamily: 'Inconsolata',
-            fontSize: 18,
+            fontSize: 28,
             lineHeight: '1.5em',
           },
         })}
