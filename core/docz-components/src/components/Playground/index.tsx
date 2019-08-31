@@ -18,8 +18,13 @@ type Props = {
         [key: string]: any;
       }
     | undefined;
-  showPlaygroundEditor: boolean;
-  showLiveError: boolean;
+  showPlaygroundEditor?: boolean;
+  showLiveError?: boolean;
+  className?: string;
+  style?: any;
+  wrapper?: any;
+
+  position?: any;
 };
 
 export const Playground = ({
