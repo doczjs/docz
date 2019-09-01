@@ -67,6 +67,11 @@ const writeGatsbyConfig = async ({ args, isDoczRepo }: ServerMachineCtx) => {
   })
 }
 
+const writeGatsbyConfigNode = async () => {
+  const outputPath = path.join(paths.docz, 'gatsby-node.js')
+  await outputFileFromTemplate('gatsby-node.tpl.js', outputPath)
+}
+
 const copyGatsbyConfigFile = async (from: string, to: string) => {
   const filepath = path.join(paths.root, from)
   const dest = path.join(paths.docz, to)
@@ -78,8 +83,8 @@ const copyGatsbyConfigFile = async (from: string, to: string) => {
 const writeGatsbyConfigCustom = async () =>
   copyGatsbyConfigFile('gatsby-config.js', 'gatsby-config.custom.js')
 
-const writeGatsbyNode = async () =>
-  copyGatsbyConfigFile('gatsby-node.js', 'gatsby-node.js')
+const writeGatsbyNodeCustom = async () =>
+  copyGatsbyConfigFile('gatsby-node.js', 'gatsby-node.custom.js')
 
 const writeGatsbySSR = async () =>
   copyGatsbyConfigFile('gatsby-ssr.js', 'gatsby-ssr.js')
@@ -95,8 +100,9 @@ export const createResources = async (ctx: ServerMachineCtx) => {
     await writeEslintRc(ctx)
     await writeNotFound()
     await writeGatsbyConfig(ctx)
+    await writeGatsbyConfigNode()
     await writeGatsbyConfigCustom()
-    await writeGatsbyNode()
+    await writeGatsbyNodeCustom()
     await writeGatsbyBrowser()
     await writeGatsbySSR()
   } catch (err) {
