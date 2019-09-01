@@ -51,13 +51,9 @@ const getCoreDeps = async ({ isDoczRepo }: ServerMachineCtx, pkg: any) => {
 export const createDeps = async (ctx: ServerMachineCtx) => {
   const filepath = path.join(paths.root, 'package.json')
   const pkg = await fs.readJSON(filepath, { throws: false })
-
+  const dependencies = pkg.dependencies
   return {
-    dependencies: {
-      ...pkg.dependencies,
-      react: '../node_modules/react',
-      'react-dom': '../node_modules/react-dom',
-    },
+    dependencies,
     devDependencies: {
       ...pkg.devDependencies,
       ...(await getDeps(REQUIRED_DEV_DEPS, ctx, pkg)),
