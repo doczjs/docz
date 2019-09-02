@@ -1,6 +1,6 @@
 {
   "name": "docz-components",
-  "version": "2.0.0-rc.12",
+  "version": "2.0.0-rc.16",
   "main": "dist/index.js",
   "module": "dist/docz-components.esm.js",
   "typings": "dist/index.d.ts",
@@ -44,12 +44,14 @@
   "dependencies": {
     "@emotion/core": "^10.0.16",
     "@mdx-js/react": "^1.4.0",
+    "@theme-ui/typography": "^0.2.34",
     "copy-text-to-clipboard": "^2.1.0",
     "lodash": "^4.17.15",
     "lodash-es": "^4.17.15",
     "re-resizable": "^6.0.0",
     "react-feather": "^2.0.3",
     "react-live": "^2.2.0",
-    "theme-ui": "^0.2.38"
+    "theme-ui": "^0.2.38",
+    "typography-theme-moraga": "^0.16.19"
   }
 }

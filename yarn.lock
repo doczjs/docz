@@ -3821,6 +3821,15 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
+"@theme-ui/typography@^0.2.34":
+  version "0.2.34"
+  resolved "https://registry.npmjs.org/@theme-ui/typography/-/typography-0.2.34.tgz#ada6b327b4df373a5f5531ae9e53a141a7d1f309"
+  integrity sha512-auYZb3eUVLIDPnuqR2ekeqM3mYHKxUWWuxaH4DM8ZeIt1xOug9XsxF2S1UJX/pHCXDTVEDO5uiwAbnv7LoW1Zg==
+  dependencies:
+    compass-vertical-rhythm "^1.4.5"
+    modularscale "^2.0.1"
+    object-assign "^4.1.1"
+
 "@theme-ui/typography@^0.2.5":
   version "0.2.5"
   resolved "https://registry.npmjs.org/@theme-ui/typography/-/typography-0.2.5.tgz#1553c5daf0ac23bf113eca4810bfb8692edeb96b"
@@ -8548,6 +8557,42 @@ docz-core@2.0.0-rc.2:
     xstate "^4.6.7"
     yargs "^13.3.0"
 
+docz-core@2.0.0-rc.6:
+  version "2.0.0-rc.6"
+  resolved "https://registry.npmjs.org/docz-core/-/docz-core-2.0.0-rc.6.tgz#ed3221575e16edf9b2cf27456fdd1cce7d3f11aa"
+  integrity sha512-sAW9KQxpp/fQFGL3GMRJzO7fiqVoGVhqZ4Geq4UD5Ex1vHfKBwq8/5NRdRj0O0rmKXwmZ64ulvfaSqwF+2Z6/Q==
+  dependencies:
+    "@sindresorhus/slugify" "^0.9.1"
+    chalk "^2.4.2"
+    chokidar "^3.0.2"
+    detect-port "^1.3.0"
+    docz-utils "^2.0.0-rc.1"
+    env-dot-prop "^2.0.1"
+    fast-deep-equal "^2.0.1"
+    fast-glob "^3.0.4"
+    find-up "^4.1.0"
+    fs-extra "^8.1.0"
+    get-pkg-repo "^4.1.0"
+    humanize-string "^2.1.0"
+    latest-version "^5.1.0"
+    load-cfg "^2.0.0-rc.1"
+    lodash "^4.17.14"
+    minimatch "^3.0.4"
+    ora "^3.4.0"
+    react-docgen "^4.1.1"
+    react-docgen-actual-name-handler "^2.0.0-rc.1"
+    react-docgen-external-proptypes-handler "^1.0.3"
+    react-docgen-typescript "^1.12.5"
+    recast "^0.18.1"
+    resolve "^1.11.1"
+    shelljs "^0.8.3"
+    signale "^1.4.0"
+    titleize "^2.1.0"
+    typescript "3.5.3"
+    wait-on "^3.3.0"
+    xstate "^4.6.7"
+    yargs "^13.3.0"
+
 docz@2.0.0-rc.2:
   version "2.0.0-rc.2"
   resolved "https://registry.npmjs.org/docz/-/docz-2.0.0-rc.2.tgz#842f1ffb97c6c53cd110592d9aa7dd2d649632ec"
@@ -8557,6 +8602,46 @@ docz@2.0.0-rc.2:
     array-sort "^1.0.0"
     capitalize "^2.0.0"
     docz-core "2.0.0-rc.2"
+    fast-deep-equal "^2.0.1"
+    gatsby "^2.13.27"
+    lodash "^4.17.14"
+    marksy "^8.0.0"
+    match-sorter "^3.1.1"
+    prop-types "^15.7.2"
+    scheduler "^0.15.0"
+    ulid "^2.3.0"
+    yargs "^13.3.0"
+
+docz@2.0.0-rc.9:
+  version "2.0.0-rc.9"
+  resolved "https://registry.npmjs.org/docz/-/docz-2.0.0-rc.9.tgz#e3874c8efa66619e7d19ac9d1664aba3c09853c1"
+  integrity sha512-3tMx4jxoV9WQd+ZMg3zmKXwK+tX48RZgBpVH3pEtcuUrTJM15Ze+J+VJnlK0L+SvZ9wNr8bMdR2s/g8PJANA+Q==
+  dependencies:
+    "@mdx-js/react" "^1.0.27"
+    array-sort "^1.0.0"
+    capitalize "^2.0.0"
+    docz-core "2.0.0-rc.6"
+    fast-deep-equal "^2.0.1"
+    gatsby "^2.13.27"
+    lodash "^4.17.14"
+    marksy "^8.0.0"
+    match-sorter "^3.1.1"
+    prop-types "^15.7.2"
+    scheduler "^0.15.0"
+    ulid "^2.3.0"
+    yargs "^13.3.0"
+
+docz@next:
+  version "2.0.0-rc.21"
+  resolved "https://registry.npmjs.org/docz/-/docz-2.0.0-rc.21.tgz#fedbf2f9caa5eb88e1f079f9b1448ce267ecbcf5"
+  integrity sha512-i//HOYCkLDD/qdvNjC7SkYea37FeNGtkdlw9N72Cr3fH16LTB+zIuMnbXPajlHX2KszPYo+MlZWQERECF0160w==
+  dependencies:
+    "@emotion/core" "^10.0.16"
+    "@mdx-js/react" "^1.0.27"
+    array-sort "^1.0.0"
+    capitalize "^2.0.0"
+    docz-components "^2.0.0-rc.12"
+    docz-core "^2.0.0-rc.21"
     fast-deep-equal "^2.0.1"
     gatsby "^2.13.27"
     lodash "^4.17.14"
