@@ -8,7 +8,10 @@ import { tsParser } from './typescript'
 export const docgen = async (files: string[], config: Config) => {
   const cwd = paths.getRootDir(config)
   const tsconfig = await findUp('tsconfig.json', { cwd })
+  const tsFiles = files.filter(file => file.match(/\.(tsx|ts)$/))
+  const jsFiles = files.filter(file => file.match(/\.(js|jsx|mjs)$/))
+
   return config.typescript
-    ? tsParser(files, config, tsconfig)
-    : jsParser(files, config)
+    ? tsParser(tsFiles, config, tsconfig).concat(jsParser(jsFiles, config))
+    : jsParser(jsFiles, config)
 }
