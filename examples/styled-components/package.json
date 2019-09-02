@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "docz-example-styled-components",
   "version": "2.0.0-rc.12",
   "license": "MIT",

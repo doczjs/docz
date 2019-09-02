@@ -1,5 +1,6 @@
 {
   "name": "docz-example-basic",
+  "private": true,
   "version": "2.0.0-rc.12",
   "license": "MIT",
   "files": [
