@@ -20,7 +20,7 @@ module.exports = async (params, opts) => {
     })
   }
 
-  if (hasParentNodeModules && stage === 'develop') {
+  if (hasParentNodeModules) {
     actions.setWebpackConfig({
       resolve: {
         modules: [nodeModules, parentNodeModules],
