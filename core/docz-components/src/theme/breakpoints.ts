@@ -1,5 +1,5 @@
-const em = px => `${px / 16}em`;
-const mountMedia = val => `@media screen and (max-width: ${em(val)})`;
+const em = (px: number) => `${px / 16}em`;
+const mountMedia = (val: number) => `@media screen and (max-width: ${em(val)})`;
 
 export const breakpoints = {
   mobile: 630,
