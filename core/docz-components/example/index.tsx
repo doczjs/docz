@@ -1,12 +1,22 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Playground } from '../';
+import { Playground } from '../dist/';
 
 const App = () => {
   return (
     <div>
-      <Playground code={'<h1>asd</h1>'} showPlaygroundEditor={true} />
+      <Playground
+        code={'<Button>asd</Button>'}
+        // theme={{
+        //   styles: [],
+        //   plain: {
+        //     fontFamily: 'Inconsolata',
+        //     fontSize: 308,
+        //     lineHeight: '1.5em',
+        //   },
+        // }}
+      />
     </div>
   );
 };
