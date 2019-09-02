@@ -89,7 +89,7 @@ const getTheme = (theme?: Theme) =>
         py: 3,
         px: 4,
         bg: 'blockquote.bg',
-        borderLeft: (t: Theme) => `5px solid ${t.colors.blockquote.boder}`,
+        borderLeft: (t: Theme) => `5px solid ${t.colors.blockquote.border}`,
         color: 'blockquote.color',
         fontStyle: 'italic',
         '> p': {
