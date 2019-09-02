@@ -26,7 +26,7 @@ const getPattern = (config: Config) => {
     .map(entry => typeof entry === 'string' && `!**/${entry}`)
     .filter(Boolean)
     .concat([
-      path.join(src, ts ? '**/*.{ts,tsx}' : '**/*.{js,jsx,mjs}'),
+      path.join(src, ts ? '**/*.{ts,tsx,js,jsx,mjs}' : '**/*.{js,jsx,mjs}'),
       '!**/node_modules',
       '!**/doczrc.js',
     ]) as string[]
