@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.30](https://github.com/pedronauck/docz/compare/v2.0.0-rc.29...v2.0.0-rc.30) (2019-09-03)
+
+### Bug Fixes
+
+- **docz-core:** set yarn production to false to download all deps ([c9db7f1](https://github.com/pedronauck/docz/commit/c9db7f1))
+
 # [2.0.0-rc.29](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.29) (2019-09-03)
 
 ### Bug Fixes
