@@ -3,19 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<<<<<<< HEAD
-# [2.0.0-rc.28](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.28) (2019-09-02)
-
+# [2.0.0-rc.31](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.31) (2019-09-03)
 
 ### Bug Fixes
 
-* **docz-core:** use react from parent directory ([#1053](https://github.com/pedronauck/docz/issues/1053)) ([b55b786](https://github.com/pedronauck/docz/commit/b55b786))
+- **docz-core:** set yarn production to false to download all deps ([1258553](https://github.com/pedronauck/docz/commit/1258553))
+- **docz-core:** use react from parent directory ([#1053](https://github.com/pedronauck/docz/issues/1053)) ([b55b786](https://github.com/pedronauck/docz/commit/b55b786))
 
+<<<<<<< HEAD
 
+# [2.0.0-rc.28](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.28) (2019-09-02)
 
+### Bug Fixes
 
+- **docz-core:** use react from parent directory ([#1053](https://github.com/pedronauck/docz/issues/1053)) ([b55b786](https://github.com/pedronauck/docz/commit/b55b786))
 
 =======
+
 # [2.0.0-rc.29](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.29) (2019-09-03)
 
 ### Bug Fixes
@@ -23,7 +27,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - **docz-core:** use react from parent directory ([#1053](https://github.com/pedronauck/docz/issues/1053)) ([b55b786](https://github.com/pedronauck/docz/commit/b55b786))
 
 # [2.0.0-rc.28](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.28) (2019-09-03)
->>>>>>> v2.0.0-rc.29
+
+> > > > > > > v2.0.0-rc.29
 
 ### Bug Fixes
 
