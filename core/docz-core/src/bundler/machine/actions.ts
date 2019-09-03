@@ -32,13 +32,20 @@ export const ensureFiles = () => {
   themeDirs.forEach(dir => ensureFile(dir))
 }
 
+export const getIsFirstInstall = () => {
+  return !sh.test('-e', paths.docz)
+}
+export const getIsDoczRepo = () => {
+  return sh.test('-e', path.join(paths.root, '../../core'))
+}
+
 export const assignFirstInstall = assign((ctx: ServerMachineCtx) => {
-  const firstInstall = !sh.test('-e', paths.docz)
+  const firstInstall = getIsFirstInstall()
   return assoc('firstInstall', firstInstall, ctx)
 })
 
 export const checkIsDoczRepo = assign((ctx: ServerMachineCtx) => {
-  const isDoczRepo = sh.test('-e', path.join(paths.root, '../../core'))
+  const isDoczRepo = getIsDoczRepo()
   return assoc('isDoczRepo', isDoczRepo, ctx)
 })
 

@@ -53,11 +53,13 @@ export const createDeps = async (ctx: ServerMachineCtx) => {
   const pkg = await fs.readJSON(filepath, { throws: false })
   const dependencies = pkg.dependencies
   return {
-    dependencies,
-    devDependencies: {
-      ...pkg.devDependencies,
+    dependencies: {
+      ...dependencies,
       ...(await getDeps(REQUIRED_DEV_DEPS, ctx, pkg)),
       ...(await getCoreDeps(ctx, pkg)),
+    },
+    devDependencies: {
+      ...pkg.devDependencies,
     },
   }
 }

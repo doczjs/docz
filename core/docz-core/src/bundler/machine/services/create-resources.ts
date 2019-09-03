@@ -10,11 +10,6 @@ import { createDeps } from '../../../utils/create-deps'
 import { ServerMachineCtx } from '../context'
 import { outputFileFromTemplate } from '../../../utils/template'
 
-const copyPkgJSON = () => {
-  const pkg = path.join(paths.root, 'package.json')
-  sh.cp(pkg, paths.docz)
-}
-
 export const copyDoczRc = async () => {
   const filepath = await findUp(finds('docz'))
   filepath && sh.cp(filepath, paths.docz)
@@ -94,7 +89,6 @@ const writeGatsbyBrowser = async () =>
 
 export const createResources = async (ctx: ServerMachineCtx) => {
   try {
-    copyPkgJSON()
     await copyDoczRc()
     await copyAndModifyPkgJson(ctx)
     await writeEslintRc(ctx)
