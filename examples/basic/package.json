@@ -19,9 +19,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "scheduler": "^0.15.0"
-  },
-  "devDependencies": {
+    "scheduler": "^0.15.0",
     "docz": "next"
   }
 }
