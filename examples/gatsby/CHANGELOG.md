@@ -3,6 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<<<<<<< HEAD
 # [2.0.0-rc.28](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.28) (2019-09-02)
 
 **Note:** Version bump only for package docz-example-gatsby
@@ -11,6 +12,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+=======
+# [2.0.0-rc.29](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.29) (2019-09-03)
+
+**Note:** Version bump only for package docz-example-gatsby
+
+# [2.0.0-rc.28](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.28) (2019-09-03)
+>>>>>>> v2.0.0-rc.29
 
 **Note:** Version bump only for package docz-example-gatsby
 

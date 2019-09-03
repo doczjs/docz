@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.29](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.29) (2019-09-03)
+
+### Bug Fixes
+
+- **docz:** add @emotion/core dependency ([52126df](https://github.com/pedronauck/docz/commit/52126df))
+- **docz:** better default playground component ([80b1c66](https://github.com/pedronauck/docz/commit/80b1c66))
+- **docz:** bump docz-core version ([c56e0c6](https://github.com/pedronauck/docz/commit/c56e0c6))
+- **docz:** initialize components context with defaultComponents ([a808795](https://github.com/pedronauck/docz/commit/a808795))
+- **docz:** use playground from docz-components ([52874c4](https://github.com/pedronauck/docz/commit/52874c4))
+- **docz-components:** better prop types for playground ([f35f3ca](https://github.com/pedronauck/docz/commit/f35f3ca))
+- **docz-components:** fix development example ([faf2134](https://github.com/pedronauck/docz/commit/faf2134))
+- **docz-components:** fix syntax highlighting in Playground ([c72c575](https://github.com/pedronauck/docz/commit/c72c575))
+- **docz-components:** typo boder -> border ([1246b19](https://github.com/pedronauck/docz/commit/1246b19))
+- **docz-core:** make onCreateWebpackConfig extendable ([d2aff82](https://github.com/pedronauck/docz/commit/d2aff82))
+- **docz-core:** run init on build if docz is not initialized ([23bc575](https://github.com/pedronauck/docz/commit/23bc575))
+- **docz-core:** use react from parent directory ([#1053](https://github.com/pedronauck/docz/issues/1053)) ([b55b786](https://github.com/pedronauck/docz/commit/b55b786))
+- **gatsby-theme-docz:** fix style differences between dev and build ([9cb5237](https://github.com/pedronauck/docz/commit/9cb5237))
+- **gatsby-theme-docz:** replace iframe in playground with div [#984](https://github.com/pedronauck/docz/issues/984) [#1035](https://github.com/pedronauck/docz/issues/1035) ([4214180](https://github.com/pedronauck/docz/commit/4214180))
+
+### Features
+
+- **docz-component:** initialize ([73fafd1](https://github.com/pedronauck/docz/commit/73fafd1))
+- **docz-components:** working playground ([344ffbb](https://github.com/pedronauck/docz/commit/344ffbb))
+- **docz-core:** add docz init command ([6aaa3e4](https://github.com/pedronauck/docz/commit/6aaa3e4))
+- **docz-gatsby-monorepo:** add example showing docz usage in a monorepo ([241c757](https://github.com/pedronauck/docz/commit/241c757))
+
 # [2.0.0-rc.28](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.28) (2019-09-03)
 
 
