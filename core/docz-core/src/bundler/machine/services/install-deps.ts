@@ -25,7 +25,9 @@ export const installDeps = async ({ firstInstall }: ServerMachineCtx) => {
     sh.cd(paths.docz)
 
     const checking = !firstInstall && ora('Checking dependencies...').start()
-    const result = spawn.sync('yarn', [], { stdio: 'inherit' })
+    const result = spawn.sync('yarn', ['--production=false'], {
+      stdio: 'inherit',
+    })
 
     if (checking) checking.succeed('Dependencies checked!')
     if (result.error) return reject(result.error)
