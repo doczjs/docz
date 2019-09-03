@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.29](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.29) (2019-09-03)
+
+### Bug Fixes
+
+- **docz-core:** use react from parent directory ([#1053](https://github.com/pedronauck/docz/issues/1053)) ([b55b786](https://github.com/pedronauck/docz/commit/b55b786))
+
 # [2.0.0-rc.28](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.28) (2019-09-03)
 
 ### Bug Fixes
