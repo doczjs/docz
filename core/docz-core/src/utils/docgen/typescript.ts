@@ -205,7 +205,7 @@ export const tsParser = (
   config: Config,
   tsconfig?: string
 ) => {
-  if (!tsconfig) return null
+  if (!tsconfig) return []
   const filesToLoad = checkFilesOnCache(files, config)
   const propsOnCache = getPropsOnCache()
   if (!filesToLoad.length) return propsOnCache
