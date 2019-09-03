@@ -20,10 +20,10 @@
     "react-art": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-native-web": "^0.11.5",
-    "scheduler": "^0.15.0"
+    "scheduler": "^0.15.0",
+    "docz": "next"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "docz": "next"
+    "@babel/core": "^7.5.5"
   }
 }

@@ -18,11 +18,11 @@
     "@emotion/styled": "^10.0.14",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "scheduler": "^0.15.0"
+    "scheduler": "^0.15.0",
+    "docz": "next"
   },
   "devDependencies": {
     "@types/react": "^16.8.23",
-    "@types/react-dom": "^16.8.4",
-    "docz": "next"
+    "@types/react-dom": "^16.8.4"
   }
 }

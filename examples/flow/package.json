@@ -19,11 +19,11 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "scheduler": "^0.15.0"
+    "scheduler": "^0.15.0",
+    "docz": "next"
   },
   "devDependencies": {
     "@babel/preset-flow": "^7.0.0",
-    "docz": "next",
     "flow-bin": "^0.102.0",
     "flow-typed": "^2.6.0"
   }
