@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.29](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.29) (2019-09-03)
+
+### Bug Fixes
+
+- **docz-core:** make onCreateWebpackConfig extendable ([d2aff82](https://github.com/pedronauck/docz/commit/d2aff82))
+- **docz-core:** run init on build if docz is not initialized ([23bc575](https://github.com/pedronauck/docz/commit/23bc575))
+- **docz-core:** use react from parent directory ([#1053](https://github.com/pedronauck/docz/issues/1053)) ([b55b786](https://github.com/pedronauck/docz/commit/b55b786))
+
+### Features
+
+- **docz-core:** add docz init command ([6aaa3e4](https://github.com/pedronauck/docz/commit/6aaa3e4))
+
 # [2.0.0-rc.28](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.28) (2019-09-03)
 
 
