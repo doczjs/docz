@@ -16,9 +16,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "scheduler": "^0.15.0",
-    "styled-components": "^4.3.2"
-  },
-  "devDependencies": {
+    "styled-components": "^4.3.2",
     "docz": "next"
-  }
+  },
+  "devDependencies": {}
 }
