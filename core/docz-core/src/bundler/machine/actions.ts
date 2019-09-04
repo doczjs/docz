@@ -17,8 +17,8 @@ const ensureFile = (filename: string, toDelete?: string) => {
   }
 }
 
-export const ensureFiles = () => {
-  const themeDirs = glob.sync('src/gatsby-theme-**', {
+export const ensureFiles = ({ args }: ServerMachineCtx) => {
+  const themeDirs = glob.sync(path.join(args.themesDir, '/gatsby-theme-**'), {
     cwd: paths.docz,
     onlyDirectories: true,
   })

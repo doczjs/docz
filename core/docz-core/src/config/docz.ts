@@ -12,6 +12,7 @@ import { Plugin } from '../lib/Plugin'
 const toOmit = ['_', '$0', 'version', 'help']
 export const doczRcBaseConfig = {
   themeConfig: {},
+  themesDir: 'src',
   docgenConfig: {},
   menu: [],
   plugins: [],
