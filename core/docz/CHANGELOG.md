@@ -3,21 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.0.0-rc.34](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.34) (2019-09-04)
 
 
-### Bug Fixes
-
-* **docz:** add @emotion/core dependency ([52126df](https://github.com/pedronauck/docz/commit/52126df))
-* **docz:** better default playground component ([80b1c66](https://github.com/pedronauck/docz/commit/80b1c66))
-* **docz:** bump docz-core version ([c56e0c6](https://github.com/pedronauck/docz/commit/c56e0c6))
-* **docz:** initialize components context with defaultComponents ([a808795](https://github.com/pedronauck/docz/commit/a808795))
-* **docz:** use playground from docz-components ([52874c4](https://github.com/pedronauck/docz/commit/52874c4))
-* **docz-components:** fix syntax highlighting in Playground ([c72c575](https://github.com/pedronauck/docz/commit/c72c575))
-* **docz-core:** use react from parent directory ([#1053](https://github.com/pedronauck/docz/issues/1053)) ([b55b786](https://github.com/pedronauck/docz/commit/b55b786))
 
 
-### Features
+
 
 * **docz-component:** initialize ([73fafd1](https://github.com/pedronauck/docz/commit/73fafd1))
 * **docz-core:** remove installation step in .docz 🎉 ([4d01ead](https://github.com/pedronauck/docz/commit/4d01ead))
