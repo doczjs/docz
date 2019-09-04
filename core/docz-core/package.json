@@ -60,6 +60,7 @@
     "@types/wait-on": "^3.2.0",
     "cpy": "^7.3.0",
     "docz-rollup": "^2.0.0-rc.1",
+    "eslint": "^6.3.0",
     "eslint-config-docz-ts": "^2.0.0-rc.1"
   }
 }
