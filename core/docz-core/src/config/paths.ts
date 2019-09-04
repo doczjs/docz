@@ -28,7 +28,8 @@ export const getRootDir = (config: any) => {
 }
 
 export const getThemesDir = (config: { themesDir: string }) => {
-  return path.join(getRootDir(config), config.themesDir)
+  // resolve normalizes the new path and removes trailing slashes
+  return path.resolve(path.join(getRootDir(config), config.themesDir))
 }
 
 export interface Paths {

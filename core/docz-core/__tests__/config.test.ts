@@ -30,4 +30,12 @@ describe('getThemeDir', () => {
 
     expect(getThemesDir(config)).toBe(path.join(config.root, '/theme'))
   })
+
+  test('custom themesDir entries with trailing slashes are handled correctly', () => {
+    const { argv } = setArgs(yargs)
+    //@ts-ignore
+    const config = getBaseConfig(argv, { themesDir: 'theme/' })
+
+    expect(getThemesDir(config)).toBe(path.join(config.root, '/theme'))
+  })
 })
