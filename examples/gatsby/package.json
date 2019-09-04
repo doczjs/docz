@@ -2,7 +2,7 @@
   "name": "docz-example-gatsby",
   "private": true,
   "description": "Example of how to integrate docz with gatsby as a theme",
-  "version": "2.0.0-rc.31",
+  "version": "2.0.0-rc.32",
   "keywords": [
     "gatsby",
     "docz"
