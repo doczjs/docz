@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.35](https://github.com/pedronauck/docz/compare/v2.0.0-rc.34...v2.0.0-rc.35) (2019-09-04)
+
+
+### Bug Fixes
+
+* **gatsby-theme-docz:** pass in params to plugin instead of actions ([4200966](https://github.com/pedronauck/docz/commit/4200966))
+
+
+
+
+
 # [2.0.0-rc.34](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.34) (2019-09-04)
 
 
