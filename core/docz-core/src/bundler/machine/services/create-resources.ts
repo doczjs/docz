@@ -1,12 +1,11 @@
 import * as path from 'path'
 import * as fs from 'fs-extra'
 import { finds } from 'load-cfg'
-import { omit, merge } from 'lodash/fp'
+import { omit } from 'lodash/fp'
 import findUp from 'find-up'
 import sh from 'shelljs'
 
 import * as paths from '../../../config/paths'
-import { createDeps } from '../../../utils/create-deps'
 import { ServerMachineCtx } from '../context'
 import { outputFileFromTemplate } from '../../../utils/template'
 
@@ -16,12 +15,13 @@ export const copyDoczRc = async () => {
 }
 
 const copyAndModifyPkgJson = async (ctx: ServerMachineCtx) => {
-  const filepath = path.join(paths.root, 'package.json')
   const movePath = path.join(paths.docz, 'package.json')
-  const pkg = await fs.readJSON(filepath, { throws: false })
-  const deps = await createDeps(ctx)
-  const newPkg = merge(pkg, {
-    ...deps,
+  // const pkg = await fs.readJSON(filepath, { throws: false })
+  const newPkg = {
+    name: 'docz-app',
+    dependencies: {
+      gatsby: 'just-to-fool-cli-never-installed',
+    },
     scripts: {
       dev: 'gatsby develop',
       build: 'gatsby build',
@@ -31,8 +31,7 @@ const copyAndModifyPkgJson = async (ctx: ServerMachineCtx) => {
       private: true,
       workspaces: ['../../../core/**', '../../../other-packages/**'],
     }),
-  })
-
+  }
   await fs.outputJSON(movePath, newPkg, { spaces: 2 })
 }
 

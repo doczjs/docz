@@ -49,8 +49,7 @@ const machine = Machine<ServerMachineCtx>({
           },
         },
         ensuringDirs: asyncState('ensureDirs', 'creatingResources'),
-        creatingResources: asyncState('createResources', 'installingDeps'),
-        installingDeps: asyncState('installDeps', 'executingCommand'),
+        creatingResources: asyncState('createResources', 'executingCommand'),
         executingCommand: asyncState('execDevCommand'),
         exit: {
           type: 'final',
