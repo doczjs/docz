@@ -8,7 +8,10 @@ import { createWatcher } from '../../../states/config'
 import { ServerMachineCtx as Context } from '../context'
 
 const watchGatsbyThemeFiles = (args: Config) => {
-  const watcher = createWatcher('src/gatsby-theme-**/**/*', args)
+  const watcher = createWatcher(
+    path.join(args.themesDir, 'gatsby-theme-**/**/*'),
+    args
+  )
   const copy = (filepath: string) => {
     const src = path.resolve(paths.root, filepath)
     const dest = path.resolve(paths.docz, filepath)
