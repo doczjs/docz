@@ -7,18 +7,20 @@ import * as paths from '../../../config/paths'
 import { createWatcher } from '../../../states/config'
 import { ServerMachineCtx as Context } from '../context'
 
+/**
+ * Maps a given relative 'filepath' from 'themesDir/...' to 'src/...'
+ */
 const replaceThemesDir = (filepath: string, args: Config) => {
-  // Make the path to a given  absolute`filepath` relative:
-  const relFilePath = path.relative(filepath, paths.getThemesDir(args))
-  // => '/gatsby-theme-docz/**/index.tsx'
+  // Make the path to a given relative`filepath` relative to themesDir:
+  const rawFilePath = path.relative(
+    paths.getThemesDir(args),
+    path.resolve(paths.root, filepath)
+  )
+  // => e.g. '/gatsby-theme-docz/**/index.tsx'
 
-  // Prefix with `src`
-  const newRelFilePath = path.join('src', relFilePath)
+  // Prefix with 'src':
+  return path.join('src', rawFilePath)
   // => 'src/gatsby-theme-docz/**/index.tsx'
-
-  // Finally make filepath absolute again
-  return path.resolve(paths.root, newRelFilePath)
-  // => '/Users/.../theme/a/docz-project/src/gatsby-theme-docz/**/index.tsx'
 }
 
 const watchGatsbyThemeFiles = (args: Config) => {
