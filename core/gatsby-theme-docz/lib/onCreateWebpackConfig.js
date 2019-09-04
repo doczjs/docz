@@ -28,5 +28,5 @@ module.exports = async (params, opts) => {
     })
   }
 
-  run('onCreateWebpackConfig', config, stage === 'develop', args)
+  run('onCreateWebpackConfig', actions, stage === 'develop', args, config)
 }
