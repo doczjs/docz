@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.33](https://github.com/pedronauck/docz/compare/v2.0.0-rc.32...v2.0.0-rc.33) (2019-09-04)
+
+
+### Features
+
+* **docz-core:** remove installation step in .docz 🎉 ([6790179](https://github.com/pedronauck/docz/commit/6790179))
+
+
+
+
+
 # [2.0.0-rc.32](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.32) (2019-09-04)
 
 ### Bug Fixes
