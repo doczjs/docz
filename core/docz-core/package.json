@@ -62,6 +62,7 @@
     "cross-env": "^5.2.1",
     "docz-rollup": "^2.0.0-rc.1",
     "eslint": "^6.3.0",
-    "eslint-config-docz-ts": "^2.0.0-rc.1"
+    "eslint-config-docz-ts": "^2.0.0-rc.1",
+    "jest": "^24.9.0"
   }
 }
