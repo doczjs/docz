@@ -6,11 +6,7 @@ import findUp from 'find-up'
 
 import { parseConfig } from '../config/docz'
 import { getIsFirstInstall, getIsDoczRepo } from '../bundler/machine/actions'
-import {
-  ensureDirs,
-  createResources,
-  installDeps,
-} from '../bundler/machine/services'
+import { ensureDirs, createResources } from '../bundler/machine/services'
 
 export const init = async (args: Arguments<any>) => {
   const doczrcFilepath = await findUp(finds('docz'))
@@ -25,7 +21,6 @@ export const init = async (args: Arguments<any>) => {
     doczrcFilepath,
   }
   await createResources(serverMachineContext)
-  await installDeps(serverMachineContext)
   console.log()
   console.log(`✅    Docz is ready to go `)
   console.log()
