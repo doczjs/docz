@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.32](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.32) (2019-09-04)
+
+### Bug Fixes
+
+- **docz-core:** make onCreateWebpackConfig extendable ([8968a6c](https://github.com/pedronauck/docz/commit/8968a6c))
+- **docz-core:** run init on build if docz is not initialized ([26aa7f6](https://github.com/pedronauck/docz/commit/26aa7f6))
+- **docz-core:** set yarn production to false to download all deps ([2b4cc6b](https://github.com/pedronauck/docz/commit/2b4cc6b))
+- **docz-core:** use react from parent directory ([#1053](https://github.com/pedronauck/docz/issues/1053)) ([b55b786](https://github.com/pedronauck/docz/commit/b55b786))
+
+### Features
+
+- **docz-core:** add docz init command ([43cdeca](https://github.com/pedronauck/docz/commit/43cdeca))
+
 # [2.0.0-rc.31](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.31) (2019-09-03)
 
 ### Bug Fixes
