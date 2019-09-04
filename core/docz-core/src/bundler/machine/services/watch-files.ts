@@ -7,6 +7,20 @@ import * as paths from '../../../config/paths'
 import { createWatcher } from '../../../states/config'
 import { ServerMachineCtx as Context } from '../context'
 
+const replaceThemeDir = (filepath: string, args: Config) => {
+  // Make the path to a given  absolute`filepath` relative:
+  const relFilePath = path.relative(filepath, paths.getThemeDir(args))
+  // => '/gatsby-theme-docz/**/index.tsx'
+
+  // Prefix with `src`
+  const newRelFilePath = path.join('src', relFilePath)
+  // => 'src/gatsby-theme-docz/**/index.tsx'
+
+  // Finally make filepath absolute again
+  return path.resolve(paths.root, newRelFilePath)
+  // => '/Users/.../theme/a/docz-project/src/gatsby-theme-docz/**/index.tsx'
+}
+
 const watchGatsbyThemeFiles = (args: Config) => {
   const watcher = createWatcher(
     path.join(args.themesDir, 'gatsby-theme-**/**/*'),
@@ -14,7 +28,7 @@ const watchGatsbyThemeFiles = (args: Config) => {
   )
   const copy = (filepath: string) => {
     const src = path.resolve(paths.root, filepath)
-    const dest = path.resolve(paths.docz, filepath)
+    const dest = path.resolve(paths.docz, replaceThemeDir(filepath, args))
     fs.copySync(src, dest)
   }
   const remove = (filepath: string) => {
