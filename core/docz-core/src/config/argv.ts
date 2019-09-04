@@ -65,13 +65,14 @@ export interface Argv {
 }
 
 export interface Config extends Argv {
+  docgenConfig: DocgenConfig
+  hastPlugins: any[]
+  mdPlugins: any[]
+  menu: Menu[]
   paths: paths.Paths
   plugins: Plugin[]
-  mdPlugins: any[]
-  hastPlugins: any[]
-  menu: Menu[]
   themeConfig: ThemeConfig
-  docgenConfig: DocgenConfig
+  themesDir: string
   filterComponents: (files: string[]) => string[]
 }
 
