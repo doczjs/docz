@@ -27,6 +27,10 @@ export const getRootDir = (config: any) => {
   return isDoczProject ? path.resolve(root, '../') : root
 }
 
+export const getThemeDir = (config: { themesDir: string }) => {
+  return path.join(getRootDir(config), config.themesDir)
+}
+
 export interface Paths {
   root: string
   templates: string
@@ -48,6 +52,7 @@ export interface Paths {
 
   checkIsDoczProject: (config: any) => boolean
   getRootDir: (config: any) => string
+  getThemeDir: (config: any) => string
   getDist: (dest: string) => string
   distPublic: (dest: string) => string
 
