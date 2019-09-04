@@ -77,7 +77,7 @@ export const Playground = ({
         code={code}
         scope={scope}
         transformCode={transformCode}
-        theme={merge(theme, {
+        theme={merge({}, theme, {
           styles: [],
           plain: {
             fontFamily: 'Inconsolata',
