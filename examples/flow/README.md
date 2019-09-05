@@ -27,3 +27,15 @@ yarn # npm i
 ```sh
 yarn dev # npm run dev
 ```
+
+## Build
+
+```sh
+yarn build # npm run build
+```
+
+## Serve built app
+
+```sh
+yarn serve # npm run serve
+```
