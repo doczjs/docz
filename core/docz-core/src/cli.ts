@@ -27,6 +27,6 @@ export const cli = () => {
     .demandCommand()
     .help()
     .wrap(72)
-    .epilog('for more information visit https://github.com/pedronauck/docz')
+    .epilog('for more information visit https://github.com/doczjs/docz')
     .showHelpOnFail(false, 'whoops, something went wrong! run with --help').argv
 }

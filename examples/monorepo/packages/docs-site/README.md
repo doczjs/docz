@@ -14,7 +14,7 @@ yarn create docz-app docz-app-gatsby --example gatsby
 ## Download
 
 ```sh
-curl https://codeload.github.com/pedronauck/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/gatsby
+curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/gatsby
 mv gatsby docz-gatsby-example
 cd docz-gatsby-example
 ```
