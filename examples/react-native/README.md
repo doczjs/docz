@@ -4,7 +4,7 @@ Use your React Native components inside docz
 
 > We're using [react-native-web](https://github.com/necolas/react-native-web) to make this integration possible. So, maybe you can have some caveats.
 
-## Instalation
+## Installation
 
 These packages are required to use React Native with docz:
 
