@@ -1,0 +1,27 @@
+{
+  "name": "docz-example-material-ui",
+  "private": true,
+  "version": "2.0.0-rc.34",
+  "license": "MIT",
+  "files": [
+    "src/",
+    "doczrc.js",
+    "package.json"
+  ],
+  "scripts": {
+    "dev": "docz dev",
+    "build": "docz build",
+    "serve": "docz serve",
+    "postinstall": "patch-package"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.4.0",
+    "docz": "next",
+    "postinstall-postinstall": "^2.0.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "patch-package": "^6.1.2"
+  }
+}
