@@ -1,6 +1,6 @@
 // vendored from react-docgen-external-proptypes-handler
 // which is not well maintained
-// https://github.com/pedronauck/docz/issues/727
+// https://github.com/doczjs/docz/issues/727
 
 const path = require('path')
 const fs = require('fs')
