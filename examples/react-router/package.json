@@ -1,0 +1,24 @@
+{
+  "name": "docz-example-react-router",
+  "private": true,
+  "version": "2.0.0-rc.34",
+  "license": "MIT",
+  "files": [
+    "src/",
+    "doczrc.js",
+    "package.json"
+  ],
+  "scripts": {
+    "dev": "docz dev",
+    "build": "docz build",
+    "serve": "docz serve"
+  },
+  "dependencies": {
+    "docz": "next",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1",
+    "scheduler": "^0.15.0"
+  }
+}
