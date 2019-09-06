@@ -59,8 +59,13 @@ const installNodeModules = async (packagePath, cacheKey = '') => {
   const hasCache = await fs.pathExists(cachePath)
   if (hasCache) {
     console.log(
-      `Using node_modules cache in ${cachePath} for node_modules of ${cacheKey}`
+      `Using node_modules cache in ${cachePath} for node_modules of ${cacheKey}`,
+      {
+        cachePath,
+        freshModulesPath,
+      }
     )
+    await fs.remove(freshModulesPath)
     await fs.copy(cachePath, freshModulesPath)
   } else {
     console.log(
@@ -85,10 +90,6 @@ const ci = async () => {
     console.log(`Source : ${example.path}`)
     console.log(`Destination : ${example.tmp}`)
     console.log(`doczGatsbyTheme `, paths.doczGatsbyTheme)
-    console.log(
-      `tmp ->  doczGatsbyTheme`,
-      path.relative(example.tmp, paths.doczGatsbyTheme)
-    )
     console.log()
 
     await fs.copy(example.path, example.tmp)
