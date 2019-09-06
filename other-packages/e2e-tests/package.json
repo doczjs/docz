@@ -1,0 +1,25 @@
+{
+  "name": "e2e-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "testcafe:ci": "testcafe \"chrome:headless\" __tests__/*",
+    "testcafe:dev": "testcafe chrome __tests__/* --live"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "docz": "^1.2.0",
+    "execa": "^2.0.4",
+    "tmp": "^0.1.0"
+  },
+  "devDependencies": {
+    "@testing-library/testcafe": "^2.1.1",
+    "kill-port": "^1.5.1",
+    "testcafe": "^1.4.1",
+    "wait-on": "^3.3.0"
+  }
+}
