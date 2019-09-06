@@ -14,8 +14,6 @@
     "serve": "docz serve"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.14",
-    "@emotion/styled": "^10.0.14",
     "docz": "next",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",

@@ -1,5 +1,4 @@
-import React, { Fragment } from 'react'
-import styled from '@emotion/styled'
+import React from 'react'
 import t from 'prop-types'
 
 const kinds = {
@@ -9,13 +8,20 @@ const kinds = {
   warning: '#FFA502',
 }
 
-const AlertStyled = styled('div')`
-  padding: 15px 20px;
-  background: white;
-  border-radius: 3px;
-  color: white;
-  background: ${({ kind = 'info' }) => kinds[kind]};
-`
+const AlertStyled = ({ children, kind, ...rest }) => (
+  <div
+    style={{
+      padding: 20,
+      background: 'white',
+      borderRadius: 3,
+      color: 'white',
+      background: kinds[kind],
+    }}
+    {...rest}
+  >
+    {children}
+  </div>
+)
 
 export const Alert = props => <AlertStyled {...props} />
 
