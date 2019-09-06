@@ -35,4 +35,4 @@ jobs:
       - run: yarn ci
 
       - store_test_results:
-        path: /tmp/test-result
+          path: /tmp/test-result
