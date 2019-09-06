@@ -122,6 +122,6 @@ const ci = async () => {
 ;(async () => {
   await ci()
   console.log('Exiting process')
-  process.exit(0)
+  process.exit()
   console.log('Exited process')
 })()
