@@ -116,6 +116,7 @@ const ci = async () => {
     console.log('Ready. Starting e2e tests')
     await runCommand('yarn run testcafe:ci --scope e2e-tests', e2eTestsPath)
     console.log(`Tests for example ${exampleName} complete `)
+    await kill(3000, 'tcp')
   }
 }
 
