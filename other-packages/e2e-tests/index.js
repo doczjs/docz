@@ -111,7 +111,8 @@ const ci = async () => {
 
     // await runCommand(`yarn install`, example.tmp)
     await kill(3000, 'tcp')
-    runCommand(`yarn dev --port 3000`, example.tmp)
+    await runCommand(`yarn build`, example.tmp)
+    runCommand(`yarn serve --port 3000`, example.tmp)
     await waitOn({ resources: ['http://localhost:3000'] })
     console.log('Ready. Starting e2e tests')
     await runCommand('yarn run testcafe:ci --scope e2e-tests', e2eTestsPath)
