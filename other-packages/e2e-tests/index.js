@@ -90,7 +90,6 @@ const ci = async () => {
     console.log(`Copying ${exampleName} example to a temporary directory.`)
     console.log(`Source : ${example.path}`)
     console.log(`Destination : ${example.tmp}`)
-    console.log(`doczGatsbyTheme `, paths.doczGatsbyTheme)
     console.log()
 
     await fs.copy(example.path, example.tmp)
@@ -110,9 +109,6 @@ const ci = async () => {
     console.log(`Installing modules in tmp directory`)
     await installNodeModules(example.tmp, exampleName)
 
-    // await runCommand(`yarn install`, example.tmp)
-
-    // await runCommand(`yarn build`, example.tmp)
     runCommand(`yarn dev --port 3000`, example.tmp)
     await waitOn({ resources: ['http://localhost:3000'] })
     console.log('Ready. Starting e2e tests')
@@ -123,8 +119,6 @@ const ci = async () => {
     console.log('done')
 
     return
-    console.log(`Tests for example ${exampleName} complete `)
-    await runCommand(`npx kill-port 3000`)
   }
 }
 
