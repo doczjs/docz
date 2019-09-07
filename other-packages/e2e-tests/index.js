@@ -83,6 +83,7 @@ const ci = async () => {
     // await runCommand(`mkdir -p ${tmpPath}/examples/`)
     const example = examples[exampleName]
     await fs.ensureDir(`${tmpPath}/examples/${exampleName}`)
+
     // copy example to a new temp directory
     // await runCommand(`cp -r ${example.path} ${path.join(example.tmp, '..')}`)
     console.log()
@@ -110,12 +111,18 @@ const ci = async () => {
     await installNodeModules(example.tmp, exampleName)
 
     // await runCommand(`yarn install`, example.tmp)
-    await runCommand(`npx kill-port 3000`)
+
     // await runCommand(`yarn build`, example.tmp)
     runCommand(`yarn dev --port 3000`, example.tmp)
     await waitOn({ resources: ['http://localhost:3000'] })
     console.log('Ready. Starting e2e tests')
+
     await runCommand('yarn run testcafe:ci --scope e2e-tests', e2eTestsPath)
+    await runCommand(`npx kill-port 3000`)
+    await fs.remove(tmpPath)
+    console.log('done')
+
+    return
     console.log(`Tests for example ${exampleName} complete `)
     await runCommand(`npx kill-port 3000`)
   }
