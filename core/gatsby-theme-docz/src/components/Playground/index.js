@@ -79,11 +79,9 @@ export const Playground = ({
         })}
       >
         <div sx={styles.previewWrapper}>
-          {showLivePreview && (
-            <LivePreviewWrapper showingCode={showingCode}>
-              <LivePreview sx={styles.preview} />
-            </LivePreviewWrapper>
-          )}
+          <LivePreviewWrapper showingCode={showingCode}>
+            {showLivePreview && <LivePreview sx={styles.preview} />}
+          </LivePreviewWrapper>
           <div sx={styles.buttons}>
             <button sx={styles.button} onClick={() => copy(code)}>
               <Icons.Clipboard size={12} />
