@@ -99,7 +99,7 @@ const ci = async () => {
     const packageJson = await fs.readJson(
       path.join(`${example.tmp}`, 'package.json')
     )
-    set(packageJson, `dependencies.gatsby-theme-docz`, paths.doczGatsbyTheme)
+    // set(packageJson, `dependencies.gatsby-theme-docz`, paths.doczGatsbyTheme)
     await fs.writeJson(
       path.join(`${example.tmp}`, 'package.json'),
       packageJson,

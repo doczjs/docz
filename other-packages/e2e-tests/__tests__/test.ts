@@ -17,6 +17,7 @@ test('Renders the right layout and nav', async t => {
   await t.expect(logo.exists).eql(true)
   const navGroup = await getByTestId('nav-group')
   await t.expect(navGroup.exists).eql(true)
+
   await t.navigateTo('/src-components-alert')
 
   const playground = await getByTestId('playground')
