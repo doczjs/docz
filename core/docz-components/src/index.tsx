@@ -1,1 +1,1 @@
-export { Playground } from './components/Playground';
+export { Playground, PlaygroundProps } from './components/Playground';

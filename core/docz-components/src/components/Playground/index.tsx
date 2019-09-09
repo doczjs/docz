@@ -17,7 +17,7 @@ import { LivePreviewWrapper } from './LivePreviewWrapper';
 import * as styles from './styles';
 import * as Icons from '../Icons';
 
-type Props = {
+export type PlaygroundProps = {
   code: string;
   scope:
     | {
@@ -42,7 +42,7 @@ export const Playground = ({
   showLiveError,
   showLivePreview = true,
   language,
-}: Props) => {
+}: PlaygroundProps) => {
   const theme = usePrismTheme();
   const [showingCode, setShowingCode] = useState(() => showPlaygroundEditor);
   const [width, setWidth] = useState(() => '100%');
