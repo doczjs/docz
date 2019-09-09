@@ -30,13 +30,13 @@ const runCommand = (
 const tmpPath = tmp.dirSync({ unsafeCleanup: true, mode: 0o100777 }).name
 
 const examples = {
-  gatsby: {
-    path: path.join(rootPath, 'examples/gatsby'),
-    tmp: path.join(tmpPath, 'examples/gatsby'),
-  },
   basic: {
     path: path.join(rootPath, 'examples/basic'),
     tmp: path.join(tmpPath, 'examples/basic'),
+  },
+  gatsby: {
+    path: path.join(rootPath, 'examples/gatsby'),
+    tmp: path.join(tmpPath, 'examples/gatsby'),
   },
 }
 
