@@ -34,10 +34,10 @@ const examples = {
     path: path.join(rootPath, 'examples/gatsby'),
     tmp: path.join(tmpPath, 'examples/gatsby'),
   },
-  // basic: {
-  //   path: path.join(rootPath, 'examples/basic'),
-  //   tmp: path.join(tmpPath, 'examples/basic'),
-  // },
+  basic: {
+    path: path.join(rootPath, 'examples/basic'),
+    tmp: path.join(tmpPath, 'examples/basic'),
+  },
 }
 
 const setupTestProjects = async () => {}
