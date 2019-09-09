@@ -7,7 +7,7 @@ import { NavLink } from '../NavLink'
 export const NavGroup = ({ item }) => {
   const { menu } = item
   return (
-    <div sx={styles.wrapper}>
+    <div sx={styles.wrapper} data-testid="nav-group">
       <div sx={styles.title}>{item.name}</div>
       {menu &&
         menu.map(menu => {

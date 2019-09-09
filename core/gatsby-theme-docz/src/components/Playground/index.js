@@ -64,7 +64,7 @@ export const Playground = ({
   }
 
   return (
-    <Resizable {...resizableProps}>
+    <Resizable {...resizableProps} data-testid="playground">
       <LiveProvider
         code={code}
         scope={scope}
@@ -80,7 +80,9 @@ export const Playground = ({
       >
         <div sx={styles.previewWrapper}>
           <LivePreviewWrapper showingCode={showingCode}>
-            {showLivePreview && <LivePreview sx={styles.preview} />}
+            {showLivePreview && (
+              <LivePreview sx={styles.preview} data-testid="live-preview" />
+            )}
           </LivePreviewWrapper>
           <div sx={styles.buttons}>
             <button sx={styles.button} onClick={() => copy(code)}>
@@ -91,10 +93,12 @@ export const Playground = ({
             </button>
           </div>
         </div>
-        {showLiveError && <LiveError sx={styles.error} />}
+        {showLiveError && (
+          <LiveError sx={styles.error} data-testid="live-error" />
+        )}
         {showingCode && (
           <div sx={styles.editor(theme)}>
-            <LiveEditor />
+            <LiveEditor data-testid="live-editor" />
           </div>
         )}
       </LiveProvider>

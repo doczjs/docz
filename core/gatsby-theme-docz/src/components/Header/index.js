@@ -16,7 +16,7 @@ export const Header = () => {
   }
 
   return (
-    <div sx={styles.wrapper}>
+    <div sx={styles.wrapper} data-testid={'header'}>
       <div sx={styles.innerContainer}>
         <Logo />
         <Flex>

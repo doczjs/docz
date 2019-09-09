@@ -17,7 +17,11 @@ export const Code = ({ children, className: outerClassName }) => {
       theme={theme}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <Styled.pre className={`${outerClassName} ${className}`} style={style}>
+        <Styled.pre
+          className={`${outerClassName} ${className}`}
+          style={style}
+          data-testid="code"
+        >
           {tokens.map((line, i) => (
             <div {...getLineProps({ line, key: i })}>
               {line.map((token, key) => (
