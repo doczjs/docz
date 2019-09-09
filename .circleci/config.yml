@@ -32,11 +32,8 @@ jobs:
           key: v5-dependencies-{{ checksum "package.json" }}
 
       - run: yarn bs
-
+      # build, lint and test
       - run: yarn packages
-
-      # run tests!
-      - run: yarn ci
 
       - store_test_results:
           path: /tmp/test-result
