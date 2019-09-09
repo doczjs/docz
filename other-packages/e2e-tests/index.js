@@ -94,12 +94,16 @@ const ci = async () => {
     await installNodeModules(example.tmp, exampleName)
 
     // await runCommand(`yarn build`, example.tmp)
-    runCommand(`yarn dev --port 3000`, example.tmp)
+    const command = runCommand(`yarn dev --port 3000`, example.tmp)
+
     await waitOn({ resources: ['http://localhost:3000'] })
     console.log('Ready. Starting e2e tests')
 
     await runCommand('yarn run testcafe:ci', e2eTestsPath)
-    await kill(3000, 'tcp')
+    command.kill('SIGTERM', {
+      forceKillAfterTimeout: 2000,
+    })
+    // await kill(3000, 'tcp')
   }
   await fs.remove(tmpPath)
   console.log('done')
