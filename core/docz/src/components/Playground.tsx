@@ -1,6 +1,9 @@
 import * as React from 'react'
 import { ComponentType, SFC } from 'react'
-import { Playground as DoczPlayground } from 'docz-components'
+import {
+  Playground as DoczPlayground,
+  PlaygroundProps as InternalPlaygroundProps,
+} from 'docz-components'
 import { useConfig } from '../hooks/useConfig'
 
 export interface PlaygroundProps {
@@ -11,6 +14,8 @@ export interface PlaygroundProps {
   __scope: Record<string, any>
   __position: number
   __code: string
+  language?: InternalPlaygroundProps['language']
+  showLivePreview?: boolean
 }
 
 export const Playground: SFC<PlaygroundProps> = ({
@@ -20,9 +25,15 @@ export const Playground: SFC<PlaygroundProps> = ({
   __scope,
   __position,
   __code,
+  language,
+  showLivePreview: showLivePreviewFromUser = true,
 }) => {
   const {
-    themeConfig: { showPlaygroundEditor, showLiveError },
+    themeConfig: {
+      showPlaygroundEditor,
+      showLiveError,
+      showLivePreview = showLivePreviewFromUser,
+    },
   } = useConfig()
 
   return (
@@ -35,6 +46,8 @@ export const Playground: SFC<PlaygroundProps> = ({
       code={__code}
       showPlaygroundEditor={showPlaygroundEditor}
       showLiveError={showLiveError}
+      showLivePreview={showLivePreview}
+      language={language}
     />
   )
 }
