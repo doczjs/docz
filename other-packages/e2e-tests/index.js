@@ -97,7 +97,7 @@ const ci = async () => {
     await waitOn({ resources: ['http://localhost:3000'] })
     console.log('Ready. Starting e2e tests')
 
-    await runCommand('yarn run testcafe:ci --scope e2e-tests', e2eTestsPath)
+    await runCommand('yarn run testcafe:ci', e2eTestsPath)
     await runCommand(`npx kill-port 3000`)
   }
   await fs.remove(tmpPath)
