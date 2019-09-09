@@ -12,7 +12,7 @@
     "dev": "docz dev",
     "build": "docz build",
     "serve": "docz serve",
-    "postinstall": "patch-package"
+    "//postinstall": "patch-package"
   },
   "dependencies": {
     "@material-ui/core": "^4.4.0",
