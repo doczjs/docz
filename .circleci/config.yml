@@ -24,12 +24,16 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v4-dependencies-
 
-      - run: yarn install && yarn bs && yarn packages
+      - run: yarn install
 
       - save_cache:
           paths:
             - node_modules
-          key: v3-dependencies-{{ checksum "package.json" }}
+          key: v4-dependencies-{{ checksum "package.json" }}
+
+      - run: yarn bs
+
+      - run: yarn packages
 
       # run tests!
       - run: yarn ci
