@@ -1,7 +1,13 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
 import { useState } from 'react';
-import { LiveProvider, LiveError, LivePreview, LiveEditor } from 'react-live';
+import {
+  LiveProvider,
+  LiveError,
+  LivePreview,
+  LiveEditor,
+  LiveProviderProps,
+} from 'react-live';
 import { merge } from 'lodash';
 import { Resizable } from 're-resizable';
 import copy from 'copy-text-to-clipboard';
@@ -11,7 +17,7 @@ import { LivePreviewWrapper } from './LivePreviewWrapper';
 import * as styles from './styles';
 import * as Icons from '../Icons';
 
-type Props = {
+export type PlaygroundProps = {
   code: string;
   scope:
     | {
@@ -20,6 +26,8 @@ type Props = {
     | undefined;
   showPlaygroundEditor?: boolean;
   showLiveError?: boolean;
+  showLivePreview?: boolean;
+  language?: LiveProviderProps['language'];
   className?: string;
   style?: any;
   wrapper?: any;
@@ -32,7 +40,9 @@ export const Playground = ({
   scope,
   showPlaygroundEditor = true,
   showLiveError,
-}: Props) => {
+  showLivePreview = true,
+  language,
+}: PlaygroundProps) => {
   const theme = usePrismTheme();
   const [showingCode, setShowingCode] = useState(() => showPlaygroundEditor);
   const [width, setWidth] = useState(() => '100%');
@@ -77,6 +87,7 @@ export const Playground = ({
         code={code}
         scope={scope}
         transformCode={transformCode}
+        language={language}
         theme={merge({}, theme, {
           styles: [],
           plain: {
@@ -88,7 +99,7 @@ export const Playground = ({
       >
         <div sx={styles.previewWrapper}>
           <LivePreviewWrapper showingCode={showingCode}>
-            <LivePreview sx={styles.preview} />
+            {showLivePreview && <LivePreview sx={styles.preview} />}
           </LivePreviewWrapper>
           <div sx={styles.buttons}>
             <button sx={styles.button} onClick={() => copy(code)}>

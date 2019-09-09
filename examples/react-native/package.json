@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "docz-example-react-native",
-  "version": "2.0.0-rc.34",
+  "version": "2.0.0-rc.36",
   "license": "MIT",
   "files": [
     "src/",

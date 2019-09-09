@@ -18,6 +18,13 @@ cd docz-material-ui-example
 
 ## Setup
 
+In package.json :
+
+```diff
+- "//postinstall": "patch-package"
++ "postinstall": "patch-package"
+```
+
 ```sh
 yarn # npm i
 ```

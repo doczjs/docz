@@ -12,9 +12,18 @@ import { LivePreviewWrapper } from './LivePreviewWrapper'
 import * as styles from './styles'
 import * as Icons from '../Icons'
 
-export const Playground = ({ code, scope }) => {
+export const Playground = ({
+  code,
+  scope,
+  showLivePreview: userShowLivePreview = true,
+  language,
+}) => {
   const {
-    themeConfig: { showPlaygroundEditor, showLiveError },
+    themeConfig: {
+      showPlaygroundEditor,
+      showLiveError,
+      showLivePreview = userShowLivePreview,
+    },
   } = useConfig()
 
   const theme = usePrismTheme()
@@ -60,6 +69,7 @@ export const Playground = ({ code, scope }) => {
         code={code}
         scope={scope}
         transformCode={transformCode}
+        language={language}
         theme={merge(theme, {
           plain: {
             fontFamily: 'Inconsolata',
@@ -70,7 +80,7 @@ export const Playground = ({ code, scope }) => {
       >
         <div sx={styles.previewWrapper}>
           <LivePreviewWrapper showingCode={showingCode}>
-            <LivePreview sx={styles.preview} />
+            {showLivePreview && <LivePreview sx={styles.preview} />}
           </LivePreviewWrapper>
           <div sx={styles.buttons}>
             <button sx={styles.button} onClick={() => copy(code)}>

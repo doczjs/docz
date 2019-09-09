@@ -33,3 +33,5 @@ dist
 .cache
 .docz
 .idea
+
+.e2e-tests-cache
