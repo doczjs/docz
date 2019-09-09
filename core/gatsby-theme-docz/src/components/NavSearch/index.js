@@ -6,7 +6,7 @@ import { Search } from '../Icons'
 
 export const NavSearch = props => {
   return (
-    <div sx={styles.wrapper}>
+    <div sx={styles.wrapper} data-testid="nav-search">
       <Search size={20} sx={styles.icon} />
       <input {...props} sx={styles.input} />
     </div>

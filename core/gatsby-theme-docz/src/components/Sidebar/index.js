@@ -22,7 +22,7 @@ export const Sidebar = React.forwardRef((props, ref) => {
       <Box onClick={props.onClick} sx={styles.overlay(props)}>
         {props.open && <Global styles={styles.global} />}
       </Box>
-      <Box ref={ref} sx={styles.wrapper(props)}>
+      <Box ref={ref} sx={styles.wrapper(props)} data-testid="sidebar">
         <NavSearch
           placeholder="Type to search..."
           value={query}

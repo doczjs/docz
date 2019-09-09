@@ -24,7 +24,7 @@ export const Layout = ({ children }) => {
     <BaseLayout sx={{ '& > div': { flex: '1 1 auto' } }} data-testid="layout">
       <Global styles={global} />
       <Main sx={styles.main}>
-        <Header nav={nav} onOpen={setOpen} data-testid="header" />
+        <Header nav={nav} onOpen={setOpen} />
         <div sx={styles.wrapper}>
           <Sidebar
             ref={nav}
@@ -32,7 +32,6 @@ export const Layout = ({ children }) => {
             onFocus={() => setOpen(true)}
             onBlur={() => setOpen(false)}
             onClick={() => setOpen(false)}
-            data-testid="header"
           />
           <Container sx={styles.content} data-testid="main-container">
             <Box sx={styles.menuIcon}>
