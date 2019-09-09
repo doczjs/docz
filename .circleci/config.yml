@@ -20,9 +20,9 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v5-dependencies-{{ checksum "package.json" }}
+            - v6-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
-            - v5-dependencies-
+            - v6-dependencies-
 
       - run: yarn install
 
