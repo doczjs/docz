@@ -30,13 +30,13 @@ const runCommand = (
 const tmpPath = tmp.dirSync({ unsafeCleanup: true, mode: 0o100777 }).name
 
 const examples = {
-  basic: {
-    path: path.join(rootPath, 'examples/basic'),
-    tmp: path.join(tmpPath, 'examples/basic'),
-  },
   gatsby: {
     path: path.join(rootPath, 'examples/gatsby'),
     tmp: path.join(tmpPath, 'examples/gatsby'),
+  },
+  basic: {
+    path: path.join(rootPath, 'examples/basic'),
+    tmp: path.join(tmpPath, 'examples/basic'),
   },
 }
 
@@ -115,11 +115,10 @@ const ci = async () => {
 
     await runCommand('yarn run testcafe:ci --scope e2e-tests', e2eTestsPath)
     await runCommand(`npx kill-port 3000`)
-    await fs.remove(tmpPath)
-    console.log('done')
-
-    return
   }
+  await fs.remove(tmpPath)
+  console.log('done')
+  return
 }
 
 ci()
