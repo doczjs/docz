@@ -34,24 +34,13 @@ const examples = {
     path: path.join(rootPath, 'examples/gatsby'),
     tmp: path.join(tmpPath, 'examples/gatsby'),
   },
-  basic: {
-    path: path.join(rootPath, 'examples/basic'),
-    tmp: path.join(tmpPath, 'examples/basic'),
-  },
+  // basic: {
+  //   path: path.join(rootPath, 'examples/basic'),
+  //   tmp: path.join(tmpPath, 'examples/basic'),
+  // },
 }
 
 const setupTestProjects = async () => {}
-
-// const dev = async () => {
-//   await runCommand('yarn packages:build')
-//   runCommand('yarn packages:dev', rootPath, 'ignore')
-//   runCommand('yarn lerna run testcafe:dev --scope e2e-tests --parallel')
-
-//   await runCommand(`mkdir -p ${tmpPath}/examples/`)
-//   await setupTestProjects()
-
-//   process.exit(1)
-// }
 
 const installNodeModules = async (packagePath, cacheKey = '') => {
   const cachePath = path.join(rootPath, `.e2e-tests-cache`, cacheKey)
@@ -96,15 +85,10 @@ const ci = async () => {
     console.log(`Copied ${exampleName} example to a temporary directory.`)
 
     console.log(`Modifying package.json in ${example.tmp}`)
-    const packageJson = await fs.readJson(
-      path.join(`${example.tmp}`, 'package.json')
-    )
+    const pathToPackageJson = path.join(`${example.tmp}`, 'package.json')
+    const packageJson = await fs.readJson(pathToPackageJson)
     // set(packageJson, `dependencies.gatsby-theme-docz`, paths.doczGatsbyTheme)
-    await fs.writeJson(
-      path.join(`${example.tmp}`, 'package.json'),
-      packageJson,
-      { spaces: 2 }
-    )
+    await fs.writeJson(pathToPackageJson, packageJson, { spaces: 2 })
 
     console.log(`Installing modules in tmp directory`)
     await installNodeModules(example.tmp, exampleName)
@@ -120,8 +104,13 @@ const ci = async () => {
   console.log('done')
   return
 }
+const setupLocalRegistry = async () => {}
 
-ci()
+const publishPackages = async () => {}
+
+setupLocalRegistry()
+  .then(publishPackages)
+  .then(ci)
   .then(() => {
     console.log('Exiting process')
     process.exit()
