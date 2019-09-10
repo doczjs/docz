@@ -20,6 +20,35 @@ const paths = {
   // remarkDocz: '../../core/remark-docz',
 }
 
+const examples = {
+  basic: {
+    path: path.join(rootPath, 'examples/basic'),
+    tmp: path.join(tmpPath, 'examples/basic'),
+  },
+  gatsby: {
+    path: path.join(rootPath, 'examples/gatsby'),
+    tmp: path.join(tmpPath, 'examples/gatsby'),
+  },
+}
+
+const updatePackageJson = async (pathToSource, reducer = v => v) => {
+  console.log(`Modifying package.json in ${pathToSource}`)
+  const pathToPackageJson = path.join(`${pathToSource}`, 'package.json')
+  await fs.copyFile(
+    pathToPackageJson,
+    path.join(`${pathToSource}`, 'package.backup.json')
+  )
+  const packageJson = await fs.readJson(pathToPackageJson)
+  const newPackageJson = reducer(packageJson)
+  await fs.writeJson(pathToPackageJson, newPackageJson, { spaces: 2 })
+}
+
+const revertPackageJson = async pathToSource => {
+  const pathToPackageJson = path.join(`${pathToSource}`, 'package.json')
+  const pathToBackup = path.join(`${pathToSource}`, 'package.backup.json')
+  await fs.move(pathToBackup, pathToPackageJson)
+}
+
 const startLocalRegistry = async () => {
   console.log('Running npx verdaccio')
   runCommand(`npx verdaccio ${e2eTestsPath}/verdaccio.yaml`)
@@ -47,17 +76,6 @@ const runCommand = (
   return execa(binary, rest, { cwd, stdio, detached })
 }
 const tmpPath = tmp.dirSync({ unsafeCleanup: true, mode: 0o100777 }).name
-
-const examples = {
-  basic: {
-    path: path.join(rootPath, 'examples/basic'),
-    tmp: path.join(tmpPath, 'examples/basic'),
-  },
-  gatsby: {
-    path: path.join(rootPath, 'examples/gatsby'),
-    tmp: path.join(tmpPath, 'examples/gatsby'),
-  },
-}
 
 const setupTestProjects = async () => {}
 
@@ -132,6 +150,20 @@ const ci = async () => {
 const setupLocalRegistry = async () => {
   await startLocalRegistry()
   console.log('DONE SETTING UP LOCAL REGISTRY')
+  await updatePackageJson(paths.doczGatsbyTheme, packageJson => {
+    const version = get(packageJson, 'version')
+    const versionChunks = version.split('.')
+    versionChunks[versionChunks.length - 1] = Date.now()
+    newVersion = versionChunks.join('.')
+    set(packageJson, 'version', newVersion)
+    return packageJson
+  })
+  await runCommand(
+    `npx npm-auth-to-token@1.0.0 -u user -p password -e user@example.com -r ${LOCAL_REGISTRY}`,
+    { cwd: paths.doczGatsbyTheme }
+  )
+  await runCommand(`npm publish --tag ci`, { cwd: paths.doczGatsbyTheme })
+  console.log('Published gatsby')
 }
 
 const publishPackages = async () => {}
