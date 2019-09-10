@@ -7,6 +7,9 @@ const tmp = require('tmp')
 const set = require('lodash/set')
 
 const rootPath = path.join(__dirname, '../../')
+const VERDACCIO_PORT = 4873
+const LOCAL_REGISTRY = `http://localhost:${VERDACCIO_PORT}`
+const REMOTE_REGISTRY = `https://registry.npmjs.org/`
 
 const paths = {
   doczCore: path.join(rootPath, 'core/docz-core'),
@@ -82,6 +85,7 @@ const installNodeModules = async (packagePath, cacheKey = '') => {
 }
 
 const ci = async () => {
+  return
   console.log(`Preparing tmp examples dir.`)
   let PORT = 3000
   for (let exampleName in examples) {
