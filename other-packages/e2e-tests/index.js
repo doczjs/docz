@@ -6,6 +6,7 @@ const fs = require('fs-extra')
 const tmp = require('tmp')
 const set = require('lodash/set')
 const get = require('lodash/get')
+const { updatePackageJson, revertPackageJson } = require('./helpers')
 
 const VERDACCIO_PORT = 4873
 const LOCAL_REGISTRY = `http://localhost:${VERDACCIO_PORT}`
@@ -34,7 +35,6 @@ const examples = {
     tmp: path.join(tmpPath, 'examples/gatsby'),
   },
 }
-const { updatePackageJson, revertPackageJson } = require('./helpers')
 
 const startLocalRegistry = async () => {
   console.log('Running npx verdaccio')
@@ -85,11 +85,47 @@ const installNodeModules = async (packagePath, cacheKey = '') => {
   }
 }
 
-const cleanup = async () => {
-  await stopLocalRegistry()
-  await revertPackageJson(paths.doczGatsbyTheme)
-  await revertPackageJson(paths.docz)
-  await revertPackageJson(paths.doczCore)
+const setupLocalRegistry = async () => {
+  await startLocalRegistry()
+  await updatePackageJson(paths.doczGatsbyTheme, packageJson => {
+    set(packageJson, 'version', `0.0.${Date.now()}`)
+    return packageJson
+  })
+  await updatePackageJson(paths.docz, packageJson => {
+    const version = get(packageJson, 'version')
+    const versionChunks = version.split('.')
+    versionChunks[versionChunks.length - 1] = Date.now()
+    newVersion = versionChunks.join('.')
+    set(packageJson, 'version', newVersion)
+    return packageJson
+  })
+  await updatePackageJson(paths.doczCore, packageJson => {
+    const version = get(packageJson, 'version')
+    const versionChunks = version.split('.')
+    versionChunks[versionChunks.length - 1] = Date.now()
+    newVersion = versionChunks.join('.')
+    set(packageJson, 'version', newVersion)
+    return packageJson
+  })
+  // Generate the right .npmrc file in the folders to be published
+  await runCommand(
+    `npx npm-auth-to-token@1.0.0 -u user -p password -e user@example.com -r ${LOCAL_REGISTRY}`,
+    { cwd: paths.doczGatsbyTheme }
+  )
+  await runCommand(
+    `npx npm-auth-to-token@1.0.0 -u user -p password -e user@example.com -r ${LOCAL_REGISTRY}`,
+    { cwd: paths.docz }
+  )
+  await runCommand(
+    `npx npm-auth-to-token@1.0.0 -u user -p password -e user@example.com -r ${LOCAL_REGISTRY}`,
+    { cwd: paths.doczCore }
+  )
+  await runCommand(`npm publish --tag ci`, { cwd: paths.doczGatsbyTheme })
+  console.log('Published gatsby')
+  await runCommand(`npm publish --tag ci`, { cwd: paths.docz })
+  console.log('Published docz')
+  await runCommand(`npm publish --tag ci`, { cwd: paths.doczCore })
+  console.log('Published core')
 }
 
 const runTests = async () => {
@@ -146,51 +182,12 @@ const runTests = async () => {
   console.log('done')
   return
 }
-const setupLocalRegistry = async () => {
-  await startLocalRegistry()
-  await updatePackageJson(paths.doczGatsbyTheme, packageJson => {
-    const version = get(packageJson, 'version')
-    const versionChunks = version.split('.')
-    versionChunks[versionChunks.length - 1] = Date.now()
-    newVersion = versionChunks.join('.')
-    set(packageJson, 'version', newVersion)
-    return packageJson
-  })
-  await updatePackageJson(paths.docz, packageJson => {
-    const version = get(packageJson, 'version')
-    const versionChunks = version.split('.')
-    versionChunks[versionChunks.length - 1] = Date.now()
-    newVersion = versionChunks.join('.')
-    set(packageJson, 'version', newVersion)
-    return packageJson
-  })
-  await updatePackageJson(paths.doczCore, packageJson => {
-    const version = get(packageJson, 'version')
-    const versionChunks = version.split('.')
-    versionChunks[versionChunks.length - 1] = Date.now()
-    newVersion = versionChunks.join('.')
-    set(packageJson, 'version', newVersion)
-    return packageJson
-  })
-  // Generate the right .npmrc file in the folders to be published
-  await runCommand(
-    `npx npm-auth-to-token@1.0.0 -u user -p password -e user@example.com -r ${LOCAL_REGISTRY}`,
-    { cwd: paths.doczGatsbyTheme }
-  )
-  await runCommand(
-    `npx npm-auth-to-token@1.0.0 -u user -p password -e user@example.com -r ${LOCAL_REGISTRY}`,
-    { cwd: paths.docz }
-  )
-  await runCommand(
-    `npx npm-auth-to-token@1.0.0 -u user -p password -e user@example.com -r ${LOCAL_REGISTRY}`,
-    { cwd: paths.doczCore }
-  )
-  await runCommand(`npm publish --tag ci`, { cwd: paths.doczGatsbyTheme })
-  console.log('Published gatsby')
-  await runCommand(`npm publish --tag ci`, { cwd: paths.docz })
-  console.log('Published docz')
-  await runCommand(`npm publish --tag ci`, { cwd: paths.doczCore })
-  console.log('Published core')
+
+const cleanup = async () => {
+  await stopLocalRegistry()
+  await revertPackageJson(paths.doczGatsbyTheme)
+  await revertPackageJson(paths.docz)
+  await revertPackageJson(paths.doczCore)
 }
 
 ;(async () => {
