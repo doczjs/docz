@@ -15,14 +15,13 @@
     "url": "https://github.com/pedronauck/docz.git"
   },
   "scripts": {
-    "ci": "npm run packages:lint && npm run packages:test",
     "clean": "lerna clean",
     "bs": "lerna bootstrap",
     "packages": "run-s packages:*",
     "packages:fix": "lerna run --parallel fix && echo",
     "packages:lint": "lerna run --parallel lint",
     "packages:build": "lerna run build --ignore docz-example-*",
-    "packages:test": "lerna run --parallel test",
+    "packages:test": "lerna run test --stream",
     "prerelease": "yarn run packages",
     "release": "lerna publish --conventional-commits",
     "release:next": "yarn release --npm-tag=next --exact --npm-client npm",

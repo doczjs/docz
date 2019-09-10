@@ -1,0 +1,5 @@
+{
+  "clientScripts": [
+    "../../node_modules/@testing-library/dom/dist/@testing-library/dom.umd.js"
+  ]
+}
