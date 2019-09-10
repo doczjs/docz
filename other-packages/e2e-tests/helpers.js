@@ -16,7 +16,7 @@ const updatePackageJson = async (pathToSource, reducer = v => v) => {
 const revertPackageJson = async pathToSource => {
   const pathToPackageJson = path.join(`${pathToSource}`, 'package.json')
   const pathToBackup = path.join(`${pathToSource}`, 'package.backup.json')
-  await fs.move(pathToBackup, pathToPackageJson)
+  await fs.move(pathToBackup, pathToPackageJson, { overwrite: true })
 }
 
 module.exports = { updatePackageJson, revertPackageJson }
