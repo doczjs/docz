@@ -136,8 +136,6 @@ const ci = async () => {
         set(pack, 'dependencies.docz-core', 'ci')
       }
 
-      // set(pack, 'dependencies.docz', 'ci')
-      // set(pack, 'dependencies.docz-core', 'ci')
       return pack
     })
 
@@ -207,34 +205,21 @@ const setupLocalRegistry = async () => {
   console.log('Published core')
 }
 
-const publishPackages = async () => {}
-
-setupLocalRegistry()
-  .then(publishPackages)
-  .then(ci)
-  .then(() => {
-    console.log('Exiting process')
-    process.exit()
-    console.log('Exited process')
-  })
-  .catch(err => {
-    console.log('Error ', err)
-    process.exit()
-  })
-// process
-//   .on('SIGHUP', function() {
-//     console.log('SIGHUP RECEIVED')
+// setupLocalRegistry()
+//   .then(publishPackages)
+//   .then(ci)
+//   .then(() => {
+//     console.log('Exited process')
 //   })
-//   .on('error', () => {
-//     process.kill(process.pid, 'SIGTERM')
+//   .catch(err => {
+//     console.log('Error ', err)
+//     process.exit()
 //   })
-//   .on('exit', function() {
-//     process.kill(process.pid, 'SIGTERM')
-//   })
-
-// ;(async () => {
-//   await ci()
-//   console.log('Exited process')
-// })()
+;(async () => {
+  await setupLocalRegistry()
+  await publishPackages()
+  await ci()
+  console.log('Exiting process')
+})()
 
 // /var/folders/jn/3z685bls0mv64x4q1vjrzgy40000gn/T/tmp-546690gUnJPBhzg0U/examples/basic
