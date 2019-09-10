@@ -85,7 +85,7 @@ const installNodeModules = async (packagePath, cacheKey = '') => {
 }
 
 const ci = async () => {
-  return
+  // return
   console.log(`Preparing tmp examples dir.`)
   let PORT = 3000
   for (let exampleName in examples) {
