@@ -34,24 +34,7 @@ const examples = {
     tmp: path.join(tmpPath, 'examples/gatsby'),
   },
 }
-
-const updatePackageJson = async (pathToSource, reducer = v => v) => {
-  console.log(`Modifying package.json in ${pathToSource}`)
-  const pathToPackageJson = path.join(`${pathToSource}`, 'package.json')
-  await fs.copyFile(
-    pathToPackageJson,
-    path.join(`${pathToSource}`, 'package.backup.json')
-  )
-  const packageJson = await fs.readJson(pathToPackageJson)
-  const newPackageJson = reducer(packageJson)
-  await fs.writeJson(pathToPackageJson, newPackageJson, { spaces: 2 })
-}
-
-const revertPackageJson = async pathToSource => {
-  const pathToPackageJson = path.join(`${pathToSource}`, 'package.json')
-  const pathToBackup = path.join(`${pathToSource}`, 'package.backup.json')
-  await fs.move(pathToBackup, pathToPackageJson)
-}
+const { updatePackageJson, revertPackageJson } = require('./helpers')
 
 const startLocalRegistry = async () => {
   console.log('Running npx verdaccio')
@@ -101,12 +84,14 @@ const installNodeModules = async (packagePath, cacheKey = '') => {
     await fs.copy(freshModulesPath, cachePath)
   }
 }
+
 const cleanup = async () => {
   await stopLocalRegistry()
   await revertPackageJson(paths.doczGatsbyTheme)
   await revertPackageJson(paths.docz)
   await revertPackageJson(paths.doczCore)
 }
+
 const runTests = async () => {
   // return
   console.log(`Preparing tmp examples dir.`)
