@@ -5,11 +5,15 @@ const kill = require('kill-port')
 const fs = require('fs-extra')
 const tmp = require('tmp')
 const set = require('lodash/set')
+const get = require('lodash/get')
 
-const rootPath = path.join(__dirname, '../../')
 const VERDACCIO_PORT = 4873
 const LOCAL_REGISTRY = `http://localhost:${VERDACCIO_PORT}`
 const REMOTE_REGISTRY = `https://registry.npmjs.org/`
+
+const tmpPath = tmp.dirSync({ unsafeCleanup: true, mode: 0o100777 }).name
+const rootPath = path.join(__dirname, '../../')
+const e2eTestsPath = __dirname
 
 const paths = {
   doczCore: path.join(rootPath, 'core/docz-core'),
@@ -63,7 +67,6 @@ const stopLocalRegistry = async () => {
   await runCommand(`yarn config set registry ${REMOTE_REGISTRY}`)
 }
 
-const e2eTestsPath = __dirname
 const runCommand = (
   command,
   { cwd = rootPath, stdio = 'inherit', detached = false } = {
@@ -75,7 +78,6 @@ const runCommand = (
   const [binary, ...rest] = command.split(' ')
   return execa(binary, rest, { cwd, stdio, detached })
 }
-const tmpPath = tmp.dirSync({ unsafeCleanup: true, mode: 0o100777 }).name
 
 const setupTestProjects = async () => {}
 
