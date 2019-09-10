@@ -17,6 +17,20 @@ const paths = {
   // remarkDocz: '../../core/remark-docz',
 }
 
+const startLocalRegistry = async () => {
+  console.log('Running npx verdaccio')
+  runCommand(`npx verdaccio ${e2eTestsPath}/verdaccio.yaml`)
+  console.log('Waiting for Verdaccio to boot')
+  await waitOn({ resources: [LOCAL_REGISTRY] })
+  await runCommand(`npm set registry ${LOCAL_REGISTRY}`)
+  await runCommand(`yarn config set registry ${LOCAL_REGISTRY}`)
+}
+
+const stopLocalRegistry = async () => {
+  await runCommand(`npm set registry ${REMOTE_REGISTRY}`)
+  await runCommand(`yarn config set registry ${REMOTE_REGISTRY}`)
+}
+
 const e2eTestsPath = __dirname
 const runCommand = (
   command,
@@ -111,7 +125,10 @@ const ci = async () => {
   console.log('done')
   return
 }
-const setupLocalRegistry = async () => {}
+const setupLocalRegistry = async () => {
+  await startLocalRegistry()
+  console.log('DONE SETTING UP LOCAL REGISTRY')
+}
 
 const publishPackages = async () => {}
 
