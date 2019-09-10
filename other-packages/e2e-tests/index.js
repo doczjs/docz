@@ -79,8 +79,6 @@ const runCommand = (
   return execa(binary, rest, { cwd, stdio, detached })
 }
 
-const setupTestProjects = async () => {}
-
 const installNodeModules = async (packagePath, cacheKey = '') => {
   const cachePath = path.join(rootPath, `.e2e-tests-cache`, cacheKey)
   const freshModulesPath = path.join(packagePath, 'node_modules')
@@ -103,8 +101,13 @@ const installNodeModules = async (packagePath, cacheKey = '') => {
     await fs.copy(freshModulesPath, cachePath)
   }
 }
-
-const ci = async () => {
+const cleanup = () => {
+  await stopLocalRegistry()
+  await revertPackageJson(paths.doczGatsbyTheme)
+  await revertPackageJson(paths.docz)
+  await revertPackageJson(paths.doczCore)
+}
+const runTests = async () => {
   // return
   console.log(`Preparing tmp examples dir.`)
   let PORT = 3000
@@ -205,20 +208,10 @@ const setupLocalRegistry = async () => {
   console.log('Published core')
 }
 
-// setupLocalRegistry()
-//   // .then(publishPackages)
-//   .then(ci)
-//   .then(() => {
-//     console.log('Exited process')
-//   })
-//   .catch(err => {
-//     console.log('Error ', err)
-//     process.exit()
-//   })
-
 ;(async () => {
   await setupLocalRegistry()
-  await ci()
+  await runTests()
+  await cleanup()
   console.log('Exiting process')
   process.exit(0)
 })()
