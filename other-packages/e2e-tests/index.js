@@ -20,9 +20,11 @@ const paths = {
 const e2eTestsPath = __dirname
 const runCommand = (
   command,
-  cwd = rootPath,
-  stdio = 'inherit',
-  detached = false
+  { cwd = rootPath, stdio = 'inherit', detached = false } = {
+    cwd: rootPath,
+    stdio: 'inherit',
+    detached: false,
+  }
 ) => {
   const [binary, ...rest] = command.split(' ')
   return execa(binary, rest, { cwd, stdio, detached })
@@ -60,7 +62,7 @@ const installNodeModules = async (packagePath, cacheKey = '') => {
     console.log(
       `Couldnt find node_modules cache at ${cachePath} for node_modules of  ${cacheKey}`
     )
-    await runCommand(`yarn install`, packagePath)
+    await runCommand(`yarn install`, { cwd: packagePath })
     await fs.copy(freshModulesPath, cachePath)
   }
 }
@@ -94,12 +96,12 @@ const ci = async () => {
     await installNodeModules(example.tmp, exampleName)
 
     // await runCommand(`yarn build`, example.tmp)
-    const command = runCommand(`yarn dev --port ${PORT}`, example.tmp)
+    const command = runCommand(`yarn dev --port ${PORT}`, { cwd: example.tmp })
 
     await waitOn({ resources: [`http://localhost:${PORT}`] })
     console.log('Ready. Starting e2e tests')
 
-    await runCommand('yarn run testcafe:ci', e2eTestsPath)
+    await runCommand('yarn run testcafe:ci', { cwd: e2eTestsPath })
     command.kill('SIGTERM', {
       forceKillAfterTimeout: 2000,
     })
@@ -125,13 +127,16 @@ setupLocalRegistry()
     console.log('Error ', err)
     process.exit()
   })
-// process
-//   .on('SIGHUP', function() {
-//     console.log('SIGHUP RECEIVED')
-//   })
-//   .on('exit', function() {
-//     process.kill(process.pid, 'SIGTERM')
-//   })
+process
+  .on('SIGHUP', function() {
+    console.log('SIGHUP RECEIVED')
+  })
+  .on('error', () => {
+    process.kill(process.pid, 'SIGTERM')
+  })
+  .on('exit', function() {
+    process.kill(process.pid, 'SIGTERM')
+  })
 
 // ;(async () => {
 //   await ci()
