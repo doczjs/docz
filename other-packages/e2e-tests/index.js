@@ -126,7 +126,18 @@ const ci = async () => {
 
     console.log(`Modifying package.json in ${example.tmp}`)
     await updatePackageJson(example.tmp, pack => {
-      set(pack, 'dependencies.gatsby-theme-docz', 'ci')
+      if (get(pack, 'dependencies.gatsby-theme-docz', false)) {
+        set(pack, 'dependencies.gatsby-theme-docz', 'ci')
+      }
+      if (get(pack, 'dependencies.docz', false)) {
+        set(pack, 'dependencies.docz', 'ci')
+      }
+      if (get(pack, 'dependencies.docz-core', false)) {
+        set(pack, 'dependencies.docz-core', 'ci')
+      }
+
+      // set(pack, 'dependencies.docz', 'ci')
+      // set(pack, 'dependencies.docz-core', 'ci')
       return pack
     })
 
