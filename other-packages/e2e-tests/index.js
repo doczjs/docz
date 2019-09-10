@@ -220,6 +220,7 @@ const setupLocalRegistry = async () => {
   // await publishPackages()
   await ci()
   console.log('Exiting process')
+  process.exit(0)
 })()
 
 // /var/folders/jn/3z685bls0mv64x4q1vjrzgy40000gn/T/tmp-546690gUnJPBhzg0U/examples/basic
