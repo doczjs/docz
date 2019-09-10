@@ -123,6 +123,7 @@ setupLocalRegistry()
   })
   .catch(err => {
     console.log('Error ', err)
+    process.exit()
   })
 // ;(async () => {
 //   await ci()
