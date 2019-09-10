@@ -101,7 +101,7 @@ const installNodeModules = async (packagePath, cacheKey = '') => {
     await fs.copy(freshModulesPath, cachePath)
   }
 }
-const cleanup = () => {
+const cleanup = async () => {
   await stopLocalRegistry()
   await revertPackageJson(paths.doczGatsbyTheme)
   await revertPackageJson(paths.docz)
