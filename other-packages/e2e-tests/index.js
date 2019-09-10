@@ -120,23 +120,23 @@ setupLocalRegistry()
   .then(ci)
   .then(() => {
     console.log('Exiting process')
-    process.kill(process.pid, 'SIGTERM')
+    process.exit()
     console.log('Exited process')
   })
   .catch(err => {
     console.log('Error ', err)
     process.exit()
   })
-process
-  .on('SIGHUP', function() {
-    console.log('SIGHUP RECEIVED')
-  })
-  .on('error', () => {
-    process.kill(process.pid, 'SIGTERM')
-  })
-  .on('exit', function() {
-    process.kill(process.pid, 'SIGTERM')
-  })
+// process
+//   .on('SIGHUP', function() {
+//     console.log('SIGHUP RECEIVED')
+//   })
+//   .on('error', () => {
+//     process.kill(process.pid, 'SIGTERM')
+//   })
+//   .on('exit', function() {
+//     process.kill(process.pid, 'SIGTERM')
+//   })
 
 // ;(async () => {
 //   await ci()
