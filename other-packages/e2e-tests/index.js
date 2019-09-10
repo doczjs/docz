@@ -205,23 +205,22 @@ const setupLocalRegistry = async () => {
   console.log('Published core')
 }
 
-setupLocalRegistry()
-  // .then(publishPackages)
-  .then(ci)
-  .then(() => {
-    console.log('Exited process')
-  })
-  .catch(err => {
-    console.log('Error ', err)
-    process.exit()
-  })
+// setupLocalRegistry()
+//   // .then(publishPackages)
+//   .then(ci)
+//   .then(() => {
+//     console.log('Exited process')
+//   })
+//   .catch(err => {
+//     console.log('Error ', err)
+//     process.exit()
+//   })
 
-//   ;(async () => {
-//   await setupLocalRegistry()
-//   // await publishPackages()
-//   await ci()
-//   console.log('Exiting process')
-//   process.exit(0)
-// })()
+;(async () => {
+  await setupLocalRegistry()
+  await ci()
+  console.log('Exiting process')
+  process.exit(0)
+})()
 
 // /var/folders/jn/3z685bls0mv64x4q1vjrzgy40000gn/T/tmp-546690gUnJPBhzg0U/examples/basic
