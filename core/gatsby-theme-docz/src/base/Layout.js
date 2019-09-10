@@ -14,7 +14,6 @@ const Route = ({ children, entry, ...defaultProps }) => {
   const NotFound = components.notFound
   const Layout = components.layout
   const props = { ...defaultProps, doc: entry }
-
   if (!entry) return <NotFound />
   return (
     <MDXProvider components={components}>
@@ -37,7 +36,6 @@ const Layout = ({ children, ...defaultProps }) => {
   const { pageContext: ctx } = defaultProps
   const db = useDbQuery()
   const entry = findEntry(db, ctx)
-
   return (
     <Fragment>
       {entry && <SEO title={entry.value.name} />}
