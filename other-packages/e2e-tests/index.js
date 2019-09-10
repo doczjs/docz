@@ -217,7 +217,7 @@ const setupLocalRegistry = async () => {
 //   })
 ;(async () => {
   await setupLocalRegistry()
-  await publishPackages()
+  // await publishPackages()
   await ci()
   console.log('Exiting process')
 })()
