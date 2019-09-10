@@ -184,6 +184,7 @@ const runTests = async () => {
 }
 
 const cleanup = async () => {
+  console.log('Cleaning up')
   await stopLocalRegistry()
   await revertPackageJson(paths.doczGatsbyTheme)
   await revertPackageJson(paths.docz)
