@@ -133,6 +133,7 @@ const runTests = async () => {
   console.log(`Preparing tmp examples dir.`)
   let PORT = 3000
   for (let exampleName in examples) {
+    console.log(`🕕 Running ${exampleName} test`)
     // await runCommand(`mkdir -p ${tmpPath}/examples/`)
     const example = examples[exampleName]
     await fs.ensureDir(`${tmpPath}/examples/${exampleName}`)
@@ -177,6 +178,7 @@ const runTests = async () => {
       forceKillAfterTimeout: 2000,
     })
     await kill(3000, 'tcp')
+    console.log(`✅ Ran ${exampleName} test successfully`)
   }
   await fs.remove(tmpPath)
   console.log('done')
