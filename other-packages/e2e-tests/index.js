@@ -30,10 +30,10 @@ const runCommand = (
 const tmpPath = tmp.dirSync({ unsafeCleanup: true, mode: 0o100777 }).name
 
 const examples = {
-  // basic: {
-  //   path: path.join(rootPath, 'examples/basic'),
-  //   tmp: path.join(tmpPath, 'examples/basic'),
-  // },
+  basic: {
+    path: path.join(rootPath, 'examples/basic'),
+    tmp: path.join(tmpPath, 'examples/basic'),
+  },
   gatsby: {
     path: path.join(rootPath, 'examples/gatsby'),
     tmp: path.join(tmpPath, 'examples/gatsby'),
@@ -67,7 +67,7 @@ const installNodeModules = async (packagePath, cacheKey = '') => {
 
 const ci = async () => {
   console.log(`Preparing tmp examples dir.`)
-
+  let PORT = 3000
   for (let exampleName in examples) {
     // await runCommand(`mkdir -p ${tmpPath}/examples/`)
     const example = examples[exampleName]
@@ -94,16 +94,16 @@ const ci = async () => {
     await installNodeModules(example.tmp, exampleName)
 
     // await runCommand(`yarn build`, example.tmp)
-    const command = runCommand(`yarn dev --port 3000`, example.tmp)
+    const command = runCommand(`yarn dev --port ${PORT}`, example.tmp)
 
-    await waitOn({ resources: ['http://localhost:3000'] })
+    await waitOn({ resources: [`http://localhost:${PORT}`] })
     console.log('Ready. Starting e2e tests')
 
     await runCommand('yarn run testcafe:ci', e2eTestsPath)
     command.kill('SIGTERM', {
       forceKillAfterTimeout: 2000,
     })
-    // await kill(3000, 'tcp')
+    await kill(3000, 'tcp')
   }
   await fs.remove(tmpPath)
   console.log('done')
@@ -118,14 +118,24 @@ setupLocalRegistry()
   .then(ci)
   .then(() => {
     console.log('Exiting process')
-    process.exit()
+    process.kill(process.pid, 'SIGTERM')
     console.log('Exited process')
   })
   .catch(err => {
     console.log('Error ', err)
     process.exit()
   })
+// process
+//   .on('SIGHUP', function() {
+//     console.log('SIGHUP RECEIVED')
+//   })
+//   .on('exit', function() {
+//     process.kill(process.pid, 'SIGTERM')
+//   })
+
 // ;(async () => {
 //   await ci()
 //   console.log('Exited process')
 // })()
+
+// /var/folders/jn/3z685bls0mv64x4q1vjrzgy40000gn/T/tmp-546690gUnJPBhzg0U/examples/basic
