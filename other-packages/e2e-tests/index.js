@@ -125,10 +125,14 @@ const ci = async () => {
     console.log(`Copied ${exampleName} example to a temporary directory.`)
 
     console.log(`Modifying package.json in ${example.tmp}`)
-    const pathToPackageJson = path.join(`${example.tmp}`, 'package.json')
-    const packageJson = await fs.readJson(pathToPackageJson)
-    // set(packageJson, `dependencies.gatsby-theme-docz`, paths.doczGatsbyTheme)
-    await fs.writeJson(pathToPackageJson, packageJson, { spaces: 2 })
+    await updatePackageJson(example.tmp, pack => {
+      set(pack, 'dependencies.gatsby-theme-docz', 'ci')
+      return pack
+    })
+    // const pathToPackageJson = path.join(`${example.tmp}`, 'package.json')
+    // const packageJson = await fs.readJson(pathToPackageJson)
+    // // set(packageJson, `dependencies.gatsby-theme-docz`, paths.doczGatsbyTheme)
+    // await fs.writeJson(pathToPackageJson, packageJson, { spaces: 2 })
 
     console.log(`Installing modules in tmp directory`)
     await installNodeModules(example.tmp, exampleName)
