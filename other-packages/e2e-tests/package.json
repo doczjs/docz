@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js",
+    "test:ci": "node index.js",
     "testcafe:ci": "testcafe \"chrome:headless\" __tests__/*",
     "testcafe:dev": "testcafe chrome __tests__/* --live"
   },

@@ -35,5 +35,7 @@ jobs:
       # build, lint and test
       - run: yarn packages
 
+      - run: cd other-packages/e2e-tests && node index.js
+
       - store_test_results:
           path: /tmp/test-result
