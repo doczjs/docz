@@ -35,6 +35,8 @@ jobs:
       # build, lint and test
       - run: yarn packages
 
+      - run: sudo apt-get install -y lsof
+
       - run: cd other-packages/e2e-tests && node index.js
 
       - store_test_results:
