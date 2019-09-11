@@ -21,7 +21,7 @@
     "packages:fix": "lerna run --parallel fix && echo",
     "packages:lint": "lerna run --parallel lint",
     "packages:build": "lerna run build --ignore docz-example-*",
-    "packages:test": "lerna run test --stream",
+    "packages:test": "lerna run test --stream --ignore docz-example-*",
     "prerelease": "yarn run packages",
     "release": "lerna publish --conventional-commits",
     "release:next": "yarn release --npm-tag=next --exact --npm-client npm",
