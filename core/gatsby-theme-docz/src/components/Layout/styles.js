@@ -18,6 +18,7 @@ export const wrapper = {
 }
 
 export const content = {
+  backgroundColor: 'background',
   position: 'relative',
   maxWidth: 960,
   py: 5,
