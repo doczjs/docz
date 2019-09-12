@@ -19,6 +19,7 @@ const copyAndModifyPkgJson = async (ctx: ServerMachineCtx) => {
   // const pkg = await fs.readJSON(filepath, { throws: false })
   const newPkg = {
     name: 'docz-app',
+    license: 'MIT',
     dependencies: {
       gatsby: 'just-to-fool-cli-never-installed',
     },
