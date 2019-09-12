@@ -9,7 +9,7 @@ try {
 
 const config = {
   <% if (config.base) {%>
-  pathPrefix: <%- config.base %>,
+  pathPrefix: "<%- config.base %>",
   <%}%>
   siteMetadata: {
     title: "<%- config.title %>",
