@@ -27,25 +27,25 @@ Create MDX files showcasing your code and Docz turns them to a live-reloading, p
 ## Table of Contents
 
 - [📟 &nbsp; Get Started](#%f0%9f%93%9f-nbsp-get-started)
-  - [New Project](#new-project)
-  - [Existing Project](#existing-project)
+  - [Start a New Project](#start-a-new-project)
+  - [Add Docz to an Existing Project](#add-docz-to-an-existing-project)
 - [🎩 &nbsp; Features](#%f0%9f%8e%a9-nbsp-features)
 - [🤔 &nbsp; Why?](#%f0%9f%a4%94-nbsp-why)
+- [🗃 &nbsp; Examples](#%f0%9f%97%83-nbsp-examples)
 - [👉🏻 &nbsp; More info on our website](#%f0%9f%91%89%f0%9f%8f%bb-nbsp-more-info-on-our-website)
 - [🎛 &nbsp; Plugins](#%f0%9f%8e%9b-nbsp-plugins)
-- [🗃 &nbsp; Examples](#%f0%9f%97%83-nbsp-examples)
 - [🌍 &nbsp; Around the world](#%f0%9f%8c%8d-nbsp-around-the-world)
+- [💪🏻 &nbsp; Contributors](#%f0%9f%92%aa%f0%9f%8f%bb-nbsp-contributors)
 - [🤝 &nbsp; Contributing](#%f0%9f%a4%9d-nbsp-contributing)
   - [Contribute time](#contribute-time)
   - [Contribute money](#contribute-money)
-- [💪🏻 &nbsp; Contributors](#%f0%9f%92%aa%f0%9f%8f%bb-nbsp-contributors)
 - [💭 &nbsp; Need Help?](#%f0%9f%92%ad-nbsp-need-help)
 
 ## 📟 &nbsp; Get Started
 
 Getting started with **Docz** is quick and easy.
 
-### New Project
+### Start a New Project
 
 Use [create-docz-app](https://www.npmjs.com/package/create-docz-app) to quickly get started :
 
@@ -55,9 +55,9 @@ npx create-docz-app my-docz-app
 yarn create docz-app my-docz-app --example typescript
 ```
 
-### Existing Project
+### Add Docz to an Existing Project
 
-To add `docz` to an existing React codebase, start by adding it to your dependencies :
+Start by adding `docz` as a dependency :
 
 ```bash
 $ yarn add --dev docz@next # react react-dom
@@ -69,7 +69,7 @@ $ npm install --save-dev docz@next # react react-dom
 
 > **Note**: `react` and `react-dom` will not be installed automatically. You'll have to install them yourself.
 
-Next, add `.mdx` files anywhere in your project:
+Then, add `.mdx` files anywhere in your project:
 
 ```mdx
 ---
@@ -121,7 +121,7 @@ Finally, run the Docz development server:
 $ yarn docz dev
 ```
 
-That's it! You now have an interactive site to showcase and debug your work, and some badass documentation as a nice bonus 👊
+That's it! You now have an interactive site to showcase and debug your components, and some badass documentation as a nice bonus 👊
 
 ## 🎩 &nbsp; Features
 
@@ -141,15 +141,6 @@ Libraries that make development easier are appearing every day. Style guides and
 
 Documenting code is one of the most important and time-heavy processes when you're creating something new. A lot of time is wasted on unnecessarily attempting to build a documentation site that will match the style you want.
 
-## 👉🏻 &nbsp; More info on [our website](https://docz.site)
-
-## 🎛 &nbsp; Plugins
-
-- **[gatsby-theme-docz](https://github.com/pedronauck/docz/tree/master/core/gatsby-theme-docz)** - Use Docz as a theme for Gatsby.
-- **[netlify](https://github.com/nicholasess/docz-plugin-netlify)** - Deploy your Docz site to [Netlify](http://netlify.com/).
-- **[svg sprite loader](https://github.com/trustedhousesitters/docz-plugin-svg-sprite-loader)** - Docz plugin for SVG sprite loader.
-- **[snapshots](https://github.com/JosephConradBlack/docz-plugin-snapshots)** - A plugin for Docz that creates jest snapshots for all documented component usages.
-
 ## 🗃 &nbsp; Examples
 
 - **[basic](https://github.com/pedronauck/docz/tree/master/examples/basic)** - Barebones example.
@@ -163,6 +154,17 @@ Documenting code is one of the most important and time-heavy processes when you'
 - **[with less](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-less)** - Using Docz parsing CSS with LESS.
 - **[with postcss](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-postcss)** - Using Docz parsing CSS with PostCSS.
 - **[with stylus](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-stylus)** - Using Docz parsing CSS with Stylus. -->
+
+
+## 👉🏻 &nbsp; More info on [our website](https://docz.site)
+
+## 🎛 &nbsp; Plugins
+
+- **[gatsby-theme-docz](https://github.com/pedronauck/docz/tree/master/core/gatsby-theme-docz)** - Use Docz as a theme for Gatsby.
+- **[netlify](https://github.com/nicholasess/docz-plugin-netlify)** - Deploy your Docz site to [Netlify](http://netlify.com/).
+- **[svg sprite loader](https://github.com/trustedhousesitters/docz-plugin-svg-sprite-loader)** - Docz plugin for SVG sprite loader.
+- **[snapshots](https://github.com/JosephConradBlack/docz-plugin-snapshots)** - A plugin for Docz that creates jest snapshots for all documented component usages.
+
 
 ## 🌍 &nbsp; Around the world
 
