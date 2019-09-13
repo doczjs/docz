@@ -1,6 +1,6 @@
 {
   "name": "docz-components",
-  "version": "2.0.0-rc.39",
+  "version": "2.0.0-rc.40",
   "main": "dist/index.js",
   "module": "dist/docz-components.esm.js",
   "typings": "dist/index.d.ts",

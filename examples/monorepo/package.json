@@ -5,7 +5,7 @@
     "packages/docs-site"
   ],
   "name": "docz-gatsby-monorepo",
-  "version": "2.0.0-rc.39",
+  "version": "2.0.0-rc.40",
   "description": "",
   "main": "index.js",
   "scripts": {
