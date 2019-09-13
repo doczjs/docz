@@ -8,7 +8,7 @@ export interface BundlerServer {
   start(): void
 }
 
-export type BuildFn = (dist: string) => void
+export type BuildFn = (config: Args, dist: string) => void
 export type ServerFn = () => BundlerServer | Promise<BundlerServer>
 
 export interface BundlerConstructor {
@@ -51,6 +51,6 @@ export class Bundler {
       process.exit(1)
     }
 
-    await this.builder(dist)
+    await this.builder(this.args, dist)
   }
 }

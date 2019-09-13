@@ -20,13 +20,6 @@ const createId = (file: string) =>
     .update(file)
     .digest('hex')
 
-const mountRoute = (base: string, route: string) => {
-  if (base === '/') return route
-  const baseHasSlash = base.endsWith('/')
-  if (baseHasSlash) return base.substr(0, base.length - 1) + route
-  return base + route
-}
-
 export interface EntryObj {
   id: string
   filepath: string
@@ -41,20 +34,18 @@ export interface EntryObj {
 }
 
 export class Entry {
-  readonly [key: string]: any
-
-  public id: string
-  public filepath: string
-  public fullpath: string
   public link: string | null
-  public slug: string
-  public route: string
-  public name: string
-  public menu: string | null
-  public headings: Heading[]
-  public settings: {
+  public readonly filepath: string
+  public readonly fullpath: string
+  public readonly headings: Heading[]
+  public readonly id: string
+  public readonly menu: string | null
+  public readonly name: string
+  public readonly route: string
+  public readonly settings: {
     [key: string]: any
   }
+  public readonly slug: string
 
   constructor(ast: any, file: string, config: Config) {
     const filepath = this.getFilepath(config, file)
@@ -67,7 +58,7 @@ export class Entry {
     this.fullpath = path.resolve(root, file)
     this.link = ''
     this.slug = this.slugify(filepath, config.separator)
-    this.route = this.getRoute(parsed, config.base)
+    this.route = this.getRoute(parsed)
     this.name = name
     this.menu = parsed.menu || ''
     this.headings = headingsFromAst(ast)
@@ -75,9 +66,7 @@ export class Entry {
   }
 
   public setLink(url: string): void {
-    if (url) {
-      this.link = url.replace('{{filepath}}', this.filepath)
-    }
+    this.link = url.replace('{{filepath}}', this.filepath)
   }
 
   private getFilepath(config: Config, file: string): string {
@@ -104,9 +93,8 @@ export class Entry {
     return slugify(fileWithoutExt, { separator })
   }
 
-  private getRoute(parsed: any, base: string): string {
+  private getRoute(parsed: any): string {
     const parsedRoute = get('route', parsed)
-    const route = parsedRoute || `/${this.slug}`
-    return mountRoute(base, route)
+    return parsedRoute || `/${this.slug}`
   }
 }
