@@ -28,10 +28,15 @@ const getRehypePlugins = () => {
   return plugins
 }
 
+const getGatsbyRemarkPlugins = () => {
+  return []
+}
+
 module.exports = opts => {
   const config = getDoczConfig(opts)
   const mdPlugins = getRemarkPlugins()
   const hastPlugins = getRehypePlugins()
+  const gatsbyRemarkPlugins = getGatsbyRemarkPlugins()
 
   return {
     plugins: [
@@ -47,6 +52,10 @@ module.exports = opts => {
             config && config.hastPlugins
               ? config.hastPlugins.concat(hastPlugins)
               : hastPlugins,
+          gatsbyRemarkPlugins:
+            config && config.gatsbyRemarkPlugins
+              ? config.gatsbyRemarkPlugins.concat(gatsbyRemarkPlugins)
+              : gatsbyRemarkPlugins,
           defaultLayouts: {
             default: path.join(__dirname, 'src/base/Layout.js'),
           },
