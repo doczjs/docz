@@ -1,12 +1,13 @@
 import get from 'lodash/get';
 
-import { Theme } from '../../types';
 import * as mixins from '../../utils/mixins';
+import { PrismTheme } from 'prism-react-renderer';
 
-export const editor = (theme: Theme) =>
+export const editor = (theme: PrismTheme) =>
   ({
     p: 2,
-    border: (t: Theme) => `1px solid ${get(t, 'colors.border', 'transparent')}`,
+    border: (t: PrismTheme) =>
+      `1px solid ${get(t, 'colors.border', 'transparent')}`,
     borderRadius: '0 0 4px 4px',
     background: get(theme, 'plain.backgroundColor', 'none'),
     borderTop: 0,

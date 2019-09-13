@@ -1,18 +1,24 @@
 import { useThemeUI } from 'theme-ui';
 import { get, defaultTo } from 'lodash';
 import getTheme from '../theme/';
+import { PrismTheme } from 'prism-react-renderer';
 
 export const themeProp = (str: string) => (props: any) => {
   return get(`theme.${str}`, props);
 };
 
 export const usePrismTheme = () => {
-  //@ts-ignore
-  const { theme, colorMode = 'light' } = useThemeUI();
-  const prismTheme = get(theme, 'prismTheme');
-  const themeToUse = defaultTo(
+  const themeUI = useThemeUI();
+  const prismTheme = get(themeUI.theme, 'prismTheme');
+  const colorMode: string = get(themeUI, 'colorMode', 'light');
+  const themeToUse = defaultTo<PrismTheme>(
     prismTheme,
-    get(theme, `prism.${colorMode}`, get(getTheme(), `prism.${colorMode}`))
+    get(
+      themeUI.theme,
+      `prism.${colorMode}`,
+      get(getTheme(), `prism.${colorMode}`)
+    )
   );
+
   return themeToUse;
 };
