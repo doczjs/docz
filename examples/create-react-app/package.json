@@ -1,9 +1,9 @@
 {
   "name": "docz-example-create-react-app",
-  "version": "2.0.0-rc.39",
+  "version": "2.0.0-rc.40",
   "private": true,
   "dependencies": {
-    "docz": "2.0.0-rc.39",
+    "docz": "2.0.0-rc.40",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1"
