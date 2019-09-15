@@ -1,4 +1,4 @@
-const { merge } = require('lodash/fp')
+const { mergeWith } = require('lodash/fp')
 
 let custom
 try {
@@ -47,5 +47,11 @@ const config = {
     },<%}%>
   ],
 }
+
+const merge = mergeWith((objValue, srcValue) => {
+  if (Array.isArray(objValue)) {
+    return objValue.concat(srcValue)
+  }
+})
 
 module.exports = merge(config, custom)
