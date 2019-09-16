@@ -8,7 +8,6 @@ import {
   LiveEditor,
   LiveProviderProps,
 } from 'react-live';
-import { merge } from 'lodash';
 import { Resizable } from 're-resizable';
 import copy from 'copy-text-to-clipboard';
 
@@ -88,14 +87,7 @@ export const Playground = ({
         scope={scope}
         transformCode={transformCode}
         language={language}
-        theme={merge({}, theme, {
-          styles: [],
-          plain: {
-            fontFamily: 'Inconsolata',
-            fontSize: 28,
-            lineHeight: '1.5em',
-          },
-        })}
+        theme={theme}
       >
         <div sx={styles.previewWrapper}>
           <LivePreviewWrapper showingCode={showingCode}>

@@ -2,7 +2,7 @@
 import moraga from 'typography-theme-moraga';
 //@ts-ignore
 import { toTheme } from '@theme-ui/typography';
-import { merge } from 'lodash';
+import { merge, get } from 'lodash';
 
 import * as modes from './modes';
 import prism from './prism';
@@ -11,7 +11,7 @@ import { Theme } from '../types';
 moraga.headerWeight = 700;
 const typography = toTheme(moraga);
 
-const getTheme = (theme?: Theme) =>
+const getTheme = (theme?: Theme): Theme =>
   merge(theme, typography, {
     prism,
     initialColorMode: 'light',
@@ -89,7 +89,8 @@ const getTheme = (theme?: Theme) =>
         py: 3,
         px: 4,
         bg: 'blockquote.bg',
-        borderLeft: (t: Theme) => `5px solid ${t.colors.blockquote.border}`,
+        borderLeft: (t: Theme) =>
+          `5px solid ${get(t, 'colors.blockquote.border')}`,
         color: 'blockquote.color',
         fontStyle: 'italic',
         '> p': {
@@ -134,7 +135,7 @@ const getTheme = (theme?: Theme) =>
       },
       hr: {
         border: 0,
-        borderBottom: (t: Theme) => `1px solid ${t.colors.border}`,
+        borderBottom: (t: Theme) => `1px solid ${get(t, 'colors.border')}`,
       },
     },
   });
