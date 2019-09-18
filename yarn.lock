@@ -10104,59 +10104,6 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-docz-components@2.0.0-rc.39:
-  version "2.0.0-rc.39"
-  resolved "http://localhost:4873/docz-components/-/docz-components-2.0.0-rc.39.tgz#505b9af3a4d93b73bd129006ec10605f566bb171"
-  integrity sha512-EzXDCnZHVBi3q/8LYqpERbjVrUIdUgiHDSUNNINnH9KCzSOH5XQ3Qz8zkdXLJPZmouxF7PG5DCpuJKfQCuGp2g==
-  dependencies:
-    "@emotion/core" "^10.0.16"
-    "@mdx-js/react" "^1.4.0"
-    "@theme-ui/typography" "^0.2.34"
-    copy-text-to-clipboard "^2.1.0"
-    lodash "^4.17.15"
-    lodash-es "^4.17.15"
-    re-resizable "^6.0.0"
-    react-feather "^2.0.3"
-    react-live "^2.2.0"
-    theme-ui "^0.2.38"
-    typography-theme-moraga "^0.16.19"
-
-docz-core@2.0.0-rc.39:
-  version "2.0.0-rc.39"
-  resolved "http://localhost:4873/docz-core/-/docz-core-2.0.0-rc.39.tgz#6fca5904b71f9103387e988676482f8a44c67344"
-  integrity sha512-2BQnHsiBoUlT2bQC53IK0nMbP10bk3mksrw7TptoJMLjzsvqBEu76Qou+nFx+dqu1eQ9RZtiOxsOalwsD/JCJg==
-  dependencies:
-    "@sindresorhus/slugify" "^0.9.1"
-    chalk "^2.4.2"
-    chokidar "^3.0.2"
-    detect-port "^1.3.0"
-    docz-utils "^2.0.0-rc.1"
-    env-dot-prop "^2.0.1"
-    fast-deep-equal "^2.0.1"
-    fast-glob "^3.0.4"
-    find-up "^4.1.0"
-    fs-extra "^8.1.0"
-    get-pkg-repo "^4.1.0"
-    humanize-string "^2.1.0"
-    latest-version "^5.1.0"
-    load-cfg "^2.0.0-rc.1"
-    lodash "^4.17.14"
-    minimatch "^3.0.4"
-    ora "^3.4.0"
-    react-docgen "^4.1.1"
-    react-docgen-actual-name-handler "^2.0.0-rc.1"
-    react-docgen-external-proptypes-handler "^1.0.3"
-    react-docgen-typescript "^1.12.5"
-    recast "^0.18.1"
-    resolve "^1.11.1"
-    shelljs "^0.8.3"
-    signale "^1.4.0"
-    titleize "^2.1.0"
-    typescript "3.5.3"
-    wait-on "^3.3.0"
-    xstate "^4.6.7"
-    yargs "^13.3.0"
-
 docz-core@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/docz-core/-/docz-core-1.2.0.tgz#f760149032445050f187e553b0bbc4568c631009"
@@ -10253,30 +10200,6 @@ docz-utils@^1.2.0:
     unist-util-find "^1.0.1"
     unist-util-is "^2.1.2"
     unist-util-visit "^1.4.0"
-
-docz@2.0.0-rc.39:
-  version "2.0.0-rc.39"
-  resolved "http://localhost:4873/docz/-/docz-2.0.0-rc.39.tgz#d03ca380d36eac44de05c3434082ecbc9447bcb4"
-  integrity sha512-qrT16BalYq+ZmKFI50LZoNrsX9MB/TavLN6uqsAcQazHbBRn7IvtZ7QEOLc7QrhkCKLm9BPlUc22rSq/jzyffA==
-  dependencies:
-    "@emotion/core" "^10.0.16"
-    "@mdx-js/react" "^1.0.27"
-    array-sort "^1.0.0"
-    capitalize "^2.0.0"
-    docz-components "2.0.0-rc.39"
-    docz-core "2.0.0-rc.39"
-    fast-deep-equal "^2.0.1"
-    gatsby "^2.13.27"
-    gatsby-plugin-eslint "^2.0.5"
-    gatsby-plugin-typescript "^2.1.6"
-    gatsby-theme-docz "2.0.0-rc.39"
-    lodash "^4.17.14"
-    marksy "^8.0.0"
-    match-sorter "^3.1.1"
-    prop-types "^15.7.2"
-    scheduler "^0.15.0"
-    ulid "^2.3.0"
-    yargs "^13.3.0"
 
 docz@^1.2.0:
   version "1.3.2"
@@ -12896,7 +12819,7 @@ gatsby-telemetry@^1.1.6:
     stack-utils "1.0.2"
     uuid "3.3.2"
 
-gatsby-theme-docz@2.0.0-rc.39, gatsby-theme-docz@next:
+gatsby-theme-docz@next:
   version "2.0.0-rc.39"
   resolved "https://registry.yarnpkg.com/gatsby-theme-docz/-/gatsby-theme-docz-2.0.0-rc.39.tgz#64e044e0d19edd3a61ff665f5860866b3f177f98"
   integrity sha512-ekmwE7hHulEsBGZvJiRITyFv9wBeVAFhBlxBqTmkG48Tnb78WuBgCAW2yimZrtxfBm0pJNiYZfik9rl1TduMAw==
