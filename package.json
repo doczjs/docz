@@ -17,6 +17,7 @@
   "scripts": {
     "clean": "lerna clean",
     "bs": "lerna bootstrap",
+    "dev": "cd dev-env/basic && yarn && yarn dev",
     "packages": "run-s packages:*",
     "packages:fix": "lerna run --parallel fix && echo",
     "packages:lint": "lerna run --parallel lint",
@@ -65,9 +66,14 @@
     "ts-jest": "^24.0.2",
     "typescript": "3.5.3"
   },
-  "workspaces": [
-    "core/*",
-    "examples/*",
-    "other-packages/*"
-  ]
+  "workspaces": {
+    "packages": [
+      "core/*",
+      "examples/*",
+      "other-packages/*"
+    ],
+    "nohoist": [
+      "dev-env/*"
+    ]
+  }
 }
