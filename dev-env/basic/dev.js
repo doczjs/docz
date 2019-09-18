@@ -55,7 +55,7 @@ const watchPackage = (name, outputDir) => {
     onFileChanged()
   })
   const stop = () => {
-    build.kill()
+    build.cancel()
     sync.removeAllListeners()
   }
   return stop
@@ -63,16 +63,30 @@ const watchPackage = (name, outputDir) => {
 
 const main = async () => {
   const watchStoppers = []
-
+  process.on('SIGINT', () => {
+    console.log(`\nTerminating ${watchStoppers.length} running processes`)
+    for (let stopWatching of watchStoppers) {
+      stopWatching()
+    }
+    console.log(`\nTerminated ${watchStoppers.length} running processes\n`)
+    process.exit(0)
+  })
+  const build = runCommand(`yarn packages:build`, { cwd: rootPath })
+  watchStoppers.push(() => build.cancel())
+  await build
   for (let package of packages) {
     const stopWatchingPackage = watchPackage(package.name, package.outputDir)
     console.log('watching package ', package.name)
     watchStoppers.push(stopWatchingPackage)
   }
-  const doczDev = runCommand(`yarn docz dev`, { cwd: __dirname })
-  watchStoppers.push(() => doczDev.kill())
+  const dev = runCommand(`yarn docz dev`, { cwd: __dirname })
+  watchStoppers.push(() => dev.cancel())
 }
 
 ;(async () => {
-  await main()
+  try {
+    await main()
+  } catch (err) {
+    console.warn('Failed : ', err.message)
+  }
 })()
