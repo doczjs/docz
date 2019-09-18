@@ -1,66 +1,43 @@
 # Contributing
 
-Contributions, issues and feature requests are very welcome. If you are using this package and fixed a bug for yourself, please consider submitting a PR! Also, you can ping me on [Twitter](https://twitter.com/pedronauck).
+Contributions, issues and feature requests are very welcome. 
 
-## Guidelines
+If you are using this package and fixed a bug for yourself, please consider submitting a PR!
 
-If you are planning to submit a pull request, it's very important to follow these basic rules:
+## Pre-requisites
 
-### Getting started
+- *Node:* `^9.0.0` or higher.
+- *Npm:* `6.0.0` or higher.
+- *Yarn:* `^1.7.0` or higher.
 
-Fork the project on Github.
+## Getting started
 
-![](https://www.dropbox.com/s/jgh20dxksyjawgv/fork-project.png?raw=1)
+Clone the project from Github : 
 
-Clone the project from the fork you have created previously at first step.
-
-![](https://www.dropbox.com/s/nzmz154oav7imn5/clone-project.png?raw=1)
-
-Then, check out the project:
-
-`$ git clone https://github.com/`**your-github-user**`/docz.git`
-
-## Setup
-
-### Pre-requisites
-
-- *Node:* `^9.0.0` or higher
-- *Npm:* `6.0.0` or higher
-- *Yarn: (optional)* `^1.7.0` or higher
-
-### Install
-
-Go to `docz` directory after checking out the repository:
-
-```bash
-$ cd docz
+```sh
+git clone git@github.com:doczjs/docz.git
+cd docz
 ```
 
-Then run the following commands to bootstrap all dependencies:
+Install dependencies : 
 
-With `yarn`:
-```bash
-$ yarn install
-$ yarn bs
+```sh
+yarn
 ```
 
-With `npm`:
-```bash
-$ npm install
-$ npm run bs
+Setup development environment:
+
+```sh
+yarn dev
 ```
 
-Finally, run the `packages` script to format, build and lint all packages:
+That's it you're ready to start contributing 👍!
 
-With `yarn`:
-```bash
-$ yarn packages
-```
+### What does `yarn dev` do ?
 
-With `npm`:
-```bash
-$ npm run packages
-```
+1. Builds and watches all core docz packages.
+2. Copies build output to local dev-env node_modules on every change.
+3. Runs a docz app on `http://localhost:3000/` that listens to changes of docz packages' build output.
 
 ## Developing
 
@@ -89,19 +66,6 @@ There are lots of [packages](https://github.com/pedronauck/docz/tree/master/core
 - Built-ins components are built here, most specifically on [this folder](https://github.com/pedronauck/docz/tree/master/core/docz/src/components)
 - This package shouldn't have any component style, just boilerplate and logic!
 
-### Watching projects
-
-To speed up your developing we recommended to run packages in separate terminals.
-
-- Split your terminal and open each package directory in a separate window.
-- Run `yarn dev` (or `npm run dev`) in each slice (or window) to watch tasks.
-
-For example, to run some example from [examples](https://github.com/pedronauck/docz/tree/master/examples) directory.
-
-![](https://cdn-std.dprcdn.net/files/acc_649651/MdH4FL)
-
-In the above example you're watching `docz`, `docz-core` and `docz-theme-default` and also running `docz-example-basic`. So any modifications made to any of those packages will reflect in basic example on the fly!
-
 ### Creating plugins
 
 If there are some plugins that you want to create, please contact me before to talk about the possibility to make this plugin official!
@@ -112,7 +76,7 @@ Commit messages should follow the [commit message convention](https://convention
 
 ### Pull Requests
 
-- All pull requests have to be send against `dev` branch.
+- All pull requests have to be sent against `dev` branch.
 
 - The **master branch** is a snapshot of the latest stable release. All development should be done in dedicated branch. **Do not submit PRs against the master branch**.
 
@@ -130,10 +94,6 @@ Commit messages should follow the [commit message convention](https://convention
 
 ## Contributors
 
-Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+This project exists thanks to all the people who contribute.
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
-| [<img src="https://avatars3.githubusercontent.com/u/2029172?v=4" width="60px;" alt="Pedro Nauck"/><br /><sub><b>Pedro Nauck</b></sub>](https://github.com/pedronauck)<br />[💻](https://github.com/pedronauck/docz/commits?author=pedronauck "Code") [📖](https://github.com/pedronauck/docz/commits?author=pedronauck "Documentation") [🐛](https://github.com/pedronauck/docz/issues?q=author%3Apedronauck "Bug reports") [👀](#review-pedronauck "Reviewed Pull Requests") |
-| :---: |
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+<a href="https://github.com/pedronauck/docz/graphs/contributors"><img src="https://opencollective.com/docz/contributors.svg?width=890&button=false" /></a>

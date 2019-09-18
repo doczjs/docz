@@ -8,6 +8,7 @@
     "dist"
   ],
   "scripts": {
+    "dev": "tsdx watch",
     "start": "tsdx watch",
     "build": "tsdx build",
     "lint": "tsdx lint",
