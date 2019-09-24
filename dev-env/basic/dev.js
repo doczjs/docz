@@ -41,12 +41,7 @@ const watchPackage = (name, outputDir) => {
   const sourcePath = path.join(rootPath, `core/${name}/${outputDir}`)
   const destinationPath = path.join(__dirname, `node_modules/${name}/`)
   const sourceRootPath = path.join(rootPath, `core/${name}/`)
-  const build = runCommand(`yarn run dev`, { cwd: sourceRootPath }).catch(
-    err => {
-      console.log(`Error building  ${sourceRootPath}`, err)
-      process.exit(1)
-    }
-  )
+  const build = runCommand(`yarn run dev`, { cwd: sourceRootPath })
   const sync = cpx.watch(`${sourcePath}/*`, destinationPath)
   sync.on('copy', e => {
     onFileChanged()
