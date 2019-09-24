@@ -30,6 +30,18 @@ export const ensureFiles = ({ args }: ServerMachineCtx) => {
   ensureFile('gatsby-config.js', 'gatsby-config.custom.js')
 
   themeDirs.forEach(dir => ensureFile(dir))
+
+  const publicPath = path.resolve(paths.docz, '..', args.public)
+  if (fs.existsSync(publicPath)) {
+    const destinationPath = path.resolve(paths.docz, 'static')
+    try {
+      fs.copySync(publicPath, destinationPath)
+    } catch (err) {
+      console.log(
+        `Failed to copy static assets from ${publicPath} to ${destinationPath}`
+      )
+    }
+  }
 }
 
 export const getIsFirstInstall = () => {
