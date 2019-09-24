@@ -5,6 +5,7 @@ import sh from 'shelljs'
 
 import * as paths from '../config/paths'
 import { BuildFn } from '../lib/Bundler'
+import { ensureFiles } from './machine/actions'
 
 export const build: BuildFn = async (config, dist) => {
   const publicDir = path.join(paths.docz, 'public')
@@ -15,7 +16,7 @@ export const build: BuildFn = async (config, dist) => {
     // https://www.gatsbyjs.org/docs/path-prefix/
     cliArgs.push('--prefixPaths')
   }
-
+  ensureFiles({ args: config })
   sh.cd(paths.docz)
   spawn.sync('yarn', cliArgs, { stdio: 'inherit' })
   await fs.copy(publicDir, dist)
