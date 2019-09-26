@@ -27,3 +27,12 @@ exports.onCreateWebpackConfig = args => {
   )
   onCreateWebpackConfig(args)
 }
+
+exports.onCreateBabelConfig = args => {
+  const onCreateBabelConfig = get(
+    gatsbyNodeCustom,
+    'onCreateBabelConfig',
+    NO_OP
+  )
+  onCreateBabelConfig(args)
+}
