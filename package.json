@@ -69,11 +69,11 @@
   "workspaces": {
     "packages": [
       "core/*",
-      "examples/*",
       "other-packages/*"
     ],
     "nohoist": [
-      "dev-env/*"
+      "dev-env/*",
+      "examples/*"
     ]
   }
 }
