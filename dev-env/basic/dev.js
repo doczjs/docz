@@ -36,22 +36,44 @@ export default timestamp
     `
   )
 }
-
 const watchPackage = (name, outputDir) => {
   const sourcePath = path.join(rootPath, `core/${name}/${outputDir}`)
-  const destinationPath = path.join(__dirname, `node_modules/${name}/`)
+  const destinationPath = path.join(
+    __dirname,
+    `node_modules/${name}/${outputDir}`
+  )
   const sourceRootPath = path.join(rootPath, `core/${name}/`)
   const build = runCommand(`yarn run dev`, { cwd: sourceRootPath })
-  const sync = cpx.watch(`${sourcePath}/*`, destinationPath)
-  sync.on('copy', e => {
-    onFileChanged()
-  })
-  sync.on('remove', e => {
-    onFileChanged()
+
+  let fileWatchers = []
+  // gatsby-theme-docz is not compiled to a different directory, we need to watch the source code without node_modules
+  if (name === 'gatsby-theme-docz') {
+    fileWatchers.push(cpx.watch(`${sourcePath}/*`, destinationPath))
+    fileWatchers.push(cpx.watch(`${sourcePath}/src/**/*`, destinationPath))
+    fileWatchers.push(cpx.watch(`${sourcePath}/lib/**/*`, destinationPath))
+  } else {
+    const sync = cpx.watch(`${sourcePath}/**/*`, destinationPath)
+    fileWatchers.push(sync)
+  }
+
+  const unsubscribers = fileWatchers.map(fileWatcher => {
+    fileWatcher.on('copy', e => {
+      // console.log(`\nCOPIED FILE ${e.srcPath} to ${e.dstPath}\n`)
+      onFileChanged()
+    })
+    fileWatcher.on('remove', e => {
+      onFileChanged()
+    })
+    const stop = () => {
+      fileWatcher.removeAllListeners()
+    }
+    return stop
   })
   const stop = () => {
     build.cancel()
-    sync.removeAllListeners()
+    unsubscribers.forEach(unsub => {
+      unsub()
+    })
   }
   return stop
 }
