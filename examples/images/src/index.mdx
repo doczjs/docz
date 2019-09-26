@@ -9,12 +9,27 @@ Tux is a penguin character and the official brand character of the Linux kernel.
 
 An image of Tux can be resolved directly in markdown
 
-![Tux](tux.png)
+![Tux](../public/tux.png)
 
 It can also be resolved using explicit relative paths
 
-![Tux](./tux.png)
+![Tux](../public/tux.png)
 
 Images may also link to external URLs. For example, the following image is downloaded from Wikipedia
 
 ![Tux original](https://upload.wikimedia.org/wikipedia/commons/a/af/Tux.png)
+
+To link to your images from your components add a `public` directory and store in it your images.
+
+Then, in your code, link to your image (tux.png) by pointing to `/public`, for example : 
+
+```jsx
+  <img src="/public/tux.png" />
+```
+
+You can also customise the public folder to be anything you want by changing the `public` field in your `doczrc.js` file.
+
+import Image from './index.jsx'
+
+<Image />
+
