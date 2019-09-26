@@ -33,12 +33,12 @@ export const ensureFiles = ({ args }: ServerMachineCtx) => {
 
   const publicPath = path.resolve(paths.docz, '..', args.public)
   if (fs.existsSync(publicPath)) {
-    const destinationPath = path.resolve(paths.docz, 'static')
+    const destinationPath = path.resolve(paths.docz, 'static', args.public)
     try {
       fs.copySync(publicPath, destinationPath)
     } catch (err) {
       console.log(
-        `Failed to copy static assets from ${publicPath} to ${destinationPath}`
+        `Failed to copy static assets from ${publicPath} to ${destinationPath} : ${err.message}`
       )
     }
   }
