@@ -31,9 +31,9 @@ export const ensureFiles = ({ args }: ServerMachineCtx) => {
 
   themeDirs.forEach(dir => ensureFile(dir))
 
-  const publicPath = path.resolve(paths.docz, '..', args.public)
+  const publicPath = path.join(paths.docz, '..', args.public)
   if (fs.existsSync(publicPath)) {
-    const destinationPath = path.resolve(paths.docz, 'static', args.public)
+    const destinationPath = path.join(paths.docz, 'static', args.public)
     try {
       fs.copySync(publicPath, destinationPath)
     } catch (err) {
