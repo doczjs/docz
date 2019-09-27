@@ -95,6 +95,9 @@ const main = async () => {
     console.log(`\nTerminated ${watchStoppers.length} running processes\n`)
     process.exit(0)
   })
+  const build = runCommand(`yarn packages:build`, { cwd: rootPath })
+  watchStoppers.push(() => build.cancel())
+  await build
   for (let package of packages) {
     const stopWatchingPackage = await watchPackage(
       package.name,
