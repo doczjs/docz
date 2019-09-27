@@ -10,6 +10,7 @@
     "docz"
   ],
   "scripts": {
+    "build": "echo noop",
     "dev": "echo noop",
     "fix": "yarn lint --fix",
     "lint": "eslint . --ext .js",
