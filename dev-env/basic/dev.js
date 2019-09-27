@@ -44,7 +44,14 @@ const watchPackage = async (name, outputDir) => {
   )
   const sourceRootPath = path.join(rootPath, `core/${name}/`)
   const dev = runCommand(`yarn run dev`, { cwd: sourceRootPath })
-  await runCommand(`yarn run build`, { cwd: sourceRootPath })
+  try {
+    await runCommand(`yarn run build`, { cwd: sourceRootPath })
+  } catch (err) {
+    console.log(
+      `Failed to build ${name}, before running dev. This is not necessarily an issue : ${err.message}`
+    )
+  }
+
   let fileWatchers = []
   // gatsby-theme-docz is not compiled to a different directory, we need to watch the source code without node_modules
   if (name === 'gatsby-theme-docz') {
