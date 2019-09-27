@@ -36,15 +36,15 @@ export default timestamp
     `
   )
 }
-const watchPackage = (name, outputDir) => {
+const watchPackage = async (name, outputDir) => {
   const sourcePath = path.join(rootPath, `core/${name}/${outputDir}`)
   const destinationPath = path.join(
     __dirname,
     `node_modules/${name}/${outputDir}`
   )
   const sourceRootPath = path.join(rootPath, `core/${name}/`)
-  const build = runCommand(`yarn run dev`, { cwd: sourceRootPath })
-
+  const dev = runCommand(`yarn run dev`, { cwd: sourceRootPath })
+  await runCommand(`yarn run build`, { cwd: sourceRootPath })
   let fileWatchers = []
   // gatsby-theme-docz is not compiled to a different directory, we need to watch the source code without node_modules
   if (name === 'gatsby-theme-docz') {
@@ -70,7 +70,7 @@ const watchPackage = (name, outputDir) => {
     return stop
   })
   const stop = () => {
-    build.cancel()
+    dev.cancel()
     unsubscribers.forEach(unsub => {
       unsub()
     })
@@ -88,11 +88,11 @@ const main = async () => {
     console.log(`\nTerminated ${watchStoppers.length} running processes\n`)
     process.exit(0)
   })
-  const build = runCommand(`yarn packages:build`, { cwd: rootPath })
-  watchStoppers.push(() => build.cancel())
-  await build
   for (let package of packages) {
-    const stopWatchingPackage = watchPackage(package.name, package.outputDir)
+    const stopWatchingPackage = await watchPackage(
+      package.name,
+      package.outputDir
+    )
     console.log('watching package ', package.name)
     watchStoppers.push(stopWatchingPackage)
   }
