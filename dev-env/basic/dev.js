@@ -46,10 +46,7 @@ const getDestinationPath = (name, outputDir = '') => {
 
 const watchPackage = async (name, outputDir) => {
   const sourcePath = path.join(rootPath, `core/${name}/${outputDir}`)
-  const destinationPath = path.join(
-    __dirname,
-    `node_modules/${name}/${outputDir}`
-  )
+  const destinationPath = getDestinationPath(name, outputDir)
   const sourceRootPath = path.join(rootPath, `core/${name}/`)
   const dev = runCommand(`yarn run dev`, { cwd: sourceRootPath })
   try {
