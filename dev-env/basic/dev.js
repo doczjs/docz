@@ -36,6 +36,14 @@ export default timestamp
     `
   )
 }
+
+const getDestinationPath = (name, outputDir = '') => {
+  return path.join(
+    __dirname,
+    `node_modules/${name}/${outputDir}`
+  )
+}
+
 const watchPackage = async (name, outputDir) => {
   const sourcePath = path.join(rootPath, `core/${name}/${outputDir}`)
   const destinationPath = path.join(
@@ -53,11 +61,12 @@ const watchPackage = async (name, outputDir) => {
   }
 
   let fileWatchers = []
-  // gatsby-theme-docz is not compiled to a different directory, we need to watch the source code without node_modules
+  /* gatsby-theme-docz is not compiled to a different directory,
+     we need to watch the source code without node_modules */
   if (name === 'gatsby-theme-docz') {
-    fileWatchers.push(cpx.watch(`${sourcePath}/*`, destinationPath))
-    fileWatchers.push(cpx.watch(`${sourcePath}/src/**/*`, destinationPath))
-    fileWatchers.push(cpx.watch(`${sourcePath}/lib/**/*`, destinationPath))
+    fileWatchers.push(cpx.watch(`${sourcePath}/*`, getDestinationPath(name)))
+    fileWatchers.push(cpx.watch(`${sourcePath}/src/**/*`, getDestinationPath(name, 'src')))
+    fileWatchers.push(cpx.watch(`${sourcePath}/lib/**/*`, getDestinationPath(name, 'lib')))
   } else {
     const sync = cpx.watch(`${sourcePath}/**/*`, destinationPath)
     fileWatchers.push(sync)
@@ -65,7 +74,6 @@ const watchPackage = async (name, outputDir) => {
 
   const unsubscribers = fileWatchers.map(fileWatcher => {
     fileWatcher.on('copy', e => {
-      // console.log(`\nCOPIED FILE ${e.srcPath} to ${e.dstPath}\n`)
       onFileChanged()
     })
     fileWatcher.on('remove', e => {
