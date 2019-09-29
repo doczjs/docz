@@ -1,25 +1,25 @@
 # Contributing
 
-Contributions, issues and feature requests are very welcome. 
+Contributions, issues and feature requests are very welcome.
 
 If you are using this package and fixed a bug for yourself, please consider submitting a PR!
 
 ## Pre-requisites
 
-- *Node:* `^9.0.0` or higher.
-- *Npm:* `6.0.0` or higher.
-- *Yarn:* `^1.7.0` or higher.
+- _Node:_ `^9.0.0` or higher.
+- _Npm:_ `6.0.0` or higher.
+- _Yarn:_ `^1.7.0` or higher.
 
 ## Getting started
 
-Clone the project from Github : 
+Clone the project from Github :
 
 ```sh
 git clone git@github.com:doczjs/docz.git
 cd docz
 ```
 
-Install dependencies : 
+Install dependencies :
 
 ```sh
 yarn
@@ -39,6 +39,10 @@ That's it you're ready to start contributing 👍!
 2. Copies build output to local dev-env node_modules on every change.
 3. Runs a docz app on `http://localhost:3000/` that listens to changes of docz packages' build output.
 
+### Other questions or concerns ?
+
+Feel free to join [our contributors' slack channel](https://join.slack.com/t/docz-workspace/shared_invite/enQtNzc4ODc2ODA3NzUxLWI0ZmYwY2NhNjhkNDFjN2UzYzlmMDcwZjQyZGY4MWQ1NmQwZDVlZDE4MmE3N2I4MWRjZTAxZjY4ODk4NGMzZjg) for longer form discussion.
+
 ## Developing
 
 ### Project structure
@@ -55,12 +59,14 @@ The are just two directories to care about if you would like to contribute:
 There are lots of [packages](https://github.com/pedronauck/docz/tree/master/core) that are necessary to run docz, the most important packages that are important to care about:
 
 #### **[docz-core](https://github.com/pedronauck/docz/tree/master/core/docz-core)**
+
 - This is the core of docz. All build algorithms, server process and parses belongs to here.
 - If you break this package, probably you'll break all packages! Please, be careful.
 - All CLI commands are built here and imported on `docz` package using `./bin` script.
 - Do not create scripts that run on browser here, only node scripts.
 
 #### **[docz](https://github.com/pedronauck/docz/tree/master/core/docz)**
+
 - Main and top level package.
 - Scripts that run on browser belongs to this package
 - Built-ins components are built here, most specifically on [this folder](https://github.com/pedronauck/docz/tree/master/core/docz/src/components)
@@ -90,7 +96,6 @@ Commit messages should follow the [commit message convention](https://convention
 
 - Make sure that [all examples](https://github.com/pedronauck/docz/tree/master/examples) are running as expected
 - Provide convincing reason to add this feature. Ideally you should open a suggestion issue first and have it greenlighted before working on it.
-
 
 ## Contributors
 
