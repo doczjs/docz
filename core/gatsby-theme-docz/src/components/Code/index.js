@@ -6,7 +6,9 @@ import { jsx, Styled } from 'theme-ui'
 import { usePrismTheme } from '~utils/theme'
 
 export const Code = ({ children, className: outerClassName }) => {
-  const [language] = outerClassName.replace(/language-/, '').split(' ')
+  const [language] = outerClassName
+    ? outerClassName.replace(/language-/, '').split(' ')
+    : ['text']
   const theme = usePrismTheme()
 
   return (
@@ -18,7 +20,7 @@ export const Code = ({ children, className: outerClassName }) => {
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Styled.pre
-          className={`${outerClassName} ${className}`}
+          className={`${outerClassName || ''} ${className}`}
           style={style}
           data-testid="code"
         >
