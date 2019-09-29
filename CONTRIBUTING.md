@@ -82,12 +82,6 @@ Commit messages should follow the [commit message convention](https://convention
 
 ### Pull Requests
 
-- All pull requests have to be sent against `dev` branch.
-
-- The **master branch** is a snapshot of the latest stable release. All development should be done in dedicated branch. **Do not submit PRs against the master branch**.
-
-- If you are checking out from a feature or a topic different of `master` or `dev`, you have to merge back and push against the same feature.
-
 - Work in the **src** folder of a respective package and **DO NOT** check `dist` in the commits.
 
 - It's OK - and a very nice thing - to have multiple small commits as you work on the PR - we will let GitHub automatically squash it before merging.
