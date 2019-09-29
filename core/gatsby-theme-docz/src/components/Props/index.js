@@ -12,7 +12,7 @@ export const getDefaultValue = ({ defaultValue, type, flowType }) => {
     return '[Empty string]'
   }
   if (propType && propType.name === 'string') {
-    return value.replace(/\'/g, '"')
+    return defaultValue.value.replace(/\'/g, '"')
   }
   if (typeof defaultValue.value === 'object' && defaultValue.value.toString) {
     return defaultValue.value.toString()
