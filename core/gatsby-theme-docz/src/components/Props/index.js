@@ -5,18 +5,19 @@ import { jsx } from 'theme-ui'
 import { ChevronDown, ChevronUp } from '../Icons'
 import * as styles from './styles'
 
-const getDefaultValue = ({ defaultValue, type }) => {
-  if (!defaultValue.value || !type.name) return null
+export const getDefaultValue = ({ defaultValue, type, flowType }) => {
+  const propType = flowType ? flowType : type
+  if (!defaultValue.value) return null
   if (defaultValue.value === "''") {
-    return <em>[Empty string]</em>
+    return '[Empty string]'
   }
-  if (type.name === 'string') {
-    return <em>{value.replace(/\'/g, '"')}</em>
+  if (propType && propType.name === 'string') {
+    return value.replace(/\'/g, '"')
   }
   if (typeof defaultValue.value === 'object' && defaultValue.value.toString) {
     return defaultValue.value.toString()
   }
-  return <em>{defaultValue.value}</em>
+  return defaultValue.value
 }
 
 export const Prop = ({ propName, prop, getPropType }) => {
@@ -35,7 +36,7 @@ export const Prop = ({ propName, prop, getPropType }) => {
         </div>
         {prop.defaultValue && (
           <div sx={styles.defaultValue} data-testid="prop-default-value">
-            {getDefaultValue(prop)}
+            <em>{getDefaultValue(prop)}</em>
           </div>
         )}
         <div sx={styles.right}>
