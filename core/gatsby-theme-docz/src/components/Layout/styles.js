@@ -1,5 +1,4 @@
 import { media } from '~theme/breakpoints'
-import * as mixins from '~utils/mixins'
 
 export const main = {
   display: 'flex',
@@ -28,20 +27,4 @@ export const content = {
     px: 4,
     pt: 5,
   },
-}
-
-export const menuIcon = {
-  position: 'absolute',
-  top: 15,
-  left: 30,
-  display: 'none',
-  [media.tablet]: {
-    display: 'block',
-  },
-}
-
-export const menuButton = {
-  ...mixins.ghostButton,
-  color: 'header.text',
-  opacity: 0.5,
 }

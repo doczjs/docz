@@ -1,8 +1,10 @@
 import * as mixins from '~utils/mixins'
+import { media } from '~theme/breakpoints'
 
 export const wrapper = {
   bg: 'header.bg',
   position: 'relative',
+  zIndex: 1,
   borderBottom: t => `1px solid ${t.colors.border}`,
 }
 
@@ -12,6 +14,23 @@ export const innerContainer = {
   py: '24px',
   position: 'relative',
   justifyContent: 'space-between',
+}
+
+export const menuIcon = {
+  display: 'none',
+  position: 'absolute',
+  top: 'calc(100% + 15px)',
+  left: 30,
+  [media.tablet]: {
+    display: 'block',
+  },
+}
+
+export const menuButton = {
+  ...mixins.ghostButton,
+  color: 'header.text',
+  opacity: 0.5,
+  cursor: 'pointer',
 }
 
 export const headerButton = {
@@ -24,9 +43,7 @@ export const headerButton = {
   color: 'header.button.color',
   fontSize: 0,
   fontWeight: 600,
-  ':hover': {
-    cursor: 'pointer',
-  },
+  cursor: 'pointer',
 }
 
 export const editButton = {
