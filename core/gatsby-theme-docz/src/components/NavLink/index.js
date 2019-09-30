@@ -20,7 +20,7 @@ export const NavLink = ({ item, ...props }) => {
   const current = useCurrentDoc()
   const isCurrent = item.route === current.route
   const showHeadings = isCurrent && headings && headings.length > 0
-
+  const currentHash = location ? location.hash : ''
   return (
     <React.Fragment>
       <Link {...props} to={to} sx={styles.link} activeClassName="active" />
@@ -30,7 +30,7 @@ export const NavLink = ({ item, ...props }) => {
             key={heading.slug}
             to={`${to}#${heading.slug}`}
             sx={styles.smallLink}
-            activeClassName="active"
+            className={currentHash === `#${heading.slug}` ? 'active' : ''}
           >
             {heading.value}
           </Link>
