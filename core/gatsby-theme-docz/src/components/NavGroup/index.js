@@ -4,17 +4,18 @@ import React from 'react'
 
 import * as styles from './styles'
 import { NavLink } from '../NavLink'
-import { ChevronDown, ChevronUp } from '../Icons'
+import { ChevronDown } from '../Icons'
 
 export const NavGroup = ({ item }) => {
   const { menu } = item
   const [subheadingsVisible, setShowsubheadings] = React.useState(true)
   const toggleSubheadings = () => setShowsubheadings(!subheadingsVisible)
-  const exandCollapseIcon = subheadingsVisible ? <ChevronUp /> : <ChevronDown />
+
   return (
     <div sx={styles.wrapper} data-testid="nav-group">
       <div sx={styles.title} onClick={toggleSubheadings}>
-        {item.name} {exandCollapseIcon}
+        {item.name}
+        <ChevronDown sx={styles.chevron({ active: subheadingsVisible })} />
       </div>
       <div sx={styles.sublinkWrapper} data-testid="nav-group-links">
         {menu &&
