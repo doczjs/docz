@@ -13,6 +13,13 @@ const getHeadings = (route, docs) => {
   return headings ? headings.filter(heading => heading.depth === 2) : []
 }
 
+const getCurrentHash = () => {
+  if (typeof window === 'undefined') {
+    return ''
+  }
+  return window.location ? window.location.hash : ''
+}
+
 export const NavLink = ({ item, ...props }) => {
   const docs = useDocs()
   const to = item.route
@@ -20,7 +27,7 @@ export const NavLink = ({ item, ...props }) => {
   const current = useCurrentDoc()
   const isCurrent = item.route === current.route
   const showHeadings = isCurrent && headings && headings.length > 0
-  const currentHash = location ? location.hash : ''
+  const currentHash = getCurrentHash()
   return (
     <React.Fragment>
       <Link {...props} to={to} sx={styles.link} activeClassName="active" />
