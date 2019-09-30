@@ -33,6 +33,10 @@ yarn dev
 
 That's it you're ready to start contributing 👍!
 
+The example docz app is in `dev-env/basic` and runs on `http://localhost:3000`
+
+You can change any of the core packages and see the effect or edit the mdx and jsx in `dev-env/basic`
+
 ### What does `yarn dev` do ?
 
 1. Builds and watches all core docz packages.
