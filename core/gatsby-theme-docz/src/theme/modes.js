@@ -12,11 +12,11 @@ export const light = {
   border: colors.grayLight,
   sidebar: {
     bg: colors.white,
-    navGroup: colors.grayLight,
+    navGroup: colors.grayDark,
     navLink: colors.grayDark,
     navLinkActive: colors.blue,
     tocLink: colors.gray,
-    tocLinkActive: colors.grayDark,
+    tocLinkActive: colors.grayExtraDark,
   },
   header: {
     bg: colors.grayExtraLight,
