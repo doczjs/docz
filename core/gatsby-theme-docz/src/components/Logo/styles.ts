@@ -1,4 +1,5 @@
 export const logo = {
+  alignItems: 'center',
   letterSpacing: '-0.02em',
   fontWeight: 600,
   fontSize: 4,

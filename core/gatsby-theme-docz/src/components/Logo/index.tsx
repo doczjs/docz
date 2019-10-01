@@ -6,8 +6,9 @@ import * as styles from './styles'
 
 export const Logo = () => {
   const config = useConfig()
+
   return (
-    <Flex aligmItems="center" sx={styles.logo} data-testid="logo">
+    <Flex sx={styles.logo} data-testid="logo">
       <Link to="/" sx={styles.link}>
         {config.title}
       </Link>
