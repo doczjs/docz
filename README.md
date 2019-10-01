@@ -17,18 +17,16 @@
   </a>
 </p>
 
-Docz makes it easy to write and publish beautiful interactive documentation for your code. 
+Docz makes it easy to write and publish beautiful interactive documentation for your code.
 
 Create MDX files showcasing your code and Docz turns them to a live-reloading, production-ready site.
 
 ![docz example](https://cdn-std.dprcdn.net/files/acc_649651/S2YCID)
 
-
 ## Table of Contents
 
-- [📟 &nbsp; Get Started](#%f0%9f%93%9f-nbsp-get-started)
-  - [Start a New Project](#start-a-new-project)
-  - [Add Docz to an Existing Project](#add-docz-to-an-existing-project)
+- [📟 &nbsp; Start a New Project](#%f0%9f%93%9f-nbsp-start-a-new-project)
+- [➕ &nbsp; Add Docz to an Existing Project](#%e2%9e%95-nbsp-add-docz-to-an-existing-project)
 - [🎩 &nbsp; Features](#%f0%9f%8e%a9-nbsp-features)
 - [🤔 &nbsp; Why?](#%f0%9f%a4%94-nbsp-why)
 - [🗃 &nbsp; Examples](#%f0%9f%97%83-nbsp-examples)
@@ -37,25 +35,19 @@ Create MDX files showcasing your code and Docz turns them to a live-reloading, p
 - [🌍 &nbsp; Around the world](#%f0%9f%8c%8d-nbsp-around-the-world)
 - [💪🏻 &nbsp; Contributors](#%f0%9f%92%aa%f0%9f%8f%bb-nbsp-contributors)
 - [🤝 &nbsp; Contributing](#%f0%9f%a4%9d-nbsp-contributing)
-  - [Contribute time](#contribute-time)
-  - [Contribute money](#contribute-money)
 - [💭 &nbsp; Need Help?](#%f0%9f%92%ad-nbsp-need-help)
 
-## 📟 &nbsp; Get Started
-
-Getting started with **Docz** is quick and easy.
-
-### Start a New Project
+## 📟 &nbsp; Start a New Project
 
 Use [create-docz-app](https://www.npmjs.com/package/create-docz-app) to quickly get started :
 
 ```sh
-npx create-docz-app my-docz-app 
+npx create-docz-app my-docz-app
 # or
 yarn create docz-app my-docz-app --example typescript
 ```
 
-### Add Docz to an Existing Project
+## ➕ &nbsp; Add Docz to an Existing Project
 
 Start by adding `docz` as a dependency :
 
@@ -77,8 +69,8 @@ name: Button
 route: /
 ---
 
-import { Playground, Props } from "docz";
-import Button from "./Button";
+import { Playground, Props } from 'docz'
+import Button from './Button'
 
 # Button
 
@@ -90,29 +82,27 @@ import Button from "./Button";
   <Button type="submit">Click me</Button>
   <Button>No, click me</Button>
 </Playground>
-
 ```
 
 And a Button component `Button.jsx`:
 
 ```typescript
-import React from "react";
-import t from "prop-types";
+import React from 'react'
+import t from 'prop-types'
 
-const Button = ({ children, type }) => <button type={type}>{children}</button>;
+const Button = ({ children, type }) => <button type={type}>{children}</button>
 
 Button.propTypes = {
   /**
    * This is a pretty good description for this prop.
    * Button type.
    */
-  type: t.oneOf(["button", "submit", "reset"])
-};
+  type: t.oneOf(['button', 'submit', 'reset']),
+}
 Button.defaultProps = {
-  type: "button"
-};
-export default Button;
-
+  type: 'button',
+}
+export default Button
 ```
 
 Finally, run the Docz development server:
@@ -149,12 +139,13 @@ Documenting code is one of the most important and time-heavy processes when you'
 - **[styled-components](https://github.com/pedronauck/docz/tree/master/examples/styled-components)** - Using Docz with `styled-components`.
 - **[with typescript](https://github.com/pedronauck/docz/tree/master/examples/typescript)** - Using Docz with Typescript.
 - **[with flow](https://github.com/pedronauck/docz/tree/master/examples/flow)** - Using Docz with Flow.
+- **[with images](https://github.com/pedronauck/docz/tree/master/examples/images)** - Using Docz with images in mdx and jsx.
+
 <!-- TODO: Add missing v2 examples-->
 <!-- - **[with sass](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-sass)** - Using Docz parsing CSS with SASS.
 - **[with less](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-less)** - Using Docz parsing CSS with LESS.
 - **[with postcss](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-postcss)** - Using Docz parsing CSS with PostCSS.
 - **[with stylus](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-stylus)** - Using Docz parsing CSS with Stylus. -->
-
 
 ## 👉🏻 &nbsp; More info on [our website](https://docz.site)
 
@@ -164,7 +155,6 @@ Documenting code is one of the most important and time-heavy processes when you'
 - **[netlify](https://github.com/nicholasess/docz-plugin-netlify)** - Deploy your Docz site to [Netlify](http://netlify.com/).
 - **[svg sprite loader](https://github.com/trustedhousesitters/docz-plugin-svg-sprite-loader)** - Docz plugin for SVG sprite loader.
 - **[snapshots](https://github.com/JosephConradBlack/docz-plugin-snapshots)** - A plugin for Docz that creates jest snapshots for all documented component usages.
-
 
 ## 🌍 &nbsp; Around the world
 
@@ -183,27 +173,25 @@ This project exists thanks to all the people who contribute. [[Contribute](CONTR
 
 <a href="https://github.com/pedronauck/docz/graphs/contributors"><img src="https://opencollective.com/docz/contributors.svg?width=890&button=false" /></a>
 
-
 ## 🤝 &nbsp; Contributing
 
 All kinds of contributions are very welcome and appreciated !
 
-### Contribute time 
+If you want to contribute time to docz then here's a list to get you started :
 
 1. ⭐️ Star the project
 2. 💬 Help people in the [issues](https://github.com/doczjs/docz/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) by sharing your knowledge and experience
-3. 🐛 Find and report issues 
+3. 🐛 Find and report issues
 4. 📥 Submit PRs to help solve issues or add features
 5. ✋ Influence the future of docz with feature requests
 
-If you're looking for a place to start make sure to check issues tagged with  
+If you're looking for a place to start make sure to check issues tagged with
 
 [![Good First Issue](https://img.shields.io/github/issues/storybookjs/storybook/good%20first%20issue.svg)](https://github.com/doczjs/docz/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
 
+And make sure to read the [Contributing Guide](/CONTRIBUTING.md) before making a pull request.
 
-Make sure to read the [Contributing Guide](/CONTRIBUTING.md) before making a pull request.
-
-### Contribute money
+You can also contribute money to help secure docz's future.
 
 <p align="center">
   <a href="https://opencollective.com/docz" target="_blank">
@@ -214,9 +202,6 @@ Make sure to read the [Contributing Guide](/CONTRIBUTING.md) before making a pul
   </a>
 </p>
 
-
-
 ## 💭 &nbsp; Need Help?
 
 If you need some help, feel free to open an issue with a description of the problem you're facing or chat with us on [our Spectrum Community](https://spectrum.chat/docz).
-
