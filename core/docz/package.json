@@ -16,9 +16,9 @@
     "README.md"
   ],
   "scripts": {
-    "dev": "cross-env NODE_ENV=development yarn build -w",
-    "build": "cross-env NODE_ENV=production rollup -c",
-    "fix": "yarn lint --fix",
+    "dev": "cross-env NODE_ENV=development npm run build -- -w",
+    "build": "cross-env NODE_ENV=production npx rollup -c",
+    "fix": "npm run lint -- --fix",
     "lint": "eslint . --ext .ts,.tsx",
     "precommit": "lint-staged"
   },

@@ -38,19 +38,16 @@ export default timestamp
 }
 
 const getDestinationPath = (name, outputDir = '') => {
-  return path.join(
-    __dirname,
-    `node_modules/${name}/${outputDir}`
-  )
+  return path.join(__dirname, `node_modules/${name}/${outputDir}`)
 }
 
 const watchPackage = async (name, outputDir) => {
   const sourcePath = path.join(rootPath, `core/${name}/${outputDir}`)
   const destinationPath = getDestinationPath(name, outputDir)
   const sourceRootPath = path.join(rootPath, `core/${name}/`)
-  const dev = runCommand(`yarn run dev`, { cwd: sourceRootPath })
+  const dev = runCommand(`npm run dev`, { cwd: sourceRootPath })
   try {
-    await runCommand(`yarn run build`, { cwd: sourceRootPath })
+    await runCommand(`npm run build`, { cwd: sourceRootPath })
   } catch (err) {
     console.log(
       `Failed to build ${name}, before running dev. This is not necessarily an issue : ${err.message}`
@@ -62,8 +59,12 @@ const watchPackage = async (name, outputDir) => {
      we need to watch the source code without node_modules */
   if (name === 'gatsby-theme-docz') {
     fileWatchers.push(cpx.watch(`${sourcePath}/*`, getDestinationPath(name)))
-    fileWatchers.push(cpx.watch(`${sourcePath}/src/**/*`, getDestinationPath(name, 'src')))
-    fileWatchers.push(cpx.watch(`${sourcePath}/lib/**/*`, getDestinationPath(name, 'lib')))
+    fileWatchers.push(
+      cpx.watch(`${sourcePath}/src/**/*`, getDestinationPath(name, 'src'))
+    )
+    fileWatchers.push(
+      cpx.watch(`${sourcePath}/lib/**/*`, getDestinationPath(name, 'lib'))
+    )
   } else {
     const sync = cpx.watch(`${sourcePath}/**/*`, destinationPath)
     fileWatchers.push(sync)

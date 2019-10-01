@@ -12,13 +12,13 @@
     "README.md"
   ],
   "scripts": {
-    "build": "yarn cross-env NODE_ENV=production rollup -c",
-    "dev": "yarn cross-env NODE_ENV=development yarn build -w",
-    "fix": "yarn lint --fix",
-    "lint": "yarn eslint . --ext .ts,.tsx",
+    "build": "cross-env NODE_ENV=production npx rollup -c",
+    "dev": "cross-env NODE_ENV=development npm run build -- -w",
+    "fix": "npm run lint -- --fix",
+    "lint": "npx eslint . --ext .ts,.tsx",
     "precommit": "lint-staged",
-    "prepare": "yarn build",
-    "test": "yarn jest"
+    "prepare": "npm run build",
+    "test": "npx jest"
   },
   "dependencies": {
     "@sindresorhus/slugify": "^0.9.1",

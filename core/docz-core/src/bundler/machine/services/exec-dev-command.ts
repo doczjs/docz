@@ -7,7 +7,9 @@ import * as paths from '../../../config/paths'
 
 export const execDevCommand = async ({ args }: ServerMachineCtx) => {
   sh.cd(paths.docz)
-  spawn('yarn', ['dev', '--port', `${args.port}`], { stdio: 'inherit' })
+  spawn('npm', ['run', 'dev', '--', '--port', `${args.port}`], {
+    stdio: 'inherit',
+  })
   const url = `http://${args.host}:${args.port}`
   console.log()
   console.log('Building app')
