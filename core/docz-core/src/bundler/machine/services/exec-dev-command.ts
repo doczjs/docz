@@ -1,13 +1,23 @@
 import spawn from 'cross-spawn'
-import sh from 'shelljs'
 import waitOn from 'wait-on'
+import get from 'lodash/get'
+import path from 'path'
 import { ServerMachineCtx } from '../context'
 import { openBrowser } from '../../../utils/open-browser'
 import * as paths from '../../../config/paths'
 
 export const execDevCommand = async ({ args }: ServerMachineCtx) => {
-  sh.cd(paths.docz)
-  spawn('yarn', ['dev', '--port', `${args.port}`], { stdio: 'inherit' })
+  // For monorepos that install dependencies higher in the fs tree
+  const repoRootPath = get(args, 'monoRepoRootPath', '../')
+  const gatsbyPath = path.join(
+    process.cwd(),
+    repoRootPath,
+    'node_modules/.bin/gatsby'
+  )
+  spawn(gatsbyPath, ['develop', '--port', `${args.port}`], {
+    stdio: 'inherit',
+    cwd: paths.docz,
+  })
   const url = `http://${args.host}:${args.port}`
   console.log()
   console.log('Building app')
