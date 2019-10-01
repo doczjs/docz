@@ -7,7 +7,7 @@ import { get } from 'lodash/fp'
 
 import * as styles from './styles'
 
-interface NavLinkProps extends Link<unknown> {
+interface NavLinkProps {
   item: MenuItem
 }
 
