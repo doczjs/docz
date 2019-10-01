@@ -17,7 +17,7 @@ export const title = {
   alignItems: 'center',
 }
 
-export const chevron = ({ active }) => ({
+export const chevron = ({ active }: { active: boolean }) => ({
   ml: 1,
   flexShrink: 0,
   alignSelf: 'baseline',
