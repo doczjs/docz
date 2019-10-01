@@ -1,8 +1,13 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 
-const heading = Tag => {
-  const Component = props => {
+type HeadingType = 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+interface HeadingProps {
+  id?: string
+}
+
+function heading(Tag: HeadingType) {
+  const Component: React.FunctionComponent<HeadingProps> = props => {
     return !!props.id ? (
       <Tag {...props}>
         <a
