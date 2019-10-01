@@ -5,8 +5,13 @@ import React from 'react'
 import * as styles from './styles'
 import { NavLink } from '../NavLink'
 import { ChevronDown } from '../Icons'
+import { MenuItem } from 'docz'
 
-export const NavGroup = ({ item }) => {
+interface NavGroupProps {
+  item: MenuItem
+}
+
+export const NavGroup: React.FunctionComponent<NavGroupProps> = ({ item }) => {
   const { menu } = item
   const [subheadingsVisible, setShowsubheadings] = React.useState(true)
   const toggleSubheadings = () => setShowsubheadings(!subheadingsVisible)
