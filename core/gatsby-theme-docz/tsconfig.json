@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "noEmit": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "sourceMap": false,
+    "baseUrl": "src",
+    "paths": {
+      "*": ["*"],
+      "~*": ["*"]
+    }
+  }
+}

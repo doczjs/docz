@@ -1,3 +1,3 @@
 module.exports = {
-  extends: 'docz-js',
+  extends: 'docz-ts',
 }
