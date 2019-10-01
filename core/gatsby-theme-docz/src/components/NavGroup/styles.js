@@ -16,3 +16,12 @@ export const title = {
   justifyContent: 'space-between',
   alignItems: 'center',
 }
+
+export const chevron = ({ active }) => ({
+  ml: 1,
+  flexShrink: 0,
+  alignSelf: 'baseline',
+  transform: `rotateX(${active ? 180 : 0}deg)`,
+  transformOrigin: 'center',
+  transition: 'transform .3s ease-in-out',
+})

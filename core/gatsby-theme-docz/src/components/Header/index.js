@@ -3,10 +3,11 @@ import { jsx, Box, Flex, useColorMode } from 'theme-ui'
 import { useConfig, useCurrentDoc } from 'docz'
 
 import * as styles from './styles'
-import { Edit, Sun, Github } from '../Icons'
+import { Edit, Menu, Sun, Github } from '../Icons'
 import { Logo } from '../Logo'
 
-export const Header = () => {
+export const Header = props => {
+  const { onOpen } = props
   const config = useConfig()
   const { edit = true, ...doc } = useCurrentDoc()
   const [colorMode, setColorMode] = useColorMode()
@@ -17,6 +18,11 @@ export const Header = () => {
 
   return (
     <div sx={styles.wrapper} data-testid={'header'}>
+      <Box sx={styles.menuIcon}>
+        <button sx={styles.menuButton} onClick={onOpen}>
+          <Menu size={25} />
+        </button>
+      </Box>
       <div sx={styles.innerContainer}>
         <Logo />
         <Flex>
