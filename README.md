@@ -19,7 +19,7 @@
 
 Docz makes it easy to write and publish beautiful interactive documentation for your code.
 
-Create MDX files showcasing your code and Docz turns them to a live-reloading, production-ready site.
+Create MDX files showcasing your code and Docz turns them into a live-reloading, production-ready site.
 
 ![docz example](https://cdn-std.dprcdn.net/files/acc_649651/S2YCID)
 
