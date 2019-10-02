@@ -1,5 +1,5 @@
-import { breakpoints } from '~theme/breakpoints'
-import * as mixins from '~utils/mixins'
+import { breakpoints } from '../../theme/breakpoints'
+import * as mixins from '../../utils/mixins'
 
 export const container = {
   mt: 3,

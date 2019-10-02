@@ -2,7 +2,7 @@
 import Highlight, { defaultProps, Language } from 'prism-react-renderer'
 import { jsx, Styled } from 'theme-ui'
 
-import { usePrismTheme } from '~utils/theme'
+import { usePrismTheme } from '../../utils/theme'
 
 export interface CodeProps {
   children: string
