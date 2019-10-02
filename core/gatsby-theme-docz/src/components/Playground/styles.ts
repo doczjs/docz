@@ -1,8 +1,8 @@
-import * as mixins from '~utils/mixins'
+import * as mixins from '../../utils/mixins'
 
-export const editor = theme => ({
+export const editor = (theme: any) => ({
   p: 2,
-  border: t => `1px solid ${t.colors.border}`,
+  border: (t: any) => `1px solid ${t.colors.border}`,
   borderRadius: '0 0 4px 4px',
   overflow: 'hidden',
   background: theme.plain.backgroundColor,
