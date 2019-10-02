@@ -1,21 +1,21 @@
 # Docz Gatsby Mono Repo Example
 
-This example shows you how you can use docz as a [Gatsby Theme](https://www.gatsbyjs.org/blog/2018-11-11-introducing-gatsby-themes/) inside your project as part of a monorepo.
+This example shows you how you can use docz inside individual packages in a monorepo.
 
 
 ## Using `create-docz-app`
 
 ```sh
-npx create-docz-app docz-app-monorepo --example monorepo
+npx create-docz-app docz-app-monorepo --example monorepo-package
 # or
-yarn create docz-app docz-app-monorepo --example monorepo
+yarn create docz-app docz-app-monorepo --example monorepo-package
 ```
 
 ## Download
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/monorepo
-mv monorepo docz-monorepo-example
+curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/monorepo-package
+mv monorepo-package docz-monorepo-example
 cd docz-monorepo-example
 ```
 
