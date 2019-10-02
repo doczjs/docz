@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
 import { useComponents } from 'docz'
 import { MDXProvider } from '@mdx-js/react'
 import { propEq, get } from 'lodash/fp'
@@ -9,7 +8,15 @@ import Wrapper from '../wrapper'
 import Theme from '../index'
 import SEO from './Seo'
 
-const Route = ({ children, entry, ...defaultProps }) => {
+interface RouteProps {
+  entry?: any
+}
+
+const Route: React.FunctionComponent<RouteProps> = ({
+  children,
+  entry,
+  ...defaultProps
+}) => {
   const components = useComponents()
   const NotFound = components.notFound
   const Layout = components.layout
@@ -32,7 +39,14 @@ const findEntry = (db, ctx) => {
   return db.entries.find(propEq('value.filepath', filepath))
 }
 
-const Layout = ({ children, ...defaultProps }) => {
+interface LayoutProps {
+  color?: string
+}
+
+const Layout: React.FunctionComponent<LayoutProps> = ({
+  children,
+  ...defaultProps
+}) => {
   const { pageContext: ctx } = defaultProps
   const db = useDbQuery()
   const entry = findEntry(db, ctx)
@@ -46,11 +60,6 @@ const Layout = ({ children, ...defaultProps }) => {
       </Theme>
     </Fragment>
   )
-}
-
-Layout.propTypes = {
-  color: PropTypes.string,
-  children: PropTypes.node.isRequired,
 }
 
 export default Layout

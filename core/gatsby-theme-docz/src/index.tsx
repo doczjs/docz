@@ -3,14 +3,16 @@ import { jsx } from 'theme-ui'
 import { theme, useConfig, ComponentsProvider } from 'docz'
 import { Styled, ThemeProvider } from 'theme-ui'
 
-import defaultTheme from '~theme'
-import components from '~components'
+import defaultTheme from './theme'
+import components from './components'
 
-const Theme = ({ children }) => {
+const Theme = ({ children }: React.PropsWithChildren<{}>) => {
   const config = useConfig()
+  const { layout, playground, ...rest } = components
+  console.log(layout, playground)
   return (
     <ThemeProvider theme={config.themeConfig}>
-      <ComponentsProvider components={components}>
+      <ComponentsProvider components={rest}>
         <Styled.root>{children}</Styled.root>
       </ComponentsProvider>
     </ThemeProvider>

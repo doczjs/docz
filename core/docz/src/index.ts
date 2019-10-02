@@ -1,6 +1,6 @@
 export { Link, LinkProps } from './components/Link'
 export { Playground } from './components/Playground'
-export { Props, PropsComponentProps } from './components/Props'
+export { Prop, PropsComponentProps } from './components/Props'
 
 export * from './hooks'
 export { theme } from './theme'
