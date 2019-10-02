@@ -8,6 +8,7 @@ import ts from 'typescript'
 
 import { Config } from '../../config/argv'
 import * as paths from '../../config/paths'
+import { unixPath } from '.'
 
 export interface TSFile {
   text?: string
@@ -64,7 +65,7 @@ function getPropsOnCache(): any {
   }
 
   return Object.entries(cache).map(([key, value]) => ({
-    key,
+    key: unixPath(key),
     value: _.get('props', value),
   }))
 }
@@ -195,7 +196,7 @@ const parseFiles = (files: string[], config: Config, tsconfig: string) => {
   }
 
   return files.map(filepath => ({
-    key: path.normalize(filepath),
+    key: unixPath(filepath),
     value: parser.parseWithProgramProvider(filepath, programProvider),
   }))
 }
