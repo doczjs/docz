@@ -1,26 +1,34 @@
 /** @jsx jsx */
-import { useState } from 'react'
 import { jsx } from 'theme-ui'
+import React, { useState } from 'react'
 
 import { ChevronDown, ChevronUp } from '../Icons'
 import * as styles from './styles'
+import { Prop as PropProps, PropsComponentProps } from 'docz'
 
-export const getDefaultValue = ({ defaultValue, type, flowType }) => {
+export interface PropComponentProps {
+  propName: string
+  prop: PropProps
+  getPropType(props: PropProps): string | null
+}
+
+export function getDefaultValue({ defaultValue, type, flowType }: PropProps) {
   const propType = flowType ? flowType : type
-  if (!defaultValue.value) return null
+  if (!defaultValue) return null
   if (defaultValue.value === "''") {
     return '[Empty string]'
   }
   if (propType && propType.name === 'string') {
     return defaultValue.value.replace(/\'/g, '"')
   }
-  if (typeof defaultValue.value === 'object' && defaultValue.value.toString) {
-    return defaultValue.value.toString()
-  }
   return defaultValue.value
 }
 
-export const Prop = ({ propName, prop, getPropType }) => {
+export const Prop: React.FunctionComponent<PropComponentProps> = ({
+  propName,
+  prop,
+  getPropType,
+}) => {
   const [showing, setShowing] = useState(false)
   if (!prop.type && !prop.flowType) return null
 
@@ -65,7 +73,10 @@ export const Prop = ({ propName, prop, getPropType }) => {
   )
 }
 
-export const Props = ({ props, getPropType }) => {
+export const Props: React.FunctionComponent<PropsComponentProps> = ({
+  props,
+  getPropType,
+}) => {
   const entries = Object.entries(props)
 
   return (
