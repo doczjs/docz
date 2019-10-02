@@ -1,5 +1,5 @@
-import * as mixins from '~utils/mixins'
-import { media } from '~theme/breakpoints'
+import * as mixins from '../../utils/mixins'
+import { media } from '../../theme/breakpoints'
 
 export const wrapper = {
   bg: 'header.bg',
