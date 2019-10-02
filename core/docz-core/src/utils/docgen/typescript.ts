@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as crypto from 'crypto'
 import * as _ from 'lodash/fp'
 import * as logger from 'signale'
-import reactDocgenTs from 'react-docgen-typescript'
+import * as reactDocgenTs from 'react-docgen-typescript'
 import ts from 'typescript'
 
 import { Config } from '../../config/argv'

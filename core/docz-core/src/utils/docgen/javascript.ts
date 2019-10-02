@@ -3,7 +3,7 @@ import * as path from 'path'
 import logger from 'signale'
 import externalProptypesHandler from './externalProptypesHandler'
 import actualNameHandler from 'react-docgen-actual-name-handler'
-import reactDocgen from 'react-docgen'
+import * as reactDocgen from 'react-docgen'
 
 import { Config } from '../../config/argv'
 import { getRootDir } from '../../config/paths'
