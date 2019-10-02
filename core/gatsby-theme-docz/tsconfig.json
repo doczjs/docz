@@ -5,11 +5,6 @@
     "noEmit": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "sourceMap": false,
-    "baseUrl": "src",
-    "paths": {
-      "*": ["*"],
-      "~*": ["*"]
-    }
+    "sourceMap": false
   }
 }
