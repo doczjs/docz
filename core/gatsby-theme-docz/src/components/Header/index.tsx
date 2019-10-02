@@ -3,10 +3,14 @@ import { jsx, Box, Flex, useColorMode } from 'theme-ui'
 import { useConfig, useCurrentDoc } from 'docz'
 
 import * as styles from './styles'
-import { Edit, Menu, Sun, Github } from '../Icons'
+import { Edit, Menu, Sun, GitHub } from '../Icons'
 import { Logo } from '../Logo'
 
-export const Header = props => {
+export interface HeaderProps {
+  onOpen(): void
+}
+
+export const Header = (props: HeaderProps) => {
   const { onOpen } = props
   const config = useConfig()
   const { edit = true, ...doc } = useCurrentDoc()
@@ -34,7 +38,7 @@ export const Header = props => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github size={15} />
+                <GitHub size={15} />
               </a>
             </Box>
           )}

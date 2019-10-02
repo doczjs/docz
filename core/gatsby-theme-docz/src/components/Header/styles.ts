@@ -5,7 +5,7 @@ export const wrapper = {
   bg: 'header.bg',
   position: 'relative',
   zIndex: 1,
-  borderBottom: t => `1px solid ${t.colors.border}`,
+  borderBottom: (t: any) => `1px solid ${t.colors.border}`,
 }
 
 export const innerContainer = {
