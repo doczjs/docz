@@ -6,7 +6,7 @@ export const global = {
   },
 }
 
-export const overlay = ({ open }) => ({
+export const overlay = ({ open }: { open: boolean }) => ({
   zIndex: 999,
   position: 'fixed',
   top: 88,
@@ -19,7 +19,7 @@ export const overlay = ({ open }) => ({
   opacity: open ? 1 : 0,
 })
 
-export const wrapper = ({ open }) => ({
+export const wrapper = ({ open }: { open: boolean }) => ({
   py: 4,
   px: 4,
   flexDirection: 'column',
@@ -28,7 +28,7 @@ export const wrapper = ({ open }) => ({
   zIndex: 1,
   minWidth: 0,
   maxHeight: '100vh',
-  borderRight: t => `1px solid ${t.colors.border}`,
+  borderRight: (t: any) => `1px solid ${t.colors.border}`,
   overflow: 'auto',
   WebkitOverflowScrolling: 'touch',
   bg: 'sidebar.bg',
