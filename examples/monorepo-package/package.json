@@ -8,9 +8,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "yarn docz build",
-    "dev": "yarn docz dev",
-    "serve": "yarn docz serve"
+    "build": "cd packages/basic && yarn build",
+    "dev": "cd packages/basic && yarn dev",
+    "serve": "cd packages/basic && yarn serve"
   },
   "keywords": [],
   "author": "",
@@ -18,9 +18,5 @@
   "devDependencies": {
     "lerna": "^3.16.4"
   },
-  "dependencies": {
-    "docz": "2.0.0-rc.52",
-    "react": "^16.10.1",
-    "react-dom": "^16.10.1"
-  }
+  "dependencies": {}
 }

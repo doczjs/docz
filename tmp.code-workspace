@@ -1,0 +1,23 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "examples/basic/node_modules/gatsby-theme-docz"
+    },
+    {
+      "path": "examples/basic/node_modules/docz-core"
+    },
+    {
+      "path": "examples/basic/node_modules/docz"
+    },
+    {
+      "path": "examples/basic"
+    }
+  ],
+  "settings": {
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "javascript.format.enable": false
+  }
+}
