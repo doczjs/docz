@@ -1,10 +1,23 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 
 import { useDbQuery } from '../hooks/useDbQuery'
 
-const SEO = ({ description, lang, meta, keywords, title: initialTitle }) => {
+interface SEOProps {
+  title: string
+  description?: string
+  lang?: string
+  meta?: []
+  keywords?: string[]
+}
+
+const SEO: React.FunctionComponent<SEOProps> = ({
+  description,
+  lang = 'en',
+  meta = [],
+  keywords = [],
+  title: initialTitle,
+}) => {
   const db = useDbQuery()
   const title = initialTitle || db.config.title
   const metaDescription = description || db.config.description
@@ -45,7 +58,7 @@ const SEO = ({ description, lang, meta, keywords, title: initialTitle }) => {
         },
       ]
         .concat(
-          keywords.length > 0
+          keywords && keywords.length > 0
             ? {
                 name: `keywords`,
                 content: keywords.join(`, `),
@@ -55,20 +68,6 @@ const SEO = ({ description, lang, meta, keywords, title: initialTitle }) => {
         .concat(meta)}
     />
   )
-}
-
-SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  keywords: [],
-}
-
-SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.array,
-  keywords: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string.isRequired,
 }
 
 export default SEO
