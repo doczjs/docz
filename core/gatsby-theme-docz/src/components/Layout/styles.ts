@@ -1,8 +1,9 @@
-import { media } from '~theme/breakpoints'
+import { media } from '../../theme/breakpoints'
 
 export const main = {
   display: 'flex',
   flexDirection: 'column',
+  flex: '1 1 auto',
 }
 
 export const wrapper = {
