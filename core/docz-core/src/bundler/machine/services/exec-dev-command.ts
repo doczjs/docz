@@ -8,7 +8,7 @@ import * as paths from '../../../config/paths'
 
 export const execDevCommand = async ({ args }: ServerMachineCtx) => {
   // For monorepos that install dependencies higher in the fs tree
-  const repoRootPath = get(args, 'monoRepoRootPath', '../')
+  const repoRootPath = get(args, 'repoRootPath', '../')
   const gatsbyPath = path.join(
     process.cwd(),
     repoRootPath,
