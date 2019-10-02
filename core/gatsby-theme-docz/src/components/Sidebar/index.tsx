@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useState } from 'react'
+import React, { useState, ChangeEvent } from 'react'
 import { Global } from '@emotion/core'
 import { jsx, Box } from 'theme-ui'
 import { useMenus } from 'docz'
@@ -9,20 +9,27 @@ import { NavSearch } from '../NavSearch'
 import { NavLink } from '../NavLink'
 import { NavGroup } from '../NavGroup'
 
-export const Sidebar = React.forwardRef((props, ref) => {
+interface SidebarProps {
+  open: boolean
+  onBlur?: React.FocusEventHandler<HTMLDivElement>
+  onFocus?: React.FocusEventHandler<HTMLDivElement>
+  onClick?: React.MouseEventHandler<HTMLDivElement>
+}
+
+export const Sidebar: React.FunctionComponent<SidebarProps> = props => {
   const [query, setQuery] = useState('')
   const menus = useMenus({ query })
 
-  const handleChange = ev => {
+  const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
     setQuery(ev.target.value)
   }
 
   return (
-    <>
+    <React.Fragment>
       <Box onClick={props.onClick} sx={styles.overlay(props)}>
         {props.open && <Global styles={styles.global} />}
       </Box>
-      <Box ref={ref} sx={styles.wrapper(props)} data-testid="sidebar">
+      <Box sx={styles.wrapper(props)} data-testid="sidebar">
         <NavSearch
           placeholder="Type to search..."
           value={query}
@@ -38,6 +45,6 @@ export const Sidebar = React.forwardRef((props, ref) => {
             )
           })}
       </Box>
-    </>
+    </React.Fragment>
   )
-})
+}
