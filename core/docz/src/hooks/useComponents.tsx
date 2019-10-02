@@ -21,8 +21,8 @@ export interface LayoutProps {
 }
 
 export interface ComponentsMap {
-  notFound: CT
-  layout: CT<LayoutProps>
+  notFound?: CT
+  layout?: CT<LayoutProps>
   playground?: CT<PlaygroundProps>
   [key: string]: any
 }
