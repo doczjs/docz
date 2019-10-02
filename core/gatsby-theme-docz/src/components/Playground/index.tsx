@@ -2,17 +2,30 @@
 import { jsx } from 'theme-ui'
 import { useState } from 'react'
 import { useConfig } from 'docz'
-import { LiveProvider, LiveError, LivePreview, LiveEditor } from 'react-live'
+import {
+  LiveProvider,
+  LiveProviderProps,
+  LiveError,
+  LivePreview,
+  LiveEditor,
+} from 'react-live'
 import { merge } from 'lodash/fp'
-import { Resizable } from 're-resizable'
+import { Resizable, ResizableProps } from 're-resizable'
 import copy from 'copy-text-to-clipboard'
 
-import { usePrismTheme } from '~utils/theme'
+import { usePrismTheme } from '../../utils/theme'
 import { LivePreviewWrapper } from './LivePreviewWrapper'
 import * as styles from './styles'
 import * as Icons from '../Icons'
 
-export const Playground = ({
+interface PlaygroundProps {
+  code?: string
+  language?: LiveProviderProps['language']
+  scope?: LiveProviderProps['scope']
+  showLivePreview?: boolean
+}
+
+export const Playground: React.FunctionComponent<PlaygroundProps> = ({
   code,
   scope,
   showLivePreview: userShowLivePreview = true,
@@ -27,11 +40,16 @@ export const Playground = ({
   } = useConfig()
 
   const theme = usePrismTheme()
-  const [showingCode, setShowingCode] = useState(() => showPlaygroundEditor)
+  const [showingCode, setShowingCode] = useState<boolean>(
+    () => showPlaygroundEditor
+  )
   const [width, setWidth] = useState(() => '100%')
 
-  const transformCode = code => {
-    if (code.startsWith('()') || code.startsWith('class')) return code
+  const transformCode = (code: string) => {
+    if (code.startsWith('()') || code.startsWith('class')) {
+      return code
+    }
+
     return `<React.Fragment>${code}</React.Fragment>`
   }
 
@@ -39,10 +57,11 @@ export const Playground = ({
     setShowingCode(s => !s)
   }
 
-  const resizableProps = {
+  const resizableProps: ResizableProps = {
     minWidth: 260,
     maxWidth: '100%',
     size: {
+      height: 'auto',
       width,
     },
     style: {
@@ -59,7 +78,7 @@ export const Playground = ({
       topLeft: false,
     },
     onResizeStop: (e, direction, ref) => {
-      setWidth(ref.style.width)
+      setWidth(ref.style && ref.style.width ? ref.style.width : 'auto')
     },
   }
 
@@ -85,7 +104,7 @@ export const Playground = ({
             )}
           </LivePreviewWrapper>
           <div sx={styles.buttons}>
-            <button sx={styles.button} onClick={() => copy(code)}>
+            <button sx={styles.button} onClick={() => copy(code || '')}>
               <Icons.Clipboard size={12} />
             </button>
             <button sx={styles.button} onClick={toggleCode}>
