@@ -8,11 +8,10 @@ import components from './components'
 
 const Theme = ({ children }: React.PropsWithChildren<{}>) => {
   const config = useConfig()
-  const { layout, playground, ...rest } = components
-  console.log(layout, playground)
+
   return (
     <ThemeProvider theme={config.themeConfig}>
-      <ComponentsProvider components={rest}>
+      <ComponentsProvider components={components}>
         <Styled.root>{children}</Styled.root>
       </ComponentsProvider>
     </ThemeProvider>
