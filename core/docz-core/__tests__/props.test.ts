@@ -1,7 +1,7 @@
 import * as fs from 'fs-extra'
 import { getPattern, initial } from '../src/states/props'
 import { readCacheFile } from '../src/utils/docgen/typescript'
-import { getTestConfig, mockedParams } from './utils'
+import { getTestConfig, mockedParams } from '../src/test-utils'
 
 describe('props', () => {
   beforeEach(() => {
@@ -67,7 +67,7 @@ describe('props', () => {
   })
 
   describe('cache', () => {
-    test('should have empty cache on start', () => {
+    test('should have empty cache on start', async () => {
       const cache = readCacheFile()
       expect(cache).toBeNull()
     })

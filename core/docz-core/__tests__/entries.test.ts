@@ -1,5 +1,5 @@
 import { Entries } from '../src/lib/Entries'
-import { getTestConfig } from './utils'
+import { getTestConfig } from '../src/test-utils'
 
 describe('Entries', () => {
   test('get entries', async () => {
