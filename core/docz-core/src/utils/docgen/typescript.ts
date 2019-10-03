@@ -27,7 +27,8 @@ const digest = (str: string) =>
     .digest('hex')
 
 const cacheFilepath = path.join(paths.cache, 'propsParser.json')
-const readCacheFile = () => fs.readJSONSync(cacheFilepath, { throws: false })
+export const readCacheFile = () =>
+  fs.readJSONSync(cacheFilepath, { throws: false })
 
 function checkFilesOnCache(files: string[], config: Config): string[] {
   const cache = readCacheFile()
@@ -46,10 +47,9 @@ function writePropsOnCache(items: PropItem[], config: Config): void {
   const cache = readCacheFile()
   const root = paths.getRootDir(config)
   const newCache = items.reduce((obj, { key: filepath, value }) => {
-    const normalized = path.normalize(filepath)
-    const fullpath = path.resolve(root, normalized)
+    const fullpath = path.resolve(root, path.normalize(filepath))
     const hash = digest(fs.readFileSync(fullpath, 'utf-8'))
-    return { ...obj, [normalized]: { hash, props: value } }
+    return { ...obj, [unixPath(filepath)]: { hash, props: value } }
   }, {})
 
   fs.outputJSONSync(cacheFilepath, { ...cache, ...newCache })
@@ -119,7 +119,7 @@ function loadFiles(filesToLoad: string[], config: Config): void {
     const normalized = path.normalize(filepath)
     const fullpath = path.resolve(root, normalized)
     const found = filesMap.get(normalized)
-    filesMap.set(normalized, {
+    filesMap.set(unixPath(filepath), {
       text: fs.readFileSync(fullpath, 'utf-8'),
       version: found ? found.version + 1 : 0,
     })

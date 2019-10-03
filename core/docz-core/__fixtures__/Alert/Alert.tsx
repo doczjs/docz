@@ -1,4 +1,5 @@
 import React, { SFC } from 'react'
+import styled from '@emotion/styled'
 
 export type Kind = 'info' | 'positive' | 'negative' | 'warning'
 export type KindMap = Record<Kind, string>
@@ -18,7 +19,14 @@ export interface AlertProps {
   kind: 'info' | 'positive' | 'negative' | 'warning'
 }
 
+const AlertStyled = styled('div')<AlertProps>`
+  padding: 15px 20px;
+  background: white;
+  border-radius: 3px;
+  color: white;
+  background: ${({ kind = 'info' }) => kinds[kind]};
+`
+
 export const Alert: SFC<AlertProps> = ({ kind, ...props }) => (
-  //@ts-ignore
-  <div className="alert"> </div>
+  <AlertStyled {...props} kind={kind} />
 )

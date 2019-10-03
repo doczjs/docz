@@ -4,9 +4,10 @@ import * as paths from '../../config/paths'
 import { Config } from '../../config/argv'
 import { jsParser } from './javascript'
 import { tsParser } from './typescript'
+import { normalize } from 'path'
 
 export const unixPath = (src: string): string => {
-  return src.replace(/\\/g, '/')
+  return normalize(src).replace(/\\/g, '/')
 }
 
 export const docgen = async (files: string[], config: Config) => {

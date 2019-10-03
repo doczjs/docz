@@ -1,47 +1,86 @@
-import { getBaseConfig } from '../src/config/docz'
-import * as paths from '../src/config/paths'
 import * as fs from 'fs-extra'
-import { setArgs } from '../src/config/argv'
 import { getPattern, initial } from '../src/states/props'
-import { Params } from '../src/lib/DataServer'
-import yargs from 'yargs'
-
-const mockedParams = (): Params => {
-  let data: any = {}
-  return {
-    getState: () => data,
-    setState: (key: string, value: string) => (data[key] = value),
-  }
-}
-
-const mockedArgv = () => {
-  const yargsArgs: any = {
-    argv: {},
-    option: jest.fn().mockImplementation((key, value) => {
-      yargs.argv[value.alias ? value.alias : key] = value.default
-      return yargs
-    }),
-  }
-  const { argv } = setArgs(yargsArgs)
-  return argv
-}
+import { readCacheFile } from '../src/utils/docgen/typescript'
+import { getTestConfig, mockedParams } from './utils'
 
 describe('props', () => {
-  const propsCache = '../.docz/.cache/propsParser.json'
-  afterEach(() => {
-    if (fs.existsSync(propsCache)) {
-      fs.removeSync('../.docz/.cache')
+  beforeEach(() => {
+    if (fs.existsSync('./.docz/.cache/propsParser.json')) {
+      fs.unlinkSync('./.docz/.cache/propsParser.json')
     }
   })
 
-  it('should set props from typescript files', async () => {
-    const argv = mockedArgv()
-    //@ts-ignore
-    const config = { ...getBaseConfig(argv), paths, typescript: true }
-    const pattern = getPattern(config)
-    const data = initial(config, pattern)
-    const params = mockedParams()
-    await data(params)
-    expect(params.getState().props.length).toBeGreaterThan(0)
+  describe('typescript', () => {
+    test('should set props from typescript files', async () => {
+      const config = getTestConfig()
+      const pattern = getPattern(config)
+      const data = initial(config, pattern)
+      const params = mockedParams()
+      await data(params)
+      expect(params.getState().props.length).toBeGreaterThan(0)
+    })
+
+    test('should set correct key on parsed typescript files', async () => {
+      const config = getTestConfig()
+      const pattern = getPattern(config)
+      const data = initial(config, pattern)
+      const params = mockedParams()
+      await data(params)
+      const expectedFirstPropName = '__fixtures__/Label.tsx'
+      const firstProp = params.getState().props[0]
+      expect(firstProp.key).toEqual(expectedFirstPropName)
+      expect(firstProp.value).toBeTruthy()
+    })
+  })
+
+  describe('javascript', () => {
+    test('should set correct key on parsed javascript files', async () => {
+      const config = getTestConfig({ typescript: undefined })
+      const pattern = getPattern(config)
+      const data = initial(config, pattern)
+      const params = mockedParams()
+      await data(params)
+      const expectedFirstPropName = '__fixtures__/Label.jsx'
+      const firstProp = params.getState().props[0]
+      expect(firstProp.key).toEqual(expectedFirstPropName)
+      expect(firstProp.value).toBeTruthy()
+    })
+
+    test('should set props from javascript files', async () => {
+      const config = getTestConfig({ typescript: undefined })
+      const pattern = getPattern(config)
+      const data = initial(config, pattern)
+      const params = mockedParams()
+      await data(params)
+      expect(params.getState().props.length).toBeGreaterThan(0)
+    })
+
+    test('should have props on javascript files', async () => {
+      const config = getTestConfig({ typescript: undefined })
+      const pattern = getPattern(config)
+      const data = initial(config, pattern)
+      const params = mockedParams()
+      await data(params)
+      const firstProp = params.getState().props[0]
+      expect(firstProp.value[0].props).toBeTruthy()
+    })
+  })
+
+  describe('cache', () => {
+    test('should have empty cache on start', () => {
+      const cache = readCacheFile()
+      expect(cache).toBeNull()
+    })
+
+    test('should set cache on loading props', async () => {
+      const cache = readCacheFile()
+      expect(cache).toBeNull()
+      const config = getTestConfig()
+      const pattern = getPattern(config)
+      const data = initial(config, pattern)
+      const params = mockedParams()
+      await data(params)
+      expect(readCacheFile()).not.toBeNull()
+    })
   })
 })
