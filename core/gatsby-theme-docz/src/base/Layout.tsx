@@ -8,8 +8,34 @@ import Wrapper from '../wrapper'
 import Theme from '../index'
 import SEO from './Seo'
 
+interface Entry {
+  id: string
+  filepath: string
+  fullpath: string
+  link: string | null
+  slug: string
+  name: string
+  route: string
+  menu: string | null
+  headings: unknown[]
+  [key: string]: any
+}
+
+interface GatsbyPageContext {
+  entry: Entry
+  frontmatter: {
+    route: string
+  }
+}
+
 interface RouteProps {
-  entry?: any
+  entry?: Entry
+}
+// type Entries = { key: string; value: Entry }[]
+
+export interface DoczDB {
+  currentEntry: Entry
+  entries?: Entry[]
 }
 
 const Route: React.FunctionComponent<RouteProps> = ({
@@ -18,8 +44,8 @@ const Route: React.FunctionComponent<RouteProps> = ({
   ...defaultProps
 }) => {
   const components = useComponents()
-  const NotFound = components.notFound
-  const Layout = components.layout
+  const NotFound = components.notFound ? components.notFound : () => null
+  const Layout = components.layout ? components.layout : () => null
   const props = { ...defaultProps, doc: entry }
   if (!entry) return <NotFound />
   return (
@@ -31,16 +57,18 @@ const Route: React.FunctionComponent<RouteProps> = ({
   )
 }
 
-const findEntry = (db, ctx) => {
+const findEntry = (db: DoczDB, ctx: GatsbyPageContext) => {
   const isIndex = ctx.frontmatter.route === '/'
   const eqIndex = propEq('value.route', '/')
-  if (!ctx.entry && isIndex) return db.entries.find(eqIndex)
+  const entries = db.entries || []
+  if (!ctx.entry && isIndex) return entries.find(eqIndex)
   const filepath = get('entry.filepath', ctx)
-  return db.entries.find(propEq('value.filepath', filepath))
+  return entries.find(propEq('value.filepath', filepath))
 }
 
 interface LayoutProps {
   color?: string
+  pageContext: GatsbyPageContext
 }
 
 const Layout: React.FunctionComponent<LayoutProps> = ({
@@ -50,13 +78,18 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
   const { pageContext: ctx } = defaultProps
   const db = useDbQuery()
   const entry = findEntry(db, ctx)
+  if (!entry) return null
   return (
     <Fragment>
       {entry && <SEO title={entry.value.name} />}
       <Theme db={db} currentEntry={entry}>
-        <Route {...defaultProps} entry={entry}>
-          {children}
-        </Route>
+        {
+          (
+            <Route {...defaultProps} entry={entry}>
+              {children}
+            </Route>
+          ) as any
+        }
       </Theme>
     </Fragment>
   )
