@@ -25,17 +25,17 @@ Create MDX files showcasing your code and Docz turns them into a live-reloading,
 
 ## Table of Contents
 
-- [📟 &nbsp; Start a New Project](#%f0%9f%93%9f-nbsp-start-a-new-project)
-- [➕ &nbsp; Add Docz to an Existing Project](#%e2%9e%95-nbsp-add-docz-to-an-existing-project)
-- [🎩 &nbsp; Features](#%f0%9f%8e%a9-nbsp-features)
-- [🤔 &nbsp; Why?](#%f0%9f%a4%94-nbsp-why)
-- [🗃 &nbsp; Examples](#%f0%9f%97%83-nbsp-examples)
-- [👉🏻 &nbsp; More info on our website](#%f0%9f%91%89%f0%9f%8f%bb-nbsp-more-info-on-our-website)
-- [🎛 &nbsp; Plugins](#%f0%9f%8e%9b-nbsp-plugins)
-- [🌍 &nbsp; Around the world](#%f0%9f%8c%8d-nbsp-around-the-world)
-- [💪🏻 &nbsp; Contributors](#%f0%9f%92%aa%f0%9f%8f%bb-nbsp-contributors)
-- [🤝 &nbsp; Contributing](#%f0%9f%a4%9d-nbsp-contributing)
-- [💭 &nbsp; Need Help?](#%f0%9f%92%ad-nbsp-need-help)
+- [📟 &nbsp; Start a New Project](#--start-a-new-project)
+- [➕ &nbsp; Add Docz to an Existing Project](#--add-docz-to-an-existing-project)
+- [🎩 &nbsp; Features](#--features)
+- [🤔 &nbsp; Why?](#--why)
+- [🗃 &nbsp; Examples](#--examples)
+- [👉🏻 &nbsp; More info on our website](#--more-info-on-our-website)
+- [🎛 &nbsp; Plugins](#--plugins)
+- [🌍 &nbsp; Around the world](#--around-the-world)
+- [💪🏻 &nbsp; Contributors](#--contributors)
+- [🤝 &nbsp; Contributing](#--contributing)
+- [💭 &nbsp; Need Help?](#--need-help)
 
 ## 📟 &nbsp; Start a New Project
 
