@@ -34,6 +34,10 @@ const examples = {
     path: path.join(rootPath, 'examples/gatsby'),
     tmp: path.join(tmpPath, 'examples/gatsby'),
   },
+  'monorepo-package': {
+    path: path.join(rootPath, 'examples/monorepo-package'),
+    tmp: path.join(tmpPath, 'examples/monorepo-package'),
+  },
 }
 
 const startLocalRegistry = async () => {
