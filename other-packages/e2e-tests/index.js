@@ -37,6 +37,10 @@ const examples = {
   'monorepo-package': {
     path: path.join(rootPath, 'examples/monorepo-package'),
     tmp: path.join(tmpPath, 'examples/monorepo-package'),
+    tmpDoczPackageJson: path.join(
+      tmpPath,
+      'examples/monorepo-package/packages/basic'
+    ),
   },
 }
 
@@ -154,6 +158,7 @@ const runTests = async () => {
     console.log(`Copied ${exampleName} example to a temporary directory.`)
 
     console.log(`Modifying package.json in ${example.tmp}`)
+
     await updatePackageJson(example.tmp, pack => {
       if (get(pack, 'dependencies.gatsby-theme-docz', false)) {
         set(pack, 'dependencies.gatsby-theme-docz', 'ci')
@@ -167,6 +172,24 @@ const runTests = async () => {
 
       return pack
     })
+
+    console.log({ example, isSomething: 'tmpDoczPackageJson' in example })
+    if ('tmpDoczPackageJson' in example) {
+      console.log('UPDATING  IN ' + example.tmpDoczPackageJson)
+      await updatePackageJson(example.tmpDoczPackageJson, pack => {
+        if (get(pack, 'dependencies.gatsby-theme-docz', false)) {
+          set(pack, 'dependencies.gatsby-theme-docz', 'ci')
+        }
+        if (get(pack, 'dependencies.docz', false)) {
+          set(pack, 'dependencies.docz', 'ci')
+        }
+        if (get(pack, 'dependencies.docz-core', false)) {
+          set(pack, 'dependencies.docz-core', 'ci')
+        }
+
+        return pack
+      })
+    }
 
     console.log(`Installing modules in tmp directory`)
     await installNodeModules(example.tmp, exampleName)
