@@ -97,7 +97,7 @@ const setupLocalRegistry = async () => {
   await startLocalRegistry()
   await updatePackageJson(paths.doczGatsbyTheme, packageJson => {
     set(packageJson, 'version', `0.0.${Date.now()}`)
-    return setDoczVersionToCI(packageJson)
+    return packageJson
   })
   await updatePackageJson(paths.docz, packageJson => {
     const version = get(packageJson, 'version')
@@ -113,7 +113,7 @@ const setupLocalRegistry = async () => {
     versionChunks[versionChunks.length - 1] = Date.now()
     newVersion = versionChunks.join('.')
     set(packageJson, 'version', newVersion)
-    return setDoczVersionToCI(packageJson)
+    return packageJson
   })
   // Generate the right .npmrc file in the folders to be published
   await runCommand(
