@@ -4,6 +4,7 @@ export const editor = theme => ({
   p: 2,
   border: t => `1px solid ${t.colors.border}`,
   borderRadius: '0 0 4px 4px',
+  overflow: 'hidden',
   background: theme.plain.backgroundColor,
   borderTop: 0,
   fontFamily: 'monospace',
