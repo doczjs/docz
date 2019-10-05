@@ -141,11 +141,10 @@ Documenting code is one of the most important and time-heavy processes when you'
 - **[with flow](https://github.com/pedronauck/docz/tree/master/examples/flow)** - Using Docz with Flow.
 - **[with images](https://github.com/pedronauck/docz/tree/master/examples/images)** - Using Docz with images in mdx and jsx.
 
-<!-- TODO: Add missing v2 examples-->
-<!-- - **[with sass](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-sass)** - Using Docz parsing CSS with SASS.
-- **[with less](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-less)** - Using Docz parsing CSS with LESS.
-- **[with postcss](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-postcss)** - Using Docz parsing CSS with PostCSS.
-- **[with stylus](https://github.com/pedronauck/docz-plugin-css/tree/master/examples/css-stylus)** - Using Docz parsing CSS with Stylus. -->
+- **[with sass](https://github.com/pedronauck/docz/tree/master/examples/sass)** - Using Docz parsing CSS with SASS.
+- **[with less](https://github.com/pedronauck/docz/tree/master/examples/less)** - Using Docz parsing CSS with LESS.
+- **[with stylus](https://github.com/pedronauck/docz/tree/master/examples/css-stylus)** - Using Docz parsing CSS with Stylus.
+- **with css modules**: works out of the box with gatsby
 
 ## 👉🏻 &nbsp; More info on [our website](https://docz.site)
 

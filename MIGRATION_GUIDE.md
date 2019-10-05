@@ -81,3 +81,28 @@ export default ({ children }) => (
   </div>
 )
 ```
+
+## CSS preprocessors managed by gatsby
+
+CSS preprocessors and modules were handled by [`docz-plugin-css`](https://github.com/doczjs/docz-plugin-css) which hooked into the bundler config to add different loader support via webpack.
+
+With the change to gatsby preprocessors like `sass` can be handled by gatby via [Plugins](https://www.gatsbyjs.org/plugins/)
+
+These plugins are added by adding a `gatsby-config.js` in your project root or modifying an existing one. For example if you want to add support for `sass` you would do the following:
+
+1. Install [`node-sass`](https://github.com/sass/node-sass) and [`gatsby-plugin-sass`](https://www.gatsbyjs.org/packages/gatsby-plugin-sass/)
+```bash
+# npm
+npm install --save node-sass gatsby-plugin-sass
+
+# yarn
+yarn add node-sass gatsby-plugin-sass
+```
+
+2. Add the plugin to your `gatsby-config.js`
+```js
+//gatsby-config.js
+module.exports = {
+  plugins: ['gatsby-plugin-sass']
+}
+```
