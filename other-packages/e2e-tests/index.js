@@ -37,10 +37,10 @@ const examples = {
   'monorepo-package': {
     path: path.join(rootPath, 'examples/monorepo-package'),
     tmp: path.join(tmpPath, 'examples/monorepo-package'),
-    // tmpDoczPackageJson: path.join(
-    //   tmpPath,
-    //   'examples/monorepo-package/packages/basic'
-    // ),
+    tmpDoczPackageJson: path.join(
+      tmpPath,
+      'examples/monorepo-package/packages/basic'
+    ),
   },
 }
 
@@ -175,6 +175,11 @@ const runTests = async () => {
     await updatePackageJson(example.tmp, pack => {
       return setDoczVersionToCI(pack)
     })
+    if ('tmpDoczPackageJson' in example) {
+      await updatePackageJson(example.tmpDoczPackageJson, pack => {
+        return setDoczVersionToCI(pack)
+      })
+    }
     console.log({ example })
 
     console.log(`Installing modules in tmp directory`)
