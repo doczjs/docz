@@ -42,6 +42,10 @@ const examples = {
       'examples/monorepo-package/packages/basic'
     ),
   },
+  typescript: {
+    path: path.join(rootPath, 'examples/typescript'),
+    tmp: path.join(tmpPath, 'examples/typescript'),
+  },
 }
 
 const startLocalRegistry = async () => {
