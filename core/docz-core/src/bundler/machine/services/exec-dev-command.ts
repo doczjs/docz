@@ -1,13 +1,44 @@
 import spawn from 'cross-spawn'
-import sh from 'shelljs'
 import waitOn from 'wait-on'
+import get from 'lodash/get'
+import path from 'path'
+import findUp from 'find-up'
+
 import { ServerMachineCtx } from '../context'
 import { openBrowser } from '../../../utils/open-browser'
 import * as paths from '../../../config/paths'
 
+export const findRootPath = async () => {
+  let repoRootPath = path.join(paths.docz, '../')
+  try {
+    const foundRootPath = await findUp(
+      async directory => {
+        const hasGatsby = await findUp.exists(
+          path.join(directory, 'node_modules', 'gatsby')
+        )
+        return hasGatsby ? directory : ''
+      },
+      { type: 'directory' }
+    )
+    if (typeof foundRootPath === 'string') {
+      repoRootPath = foundRootPath
+    }
+  } catch (err) {
+    console.log(
+      `Failed to find root folder ${err.message} \n Assuming it is ${repoRootPath}`
+    )
+  }
+  return repoRootPath
+}
+
 export const execDevCommand = async ({ args }: ServerMachineCtx) => {
-  sh.cd(paths.docz)
-  spawn('yarn', ['dev', '--port', `${args.port}`], { stdio: 'inherit' })
+  // For monorepos that install dependencies higher in the fs tree
+  const repoRootPath = get(args, 'repoRootPath', await findRootPath())
+  const gatsbyPath = path.join(repoRootPath, 'node_modules/.bin/gatsby')
+  spawn(gatsbyPath, ['develop', '--port', `${args.port}`], {
+    stdio: 'inherit',
+    cwd: paths.docz,
+  })
   const url = `http://${args.host}:${args.port}`
   console.log()
   console.log('Building app')

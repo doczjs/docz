@@ -1,6 +1,6 @@
 # Docz Gatsby Mono Repo Example
 
-This example shows you how you can use docz as a [Gatsby Theme](https://www.gatsbyjs.org/blog/2018-11-11-introducing-gatsby-themes/) inside your project as part of a monorepo.
+This example shows you how you can use docz at the root of your monorepo.
 
 
 ## Using `create-docz-app`
@@ -28,11 +28,11 @@ yarn # npm i
 ## Start developing
 
 ```sh
-yarn lerna:dev # npm run lerna:dev
+yarn dev # npm run dev
 ```
 
 ## Build
 
 ```sh
-yarn lerna:build # npm run lerna:build
+yarn build # npm run build
 ```

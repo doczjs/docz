@@ -1,4 +1,3 @@
-const path = require('path')
 const get = require('lodash/get')
 
 const NO_OP = () => {}
@@ -13,13 +12,6 @@ try {
 }
 
 exports.onCreateWebpackConfig = args => {
-  args.actions.setWebpackConfig({
-    resolve: {
-      alias: {
-        react: path.resolve('../node_modules/react'),
-      },
-    },
-  })
   const onCreateWebpackConfig = get(
     gatsbyNodeCustom,
     'onCreateWebpackConfig',

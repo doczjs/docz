@@ -34,6 +34,14 @@ const examples = {
     path: path.join(rootPath, 'examples/gatsby'),
     tmp: path.join(tmpPath, 'examples/gatsby'),
   },
+  'monorepo-package': {
+    path: path.join(rootPath, 'examples/monorepo-package'),
+    tmp: path.join(tmpPath, 'examples/monorepo-package'),
+    tmpDoczPackageJson: path.join(
+      tmpPath,
+      'examples/monorepo-package/packages/basic'
+    ),
+  },
 }
 
 const startLocalRegistry = async () => {
@@ -92,19 +100,11 @@ const setupLocalRegistry = async () => {
     return packageJson
   })
   await updatePackageJson(paths.docz, packageJson => {
-    const version = get(packageJson, 'version')
-    const versionChunks = version.split('.')
-    versionChunks[versionChunks.length - 1] = Date.now()
-    newVersion = versionChunks.join('.')
-    set(packageJson, 'version', newVersion)
-    return packageJson
+    set(packageJson, 'version', `0.0.${Date.now()}`)
+    return setDoczVersionToCI(packageJson)
   })
   await updatePackageJson(paths.doczCore, packageJson => {
-    const version = get(packageJson, 'version')
-    const versionChunks = version.split('.')
-    versionChunks[versionChunks.length - 1] = Date.now()
-    newVersion = versionChunks.join('.')
-    set(packageJson, 'version', newVersion)
+    set(packageJson, 'version', `0.0.${Date.now()}`)
     return packageJson
   })
   // Generate the right .npmrc file in the folders to be published
@@ -126,6 +126,19 @@ const setupLocalRegistry = async () => {
   console.log('Published docz')
   await runCommand(`npm publish --tag ci`, { cwd: paths.doczCore })
   console.log('Published core')
+}
+
+const setDoczVersionToCI = packageJson => {
+  if (get(packageJson, 'dependencies.gatsby-theme-docz', false)) {
+    set(packageJson, 'dependencies.gatsby-theme-docz', 'ci')
+  }
+  if (get(packageJson, 'dependencies.docz', false)) {
+    set(packageJson, 'dependencies.docz', 'ci')
+  }
+  if (get(packageJson, 'dependencies.docz-core', false)) {
+    set(packageJson, 'dependencies.docz-core', 'ci')
+  }
+  return packageJson
 }
 
 const runTests = async () => {
@@ -150,19 +163,16 @@ const runTests = async () => {
     console.log(`Copied ${exampleName} example to a temporary directory.`)
 
     console.log(`Modifying package.json in ${example.tmp}`)
-    await updatePackageJson(example.tmp, pack => {
-      if (get(pack, 'dependencies.gatsby-theme-docz', false)) {
-        set(pack, 'dependencies.gatsby-theme-docz', 'ci')
-      }
-      if (get(pack, 'dependencies.docz', false)) {
-        set(pack, 'dependencies.docz', 'ci')
-      }
-      if (get(pack, 'dependencies.docz-core', false)) {
-        set(pack, 'dependencies.docz-core', 'ci')
-      }
 
-      return pack
+    await updatePackageJson(example.tmp, pack => {
+      return setDoczVersionToCI(pack)
     })
+    if ('tmpDoczPackageJson' in example) {
+      await updatePackageJson(example.tmpDoczPackageJson, pack => {
+        return setDoczVersionToCI(pack)
+      })
+    }
+    console.log({ example })
 
     console.log(`Installing modules in tmp directory`)
     await installNodeModules(example.tmp, exampleName)
