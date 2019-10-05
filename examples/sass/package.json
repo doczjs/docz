@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "name": "docz-example-sass",
+  "version": "2.0.0-rc.52",
+  "license": "MIT",
+  "files": [
+    "src/",
+    "doczrc.js",
+    "package.json"
+  ],
+  "scripts": {
+    "dev": "docz dev",
+    "build": "docz build"
+  },
+  "dependencies": {
+    "docz": "next",
+    "gatsby-plugin-sass": "2.1.17",
+    "node-sass": "4.12.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "scheduler": "^0.15.0"
+  }
+}
