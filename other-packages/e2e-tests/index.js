@@ -100,19 +100,11 @@ const setupLocalRegistry = async () => {
     return packageJson
   })
   await updatePackageJson(paths.docz, packageJson => {
-    const version = get(packageJson, 'version')
-    const versionChunks = version.split('.')
-    versionChunks[versionChunks.length - 1] = Date.now()
-    newVersion = versionChunks.join('.')
-    set(packageJson, 'version', newVersion)
+    set(packageJson, 'version', `0.0.${Date.now()}`)
     return setDoczVersionToCI(packageJson)
   })
   await updatePackageJson(paths.doczCore, packageJson => {
-    const version = get(packageJson, 'version')
-    const versionChunks = version.split('.')
-    versionChunks[versionChunks.length - 1] = Date.now()
-    newVersion = versionChunks.join('.')
-    set(packageJson, 'version', newVersion)
+    set(packageJson, 'version', `0.0.${Date.now()}`)
     return packageJson
   })
   // Generate the right .npmrc file in the folders to be published
