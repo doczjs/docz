@@ -97,7 +97,7 @@ const setupLocalRegistry = async () => {
   await startLocalRegistry()
   await updatePackageJson(paths.doczGatsbyTheme, packageJson => {
     set(packageJson, 'version', `0.0.${Date.now()}`)
-    return packageJson
+    return setDoczVersionToCI(packageJson)
   })
   await updatePackageJson(paths.docz, packageJson => {
     const version = get(packageJson, 'version')
@@ -105,7 +105,7 @@ const setupLocalRegistry = async () => {
     versionChunks[versionChunks.length - 1] = Date.now()
     newVersion = versionChunks.join('.')
     set(packageJson, 'version', newVersion)
-    return packageJson
+    return setDoczVersionToCI(packageJson)
   })
   await updatePackageJson(paths.doczCore, packageJson => {
     const version = get(packageJson, 'version')
@@ -113,7 +113,7 @@ const setupLocalRegistry = async () => {
     versionChunks[versionChunks.length - 1] = Date.now()
     newVersion = versionChunks.join('.')
     set(packageJson, 'version', newVersion)
-    return packageJson
+    return setDoczVersionToCI(packageJson)
   })
   // Generate the right .npmrc file in the folders to be published
   await runCommand(
@@ -134,6 +134,19 @@ const setupLocalRegistry = async () => {
   console.log('Published docz')
   await runCommand(`npm publish --tag ci`, { cwd: paths.doczCore })
   console.log('Published core')
+}
+
+const setDoczVersionToCI = packageJson => {
+  if (get(packageJson, 'dependencies.gatsby-theme-docz', false)) {
+    set(packageJson, 'dependencies.gatsby-theme-docz', 'ci')
+  }
+  if (get(packageJson, 'dependencies.docz', false)) {
+    set(packageJson, 'dependencies.docz', 'ci')
+  }
+  if (get(packageJson, 'dependencies.docz-core', false)) {
+    set(packageJson, 'dependencies.docz-core', 'ci')
+  }
+  return packageJson
 }
 
 const runTests = async () => {
@@ -160,33 +173,9 @@ const runTests = async () => {
     console.log(`Modifying package.json in ${example.tmp}`)
 
     await updatePackageJson(example.tmp, pack => {
-      if (get(pack, 'dependencies.gatsby-theme-docz', false)) {
-        set(pack, 'dependencies.gatsby-theme-docz', 'ci')
-      }
-      if (get(pack, 'dependencies.docz', false)) {
-        set(pack, 'dependencies.docz', 'ci')
-      }
-      if (get(pack, 'dependencies.docz-core', false)) {
-        set(pack, 'dependencies.docz-core', 'ci')
-      }
-      return pack
+      return setDoczVersionToCI(pack)
     })
     console.log({ example })
-    // if ('tmpDoczPackageJson' in example) {
-    //   console.log('UPDATING  IN ' + example.tmpDoczPackageJson)
-    //   await updatePackageJson(example.tmpDoczPackageJson, pack => {
-    //     if (get(pack, 'dependencies.gatsby-theme-docz', false)) {
-    //       set(pack, 'dependencies.gatsby-theme-docz', 'ci')
-    //     }
-    //     if (get(pack, 'dependencies.docz', false)) {
-    //       set(pack, 'dependencies.docz', 'ci')
-    //     }
-    //     if (get(pack, 'dependencies.docz-core', false)) {
-    //       set(pack, 'dependencies.docz-core', 'ci')
-    //     }
-    //     return pack
-    //   })
-    // }
 
     console.log(`Installing modules in tmp directory`)
     await installNodeModules(example.tmp, exampleName)
