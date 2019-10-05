@@ -15,6 +15,7 @@ import { usePrismTheme } from '../../utils/theme';
 import { LivePreviewWrapper } from './LivePreviewWrapper';
 import * as styles from './styles';
 import * as Icons from '../Icons';
+import { Dialog } from '../Dialog'
 
 export type PlaygroundProps = {
   code: string;
@@ -45,16 +46,21 @@ export const Playground = ({
   const theme = usePrismTheme();
   const [showingCode, setShowingCode] = useState(() => showPlaygroundEditor);
   const [width, setWidth] = useState(() => '100%');
+  const [showFullscreen, setShowFullscreen] = useState<boolean>(() => false)
 
   const transformCode = (codeToTransform: string) => {
     if (codeToTransform.startsWith('()') || codeToTransform.startsWith('class'))
       return codeToTransform;
     return `<React.Fragment>${codeToTransform}</React.Fragment>`;
-  };
+  }
 
   const toggleCode = () => {
     setShowingCode(s => !s);
-  };
+  }
+
+  const toggleFullscreen = () => {
+    setShowFullscreen((f) => !f)
+  }
 
   const resizableProps = {
     minWidth: 260,
@@ -80,6 +86,7 @@ export const Playground = ({
       setWidth(ref.style.width);
     },
   };
+  
   return (
     <Resizable {...resizableProps} data-testid="playground">
       <LiveProvider
@@ -97,10 +104,13 @@ export const Playground = ({
           </LivePreviewWrapper>
           <div sx={styles.buttons}>
             <button sx={styles.button} onClick={() => copy(code)}>
-              <Icons.Clipboard size={12} />
+              <Icons.Clipboard size={14} />
             </button>
             <button sx={styles.button} onClick={toggleCode}>
-              <Icons.Code size={12} />
+              <Icons.Code size={14} />
+            </button>
+            <button sx={styles.button} onClick={toggleFullscreen}>
+              <Icons.Maximize size={14} />
             </button>
           </div>
         </div>
@@ -112,6 +122,28 @@ export const Playground = ({
             <LiveEditor data-testid="live-editor" />
           </div>
         )}
+        {showFullscreen &&
+          <Dialog
+            title="Live Preview"
+            onClose={toggleFullscreen}
+            data-testid="livepreview-fullscreen"
+          >
+            <div sx={styles.previewWrapper}>
+              <LivePreviewWrapper showingCode={showingCode}>
+                {showLivePreview && (
+                  <LivePreview sx={styles.preview} data-testid="live-preview" />
+                )}
+              </LivePreviewWrapper>
+              {showLiveError && (
+                <LiveError sx={styles.error} data-testid="live-error" />
+              )}
+              {showingCode && (
+                <div sx={styles.editor(theme)}>
+                  <LiveEditor data-testid="live-editor" />
+                </div>
+              )}
+            </div>
+          </Dialog>}
       </LiveProvider>
     </Resizable>
   );

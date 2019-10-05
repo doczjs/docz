@@ -16,3 +16,5 @@ export { default as Menu } from 'react-feather/dist/icons/menu';
 export { default as Search } from 'react-feather/dist/icons/search';
 //@ts-ignore
 export { default as Sun } from 'react-feather/dist/icons/sun';
+//@ts-ignore
+export { default as Maximize } from 'react-feather/dist/icons/maximize-2'
