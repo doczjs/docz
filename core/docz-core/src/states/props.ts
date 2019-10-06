@@ -6,10 +6,10 @@ import { get, propEq } from 'lodash/fp'
 
 import * as paths from '../config/paths'
 import { Config } from '../config/argv'
-import { docgen } from '../utils/docgen'
+import { docgen, unixPath } from '../utils/docgen'
 import { WATCH_IGNORE } from './config'
 
-const getPattern = (config: Config) => {
+export const getPattern = (config: Config) => {
   const {
     ignore,
     src: source,
@@ -21,12 +21,16 @@ const getPattern = (config: Config) => {
   const root = paths.getRootDir(config)
   const srcDir = path.resolve(root, searchPath)
   const src = path.relative(root, srcDir)
+  const filesPattern = path.join(
+    src,
+    ts ? '**/*.{ts,tsx,js,jsx,mjs}' : '**/*.{js,jsx,mjs}'
+  )
 
   return ignore
     .map(entry => typeof entry === 'string' && `!**/${entry}`)
     .filter(Boolean)
     .concat([
-      path.join(src, ts ? '**/*.{ts,tsx,js,jsx,mjs}' : '**/*.{js,jsx,mjs}'),
+      unixPath(filesPattern),
       '!**/node_modules',
       '!**/doczrc.js',
     ]) as string[]
@@ -35,10 +39,12 @@ const getPattern = (config: Config) => {
 const removeFilepath = (items: any[], filepath: string) =>
   items.filter((item: any) => item.key !== filepath)
 
-const initial = (config: Config, pattern: string[]) => async (p: Params) => {
+export const initial = (config: Config, pattern: string[]) => async (
+  p: Params
+) => {
   const { filterComponents } = config
   const cwd = paths.getRootDir(config)
-  const files = await fastglob(pattern, { cwd })
+  const files = await fastglob(pattern, { cwd, caseSensitiveMatch: false })
   const filtered = filterComponents ? filterComponents(files) : files
   const metadata = await docgen(filtered, config)
   p.setState('props', metadata)

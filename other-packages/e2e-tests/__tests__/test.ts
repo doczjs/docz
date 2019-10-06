@@ -29,3 +29,10 @@ test('Renders the right layout and nav', async t => {
   const liveEditor = await getByTestId('live-editor')
   await t.expect(liveEditor.count).eql(2)
 })
+
+test('Render props', async t => {
+  await t.navigateTo('/src-components-alert')
+  const prop = await getByTestId('prop')
+  await t.expect(prop.exists).eql(true)
+  await t.expect(prop.count).eql(1)
+})

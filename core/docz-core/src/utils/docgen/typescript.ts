@@ -3,11 +3,12 @@ import * as path from 'path'
 import * as crypto from 'crypto'
 import * as _ from 'lodash/fp'
 import * as logger from 'signale'
-import reactDocgenTs from 'react-docgen-typescript'
+import * as reactDocgenTs from 'react-docgen-typescript'
 import ts from 'typescript'
 
 import { Config } from '../../config/argv'
 import * as paths from '../../config/paths'
+import { unixPath } from '.'
 
 export interface TSFile {
   text?: string
@@ -26,7 +27,8 @@ const digest = (str: string) =>
     .digest('hex')
 
 const cacheFilepath = path.join(paths.cache, 'propsParser.json')
-const readCacheFile = () => fs.readJSONSync(cacheFilepath, { throws: false })
+export const readCacheFile = () =>
+  fs.readJSONSync(cacheFilepath, { throws: false })
 
 function checkFilesOnCache(files: string[], config: Config): string[] {
   const cache = readCacheFile()
@@ -45,10 +47,9 @@ function writePropsOnCache(items: PropItem[], config: Config): void {
   const cache = readCacheFile()
   const root = paths.getRootDir(config)
   const newCache = items.reduce((obj, { key: filepath, value }) => {
-    const normalized = path.normalize(filepath)
-    const fullpath = path.resolve(root, normalized)
+    const fullpath = path.resolve(root, path.normalize(filepath))
     const hash = digest(fs.readFileSync(fullpath, 'utf-8'))
-    return { ...obj, [normalized]: { hash, props: value } }
+    return { ...obj, [unixPath(filepath)]: { hash, props: value } }
   }, {})
 
   fs.outputJSONSync(cacheFilepath, { ...cache, ...newCache })
@@ -64,7 +65,7 @@ function getPropsOnCache(): any {
   }
 
   return Object.entries(cache).map(([key, value]) => ({
-    key,
+    key: unixPath(key),
     value: _.get('props', value),
   }))
 }
@@ -195,7 +196,7 @@ const parseFiles = (files: string[], config: Config, tsconfig: string) => {
   }
 
   return files.map(filepath => ({
-    key: path.normalize(filepath),
+    key: unixPath(filepath),
     value: parser.parseWithProgramProvider(filepath, programProvider),
   }))
 }
