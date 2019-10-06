@@ -27,7 +27,7 @@ const defaultExternal = id =>
   !id.startsWith('\0') &&
   !id.startsWith('~') &&
   !id.startsWith('.') &&
-  !id.startsWith('/')
+  !id.startsWith(process.platform === 'win32' ? process.cwd() : '/')
 
 const createOutput = (dir = 'dist', defaultOpts) => {
   const opts = omitOpts(defaultOpts)
