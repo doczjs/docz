@@ -119,7 +119,7 @@ function loadFiles(filesToLoad: string[], config: Config): void {
     const normalized = path.normalize(filepath)
     const fullpath = path.resolve(root, normalized)
     const found = filesMap.get(normalized)
-    filesMap.set(unixPath(filepath), {
+    filesMap.set(normalized, {
       text: fs.readFileSync(fullpath, 'utf-8'),
       version: found ? found.version + 1 : 0,
     })
