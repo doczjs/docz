@@ -4,6 +4,7 @@ import { createRef, SyntheticEvent } from 'react';
 
 import { useScrollLock, useEscape } from '../../utils/hooks';
 import { Portal } from '../Portal';
+import * as Icons from '../Icons'
 
 import * as styles from './styles';
 
@@ -43,6 +44,9 @@ export const Dialog: React.FC<DialogProps> = props => {
           ref={dialogContentRef}
           onMouseDown={handleClick}
         >
+          <span sx={styles.close} onClick={onClose}>
+            <Icons.Close size={20} />
+          </span>
           {children}
         </div>
       </div>

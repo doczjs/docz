@@ -21,3 +21,22 @@ export const content = {
   display: 'flex',
   flexDirection: 'column',
 }
+
+export const close = {
+  position: 'absolute',
+  top: 2,
+  right: 2,
+  zIndex: 999,
+  border: '1px solid',
+  borderColor: 'playground.border',
+  backgroundColor: '#fff',
+  borderRadius: 2,
+  height: 20,
+  width: 20,
+  padding: 0,
+  margin: 0,
+  cursor: 'pointer',
+  '&:hover' : {
+    backgroundColor: '#f3f3f3'
+  }
+}

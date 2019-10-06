@@ -18,3 +18,13 @@ export { default as Search } from 'react-feather/dist/icons/search';
 export { default as Sun } from 'react-feather/dist/icons/sun';
 //@ts-ignore
 export { default as Maximize } from 'react-feather/dist/icons/maximize-2'
+//@ts-ignore
+export { default as Minimize } from 'react-feather/dist/icons/minimize-2'
+//@ts-ignore
+export { default as Close } from 'react-feather/dist/icons/x'
+//@ts-ignore
+export { default as Smartphone} from 'react-feather/dist/icons/smartphone'
+//@ts-ignore
+export { default as Tablet } from 'react-feather/dist/icons/tablet'
+//@ts-ignore
+export { default as Monitor } from 'react-feather/dist/icons/monitor'

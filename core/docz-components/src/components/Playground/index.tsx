@@ -16,6 +16,7 @@ import { LivePreviewWrapper } from './LivePreviewWrapper';
 import * as styles from './styles';
 import * as Icons from '../Icons';
 import { Dialog } from '../Dialog'
+import { DialogActions } from '../DialogActions'
 
 export type PlaygroundProps = {
   code: string;
@@ -86,6 +87,41 @@ export const Playground = ({
       setWidth(ref.style.width);
     },
   };
+
+  const buttons = (
+    <div sx={styles.buttons}>
+    <button sx={styles.button} onClick={() => copy(code)}>
+      <Icons.Clipboard size={14} />
+    </button>
+    <button sx={styles.button} onClick={toggleCode}>
+      <Icons.Code size={14} />
+    </button>
+    <button sx={styles.button} onClick={toggleFullscreen}>
+      {showFullscreen
+        ? <Icons.Minimize size={14} />
+        : <Icons.Maximize size={14} />
+      }
+    </button>
+  </div>
+  )
+  
+  const preview = (
+    <LivePreviewWrapper showingCode={showingCode}>
+      {showLivePreview && (
+        <LivePreview sx={styles.preview} data-testid="live-preview" />
+      )}
+    </LivePreviewWrapper>
+  )
+
+  const error = showLiveError && (
+    <LiveError sx={styles.error} data-testid="live-error" />
+  )
+
+  const editor = showingCode && (
+    <div sx={styles.editor(theme)}>
+      <LiveEditor data-testid="live-editor" />
+    </div>
+  )
   
   return (
     <Resizable {...resizableProps} data-testid="playground">
@@ -97,52 +133,24 @@ export const Playground = ({
         theme={theme}
       >
         <div sx={styles.previewWrapper}>
-          <LivePreviewWrapper showingCode={showingCode}>
-            {showLivePreview && (
-              <LivePreview sx={styles.preview} data-testid="live-preview" />
-            )}
-          </LivePreviewWrapper>
-          <div sx={styles.buttons}>
-            <button sx={styles.button} onClick={() => copy(code)}>
-              <Icons.Clipboard size={14} />
-            </button>
-            <button sx={styles.button} onClick={toggleCode}>
-              <Icons.Code size={14} />
-            </button>
-            <button sx={styles.button} onClick={toggleFullscreen}>
-              <Icons.Maximize size={14} />
-            </button>
-          </div>
+          {preview}
+          {buttons}
         </div>
-        {showLiveError && (
-          <LiveError sx={styles.error} data-testid="live-error" />
-        )}
-        {showingCode && (
-          <div sx={styles.editor(theme)}>
-            <LiveEditor data-testid="live-editor" />
-          </div>
-        )}
+        {error}
+        {editor}
         {showFullscreen &&
           <Dialog
             title="Live Preview"
             onClose={toggleFullscreen}
             data-testid="livepreview-fullscreen"
           >
-            <div sx={styles.previewWrapper}>
-              <LivePreviewWrapper showingCode={showingCode}>
-                {showLivePreview && (
-                  <LivePreview sx={styles.preview} data-testid="live-preview" />
-                )}
-              </LivePreviewWrapper>
-              {showLiveError && (
-                <LiveError sx={styles.error} data-testid="live-error" />
-              )}
-              {showingCode && (
-                <div sx={styles.editor(theme)}>
-                  <LiveEditor data-testid="live-editor" />
-                </div>
-              )}
+            <DialogActions onChangeSize={() =>{}} />
+            <div sx={styles.dialogPreviewWrapper(showingCode)}>
+              {preview}
+              {buttons}
             </div>
+            {error}
+            {editor}
           </Dialog>}
       </LiveProvider>
     </Resizable>

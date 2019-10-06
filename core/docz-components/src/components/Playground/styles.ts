@@ -33,6 +33,11 @@ export const previewWrapper = {
   position: 'relative',
 };
 
+export const dialogPreviewWrapper = (editorOpen: boolean) => ({
+  ...previewWrapper,
+  height: editorOpen ? '50%' : '98%'
+})
+
 export const preview = {
   m: 0,
   p: '20px',
