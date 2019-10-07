@@ -26,6 +26,7 @@
     "babel-plugin-export-metadata": "2.0.0-rc.54",
     "copy-text-to-clipboard": "^2.1.0",
     "docz": "2.0.0-rc.54",
+    "docz-components": "2.0.0-rc.48",
     "docz-core": "2.0.0-rc.54",
     "emotion-theming": "^10.0.14",
     "fs-extra": "^8.1.0",
