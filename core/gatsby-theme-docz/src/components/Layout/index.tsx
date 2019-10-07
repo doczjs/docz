@@ -3,7 +3,7 @@ import { jsx, Layout as BaseLayout, Main, Container } from 'theme-ui'
 import React, { useState } from 'react'
 import { Global } from '@emotion/core'
 
-import global from '../../theme/global'
+import { global } from 'docz-components'
 import { Header } from '../Header'
 import { Sidebar } from '../Sidebar'
 import * as styles from './styles'

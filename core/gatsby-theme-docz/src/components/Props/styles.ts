@@ -1,4 +1,4 @@
-import { breakpoints } from '../../theme/breakpoints'
+import { media } from 'docz-components'
 import * as mixins from '../../utils/mixins'
 
 export const container = {
@@ -15,10 +15,8 @@ export const container = {
 export const content = {
   position: 'relative',
   display: 'flex',
-  flexDirection: 'column',
-  [`@media (min-width: ${breakpoints.tablet}px)`]: {
-    flexWrap: 'nowrap',
-    flexDirection: 'row',
+  [media.mobile]: {
+    flexDirection: 'column',
   },
 }
 
@@ -60,7 +58,7 @@ export const right = {
   justifyContent: 'flex-end',
   px: 3,
   flex: 1,
-  [`@media (max-width: ${breakpoints.tablet}px)`]: {
+  [media.tablet]: {
     position: 'absolute',
     top: 0,
     right: 0,
