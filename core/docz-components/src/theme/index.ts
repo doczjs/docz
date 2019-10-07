@@ -1,6 +1,4 @@
-//@ts-ignore
 import moraga from 'typography-theme-moraga';
-//@ts-ignore
 import { toTheme } from '@theme-ui/typography';
 import { merge, get } from 'lodash';
 
