@@ -2,7 +2,7 @@
 import { jsx } from 'theme-ui'
 
 import * as styles from './styles'
-import { Search } from '../Icons'
+import { Search } from 'react-feather'
 import React from 'react'
 
 export const NavSearch = (

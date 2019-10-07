@@ -2,7 +2,7 @@
 import { jsx } from 'theme-ui'
 import React, { useState } from 'react'
 
-import { ChevronDown, ChevronUp } from '../Icons'
+import { ChevronDown, ChevronUp } from 'react-feather'
 import * as styles from './styles'
 import { Prop as PropProps, PropsComponentProps } from 'docz'
 

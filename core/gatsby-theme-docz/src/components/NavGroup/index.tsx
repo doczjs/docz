@@ -4,7 +4,7 @@ import React from 'react'
 
 import * as styles from './styles'
 import { NavLink } from '../NavLink'
-import { ChevronDown } from '../Icons'
+import { ChevronDown } from 'react-feather'
 import { MenuItem } from 'docz'
 
 interface NavGroupProps {

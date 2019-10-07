@@ -3,7 +3,7 @@ import { jsx, Box, Flex, useColorMode } from 'theme-ui'
 import { useConfig, useCurrentDoc } from 'docz'
 
 import * as styles from './styles'
-import { Edit, Menu, Sun, GitHub } from '../Icons'
+import { Edit, Menu, Sun, GitHub } from 'react-feather'
 import { Logo } from '../Logo'
 
 export interface HeaderProps {
