@@ -16,17 +16,18 @@ const config = {
     description: "<%- config.description %>"
   },
   plugins: [
-    {
-      resolve: 'gatsby-theme-docz',
-      options: <%- opts %>
-    },<% if (config.typescript) {%>
+    <% if (config.typescript) {%>
     {
       resolve: 'gatsby-plugin-typescript',
       options: {
         isTSX: true,
         allExtensions: true
       }
-    },<%}%><% if (isDoczRepo) {%>
+    },<%}%>
+    {
+      resolve: 'gatsby-theme-docz',
+      options: <%- opts %>
+    },<% if (isDoczRepo) {%>
     {
       resolve: 'gatsby-plugin-eslint',
       options: {
