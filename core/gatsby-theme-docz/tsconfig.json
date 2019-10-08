@@ -1,10 +1,12 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "allowJs": true,
-    "noEmit": true,
+    "importHelpers": true,
     "module": "esnext",
-    "moduleResolution": "node",
-    "sourceMap": false
-  }
+    "target": "es6",
+    "sourceMap": false,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*", "types/*"],
+  "exclude": ["node_modules/*", "../../node_modules/*"]
 }

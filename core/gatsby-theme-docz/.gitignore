@@ -1,3 +1,4 @@
 # gatsby files
 .cache/
 public
+src/**/*.js

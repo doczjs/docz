@@ -60,6 +60,7 @@
     "eslint-config-docz-js": "^2.0.0-rc.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "tslib": "^1.10.0",
     "typescript": "3.5.3"
   },
   "peerDependencies": {
