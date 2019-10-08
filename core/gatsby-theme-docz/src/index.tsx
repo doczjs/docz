@@ -1,10 +1,11 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
+import React from 'react'
 import { theme, useConfig, ComponentsProvider } from 'docz'
 import { Styled, ThemeProvider } from 'theme-ui'
 
-import defaultTheme from './theme'
 import components from './components'
+import { getTheme } from 'docz-components'
 
 const Theme = ({ children }: React.PropsWithChildren<{}>) => {
   const config = useConfig()
@@ -19,7 +20,7 @@ const Theme = ({ children }: React.PropsWithChildren<{}>) => {
 }
 
 export const enhance = theme(
-  defaultTheme,
+  getTheme(),
   ({
     mode = 'light',
     showPlaygroundEditor = true,

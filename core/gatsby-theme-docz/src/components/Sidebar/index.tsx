@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useState, ChangeEvent } from 'react'
+import React, { useState } from 'react'
 import { Global } from '@emotion/core'
 import { jsx, Box } from 'theme-ui'
 import { useMenus } from 'docz'
@@ -20,7 +20,7 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = props => {
   const [query, setQuery] = useState('')
   const menus = useMenus({ query })
 
-  const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(ev.target.value)
   }
 

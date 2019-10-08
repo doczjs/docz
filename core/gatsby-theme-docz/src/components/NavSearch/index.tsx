@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
+import React from 'react'
+import { Search } from 'react-feather'
 
 import * as styles from './styles'
-import { Search } from 'react-feather'
-import React from 'react'
 
 export const NavSearch = (
   props: React.InputHTMLAttributes<HTMLInputElement>

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { useComponents } from 'docz'
 import { MDXProvider } from '@mdx-js/react'
 import { propEq, get } from 'lodash/fp'
@@ -80,7 +80,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
   const entry = findEntry(db, ctx)
   if (!entry) return null
   return (
-    <Fragment>
+    <React.Fragment>
       {entry && <SEO title={entry.value.name} />}
       <Theme db={db} currentEntry={entry}>
         {
@@ -91,7 +91,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
           ) as any
         }
       </Theme>
-    </Fragment>
+    </React.Fragment>
   )
 }
 

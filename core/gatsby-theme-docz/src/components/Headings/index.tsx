@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
+import React from 'react'
 
 type HeadingType = 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 interface HeadingProps {
