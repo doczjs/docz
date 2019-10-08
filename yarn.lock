@@ -3452,10 +3452,10 @@
   dependencies:
     csstype "^2.6.6"
 
-"@types/theme-ui@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.npmjs.org/@types/theme-ui/-/theme-ui-0.2.2.tgz#06c8e51bf231ce643f7ce859d6309d104e18a4d9"
-  integrity sha512-c6kGvo8GeLGw92nbH3jGCzJHmJQ838fwo4Pst7WoYkUwOar2fIDCW70DRdW+mFXrvA1l1jPUY0bwYwwjXFjhZA==
+"@types/theme-ui@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@types/theme-ui/-/theme-ui-0.2.3.tgz#c9357daaba2ec1a207be680ab2c2315e2e00758e"
+  integrity sha512-4/y1KSggMp0bMDljCriKyxpo5JUUYm3NLcL0gdhzmSDsu7AVMrhRH/HEYt5DDoYIi5qfLoawoHgo5lpY5njqiA==
   dependencies:
     "@types/react" "*"
     "@types/styled-system" "*"
