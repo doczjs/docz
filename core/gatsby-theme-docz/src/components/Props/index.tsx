@@ -65,6 +65,7 @@ export const Prop: React.FunctionComponent<PropComponentProps> = ({
         </div>
       </div>
       {showing && prop.description && (
+        // @ts-ignore: Typings of function values get marked incompatible
         <div sx={styles.description} data-testid="prop-description">
           {prop.description}
         </div>
@@ -80,6 +81,7 @@ export const Props: React.FunctionComponent<PropsComponentProps> = ({
   const entries = Object.entries(props)
 
   return (
+    // @ts-ignore: Typings of function values get marked incompatible
     <div sx={styles.container} data-testid="props">
       {entries.map(([key, prop]) => (
         <Prop key={key} propName={key} prop={prop} getPropType={getPropType} />

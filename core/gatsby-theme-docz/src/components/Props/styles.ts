@@ -1,10 +1,12 @@
 import { media } from 'docz-components'
+import { Theme } from 'theme-ui'
+import get from 'lodash/get'
 import * as mixins from '../../utils/mixins'
 
 export const container = {
   mt: 3,
   mb: 4,
-  border: (t: any) => `1px solid ${t.colors.border}`,
+  border: (t: Theme) => `1px solid ${get(t, 'colors.border')}`,
   borderRadius: 'radius',
   overflow: 'hidden',
   bg: 'props.bg',
@@ -23,7 +25,7 @@ export const content = {
 export const line = {
   pt: 2,
   '& + &': {
-    borderTop: (t: any) => `1px solid ${t.colors.border}`,
+    borderTop: (t: Theme) => `1px solid ${get(t, 'colors.border')}`,
   },
 }
 
@@ -83,7 +85,7 @@ export const description = {
   m: 0,
   py: 2,
   px: 3,
-  borderTop: (t: any) => `1px solid ${t.colors.border}`,
+  borderTop: (t: Theme) => `1px solid ${get(t, 'colors.border')}`,
   color: 'props.descriptionText',
   bg: 'props.descriptionBg',
 }

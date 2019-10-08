@@ -1,11 +1,13 @@
 import * as mixins from '../../utils/mixins'
 import { media } from 'docz-components'
+import get from 'lodash/get'
+import { Theme } from 'theme-ui'
 
 export const wrapper = {
   bg: 'header.bg',
   position: 'relative',
   zIndex: 1,
-  borderBottom: (t: any) => `1px solid ${t.colors.border}`,
+  borderBottom: (t: Theme) => `1px solid ${get(t, 'colors.border')}`,
 }
 
 export const innerContainer = {

@@ -21,6 +21,7 @@ export const Header = (props: HeaderProps) => {
   }
 
   return (
+    // @ts-ignore: Typings of function values get marked incompatible
     <div sx={styles.wrapper} data-testid={'header'}>
       <Box sx={styles.menuIcon}>
         <button sx={styles.menuButton} onClick={onOpen}>
