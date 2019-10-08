@@ -8,16 +8,21 @@ import Wrapper from '../wrapper'
 import Theme from '../index'
 import SEO from './Seo'
 
+interface Heading {
+  depth: number
+  slug: string
+  value: string
+}
+
 interface Entry {
   id: string
   filepath: string
-  fullpath: string
-  link: string | null
   slug: string
-  name: string
   route: string
+  name: string
+  order: number
   menu: string | null
-  headings: unknown[]
+  headings: Heading[]
   [key: string]: any
 }
 
@@ -45,9 +50,12 @@ const Route: React.FunctionComponent<RouteProps> = ({
 }) => {
   const components = useComponents()
   const NotFound = components.notFound ? components.notFound : () => null
+
+  if (!entry) return <NotFound />
+
   const Layout = components.layout ? components.layout : () => null
   const props = { ...defaultProps, doc: entry }
-  if (!entry) return <NotFound />
+
   return (
     <MDXProvider components={components}>
       <Wrapper>
