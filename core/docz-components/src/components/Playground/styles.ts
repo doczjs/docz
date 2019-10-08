@@ -9,6 +9,7 @@ export const editor = (theme: PrismTheme) =>
     border: (t: PrismTheme) =>
       `1px solid ${get(t, 'colors.border', 'transparent')}`,
     borderRadius: '0 0 4px 4px',
+    overflow: 'hidden',
     background: get(theme, 'plain.backgroundColor', 'none'),
     borderTop: 0,
     fontFamily: 'monospace',
