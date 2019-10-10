@@ -1,6 +1,5 @@
 import * as path from 'path'
 import * as fs from 'fs-extra'
-import { finds } from 'load-cfg'
 
 import { Config } from '../../../config/argv'
 import * as paths from '../../../config/paths'
@@ -70,9 +69,32 @@ const createWatch = (args: Config) => (
   return () => watcher.close()
 }
 
+const watchDoczRc = (args: Context['args']) => {
+  const watcher = createWatcher(
+    path.join(paths.root, args.config ? args.config : 'doczrc.js'),
+    args
+  )
+
+  const copy = (filepath: string) => {
+    const src = path.resolve(paths.root, filepath)
+    const dest = path.resolve(paths.docz, 'doczrc.js')
+    fs.copySync(src, dest)
+  }
+
+  const remove = () => {
+    fs.removeSync(path.resolve(paths.docz, 'doczrc.js'))
+  }
+
+  watcher
+    .on('add', copy)
+    .on('change', copy)
+    .on('unlink', remove)
+  return () => watcher.close()
+}
+
 export const watchFiles = ({ args }: Context) => () => {
   const watch = createWatch(args)
-  const doczrc = watch(args.config || finds('docz'), 'doczrc.js')
+  const doczrc = watchDoczRc(args)
   const gatsbyBrowser = watch(paths.gatsbyBrowser, 'gatsby-browser.js')
   const gatsbyNode = watch(paths.gatsbyNode, 'gatsby-node.js')
   const gatsbySSR = watch(paths.gatsbySSR, 'gatsby-ssr.js')
