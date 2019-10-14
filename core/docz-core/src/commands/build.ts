@@ -5,8 +5,10 @@ import { parseConfig } from '../config/docz'
 import { bundler as gatsby } from '../bundler'
 import { getIsFirstInstall } from '../bundler/machine/actions'
 import { init } from './init'
+import { copyDoczRc } from '../bundler/machine/services/create-resources'
 
 export const build = async (args: Arguments<any>) => {
+  copyDoczRc(args.config)
   const config = await parseConfig(args)
   const bundler = gatsby(config)
   const isFirstInstall = getIsFirstInstall()

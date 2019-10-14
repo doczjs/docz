@@ -1,17 +1,24 @@
 import * as path from 'path'
 import * as fs from 'fs-extra'
-import { finds } from 'load-cfg'
 import { omit } from 'lodash/fp'
-import findUp from 'find-up'
-import sh from 'shelljs'
 
 import * as paths from '../../../config/paths'
 import { ServerMachineCtx } from '../context'
 import { outputFileFromTemplate } from '../../../utils/template'
 
-export const copyDoczRc = async () => {
-  const filepath = await findUp(finds('docz'))
-  filepath && sh.cp(filepath, paths.docz)
+export const copyDoczRc = (configPath?: string) => {
+  const sourceDoczRc = configPath
+    ? path.join(paths.root, configPath)
+    : path.join(paths.root, 'doczrc.js')
+  const destinationDoczRc = path.join(paths.docz, 'doczrc.js')
+  try {
+    fs.copySync(sourceDoczRc, destinationDoczRc)
+  } catch (err) {
+    // console.error(
+    //   `Failed to copy doczrc.js from ${sourceDoczRc} to ${destinationDoczRc} : ${err.message}`,
+    //   err.stack
+    // )
+  }
 }
 
 const copyAndModifyPkgJson = async (ctx: ServerMachineCtx) => {
@@ -89,7 +96,7 @@ const writeGatsbyBrowser = async () =>
 
 export const createResources = async (ctx: ServerMachineCtx) => {
   try {
-    await copyDoczRc()
+    copyDoczRc(ctx.args.config)
     await copyAndModifyPkgJson(ctx)
     await writeEslintRc(ctx)
     await writeNotFound()

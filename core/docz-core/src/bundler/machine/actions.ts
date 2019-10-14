@@ -58,7 +58,7 @@ export const ensureFiles = ({ args }: ServerMachineCtx) => {
 }
 
 export const getIsFirstInstall = () => {
-  return !sh.test('-e', paths.docz)
+  return !sh.test('-e', path.join(paths.docz, 'package.json'))
 }
 export const getIsDoczRepo = () => {
   return sh.test('-e', path.join(paths.root, '../../core'))

@@ -46,6 +46,10 @@ const examples = {
     path: path.join(rootPath, 'examples/typescript'),
     tmp: path.join(tmpPath, 'examples/typescript'),
   },
+  'custom-config-location': {
+    path: path.join(rootPath, 'examples/custom-config-location'),
+    tmp: path.join(tmpPath, 'examples/custom-config-location'),
+  },
 }
 
 const startLocalRegistry = async () => {
@@ -146,17 +150,13 @@ const setDoczVersionToCI = packageJson => {
 }
 
 const runTests = async () => {
-  // return
   console.log(`Preparing tmp examples dir.`)
   let PORT = 3000
   for (let exampleName in examples) {
     console.log(`🕕 Running ${exampleName} test`)
-    // await runCommand(`mkdir -p ${tmpPath}/examples/`)
     const example = examples[exampleName]
     await fs.ensureDir(`${tmpPath}/examples/${exampleName}`)
 
-    // copy example to a new temp directory
-    // await runCommand(`cp -r ${example.path} ${path.join(example.tmp, '..')}`)
     console.log()
     console.log(`Copying ${exampleName} example to a temporary directory.`)
     console.log(`Source : ${example.path}`)
@@ -164,8 +164,8 @@ const runTests = async () => {
     console.log()
 
     await fs.copy(example.path, example.tmp)
-    console.log(`Copied ${exampleName} example to a temporary directory.`)
 
+    console.log(`Copied ${exampleName} example to a temporary directory.`)
     console.log(`Modifying package.json in ${example.tmp}`)
 
     await updatePackageJson(example.tmp, pack => {
@@ -214,5 +214,3 @@ const cleanup = async () => {
   console.log('Exiting process')
   process.exit(0)
 })()
-
-// /var/folders/jn/3z685bls0mv64x4q1vjrzgy40000gn/T/tmp-546690gUnJPBhzg0U/examples/basic
