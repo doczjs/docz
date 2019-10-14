@@ -8,7 +8,7 @@ let bar5 = () => {};
 
 export default [foo5, bar5];
 
-if (typeof bar5 !== 'undefined' && bar5 && bar5 === Object(bar5) && Object.isExtensible(bar5)) {
+if (typeof bar5 !== 'undefined' && bar5 && bar5 === Object(bar5) && Object.isExtensible(bar5) && !bar5.hasOwnProperty('__filemeta')) {
   Object.defineProperty(bar5, '__filemeta', {
     configurable: true,
     value: {
@@ -18,7 +18,7 @@ if (typeof bar5 !== 'undefined' && bar5 && bar5 === Object(bar5) && Object.isExt
   });
 }
 
-if (typeof foo5 !== 'undefined' && foo5 && foo5 === Object(foo5) && Object.isExtensible(foo5)) {
+if (typeof foo5 !== 'undefined' && foo5 && foo5 === Object(foo5) && Object.isExtensible(foo5) && !foo5.hasOwnProperty('__filemeta')) {
   Object.defineProperty(foo5, '__filemeta', {
     configurable: true,
     value: {
@@ -33,7 +33,7 @@ exports[`export-metadata export default works with Class declaration 1`] = `
 "/* ExportDefaultDeclaration with Class declaration */
 export default class Bar6 {}
 
-if (typeof Bar6 !== 'undefined' && Bar6 && Bar6 === Object(Bar6) && Object.isExtensible(Bar6)) {
+if (typeof Bar6 !== 'undefined' && Bar6 && Bar6 === Object(Bar6) && Object.isExtensible(Bar6) && !Bar6.hasOwnProperty('__filemeta')) {
   Object.defineProperty(Bar6, '__filemeta', {
     configurable: true,
     value: {
@@ -48,7 +48,7 @@ exports[`export-metadata export default works with Function declaration 1`] = `
 "/* ExportDefaultDeclaration with Function declaration */
 export default function foo6() {}
 
-if (typeof foo6 !== 'undefined' && foo6 && foo6 === Object(foo6) && Object.isExtensible(foo6)) {
+if (typeof foo6 !== 'undefined' && foo6 && foo6 === Object(foo6) && Object.isExtensible(foo6) && !foo6.hasOwnProperty('__filemeta')) {
   Object.defineProperty(foo6, '__filemeta', {
     configurable: true,
     value: {
@@ -64,7 +64,7 @@ exports[`export-metadata export default works with Identifier 1`] = `
 let foo3 = 5;
 export default foo3;
 
-if (typeof foo3 !== 'undefined' && foo3 && foo3 === Object(foo3) && Object.isExtensible(foo3)) {
+if (typeof foo3 !== 'undefined' && foo3 && foo3 === Object(foo3) && Object.isExtensible(foo3) && !foo3.hasOwnProperty('__filemeta')) {
   Object.defineProperty(foo3, '__filemeta', {
     configurable: true,
     value: {
@@ -82,7 +82,7 @@ export default {
   bar4: () => {}
 };
 
-if (typeof bar4 !== 'undefined' && bar4 && bar4 === Object(bar4) && Object.isExtensible(bar4)) {
+if (typeof bar4 !== 'undefined' && bar4 && bar4 === Object(bar4) && Object.isExtensible(bar4) && !bar4.hasOwnProperty('__filemeta')) {
   Object.defineProperty(bar4, '__filemeta', {
     configurable: true,
     value: {
@@ -92,7 +92,7 @@ if (typeof bar4 !== 'undefined' && bar4 && bar4 === Object(bar4) && Object.isExt
   });
 }
 
-if (typeof foo4 !== 'undefined' && foo4 && foo4 === Object(foo4) && Object.isExtensible(foo4)) {
+if (typeof foo4 !== 'undefined' && foo4 && foo4 === Object(foo4) && Object.isExtensible(foo4) && !foo4.hasOwnProperty('__filemeta')) {
   Object.defineProperty(foo4, '__filemeta', {
     configurable: true,
     value: {
@@ -113,7 +113,7 @@ let baz = 'baz';
 export { foo as default, bar as foobar, baz };
 /* ExportNamedDeclaration with Variable declarations */
 
-if (typeof baz !== 'undefined' && baz && baz === Object(baz) && Object.isExtensible(baz)) {
+if (typeof baz !== 'undefined' && baz && baz === Object(baz) && Object.isExtensible(baz) && !baz.hasOwnProperty('__filemeta')) {
   Object.defineProperty(baz, '__filemeta', {
     configurable: true,
     value: {
@@ -123,7 +123,7 @@ if (typeof baz !== 'undefined' && baz && baz === Object(baz) && Object.isExtensi
   });
 }
 
-if (typeof bar !== 'undefined' && bar && bar === Object(bar) && Object.isExtensible(bar)) {
+if (typeof bar !== 'undefined' && bar && bar === Object(bar) && Object.isExtensible(bar) && !bar.hasOwnProperty('__filemeta')) {
   Object.defineProperty(bar, '__filemeta', {
     configurable: true,
     value: {
@@ -133,7 +133,7 @@ if (typeof bar !== 'undefined' && bar && bar === Object(bar) && Object.isExtensi
   });
 }
 
-if (typeof foo !== 'undefined' && foo && foo === Object(foo) && Object.isExtensible(foo)) {
+if (typeof foo !== 'undefined' && foo && foo === Object(foo) && Object.isExtensible(foo) && !foo.hasOwnProperty('__filemeta')) {
   Object.defineProperty(foo, '__filemeta', {
     configurable: true,
     value: {
@@ -147,7 +147,7 @@ export let foo1 = 5,
     bar1 = () => {};
 /* ExportNamedDeclaration with Function and Class declarations */
 
-if (typeof bar1 !== 'undefined' && bar1 && bar1 === Object(bar1) && Object.isExtensible(bar1)) {
+if (typeof bar1 !== 'undefined' && bar1 && bar1 === Object(bar1) && Object.isExtensible(bar1) && !bar1.hasOwnProperty('__filemeta')) {
   Object.defineProperty(bar1, '__filemeta', {
     configurable: true,
     value: {
@@ -157,7 +157,7 @@ if (typeof bar1 !== 'undefined' && bar1 && bar1 === Object(bar1) && Object.isExt
   });
 }
 
-if (typeof foo1 !== 'undefined' && foo1 && foo1 === Object(foo1) && Object.isExtensible(foo1)) {
+if (typeof foo1 !== 'undefined' && foo1 && foo1 === Object(foo1) && Object.isExtensible(foo1) && !foo1.hasOwnProperty('__filemeta')) {
   Object.defineProperty(foo1, '__filemeta', {
     configurable: true,
     value: {
@@ -169,7 +169,7 @@ if (typeof foo1 !== 'undefined' && foo1 && foo1 === Object(foo1) && Object.isExt
 
 export function foo2() {}
 
-if (typeof foo2 !== 'undefined' && foo2 && foo2 === Object(foo2) && Object.isExtensible(foo2)) {
+if (typeof foo2 !== 'undefined' && foo2 && foo2 === Object(foo2) && Object.isExtensible(foo2) && !foo2.hasOwnProperty('__filemeta')) {
   Object.defineProperty(foo2, '__filemeta', {
     configurable: true,
     value: {
@@ -181,7 +181,7 @@ if (typeof foo2 !== 'undefined' && foo2 && foo2 === Object(foo2) && Object.isExt
 
 export class Bar2 {}
 
-if (typeof Bar2 !== 'undefined' && Bar2 && Bar2 === Object(Bar2) && Object.isExtensible(Bar2)) {
+if (typeof Bar2 !== 'undefined' && Bar2 && Bar2 === Object(Bar2) && Object.isExtensible(Bar2) && !Bar2.hasOwnProperty('__filemeta')) {
   Object.defineProperty(Bar2, '__filemeta', {
     configurable: true,
     value: {
@@ -197,7 +197,7 @@ exports[`export-metadata re-export re export default 1`] = `
 import __DOCZ_DUMMY_EXPORT_DEFAULT from \\"../assets/a\\";
 export default __DOCZ_DUMMY_EXPORT_DEFAULT;
 
-if (typeof __DOCZ_DUMMY_EXPORT_DEFAULT !== 'undefined' && __DOCZ_DUMMY_EXPORT_DEFAULT && __DOCZ_DUMMY_EXPORT_DEFAULT === Object(__DOCZ_DUMMY_EXPORT_DEFAULT) && Object.isExtensible(__DOCZ_DUMMY_EXPORT_DEFAULT)) {
+if (typeof __DOCZ_DUMMY_EXPORT_DEFAULT !== 'undefined' && __DOCZ_DUMMY_EXPORT_DEFAULT && __DOCZ_DUMMY_EXPORT_DEFAULT === Object(__DOCZ_DUMMY_EXPORT_DEFAULT) && Object.isExtensible(__DOCZ_DUMMY_EXPORT_DEFAULT) && !__DOCZ_DUMMY_EXPORT_DEFAULT.hasOwnProperty('__filemeta')) {
   Object.defineProperty(__DOCZ_DUMMY_EXPORT_DEFAULT, '__filemeta', {
     configurable: true,
     value: {
@@ -212,7 +212,7 @@ exports[`export-metadata re-export re export default to name 1`] = `
 "/* Re-export  */
 export { default as aDefault } from '../assets/a';
 
-if (typeof aDefault !== 'undefined' && aDefault && aDefault === Object(aDefault) && Object.isExtensible(aDefault)) {
+if (typeof aDefault !== 'undefined' && aDefault && aDefault === Object(aDefault) && Object.isExtensible(aDefault) && !aDefault.hasOwnProperty('__filemeta')) {
   Object.defineProperty(aDefault, '__filemeta', {
     configurable: true,
     value: {
@@ -227,7 +227,7 @@ exports[`export-metadata re-export re export name 1`] = `
 "/* Re-export  */
 export { a } from '../assets/a';
 
-if (typeof a !== 'undefined' && a && a === Object(a) && Object.isExtensible(a)) {
+if (typeof a !== 'undefined' && a && a === Object(a) && Object.isExtensible(a) && !a.hasOwnProperty('__filemeta')) {
   Object.defineProperty(a, '__filemeta', {
     configurable: true,
     value: {
@@ -243,7 +243,7 @@ exports[`export-metadata re-export re export name to default 1`] = `
 import a from \\"../assets/a\\";
 export default a;
 
-if (typeof a !== 'undefined' && a && a === Object(a) && Object.isExtensible(a)) {
+if (typeof a !== 'undefined' && a && a === Object(a) && Object.isExtensible(a) && !a.hasOwnProperty('__filemeta')) {
   Object.defineProperty(a, '__filemeta', {
     configurable: true,
     value: {
@@ -258,7 +258,7 @@ exports[`export-metadata re-export re export name to name 1`] = `
 "/* Re-export  */
 export { a as aa } from '../assets/a';
 
-if (typeof aa !== 'undefined' && aa && aa === Object(aa) && Object.isExtensible(aa)) {
+if (typeof aa !== 'undefined' && aa && aa === Object(aa) && Object.isExtensible(aa) && !aa.hasOwnProperty('__filemeta')) {
   Object.defineProperty(aa, '__filemeta', {
     configurable: true,
     value: {
