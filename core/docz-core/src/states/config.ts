@@ -37,8 +37,9 @@ const getInitialConfig = (config: Config): Payload => {
 }
 
 const update = async (params: Params, initial: Payload, { config }: Config) => {
+  const pathToConfig = path.join(paths.docz, 'doczrc.js')
   const next = config
-    ? loadFrom(path.resolve(config), initial, true, true)
+    ? loadFrom(pathToConfig, initial, true, true)
     : load('docz', initial, true, true)
 
   params.setState('config', next)

@@ -46,7 +46,7 @@ export const parseConfig = async (
   const defaultConfig = getBaseConfig(argv, { port, ...custom })
 
   const config = argv.config
-    ? loadFrom<Config>(path.resolve(argv.config), defaultConfig)
+    ? loadFrom<Config>(path.join(paths.docz, 'doczrc.js'), defaultConfig)
     : load<Config>('docz', defaultConfig)
 
   const reduceAsync = Plugin.reduceFromPluginsAsync<Config>(config.plugins)
