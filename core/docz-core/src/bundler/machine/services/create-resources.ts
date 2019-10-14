@@ -14,9 +14,10 @@ export const copyDoczRc = (configPath?: string) => {
   try {
     fs.copySync(sourceDoczRc, destinationDoczRc)
   } catch (err) {
-    console.error(
-      `Failed to copy doczrc.js from ${sourceDoczRc} to ${destinationDoczRc}`
-    )
+    // console.error(
+    //   `Failed to copy doczrc.js from ${sourceDoczRc} to ${destinationDoczRc} : ${err.message}`,
+    //   err.stack
+    // )
   }
 }
 
