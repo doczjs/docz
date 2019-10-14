@@ -1,48 +1,47 @@
-import * as React from 'react'
-import { SFC } from 'react'
-import * as Icons from '../Icons'
+/** @jsx jsx */
+import { jsx } from 'theme-ui';
+import { SFC, FC } from 'react';
+import * as Icons from '../Icons';
+import * as styles from './styles';
 
-const wrapper = {
-  position: 'absolute',
-  top: 2,
-  left: '50%',
-  marginBottom: 1,
-  transform: 'translateX(-50%)' 
+export interface DialogActionsProps {
+  onChangeSize: (width: string, height: string) => void;
 }
 
-const buttons = {
-  display: 'flex',
-  background: '',
-  border: '1px solid white',
-  borderRadius: 2,
-  padding: '3px 5px'
-}
-
-export interface ResizeProps {
-  onChangeSize: (width: string, height: string) => void
-}
-
-export const DialogActions: SFC<ResizeProps> = ({ onChangeSize }) => (
-  <div sx={wrapper}>
-    <div sx={buttons}>
-      <button
+export const DialogActions: SFC<DialogActionsProps> = ({ onChangeSize }) => (
+  <div>
+    <div sx={styles.buttons}>
+      <ActionButton
         onClick={() => onChangeSize('360px', '640px')}
         title="Smartphone"
       >
         <Icons.Smartphone width={20} />
-      </button>
-      <button
+      </ActionButton>
+      <ActionButton
         onClick={() => onChangeSize('768px', '1024px')}
         title="Tablet"
       >
         <Icons.Tablet width={20} />
-      </button>
-      <button
+      </ActionButton>
+      <ActionButton
         onClick={() => onChangeSize('1366px', '1024px')}
         title="Monitor"
       >
         <Icons.Monitor width={20} />
-      </button>
+      </ActionButton>
     </div>
   </div>
-)
+);
+
+export interface ActionButtonProps {
+  onClick: () => void;
+  title: string;
+}
+
+const ActionButton: FC<ActionButtonProps> = ({ onClick, title, children }) => {
+  return (
+    <button sx={styles.actionButton} onClick={onClick} title={title}>
+      {children}
+    </button>
+  );
+};

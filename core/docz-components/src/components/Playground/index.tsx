@@ -15,8 +15,8 @@ import { usePrismTheme } from '../../utils/theme';
 import { LivePreviewWrapper } from './LivePreviewWrapper';
 import * as styles from './styles';
 import * as Icons from '../Icons';
-import { Dialog } from '../Dialog'
-import { DialogActions } from '../DialogActions'
+import { Dialog } from '../Dialog';
+import { DialogActions } from '../DialogActions';
 
 export type PlaygroundProps = {
   code: string;
@@ -47,21 +47,26 @@ export const Playground = ({
   const theme = usePrismTheme();
   const [showingCode, setShowingCode] = useState(() => showPlaygroundEditor);
   const [width, setWidth] = useState(() => '100%');
-  const [showFullscreen, setShowFullscreen] = useState<boolean>(() => false)
+  const [dialogWidth, setDialogWidth] = useState<string>(() => '90%');
+  const [showFullscreen, setShowFullscreen] = useState<boolean>(() => false);
 
   const transformCode = (codeToTransform: string) => {
     if (codeToTransform.startsWith('()') || codeToTransform.startsWith('class'))
       return codeToTransform;
     return `<React.Fragment>${codeToTransform}</React.Fragment>`;
-  }
+  };
 
   const toggleCode = () => {
     setShowingCode(s => !s);
-  }
+  };
 
   const toggleFullscreen = () => {
-    setShowFullscreen((f) => !f)
-  }
+    setShowFullscreen(f => !f);
+  };
+
+  const onChangeSize = (width: string) => {
+    setDialogWidth(_w => width);
+  };
 
   const resizableProps = {
     minWidth: 260,
@@ -90,39 +95,40 @@ export const Playground = ({
 
   const buttons = (
     <div sx={styles.buttons}>
-    <button sx={styles.button} onClick={() => copy(code)}>
-      <Icons.Clipboard size={14} />
-    </button>
-    <button sx={styles.button} onClick={toggleCode}>
-      <Icons.Code size={14} />
-    </button>
-    <button sx={styles.button} onClick={toggleFullscreen}>
-      {showFullscreen
-        ? <Icons.Minimize size={14} />
-        : <Icons.Maximize size={14} />
-      }
-    </button>
-  </div>
-  )
-  
+      <button sx={styles.button} onClick={() => copy(code)}>
+        <Icons.Clipboard size={14} />
+      </button>
+      <button sx={styles.button} onClick={toggleCode}>
+        <Icons.Code size={14} />
+      </button>
+      <button sx={styles.button} onClick={toggleFullscreen}>
+        {showFullscreen ? (
+          <Icons.Minimize size={14} />
+        ) : (
+          <Icons.Maximize size={14} />
+        )}
+      </button>
+    </div>
+  );
+
   const preview = (
     <LivePreviewWrapper showingCode={showingCode}>
       {showLivePreview && (
         <LivePreview sx={styles.preview} data-testid="live-preview" />
       )}
     </LivePreviewWrapper>
-  )
+  );
 
   const error = showLiveError && (
     <LiveError sx={styles.error} data-testid="live-error" />
-  )
+  );
 
   const editor = showingCode && (
     <div sx={styles.editor(theme)}>
       <LiveEditor data-testid="live-editor" />
     </div>
-  )
-  
+  );
+
   return (
     <Resizable {...resizableProps} data-testid="playground">
       <LiveProvider
@@ -138,20 +144,17 @@ export const Playground = ({
         </div>
         {error}
         {editor}
-        {showFullscreen &&
+        {showFullscreen && (
           <Dialog
             title="Live Preview"
             onClose={toggleFullscreen}
             data-testid="livepreview-fullscreen"
+            width={dialogWidth}
           >
-            <DialogActions onChangeSize={() =>{}} />
-            <div sx={styles.dialogPreviewWrapper(showingCode)}>
-              {preview}
-              {buttons}
-            </div>
-            {error}
-            {editor}
-          </Dialog>}
+            <DialogActions onChangeSize={onChangeSize} />
+            {preview}
+          </Dialog>
+        )}
       </LiveProvider>
     </Resizable>
   );

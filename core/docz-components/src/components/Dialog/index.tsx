@@ -4,17 +4,19 @@ import { createRef, SyntheticEvent } from 'react';
 
 import { useScrollLock, useEscape } from '../../utils/hooks';
 import { Portal } from '../Portal';
-import * as Icons from '../Icons'
+import * as Icons from '../Icons';
 
 import * as styles from './styles';
 
 interface DialogProps {
   title: string;
   onClose: () => any;
+  width?: string;
+  height?: string;
 }
 
 export const Dialog: React.FC<DialogProps> = props => {
-  const { children, onClose, title } = props;
+  const { children, onClose, title, height = '90%', width = '90%' } = props;
 
   const dialogContentRef = createRef<HTMLDivElement>();
 
@@ -24,10 +26,7 @@ export const Dialog: React.FC<DialogProps> = props => {
 
   const handleClick = (event: SyntheticEvent) => {
     const node = event.target as Node;
-    if (
-      dialogContentRef.current &&
-      dialogContentRef.current.contains(node)
-    ) {
+    if (dialogContentRef.current && dialogContentRef.current.contains(node)) {
       return;
     }
     onClose();
@@ -39,7 +38,7 @@ export const Dialog: React.FC<DialogProps> = props => {
         <div
           aria-label={title}
           role="dialog"
-          sx={styles.content}
+          sx={styles.content(width, height)}
           aria-modal={true}
           ref={dialogContentRef}
           onMouseDown={handleClick}

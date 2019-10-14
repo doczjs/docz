@@ -9,7 +9,7 @@ const styles = {
     ({
       height,
       display: 'block',
-      minHeight: '100%',
+      minHeight: '95%',
       width: 'calc(100% - 2px)',
       border: (t: Theme) =>
         `1px solid ${get(t, 'colors.playground.border', 'none')}`,

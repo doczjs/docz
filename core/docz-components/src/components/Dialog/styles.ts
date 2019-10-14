@@ -8,35 +8,35 @@ export const overlay = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  zIndex: 9999
-}
+  zIndex: 9999,
+};
 
-export const content = {
+export const content = (width: string, height: string) => ({
   position: 'relative',
-  width: '90%',
-  height: '90%',
+  width,
+  height,
   backgroundColor: '#fff',
   padding: '1rem',
   borderRadius: '0.25rem',
   display: 'flex',
   flexDirection: 'column',
-}
+  alignItems: 'center',
+  justifyContent: 'space-around',
+});
 
 export const close = {
   position: 'absolute',
   top: 2,
   right: 2,
   zIndex: 999,
-  border: '1px solid',
-  borderColor: 'playground.border',
-  backgroundColor: '#fff',
+  backgroundColor: 'background',
   borderRadius: 2,
   height: 20,
   width: 20,
   padding: 0,
   margin: 0,
   cursor: 'pointer',
-  '&:hover' : {
-    backgroundColor: '#f3f3f3'
-  }
-}
+  '&:hover': {
+    backgroundColor: '#f3f3f3',
+  },
+};
