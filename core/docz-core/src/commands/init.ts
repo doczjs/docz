@@ -1,15 +1,17 @@
 process.setMaxListeners(Infinity)
 
 import { Arguments } from 'yargs'
-import { finds } from 'load-cfg'
-import findUp from 'find-up'
+import path from 'path'
 
 import { parseConfig } from '../config/docz'
 import { getIsFirstInstall, getIsDoczRepo } from '../bundler/machine/actions'
 import { ensureDirs, createResources } from '../bundler/machine/services'
+import { copyDoczRc } from '../bundler/machine/services/create-resources'
+import * as paths from '../config/paths'
 
 export const init = async (args: Arguments<any>) => {
-  const doczrcFilepath = await findUp(finds('docz'))
+  copyDoczRc(args.config)
+  const doczrcFilepath = path.join(paths.docz, 'doczrc.js')
   const config = await parseConfig(args)
   const isFirstInstall = getIsFirstInstall()
   const isDoczRepo = getIsDoczRepo()
