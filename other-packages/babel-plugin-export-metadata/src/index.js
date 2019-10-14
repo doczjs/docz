@@ -3,7 +3,7 @@ const { default: template } = require('@babel/template')
 const { get } = require('lodash')
 
 const buildFileMeta = template(`
-  if (typeof ID !== 'undefined' && ID && ID === Object(ID) && Object.isExtensible(ID)) {
+  if (typeof ID !== 'undefined' && ID && ID === Object(ID) && Object.isExtensible(ID) && !ID.hasOwnProperty('__filemeta')) {
     Object.defineProperty(ID, '__filemeta', {
       configurable: true,
       value: {
