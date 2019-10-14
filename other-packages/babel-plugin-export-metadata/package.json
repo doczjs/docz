@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-export-metadata",
-  "version": "2.0.0-rc.54",
+  "version": "2.0.0-rc.56",
   "description": "Add file metadata for function declarations",
   "license": "MIT",
   "author": {
