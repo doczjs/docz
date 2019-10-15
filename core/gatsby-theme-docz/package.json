@@ -39,7 +39,7 @@
     "lodash": "^4.17.14",
     "mdx-utils": "^0.2.0",
     "prop-types": "^15.7.2",
-    "re-resizable": "^5.0.1",
+    "re-resizable": "^6.1.0",
     "react-feather": "^2.0.3",
     "react-helmet": "^5.2.1",
     "react-live": "^2.1.2",
