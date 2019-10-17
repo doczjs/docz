@@ -123,7 +123,7 @@ That's it! You now have an interactive site to showcase and debug your component
 - 🎛 **Pluggable.** Use plugins to manipulate and customize Docz to suit your needs.
 - 🔐 **Typescript Support.** Full support for TypeScript. Write your type definitions with no extra setup required.
 
-Still not convinced ? Check [our docs](http://docz.site) to learn more about **Docz**!
+Still not convinced? Check [our docs](http://docz.site) to learn more about **Docz**!
 
 ## 🤔 &nbsp; Why?
 
