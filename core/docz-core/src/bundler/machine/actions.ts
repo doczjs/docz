@@ -8,6 +8,7 @@ import sh from 'shelljs'
 
 import * as paths from '../../config/paths'
 import { ServerMachineCtx } from './context'
+import { copyDoczRc } from './services/create-resources'
 
 const ensureFile = (filename: string, toDelete?: string) => {
   const ghost = path.resolve(paths.docz, toDelete || filename)
@@ -28,17 +29,7 @@ export const ensureFiles = ({ args }: ServerMachineCtx) => {
     const themeName = chunkedPath[chunkedPath.length - 1]
     fs.copySync(dir, path.join(paths.docz, args.themesDir, themeName))
   })
-  const sourceDoczRc = args.config
-    ? path.join(paths.root, args.config)
-    : path.join(paths.root, 'doczrc.js')
-  const destinationDoczRc = path.join(paths.docz, 'doczrc.js')
-  try {
-    fs.copySync(sourceDoczRc, destinationDoczRc)
-  } catch (err) {
-    console.error(
-      `Failed to copy doczrc.js from ${sourceDoczRc} to ${destinationDoczRc}`
-    )
-  }
+  copyDoczRc(args.config)
   ensureFile('gatsby-browser.js')
   ensureFile('gatsby-ssr.js')
   ensureFile('gatsby-node.js')
