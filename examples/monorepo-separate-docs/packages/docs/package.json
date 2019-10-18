@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "alert": "1.0.0",
+    "alert-ts": "1.0.0",
     "docz": "^2.0.0-rc.58",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
