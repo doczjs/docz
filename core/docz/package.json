@@ -1,6 +1,6 @@
 {
   "name": "docz",
-  "version": "2.0.0-rc.60",
+  "version": "2.0.0-rc.61",
   "description": "It's has never been so easy to documents your things!",
   "license": "MIT",
   "main": "dist/index.js",
@@ -33,7 +33,7 @@
     "gatsby": "^2.13.27",
     "gatsby-plugin-eslint": "^2.0.5",
     "gatsby-plugin-typescript": "^2.1.6",
-    "gatsby-theme-docz": "2.0.0-rc.60",
+    "gatsby-theme-docz": "2.0.0-rc.61",
     "lodash": "^4.17.14",
     "marksy": "^8.0.0",
     "match-sorter": "^3.1.1",
