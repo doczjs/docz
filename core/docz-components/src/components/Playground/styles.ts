@@ -1,13 +1,14 @@
 import get from 'lodash/get';
 
 import * as mixins from '../../utils/mixins';
+import { Theme } from '../../types';
 import { PrismTheme } from 'prism-react-renderer';
+import { SxStyleProp } from 'theme-ui';
 
 export const editor = (theme: PrismTheme) =>
   ({
     p: 2,
-    border: (t: PrismTheme) =>
-      `1px solid ${get(t, 'colors.border', 'transparent')}`,
+    border: (t: Theme) => `1px solid ${get(t, 'colors.border', 'transparent')}`,
     borderRadius: '0 0 4px 4px',
     background: get(theme, 'plain.backgroundColor', 'none'),
     borderTop: 0,
@@ -18,7 +19,7 @@ export const editor = (theme: PrismTheme) =>
       lineHeight: '1.5em ',
       outline: 'none',
     },
-  } as any);
+  } as SxStyleProp);
 
 export const error = {
   m: 0,
@@ -36,7 +37,6 @@ export const previewWrapper = {
 export const preview = {
   m: 0,
   p: '20px',
-  bg: 'playground.bg',
 };
 
 export const buttons = {
