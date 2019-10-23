@@ -14,7 +14,7 @@
     "dev": "cross-env NODE_ENV=development yarn build -w",
     "build": "cross-env NODE_ENV=production rollup -c",
     "fix": "yarn lint --fix",
-    "lint": "eslint . --ext .ts,.tsx",
+    "lint": "eslint . --ext mdx,ts,tsx",
     "precommit": "lint-staged"
   },
   "dependencies": {

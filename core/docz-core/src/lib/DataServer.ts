@@ -54,7 +54,9 @@ export class DataServer {
 
   public close(): void {
     for (const state of this.states) {
-      isFunction(state.close) && state.close()
+      if (isFunction(state.close)) {
+        state.close()
+      }
     }
   }
 

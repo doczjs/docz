@@ -9,7 +9,9 @@ export const server = (args: Args) => async () => {
   const doczrcFilepath = await findUp(finds('docz'))
   const machine = devServerMachine.withContext({ args, doczrcFilepath })
   const service = interpret(machine).onTransition(state => {
-    args.debug && console.log(state.value)
+    if (args.debug) {
+      console.log(state.value)
+    }
   })
 
   return {

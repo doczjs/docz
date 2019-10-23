@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "babel-eslint": "10.0.2",
-    "eslint": "^6.0.1",
+    "eslint": "^6.5.1",
     "eslint-config-docz-js": "^2.0.0-rc.1"
   },
   "peerDependencies": {

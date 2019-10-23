@@ -1,9 +1,9 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
   extends: [
     'plugin:react/recommended',
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:mdx/recommended',
     'prettier/@typescript-eslint',
   ],
   rules: {
