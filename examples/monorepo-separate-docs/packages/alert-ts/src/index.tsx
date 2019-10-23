@@ -9,7 +9,9 @@ const kinds = {
 
 type Kind = keyof typeof kinds
 
-type Props = { kind: Kind }
+interface Props {
+  kind: Kind
+}
 
 const AlertStyled: React.FC<Props> = ({ children, kind, ...rest }) => (
   <div

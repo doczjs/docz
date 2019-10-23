@@ -54,6 +54,7 @@
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
     "docz-rollup": "2.0.0-rc.54",
+    "eslint": "^6.5.1",
     "eslint-config-docz-ts": "^2.0.0-rc.1"
   }
 }
