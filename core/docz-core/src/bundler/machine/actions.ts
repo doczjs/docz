@@ -27,7 +27,7 @@ export const ensureFiles = ({ args }: ServerMachineCtx) => {
   themeDirs.forEach(dir => {
     const chunkedPath = dir.split('/')
     const themeName = chunkedPath[chunkedPath.length - 1]
-    fs.copySync(dir, path.join(paths.docz, args.themesDir, themeName))
+    fs.copySync(dir, path.join(paths.docz, 'src', themeName))
   })
   copyDoczRc(args.config)
   ensureFile('gatsby-browser.js')
