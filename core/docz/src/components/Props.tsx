@@ -97,6 +97,7 @@ export interface PropsComponentProps {
   isToggle?: boolean
   props: Record<string, Prop>
   getPropType(prop: Prop): string
+  of: ComponentWithDocGenInfo
 }
 
 export const Props: SFC<PropsProps> = ({
@@ -149,6 +150,7 @@ export const Props: SFC<PropsProps> = ({
       isToggle={isToggle}
       props={props}
       getPropType={getPropType}
+      of={component}
     />
   )
 }
