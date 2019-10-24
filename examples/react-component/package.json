@@ -1,0 +1,10 @@
+{
+  "name": "react-component",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "microbundle": "^0.4.4",
+    "parcel": "^1.12.4"
+  }
+}

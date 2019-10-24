@@ -9,7 +9,6 @@ const packages = [
   { name: 'docz-core', outputDir: 'dist' },
   { name: 'docz', outputDir: 'dist' },
   { name: 'gatsby-theme-docz', outputDir: '' },
-  { name: 'docz-components', outputDir: 'dist' },
   { name: 'rehype-docz', outputDir: 'dist' },
   { name: 'remark-docz', outputDir: 'dist' },
 ]
@@ -38,10 +37,7 @@ export default timestamp
 }
 
 const getDestinationPath = (name, outputDir = '') => {
-  return path.join(
-    __dirname,
-    `node_modules/${name}/${outputDir}`
-  )
+  return path.join(__dirname, `node_modules/${name}/${outputDir}`)
 }
 
 const watchPackage = async (name, outputDir) => {
@@ -62,8 +58,12 @@ const watchPackage = async (name, outputDir) => {
      we need to watch the source code without node_modules */
   if (name === 'gatsby-theme-docz') {
     fileWatchers.push(cpx.watch(`${sourcePath}/*`, getDestinationPath(name)))
-    fileWatchers.push(cpx.watch(`${sourcePath}/src/**/*`, getDestinationPath(name, 'src')))
-    fileWatchers.push(cpx.watch(`${sourcePath}/lib/**/*`, getDestinationPath(name, 'lib')))
+    fileWatchers.push(
+      cpx.watch(`${sourcePath}/src/**/*`, getDestinationPath(name, 'src'))
+    )
+    fileWatchers.push(
+      cpx.watch(`${sourcePath}/lib/**/*`, getDestinationPath(name, 'lib'))
+    )
   } else {
     const sync = cpx.watch(`${sourcePath}/**/*`, destinationPath)
     fileWatchers.push(sync)

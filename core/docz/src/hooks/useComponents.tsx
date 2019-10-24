@@ -13,6 +13,8 @@ export interface PlaygroundProps {
   position: number
   code: string
   scope: Record<string, any>
+  language?: string
+  showLivePreview?: boolean
 }
 
 export interface LayoutProps {
