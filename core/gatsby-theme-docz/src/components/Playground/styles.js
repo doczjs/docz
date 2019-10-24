@@ -4,14 +4,11 @@ export const editor = theme => ({
   p: 2,
   border: t => `1px solid ${t.colors.border}`,
   borderRadius: '0 0 4px 4px',
-  overflow: 'hidden',
   background: theme.plain.backgroundColor,
   borderTop: 0,
   fontFamily: 'monospace',
   fontSize: 18,
   '* > textarea:focus': {
-    font: '400 18px Inconsolata !important',
-    lineHeight: '1.5em !important',
     outline: 'none',
   },
 })
@@ -29,10 +26,19 @@ export const previewWrapper = {
   position: 'relative',
 }
 
+export const previewInner = (showingCode, height = 'auto') => ({
+  height,
+  display: 'block',
+  minHeight: '100%',
+  width: 'calc(100% - 2px)',
+  bg: 'playground.bg',
+  border: t => `1px solid ${t.colors.playground.border}`,
+  borderRadius: showingCode ? '4px 4px 0 0' : '4px',
+})
+
 export const preview = {
   m: 0,
   p: '20px',
-  bg: 'playground.bg',
 }
 
 export const buttons = {

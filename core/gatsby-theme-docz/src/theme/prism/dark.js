@@ -1,5 +1,6 @@
 export default {
   plain: {
+    fontFamily: 'Inconsolata',
     color: '#d6deeb',
     backgroundColor: '#13161F',
   },
