@@ -3,13 +3,13 @@ import { media } from '~theme/breakpoints'
 export const main = {
   display: 'flex',
   flexDirection: 'column',
+  height: '100vh',
 }
 
 export const wrapper = {
   py: 0,
   flex: 1,
   display: 'grid',
-  gridTemplateRows: '100%',
   gridTemplateColumns: '250px 1fr',
   [media.tablet]: {
     display: 'block',
