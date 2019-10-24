@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-docz-js",
-  "version": "2.0.0-rc.1",
+  "version": "2.0.0-rc.64",
   "description": "Eslint config of Docz for Javascript",
   "license": "MIT",
   "author": {
@@ -19,8 +19,8 @@
   "dependencies": {
     "babel-eslint": "^10.0.2",
     "eslint": "^6.5.1",
-    "eslint-plugin-mdx": "^1.6.1",
     "eslint-config-prettier": "^5.0.0",
+    "eslint-plugin-mdx": "^1.6.1",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0"
   }

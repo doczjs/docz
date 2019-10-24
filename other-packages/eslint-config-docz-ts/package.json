@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-docz-ts",
-  "version": "2.0.0-rc.1",
+  "version": "2.0.0-rc.64",
   "description": "Eslint config of Docz for Typescript",
   "license": "MIT",
   "author": {
@@ -20,8 +20,8 @@
     "@typescript-eslint/eslint-plugin": "^1.12.0",
     "@typescript-eslint/parser": "^1.12.0",
     "eslint": "^6.5.1",
-    "eslint-plugin-mdx": "^1.6.1",
     "eslint-config-prettier": "^5.0.0",
+    "eslint-plugin-mdx": "^1.6.1",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0"
   }
