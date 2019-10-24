@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { ComponentType, SFC } from 'react'
-import { useComponents } from 'src/hooks'
+import { useComponents } from '../hooks'
 
 export interface PlaygroundProps {
   className?: string
