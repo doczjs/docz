@@ -26,10 +26,11 @@ export const Playground: SFC<PlaygroundProps> = ({
   showLivePreview = true,
 }) => {
   const components = useComponents()
-  if (!components || !components.playground) return null
+  const PlaygroundComponent = components.playground
+  if (!PlaygroundComponent) return null
 
   return (
-    <components.playground
+    <PlaygroundComponent
       components={components}
       component={children}
       className={className}
