@@ -19,7 +19,7 @@
     "dev": "cross-env NODE_ENV=development yarn build -w",
     "build": "cross-env NODE_ENV=production rollup -c",
     "fix": "yarn lint --fix",
-    "lint": "eslint . --ext .ts,.tsx",
+    "lint": "eslint . --ext mdx,ts,tsx",
     "precommit": "lint-staged"
   },
   "dependencies": {
@@ -53,6 +53,7 @@
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
     "docz-rollup": "2.0.0-rc.54",
+    "eslint": "^6.5.1",
     "eslint-config-docz-ts": "^2.0.0-rc.1"
   }
 }

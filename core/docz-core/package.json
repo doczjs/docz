@@ -15,7 +15,7 @@
     "build": "yarn cross-env NODE_ENV=production rollup -c",
     "dev": "yarn cross-env NODE_ENV=development yarn build -w",
     "fix": "yarn lint --fix",
-    "lint": "yarn eslint . --ext .ts,.tsx",
+    "lint": "yarn eslint . --ext mdx,ts,tsx",
     "precommit": "lint-staged",
     "prepare": "yarn build",
     "test": "yarn jest"
@@ -61,7 +61,7 @@
     "cpy": "^7.3.0",
     "cross-env": "^5.2.1",
     "docz-rollup": "2.0.0-rc.54",
-    "eslint": "^6.3.0",
+    "eslint": "^6.5.1",
     "eslint-config-docz-ts": "^2.0.0-rc.1",
     "jest": "^24.9.0"
   }

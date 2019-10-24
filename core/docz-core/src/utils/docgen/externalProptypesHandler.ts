@@ -353,9 +353,11 @@ function filterSpecifiers(specifiers: any, computedPropNames: any) {
     if (HOP.call(computedPropNames, cp)) {
       for (const sp in specifiers) {
         if (HOP.call(specifiers, sp) && specifiers[sp].indexOf(cp) > -1) {
-          filteredSpecifiers[sp]
-            ? filteredSpecifiers[sp].push(cp)
-            : (filteredSpecifiers[sp] = [cp])
+          if (filteredSpecifiers[sp]) {
+            filteredSpecifiers[sp].push(cp)
+          } else {
+            filteredSpecifiers[sp] = [cp]
+          }
         }
       }
     }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { SFC } from 'react'
 
 export type Kind = 'info' | 'positive' | 'negative' | 'warning'
@@ -19,6 +20,5 @@ export interface AlertProps {
 }
 
 export const Alert: SFC<AlertProps> = ({ kind, ...props }) => (
-  //@ts-ignore
-  <div className="alert"> </div>
+  <div className="alert"></div>
 )

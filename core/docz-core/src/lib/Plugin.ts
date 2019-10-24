@@ -37,7 +37,9 @@ export class Plugin<C = any> implements PluginFactory {
       if (plugins && plugins.length > 0) {
         for (const plugin of plugins) {
           const fn = get<Plugin, any>(method, plugin)
-          isFunction(fn) && fn(...args)
+          if (isFunction(fn)) {
+            fn(...args)
+          }
         }
       }
     }

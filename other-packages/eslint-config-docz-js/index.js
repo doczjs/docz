@@ -1,6 +1,9 @@
 module.exports = {
-  parser: 'babel-eslint',
-  extends: ['plugin:react/recommended', 'plugin:prettier/recommended'],
+  extends: [
+    'plugin:react/recommended',
+    'plugin:mdx/recommended',
+    'plugin:prettier/recommended',
+  ],
   rules: {
     'no-unused-vars': [
       'error',
