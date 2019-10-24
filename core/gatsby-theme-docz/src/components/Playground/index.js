@@ -3,12 +3,10 @@ import { jsx } from 'theme-ui'
 import { useState } from 'react'
 import { useConfig } from 'docz'
 import { LiveProvider, LiveError, LivePreview, LiveEditor } from 'react-live'
-import { merge } from 'lodash/fp'
 import { Resizable } from 're-resizable'
 import copy from 'copy-text-to-clipboard'
 
 import { usePrismTheme } from '~utils/theme'
-import { LivePreviewWrapper } from './LivePreviewWrapper'
 import * as styles from './styles'
 import * as Icons from '../Icons'
 
@@ -35,18 +33,19 @@ export const Playground = ({
     return `<React.Fragment>${code}</React.Fragment>`
   }
 
-  const toggleCode = () => {
-    setShowingCode(s => !s)
-  }
+  const copyCode = () => copy(code)
+
+  const toggleCode = () => setShowingCode(s => !s)
 
   const resizableProps = {
     minWidth: 260,
     maxWidth: '100%',
     size: {
       width,
+      height: 'auto',
     },
     style: {
-      margin: '0 auto ',
+      margin: '0 auto',
     },
     enable: {
       top: false,
@@ -70,22 +69,16 @@ export const Playground = ({
         scope={scope}
         transformCode={transformCode}
         language={language}
-        theme={merge(theme, {
-          plain: {
-            fontFamily: 'Inconsolata',
-            fontSize: 18,
-            lineHeight: '1.5em',
-          },
-        })}
+        theme={theme}
       >
         <div sx={styles.previewWrapper}>
-          <LivePreviewWrapper showingCode={showingCode}>
+          <div sx={styles.previewInner(showingCode)}>
             {showLivePreview && (
               <LivePreview sx={styles.preview} data-testid="live-preview" />
             )}
-          </LivePreviewWrapper>
+          </div>
           <div sx={styles.buttons}>
-            <button sx={styles.button} onClick={() => copy(code)}>
+            <button sx={styles.button} onClick={copyCode}>
               <Icons.Clipboard size={12} />
             </button>
             <button sx={styles.button} onClick={toggleCode}>

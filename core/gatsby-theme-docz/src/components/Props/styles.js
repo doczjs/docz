@@ -46,7 +46,7 @@ export const propName = {
 
 export const propType = {
   ...column,
-  colors: 'props.text',
+  color: 'props.text',
 }
 
 export const defaultValue = {
