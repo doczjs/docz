@@ -17,21 +17,4 @@ const Theme = ({ children }) => {
   )
 }
 
-export const enhance = theme(
-  defaultTheme,
-  ({
-    mode = 'light',
-    showLiveError = true,
-    showLivePreview = true,
-    showPlaygroundEditor = true,
-    ...config
-  }) => ({
-    ...config,
-    showLiveError,
-    showLivePreview,
-    showPlaygroundEditor,
-    initialColorMode: mode,
-  })
-)
-
-export default enhance(Theme)
+export default theme(defaultTheme)(Theme)
