@@ -8,7 +8,10 @@ import { Logo } from '../Logo'
 
 export const Header = props => {
   const { onOpen } = props
-  const config = useConfig()
+  const {
+    repository,
+    themeConfig: { showDarkModeSwitch },
+  } = useConfig()
   const { edit = true, ...doc } = useCurrentDoc()
   const [colorMode, setColorMode] = useColorMode()
 
@@ -17,7 +20,7 @@ export const Header = props => {
   }
 
   return (
-    <div sx={styles.wrapper} data-testid={'header'}>
+    <div sx={styles.wrapper} data-testid="header">
       <Box sx={styles.menuIcon}>
         <button sx={styles.menuButton} onClick={onOpen}>
           <Menu size={25} />
@@ -26,10 +29,10 @@ export const Header = props => {
       <div sx={styles.innerContainer}>
         <Logo />
         <Flex>
-          {config.repository && (
+          {repository && (
             <Box sx={{ mr: 2 }}>
               <a
-                href={config.repository}
+                href={repository}
                 sx={styles.headerButton}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -38,9 +41,11 @@ export const Header = props => {
               </a>
             </Box>
           )}
-          <button sx={styles.headerButton} onClick={toggleColorMode}>
-            <Sun size={15} />
-          </button>
+          {showDarkModeSwitch && (
+            <button sx={styles.headerButton} onClick={toggleColorMode}>
+              <Sun size={15} />
+            </button>
+          )}
         </Flex>
         {edit && doc.link && (
           <a
