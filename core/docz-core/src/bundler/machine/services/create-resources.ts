@@ -49,6 +49,16 @@ const writeEslintRc = async ({ isDoczRepo }: ServerMachineCtx) => {
   await fs.outputJSON(filepath, { extends: 'react-app' })
 }
 
+const copyEslintIgnore = async () => {
+  const filename = '.eslintignore'
+  const filepath = path.join(paths.root, filename)
+  const dest = path.join(paths.docz, filename)
+
+  if (fs.pathExistsSync(filepath)) {
+    await fs.copy(filepath, dest)
+  }
+}
+
 export const writeNotFound = async () => {
   const outputPath = path.join(paths.docz, 'src/pages/404.js')
   await outputFileFromTemplate('404.tpl.js', outputPath, {})
@@ -99,6 +109,7 @@ export const createResources = async (ctx: ServerMachineCtx) => {
     copyDoczRc(ctx.args.config)
     await copyAndModifyPkgJson(ctx)
     await writeEslintRc(ctx)
+    await copyEslintIgnore()
     await writeNotFound()
     await writeGatsbyConfig(ctx)
     await writeGatsbyConfigNode()
