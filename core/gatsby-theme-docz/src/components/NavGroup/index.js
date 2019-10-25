@@ -8,7 +8,7 @@ import { ChevronDown } from '../Icons'
 
 export const NavGroup = ({ item }) => {
   const { menu } = item
-  const [subheadingsVisible, setShowsubheadings] = React.useState(true)
+  const [subheadingsVisible, setShowsubheadings] = React.useState(false)
   const toggleSubheadings = () => setShowsubheadings(!subheadingsVisible)
 
   return (
