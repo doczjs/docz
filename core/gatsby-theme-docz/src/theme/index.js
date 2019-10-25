@@ -10,8 +10,10 @@ moraga.headerWeight = 700
 const typography = toTheme(moraga)
 
 export default merge(typography, {
-  prism,
   initialColorMode: 'light',
+  showLiveError: true,
+  showLivePreview: true,
+  showPlaygroundEditor: true,
   colors: {
     ...modes.light,
     modes: {
@@ -42,4 +44,5 @@ export default merge(typography, {
     rounded: 10,
   },
   styles,
+  prism,
 })

@@ -10,18 +10,9 @@ import { usePrismTheme } from '~utils/theme'
 import * as styles from './styles'
 import * as Icons from '../Icons'
 
-export const Playground = ({
-  code,
-  scope,
-  showLivePreview: userShowLivePreview = true,
-  language,
-}) => {
+export const Playground = ({ code, scope, language }) => {
   const {
-    themeConfig: {
-      showPlaygroundEditor,
-      showLiveError,
-      showLivePreview = userShowLivePreview,
-    },
+    themeConfig: { showPlaygroundEditor, showLiveError, showLivePreview },
   } = useConfig()
 
   const theme = usePrismTheme()
