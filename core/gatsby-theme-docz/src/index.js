@@ -21,12 +21,14 @@ export const enhance = theme(
   defaultTheme,
   ({
     mode = 'light',
-    showPlaygroundEditor = true,
     showLiveError = true,
+    showLivePreview = true,
+    showPlaygroundEditor = true,
     ...config
   }) => ({
     ...config,
     showLiveError,
+    showLivePreview,
     showPlaygroundEditor,
     initialColorMode: mode,
   })

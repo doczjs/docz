@@ -11,7 +11,6 @@ export interface PlaygroundProps {
   __position: number
   __code: string
   language?: string
-  showLivePreview?: boolean
 }
 
 export const Playground: SFC<PlaygroundProps> = ({
@@ -23,7 +22,6 @@ export const Playground: SFC<PlaygroundProps> = ({
   __position,
   __code,
   language,
-  showLivePreview = true,
 }) => {
   const components = useComponents()
   const PlaygroundComponent = components.playground
@@ -39,7 +37,6 @@ export const Playground: SFC<PlaygroundProps> = ({
       scope={__scope}
       position={__position}
       code={__code}
-      showLivePreview={showLivePreview}
       language={language}
     />
   )
