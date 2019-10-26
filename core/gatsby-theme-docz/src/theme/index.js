@@ -14,6 +14,7 @@ export default merge(typography, {
   showLiveError: true,
   showLivePreview: true,
   showPlaygroundEditor: true,
+  showDarkModeSwitch: true,
   colors: {
     ...modes.light,
     modes: {

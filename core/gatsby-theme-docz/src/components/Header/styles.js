@@ -11,9 +11,9 @@ export const wrapper = {
 export const innerContainer = {
   ...mixins.centerAlign,
   px: 4,
-  py: '24px',
   position: 'relative',
   justifyContent: 'space-between',
+  height: 80,
 }
 
 export const menuIcon = {
