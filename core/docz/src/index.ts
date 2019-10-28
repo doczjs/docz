@@ -5,3 +5,6 @@ export { Props, PropsComponentProps } from './components/Props'
 export * from './hooks'
 export { theme } from './theme'
 export { doczState, Entry, MenuItem, ThemeConfig } from './state'
+
+const { Code } = require('gatsby-theme-docz/src/components/Code')
+export { Code }
