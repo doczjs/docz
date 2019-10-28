@@ -29,11 +29,10 @@ export const line = {
   },
 }
 
-export const column = {
+const column = {
   minWidth: 0,
   pb: 2,
   px: 3,
-  wordWrap: 'break-word',
   '& ~ &': {
     bg: 'red',
   },
