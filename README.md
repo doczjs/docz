@@ -186,7 +186,7 @@ If you want to contribute time to docz then here's a list to get you started :
 
 If you're looking for a place to start make sure to check issues tagged with
 
-[![Good First Issue](https://img.shields.io/github/issues/storybookjs/storybook/good%20first%20issue.svg)](https://github.com/doczjs/docz/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
+[![Good First Issue](https://img.shields.io/github/issues/doczjs/docz/good%20first%20issue.svg)](https://github.com/doczjs/docz/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
 
 And make sure to read the [Contributing Guide](/CONTRIBUTING.md) before making a pull request.
 
