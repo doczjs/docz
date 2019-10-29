@@ -13,6 +13,7 @@ export const serve = async (args: Arguments<any>) => {
     // Append gatsby option `prefixPaths`to CLI args
     // https://www.gatsbyjs.org/docs/path-prefix/
     cliArgs.push('--prefixPaths')
+    cliArgs.push(config.base)
   }
 
   sh.cd(paths.docz)
