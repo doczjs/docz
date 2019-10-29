@@ -26,7 +26,9 @@ export const doczRcBaseConfig = {
     /license.md/i,
   ],
   filterComponents: (files: string[]) =>
-    files.filter(filepath => /\/[A-Z]\w*\.(js|jsx|ts|tsx)$/.test(filepath)),
+    files.filter(filepath =>
+      /\/[A-Z]\w*(\/index)?\.(js|jsx|ts|tsx)$/.test(filepath)
+    ),
 }
 
 export const getBaseConfig = (
