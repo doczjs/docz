@@ -4,7 +4,7 @@ menu: Components
 ---
 
 import { Playground, Props } from 'docz'
-import { Alert, Text } from './Alert'
+import { Alert } from './Alert'
 
 # Alert
 
@@ -15,28 +15,14 @@ import { Alert, Text } from './Alert'
 ## Basic usage
 
 <Playground>
-  <Alert>
-    <Text>Hello world</Text>
-  </Alert>
+  <Alert>Some message</Alert>
 </Playground>
 
 ## Using different kinds
 
 <Playground>
-  <Alert kind="info"><Text>Some message</Text></Alert>
-  <Alert kind="positive"><Text>Some message</Text></Alert>
-  <Alert kind="negative"><Text>Some message</Text></Alert>
-  <Alert kind="warning"><Text>Some message</Text></Alert>
-</Playground>
-
-
-## Use with children as a function
-
-<Playground>
-  {() => {
-    const message = 'Hello world'
-    return (
-      <Alert><Text>{message}</Text></Alert>
-    )
-  }}
+  <Alert kind="info">Some message</Alert>
+  <Alert kind="positive">Some message</Alert>
+  <Alert kind="negative">Some message</Alert>
+  <Alert kind="warning">Some message</Alert>
 </Playground>

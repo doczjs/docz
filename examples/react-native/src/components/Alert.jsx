@@ -1,7 +1,6 @@
-import React, { Fragment } from 'react'
-import { Text as BaseText } from 'react-native'
-import styled from '@emotion/primitives'
-import * as t from 'prop-types'
+import React from 'react'
+import t from 'prop-types'
+import { View, Text } from 'react-native'
 
 const kinds = {
   info: '#5352ED',
@@ -10,20 +9,21 @@ const kinds = {
   warning: '#FFA502',
 }
 
-const AlertStyled = styled.View`
-  padding: 15px 20px;
-  background: white;
-  border-radius: 3px;
-  background: ${({ kind = 'info' }) => kinds[kind]};
-`
-
-export const Text = styled(BaseText)`
-  color: white;
-`
-
-export const Alert = ({ kind = 'info', ...props }) => (
-  <AlertStyled {...props} kind={kind} />
+const AlertStyled = ({ children, kind, ...rest }) => (
+  <View
+    style={{
+      padding: 20,
+      background: 'white',
+      borderRadius: 3,
+      background: kinds[kind],
+    }}
+    {...rest}
+  >
+    <Text style={{ color: 'white' }}>{children}</Text>
+  </View>
 )
+
+export const Alert = props => <AlertStyled {...props} />
 
 Alert.propTypes = {
   kind: t.oneOf(['info', 'positive', 'negative', 'warning']),
