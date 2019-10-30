@@ -4,7 +4,7 @@
     "core/**/*",
     "other-packages/**/*"
   ],
-  "version": "2.0.0-rc.66",
+  "version": "2.0.0-rc.67",
   "npmClient": "yarn",
   "useWorkspaces": true
 }
