@@ -140,6 +140,7 @@ Documenting code is one of the most important and time-heavy processes when you'
 - **[with typescript](https://github.com/pedronauck/docz/tree/master/examples/typescript)** - Using Docz with Typescript.
 - **[with flow](https://github.com/pedronauck/docz/tree/master/examples/flow)** - Using Docz with Flow.
 - **[with images](https://github.com/pedronauck/docz/tree/master/examples/images)** - Using Docz with images in mdx and jsx.
+- **[with custom themes](https://github.com/pedronauck/docz/tree/master/examples/with-themes-dir)** - Using Docz with a custom themes directory.
 
 - **[with sass](https://github.com/pedronauck/docz/tree/master/examples/sass)** - Using Docz parsing CSS with SASS.
 - **[with less](https://github.com/pedronauck/docz/tree/master/examples/less)** - Using Docz parsing CSS with LESS.
