@@ -3,17 +3,16 @@
 ## Using `create-docz-app`
 
 ```sh
-npx create-docz-app docz-app-styled-docz --example styled-docz
+npx create-docz-app docz-app-styled-docz --example styled-components
 # or
-yarn create docz-app docz-app-styled-docz --example styled-docz
+yarn create docz-app docz-app-styled-docz --example styled-components
 ```
 
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/styled-docz
-mv styled-docz docz-example-styled-docz
-docz-example-styled-docz
+curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/styled-components
+mv styled-components docz-example-styled-docz
 ```
 
 ## Setup
