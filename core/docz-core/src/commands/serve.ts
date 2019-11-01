@@ -7,7 +7,7 @@ import { parseConfig } from '../config/docz'
 
 export const serve = async (args: Arguments<any>) => {
   const config = await parseConfig(args)
-  const cliArgs = ['serve']
+  const cliArgs = ['run', 'serve', '--']
 
   if (typeof config.base === 'string' && config.base.length) {
     // Append gatsby option `prefixPaths`to CLI args
@@ -17,5 +17,5 @@ export const serve = async (args: Arguments<any>) => {
   }
 
   sh.cd(paths.docz)
-  spawn.sync('yarn', cliArgs, { stdio: 'inherit' })
+  spawn.sync('npm', cliArgs, { stdio: 'inherit' })
 }
