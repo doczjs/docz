@@ -1,4 +1,5 @@
 # Migration Guide
+
 The [v2 release](https://github.com/pedronauck/docz/pull/950) is our biggest release in terms of changes on our core scripts. Our bundler system was entirely modified in order to use Gatsby as default bundler and you will need to update your code if you’re coming from a previous version. It’s not a big deal, but you need to follow this guide in order to get Docz running properly on your project after the upgrade.
 
 ## Gatsby as default bundler
@@ -34,6 +35,13 @@ The `createPlugin` method also changed in order to fit with Gatsby now.
 > You can have more details about then [here](https://www.gatsbyjs.org/docs/node-apis).
 
 ## `docz-theme-default` removed
+
+Make sure to remove `docz-theme-default` from your dependencies when migrating : 
+
+```sh
+yarn remove docz-theme-default # npm uninstall docz-theme-default
+```
+
 The main reason that made us change our core to use Gatsby is that now it have a feature called themes. In the last major version we launched our own `gatsby-theme-docz` and this was impressive since we could use Docz inside a Gatsby project and brings a lot of new possibilites when creating a documentation.
 
 So, indeed we were using Gatsby theme at all, but in the wrong way. One of the best benefits of Gatsby theme are the feature called Component Shadowing, that’s the ability to replace theme files just by creating your own file following a file naming convention. This is awesome and is something that people always ask for me, like: “I want just to change the head in the Docz theme”.
