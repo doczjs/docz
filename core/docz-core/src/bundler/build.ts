@@ -9,7 +9,7 @@ import { ensureFiles } from './machine/actions'
 
 export const build: BuildFn = async (config, dist) => {
   const publicDir = path.join(paths.docz, 'public')
-  const cliArgs = ['build']
+  const cliArgs = ['run', 'build', '--']
 
   if (typeof config.base === 'string' && config.base.length) {
     // Append gatsby option `prefixPaths`to CLI args
@@ -19,6 +19,6 @@ export const build: BuildFn = async (config, dist) => {
   }
   ensureFiles({ args: config })
   sh.cd(paths.docz)
-  spawn.sync('yarn', cliArgs, { stdio: 'inherit' })
+  spawn.sync('npm', cliArgs, { stdio: 'inherit' })
   await fs.copy(publicDir, dist)
 }
