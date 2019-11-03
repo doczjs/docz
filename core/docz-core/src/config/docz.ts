@@ -26,9 +26,14 @@ export const doczRcBaseConfig = {
     /license.md/i,
   ],
   filterComponents: (files: string[]) =>
-    files.filter(filepath =>
-      /\/[A-Z]\w*(\/index)?\.(js|jsx|ts|tsx)$/.test(filepath)
-    ),
+    files.filter(filepath => {
+      const startsWithCapitalLetter = /\/([A-Z]\w*)\.(js|jsx|ts|tsx)$/.test(
+        filepath
+      )
+      const isCalledIndex = /\/index\.(js|jsx|ts|tsx)$/.test(filepath)
+      const hasJsxOrTsxExtension = /.(jsx|tsx)$/.test(filepath)
+      return startsWithCapitalLetter || isCalledIndex || hasJsxOrTsxExtension
+    }),
 }
 
 export const getBaseConfig = (
