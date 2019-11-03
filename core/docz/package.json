@@ -1,6 +1,6 @@
 {
   "name": "docz",
-  "version": "2.0.0-rc.68",
+  "version": "2.0.0-rc.69",
   "description": "It's has never been so easy to documents your things!",
   "license": "MIT",
   "main": "dist/index.js",
@@ -27,12 +27,12 @@
     "@mdx-js/react": "^1.0.27",
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
-    "docz-core": "2.0.0-rc.68",
+    "docz-core": "2.0.0-rc.69",
     "fast-deep-equal": "^2.0.1",
     "gatsby": "^2.13.27",
     "gatsby-plugin-eslint": "^2.0.5",
     "gatsby-plugin-typescript": "^2.1.6",
-    "gatsby-theme-docz": "2.0.0-rc.68",
+    "gatsby-theme-docz": "2.0.0-rc.69",
     "lodash": "^4.17.14",
     "marksy": "^8.0.0",
     "match-sorter": "^3.1.1",
@@ -52,8 +52,8 @@
     "@types/reach__router": "^1.2.4",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
-    "docz-rollup": "2.0.0-rc.64",
+    "docz-rollup": "2.0.0-rc.69",
     "eslint": "^6.5.1",
-    "eslint-config-docz-ts": "2.0.0-rc.64"
+    "eslint-config-docz-ts": "2.0.0-rc.69"
   }
 }
