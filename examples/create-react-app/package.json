@@ -3,13 +3,13 @@
   "version": "2.0.0-rc.43",
   "private": true,
   "dependencies": {
-    "docz": "2.0.0-rc.43",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-scripts": "3.1.1"
+    "docz": "next",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-scripts": "^3.2.0"
   },
   "scripts": {
-    "docz": "docz dev",
+    "dev": "docz dev",
     "docz:build": "docz build",
     "docz:serve": "docz serve",
     "start": "react-scripts start",
