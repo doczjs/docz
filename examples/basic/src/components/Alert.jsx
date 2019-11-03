@@ -8,7 +8,7 @@ const kinds = {
   warning: '#FFA502',
 }
 
-const AlertStyled = ({ children, kind, ...rest }) => (
+export const Alert = ({ children, kind, ...rest }) => (
   <div
     style={{
       padding: 20,
@@ -23,9 +23,10 @@ const AlertStyled = ({ children, kind, ...rest }) => (
   </div>
 )
 
-export const Alert = props => <AlertStyled {...props} />
-
 Alert.propTypes = {
+  /**
+   * The kind prop is used to set the alert's background color
+   */
   kind: t.oneOf(['info', 'positive', 'negative', 'warning']),
 }
 
