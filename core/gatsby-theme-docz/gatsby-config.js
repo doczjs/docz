@@ -62,7 +62,7 @@ module.exports = opts => {
         },
       },
       {
-        resolve: 'gatsby-plugin-react-helmet',
+        resolve: 'gatsby-plugin-react-helmet-async',
       },
       {
         resolve: 'gatsby-plugin-root-import',
