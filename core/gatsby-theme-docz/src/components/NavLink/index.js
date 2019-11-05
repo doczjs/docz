@@ -20,7 +20,7 @@ const getCurrentHash = () => {
   return window.location ? window.location.hash : ''
 }
 
-export const NavLink = ({ item, ...props }) => {
+export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
   const docs = useDocs()
   const to = item.route
   const headings = docs && getHeadings(to, docs)
@@ -30,7 +30,13 @@ export const NavLink = ({ item, ...props }) => {
   const currentHash = getCurrentHash()
   return (
     <React.Fragment>
-      <Link {...props} to={to} sx={styles.link} activeClassName="active" />
+      <Link
+        {...props}
+        to={to}
+        sx={styles.link}
+        activeClassName="active"
+        ref={ref}
+      />
       {showHeadings &&
         headings.map(heading => (
           <Link
@@ -44,4 +50,4 @@ export const NavLink = ({ item, ...props }) => {
         ))}
     </React.Fragment>
   )
-}
+})
