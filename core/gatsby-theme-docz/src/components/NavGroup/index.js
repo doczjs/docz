@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
-import React, { useRef, useEffect } from 'react'
+import React from 'react'
 import { useCurrentDoc } from 'docz'
 
 import * as styles from './styles'
@@ -9,13 +9,13 @@ import { ChevronDown } from '../Icons'
 
 export const NavGroup = ({ item, sidebarRef }) => {
   const currentDoc = useCurrentDoc()
-  const currentDocRef = useRef()
+  const currentDocRef = React.useRef()
   const { name, menu } = item
   const [subheadingsVisible, setShowsubheadings] = React.useState(
     currentDoc.menu === name
   )
   const toggleSubheadings = () => setShowsubheadings(!subheadingsVisible)
-  useEffect(() => {
+  React.useEffect(() => {
     if (sidebarRef.current && currentDocRef.current) {
       sidebarRef.current.scrollTo(0, currentDocRef.current.offsetTop)
     }
