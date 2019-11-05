@@ -32,7 +32,7 @@ export const NavGroup = ({ item, sidebarRef }) => {
           menu.map(menu => {
             if (currentDoc.route === menu.route) {
               return (
-                <NavLink key={menu.id} item={menu} ref={currentRef}>
+                <NavLink key={menu.id} item={menu} ref={currentDocRef}>
                   {menu.name}
                 </NavLink>
               )
