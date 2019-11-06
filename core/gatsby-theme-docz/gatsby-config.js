@@ -41,6 +41,13 @@ module.exports = opts => {
   return {
     plugins: [
       {
+        resolve: `gatsby-source-filesystem`,
+        options: {
+          ignore: [`${config.paths.docz}/**/*`],
+          path: config.paths.root,
+        },
+      },
+      {
         resolve: 'gatsby-plugin-mdx',
         options: {
           extensions: ['.md', '.mdx'],

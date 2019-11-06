@@ -36,6 +36,7 @@
     "gatsby-plugin-mdx": "^1.0.13",
     "gatsby-plugin-react-helmet-async": "^1.0.5",
     "gatsby-plugin-root-import": "^2.0.5",
+    "gatsby-source-filesystem": "^2.1.35",
     "lodash": "^4.17.14",
     "mdx-utils": "^0.2.0",
     "prop-types": "^15.7.2",
