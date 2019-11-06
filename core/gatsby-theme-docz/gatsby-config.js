@@ -41,6 +41,23 @@ module.exports = opts => {
   return {
     plugins: [
       {
+        resolve: `gatsby-source-filesystem`,
+        options: {
+          ignore: [
+            `${config.paths.docz}/**/*`,
+            // gatsby cache
+            `${config.paths.root}/.cache/**/*`,
+            // static assets with gatsby site setup
+            `${config.paths.root}/public/**/*`,
+            // ignore node_modules unless user explicitly asks for them to be included
+            config.src.indexOf('node_modules') === -1
+              ? `${config.paths.root}/node_modules/**/*`
+              : `${config.paths.root}/node_modules/.cache/**/*`,
+          ],
+          path: config.paths.root,
+        },
+      },
+      {
         resolve: 'gatsby-plugin-mdx',
         options: {
           extensions: ['.md', '.mdx'],
