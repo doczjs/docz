@@ -3,7 +3,7 @@ import { media } from '~theme/breakpoints'
 export const main = {
   display: 'flex',
   flexDirection: 'column',
-  height: '100vh',
+  minHeight: '100vh',
 }
 
 export const wrapper = {
