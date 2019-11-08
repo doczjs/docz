@@ -17,7 +17,7 @@ const getCurrentHash = () => {
   if (typeof window === 'undefined') {
     return ''
   }
-  return window.location ? window.location.hash : ''
+  return window.location ? decodeURI(window.location.hash) : ''
 }
 
 export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
