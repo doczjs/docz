@@ -35,7 +35,7 @@ export const execDevCommand = async ({ args }: ServerMachineCtx) => {
   // For monorepos that install dependencies higher in the fs tree
   const repoRootPath = get(args, 'repoRootPath', await findRootPath())
   const gatsbyPath = path.join(repoRootPath, 'node_modules/.bin/gatsby')
-  spawn(gatsbyPath, ['develop', '--port', `${args.port}`], {
+  spawn(gatsbyPath, ['develop', '--host', `${args.host}`, '--port', `${args.port}`], {
     stdio: 'inherit',
     cwd: paths.docz,
   })
