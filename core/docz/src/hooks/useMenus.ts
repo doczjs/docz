@@ -9,14 +9,9 @@ import { Entry, MenuItem, doczState } from '../state'
 
 const noMenu = (entry: Entry) => !entry.menu
 const fromMenu = (menu: string) => (entry: Entry) => entry.menu === menu
-const entryAsMenu = (entry: Entry) => ({
-  name: entry.name,
-  route: entry.route,
-  parent: entry.parent,
-})
 
 const entriesOfMenu = (menu: string, entries: Entry[]) =>
-  entries.filter(fromMenu(menu)).map(entryAsMenu)
+  entries.filter(fromMenu(menu)).map(e => e as any) as MenuItem[]
 
 const parseMenu = (entries: Entry[]) => (name: string) => ({
   name,
@@ -26,7 +21,7 @@ const parseMenu = (entries: Entry[]) => (name: string) => ({
 type Menus = MenuItem[]
 
 const menusFromEntries = (entries: Entry[]) => {
-  const entriesWithoutMenu = entries.filter(noMenu).map(entryAsMenu) as any
+  const entriesWithoutMenu = entries.filter(noMenu).map(e => e) as any
   const menus = flatArrFromObject(entries, 'menu').map(parseMenu(entries))
   return unionBy('name', menus, entriesWithoutMenu)
 }
