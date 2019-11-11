@@ -9,14 +9,9 @@ import { Entry, MenuItem, doczState } from '../state'
 
 const noMenu = (entry: Entry) => !entry.menu
 const fromMenu = (menu: string) => (entry: Entry) => entry.menu === menu
-const entryAsMenu = (entry: Entry) => ({
-  name: entry.name,
-  route: entry.route,
-  parent: entry.parent,
-})
 
 const entriesOfMenu = (menu: string, entries: Entry[]) =>
-  entries.filter(fromMenu(menu)).map(entryAsMenu)
+  entries.filter(fromMenu(menu))
 
 const parseMenu = (entries: Entry[]) => (name: string) => ({
   name,
@@ -26,9 +21,9 @@ const parseMenu = (entries: Entry[]) => (name: string) => ({
 type Menus = MenuItem[]
 
 const menusFromEntries = (entries: Entry[]) => {
-  const entriesWithoutMenu = entries.filter(noMenu).map(entryAsMenu) as any
+  const entriesWithoutMenu = entries.filter(noMenu)
   const menus = flatArrFromObject(entries, 'menu').map(parseMenu(entries))
-  return unionBy('name', menus, entriesWithoutMenu)
+  return unionBy('name', menus, entriesWithoutMenu as any)
 }
 
 const parseItemStr = (item: MenuItem | string) =>
@@ -135,11 +130,11 @@ export const useMenus = (opts?: UseMenusParams) => {
   const { entries, config } = useContext(doczState.context)
   if (!entries) return null
 
-  const arr = entries.map(({ value }) => value)
+  const arr = entries.map(({ value }) => value) as Entry[]
   const entriesMenu = menusFromEntries(arr)
   const sorted = useMemo(() => {
-    const merged = mergeMenus(entriesMenu as MenuItem[], config.menu)
-    const result = sortMenus(merged, config.menu)
+    const merged = mergeMenus(entriesMenu as any[], config.menu)
+    const result = sortMenus(merged, config.menu) as MenuItem[]
     return filterMenus(result, opts && opts.filter)
   }, [entries, config])
 
