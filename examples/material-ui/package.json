@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.4.0",
-    "docz": "next",
+    "docz": "latest",
     "postinstall-postinstall": "^2.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"

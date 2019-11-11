@@ -13,7 +13,7 @@
     "build": "docz build"
   },
   "dependencies": {
-    "docz": "next",
+    "docz": "latest",
     "gatsby-plugin-sass": "2.1.17",
     "node-sass": "4.12.0",
     "prop-types": "^15.7.2",

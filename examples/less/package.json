@@ -13,7 +13,7 @@
     "build": "docz build"
   },
   "dependencies": {
-    "docz": "next",
+    "docz": "latest",
     "gatsby-plugin-less": "3.0.9",
     "less": "3.10.3",
     "prop-types": "^15.7.2",
