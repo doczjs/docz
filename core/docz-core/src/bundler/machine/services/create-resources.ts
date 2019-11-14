@@ -43,10 +43,22 @@ const copyAndModifyPkgJson = async (ctx: ServerMachineCtx) => {
   await fs.outputJSON(movePath, newPkg, { spaces: 2 })
 }
 
-const writeEslintRc = async ({ isDoczRepo }: ServerMachineCtx) => {
-  if (!isDoczRepo) return
-  const filepath = path.join(paths.docz, '.eslintrc')
-  await fs.outputJSON(filepath, { extends: 'react-app' })
+const writeEslintRc = async () => {
+  const possibleFilenames = [
+    '.eslintrc.js',
+    '.eslintrc.yaml',
+    '.eslintrc.yml',
+    '.eslintrc.json',
+    '.eslintrc',
+  ]
+  for (const filename of possibleFilenames) {
+    const filepath = path.join(paths.root, filename)
+    const dest = path.join(paths.docz, filename)
+    if (fs.pathExistsSync(filepath)) {
+      await fs.copy(filepath, dest)
+      return
+    }
+  }
 }
 
 const copyEslintIgnore = async () => {
@@ -108,7 +120,7 @@ export const createResources = async (ctx: ServerMachineCtx) => {
   try {
     copyDoczRc(ctx.args.config)
     await copyAndModifyPkgJson(ctx)
-    await writeEslintRc(ctx)
+    await writeEslintRc()
     await copyEslintIgnore()
     await writeNotFound()
     await writeGatsbyConfig(ctx)
