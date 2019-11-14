@@ -36,7 +36,8 @@ export const Playground = ({ code, scope, language }) => {
       height: 'auto',
     },
     style: {
-      margin: '0 auto',
+      margin: 0,
+      marginRight: 'auto',
     },
     enable: {
       top: false,
