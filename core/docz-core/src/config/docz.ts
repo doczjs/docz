@@ -27,6 +27,10 @@ export const doczRcBaseConfig = {
   ],
   filterComponents: (files: string[]) =>
     files.filter(filepath => {
+      const isTestFile = /\.(test|spec)\.(js|jsx|ts|tsx)$/.test(filepath);
+      if (isTestFile) {
+        return false;
+      }
       const startsWithCapitalLetter = /\/([A-Z]\w*)\.(js|jsx|ts|tsx)$/.test(
         filepath
       )
