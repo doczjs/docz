@@ -1,4 +1,5 @@
 /** @jsx jsx */
+/** @jsxFrag React.Fragment */
 import React, { useState, useRef, useEffect } from 'react'
 import { Global } from '@emotion/core'
 import { jsx, Box } from 'theme-ui'
