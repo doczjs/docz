@@ -25,7 +25,7 @@ const Route = ({ children, entry, ...defaultProps }) => {
 }
 
 const findEntry = (db, ctx) => {
-  const isIndex = ctx.frontmatter.route === '/'
+  const isIndex = ctx.frontmatter && ctx.frontmatter.route === '/'
   const eqIndex = propEq('value.route', '/')
   if (!ctx.entry && isIndex) return db.entries.find(eqIndex)
   const filepath = get('entry.filepath', ctx)
