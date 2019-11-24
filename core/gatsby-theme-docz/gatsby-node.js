@@ -1,4 +1,4 @@
-exports.createPages = require('./lib/createPages')
+exports.createPagesStatefully = require('./lib/createPagesStatefully')
 exports.onCreateBabelConfig = require('./lib/onCreateBabelConfig')
 exports.onCreateDevServer = require('./lib/onCreateDevServer')
 exports.onCreateWebpackConfig = require('./lib/onCreateWebpackConfig')
