@@ -11,6 +11,7 @@ export const wrapper = {
   flex: 1,
   display: 'grid',
   gridTemplateColumns: '250px 1fr',
+  minHeight: '100vh',
   [media.tablet]: {
     display: 'block',
   },
