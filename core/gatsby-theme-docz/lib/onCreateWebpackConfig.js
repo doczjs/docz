@@ -2,7 +2,7 @@ const fs = require('fs-extra')
 const path = require('path')
 const { Plugin, parseConfig } = require('docz-core')
 
-const nodeModules = path.resolve(__dirname, 'node_modules')
+// const nodeModules = path.resolve(__dirname, 'node_modules')
 const parentNodeModules = path.resolve(__dirname, '../../../node_modules')
 
 module.exports = async (params, opts) => {
@@ -21,11 +21,11 @@ module.exports = async (params, opts) => {
   }
 
   if (hasParentNodeModules) {
-    actions.setWebpackConfig({
-      resolve: {
-        modules: ['node_modules', nodeModules, parentNodeModules],
-      },
-    })
+    // actions.setWebpackConfig({
+    //   resolve: {
+    //     modules: ['node_modules', nodeModules, parentNodeModules],
+    //   },
+    // })
   }
 
   run('onCreateWebpackConfig', params, stage === 'develop', args, config)
