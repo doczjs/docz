@@ -105,7 +105,7 @@ const setupLocalRegistry = async () => {
   await startLocalRegistry()
   await updatePackageJson(paths.doczGatsbyTheme, packageJson => {
     set(packageJson, 'version', `0.0.${Date.now()}`)
-    return setDoczVersionToCI(packageJson)
+    return packageJson
   })
   await updatePackageJson(paths.docz, packageJson => {
     set(packageJson, 'version', `0.0.${Date.now()}`)
