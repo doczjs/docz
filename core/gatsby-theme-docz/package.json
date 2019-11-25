@@ -1,6 +1,6 @@
 {
   "name": "gatsby-theme-docz",
-  "version": "2.0.0-rc.76",
+  "version": "2.0.0-rc.77",
   "description": "Gatsby theme created to use Docz",
   "license": "MIT",
   "author": "Pedro Nauck (pedronauck@gmail.com)",
@@ -57,9 +57,9 @@
     "eslint-config-docz-js": "2.0.0-rc.69"
   },
   "peerDependencies": {
+    "docz": ">=2.0.0",
     "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "docz": ">=2.0.0"
+    "react-dom": "^16.8.0"
   },
   "gitHead": "74932cd67112bacd1e29780a202d466acdd79535"
 }
