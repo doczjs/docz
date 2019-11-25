@@ -60,11 +60,11 @@ yarn create docz-app my-docz-app --example typescript
 Start by adding `docz` as a dependency :
 
 ```bash
-$ yarn add docz@next # react react-dom
+$ yarn add docz # react react-dom
 
 # or
 
-$ npm install docz@next # react react-dom
+$ npm install docz # react react-dom
 ```
 
 > **Note**: `react` and `react-dom` will not be installed automatically. You'll have to install them yourself.

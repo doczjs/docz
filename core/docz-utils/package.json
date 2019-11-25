@@ -1,6 +1,6 @@
 {
   "name": "docz-utils",
-  "version": "2.0.0-rc.69",
+  "version": "2.0.0",
   "description": "Some methods used and utilities used on docz",
   "license": "MIT",
   "main": "lib/index.js",
@@ -43,8 +43,8 @@
     "unist-util-visit": "^1.4.1"
   },
   "devDependencies": {
-    "docz-rollup": "2.0.0-rc.69",
-    "eslint-config-docz-ts": "2.0.0-rc.69",
+    "docz-rollup": "2.0.0",
+    "eslint-config-docz-ts": "2.0.0",
     "trash": "^6.0.0"
   }
 }

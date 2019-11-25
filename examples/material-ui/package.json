@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.4.0",
-    "docz": "next",
+    "docz": "latest",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   }

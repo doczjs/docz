@@ -13,7 +13,7 @@
     "build": "docz build"
   },
   "dependencies": {
-    "docz": "next",
+    "docz": "latest",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-art": "^16.8.6",
