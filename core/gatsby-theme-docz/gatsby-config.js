@@ -45,6 +45,7 @@ module.exports = opts => {
         options: {
           ignore: [
             `${config.paths.docz}/**/*`,
+            `${config.paths.root}/.git/**/*`,
             // gatsby cache
             `${config.paths.root}/.cache/**/*`,
             // static assets with gatsby site setup

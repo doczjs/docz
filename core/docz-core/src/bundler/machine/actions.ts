@@ -19,15 +19,16 @@ const ensureFile = (filename: string, toDelete?: string) => {
 }
 
 export const ensureFiles = ({ args }: ServerMachineCtx) => {
-  const appPath = paths.root
-  const themeDirs = glob.sync(path.join(args.themesDir, '/gatsby-theme-**'), {
+  const appPath = path.join(paths.root, args.themesDir)
+  const themeNames = glob.sync('gatsby-theme-**', {
     cwd: appPath,
     onlyDirectories: true,
   })
-  themeDirs.forEach(dir => {
-    const chunkedPath = dir.split('/')
-    const themeName = chunkedPath[chunkedPath.length - 1]
-    fs.copySync(dir, path.join(paths.docz, 'src', themeName))
+  themeNames.forEach(themeName => {
+    fs.copySync(
+      path.join(appPath, themeName),
+      path.join(paths.docz, 'src', themeName)
+    )
   })
   copyDoczRc(args.config)
   ensureFile('gatsby-browser.js')

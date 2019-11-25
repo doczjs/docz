@@ -21,6 +21,7 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
+    "docz": "^2.0.0-rc.76",
     "gatsby": "^2.13.73",
     "gatsby-plugin-offline": "^2.2.7",
     "gatsby-plugin-sharp": "^2.2.18",
@@ -29,7 +30,6 @@
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-helmet-async": "^1.0.4",
-    "scheduler": "^0.15.0"
+    "react-helmet-async": "^1.0.4"
   }
 }

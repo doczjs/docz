@@ -1,6 +1,6 @@
 export const wrapper = {
   mb: 3,
-  display: 'flex',
+  display: 'inline-flex',
   alignItems: 'center',
 }
 

@@ -1,21 +1,15 @@
 {
-  "name": "docz-example-with-themes-dir",
+  "name": "docz-example-with-favicon-and-metadata",
   "private": true,
-  "version": "2.0.0-rc.41",
+  "version": "2.0.0",
   "license": "MIT",
-  "files": [
-    "src/",
-    "theme/",
-    "doczrc.js",
-    "package.json"
-  ],
   "scripts": {
     "dev": "docz dev",
     "build": "docz build",
     "serve": "docz serve"
   },
   "dependencies": {
-    "docz": "latest",
+    "docz": "next",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"

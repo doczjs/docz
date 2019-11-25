@@ -6,10 +6,12 @@ export const global = {
   },
 }
 
+const HEADER_HEIGHT = 81
+
 export const overlay = ({ open }) => ({
   zIndex: 999,
   position: 'fixed',
-  top: 88,
+  top: HEADER_HEIGHT,
   right: 0,
   bottom: 0,
   left: 0,
@@ -37,7 +39,7 @@ export const wrapper = ({ open }) => ({
     zIndex: 9999,
     display: 'block',
     position: 'fixed',
-    top: 88,
+    top: HEADER_HEIGHT,
     left: 0,
     bottom: 0,
     width: 256,

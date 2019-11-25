@@ -58,7 +58,7 @@ function writePropsOnCache(items: PropItem[], config: Config): void {
 function getPropsOnCache(): any {
   const cache = readCacheFile()
   if (_.isEmpty(cache)) {
-    logger.warn('Any cache was found with your props definitions')
+    logger.warn('No cache was found with your props definitions')
     logger.warn("We'll parse your components to get props from them")
     logger.warn('Depending on your components, this could take while...')
     return []

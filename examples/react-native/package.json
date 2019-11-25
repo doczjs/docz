@@ -18,8 +18,7 @@
     "react": "^16.8.6",
     "react-art": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-native-web": "^0.11.7",
-    "scheduler": "^0.15.0"
+    "react-native-web": "^0.11.7"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5"

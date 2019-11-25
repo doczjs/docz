@@ -1,11 +1,10 @@
 {
-  "name": "docz-example-with-themes-dir",
+  "name": "docz-example-logo-in-sidebar",
   "private": true,
   "version": "2.0.0-rc.41",
   "license": "MIT",
   "files": [
     "src/",
-    "theme/",
     "doczrc.js",
     "package.json"
   ],
@@ -15,7 +14,7 @@
     "serve": "docz serve"
   },
   "dependencies": {
-    "docz": "latest",
+    "docz": "next",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
