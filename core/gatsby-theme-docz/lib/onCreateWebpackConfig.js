@@ -23,11 +23,7 @@ module.exports = async (params, opts) => {
   if (hasParentNodeModules) {
     actions.setWebpackConfig({
       resolve: {
-        modules: [
-          // 'node_modules',
-          nodeModules,
-          parentNodeModules,
-        ],
+        modules: ['node_modules', nodeModules, parentNodeModules],
       },
     })
   }
