@@ -7,7 +7,7 @@ import * as styles from './styles'
 
 export const getDefaultValue = ({ defaultValue, type, flowType }) => {
   const propType = flowType ? flowType : type
-  if (!defaultValue.value) return null
+  if (!defaultValue || !defaultValue.value) return null
   if (defaultValue.value === "''") {
     return '[Empty string]'
   }
