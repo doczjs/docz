@@ -44,7 +44,7 @@ const getTypeStr = (type: PropType | FlowType): any => {
 
       return JSON.stringify(rst, null, 2)
     default:
-      return capitalize(type.name)
+      return type.name
   }
 }
 
