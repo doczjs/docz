@@ -69,6 +69,7 @@ export interface PropsProps {
   isRaw?: boolean
   isToggle?: boolean
   of: ComponentWithDocGenInfo
+  [key: string]: any
 }
 
 export const getPropType = (prop: Prop) => {
@@ -98,6 +99,7 @@ export interface PropsComponentProps {
   props: Record<string, Prop>
   getPropType(prop: Prop): string
   of: ComponentWithDocGenInfo
+  [key: string]: any
 }
 
 export const Props: SFC<PropsProps> = ({
@@ -105,6 +107,7 @@ export const Props: SFC<PropsProps> = ({
   isToggle,
   isRaw,
   of: component,
+  ...rest
 }) => {
   const components = useComponents()
   const { props: stateProps } = React.useContext(doczState.context)
@@ -151,6 +154,7 @@ export const Props: SFC<PropsProps> = ({
       props={props}
       getPropType={getPropType}
       of={component}
+      {...rest}
     />
   )
 }
