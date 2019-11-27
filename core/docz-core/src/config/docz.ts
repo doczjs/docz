@@ -13,7 +13,7 @@ const toOmit = ['_', '$0', 'version', 'help']
 export const doczRcBaseConfig = {
   themeConfig: {},
   themesDir: 'src',
-  mdxExtensions: ['md', 'mdx'],
+  mdxExtensions: ['.md', '.mdx'],
   docgenConfig: {},
   menu: [],
   plugins: [],
