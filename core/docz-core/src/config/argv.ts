@@ -73,6 +73,7 @@ export interface Config extends Argv {
   plugins: Plugin[]
   themeConfig: ThemeConfig
   themesDir: string
+  mdxExtensions: string[]
   filterComponents: (files: string[]) => string[]
 }
 
