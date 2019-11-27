@@ -13,6 +13,7 @@ const toOmit = ['_', '$0', 'version', 'help']
 export const doczRcBaseConfig = {
   themeConfig: {},
   themesDir: 'src',
+  mdxExtensions: ['md', 'mdx'],
   docgenConfig: {},
   menu: [],
   plugins: [],
@@ -27,9 +28,9 @@ export const doczRcBaseConfig = {
   ],
   filterComponents: (files: string[]) =>
     files.filter(filepath => {
-      const isTestFile = /\.(test|spec)\.(js|jsx|ts|tsx)$/.test(filepath);
+      const isTestFile = /\.(test|spec)\.(js|jsx|ts|tsx)$/.test(filepath)
       if (isTestFile) {
-        return false;
+        return false
       }
       const startsWithCapitalLetter = /\/([A-Z]\w*)\.(js|jsx|ts|tsx)$/.test(
         filepath
