@@ -61,7 +61,7 @@ module.exports = opts => {
       {
         resolve: 'gatsby-plugin-mdx',
         options: {
-          extensions: ['.md', '.mdx'],
+          extensions: config.mdxExtensions,
           remarkPlugins:
             config && config.mdPlugins
               ? config.mdPlugins.concat(mdPlugins)
