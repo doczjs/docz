@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/doczjs/docz/compare/v2.1.0...v2.1.1) (2019-11-27)
+
+
+### Bug Fixes
+
+* **docz-core:** prepend dot to default mdx extensions ([18f78d6](https://github.com/doczjs/docz/commit/18f78d6))
+
+
+
+
+
 # [2.1.0](https://github.com/doczjs/docz/compare/v2.0.0-rc.77...v2.1.0) (2019-11-27)
 
 
