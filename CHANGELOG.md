@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/doczjs/docz/compare/v2.0.0-rc.77...v2.1.0) (2019-11-27)
+
+
+### Bug Fixes
+
+* **docz:** remove lowercasing of enum ts prop type ([8f7b949](https://github.com/doczjs/docz/commit/8f7b949))
+* **gatsby-theme-docz:** allow empty ts prop defaultValue ([2512aa1](https://github.com/doczjs/docz/commit/2512aa1))
+* **gatsby-theme-docz:** fix min-height ([34fc31f](https://github.com/doczjs/docz/commit/34fc31f))
+
+
+### Features
+
+* **docz:** spread remaining props to Props component ([#1276](https://github.com/doczjs/docz/issues/1276)) ([531244f](https://github.com/doczjs/docz/commit/531244f))
+* **docz-core:** add mdxExtensions to config ([77b84e8](https://github.com/doczjs/docz/commit/77b84e8))
+* **gatsby-theme-docz:** use mdxExtensions from config ([7d405c5](https://github.com/doczjs/docz/commit/7d405c5))
+
+
+
+
+
 
 
 ### Bug Fixes

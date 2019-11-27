@@ -1,6 +1,6 @@
 {
   "name": "docz-rollup",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "license": "MIT",
   "main": "src/index.js",
   "files": [
@@ -32,6 +32,6 @@
     "rollup-plugin-typescript2": "^0.22.0"
   },
   "devDependencies": {
-    "eslint-config-docz-js": "2.0.0"
+    "eslint-config-docz-js": "^2.1.0"
   }
 }

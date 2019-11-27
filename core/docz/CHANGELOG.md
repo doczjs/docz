@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/doczjs/docz/compare/v2.0.0-rc.77...v2.1.0) (2019-11-27)
+
+
+### Bug Fixes
+
+* **docz:** remove lowercasing of enum ts prop type ([8f7b949](https://github.com/doczjs/docz/commit/8f7b949))
+
+
+### Features
+
+* **docz:** spread remaining props to Props component ([#1276](https://github.com/doczjs/docz/issues/1276)) ([531244f](https://github.com/doczjs/docz/commit/531244f))
+
+
+
+
+
 
 
 
