@@ -26,7 +26,7 @@
     "packages:test": "lerna run test --stream --ignore docz-example-*",
     "prerelease": "yarn run packages",
     "release": "lerna publish --conventional-commits",
-    "release:next": "lerna publish --conventional-commits --conventional-prerelease --dist-tag=next",
+    "release:next": "yarn run packages && lerna publish --conventional-commits --conventional-prerelease --dist-tag=next",
     "promote:next": "lerna publish --conventional-commits --conventional-graduate",
     "release:beta": "yarn release --dist-tag=beta --preid=beta",
     "release:canary": "yarn release --force-publish=\"*\" --canary --exact --npm-client npm",
