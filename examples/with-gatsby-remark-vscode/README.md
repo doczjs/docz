@@ -74,7 +74,7 @@ gatsbyRemarkPlugins: [
 ]
 ```
 
-3. By now your site should be broken, you still need to tell docz not to try to render code blocks with prism (to leave it to gatsby-remark-vscode). To do that you will need to shadow the `pre` and `code` components passed down to the MDXProvider. So create a file `src/gatsby-theme-docz/components/index.js` (original can be found [here](https://github.com/doczjs/docz/blob/master/core/gatsby-theme-docz/src/components/index.js)) and add to it :
+3. By now your site should be broken, you still need to tell docz not to try to render code blocks with prism (to leave it to gatsby-remark-vscode). To do that you will need to remove the pre and code components passed down to the MDXProvider by creating a file `src/gatsby-theme-docz/components/index.js` (original can be found [here](https://github.com/doczjs/docz/blob/master/core/gatsby-theme-docz/src/components/index.js)) and add to it :
 
 ```js
 import * as headings from 'gatsby-theme-docz/src/components/Headings'
