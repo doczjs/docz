@@ -43,7 +43,7 @@ const styles = {
     py: 3,
     px: 4,
     bg: 'blockquote.bg',
-    borderLeft: t => `5px solid ${t.colors.blockquote.boder}`,
+    borderLeft: t => `5px solid ${t.colors.blockquote.border}`,
     color: 'blockquote.color',
     fontStyle: 'italic',
     '> p': {
