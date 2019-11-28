@@ -25,6 +25,7 @@ export const cli = () => {
       process.exit()
     })
     .demandCommand()
+    .recommendCommands()
     .help()
     .wrap(72)
     .epilog('for more information visit https://github.com/doczjs/docz')
