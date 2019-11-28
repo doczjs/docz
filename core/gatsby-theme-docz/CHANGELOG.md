@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-alpha.0](https://github.com/doczjs/docz/compare/v2.1.1...v2.2.0-alpha.0) (2019-11-28)
+
+
+### Bug Fixes
+
+* **gatsby-theme-docz:** set gatsby root from doczrc src ([e6b1521](https://github.com/doczjs/docz/commit/e6b1521))
+
+
+
+
+
 # [2.1.0](https://github.com/doczjs/docz/compare/v2.0.0-rc.77...v2.1.0) (2019-11-27)
 
 
