@@ -1,0 +1,25 @@
+---
+name: Getting Started
+route: /
+---
+
+import { Playground } from 'docz'
+
+# Getting Started
+
+[Link that opens in new tab](https://duckduckgo.com)
+
+<Playground>
+  {() => {
+    const [toggle, setToggle] = React.useState(true)
+    return (
+      <button
+        onClick={() => {
+          setToggle(a => !a)
+        }}
+      >
+        {toggle ? 'Hello' : 'Good bye'}
+      </button>
+    )
+  }}
+</Playground>
