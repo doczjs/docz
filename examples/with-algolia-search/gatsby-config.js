@@ -1,7 +1,5 @@
 require('dotenv').config()
 
-throw process.env.GATSBY_ALGOLIA_APP_ID
-
 module.exports = {
   plugins: [
     {
