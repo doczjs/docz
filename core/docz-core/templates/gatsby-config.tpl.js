@@ -1,10 +1,18 @@
 const { mergeWith } = require('lodash/fp')
+const fs = require('fs-extra')
 
-let custom
-try {
-  custom = require('./gatsby-config.custom')
-} catch(err) {
-  custom = {}
+let custom = {}
+const hasGatsbyConfig = fs.existsSync('./gatsby-config.custom.js')
+
+if (hasGatsbyConfig) {
+  try {
+    custom = require('./gatsby-config.custom')
+  } catch (err) {
+    console.error(
+      `Failed to load your gatsby-config.js file : `,
+      JSON.stringify(err)
+    )
+  }
 }
 
 const config = {
