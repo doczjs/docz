@@ -60,6 +60,16 @@ const writeEslintRc = async () => {
   }
 }
 
+const copyDotEnv = () => {
+  const filename = '.env'
+  const filepath = path.join(paths.root, filename)
+  const dest = path.join(paths.docz, filename)
+
+  if (fs.pathExistsSync(filepath)) {
+    fs.copySync(filepath, dest)
+  }
+}
+
 const copyEslintIgnore = async () => {
   const filename = '.eslintignore'
   const filepath = path.join(paths.root, filename)
@@ -118,6 +128,7 @@ const writeGatsbyBrowser = async () =>
 export const createResources = async (ctx: ServerMachineCtx) => {
   try {
     copyDoczRc(ctx.args.config)
+    copyDotEnv()
     await copyAndModifyPkgJson(ctx)
     await writeEslintRc()
     await copyEslintIgnore()
