@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-alpha.2](https://github.com/doczjs/docz/compare/v2.2.0-alpha.1...v2.2.0-alpha.2) (2019-11-29)
+
+
+### Bug Fixes
+
+* **docz-core:** log errors that happen in gatsby-config ([fe1e2da](https://github.com/doczjs/docz/commit/fe1e2da))
+
+
+### Features
+
+* **docz-core:** copy .env ([51f7027](https://github.com/doczjs/docz/commit/51f7027))
+
+
+
+
+
 # [2.2.0-alpha.1](https://github.com/doczjs/docz/compare/v2.2.0-alpha.0...v2.2.0-alpha.1) (2019-11-28)
 
 
