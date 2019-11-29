@@ -23,11 +23,4 @@ export const init = async (args: Arguments<any>) => {
     doczrcFilepath,
   }
   await createResources(serverMachineContext)
-  console.log()
-  console.log(`✅    Docz is ready to go `)
-  console.log()
-  console.log(`💻    yarn docz dev`)
-  console.log(`⛏    yarn docz build`)
-  console.log(`👀    yarn docz serve`)
-  console.log()
 }
