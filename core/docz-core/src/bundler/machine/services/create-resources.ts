@@ -10,15 +10,14 @@ export const copyDoczRc = (configPath?: string) => {
   const sourceDoczRc = configPath
     ? path.join(paths.root, configPath)
     : path.join(paths.root, 'doczrc.js')
+
+  const hasDoczRc = fs.existsSync(sourceDoczRc)
+  if (!hasDoczRc) return
+
   const destinationDoczRc = path.join(paths.docz, 'doczrc.js')
   try {
     fs.copySync(sourceDoczRc, destinationDoczRc)
-  } catch (err) {
-    // console.error(
-    //   `Failed to copy doczrc.js from ${sourceDoczRc} to ${destinationDoczRc} : ${err.message}`,
-    //   err.stack
-    // )
-  }
+  } catch (err) {}
 }
 
 const copyAndModifyPkgJson = async (ctx: ServerMachineCtx) => {
@@ -130,6 +129,6 @@ export const createResources = async (ctx: ServerMachineCtx) => {
     await writeGatsbyBrowser()
     await writeGatsbySSR()
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
