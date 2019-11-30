@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Search } from 'styled-icons/fa-solid/Search'
+import { Search } from 'gatsby-theme-docz/src/components/Icons'
 import { Algolia } from 'styled-icons/fa-brands/Algolia'
 
 export const Root = styled.div`
@@ -12,6 +12,7 @@ export const Root = styled.div`
 export const SearchIcon = styled(Search)`
   width: 1em;
   pointer-events: none;
+  color: #2d3747;
 `
 
 const focus = css`
@@ -42,7 +43,7 @@ const collapse = css`
 
 const expand = css`
   background: ${props => props.theme.veryLightGray};
-  width: 6em;
+  width: 20em;
   margin-left: -1.6em;
   padding-left: 1.6em;
   + ${SearchIcon} {
@@ -57,7 +58,6 @@ export const Input = styled.input`
   background: transparent;
   transition: ${props => props.theme.shortTrans};
   border-radius: ${props => props.theme.smallBorderRadius};
-  {highlight-next-line}
   ${props => (props.collapse ? collapse : expand)};
 `
 
@@ -74,10 +74,9 @@ export const HitsWrapper = styled.div`
   z-index: 2;
   -webkit-overflow-scrolling: touch;
   position: absolute;
-  right: 0;
   top: calc(100% + 0.5em);
   width: 80vw;
-  max-width: 30em;
+  max-width: 20em;
   box-shadow: 0 0 5px 0;
   padding: 0.7em 1em 0.4em;
   background: white;

@@ -36,11 +36,10 @@ const useClickOutside = (ref, handler, events) => {
 }
 const indices = [
   {
-    name: `dev_docz-algolia-example`,
-    title: `dev_docz-algolia-example`,
+    name: process.env.GATSBY_ALGOLIA_INDEX_NAME,
+    title: `docz algolia example`,
     hitComp: `PageHit`,
   },
-  // { name: `Posts`, title: `Blog Posts`, hitComp: `PostHit` },
 ]
 export const NavSearch = ({ collapse, hitsAsGrid }) => {
   const ref = createRef()
@@ -77,3 +76,4 @@ export const NavSearch = ({ collapse, hitsAsGrid }) => {
     </InstantSearch>
   )
 }
+export default NavSearch
