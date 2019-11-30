@@ -11,10 +11,16 @@ const typography = toTheme(moraga)
 
 export default merge(typography, {
   initialColorMode: 'light',
+  // Show errors above playground editor
   showLiveError: true,
+  // Show preview of the code inside playground
   showLivePreview: true,
+  // Show editor when a playground is rendered
   showPlaygroundEditor: true,
+  // Show dark/light mode switch toggle in header
   showDarkModeSwitch: true,
+  // Display edit this page button on every page
+  showMarkdownEditButton: true,
   colors: {
     ...modes.light,
     modes: {

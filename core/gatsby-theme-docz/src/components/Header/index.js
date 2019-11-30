@@ -10,7 +10,7 @@ export const Header = props => {
   const { onOpen } = props
   const {
     repository,
-    themeConfig: { showDarkModeSwitch },
+    themeConfig: { showDarkModeSwitch, showMarkdownEditButton },
   } = useConfig()
   const { edit = true, ...doc } = useCurrentDoc()
   const [colorMode, setColorMode] = useColorMode()
@@ -47,7 +47,7 @@ export const Header = props => {
             </button>
           )}
         </Flex>
-        {edit && doc.link && (
+        {showMarkdownEditButton && edit && doc.link && (
           <a
             sx={styles.editButton}
             href={doc.link}
