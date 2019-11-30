@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-alpha.4](https://github.com/doczjs/docz/compare/v2.2.0-alpha.3...v2.2.0-alpha.4) (2019-11-30)
+
+
+### Features
+
+* **gatsby-theme-docz:** add showMarkdownEditButton flag ([8fd04e8](https://github.com/doczjs/docz/commit/8fd04e8)), closes [#1291](https://github.com/doczjs/docz/issues/1291)
+
+
+
+
+
 # [2.2.0-alpha.1](https://github.com/doczjs/docz/compare/v2.2.0-alpha.0...v2.2.0-alpha.1) (2019-11-28)
 
 
