@@ -1,19 +1,19 @@
-# Basic Docz example
+# Docz with Algolia Search example
 
 ## Using `create-docz-app`
 
 ```sh
-npx create-docz-app docz-app-basic
+npx create-docz-app docz-app-with-algolia-search --example with-algolia-search
 # or
-yarn create docz-app docz-app-basic
+yarn create docz-app docz-app-with-algolia-search --example with-algolia-search
 ```
 
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/basic
-mv basic docz-basic-example
-cd docz-basic-example
+curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/with-algolia-search
+mv with-algolia-search docz-with-algolia-search-example
+cd docz-with-algolia-search-example
 ```
 
 ## Setup

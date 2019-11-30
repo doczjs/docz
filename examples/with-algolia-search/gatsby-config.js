@@ -1,31 +1,46 @@
 require('dotenv').config()
+const get = require('lodash/get')
+const merge = require('lodash/merge')
 
-const query = `{
-  pages: allMdx {
+const query = `
+{
+  allMdx {
     edges {
       node {
-        objectID: id
-        frontmatter {
-          title
-          route
-        }
         excerpt(pruneLength: 5000)
       }
     }
   }
-}`
+  allDoczEntries {
+    edges {
+      node {
+        objectID: id
+        filepath
+        slug
+        name
+      }
+    }
+  }
+}
+`
 
-const flatten = arr =>
-  arr.map(({ node: { frontmatter, ...rest } }) => ({
-    ...frontmatter,
-    ...rest,
-  }))
-
+// List of attributes to snippet, with an optional maximum number of words to snippet.
 const settings = { attributesToSnippet: [`excerpt:20`] }
 const queries = [
   {
     query: query,
-    transformer: ({ data }) => flatten(data.pages.edges),
+    transformer: gqlResponse => {
+      const allMdx = get(gqlResponse, 'data.allMdx.edges', []).map(
+        ({ node }) => node
+      )
+      const allDoczEntries = get(
+        gqlResponse,
+        'data.allDoczEntries.edges',
+        []
+      ).map(({ node }) => node)
+      const records = merge(allMdx, allDoczEntries)
+      return records
+    },
     settings,
   },
 ]
