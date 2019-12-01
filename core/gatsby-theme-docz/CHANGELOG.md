@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-alpha.5](https://github.com/doczjs/docz/compare/v2.2.0-alpha.4...v2.2.0-alpha.5) (2019-12-01)
+
+
+### Bug Fixes
+
+* **gatsby-theme-docz:** fix tsx parsing in code blocks ([b321ff8](https://github.com/doczjs/docz/commit/b321ff8))
+
+
+
+
+
 # [2.2.0-alpha.4](https://github.com/doczjs/docz/compare/v2.2.0-alpha.3...v2.2.0-alpha.4) (2019-11-30)
 
 
