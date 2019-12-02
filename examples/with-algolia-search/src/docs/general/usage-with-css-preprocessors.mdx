@@ -1,0 +1,30 @@
+---
+name: Usage with CSS Preprocessors
+route: /docs/usage-with-css-preprocessors
+parent: Documentation
+menu: General
+---
+
+# Using docz with CSS Preprocessors
+
+Most configuration is from version 2 handled by Gatsby, and CSS preprocessing is no exception. Gatsby uses a range of [**Plugins**](https://www.gatsbyjs.org/plugins/) to handle things like `sass`, `less` and `postcss`. Gatsby supports CSS Modules out of the box.
+
+These plugins are added by adding a `gatsby-config.js` in your project root or modifying an existing one. For example if you want to add support for `sass` you would do the following:
+
+1. Install [`node-sass`](https://github.com/sass/node-sass) and [`gatsby-plugin-sass`](https://www.gatsbyjs.org/packages/gatsby-plugin-sass/)
+```bash
+# npm
+npm install --save node-sass gatsby-plugin-sass
+
+# yarn
+yarn add node-sass gatsby-plugin-sass
+```
+
+2. Add the plugin to your `gatsby-config.js`
+```js
+//gatsby-config.js
+module.exports = {
+  plugins: ['gatsby-plugin-sass']
+}
+```
+You should now be able to use `sass` in your components!

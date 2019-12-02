@@ -1,0 +1,23 @@
+---
+name: Component Shadowing
+route: /docs/component-shadowing
+parent: Documentation
+menu: Customizing
+---
+
+# Component Shadowing
+
+All components that comes with the standard theme `gatsby-theme-docz` can be [**shadowed**](https://www.gatsbyjs.org/blog/2019-04-29-component-shadowing/). This means that you can supply your own component that will shadow/override the themes component. This is done by placing a component with the same name as the themes component in the "same filepath" as the original component.
+
+For example if you want to shadow the `Logo`-component you would have to have the following structure in your folder:
+
+```
+your-site
+└── src
+    └── gatsby-theme-docz
+        └── components
+            └── Logo
+                  └──index.js
+```
+
+If it has the matching folder structure and name the theme component will be shadowed and you can freely edit.

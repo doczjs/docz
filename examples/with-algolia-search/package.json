@@ -1,0 +1,23 @@
+{
+  "name": "docz-with-algolia-example",
+  "private": true,
+  "version": "2.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "docz dev",
+    "build": "docz build",
+    "serve": "docz serve"
+  },
+  "dependencies": {
+    "algoliasearch": "^3.35.1",
+    "docz": "latest",
+    "dotenv": "^8.2.0",
+    "gatsby-plugin-algolia": "^0.5.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-instantsearch-dom": "^6.0.0",
+    "styled-components": "^4.4.1",
+    "styled-icons": "^9.0.1"
+  }
+}

@@ -1,0 +1,46 @@
+---
+name: Document settings
+route: /docs/document-settings
+parent: Documentation
+menu: General
+---
+
+# Document settings
+
+Document settings provide a way to enrich documents with metadata used to generate your documentation site.
+
+They are defined at the top of the `.mdx` file, use YAML and can be used to customize your pages by passing this data to your theme.
+
+Every document has **three** main properties that can be overriden :
+
+```markdown
+---
+name: My Document
+route: /custom-route
+menu: Documents
+---
+```
+
+- `name` The name of your document, used as the title of the page
+- `route *(optional)*` The route or path to your document's generated page. e.g. /docs/my-component
+
+> If you don't pass any here, docz will create a slug using the filepath of your file as route. e.g. /src-components-my-components/
+
+- `menu  *(optional)*` The menu within which your document is contained. It allows you to group documents into a single menu by changing this prop.
+
+## Custom properties
+
+The built in properties are for docz but docz is extensible and you can create your own themes which could need different properties.
+
+Custom properties can be set in the document settings and they will automatically be parsed.
+
+For example you could define a property called `fullpage` to define whether your document is a page with `100%` width or not:
+
+```
+---
+name: My Document
+fullpage: true
+---
+```
+
+You could then use this property when overriding or creating a theme as shown in [**Creating your themes: Using documents settings**](/docz/creating-your-themes#using-documents-settings)

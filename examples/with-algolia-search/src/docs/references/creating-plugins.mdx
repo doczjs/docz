@@ -1,0 +1,206 @@
+---
+name: Creating Plugins
+route: /docs/creating-plugins
+parent: Documentation
+menu: References
+---
+
+# Creating Plugins
+
+Plugins give you the ability to modify Docz processes, default configurations and create hooks for build and render. This is a perfect place to integrate Docz with other tools.
+
+To create a plugin you just need to use the `createPlugin` method from [docz-core](https://github.com/pedronauck/docz/tree/master/packages/docz-core)
+
+```js
+import { createPlugin } from 'docz-core'
+
+const myPlugin = () => createPlugin({
+  setConfig: (config) => /* ... */,
+  onCreateBabelConfig: (args) => /* ... */,
+  onCreateDevServer: (args) => /* ... */,
+  onCreateWebpackConfig: (args) => /* ... */,
+  modifyFiles: (files, args) => /* ... */,
+  onPreBuild: () => /* ... */,
+  onPostBuild: () => /* ... */,
+})
+```
+
+## `setConfig`
+
+Use to modify or create custom project configurations.
+
+#### Params
+
+- **config:** Default [configuration object](http://localhost:3000/docs/project-configuration)
+
+#### Return
+
+- `Config`
+
+---
+
+## `onCreateWebpackConfig`
+
+Let plugins extend/mutate the site’s webpack configuration.
+
+See also the documentation for [setWebpackConfig]().
+
+#### Params
+
+`stage {string}`
+The current build stage. One of ‘develop’, ‘develop-html’, ‘build-javascript’, or ‘build-html’
+
+`getConfig {function}`
+Returns the current webpack config
+
+`rules {object}`
+A set of preconfigured webpack config rules
+
+`loaders {object}`
+A set of preconfigured webpack config loaders
+
+`plugins {object}`
+A set of preconfigured webpack config plugins
+
+`actions {object}`
+
+#### Example 
+
+```js
+exports.onCreateWebpackConfig = ({
+ stage, getConfig, rules, loaders, actions
+}) => {
+  actions.setWebpackConfig({
+    module: {
+      rules: [
+        {
+          test: 'my-css',
+          use: [loaders.style(), loaders.css()]
+        },
+      ],
+    },
+  });
+}
+```
+
+---
+
+## `onCreateBabelConfig`
+
+Use to modify babelrc configuration
+
+#### Params
+
+`stage {string}`
+The current build stage. One of ‘develop’, ‘develop-html’, ‘build-javascript’, or ‘build-html’
+
+`getConfig {function}`
+Returns the current webpack config
+
+`rules {object}`
+A set of preconfigured webpack config rules
+
+`loaders {object}`
+A set of preconfigured webpack config loaders
+
+`plugins {object}`
+A set of preconfigured webpack config plugins
+
+`actions {object}`
+
+#### Example
+
+```js
+exports.onCreateBabelConfig = ({
+ stage, getConfig, rules, loaders, actions
+}) => {
+  actions.setBabelPlugin({
+    name:  `babel-plugin-emotion`,
+    options: {
+      sourceMap: true,
+    },
+  })
+}
+```
+
+---
+
+## `modifyFiles`
+
+Use to modify mdx files before parsing
+
+#### Params
+
+- **files:** Files parsed by Docz
+- **args:** The Docz config object merged with argv
+
+#### Return
+
+- `string[]`
+
+#### Types definitions
+
+```ts
+export type ModifyFiles = (files: string[], args: Config) => string[]
+```
+
+---
+
+## `onCreateDevServer`
+
+Run when gatsby develop server is started, its useful to add proxy and middleware to the dev server app
+
+#### Params
+
+- `app {Express}`
+The Express app used to run the dev server
+
+#### Example
+
+```js
+exports.onCreateDevServer = ({ app }) => {
+  app.get('/hello', function (req, res) {
+    res.send('hello world')
+  })
+}
+```
+
+---
+
+## `onPreBuild`
+
+Method triggered before the build process
+
+#### Params
+
+- **config:** Default bundler configuration object
+
+#### Return
+
+- `void`
+
+#### Type definitions
+
+```ts
+type OnPreBuild<C = any> = (config: C) => void
+```
+
+---
+
+## `onPostBuild`
+
+Method triggered after the build process
+
+#### Params
+
+- **config:** Default bundler configuration object
+
+#### Return
+
+- `void`
+
+#### Type definitions
+
+```ts
+type onPostBuild<C = any> = (config: C) => void
+```

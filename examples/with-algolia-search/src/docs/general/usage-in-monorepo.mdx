@@ -1,0 +1,38 @@
+---
+name: Usage in monorepo
+route: /docs/usage-in-monorepo
+parent: Documentation
+menu: General
+---
+
+# Implementing in monorepo
+
+When installing Docz in a monorepo environment you might need some extra steps to get everything working correctly.
+
+Let's say we have a lerna monorepo with workspaces defined as: `packages/**/*`, in a folder structure it would look like this:
+
+```
+packages/
+├─ components/
+└─ portal/
+   └─ package.json
+```
+
+Docz and `@foo/component` would be a dependency in `portal/package.json`. As Docz copies over this `package.json` to `portal/.docz/package.json`
+you might run into `error There are more than one workspace with name "@foo/portal"`. In order to fix this add
+a couple lines to your `portal/package.json`:
+
+```
+// portal.package.json
+{
+  "private": true,
+  "workspaces": [
+    // needed to resolve @foo/components in portal/package.json
+    "../../packages/**/*",
+    // needed to resolve @foo/components in portal/.docz/package.json
+    "../../../packages/**/*"
+  ]
+}
+```
+
+You might need to tweak these paths to match your monorepo structure.
