@@ -36,7 +36,7 @@ Next, we add a `package.json` to `gatsby-theme-docz-pink` :
 }
 ```
 
-And since we're saying that main is `index.js` we create a empty file called index.js at the root of the package in order for the bundler to know the package exists
+And since we're saying that main is `index.js` we create an empty file called index.js at the root of the package in order for the bundler to know the package exists
 
 ```js
 // noop
