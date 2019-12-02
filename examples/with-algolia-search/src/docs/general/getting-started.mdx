@@ -1,0 +1,122 @@
+---
+name: Getting started
+route: /
+parent: Documentation
+menu: General
+---
+
+# Getting Started
+
+## Start a New Project
+
+Use create-docz-app to quickly get started :
+
+```sh
+npx create-docz-app my-docz-app
+# or
+yarn create docz-app my-docz-app --example typescript
+```
+
+Make sure to check out [docz's `examples` directory](https://github.com/doczjs/docz/tree/master/examples) for the full list of supported examples.
+
+## Add Docz to an Existing Project
+
+> Make sure you have `react` and `react-dom` with versions `>= 16.8.0` installed as dependencies.
+
+Start by adding **Docz** as a dependency :
+
+```sh
+yarn add docz@next # react react-dom
+```
+
+or
+
+```sh
+npm add docz@next # react react-dom
+```
+
+After installing Docz in your project, you may find it convenient to add three scripts to your `package.json` to run, build and serve your Docz website.
+
+Note that this is an **optional step** :
+
+```json
+{
+  "name": "next-gen-documentation",
+  "scripts": {
+    "docz:dev": "docz dev",
+    "docz:build": "docz build",
+    "docz:serve": "docz build && docz serve"
+  },
+  "dependencies": {
+    "docz": "latest",
+    "react": "16.8.0",
+    "react-dom": "16.8.0"
+  }
+}
+```
+
+You can now spin up your dev server by running:
+
+```bash
+yarn docz:dev # or yarn docz dev
+```
+
+or
+
+```bash
+npm run docz:dev
+```
+
+## Develop
+
+With your dev server up, you can start writing your documentation.
+
+Docz uses the [**MDX**](https://mdxjs.com/) format that allows you to seamlessly write JSX inside your markdown files.
+
+> Note that you **don't need to follow any file architecture or convention**.
+> You can just create your `.mdx` files and put them **anywhere in your project**.
+
+With that in mind, let's create our first `.mdx` and give it a name and a route:
+
+```markdown
+---
+name: Hello world
+route: /
+---
+
+# Hello world
+
+Hello, I'm a mdx file!
+```
+
+With your first `.mdx` document created, you can open your browser and visit `localhost:3000` to see something like this:
+
+![Preview](https://cdn-std.dprcdn.net/files/acc_649651/Y825GV)
+
+We cover more of what you can do with _MDX_ in the [**Writing MDX**](/docs/writing-mdx) page.
+
+## Build
+
+`yarn docz build` will generate a static site for your site in `.docz/dist/`.
+
+You can try it out with `yarn docz serve` or by serving the generated site with your favorite static file server (e.g. `npx serve .docz/dist`).
+
+You can have `yarn docz build` emit to a different directory by providing a path to the `dest` field in your doczrc.js or from the command line : `yarn docz build --dest docs-site-directory`.
+
+## Deploy
+
+The output of docz consists of static assets only. This allows you to deploy your generated `docz` site with any static site hosting provider you'd like.
+
+Start by building your site with `yarn docz build`, if you haven't provided a `dest` flag to your config then you will find your generated files in `.docz/dist` that you can copy to your server to deploy your site.
+
+## Examples
+
+You can check the complete list of docz examples [here](https://github.com/doczjs/docz/tree/master/examples).
+
+## Migration Guide
+
+This documentation is about **Docz v2**.
+
+If you need to migrate your Docz project, please read the [**Migration Guide**](/docs/migration-guide).
+
+If you are looking for documentation for v1 you can find it [**here**](https://docz-v1.surge.sh/).

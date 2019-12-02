@@ -1,0 +1,327 @@
+---
+name: Components & Hooks API
+route: /docs/components-api
+parent: Documentation
+menu: References
+---
+
+# Components & Hooks API
+
+> ### Note
+>
+> By default, these components and hooks only work inside a Docz theme, because they rely on a lot of data fetched by docz at build-time.
+
+---
+
+## `<ComponentsProvider>`
+
+Use this provider to pass your components to MDX and they will be used when converting your markdown to html.
+
+```js
+import React from 'react'
+import { ComponentsProvider, theme } from 'docz'
+
+import MyCoolSidebar from './my-cool-sidebar'
+import * as components from './my-component-list'
+
+const map = {
+  page: components.Page,
+  h1: components.H1,
+  h2: components.H2,
+  pre: components.Pre,
+}
+
+const Theme = theme(({ children }) => (
+  <div>
+    <MyCoolSidebar />
+    <ComponentsProvider components={map}>
+      {children}
+    </ComponentsProvider>
+  </div>
+))
+```
+
+### Properties
+
+- **components:** `ComponentsMap`<br />
+  This map is responsible to render components inside your compiled `.mdx`
+
+### Type Definitions
+
+```ts
+interface ComponentsMap {
+  loading?: CT
+  layout?: CT<LayoutProps>
+  notFound?: CT<RouteComponentProps<any>>
+  playground?: PlaygroundComponent
+  h1?: CT<any> | string
+  h2?: CT<any> | string
+  h3?: CT<any> | string
+  h4?: CT<any> | string
+  h5?: CT<any> | string
+  h6?: CT<any> | string
+  span?: CT<any> | string
+  a?: CT<any> | string
+  ul?: CT<any> | string
+  table?: CT<any> | string
+  pre?: CT<any> | string
+  code?: CT<any> | string
+  inlineCode?: CT<any> | string
+  [key: string]: any
+}
+
+interface ComponentsProviderProps = {
+  components: ComponentsMap
+}
+
+export const ComponentsProvider: React.SFC<ComponentsProviderProps>
+```
+
+---
+
+## `<Playground>`
+
+Used to render your component inside a playground and show an editable version of your code inside it.
+
+### Properties
+
+`none`
+
+### Type Definitions
+
+```ts
+interface PlaygroundProps {
+  children: React.ReactNode | () => React.ReactNode | React.ReactNode[]
+}
+```
+
+---
+
+## `<Props>`
+
+Component that takes a component and generates a table of properties based on your properties definitions.
+
+```markdown
+---
+name: MyComponent
+---
+
+import { Props } from 'docz'
+import MyComponent from './MyComponent'
+
+<Props of={MyComponent} />
+```
+
+### Descriptions
+
+You can add descriptions for your props by adding a comment on the line above the prop. 
+
+> Note: Description comments must be in the format `/** Description */`.
+
+```js
+MyComponent.propTypes = {
+  /** The description for myProp */
+  myProp: PropTypes.string,
+}
+```
+
+### Properties
+
+- **of:** `React.ComponentType<any>`
+
+---
+
+## `useComponents`
+
+Hook responsible for accessing the components map passed as a prop to the `<ComponentsProvider>` of your theme.
+
+```js
+import { useComponents } from 'docz'
+
+const App = () => {
+  const components = useComponents()
+  return /* ... */
+}
+```
+
+### Params
+
+`none`
+
+### Return
+
+- components: `ComponentsMap`
+
+---
+
+## `useDocs`
+
+Use this hook to get the list of all parsed documents. It can be useful when you want to create something like a menu or a list.
+
+```js
+import { useDocs, Link } from 'docz'
+
+const App = () => {
+  const docs = useDocs()
+  return (
+    <MyMenu>
+      {docs.map(doc => (
+        <Link key={doc.id} to={doc.route}>
+          {doc.name}
+        </Link>
+      ))}
+    </MyMenu>
+  )
+}
+```
+
+### Params
+
+`none`
+
+### Return
+
+- docs: `Docs[]`<br />
+  All documents parsed by docz
+
+### Typings Definitions
+
+```ts
+interface Docs {
+  id: string
+  filepath: string
+  link: string | null
+  slug: string
+  name: string
+  route: string
+  menu: string | null
+  headings: Heading[]
+  [key: string]: any
+}
+
+export function useDocs(): Docs[]
+```
+
+---
+
+## `useMenus`
+
+This hook will return the menu built by Docz using your documents.
+Use this to quickly get your menus or use `useDocs` if you want the documents ordered in the order of your project configuration.
+
+```js
+import { useMenus } from 'docz'
+
+const App = () => {
+  const menus = useMenus()
+  return /* ... */
+}
+```
+
+### Params
+
+- **options**: `Object`
+  - `query: String` Use `query` to filter menu results. The query is matched against the menu headers, not page content.
+
+### Return
+
+- **menus:** `MenuItem[]`
+
+### Type Definitions
+
+```ts
+export interface MenuItem {
+  id: string
+  name: string
+  route?: string
+  href?: string
+  menu?: MenuItem[]
+  order?: number
+  parent?: string
+}
+
+export function useMenus(opts: UseMenuOpts): MenuItem[]
+```
+
+---
+
+## `useConfig`
+
+Retrieve the project config object passed on your project configuration.
+By default, Docz merges your `themeConfig` object with the default theme config of each theme.
+
+```js
+import React from 'react'
+import { useConfig } from 'docz'
+
+const MyDeepComponentInsideMyTheme = () => {
+  const config = useConfig()
+  return /* ... */
+}
+```
+
+### Properties
+
+`none`
+
+### Return
+
+- **config:** `Config`
+
+### Type Definitions
+
+```ts
+export type ThemeConfig = Record<string, any>
+export interface Config {
+  title: string
+  description: string
+  themeConfig: ThemeConfig
+  menu: MenuItem[]
+  version: string | null
+  repository: string | null
+  native: boolean
+  separator: string
+  codeSandbox: boolean
+  linkComponent?: React.ComponentType<any>
+}
+
+export function useConfig(): Config
+```
+
+---
+
+## `theme()`
+
+If you want to create your custom theme you need to use the `theme()` function. 
+It's a Higher Order Component that receives a `config` property as the first parameter 
+and returns a function that receives your theme component as a parameter:
+
+```js
+import React from 'react'
+import { theme, DocPreview } from 'docz'
+
+const Theme = () => (
+  <div>
+    <MyCoolestSidebar />
+    <DocPreview />
+  </div>
+)
+
+const themeConfig = {
+  /* ... */
+}
+
+export default theme(themeConfig)(Theme)
+```
+
+### Type Definitions
+
+```ts
+import { ComponentType, ReactNode } from 'react'
+
+interface ThemeConfig {
+  [key: string]: any
+}
+
+function theme(config: ThemeConfig): (Component: ComponentType) => ReactNode
+```

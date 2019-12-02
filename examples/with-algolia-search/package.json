@@ -1,13 +1,8 @@
 {
-  "name": "docz-example-basic",
+  "name": "docz-with-algolia-example",
   "private": true,
-  "version": "2.0.0-rc.41",
+  "version": "2.0.0",
   "license": "MIT",
-  "files": [
-    "src/",
-    "doczrc.js",
-    "package.json"
-  ],
   "scripts": {
     "dev": "docz dev",
     "build": "docz build",
@@ -15,7 +10,7 @@
   },
   "dependencies": {
     "algoliasearch": "^3.35.1",
-    "docz": "^2.2.0-alpha.4",
+    "docz": "latest",
     "dotenv": "^8.2.0",
     "gatsby-plugin-algolia": "^0.5.0",
     "prop-types": "^15.7.2",

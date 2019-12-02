@@ -1,0 +1,43 @@
+---
+name: Writing MDX
+route: /docs/writing-mdx
+parent: Documentation
+menu: General
+---
+
+# Writing MDX
+
+MDX is an authorable format that lets you seamlessly use JSX in your Markdown documents. You can import components, like interactive charts
+and embed them within your content. This makes writing long-form content with components a blast.
+
+More details about MDX in the [Official website.](https://mdxjs.com/)
+
+## Working with components
+
+For now, you only need to know that with MDX you can use your components inside markdown.
+But how? Let's take a look at how we can improve our `.mdx` file created previously by importing and using a component inside it. 
+
+The example below assumes we have an exported component named `Button` in a file named `Button.jsx`/`Button.tsx` located in the same folder as the `.mdx` file we are editing.
+
+```mdx
+---
+name: Hello world
+---
+
+import { Button } from './Button'
+
+# Hello world
+
+Hello, I'm still a mdx file, but now I have a button component !
+
+<Button onClick={() => { alert("You clicked me"); }}>Click me</Button>
+```
+
+And, if you do have a `Button` component to import, you'll see something like this:
+
+![Documentation site showing a rendered button along with Markdown](https://cdn-std.dprcdn.net/files/acc_649651/Fgbg4F)
+
+With MDX you can mix _React Components_ or _html-elements_ with regular markdown allowing you to either document your own components _or_ create helper components that make documentation easier. 
+
+**Docz** comes with some helper components that will help you document your components faster, these are covered in [**Built-in components**](/docs/built-in-components).
+

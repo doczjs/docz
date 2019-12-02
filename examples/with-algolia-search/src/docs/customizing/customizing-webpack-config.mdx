@@ -1,0 +1,33 @@
+---
+name: Customizing Webpack Config
+route: /docs/customizing-webpack-config
+parent: Documentation
+menu: Customizing
+---
+
+# Customizing docz's Webpack Configuration
+
+Let's assume we want to configure an alias so that instead of importing files from `../../components/Alert` we import from `@/components/Alert`.
+
+And another alias to allow us to replace relative paths like `import A from './src/components/Alert` with an absolute path `import A from 'components/Alert'`
+
+To configure the webpack config we add a `gatsby-node.js` file at the root of the project and export `onCreateWebpackConfig` like we would normally do in a Gatsby app.
+
+You can read more about configuring webpack with Gatsby [here](https://www.gatsbyjs.org/docs/add-custom-webpack-config/), see a small example below and a full working example [here](https://github.com/doczjs/docz/tree/master/examples/webpack-alias) : 
+
+
+```js
+// gatsby-node.js
+const path = require('path')
+exports.onCreateWebpackConfig = args => {
+  args.actions.setWebpackConfig({
+    resolve: {
+      // ⚠ Note the '..' in the path because the docz gatsby project lives in the `.docz` directory
+      modules: [path.resolve(__dirname, '../src'), 'node_modules'],
+      alias: {
+        '@': path.resolve(__dirname, '../src/components/'),
+      },
+    },
+  })
+}
+```
