@@ -1,19 +1,19 @@
-# Docz with Decorators Example
+# Docz with Decorators and TypeScript Example
 
 ## Using `create-docz-app`
 
 ```sh
-npx create-docz-app docz-app-with-decorators --example with-decorators
+npx create-docz-app docz-app-with-typescript-decorators --example with-typescript-decorators
 # or
-yarn create docz-app docz-app-with-decorators --example with-decorators
+yarn create docz-app docz-app-with-typescript-decorators --example with-typescript-decorators
 ```
 
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/with-decorators
-mv with-decorators docz-with-decorators-example
-cd docz-with-decorators-example
+curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/with-typescript-decorators
+mv with-typescript-decorators docz-with-typescript-decorators-example
+cd docz-with-typescript-decorators-example
 ```
 
 ## Notes
@@ -35,7 +35,7 @@ And add `@babel/plugin-proposal-decorators` as a dev dependency
 yarn add -D @babel/plugin-proposal-decorators
 ```
 
-And last we set "compilerOptions.experimentalDecorators" to true in jsconfig.json
+And last we set "compilerOptions.experimentalDecorators" to true in tsconfig.json
 
 ## Setup
 
