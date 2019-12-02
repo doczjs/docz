@@ -1,5 +1,5 @@
 {
-  "name": "docz-example-basic",
+  "name": "docz-example-with-decorators",
   "private": true,
   "version": "2.0.0-rc.41",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "react": "^16.11.0",
     "react-dom": "^16.11.0"
   },
-  "resolutions": {
-    "prism-react-renderer": "^1.0.2"
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.7.4"
   }
 }
