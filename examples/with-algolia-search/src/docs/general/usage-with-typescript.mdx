@@ -47,6 +47,6 @@ If you have particular needs or need to control exactly which files are being pi
 export default {
   filterComponents: files =>
     //This overrides the default filtering of components
-    files.filter(filepath => /[w-]*.(js|jsx|ts|tsx)$/.test(filepath)),
+    files.filter(filepath => /[\w-]+.(?:j|t)sx?$/.test(filepath)),
 }
 ```
