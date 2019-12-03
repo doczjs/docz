@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-alpha.7](https://github.com/doczjs/docz/compare/v2.2.0-alpha.6...v2.2.0-alpha.7) (2019-12-03)
+
+
+### Bug Fixes
+
+* **gatsby-theme-docz:** fix infinite renders in playground on hot reload ([3451fd1](https://github.com/doczjs/docz/commit/3451fd1)), closes [#1299](https://github.com/doczjs/docz/issues/1299)
+
+
+
+
+
 # [2.2.0-alpha.6](https://github.com/doczjs/docz/compare/v2.2.0-alpha.5...v2.2.0-alpha.6) (2019-12-03)
 
 
