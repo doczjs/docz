@@ -10,19 +10,20 @@ import { usePrismTheme } from '~utils/theme'
 import * as styles from './styles'
 import * as Icons from '../Icons'
 
+const transformCode = code => {
+  if (code.startsWith('()') || code.startsWith('class')) return code
+  return `<React.Fragment>${code}</React.Fragment>`
+}
+
 export const Playground = ({ code, scope, language }) => {
   const {
     themeConfig: { showPlaygroundEditor, showLiveError, showLivePreview },
   } = useConfig()
-
+  // Makes sure scope is only given on mount to avoid infinite re-render on hot reloads
+  const [scopeOnMount] = useState(scope)
   const theme = usePrismTheme()
   const [showingCode, setShowingCode] = useState(() => showPlaygroundEditor)
   const [width, setWidth] = useState(() => '100%')
-
-  const transformCode = code => {
-    if (code.startsWith('()') || code.startsWith('class')) return code
-    return `<React.Fragment>${code}</React.Fragment>`
-  }
 
   const copyCode = () => copy(code)
 
@@ -58,7 +59,7 @@ export const Playground = ({ code, scope, language }) => {
     <Resizable {...resizableProps} data-testid="playground">
       <LiveProvider
         code={code}
-        scope={scope}
+        scope={scopeOnMount}
         transformCode={transformCode}
         language={language}
         theme={theme}
