@@ -21,7 +21,7 @@ export const Code = ({ children, className: outerClassName }) => {
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Styled.pre
           className={`${outerClassName || ''} ${className}`}
-          style={style}
+          style={{ ...style, overflowX: 'auto' }}
           data-testid="code"
         >
           {tokens.map((line, i) => (
