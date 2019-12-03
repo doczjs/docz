@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-alpha.6](https://github.com/doczjs/docz/compare/v2.2.0-alpha.5...v2.2.0-alpha.6) (2019-12-03)
+
+**Note:** Version bump only for package docz
+
+
+
+
+
 # [2.2.0-alpha.5](https://github.com/doczjs/docz/compare/v2.2.0-alpha.4...v2.2.0-alpha.5) (2019-12-01)
 
 **Note:** Version bump only for package docz

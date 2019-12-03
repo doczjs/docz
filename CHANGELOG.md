@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-alpha.6](https://github.com/doczjs/docz/compare/v2.2.0-alpha.5...v2.2.0-alpha.6) (2019-12-03)
+
+
+### Bug Fixes
+
+* **gatsby-theme-docz:** fix horizontal code overflow ([a0b7823](https://github.com/doczjs/docz/commit/a0b7823))
+
+
+
+
+
 # [2.2.0-alpha.5](https://github.com/doczjs/docz/compare/v2.2.0-alpha.4...v2.2.0-alpha.5) (2019-12-01)
 
 
