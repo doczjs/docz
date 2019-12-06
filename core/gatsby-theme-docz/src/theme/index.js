@@ -21,6 +21,8 @@ export default merge(typography, {
   showDarkModeSwitch: true,
   // Display edit this page button on every page
   showMarkdownEditButton: true,
+  // Wrap the playground editor and preview in iframes to avoid style/script collisions
+  useScopingInPlayground: false,
   colors: {
     ...modes.light,
     modes: {
