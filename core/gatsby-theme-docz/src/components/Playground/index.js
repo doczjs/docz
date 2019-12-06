@@ -45,13 +45,18 @@ const transformCode = code => {
 
 export const Playground = ({ code, scope, language, useScoping = false }) => {
   const {
-    themeConfig: { showPlaygroundEditor, showLiveError, showLivePreview },
+    themeConfig: {
+      showPlaygroundEditor,
+      showLiveError,
+      showLivePreview,
+      useScopingInPlayground,
+    },
   } = useConfig()
 
   const [previewHeight, setPreviewHeight] = React.useState()
   const [editorHeight, setEditorHeight] = React.useState()
   const Wrapper = React.useCallback(
-    useScoping
+    useScoping || useScopingInPlayground
       ? props => <IframeWrapper {...props}>{props.children}</IframeWrapper>
       : props => (
           <div sx={styles.previewInner(showingCode)}>{props.children}</div>
