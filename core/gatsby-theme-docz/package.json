@@ -41,6 +41,7 @@
     "prop-types": "^15.7.2",
     "re-resizable": "^6.1.0",
     "react-feather": "^2.0.3",
+    "react-frame-component": "^4.1.1",
     "react-helmet-async": "^1.0.4",
     "react-live": "^2.2.1",
     "rehype-docz": "^2.1.0",

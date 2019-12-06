@@ -9,6 +9,7 @@ import copy from 'copy-text-to-clipboard'
 import { usePrismTheme } from '~utils/theme'
 import * as styles from './styles'
 import * as Icons from '../Icons'
+import { Preview } from '../Preview'
 
 const transformCode = code => {
   if (code.startsWith('()') || code.startsWith('class')) return code
@@ -67,7 +68,9 @@ export const Playground = ({ code, scope, language }) => {
         <div sx={styles.previewWrapper}>
           <div sx={styles.previewInner(showingCode)}>
             {showLivePreview && (
-              <LivePreview sx={styles.preview} data-testid="live-preview" />
+              <Preview>
+                <LivePreview sx={styles.preview} data-testid="live-preview" />
+              </Preview>
             )}
           </div>
           <div sx={styles.buttons}>
