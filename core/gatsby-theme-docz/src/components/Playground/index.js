@@ -43,7 +43,7 @@ const transformCode = code => {
   return `<React.Fragment>${code}</React.Fragment>`
 }
 
-export const Playground = ({ code, scope, language, useIframe = false }) => {
+export const Playground = ({ code, scope, language, useScoping = false }) => {
   const {
     themeConfig: { showPlaygroundEditor, showLiveError, showLivePreview },
   } = useConfig()
@@ -51,12 +51,12 @@ export const Playground = ({ code, scope, language, useIframe = false }) => {
   const [previewHeight, setPreviewHeight] = React.useState()
   const [editorHeight, setEditorHeight] = React.useState()
   const Wrapper = React.useCallback(
-    useIframe
+    useScoping
       ? props => <IframeWrapper {...props}>{props.children}</IframeWrapper>
       : props => (
           <div sx={styles.previewInner(showingCode)}>{props.children}</div>
         ),
-    [useIframe]
+    [useScoping]
   )
 
   // Makes sure scope is only given on mount to avoid infinite re-render on hot reloads
