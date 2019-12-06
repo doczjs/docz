@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-alpha.8](https://github.com/doczjs/docz/compare/v2.2.0-alpha.7...v2.2.0-alpha.8) (2019-12-06)
+
+
+### Features
+
+* **gatsby-theme-docz:** add optional iframe for preview and ed… ([#1305](https://github.com/doczjs/docz/issues/1305)) ([9c5082e](https://github.com/doczjs/docz/commit/9c5082e)), closes [#1306](https://github.com/doczjs/docz/issues/1306)
+
+
+
+
+
 # [2.2.0-alpha.7](https://github.com/doczjs/docz/compare/v2.2.0-alpha.6...v2.2.0-alpha.7) (2019-12-03)
 
 
