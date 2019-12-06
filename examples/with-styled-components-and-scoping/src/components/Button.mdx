@@ -1,0 +1,57 @@
+---
+name: Button
+menu: Components
+---
+
+import { Playground, Props } from 'docz'
+import { Button } from './Button'
+
+# Button
+
+Buttons make common actions more obvious and help users more easily perform them. Buttons use labels and sometimes icons to communicate the action that will occur when the user touches them.
+
+### Best practices
+
+- Group buttons logically into sets based on usage and importance.
+- Ensure that button actions are clear and consistent.
+- The main action of a group set can be a primary button.
+- Select a single button variation and do not mix them.
+
+## Properties
+
+<Props of={Button} />
+
+## Basic usage
+
+<Playground>
+  <Button>Click me</Button>
+</Playground>
+
+## With different sizes
+
+<Playground>
+  <Button scale="small">Click me</Button>
+  <Button scale="normal">Click me</Button>
+  <Button scale="big">Click me</Button>
+</Playground>
+
+## With different colors
+
+<Playground>
+  <Button kind="primary">Click me</Button>
+  <Button kind="secondary">Click me</Button>
+  <Button kind="cancel">Click me</Button>
+  <Button kind="dark">Click me</Button>
+  <Button kind="gray">Click me</Button>
+</Playground>
+
+## Outlined
+
+<Playground>
+  <Button kind="primary" outline>Click me</Button>
+  <Button kind="secondary" outline>Click me</Button>
+  <Button kind="cancel" outline>Click me</Button>
+  <Button kind="dark" outline>Click me</Button>
+  <Button kind="gray" outline>Click me</Button>
+</Playground>
+
