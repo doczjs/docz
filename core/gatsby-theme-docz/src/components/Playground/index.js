@@ -43,7 +43,7 @@ const transformCode = code => {
   return `<React.Fragment>${code}</React.Fragment>`
 }
 
-export const Playground = ({ code, scope, language, useIframe = 0 }) => {
+export const Playground = ({ code, scope, language, useIframe = false }) => {
   const {
     themeConfig: { showPlaygroundEditor, showLiveError, showLivePreview },
   } = useConfig()
