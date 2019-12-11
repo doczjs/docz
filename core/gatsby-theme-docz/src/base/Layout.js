@@ -16,11 +16,9 @@ const Route = ({ children, entry, ...defaultProps }) => {
   const props = { ...defaultProps, doc: entry }
   if (!entry) return <NotFound />
   return (
-    <MDXProvider components={components}>
-      <Wrapper doc={entry}>
-        <Layout {...props}>{children}</Layout>
-      </Wrapper>
-    </MDXProvider>
+    <Wrapper doc={entry}>
+      <Layout {...props}>{children}</Layout>
+    </Wrapper>
   )
 }
 
