@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { useComponents } from 'docz'
-import { MDXProvider } from '@mdx-js/react'
 import { propEq, get } from 'lodash/fp'
 
 import { useDbQuery } from '../hooks/useDbQuery'
