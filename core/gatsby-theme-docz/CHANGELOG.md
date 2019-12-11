@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1-alpha.0](https://github.com/doczjs/docz/compare/v2.2.0...v2.2.1-alpha.0) (2019-12-11)
+
+
+### Bug Fixes
+
+* **gatsby-theme-docz:** fix mdx components theming from config ([3a9bdb7](https://github.com/doczjs/docz/commit/3a9bdb7)), closes [#1309](https://github.com/doczjs/docz/issues/1309)
+
+
+
+
+
 # [2.2.0](https://github.com/doczjs/docz/compare/v2.2.0-alpha.8...v2.2.0) (2019-12-11)
 
 **Note:** Version bump only for package gatsby-theme-docz
