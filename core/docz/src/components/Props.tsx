@@ -3,6 +3,8 @@ import { createElement, SFC, ComponentType, useMemo } from 'react'
 import { assoc, first, get, mapValues } from 'lodash/fp'
 import capitalize from 'capitalize'
 import marksy from 'marksy'
+import kebabCase from 'kebab-case'
+import pascalCase from 'pascal-case'
 
 import { doczState } from '../state'
 import { useComponents } from '../hooks'
@@ -117,13 +119,20 @@ export const Props: SFC<PropsProps> = ({
   const componentName =
     filemetaName || get('displayName', component) || get('name', component)
 
+  const componentMatcher = (componentName: string, item: any) => {
+    const matchingPatterns = [
+      filename,
+      `/${componentName}.`,
+      `/${kebabCase(componentName)}.`,
+      `/${pascalCase(componentName)}.`,
+    ]
+    return !!matchingPatterns.find(pattern => item.key.includes(pattern))
+  }
+
   const found =
     stateProps &&
     stateProps.length > 0 &&
-    stateProps.find(
-      item =>
-        item.key.includes(`/${componentName}.`) || item.key.includes(filename)
-    )
+    stateProps.find(item => componentMatcher(componentName, item))
 
   const value = get('value', found) || []
   const firstDefinition = first(value)
