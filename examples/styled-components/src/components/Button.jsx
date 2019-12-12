@@ -49,7 +49,7 @@ const kinds = outline => {
 const getScale = ({ scale = 'normal' }) => scales[scale]
 const getKind = ({ kind = 'primary', outline = false }) => kinds(outline)[kind]
 
-const ButtonStyled = styled('button')`
+export const Button = styled('button')`
   ${getKind};
   ${getScale};
   cursor: pointer;
@@ -57,10 +57,6 @@ const ButtonStyled = styled('button')`
   border: none;
   border-radius: 3px;
 `
-
-export const Button = ({ children, ...props }) => (
-  <ButtonStyled {...props}>{children}</ButtonStyled>
-)
 
 Button.propTypes = {
   scales: t.oneOf(['small', 'normal', 'big']),

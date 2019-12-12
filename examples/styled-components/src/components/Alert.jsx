@@ -9,15 +9,13 @@ const kinds = {
   warning: '#FFA502',
 }
 
-const AlertStyled = styled('div')`
+export const Alert = styled('div')`
   padding: 15px 20px;
   background: white;
   border-radius: 3px;
   color: white;
   background: ${({ kind = 'info' }) => kinds[kind]};
 `
-
-export const Alert = props => <AlertStyled {...props} />
 
 Alert.propTypes = {
   kind: t.oneOf(['info', 'positive', 'negative', 'warning']),
