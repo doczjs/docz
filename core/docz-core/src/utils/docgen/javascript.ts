@@ -1,13 +1,14 @@
 import * as fs from 'fs-extra'
 import * as path from 'path'
 import logger from 'signale'
-import externalProptypesHandler from './externalProptypesHandler'
 import actualNameHandler from 'react-docgen-actual-name-handler'
 import * as reactDocgen from 'react-docgen'
 
 import { Config } from '../../config/argv'
 import { getRootDir } from '../../config/paths'
 import { unixPath } from '.'
+import { resolver as doczResolver } from './docz-docgen-resolver'
+import externalProptypesHandler from './externalProptypesHandler'
 
 const throwError = (err: any) => {
   logger.fatal(`Error parsing static types`)
@@ -15,9 +16,7 @@ const throwError = (err: any) => {
 }
 
 export const jsParser = (files: string[], config: Config) => {
-  const resolver =
-    config.docgenConfig.resolver ||
-    reactDocgen.resolver.findAllExportedComponentDefinitions
+  const resolver = config.docgenConfig.resolver || doczResolver
 
   const root = getRootDir(config)
   const parseFilepathProps = (filepath: string) => {
