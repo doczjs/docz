@@ -7,6 +7,7 @@ import { get } from 'lodash/fp'
 
 import { Plugin } from '../lib/Plugin'
 import * as paths from '../config/paths'
+import { doczRcBaseConfig } from './docz'
 
 const getEnv = (val: string | string[], defaultValue: any = null): any =>
   envDotProp.get(val, defaultValue, { parse: true })
@@ -131,7 +132,7 @@ export const setArgs = (yargs: Yargs) => {
     .option('typescript', {
       alias: 'ts',
       type: 'boolean',
-      default: getEnv('docz.typescript', false),
+      default: getEnv('docz.typescript', doczRcBaseConfig.typescript),
     })
     .option('propsParser', {
       type: 'boolean',
