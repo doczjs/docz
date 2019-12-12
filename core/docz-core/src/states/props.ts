@@ -44,7 +44,11 @@ export const initial = (config: Config, pattern: string[]) => async (
 ) => {
   const { filterComponents } = config
   const cwd = paths.getRootDir(config)
-  const files = await fastglob(pattern, { cwd, caseSensitiveMatch: false })
+  const { customPattern } = config
+  const files = await fastglob(customPattern || pattern, {
+    cwd,
+    caseSensitiveMatch: false,
+  })
   const filtered = filterComponents ? filterComponents(files) : files
   const metadata = await docgen(filtered, config)
   p.setState('props', metadata)

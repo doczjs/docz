@@ -75,6 +75,7 @@ export interface Config extends Argv {
   themesDir: string
   mdxExtensions: string[]
   filterComponents: (files: string[]) => string[]
+  customPattern: string[]
 }
 
 export const setArgs = (yargs: Yargs) => {
