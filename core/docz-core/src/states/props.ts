@@ -17,6 +17,10 @@ export const getPattern = (config: Config) => {
     docgenConfig: docgenConfig,
   } = config
 
+  if (docgenConfig.searchPatterns) {
+    return docgenConfig.searchPatterns
+  }
+
   const searchPath = docgenConfig.searchPath ? docgenConfig.searchPath : source
   const root = paths.getRootDir(config)
   const srcDir = path.resolve(root, searchPath)
@@ -44,11 +48,7 @@ export const initial = (config: Config, pattern: string[]) => async (
 ) => {
   const { filterComponents } = config
   const cwd = paths.getRootDir(config)
-  const { customPattern } = config
-  const files = await fastglob(customPattern || pattern, {
-    cwd,
-    caseSensitiveMatch: false,
-  })
+  const files = await fastglob(pattern, { cwd, caseSensitiveMatch: false })
   const filtered = filterComponents ? filterComponents(files) : files
   const metadata = await docgen(filtered, config)
   p.setState('props', metadata)
