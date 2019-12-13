@@ -1,9 +1,8 @@
 import * as React from 'react'
 import { createElement, SFC, ComponentType, useMemo } from 'react'
-import { assoc, first, get, mapValues } from 'lodash/fp'
+import { assoc, first, get, mapValues, kebabCase } from 'lodash/fp'
 import capitalize from 'capitalize'
 import marksy from 'marksy'
-import kebabCase from 'kebab-case'
 import pascalCase from 'pascal-case'
 
 import { doczState } from '../state'
