@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.1](https://github.com/doczjs/docz/compare/v2.3.0-alpha.0...v2.3.0-alpha.1) (2019-12-13)
+
+
+### Bug Fixes
+
+* **docz-core:** properly support node_modules for multiple file patterns ([#1315](https://github.com/doczjs/docz/issues/1315)) ([4d9f9b3](https://github.com/doczjs/docz/commit/4d9f9b3))
+* **docz-core:** use docz-utils for get and mergeWith ([f222083](https://github.com/doczjs/docz/commit/f222083))
+
+
+
+
+
 # [2.3.0-alpha.0](https://github.com/doczjs/docz/compare/v2.2.1-alpha.1...v2.3.0-alpha.0) (2019-12-12)
 
 
