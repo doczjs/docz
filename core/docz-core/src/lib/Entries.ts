@@ -47,14 +47,15 @@ export class Entries {
   }
 
   private async getMap(config: Config): Promise<EntryMap> {
-    const { paths, ignore, plugins, mdPlugins } = config
+    const { paths, ignore, plugins, mdPlugins, src } = config
     const fileMatchingPatterns = getFilesToMatch(config)
-
+    const srcHasNodeModules = src.indexOf('node_modules') !== -1
     // Hack around fast-glob not returning the whole set when many patterns are provided in the array
     let initialFiles: string[] = []
     for (let filePattern of fileMatchingPatterns) {
-      const globIgnore =
-        filePattern.indexOf('node_modules') === -1 ? ['**/node_modules/**'] : []
+      const filePatternHasNodeModules = filePattern.indexOf('node_modules') !== -1
+      const shouldIncludeNodeModules = srcHasNodeModules || filePatternHasNodeModules
+      const globIgnore = shouldIncludeNodeModules ? [] : ['**/node_modules/**']
 
       const filesFromPattern = await glob([filePattern], {
         cwd: paths.getRootDir(config),
