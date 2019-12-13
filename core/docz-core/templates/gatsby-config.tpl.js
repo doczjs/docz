@@ -1,4 +1,4 @@
-const { mergeWith } = require('lodash/fp')
+const { mergeWith } = require('docz-utils')
 const fs = require('fs-extra')
 
 let custom = {}
