@@ -28,6 +28,7 @@ export interface DocgenConfig {
   resolver?: (ast: any, recast: any) => any
   propFilter?: (prop: any) => boolean
   searchPath: string
+  searchPatterns: string[]
 }
 
 export interface Menu {

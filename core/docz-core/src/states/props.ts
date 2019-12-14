@@ -17,6 +17,10 @@ export const getPattern = (config: Config) => {
     docgenConfig: docgenConfig,
   } = config
 
+  if (docgenConfig.searchPatterns) {
+    return docgenConfig.searchPatterns
+  }
+
   const searchPath = docgenConfig.searchPath ? docgenConfig.searchPath : source
   const root = paths.getRootDir(config)
   const srcDir = path.resolve(root, searchPath)
