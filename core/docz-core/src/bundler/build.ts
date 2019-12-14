@@ -1,11 +1,11 @@
 import * as fs from 'fs-extra'
 import * as path from 'path'
-import spawn from 'cross-spawn'
 import sh from 'shelljs'
 
 import * as paths from '../config/paths'
 import { BuildFn } from '../lib/Bundler'
 import { ensureFiles } from './machine/actions'
+import { spawnSync } from '../utils/spawn'
 
 export const build: BuildFn = async (config, dist) => {
   const publicDir = path.join(paths.docz, 'public')
@@ -19,6 +19,6 @@ export const build: BuildFn = async (config, dist) => {
   }
   ensureFiles({ args: config })
   sh.cd(paths.docz)
-  spawn.sync('npm', cliArgs, { stdio: 'inherit' })
+  spawnSync('npm', cliArgs)
   await fs.copy(publicDir, dist)
 }
