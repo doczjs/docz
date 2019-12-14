@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.2](https://github.com/doczjs/docz/compare/v2.3.0-alpha.1...v2.3.0-alpha.2) (2019-12-14)
+
+
+### Features
+
+* **docz-utils:** add exports parser to add to Playground scope ([9c564d0](https://github.com/doczjs/docz/commit/9c564d0)), closes [#1247](https://github.com/doczjs/docz/issues/1247)
+
+
+
+
+
 # [2.3.0-alpha.1](https://github.com/doczjs/docz/compare/v2.3.0-alpha.0...v2.3.0-alpha.1) (2019-12-13)
 
 

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.2](https://github.com/doczjs/docz/compare/v2.3.0-alpha.1...v2.3.0-alpha.2) (2019-12-14)
+
+
+### Bug Fixes
+
+* **docz-core:** forward cli status code properly ([#1319](https://github.com/doczjs/docz/issues/1319)) ([99ebf82](https://github.com/doczjs/docz/commit/99ebf82))
+
+
+### Features
+
+* **docz-core:** allow custom pattern for globbing components with docgenConfig.searchPatterns ([#1316](https://github.com/doczjs/docz/issues/1316)) ([29e0165](https://github.com/doczjs/docz/commit/29e0165))
+* **docz-core:** support kebab & pascal case component file name pattern ([#1314](https://github.com/doczjs/docz/issues/1314)) ([9d5b129](https://github.com/doczjs/docz/commit/9d5b129))
+* **docz-utils:** add exports parser to add to Playground scope ([9c564d0](https://github.com/doczjs/docz/commit/9c564d0)), closes [#1247](https://github.com/doczjs/docz/issues/1247)
+* **rehype-docz:** add mdx exports to Playground scope ([d902e2a](https://github.com/doczjs/docz/commit/d902e2a)), closes [#1247](https://github.com/doczjs/docz/issues/1247)
+
+
+
+
+
 # [2.3.0-alpha.1](https://github.com/doczjs/docz/compare/v2.3.0-alpha.0...v2.3.0-alpha.1) (2019-12-13)
 
 

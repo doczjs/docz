@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.2](https://github.com/doczjs/docz/compare/v2.3.0-alpha.1...v2.3.0-alpha.2) (2019-12-14)
+
+
+### Bug Fixes
+
+* **docz-core:** forward cli status code properly ([#1319](https://github.com/doczjs/docz/issues/1319)) ([99ebf82](https://github.com/doczjs/docz/commit/99ebf82))
+
+
+### Features
+
+* **docz-core:** allow custom pattern for globbing components with docgenConfig.searchPatterns ([#1316](https://github.com/doczjs/docz/issues/1316)) ([29e0165](https://github.com/doczjs/docz/commit/29e0165))
+
+
+
+
+
 # [2.3.0-alpha.1](https://github.com/doczjs/docz/compare/v2.3.0-alpha.0...v2.3.0-alpha.1) (2019-12-13)
 
 

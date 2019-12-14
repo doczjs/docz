@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.2](https://github.com/doczjs/docz/compare/v2.3.0-alpha.1...v2.3.0-alpha.2) (2019-12-14)
+
+
+### Features
+
+* **docz-core:** support kebab & pascal case component file name pattern ([#1314](https://github.com/doczjs/docz/issues/1314)) ([9d5b129](https://github.com/doczjs/docz/commit/9d5b129))
+
+
+
+
+
 # [2.3.0-alpha.1](https://github.com/doczjs/docz/compare/v2.3.0-alpha.0...v2.3.0-alpha.1) (2019-12-13)
 
 **Note:** Version bump only for package docz
