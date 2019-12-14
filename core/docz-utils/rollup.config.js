@@ -9,6 +9,7 @@ export default config({
     './src/imports.ts',
     './src/jsx.ts',
     './src/mdast.ts',
+    './src/exports.ts',
   ],
   output: {
     dir: 'lib',
