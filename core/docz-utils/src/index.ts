@@ -1,6 +1,7 @@
 export * from './ast'
 export * from './fs'
 export * from './imports'
+export * from './exports'
 export * from './jsx'
 export * from './mdast'
 export { format } from './format'
