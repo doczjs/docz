@@ -41,7 +41,7 @@ Create MDX files showcasing your code and Docz turns them into a live-reloading,
 
 Documenting code is one of the most important and time-heavy processes when developing software.
 
-A lot of time is spent on building and maintaining custom documentation sites. 
+A lot of time is spent on building and maintaining custom documentation sites.
 
 Docz enables you to quickly create live-reloading, seo-friendly, production-ready documentation sites with MDX and customize the look, feel and behavior when required by leveraging [GatsbyJS](https://www.gatsbyjs.org) and [Gatsby theme shadowing](https://www.gatsbyjs.org/docs/themes/shadowing/).
 
@@ -121,17 +121,23 @@ yarn docz dev
 
 This will start a local development server and open your documentation site in the browser.
 
-## Build 
+## Build
 
 `yarn docz build` will generate a static site for your site in `.docz/dist/`.
 
-You can try it out with `yarn docz serve` or by serving the generated site with your favorite static file server (e.g. `npx serve .docz/dist`). 
+You can try it out with `yarn docz serve` or by serving the generated site with your favorite static file server (e.g. `npx serve .docz/dist`).
 
-You can have `yarn docz build` emit to a different directory by providing a path to the `dest` field in your doczrc.js or from the command line : `yarn docz build --dest docs-site-directory`. 
+You can have `yarn docz build` emit to a different directory by providing a path to the `dest` field in your doczrc.js or from the command line : `yarn docz build --dest docs-site-directory`.
+
+### Debug
+
+You can render debug information about which files are being parsed by setting the `DEBUG` environment variable to `docz*`.
+
+For example: `DEBUG=docz* yarn docz build`
 
 ## Deploy
 
-The output of docz consists of static assets only. This allows you to deploy your generated `docz` site with any static site hosting provider you'd like. 
+The output of docz consists of static assets only. This allows you to deploy your generated `docz` site with any static site hosting provider you'd like.
 
 Start by building your site with `yarn docz build`, if you haven't provided a `dest` flag to your config then you will find your generated files in `.docz/dist` to copy to the server.
 
