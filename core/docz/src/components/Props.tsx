@@ -4,10 +4,13 @@ import { assoc, first, get, mapValues, kebabCase } from 'lodash/fp'
 import capitalize from 'capitalize'
 import marksy from 'marksy'
 import { pascalCase } from 'pascal-case'
+import Debug from 'debug'
 
 import { doczState } from '../state'
 import { useComponents } from '../hooks'
 import { humanize } from '../utils/humanize-prop'
+
+const debug = Debug('docz')
 
 export interface EnumValue {
   value: string
@@ -118,20 +121,28 @@ export const Props: SFC<PropsProps> = ({
   const componentName =
     filemetaName || get('displayName', component) || get('name', component)
 
-  const componentMatcher = (componentName: string, item: any) => {
-    const matchingPatterns = [
-      filename,
-      `/${componentName}.`,
-      `/${kebabCase(componentName)}.`,
-      `/${pascalCase(componentName)}.`,
-    ]
-    return !!matchingPatterns.find(pattern => item.key.includes(pattern))
+  if (!stateProps || stateProps.length === 0) {
+    console.warn(`Looks like no components have been parsed via docz.`)
+    return null
   }
 
-  const found =
-    stateProps &&
-    stateProps.length > 0 &&
-    stateProps.find(item => componentMatcher(componentName, item))
+  const keys: string[] = stateProps.map(item => item.key)
+
+  const matchingPatterns = [
+    filename,
+    `/${componentName}.`,
+    `/${kebabCase(componentName)}.`,
+    `/${pascalCase(componentName)}.`,
+  ]
+
+  debug(`Matching component props via ${matchingPatterns.join(', ')}:`)
+  debug(keys)
+
+  const found = keys.find(key => {
+    return !!matchingPatterns.find(pattern => key.includes(pattern))
+  })
+
+  debug(`Found the following components for ${filename} alias ${componentName}`)
 
   const value = get('value', found) || []
   const firstDefinition = first(value)
