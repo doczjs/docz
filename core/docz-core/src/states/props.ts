@@ -3,11 +3,14 @@ import chokidar from 'chokidar'
 import fastglob from 'fast-glob'
 import { State, Params } from '../lib/DataServer'
 import { get, propEq } from 'lodash/fp'
+import Debug from 'debug'
 
 import * as paths from '../config/paths'
 import { Config } from '../config/argv'
 import { docgen, unixPath } from '../utils/docgen'
 import { WATCH_IGNORE } from './config'
+
+const debug = Debug('docz-core')
 
 export const getPattern = (config: Config) => {
   const {
@@ -48,8 +51,15 @@ export const initial = (config: Config, pattern: string[]) => async (
 ) => {
   const { filterComponents } = config
   const cwd = paths.getRootDir(config)
+
   const files = await fastglob(pattern, { cwd, caseSensitiveMatch: false })
+  debug(`Located ${files.length} component files via ${pattern.join(', ')}`)
+  debug(files)
+
   const filtered = filterComponents ? filterComponents(files) : files
+  debug(`Component filter returned ${filtered.length} files:`)
+  debug(filtered)
+
   const metadata = await docgen(filtered, config)
   p.setState('props', metadata)
 }

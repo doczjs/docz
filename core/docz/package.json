@@ -27,6 +27,7 @@
     "@mdx-js/react": "^1.0.27",
     "array-sort": "^1.0.0",
     "capitalize": "^2.0.0",
+    "debug": "^4.1.1",
     "docz-core": "^2.3.0-alpha.5",
     "fast-deep-equal": "^2.0.1",
     "gatsby": "^2.13.27",

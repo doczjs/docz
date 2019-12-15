@@ -4,11 +4,13 @@ import { parseMdx } from 'docz-utils/lib/mdast'
 import { isRegExp, isString } from 'lodash/fp'
 import minimatch from 'minimatch'
 import glob from 'fast-glob'
-
+import Debug from 'debug'
 import { Entry, EntryObj } from './Entry'
 import { Plugin } from './Plugin'
 import { Config } from '../config/argv'
 import { getRepoEditUrl } from '../utils/repo-info'
+
+const debug = Debug('docz-core')
 
 const mapToObj = (map: Map<any, any>) =>
   Array.from(map.entries()).reduce(
@@ -67,6 +69,12 @@ export class Entries {
         baseNameMatch: false,
         caseSensitiveMatch: false,
       })
+
+      debug(
+        `Located ${filesFromPattern.length} documentation documents via ${filePattern}`
+      )
+      debug(filesFromPattern)
+
       initialFiles = [...initialFiles, ...filesFromPattern]
     }
     const files = initialFiles.filter((value: string) => {
