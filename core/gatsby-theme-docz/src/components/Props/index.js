@@ -71,7 +71,13 @@ export const Props = ({ props, getPropType, isToggle }) => {
   return (
     <div sx={styles.container} data-testid="props">
       {entries.map(([key, prop]) => (
-        <Prop key={key} propName={key} prop={prop} getPropType={getPropType} isToggle={isToggle} />
+        <Prop
+          key={key}
+          propName={key}
+          prop={prop}
+          getPropType={getPropType}
+          isToggle={isToggle}
+        />
       ))}
     </div>
   )
