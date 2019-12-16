@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.3](https://github.com/doczjs/docz/compare/v2.3.0-alpha.2...v2.3.0-alpha.3) (2019-12-16)
+
+
+### Bug Fixes
+
+* **gatsby-theme-docz:** fix preview padding ([ebebd1c](https://github.com/doczjs/docz/commit/ebebd1c)), closes [#1325](https://github.com/doczjs/docz/issues/1325)
+
+
+
+
+
 # [2.3.0-alpha.2](https://github.com/doczjs/docz/compare/v2.3.0-alpha.1...v2.3.0-alpha.2) (2019-12-14)
 
 **Note:** Version bump only for package gatsby-theme-docz

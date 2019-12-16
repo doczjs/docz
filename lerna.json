@@ -4,7 +4,7 @@
     "core/**/*",
     "other-packages/**/*"
   ],
-  "version": "2.3.0-alpha.2",
+  "version": "2.3.0-alpha.3",
   "npmClient": "yarn",
   "useWorkspaces": true
 }
