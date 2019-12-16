@@ -37,8 +37,8 @@ export const previewInner = (showingCode, height = 'auto') => ({
 })
 
 export const preview = {
-  m: 0,
-  p: '20px',
+  margin: 0,
+  padding: '20px',
 }
 
 export const buttons = {
