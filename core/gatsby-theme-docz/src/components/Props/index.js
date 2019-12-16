@@ -20,8 +20,8 @@ export const getDefaultValue = ({ defaultValue, type, flowType }) => {
   return defaultValue.value
 }
 
-export const Prop = ({ propName, prop, getPropType }) => {
-  const [showing, setShowing] = useState(false)
+export const Prop = ({ propName, prop, getPropType, isToggle }) => {
+  const [showing, setShowing] = useState(isToggle || false)
   if (!prop.type && !prop.flowType) return null
 
   const toggle = () => setShowing(s => !s)
@@ -65,13 +65,13 @@ export const Prop = ({ propName, prop, getPropType }) => {
   )
 }
 
-export const Props = ({ props, getPropType }) => {
+export const Props = ({ props, getPropType, isToggle }) => {
   const entries = Object.entries(props)
 
   return (
     <div sx={styles.container} data-testid="props">
       {entries.map(([key, prop]) => (
-        <Prop key={key} propName={key} prop={prop} getPropType={getPropType} />
+        <Prop key={key} propName={key} prop={prop} getPropType={getPropType} isToggle={isToggle} />
       ))}
     </div>
   )
