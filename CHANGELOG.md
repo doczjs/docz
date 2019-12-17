@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.5](https://github.com/doczjs/docz/compare/v2.3.0-alpha.4...v2.3.0-alpha.5) (2019-12-17)
+
+
+### Bug Fixes
+
+* **gatsby-theme-docz:** src -> gatsbyRoot for file system source ([71dd572](https://github.com/doczjs/docz/commit/71dd572))
+
+
+### Features
+
+* **docz-core:** introduce gatsbyRoot to use for fs sourcing ([8e89d64](https://github.com/doczjs/docz/commit/8e89d64))
+
+
+
+
+
 # [2.3.0-alpha.4](https://github.com/doczjs/docz/compare/v2.3.0-alpha.3...v2.3.0-alpha.4) (2019-12-16)
 
 
