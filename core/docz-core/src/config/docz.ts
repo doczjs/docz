@@ -13,6 +13,8 @@ const toOmit = ['_', '$0', 'version', 'help']
 export const doczRcBaseConfig = {
   typescript: fs.existsSync(paths.appTsConfig),
   themeConfig: {},
+  src: './',
+  gatsbyRoot: './',
   themesDir: 'src',
   mdxExtensions: ['.md', '.mdx'],
   docgenConfig: {},

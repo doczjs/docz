@@ -43,6 +43,7 @@ export interface Argv {
   root: string
   base: string
   src: string
+  gatsbyRoot: string | string[]
   files: string | string[]
   ignore: any[]
   watchIgnore: string
@@ -94,7 +95,11 @@ export const setArgs = (yargs: Yargs) => {
     .option('source', {
       alias: 'src',
       type: 'string',
-      default: getEnv('docz.source', './'),
+      default: getEnv('docz.source', doczRcBaseConfig.src),
+    })
+    .option('gatsbyRoot', {
+      type: 'string',
+      default: getEnv('docz.gatsbyRoot', doczRcBaseConfig.gatsbyRoot),
     })
     .option('files', {
       type: 'string',
