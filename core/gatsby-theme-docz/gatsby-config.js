@@ -55,7 +55,7 @@ module.exports = opts => {
               ? `${config.paths.root}/node_modules/**/*`
               : `${config.paths.root}/node_modules/.cache/**/*`,
           ],
-          path: path.resolve(config.paths.root, config.src),
+          path: path.resolve(config.paths.root, config.gatsbyRoot),
         },
       },
       {
