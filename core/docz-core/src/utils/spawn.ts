@@ -1,13 +1,11 @@
 import crossSpawn from 'cross-spawn'
 
 export const spawnSync = (command: string, args?: readonly string[]) => {
-  const output = crossSpawn.sync(command, args, {
-    stdio: ['inherit', 'inherit', 'pipe'],
+  const { status } = crossSpawn.sync(command, args, {
+    stdio: 'inherit',
   })
 
-  if (!output.stderr) {
-    return
+  if (status !== 0) {
+    process.exitCode = status || 1
   }
-
-  process.exitCode = output.status || 1
 }
