@@ -138,7 +138,7 @@ export const setArgs = (yargs: Yargs) => {
     .option('typescript', {
       alias: 'ts',
       type: 'boolean',
-      default: getEnv('docz.typescript', doczRcBaseConfig.typescript),
+      default: getEnv('docz.typescript', false),
     })
     .option('propsParser', {
       type: 'boolean',

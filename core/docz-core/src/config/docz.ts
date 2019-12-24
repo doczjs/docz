@@ -3,7 +3,6 @@ import { Arguments } from 'yargs'
 import { omit, merge } from 'lodash/fp'
 import { load, loadFrom } from 'load-cfg'
 import detectPort from 'detect-port'
-import fs from 'fs-extra'
 
 import * as paths from '../config/paths'
 import { Config, Argv } from '../config/argv'
@@ -11,7 +10,6 @@ import { Plugin } from '../lib/Plugin'
 
 const toOmit = ['_', '$0', 'version', 'help']
 export const doczRcBaseConfig = {
-  typescript: fs.existsSync(paths.appTsConfig),
   themeConfig: {},
   src: './',
   gatsbyRoot: './',
