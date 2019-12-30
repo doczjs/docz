@@ -16,8 +16,8 @@
     "deploy": "npm run build && now"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.14",
-    "@emotion/styled": "^10.0.14",
+    "@emotion/core": "^11.0.0-next.9",
+    "@emotion/styled": "^11.0.0-next.9",
     "docz": "latest",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
