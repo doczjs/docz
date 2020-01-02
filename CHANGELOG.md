@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.6](https://github.com/doczjs/docz/compare/v2.3.0-alpha.5...v2.3.0-alpha.6) (2020-01-02)
+
+
+### Bug Fixes
+
+* **docz-core:** prevent falsy error code on cli ([#1332](https://github.com/doczjs/docz/issues/1332)) ([1437b59](https://github.com/doczjs/docz/commit/1437b59))
+* **docz-core:** revert ts auto-detect ([f0ce584](https://github.com/doczjs/docz/commit/f0ce584))
+
+
+
+
+
 # [2.3.0-alpha.5](https://github.com/doczjs/docz/compare/v2.3.0-alpha.4...v2.3.0-alpha.5) (2019-12-17)
 
 
