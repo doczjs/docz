@@ -90,7 +90,7 @@ export const Playground = ({ code, scope, language, useScoping = false }) => {
             )}
             <ReactResizeDetector
               handleHeight
-              onResize={(width, height) => {
+              onResize={({ height }) => {
                 setPreviewHeight(height)
               }}
             />
@@ -111,7 +111,7 @@ export const Playground = ({ code, scope, language, useScoping = false }) => {
             </div>
             <ReactResizeDetector
               handleHeight
-              onResize={(width, height) => {
+              onResize={({ height }) => {
                 setEditorHeight(height)
               }}
             />
