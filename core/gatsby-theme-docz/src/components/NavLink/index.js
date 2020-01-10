@@ -22,9 +22,14 @@ const getCurrentHash = () => {
 
 export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
   const docs = useDocs()
+  const current = useCurrentDoc()
+
+  if (item.hidden) {
+    return null
+  }
+
   const to = item.route
   const headings = docs && getHeadings(to, docs)
-  const current = useCurrentDoc()
   const isCurrent = item.route === current.route
   const showHeadings = isCurrent && headings && headings.length > 0
   const currentHash = getCurrentHash()
