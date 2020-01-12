@@ -39,6 +39,7 @@ export class Entry {
   public readonly fullpath: string
   public readonly headings: Heading[]
   public readonly id: string
+  public readonly hidden: boolean
   public readonly menu: string | null
   public readonly name: string
   public readonly route: string
@@ -57,6 +58,7 @@ export class Entry {
     this.filepath = filepath
     this.fullpath = path.resolve(root, file)
     this.link = ''
+    this.hidden = parsed.hidden || false
     this.slug = this.slugify(filepath, config.separator)
     this.route = this.getRoute(parsed)
     this.name = name
