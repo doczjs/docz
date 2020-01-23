@@ -1,7 +1,7 @@
 import React from 'react'
 import t from 'prop-types'
 //@ts-ignore do not remove this to get live-reloading from changes made in packages
-import ChangesWhenAPackageSourceIsEdited from '../last-change-timestamp'
+import ChangesWhenAPackageSourceIsEdited from '../last-change-timestamp' // eslint-disable-line no-unused-vars
 
 const kinds = {
   info: '#5352ED',
@@ -14,7 +14,6 @@ const AlertStyled = ({ children, kind, ...rest }) => (
   <div
     style={{
       padding: 20,
-      background: 'white',
       borderRadius: 3,
       color: 'white',
       background: kinds[kind],
