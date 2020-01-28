@@ -1,12 +1,9 @@
 import * as React from 'react'
-import { createElement, SFC, ComponentType, useMemo } from 'react'
-import { assoc, first, get, mapValues, kebabCase } from 'lodash/fp'
+import { SFC, ComponentType } from 'react'
+import { get } from 'lodash/fp'
 import capitalize from 'capitalize'
-import marksy from 'marksy'
-import { pascalCase } from 'pascal-case'
 
-import { doczState } from '../state'
-import { useComponents } from '../hooks'
+import { useComponents, useComponentProps } from '../hooks'
 import { humanize } from '../utils/humanize-prop'
 
 export interface EnumValue {
@@ -111,48 +108,13 @@ export const Props: SFC<PropsProps> = ({
   ...rest
 }) => {
   const components = useComponents()
-  const { props: stateProps } = React.useContext(doczState.context)
   const PropsComponent = components.props
-  const filename = get('__filemeta.filename', component)
+  const fileName = get('__filemeta.filename', component)
   const filemetaName = get('__filemeta.name', component)
   const componentName =
     filemetaName || get('displayName', component) || get('name', component)
 
-  const componentMatcher = (componentName: string, item: any) => {
-    const matchingPatterns = [
-      filename,
-      `/${componentName}.`,
-      `/${kebabCase(componentName)}.`,
-      `/${pascalCase(componentName)}.`,
-    ]
-    return !!matchingPatterns.find(pattern => item.key.includes(pattern))
-  }
-
-  const found =
-    stateProps &&
-    stateProps.length > 0 &&
-    stateProps.find(item => componentMatcher(componentName, item))
-
-  const value = get('value', found) || []
-  const firstDefinition = first(value)
-  const definition = value.find((i: any) => i.displayName === componentName)
-
-  const compile = useMemo(
-    () => marksy({ createElement, elements: components }),
-    [components]
-  )
-
-  const props = useMemo(() => {
-    const props = get('props', definition || firstDefinition)
-    const parseDescs = mapValues((prop: any) => {
-      const desc = get('description', prop)
-      return !desc ? prop : assoc('description', compile(desc).tree, prop)
-    })
-
-    return parseDescs(props)
-  }, [compile, definition || firstDefinition])
-
-  if (!props) return null
+  const props = useComponentProps({ componentName, fileName })
   if (!PropsComponent) return null
   return (
     <PropsComponent
