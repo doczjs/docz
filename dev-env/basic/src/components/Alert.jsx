@@ -28,14 +28,6 @@ export const Alert = props => <AlertStyled {...props} />
 
 Alert.propTypes = {
   kind: t.oneOf(['info', 'positive', 'negative', 'warning']),
-  okok: t.string,
-  margin: t.oneOfType([t.number, t.string]),
-  marginTop: t.oneOfType([t.number, t.string]),
-  marginBottom: t.oneOfType([t.number, t.string]),
-  marginLeft: t.oneOfType([t.number, t.string]),
-  marginRight: t.oneOfType([t.number, t.string]),
-  marginX: t.oneOfType([t.number, t.string]),
-  marginY: t.oneOfType([t.number, t.string]),
 }
 
 Alert.defaultProps = {
