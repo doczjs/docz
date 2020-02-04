@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.7](https://github.com/doczjs/docz/compare/v2.3.0-alpha.6...v2.3.0-alpha.7) (2020-02-04)
+
+
+### Features
+
+* add the ability to hide a document from the menu ([#1354](https://github.com/doczjs/docz/issues/1354)) ([95b0d7f](https://github.com/doczjs/docz/commit/95b0d7f))
+
+
+
+
+
 # [2.3.0-alpha.6](https://github.com/doczjs/docz/compare/v2.3.0-alpha.5...v2.3.0-alpha.6) (2020-01-02)
 
 

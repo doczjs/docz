@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.7](https://github.com/doczjs/docz/compare/v2.3.0-alpha.6...v2.3.0-alpha.7) (2020-02-04)
+
+
+### Bug Fixes
+
+* **gatsby-theme-docz:** fix playground react-resize-detector usage ([#1350](https://github.com/doczjs/docz/issues/1350)) ([f0baf67](https://github.com/doczjs/docz/commit/f0baf67))
+* **gatsby-theme-docz:** removed unused gatsby-plugin-manifest ([#1368](https://github.com/doczjs/docz/issues/1368)) ([44edc68](https://github.com/doczjs/docz/commit/44edc68))
+
+
+### Features
+
+* add the ability to hide a document from the menu ([#1354](https://github.com/doczjs/docz/issues/1354)) ([95b0d7f](https://github.com/doczjs/docz/commit/95b0d7f))
+
+
+
+
+
 # [2.3.0-alpha.5](https://github.com/doczjs/docz/compare/v2.3.0-alpha.4...v2.3.0-alpha.5) (2019-12-17)
 
 
