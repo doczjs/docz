@@ -25,7 +25,6 @@ Create MDX files showcasing your code and Docz turns them into a live-reloading,
 
 ## Table of Contents
 
-
 - [Why ?](#why)
 - [Start a New Project](#start-a-new-project)
 - [Add Docz to an Existing Project](#add-docz-to-an-existing-project)
@@ -41,7 +40,7 @@ Create MDX files showcasing your code and Docz turns them into a live-reloading,
 
 Documenting code is one of the most important and time-heavy processes when developing software.
 
-A lot of time is spent on building and maintaining custom documentation sites. 
+A lot of time is spent on building and maintaining custom documentation sites.
 
 Docz enables you to quickly create live-reloading, seo-friendly, production-ready documentation sites with MDX and customize the look, feel and behavior when required by leveraging [GatsbyJS](https://www.gatsbyjs.org) and [Gatsby theme shadowing](https://www.gatsbyjs.org/docs/themes/shadowing/).
 
@@ -121,17 +120,17 @@ yarn docz dev
 
 This will start a local development server and open your documentation site in the browser.
 
-## Build 
+## Build
 
 `yarn docz build` will generate a static site for your site in `.docz/dist/`.
 
-You can try it out with `yarn docz serve` or by serving the generated site with your favorite static file server (e.g. `npx serve .docz/dist`). 
+You can try it out with `yarn docz serve` or by serving the generated site with your favorite static file server (e.g. `npx serve .docz/dist`).
 
-You can have `yarn docz build` emit to a different directory by providing a path to the `dest` field in your doczrc.js or from the command line : `yarn docz build --dest docs-site-directory`. 
+You can have `yarn docz build` emit to a different directory by providing a path to the `dest` field in your doczrc.js or from the command line : `yarn docz build --dest docs-site-directory`.
 
 ## Deploy
 
-The output of docz consists of static assets only. This allows you to deploy your generated `docz` site with any static site hosting provider you'd like. 
+The output of docz consists of static assets only. This allows you to deploy your generated `docz` site with any static site hosting provider you'd like.
 
 Start by building your site with `yarn docz build`, if you haven't provided a `dest` flag to your config then you will find your generated files in `.docz/dist` to copy to the server.
 
@@ -156,14 +155,15 @@ You can check the complete list of docz examples [here](https://github.com/doczj
 
 ## Used by
 
-- **[Smooth UI](https://smooth-ui.smooth-code.com/)** - Modern React UI library.
-- **[Set Protocol Docs](https://docs.setprotocol.com/)** - Documentation site of Set Protocol.
-- **[RBX](https://dfee.github.io/rbx)** - The Comprehensive Bulma UI Framework for React.
-- **[Circuit UI](https://circuit.sumup.com/#/)** - React component library for [SumUp](https://sumup.com) web apps.
-- **[Fannypack](https://fannypack.style)** - A friendly & accessible React UI Kit built with [Reakit](https://reakit.io/).
-- **[React Pixi](https://reactpixi.org/#/)** - React Fiber renderer for Pixi.
-- **[React Hotkey Tooltip](https://react-hotkey-tooltip.netlify.com/#/)** - A global Hotkey provider with built in tooltip for React.
-- **[Sajari React SDK](https://sajari-sdk-react.netlify.com/)** - Library of React Components for the Sajari.
+- **[Welcome UI](http://welcome-ui.com/)** : Customizable design system with react • styled-components • styled-system and reakit.
+- **[React Hooks Testing Library](https://react-hooks-testing-library.com/)** : 🐏 Simple and complete React hooks testing utilities that encourage good testing practices.
+- **[Mobx React](https://mobx-react.js.org/)** : mobx-react documentation site.
+- **[React Google Charts](https://react-google-charts.com/)** : A thin, typed, React wrapper over Google Charts Visualization and Charts API.
+- **[Entur](https://developer.entur.org/)** : Entur operates the national registry for all public transport in Norway.
+- **[FAB Specification](https://fab.dev/)** : 💎 FABs are a compile target for frontend applications.
+- **[@umijs/hooks](https://hooks.umijs.org/)**: React Hooks Library.
+- **[React Yandex Maps](https://react-yandex-maps.now.sh/)**: Yandex Maps API bindings for React.
+- **[Add your site](https://github.com/doczjs/docz/edit/master/README.md)**
 
 ## Contributors
 
