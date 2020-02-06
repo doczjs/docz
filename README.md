@@ -12,9 +12,6 @@
   <a href="https://www.npmjs.com/package/docz" target="_blank">
     <img src="https://badgen.net/npm/dt/docz" alt="">
   </a>
-  <a href="http://feedback.docz.site/roadmap" target="_blank">
-    <img src="https://img.shields.io/badge/check-our%20roadmap-5362F5.svg" alt="Chat">
-  </a>
 </p>
 
 Docz makes it easy to write and publish beautiful interactive documentation for your code.
