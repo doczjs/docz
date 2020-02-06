@@ -136,20 +136,22 @@ Start by building your site with `yarn docz build`, if you haven't provided a `d
 
 ## Examples
 
-- **[basic](https://github.com/doczjs/docz/tree/master/examples/basic)** - Barebones example.
-- **[gatsby](https://github.com/doczjs/docz/tree/master/examples/gatsby)** - Example using Docz in a Gastby project.
-- **[react native](https://github.com/doczjs/docz/tree/master/examples/react-native)** - Using Docz in a React Native project.
-- **[styled-components](https://github.com/doczjs/docz/tree/master/examples/styled-components)** - Using Docz with `styled-components`.
-- **[with typescript](https://github.com/doczjs/docz/tree/master/examples/typescript)** - Using Docz with Typescript.
-- **[with flow](https://github.com/doczjs/docz/tree/master/examples/flow)** - Using Docz with Flow.
-- **[with images](https://github.com/doczjs/docz/tree/master/examples/images)** - Using Docz with images in mdx and jsx.
+- **[with basic](https://github.com/doczjs/docz/tree/master/examples/basic)**
+- **[with a gatsby site](https://github.com/doczjs/docz/tree/master/examples/gatsby)**
+- **[with react native](https://github.com/doczjs/docz/tree/master/examples/react-native)**
+- **[with styled-components](https://github.com/doczjs/docz/tree/master/examples/styled-components)**
+- **[with typescript](https://github.com/doczjs/docz/tree/master/examples/typescript)**
+- **[with algolia search](https://github.com/doczjs/docz/tree/master/examples/with-algolia-search)**
+- **[with gatsby-remark-vscode](https://github.com/doczjs/docz/tree/master/examples/with-gatsby-remark-vscode)**
+- **[with react-router](https://github.com/doczjs/docz/tree/master/examples/react-router)**
+- **[with flow](https://github.com/doczjs/docz/tree/master/examples/flow)**
+- **[with images](https://github.com/doczjs/docz/tree/master/examples/images)**
+- **[with sass](https://github.com/doczjs/docz/tree/master/examples/sass)**
+- **[with less](https://github.com/doczjs/docz/tree/master/examples/less)**
+- **[with stylus](https://github.com/doczjs/docz/tree/master/examples/css-stylus)**
+- **with css modules**: works out of the box.
 
-- **[with sass](https://github.com/doczjs/docz/tree/master/examples/sass)** - Using Docz parsing CSS with SASS.
-- **[with less](https://github.com/doczjs/docz/tree/master/examples/less)** - Using Docz parsing CSS with LESS.
-- **[with stylus](https://github.com/doczjs/docz/tree/master/examples/css-stylus)** - Using Docz parsing CSS with Stylus.
-- **with css modules**: works out of the box with gatsby
-
-You can check the complete list of docz examples [here](https://github.com/doczjs/docz/tree/master/examples).
+### You can check the complete list of docz examples [here](https://github.com/doczjs/docz/tree/master/examples).
 
 ## More info on [docz.site](https://docz.site)
 
