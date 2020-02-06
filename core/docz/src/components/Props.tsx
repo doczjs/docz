@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { SFC, ComponentType } from 'react'
 import { get } from 'lodash/fp'
-import capitalize from 'capitalize'
 
 import { useComponents, useComponentProps } from '../hooks'
 import { humanize } from '../utils/humanize-prop'
@@ -75,7 +74,7 @@ export const getPropType = (prop: Prop) => {
   if (!propName) return null
 
   const isEnum = propName.startsWith('"') || propName === 'enum'
-  const name = capitalize(isEnum ? 'enum' : propName)
+  const name = isEnum ? 'enum' : propName
   const value = get('type.value', prop)
   if (!name) return null
 

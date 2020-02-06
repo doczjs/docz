@@ -37,7 +37,6 @@ const getTypeStr = (type: PropType | FlowType): any => {
     case 'shape':
       const shape = type.value
       const rst: any = {}
-
       Object.keys(shape).forEach(key => {
         rst[key] = getTypeStr(shape[key])
       })
