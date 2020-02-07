@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import { useRef, useState } from 'react'
-import { jsx, Layout as BaseLayout, Main, Container } from 'theme-ui'
+import { jsx, Layout as BaseLayout, Main } from 'theme-ui'
 import { Global } from '@emotion/core'
 
 import global from '~theme/global'
 import { Header } from '../Header'
 import { Sidebar } from '../Sidebar'
+import { MainContainer } from './MainContainer'
 import * as styles from './styles'
 
 export const Layout = ({ children }) => {
@@ -25,9 +26,7 @@ export const Layout = ({ children }) => {
             onBlur={() => setOpen(false)}
             onClick={() => setOpen(false)}
           />
-          <Container sx={styles.content} data-testid="main-container">
-            {children}
-          </Container>
+          <MainContainer data-testid="main-container">{children}</MainContainer>
         </div>
       </Main>
     </BaseLayout>
