@@ -3,9 +3,9 @@
 ## Using `create-docz-app`
 
 ```sh
-npx create-docz-app docz-app-cra --example cra
+npx create-docz-app docz-app-cra --example create-react-app-ts
 # or
-yarn create docz-app docz-app-cra --example cra
+yarn create docz-app docz-app-cra --example create-react-app-ts
 ```
 
 ## Download manually
