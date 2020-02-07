@@ -59,7 +59,7 @@ export interface Argv {
   port: number
   native: boolean
   notUseSpecifiers: boolean
-  openBrowser: boolean
+  open: null | boolean
   /* template args */
   title: string
   description: string
@@ -169,6 +169,6 @@ export const setArgs = (yargs: Yargs) => {
       alias: ['o', 'open'],
       describe: 'auto open browser in dev mode',
       type: 'boolean',
-      default: false,
+      default: null,
     })
 }
