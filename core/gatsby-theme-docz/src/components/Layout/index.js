@@ -6,7 +6,7 @@ import { Global } from '@emotion/core'
 import global from '~theme/global'
 import { Header } from '../Header'
 import { Sidebar } from '../Sidebar'
-import { MainContainer } from './MainContainer'
+import { MainContainer } from '../MainContainer'
 import * as styles from './styles'
 
 export const Layout = ({ children }) => {
