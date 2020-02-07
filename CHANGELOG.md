@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.11](https://github.com/doczjs/docz/compare/v2.3.0-alpha.10...v2.3.0-alpha.11) (2020-02-07)
+
+
+### Bug Fixes
+
+* **docz-core:** be explicit about cli args ([6f5b4ee](https://github.com/doczjs/docz/commit/6f5b4ee))
+
+
+### Features
+
+* **docz-core:** pass down cli args to Gatsby + fix open flag ([385b006](https://github.com/doczjs/docz/commit/385b006))
+* **gatsby-theme-docz:** create MainContainer component ([#1381](https://github.com/doczjs/docz/issues/1381)) ([e8d1c04](https://github.com/doczjs/docz/commit/e8d1c04))
+
+
+
+
+
 # [2.3.0-alpha.10](https://github.com/doczjs/docz/compare/v2.3.0-alpha.9...v2.3.0-alpha.10) (2020-02-06)
 
 
