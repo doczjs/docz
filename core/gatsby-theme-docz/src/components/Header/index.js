@@ -42,7 +42,11 @@ export const Header = props => {
             </Box>
           )}
           {showDarkModeSwitch && (
-            <button sx={styles.headerButton} onClick={toggleColorMode}>
+            <button
+              sx={styles.headerButton}
+              onClick={toggleColorMode}
+              aria-label={`Switch to ${colorMode} mode`}
+            >
               <Sun size={15} />
             </button>
           )}
