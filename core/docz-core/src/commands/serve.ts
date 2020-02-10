@@ -11,10 +11,17 @@ export const serve = async (args: Arguments<any>) => {
 
   if (config.port) {
     cliArgs.push('--')
-    // Append gatsby option `port`to CLI args
+    // Append gatsby option `port` to CLI args
     // https://www.gatsbyjs.org/docs/cheat-sheet/#cheat_sheet-text
     cliArgs.push('--port')
     cliArgs.push(String(config.port))
+  }
+
+  if (config.host) {
+    // Append gatsby option `host` to CLI args
+    // https://www.gatsbyjs.org/docs/cheat-sheet/#cheat_sheet-text
+    cliArgs.push('--host')
+    cliArgs.push(String(config.host))
   }
 
   sh.cd(paths.docz)
