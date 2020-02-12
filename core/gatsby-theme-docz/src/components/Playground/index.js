@@ -86,7 +86,7 @@ export const Playground = ({ code, scope, language, useScoping = false }) => {
         <div sx={styles.previewWrapper}>
           <Wrapper height={previewHeight}>
             {showLivePreview && (
-              <LivePreview style={styles.preview} data-testid="live-preview" />
+              <LivePreview sx={styles.preview} data-testid="live-preview" />
             )}
             <ReactResizeDetector
               handleHeight
@@ -106,7 +106,7 @@ export const Playground = ({ code, scope, language, useScoping = false }) => {
         </div>
         {showingCode && (
           <Wrapper height={editorHeight}>
-            <div style={styles.editor(theme)}>
+            <div sx={styles.editor(theme)}>
               <LiveEditor data-testid="live-editor" />
             </div>
             <ReactResizeDetector
