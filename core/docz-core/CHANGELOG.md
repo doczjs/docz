@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.12](https://github.com/doczjs/docz/compare/v2.3.0-alpha.11...v2.3.0-alpha.12) (2020-02-12)
+
+
+### Bug Fixes
+
+* **docz-core:** pass down host when running serve ([#1384](https://github.com/doczjs/docz/issues/1384)) ([80a0e1e](https://github.com/doczjs/docz/commit/80a0e1e))
+
+
+
+
+
 # [2.3.0-alpha.11](https://github.com/doczjs/docz/compare/v2.3.0-alpha.10...v2.3.0-alpha.11) (2020-02-07)
 
 
