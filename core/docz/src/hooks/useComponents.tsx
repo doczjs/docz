@@ -15,6 +15,7 @@ export interface PlaygroundProps {
   scope: Record<string, any>
   language?: string
   showLivePreview?: boolean
+  useScoping?: boolean
 }
 
 export interface LayoutProps {

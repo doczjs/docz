@@ -10,6 +10,7 @@ export interface PlaygroundProps {
   __scope: Record<string, any>
   __position: number
   __code: string
+  useScoping?: boolean
   language?: string
 }
 
@@ -22,6 +23,7 @@ export const Playground: SFC<PlaygroundProps> = ({
   __position,
   __code,
   language,
+  useScoping,
 }) => {
   const components = useComponents()
   const PlaygroundComponent = components.playground
@@ -38,6 +40,7 @@ export const Playground: SFC<PlaygroundProps> = ({
       position={__position}
       code={__code}
       language={language}
+      useScoping={useScoping}
     />
   )
 }
