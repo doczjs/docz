@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.13](https://github.com/doczjs/docz/compare/v2.3.0-alpha.12...v2.3.0-alpha.13) (2020-02-13)
+
+
+### Bug Fixes
+
+* **docz:** pass useScoping to theme Playground ([6ec7315](https://github.com/doczjs/docz/commit/6ec7315)), closes [#1390](https://github.com/doczjs/docz/issues/1390)
+
+
+
+
+
 # [2.3.0-alpha.12](https://github.com/doczjs/docz/compare/v2.3.0-alpha.11...v2.3.0-alpha.12) (2020-02-12)
 
 **Note:** Version bump only for package docz
