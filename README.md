@@ -162,6 +162,7 @@ Start by building your site with `yarn docz build`, if you haven't provided a `d
 - **[FAB Specification](https://fab.dev/)** : 💎 FABs are a compile target for frontend applications.
 - **[@umijs/hooks](https://hooks.umijs.org/)**: React Hooks Library.
 - **[React Yandex Maps](https://react-yandex-maps.now.sh/)**: Yandex Maps API bindings for React.
+- **[Components-extra](https://components-extra.netlify.com)**: Customizable react component blocks built with material-ui and styled-components.
 - **[Add your site](https://github.com/doczjs/docz/edit/master/README.md)**
 
 ## Contributors
