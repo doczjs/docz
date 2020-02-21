@@ -2,8 +2,6 @@ import * as mixins from '~utils/mixins'
 
 export const editor = theme => ({
   p: 2,
-  border: t => `1px solid ${t.colors.border}`,
-  borderRadius: '0 0 4px 4px',
   background: theme.plain.backgroundColor,
   borderTop: 0,
   fontFamily: 'monospace',
@@ -26,15 +24,26 @@ export const previewWrapper = {
   position: 'relative',
 }
 
-export const previewInner = (showingCode, height = 'auto') => ({
-  height,
+export const wrapper = () => ({
+  height: 'auto',
   display: 'block',
   minHeight: '100%',
   width: 'calc(100% - 2px)',
   bg: 'playground.bg',
-  border: t => `1px solid ${t.colors.playground.border}`,
-  borderRadius: showingCode ? '4px 4px 0 0' : '4px',
 })
+
+export const wrapperBorder = (content, showingCode) => {
+  let borderRadius = 4
+  if (showingCode) {
+    borderRadius = content === 'preview' ? '4px 4px 0 0' : '0 0 4px 4px'
+  }
+
+  return {
+    border: t => `1px solid ${t.colors.playground.border}`,
+    borderTop: content === 'editor' ? 0 : undefined,
+    borderRadius,
+  }
+}
 
 export const preview = {
   margin: 0,
