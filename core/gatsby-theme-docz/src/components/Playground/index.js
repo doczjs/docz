@@ -103,4 +103,3 @@ export const Playground = ({ code, scope, language, useScoping = false }) => {
     </Resizable>
   )
 }
-// borderRadius: showingCode ? '4px 4px 0 0' : '4px',
