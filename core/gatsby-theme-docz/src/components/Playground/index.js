@@ -5,9 +5,8 @@ import { useConfig } from 'docz'
 import { LiveProvider, LiveError, LivePreview, LiveEditor } from 'react-live'
 import { Resizable } from 're-resizable'
 import copy from 'copy-text-to-clipboard'
-import ReactResizeDetector from 'react-resize-detector'
 
-import { IframeWrapper } from './IframeWrapper'
+import { Wrapper } from './Wrapper'
 import { usePrismTheme } from '~utils/theme'
 import * as styles from './styles'
 import * as Icons from '../Icons'
@@ -45,24 +44,8 @@ const transformCode = code => {
 
 export const Playground = ({ code, scope, language, useScoping = false }) => {
   const {
-    themeConfig: {
-      showPlaygroundEditor,
-      showLiveError,
-      showLivePreview,
-      useScopingInPlayground,
-    },
+    themeConfig: { showPlaygroundEditor, showLiveError, showLivePreview },
   } = useConfig()
-
-  const [previewHeight, setPreviewHeight] = React.useState()
-  const [editorHeight, setEditorHeight] = React.useState()
-  const Wrapper = React.useCallback(
-    useScoping || useScopingInPlayground
-      ? props => <IframeWrapper {...props}>{props.children}</IframeWrapper>
-      : props => (
-          <div sx={styles.previewInner(showingCode)}>{props.children}</div>
-        ),
-    [useScoping]
-  )
 
   // Makes sure scope is only given on mount to avoid infinite re-render on hot reloads
   const [scopeOnMount] = React.useState(scope)
@@ -84,16 +67,14 @@ export const Playground = ({ code, scope, language, useScoping = false }) => {
         theme={theme}
       >
         <div sx={styles.previewWrapper}>
-          <Wrapper height={previewHeight}>
+          <Wrapper
+            content="preview"
+            useScoping={useScoping}
+            showingCode={showingCode}
+          >
             {showLivePreview && (
               <LivePreview sx={styles.preview} data-testid="live-preview" />
             )}
-            <ReactResizeDetector
-              handleHeight
-              onResize={({ height }) => {
-                setPreviewHeight(height)
-              }}
-            />
           </Wrapper>
           <div sx={styles.buttons}>
             <button sx={styles.button} onClick={copyCode}>
@@ -105,16 +86,14 @@ export const Playground = ({ code, scope, language, useScoping = false }) => {
           </div>
         </div>
         {showingCode && (
-          <Wrapper height={editorHeight}>
+          <Wrapper
+            content="editor"
+            useScoping={useScoping}
+            showingCode={showingCode}
+          >
             <div sx={styles.editor(theme)}>
               <LiveEditor data-testid="live-editor" />
             </div>
-            <ReactResizeDetector
-              handleHeight
-              onResize={({ height }) => {
-                setEditorHeight(height)
-              }}
-            />
           </Wrapper>
         )}
         {showLiveError && (
