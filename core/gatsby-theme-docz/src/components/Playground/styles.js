@@ -18,6 +18,7 @@ export const error = {
   bg: '#FF4757',
   fontSize: 1,
   color: 'white',
+  whiteSpace: 'pre-wrap',
 }
 
 export const previewWrapper = {
