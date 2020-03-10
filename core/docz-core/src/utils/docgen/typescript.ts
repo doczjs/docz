@@ -165,13 +165,20 @@ function createServiceHost(
   }
 }
 
+const defaultPropFilter = (prop: any): boolean => {
+  return prop.parent == null || !prop.parent.fileName.includes('node_modules')
+}
+
 const parseFiles = (files: string[], config: Config, tsconfig: string) => {
   const opts = {
-    propFilter(prop: any): any {
-      if (prop.parent == null) return true
-      const propFilter = config.docgenConfig.propFilter
-      const val = propFilter && _.isFunction(propFilter) && propFilter(prop)
-      return !prop.parent.fileName.includes('node_modules') || Boolean(val)
+    propFilter(prop: any): boolean {
+      const customPropFilter = config.docgenConfig.propFilter
+      const propFilter =
+        customPropFilter && _.isFunction(customPropFilter)
+          ? customPropFilter
+          : defaultPropFilter
+
+      return Boolean(propFilter(prop))
     },
     componentNameResolver(exp: ts.Symbol, source: ts.SourceFile): any {
       const componentNameResolver = config.docgenConfig.resolver
