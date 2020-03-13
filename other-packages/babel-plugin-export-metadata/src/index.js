@@ -19,6 +19,11 @@ const replaceExportDefault = template(`
   export default NAME
 `)
 
+const replaceExportDefaultCall = template(`
+  const NAME = DECLARATION
+  export default NAME
+`)
+
 const getFilename = state => {
   const rootDir = get(state, 'opts.root', process.cwd())
   const filename = get(state, 'file.opts.filename')
@@ -66,6 +71,26 @@ const renameDefaultAddFileMetaProperties = (t, path, filename, name) => {
   })
 
   pathToInsert.replaceWithMultiple(nameExport)
+}
+
+const replaceDefaultCallAddFileMetaProperties = (t, path, filename) => {
+  if (!filename) {
+    return
+  }
+
+  const declaration = get(path, 'node.declaration')
+  const pathToInsert = findPathToInsert(path)
+
+  const fallbackName = '__DOCZ_DUMMY_EXPORT_DEFAULT'
+
+  // replace
+  const nameExport = replaceExportDefaultCall({
+    NAME: fallbackName,
+    DECLARATION: declaration,
+  })
+
+  const [declPath] = pathToInsert.replaceWithMultiple(nameExport)
+  path.scope.registerDeclaration(declPath)
 }
 
 const insertNodeExport = t => (path, state) => {
@@ -128,6 +153,12 @@ const insertNodeExportDefault = t => (path, state) => {
         const name = element.name
         addFileMetaProperties(t, path, filename, name)
       }
+      break
+    }
+
+    case 'CallExpression': {
+      // case for: export default React.memo(Component).
+      replaceDefaultCallAddFileMetaProperties(t, path, filename)
       break
     }
   }

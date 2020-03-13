@@ -29,6 +29,25 @@ if (typeof foo5 !== 'undefined' && foo5 && foo5 === Object(foo5) && Object.isExt
 }"
 `;
 
+exports[`export-metadata export default works with Call expression 1`] = `
+"/* ExportDefaultDeclaration with Call expression */
+const foo = v => v;
+
+const __DOCZ_DUMMY_EXPORT_DEFAULT = foo(5);
+
+export default __DOCZ_DUMMY_EXPORT_DEFAULT;
+
+if (typeof __DOCZ_DUMMY_EXPORT_DEFAULT !== 'undefined' && __DOCZ_DUMMY_EXPORT_DEFAULT && __DOCZ_DUMMY_EXPORT_DEFAULT === Object(__DOCZ_DUMMY_EXPORT_DEFAULT) && Object.isExtensible(__DOCZ_DUMMY_EXPORT_DEFAULT) && !__DOCZ_DUMMY_EXPORT_DEFAULT.hasOwnProperty('__filemeta')) {
+  Object.defineProperty(__DOCZ_DUMMY_EXPORT_DEFAULT, '__filemeta', {
+    configurable: true,
+    value: {
+      name: \\"__DOCZ_DUMMY_EXPORT_DEFAULT\\",
+      filename: \\"tests/fixtures/export-default/with-identifier.js\\"
+    }
+  });
+}"
+`;
+
 exports[`export-metadata export default works with Class declaration 1`] = `
 "/* ExportDefaultDeclaration with Class declaration */
 export default class Bar6 {}
