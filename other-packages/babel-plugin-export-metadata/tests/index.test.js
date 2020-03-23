@@ -23,6 +23,9 @@ const exportDefaultFixtures = {
   withObjExpression: path.resolve(
     './tests/fixtures/export-default/with-obj-expression.js'
   ),
+  withCallExpression: path.resolve(
+    './tests/fixtures/export-default/with-call-expression.js'
+  ),
 }
 
 const reExportsFixtures = {
@@ -107,6 +110,15 @@ describe('export-metadata', () => {
 
     it('works with Identifier', () => {
       const result = transformSync(exportDefaultCode.withIdentifier, {
+        plugins: [plugin],
+        filename: exportDefaultFixtures.withIdentifier,
+      })
+
+      expect(result.code).toMatchSnapshot()
+    })
+
+    it('works with Call expression', () => {
+      const result = transformSync(exportDefaultCode.withCallExpression, {
         plugins: [plugin],
         filename: exportDefaultFixtures.withIdentifier,
       })
