@@ -55,7 +55,7 @@
     "all-contributors-cli": "^6.8.0",
     "babel-eslint": "^10.0.3",
     "babel-plugin-lodash": "^3.3.4",
-    "babel-preset-react-app": "^9.0.0",
+    "babel-preset-react-app": "^9.1.2",
     "commitizen": "^3.1.2",
     "cross-env": "^5.2.0",
     "eslint": "^6.5.1",
