@@ -8,36 +8,48 @@ import Wrapper from '../wrapper'
 import Theme from '../index'
 import SEO from './Seo'
 
-const Route = ({ children, entry, ...defaultProps }) => {
+const Route = ({ children, entry, isTransclusion, ...defaultProps }) => {
   const components = useComponents()
   const NotFound = components.notFound
   const Layout = components.layout
   const props = { ...defaultProps, doc: entry }
-  if (!entry) return <NotFound />
-  return (
-    <Wrapper doc={entry}>
+  if (!entry && !isTransclusion) return <NotFound />
+  return isTransclusion ? (
+    children
+  ) : (
+    <Wrapper>
       <Layout {...props}>{children}</Layout>
     </Wrapper>
   )
 }
 
 const findEntry = (db, ctx) => {
-  const isIndex = ctx.frontmatter && ctx.frontmatter.route === '/'
+  const isIndex = ctx && ctx.frontmatter && ctx.frontmatter.route === '/'
   const eqIndex = propEq('value.route', '/')
-  if (!ctx.entry && isIndex) return db.entries.find(eqIndex)
+  if (ctx && !ctx.entry && isIndex) return db.entries.find(eqIndex)
   const filepath = get('entry.filepath', ctx)
   return db.entries.find(propEq('value.filepath', filepath))
+}
+
+const includesTransclusion = (db, props) => {
+  const { entries } = db
+  const filepath = get('_frontmatter.__filemeta.filename', props)
+  return (
+    !props.pageContext &&
+    entries.includes(entries.find(propEq('value.filepath', filepath)))
+  )
 }
 
 const Layout = ({ children, ...defaultProps }) => {
   const { pageContext: ctx } = defaultProps
   const db = useDbQuery()
   const entry = findEntry(db, ctx)
+  const isTransclusion = includesTransclusion(db, defaultProps)
   return (
     <Fragment>
       {entry && <SEO title={entry.value.name} />}
       <Theme db={db} currentEntry={entry}>
-        <Route {...defaultProps} entry={entry}>
+        <Route {...defaultProps} entry={entry} isTransclusion={isTransclusion}>
           {children}
         </Route>
       </Theme>
