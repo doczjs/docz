@@ -10,7 +10,7 @@ export const wrapper = {
   py: 0,
   flex: 1,
   display: 'grid',
-  gridTemplateColumns: '250px 1fr',
+  gridTemplateColumns: '250px minmax(0, 1fr)',
   minHeight: '100vh',
   [media.tablet]: {
     display: 'block',
