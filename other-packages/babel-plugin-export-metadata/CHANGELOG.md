@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.14](https://github.com/doczjs/docz/compare/v2.3.0-alpha.13...v2.3.0-alpha.14) (2020-03-31)
+
+
+### Bug Fixes
+
+* **babel-plugin-export-metadata:** add case for export default… ([#1417](https://github.com/doczjs/docz/issues/1417)) ([31ebd08](https://github.com/doczjs/docz/commit/31ebd08))
+
+
+
+
+
 # [2.1.0](https://github.com/doczjs/docz/compare/v2.0.0-rc.77...v2.1.0) (2019-11-27)
 
 **Note:** Version bump only for package babel-plugin-export-metadata

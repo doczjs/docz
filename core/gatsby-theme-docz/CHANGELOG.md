@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.14](https://github.com/doczjs/docz/compare/v2.3.0-alpha.13...v2.3.0-alpha.14) (2020-03-31)
+
+
+### Bug Fixes
+
+* **gatsby-theme-docz:** add pre-wrap to error ([#1406](https://github.com/doczjs/docz/issues/1406)) ([ca6b02d](https://github.com/doczjs/docz/commit/ca6b02d))
+* **gatsby-theme-docz:** content overflowing issue ([#1437](https://github.com/doczjs/docz/issues/1437)) ([56f4cb8](https://github.com/doczjs/docz/commit/56f4cb8))
+
+
+### Features
+
+* **gatsby-theme-docz:** include MDX transclusion support ([#1436](https://github.com/doczjs/docz/issues/1436)) ([435001a](https://github.com/doczjs/docz/commit/435001a))
+
+
+
+
+
 # [2.3.0-alpha.13](https://github.com/doczjs/docz/compare/v2.3.0-alpha.12...v2.3.0-alpha.13) (2020-02-13)
 
 

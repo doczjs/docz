@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.14](https://github.com/doczjs/docz/compare/v2.3.0-alpha.13...v2.3.0-alpha.14) (2020-03-31)
+
+**Note:** Version bump only for package docz
+
+
+
+
+
 # [2.3.0-alpha.13](https://github.com/doczjs/docz/compare/v2.3.0-alpha.12...v2.3.0-alpha.13) (2020-02-13)
 
 

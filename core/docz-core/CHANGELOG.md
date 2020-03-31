@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.14](https://github.com/doczjs/docz/compare/v2.3.0-alpha.13...v2.3.0-alpha.14) (2020-03-31)
+
+
+### Bug Fixes
+
+* **docz-core:** always use custom prop filter if it's provided… ([#1415](https://github.com/doczjs/docz/issues/1415)) ([53063ff](https://github.com/doczjs/docz/commit/53063ff))
+
+
+
+
+
 # [2.3.0-alpha.12](https://github.com/doczjs/docz/compare/v2.3.0-alpha.11...v2.3.0-alpha.12) (2020-02-12)
 
 
