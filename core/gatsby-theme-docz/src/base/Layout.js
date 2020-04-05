@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { useComponents } from 'docz'
 import { propEq, get } from 'lodash/fp'
+import { MDXProvider } from '@mdx-js/react'
 
 import { useDbQuery } from '../hooks/useDbQuery'
 import Wrapper from '../wrapper'
@@ -17,9 +18,11 @@ const Route = ({ children, entry, isTransclusion, ...defaultProps }) => {
   return isTransclusion ? (
     children
   ) : (
-    <Wrapper>
-      <Layout {...props}>{children}</Layout>
-    </Wrapper>
+    <MDXProvider components={components}>
+      <Wrapper>
+        <Layout {...props}>{children}</Layout>
+      </Wrapper>
+    </MDXProvider>
   )
 }
 

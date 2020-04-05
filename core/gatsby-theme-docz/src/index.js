@@ -9,7 +9,7 @@ import components from '~components'
 const Theme = ({ children }) => {
   const config = useConfig()
   return (
-    <ThemeProvider theme={config.themeConfig} components={components}>
+    <ThemeProvider theme={config.themeConfig}>
       <ComponentsProvider components={components}>
         <Styled.root>{children}</Styled.root>
       </ComponentsProvider>
