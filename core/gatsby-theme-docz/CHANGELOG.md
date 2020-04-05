@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1-alpha.0](https://github.com/doczjs/docz/compare/v2.3.0...v2.3.1-alpha.0) (2020-04-05)
+
+
+### Bug Fixes
+
+* **gatsby-theme-docz:** fix theme components customization bug ([a9384b0](https://github.com/doczjs/docz/commit/a9384b0))
+
+
+
+
+
 # [2.3.0](https://github.com/doczjs/docz/compare/v2.3.0-alpha.14...v2.3.0) (2020-04-02)
 
 **Note:** Version bump only for package gatsby-theme-docz
