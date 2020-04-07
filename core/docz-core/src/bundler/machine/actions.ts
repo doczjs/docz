@@ -19,6 +19,7 @@ const ensureFile = (filename: string, toDelete?: string) => {
 }
 
 export const ensureFiles = ({ args }: ServerMachineCtx) => {
+  // themesDir defaults to "src" to behave like a normal gatsby site
   const appPath = path.join(paths.root, args.themesDir)
   const themeNames = glob.sync('gatsby-theme-**', {
     cwd: appPath,
@@ -30,6 +31,13 @@ export const ensureFiles = ({ args }: ServerMachineCtx) => {
       path.join(paths.docz, 'src', themeName)
     )
   })
+  const userPagesPath = path.join(appPath, 'pages')
+  const doczPagesPath = path.join(paths.docz, 'src', 'pages')
+  // Copy 404 and other possible Gatsby pages
+  if (fs.existsSync(userPagesPath)) {
+    fs.copySync(userPagesPath, doczPagesPath)
+  }
+
   copyDoczRc(args.config)
   ensureFile('gatsby-browser.js')
   ensureFile('gatsby-ssr.js')

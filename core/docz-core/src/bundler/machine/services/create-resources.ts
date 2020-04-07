@@ -80,8 +80,10 @@ const copyEslintIgnore = async () => {
   }
 }
 
-export const writeNotFound = async () => {
+export const writeDefaultNotFound = async () => {
   const outputPath = path.join(paths.docz, 'src/pages/404.js')
+  // If it exists then it would have been created in ensureFiles while copying the theme
+  if (fs.existsSync(outputPath)) return
   await outputFileFromTemplate('404.tpl.js', outputPath, {})
 }
 
@@ -132,7 +134,7 @@ export const createResources = async (ctx: ServerMachineCtx) => {
     await copyAndModifyPkgJson(ctx)
     await writeEslintRc()
     await copyEslintIgnore()
-    await writeNotFound()
+    await writeDefaultNotFound()
     await writeGatsbyConfig(ctx)
     await writeGatsbyConfigNode()
     await writeGatsbyConfigCustom()
