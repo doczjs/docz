@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2-alpha.0](https://github.com/doczjs/docz/compare/v2.3.1...v2.3.2-alpha.0) (2020-04-07)
+
+
+### Bug Fixes
+
+* **docz-core:** use user-provided 404 page when it exists ([05417d3](https://github.com/doczjs/docz/commit/05417d3))
+
+
+
+
+
 ## [2.3.1](https://github.com/doczjs/docz/compare/v2.3.1-alpha.0...v2.3.1) (2020-04-05)
 
 **Note:** Version bump only for package docz
