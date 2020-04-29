@@ -82,7 +82,7 @@ import Theme from './my-custom-theme'
 export default (props) => <Theme {...props} />
 ```
 
-Check [here](https://www.docz.site/docs/creating-themes) for more information about how to create themes.
+Check [here](https://www.docz.site/docs/creating-your-themes) for more information about how to create themes.
 
 ## `wrapper` property removed
 The same thing happened here for the oldest `wrapper` property. Now you can wrap your entire application by just creating a file called `src/gatsby-theme-docz/wrapper.js`
