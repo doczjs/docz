@@ -137,7 +137,7 @@ const Theme = ({ children }) => {
   return (
     <ThemeProvider theme={config}>
       <Menu />
-      <ComponentsProvider components={baseComponents}>
+      <ComponentsProvider components={componentsMap}>
         {children}
       </ComponentsProvider>
     </ThemeProvider>
