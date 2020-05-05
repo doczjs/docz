@@ -24,22 +24,5 @@
     "eslint-plugin-mdx": "^1.6.1",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0"
-  },
-  "devDependencies": {
-    "@babel/preset-typescript": "^7.3.3",
-    "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-conventional": "^8.2.0",
-    "@commitlint/config-lerna-scopes": "^8.2.0",
-    "@types/fs-extra": "^8.0.0",
-    "@types/jest": "^24.0.15",
-    "@types/lodash": "^4.14.136",
-    "@types/node": "^12.6.8",
-    "@types/prettier": "^1.16.4",
-    "all-contributors-cli": "^6.8.0",
-    "babel-eslint": "^10.0.3",
-    "eslint-plugin-react": "^7.16.0",
-    "husky": "^3.0.0",
-    "lint-staged": "^9.2.0",
-    "ts-jest": "^24.0.2"
   }
 }
