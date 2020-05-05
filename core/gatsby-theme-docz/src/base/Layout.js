@@ -50,7 +50,7 @@ const Layout = ({ children, ...defaultProps }) => {
   const isTransclusion = includesTransclusion(db, defaultProps)
   return (
     <Fragment>
-      {entry && <SEO title={entry.value.name} />}
+      {entry && <SEO title={entry.value.name} {...entry.value} />}
       <Theme db={db} currentEntry={entry}>
         <Route {...defaultProps} entry={entry} isTransclusion={isTransclusion}>
           {children}
