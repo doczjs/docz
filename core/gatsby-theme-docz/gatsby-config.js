@@ -83,6 +83,9 @@ module.exports = opts => {
         },
       },
       {
+        resolve: 'gatsby-plugin-catch-links',
+      },
+      {
         resolve: 'gatsby-plugin-react-helmet-async',
       },
       {
