@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-docz-ts",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Eslint config of Docz for Typescript",
   "license": "MIT",
   "author": {
