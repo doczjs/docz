@@ -1,6 +1,6 @@
 import * as paths from '../config/paths'
-import yargs from 'yargs'
-import { setArgs, Config } from '../config/argv'
+import yargs, { Arguments } from 'yargs'
+import { setArgs, Config, Argv } from '../config/argv'
 import { Params } from '../lib/DataServer'
 import { getBaseConfig } from '../config/docz'
 
@@ -12,23 +12,21 @@ export const mockedParams = (): Params => {
   }
 }
 
-export const mockedArgv = () => {
+export const mockedArgv = (): Arguments<Argv> => {
   const yargsArgs: any = {
     argv: {},
-    //@ts-ignore
     option: jest.fn().mockImplementation((key, value) => {
       yargs.argv[value.alias ? value.alias : key] = value.default
       return yargs
     }),
   }
   const { argv } = setArgs(yargsArgs)
-  return argv
+  return (argv as unknown) as Arguments<Argv>
 }
 
 export const getTestConfig = (overrides?: Partial<Config>): Config => {
   const argv = mockedArgv()
   return {
-    //@ts-ignore
     ...getBaseConfig(argv),
     paths,
     typescript: true,

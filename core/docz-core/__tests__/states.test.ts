@@ -3,7 +3,8 @@ import { createConfigStateInput } from '../src/test-utils/data-bank'
 import { getBaseConfig } from '../src/config/docz'
 import * as paths from '../src/config/paths'
 import { Entries } from '../src/lib/Entries'
-import { setArgs } from '../src/config/argv'
+import { setArgs, Config, Argv } from '../src/config/argv'
+import { Arguments } from 'yargs'
 
 describe('states', () => {
   test('exports', () => {
@@ -16,7 +17,7 @@ describe('states', () => {
 
 describe('states.config', () => {
   test('config returns valid state', () => {
-    const state = states.config({})
+    const state = states.config({} as Config)
     expect(typeof state.close).toEqual('function')
     expect(typeof state.start).toEqual('function')
     expect(state.id).toEqual('config')
@@ -37,7 +38,7 @@ describe('states.config', () => {
 
 describe('states.entries', () => {
   test('entries returns start-able state', async () => {
-    const yargs = {
+    const yargs: any = {
       argv: {},
       option: jest.fn().mockImplementation((key, value) => {
         yargs.argv[value.alias ? value.alias : key] = value.default
@@ -45,15 +46,16 @@ describe('states.entries', () => {
       }),
     }
     const { argv } = setArgs(yargs)
-    //@ts-ignore
-    const config = { ...getBaseConfig(argv), paths }
+    const config = {
+      ...getBaseConfig((argv as unknown) as Arguments<Argv>),
+      paths,
+    }
     const entries = new Entries(config)
     const state = states.entries(entries, config)
     const setState = jest.fn()
     const getState = jest.fn()
     await state.start({ getState, setState })
     expect(getState).toBeCalledWith()
-    // expect(setState).toBeCalledWith('entries', [])
     state.close()
   })
 })
