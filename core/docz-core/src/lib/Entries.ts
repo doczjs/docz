@@ -9,6 +9,7 @@ import { Entry, EntryObj } from './Entry'
 import { Plugin } from './Plugin'
 import { Config } from '../config/argv'
 import { getRepoEditUrl } from '../utils/repo-info'
+import { unixPath } from '../utils/docgen'
 
 const mapToObj = (map: Map<any, any>) =>
   Array.from(map.entries()).reduce(
@@ -22,7 +23,7 @@ export const matchFilesWithSrc = (config: Config) => (files: string[]) => {
   const srcDir = path.resolve(rootDir, src)
   const prefix = path.relative(rootDir, srcDir)
   return files.map(file =>
-    file.startsWith(prefix) ? file : path.join(prefix, file)
+    unixPath(file.startsWith(prefix) ? file : path.join(prefix, file))
   )
 }
 
