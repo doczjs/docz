@@ -7,7 +7,7 @@ module.exports = {
     'prettier/@typescript-eslint',
   ],
   rules: {
-    'comma-dangle': ['error', 'always-multiline', { 'functions': 'never' }],
+    'comma-dangle': ['error', 'always-multiline', { functions: 'never' }],
     'no-mixed-operators': 'error',
     'no-console': 'off',
     'react/prop-types': 'off',
