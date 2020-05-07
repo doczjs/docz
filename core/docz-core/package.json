@@ -53,7 +53,7 @@
     "typescript": "3.5.3",
     "wait-on": "^3.3.0",
     "xstate": "^4.6.7",
-    "yargs": "^13.3.0"
+    "yargs": "^15.3.1"
   },
   "devDependencies": {
     "@types/cross-spawn": "^6.0.0",
