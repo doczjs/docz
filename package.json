@@ -30,7 +30,6 @@
     "promote:next": "lerna publish --conventional-commits --conventional-graduate",
     "release:beta": "yarn release --dist-tag=beta --preid=beta",
     "release:canary": "yarn release --force-publish=\"*\" --canary --exact --npm-client npm",
-    "precommit": "lint-staged",
     "commit": "git-cz",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate"
@@ -80,5 +79,10 @@
       "dev-env/*",
       "examples/*"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
