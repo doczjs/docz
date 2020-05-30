@@ -107,7 +107,7 @@ export const setArgs = (yargs: Yargs) => {
     })
     .option('ignore', {
       type: 'array',
-      default: getEnv('docz.ignore', []),
+      default: getEnv('docz.ignore', doczRcBaseConfig.ignore),
     })
     .option('public', {
       type: 'string',
