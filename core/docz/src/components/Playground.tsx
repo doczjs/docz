@@ -12,6 +12,7 @@ export interface PlaygroundProps {
   __code: string
   useScoping?: boolean
   language?: string
+  showEditor?: boolean
 }
 
 export const Playground: SFC<PlaygroundProps> = ({
@@ -24,6 +25,7 @@ export const Playground: SFC<PlaygroundProps> = ({
   __code,
   language,
   useScoping,
+  showEditor,
 }) => {
   const components = useComponents()
   const PlaygroundComponent = components.playground
@@ -41,6 +43,7 @@ export const Playground: SFC<PlaygroundProps> = ({
       code={__code}
       language={language}
       useScoping={useScoping}
+      showEditor={showEditor}
     />
   )
 }

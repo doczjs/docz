@@ -42,7 +42,13 @@ const transformCode = code => {
   return `<React.Fragment>${code}</React.Fragment>`
 }
 
-export const Playground = ({ code, scope, language, useScoping = false }) => {
+export const Playground = ({
+  code,
+  scope,
+  language,
+  useScoping = false,
+  showEditor,
+}) => {
   const {
     themeConfig: { showPlaygroundEditor, showLiveError, showLivePreview },
   } = useConfig()
@@ -50,7 +56,9 @@ export const Playground = ({ code, scope, language, useScoping = false }) => {
   // Makes sure scope is only given on mount to avoid infinite re-render on hot reloads
   const [scopeOnMount] = React.useState(scope)
   const theme = usePrismTheme()
-  const [showingCode, setShowingCode] = React.useState(showPlaygroundEditor)
+  const [showingCode, setShowingCode] = React.useState(
+    showEditor !== undefined ? showEditor : showPlaygroundEditor
+  )
   const [width, setWidth] = React.useState('100%')
   const resizableProps = getResizableProps(width, setWidth)
 

@@ -16,6 +16,7 @@ export interface PlaygroundProps {
   language?: string
   showLivePreview?: boolean
   useScoping?: boolean
+  showEditor?: boolean
 }
 
 export interface LayoutProps {
