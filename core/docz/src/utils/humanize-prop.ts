@@ -35,6 +35,9 @@ const getTypeStr = (type: PropType | FlowType): any => {
     case 'func':
       return 'Function'
     case 'shape':
+      if(type.computed === true){
+        return type.value;
+      }
       const shape = type.value
       const rst: any = {}
       Object.keys(shape).forEach(key => {
