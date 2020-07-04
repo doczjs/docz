@@ -5,452 +5,260 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [2.3.2-alpha.0](https://github.com/doczjs/docz/compare/v2.3.1...v2.3.2-alpha.0) (2020-04-07)
 
-
-### Bug Fixes
-
-* **docz-core:** use user-provided 404 page when it exists ([05417d3](https://github.com/doczjs/docz/commit/05417d3))
-
-
-
-
-
-## [2.3.1](https://github.com/doczjs/docz/compare/v2.3.1-alpha.0...v2.3.1) (2020-04-05)
-
-**Note:** Version bump only for package docz
-
-
-
-
-
 ## [2.3.1-alpha.0](https://github.com/doczjs/docz/compare/v2.3.0...v2.3.1-alpha.0) (2020-04-05)
 
-
 ### Bug Fixes
 
-* **gatsby-theme-docz:** fix theme components customization bug ([a9384b0](https://github.com/doczjs/docz/commit/a9384b0))
-
-
-
-
+- **gatsby-theme-docz:** fix theme components customization bug ([a9384b0](https://github.com/doczjs/docz/commit/a9384b0))
 
 # [2.3.0](https://github.com/doczjs/docz/compare/v2.3.0-alpha.14...v2.3.0) (2020-04-02)
 
 **Note:** Version bump only for package docz
 
-
-
-
-
 # [2.3.0-alpha.14](https://github.com/doczjs/docz/compare/v2.3.0-alpha.13...v2.3.0-alpha.14) (2020-03-31)
-
 
 ### Bug Fixes
 
-* **babel-plugin-export-metadata:** add case for export default… ([#1417](https://github.com/doczjs/docz/issues/1417)) ([31ebd08](https://github.com/doczjs/docz/commit/31ebd08))
-* **docz-core:** always use custom prop filter if it's provided… ([#1415](https://github.com/doczjs/docz/issues/1415)) ([53063ff](https://github.com/doczjs/docz/commit/53063ff))
-* **gatsby-theme-docz:** add pre-wrap to error ([#1406](https://github.com/doczjs/docz/issues/1406)) ([ca6b02d](https://github.com/doczjs/docz/commit/ca6b02d))
-* **gatsby-theme-docz:** content overflowing issue ([#1437](https://github.com/doczjs/docz/issues/1437)) ([56f4cb8](https://github.com/doczjs/docz/commit/56f4cb8))
-
+- **babel-plugin-export-metadata:** add case for export default… ([#1417](https://github.com/doczjs/docz/issues/1417)) ([31ebd08](https://github.com/doczjs/docz/commit/31ebd08))
+- **docz-core:** always use custom prop filter if it's provided… ([#1415](https://github.com/doczjs/docz/issues/1415)) ([53063ff](https://github.com/doczjs/docz/commit/53063ff))
+- **gatsby-theme-docz:** add pre-wrap to error ([#1406](https://github.com/doczjs/docz/issues/1406)) ([ca6b02d](https://github.com/doczjs/docz/commit/ca6b02d))
+- **gatsby-theme-docz:** content overflowing issue ([#1437](https://github.com/doczjs/docz/issues/1437)) ([56f4cb8](https://github.com/doczjs/docz/commit/56f4cb8))
 
 ### Features
 
-* **docz:** bump babel-preset-react-app to 9.1.2 ([#1435](https://github.com/doczjs/docz/issues/1435)) ([8f071eb](https://github.com/doczjs/docz/commit/8f071eb))
-* **gatsby-theme-docz:** include MDX transclusion support ([#1436](https://github.com/doczjs/docz/issues/1436)) ([435001a](https://github.com/doczjs/docz/commit/435001a))
-
-
-
-
+- **docz:** bump babel-preset-react-app to 9.1.2 ([#1435](https://github.com/doczjs/docz/issues/1435)) ([8f071eb](https://github.com/doczjs/docz/commit/8f071eb))
+- **gatsby-theme-docz:** include MDX transclusion support ([#1436](https://github.com/doczjs/docz/issues/1436)) ([435001a](https://github.com/doczjs/docz/commit/435001a))
 
 # [2.3.0-alpha.13](https://github.com/doczjs/docz/compare/v2.3.0-alpha.12...v2.3.0-alpha.13) (2020-02-13)
 
-
 ### Bug Fixes
 
-* **docz:** pass useScoping to theme Playground ([6ec7315](https://github.com/doczjs/docz/commit/6ec7315)), closes [#1390](https://github.com/doczjs/docz/issues/1390)
-* **gatsby-theme-docz:** flex component aligmItems -> alignItems ([#1391](https://github.com/doczjs/docz/issues/1391)) ([b80524f](https://github.com/doczjs/docz/commit/b80524f))
-
-
-
-
+- **docz:** pass useScoping to theme Playground ([6ec7315](https://github.com/doczjs/docz/commit/6ec7315)), closes [#1390](https://github.com/doczjs/docz/issues/1390)
+- **gatsby-theme-docz:** flex component aligmItems -> alignItems ([#1391](https://github.com/doczjs/docz/issues/1391)) ([b80524f](https://github.com/doczjs/docz/commit/b80524f))
 
 # [2.3.0-alpha.12](https://github.com/doczjs/docz/compare/v2.3.0-alpha.11...v2.3.0-alpha.12) (2020-02-12)
 
-
 ### Bug Fixes
 
-* **docz-core:** pass down host when running serve ([#1384](https://github.com/doczjs/docz/issues/1384)) ([80a0e1e](https://github.com/doczjs/docz/commit/80a0e1e))
-* **gatsby-theme-docz:** use sx instead of style prop in Playgro… ([#1389](https://github.com/doczjs/docz/issues/1389)) ([98f3311](https://github.com/doczjs/docz/commit/98f3311))
-
-
-
-
+- **docz-core:** pass down host when running serve ([#1384](https://github.com/doczjs/docz/issues/1384)) ([80a0e1e](https://github.com/doczjs/docz/commit/80a0e1e))
+- **gatsby-theme-docz:** use sx instead of style prop in Playgro… ([#1389](https://github.com/doczjs/docz/issues/1389)) ([98f3311](https://github.com/doczjs/docz/commit/98f3311))
 
 # [2.3.0-alpha.11](https://github.com/doczjs/docz/compare/v2.3.0-alpha.10...v2.3.0-alpha.11) (2020-02-07)
 
-
 ### Bug Fixes
 
-* **docz-core:** be explicit about cli args ([6f5b4ee](https://github.com/doczjs/docz/commit/6f5b4ee))
-
+- **docz-core:** be explicit about cli args ([6f5b4ee](https://github.com/doczjs/docz/commit/6f5b4ee))
 
 ### Features
 
-* **docz-core:** pass down cli args to Gatsby + fix open flag ([385b006](https://github.com/doczjs/docz/commit/385b006))
-* **gatsby-theme-docz:** create MainContainer component ([#1381](https://github.com/doczjs/docz/issues/1381)) ([e8d1c04](https://github.com/doczjs/docz/commit/e8d1c04))
-
-
-
-
+- **docz-core:** pass down cli args to Gatsby + fix open flag ([385b006](https://github.com/doczjs/docz/commit/385b006))
+- **gatsby-theme-docz:** create MainContainer component ([#1381](https://github.com/doczjs/docz/issues/1381)) ([e8d1c04](https://github.com/doczjs/docz/commit/e8d1c04))
 
 # [2.3.0-alpha.10](https://github.com/doczjs/docz/compare/v2.3.0-alpha.9...v2.3.0-alpha.10) (2020-02-06)
 
-
 ### Bug Fixes
 
-* **docz-core:** parse port when running serve ([29d0edd](https://github.com/doczjs/docz/commit/29d0edd))
-
-
-
-
+- **docz-core:** parse port when running serve ([29d0edd](https://github.com/doczjs/docz/commit/29d0edd))
 
 # [2.3.0-alpha.9](https://github.com/doczjs/docz/compare/v2.3.0-alpha.8...v2.3.0-alpha.9) (2020-02-06)
 
-
 ### Bug Fixes
 
-* **docz:** fix capitalization of ts interfaces ([9e950eb](https://github.com/doczjs/docz/commit/9e950eb))
-
-
-
-
+- **docz:** fix capitalization of ts interfaces ([9e950eb](https://github.com/doczjs/docz/commit/9e950eb))
 
 # [2.3.0-alpha.8](https://github.com/doczjs/docz/compare/v2.3.0-alpha.7...v2.3.0-alpha.8) (2020-02-06)
 
 **Note:** Version bump only for package docz
 
-
-
-
-
 # [2.3.0-alpha.7](https://github.com/doczjs/docz/compare/v2.3.0-alpha.6...v2.3.0-alpha.7) (2020-02-04)
-
 
 ### Bug Fixes
 
-* **gatsby-theme-docz:** removed unused gatsby-plugin-manifest ([#1368](https://github.com/doczjs/docz/issues/1368)) ([44edc68](https://github.com/doczjs/docz/commit/44edc68))
-* warning in Alert component ([#1353](https://github.com/doczjs/docz/issues/1353)) ([8ee156d](https://github.com/doczjs/docz/commit/8ee156d))
-* **gatsby-theme-docz:** fix playground react-resize-detector usage ([#1350](https://github.com/doczjs/docz/issues/1350)) ([f0baf67](https://github.com/doczjs/docz/commit/f0baf67))
-
+- **gatsby-theme-docz:** removed unused gatsby-plugin-manifest ([#1368](https://github.com/doczjs/docz/issues/1368)) ([44edc68](https://github.com/doczjs/docz/commit/44edc68))
+- warning in Alert component ([#1353](https://github.com/doczjs/docz/issues/1353)) ([8ee156d](https://github.com/doczjs/docz/commit/8ee156d))
+- **gatsby-theme-docz:** fix playground react-resize-detector usage ([#1350](https://github.com/doczjs/docz/issues/1350)) ([f0baf67](https://github.com/doczjs/docz/commit/f0baf67))
 
 ### Features
 
-* add hook to find docgen props ([#1371](https://github.com/doczjs/docz/issues/1371)) ([8fffa26](https://github.com/doczjs/docz/commit/8fffa26))
-* add the ability to hide a document from the menu ([#1354](https://github.com/doczjs/docz/issues/1354)) ([95b0d7f](https://github.com/doczjs/docz/commit/95b0d7f))
-
-
-
-
+- add hook to find docgen props ([#1371](https://github.com/doczjs/docz/issues/1371)) ([8fffa26](https://github.com/doczjs/docz/commit/8fffa26))
+- add the ability to hide a document from the menu ([#1354](https://github.com/doczjs/docz/issues/1354)) ([95b0d7f](https://github.com/doczjs/docz/commit/95b0d7f))
 
 # [2.3.0-alpha.6](https://github.com/doczjs/docz/compare/v2.3.0-alpha.5...v2.3.0-alpha.6) (2020-01-02)
 
-
 ### Bug Fixes
 
-* **docz-core:** prevent falsy error code on cli ([#1332](https://github.com/doczjs/docz/issues/1332)) ([1437b59](https://github.com/doczjs/docz/commit/1437b59))
-* **docz-core:** revert ts auto-detect ([f0ce584](https://github.com/doczjs/docz/commit/f0ce584))
-
-
-
-
+- **docz-core:** prevent falsy error code on cli ([#1332](https://github.com/doczjs/docz/issues/1332)) ([1437b59](https://github.com/doczjs/docz/commit/1437b59))
+- **docz-core:** revert ts auto-detect ([f0ce584](https://github.com/doczjs/docz/commit/f0ce584))
 
 # [2.3.0-alpha.5](https://github.com/doczjs/docz/compare/v2.3.0-alpha.4...v2.3.0-alpha.5) (2019-12-17)
 
-
 ### Bug Fixes
 
-* **gatsby-theme-docz:** src -> gatsbyRoot for file system source ([71dd572](https://github.com/doczjs/docz/commit/71dd572))
-
+- **gatsby-theme-docz:** src -> gatsbyRoot for file system source ([71dd572](https://github.com/doczjs/docz/commit/71dd572))
 
 ### Features
 
-* **docz-core:** introduce gatsbyRoot to use for fs sourcing ([8e89d64](https://github.com/doczjs/docz/commit/8e89d64))
-
-
-
-
+- **docz-core:** introduce gatsbyRoot to use for fs sourcing ([8e89d64](https://github.com/doczjs/docz/commit/8e89d64))
 
 # [2.3.0-alpha.4](https://github.com/doczjs/docz/compare/v2.3.0-alpha.3...v2.3.0-alpha.4) (2019-12-16)
 
-
 ### Bug Fixes
 
-* **gatsby-theme-docz:** make Props isToggle work again ([#1326](https://github.com/doczjs/docz/issues/1326)) ([4921ef5](https://github.com/doczjs/docz/commit/4921ef5))
-* update dev-env dependencies ([e1b185f](https://github.com/doczjs/docz/commit/e1b185f))
-
-
-
-
+- **gatsby-theme-docz:** make Props isToggle work again ([#1326](https://github.com/doczjs/docz/issues/1326)) ([4921ef5](https://github.com/doczjs/docz/commit/4921ef5))
+- update dev-env dependencies ([e1b185f](https://github.com/doczjs/docz/commit/e1b185f))
 
 # [2.3.0-alpha.3](https://github.com/doczjs/docz/compare/v2.3.0-alpha.2...v2.3.0-alpha.3) (2019-12-16)
 
-
 ### Bug Fixes
 
-* **gatsby-theme-docz:** fix preview padding ([ebebd1c](https://github.com/doczjs/docz/commit/ebebd1c)), closes [#1325](https://github.com/doczjs/docz/issues/1325)
-
-
-
-
+- **gatsby-theme-docz:** fix preview padding ([ebebd1c](https://github.com/doczjs/docz/commit/ebebd1c)), closes [#1325](https://github.com/doczjs/docz/issues/1325)
 
 # [2.3.0-alpha.2](https://github.com/doczjs/docz/compare/v2.3.0-alpha.1...v2.3.0-alpha.2) (2019-12-14)
 
-
 ### Bug Fixes
 
-* **docz-core:** forward cli status code properly ([#1319](https://github.com/doczjs/docz/issues/1319)) ([99ebf82](https://github.com/doczjs/docz/commit/99ebf82))
-
+- **docz-core:** forward cli status code properly ([#1319](https://github.com/doczjs/docz/issues/1319)) ([99ebf82](https://github.com/doczjs/docz/commit/99ebf82))
 
 ### Features
 
-* **docz-core:** allow custom pattern for globbing components with docgenConfig.searchPatterns ([#1316](https://github.com/doczjs/docz/issues/1316)) ([29e0165](https://github.com/doczjs/docz/commit/29e0165))
-* **docz-core:** support kebab & pascal case component file name pattern ([#1314](https://github.com/doczjs/docz/issues/1314)) ([9d5b129](https://github.com/doczjs/docz/commit/9d5b129))
-* **docz-utils:** add exports parser to add to Playground scope ([9c564d0](https://github.com/doczjs/docz/commit/9c564d0)), closes [#1247](https://github.com/doczjs/docz/issues/1247)
-* **rehype-docz:** add mdx exports to Playground scope ([d902e2a](https://github.com/doczjs/docz/commit/d902e2a)), closes [#1247](https://github.com/doczjs/docz/issues/1247)
-
-
-
-
+- **docz-core:** allow custom pattern for globbing components with docgenConfig.searchPatterns ([#1316](https://github.com/doczjs/docz/issues/1316)) ([29e0165](https://github.com/doczjs/docz/commit/29e0165))
+- **docz-core:** support kebab & pascal case component file name pattern ([#1314](https://github.com/doczjs/docz/issues/1314)) ([9d5b129](https://github.com/doczjs/docz/commit/9d5b129))
+- **docz-utils:** add exports parser to add to Playground scope ([9c564d0](https://github.com/doczjs/docz/commit/9c564d0)), closes [#1247](https://github.com/doczjs/docz/issues/1247)
+- **rehype-docz:** add mdx exports to Playground scope ([d902e2a](https://github.com/doczjs/docz/commit/d902e2a)), closes [#1247](https://github.com/doczjs/docz/issues/1247)
 
 # [2.3.0-alpha.1](https://github.com/doczjs/docz/compare/v2.3.0-alpha.0...v2.3.0-alpha.1) (2019-12-13)
 
-
 ### Bug Fixes
 
-* **docz-core:** properly support node_modules for multiple file patterns ([#1315](https://github.com/doczjs/docz/issues/1315)) ([4d9f9b3](https://github.com/doczjs/docz/commit/4d9f9b3))
-* **docz-core:** use docz-utils for get and mergeWith ([f222083](https://github.com/doczjs/docz/commit/f222083))
-
+- **docz-core:** properly support node_modules for multiple file patterns ([#1315](https://github.com/doczjs/docz/issues/1315)) ([4d9f9b3](https://github.com/doczjs/docz/commit/4d9f9b3))
+- **docz-core:** use docz-utils for get and mergeWith ([f222083](https://github.com/doczjs/docz/commit/f222083))
 
 ### Features
 
-* **docz-utils:** export mergeWith and get from lodash@4 ([53fbde0](https://github.com/doczjs/docz/commit/53fbde0)), closes [#1313](https://github.com/doczjs/docz/issues/1313)
-
-
-
-
+- **docz-utils:** export mergeWith and get from lodash@4 ([53fbde0](https://github.com/doczjs/docz/commit/53fbde0)), closes [#1313](https://github.com/doczjs/docz/issues/1313)
 
 # [2.3.0-alpha.0](https://github.com/doczjs/docz/compare/v2.2.1-alpha.1...v2.3.0-alpha.0) (2019-12-12)
 
-
 ### Features
 
-* **docz-core:** detect typescript without config ([bbaecb2](https://github.com/doczjs/docz/commit/bbaecb2))
-
-
-
-
+- **docz-core:** detect typescript without config ([bbaecb2](https://github.com/doczjs/docz/commit/bbaecb2))
 
 ## [2.2.1-alpha.1](https://github.com/doczjs/docz/compare/v2.2.1-alpha.0...v2.2.1-alpha.1) (2019-12-12)
 
-
 ### Bug Fixes
 
-* **docz-core:** add native styled-components support ([b072f78](https://github.com/doczjs/docz/commit/b072f78))
-
-
-
-
+- **docz-core:** add native styled-components support ([b072f78](https://github.com/doczjs/docz/commit/b072f78))
 
 ## [2.2.1-alpha.0](https://github.com/doczjs/docz/compare/v2.2.0...v2.2.1-alpha.0) (2019-12-11)
 
-
 ### Bug Fixes
 
-* **gatsby-theme-docz:** fix mdx components theming from config ([3a9bdb7](https://github.com/doczjs/docz/commit/3a9bdb7)), closes [#1309](https://github.com/doczjs/docz/issues/1309)
-
-
-
-
+- **gatsby-theme-docz:** fix mdx components theming from config ([3a9bdb7](https://github.com/doczjs/docz/commit/3a9bdb7)), closes [#1309](https://github.com/doczjs/docz/issues/1309)
 
 # [2.2.0](https://github.com/doczjs/docz/compare/v2.2.0-alpha.8...v2.2.0) (2019-12-11)
 
 **Note:** Version bump only for package docz
 
-
-
-
-
 # [2.2.0-alpha.8](https://github.com/doczjs/docz/compare/v2.2.0-alpha.7...v2.2.0-alpha.8) (2019-12-06)
-
 
 ### Features
 
-* **gatsby-theme-docz:** add optional iframe for preview and ed… ([#1305](https://github.com/doczjs/docz/issues/1305)) ([9c5082e](https://github.com/doczjs/docz/commit/9c5082e)), closes [#1306](https://github.com/doczjs/docz/issues/1306)
-
-
-
-
+- **gatsby-theme-docz:** add optional iframe for preview and ed… ([#1305](https://github.com/doczjs/docz/issues/1305)) ([9c5082e](https://github.com/doczjs/docz/commit/9c5082e)), closes [#1306](https://github.com/doczjs/docz/issues/1306)
 
 # [2.2.0-alpha.7](https://github.com/doczjs/docz/compare/v2.2.0-alpha.6...v2.2.0-alpha.7) (2019-12-03)
 
-
 ### Bug Fixes
 
-* **gatsby-theme-docz:** fix infinite renders in playground on hot reload ([3451fd1](https://github.com/doczjs/docz/commit/3451fd1)), closes [#1299](https://github.com/doczjs/docz/issues/1299)
-
-
-
-
+- **gatsby-theme-docz:** fix infinite renders in playground on hot reload ([3451fd1](https://github.com/doczjs/docz/commit/3451fd1)), closes [#1299](https://github.com/doczjs/docz/issues/1299)
 
 # [2.2.0-alpha.6](https://github.com/doczjs/docz/compare/v2.2.0-alpha.5...v2.2.0-alpha.6) (2019-12-03)
 
-
 ### Bug Fixes
 
-* **gatsby-theme-docz:** fix horizontal code overflow ([a0b7823](https://github.com/doczjs/docz/commit/a0b7823))
-
-
-
-
+- **gatsby-theme-docz:** fix horizontal code overflow ([a0b7823](https://github.com/doczjs/docz/commit/a0b7823))
 
 # [2.2.0-alpha.5](https://github.com/doczjs/docz/compare/v2.2.0-alpha.4...v2.2.0-alpha.5) (2019-12-01)
 
-
 ### Bug Fixes
 
-* **gatsby-theme-docz:** fix tsx parsing in code blocks ([b321ff8](https://github.com/doczjs/docz/commit/b321ff8))
-
-
-
-
+- **gatsby-theme-docz:** fix tsx parsing in code blocks ([b321ff8](https://github.com/doczjs/docz/commit/b321ff8))
 
 # [2.2.0-alpha.4](https://github.com/doczjs/docz/compare/v2.2.0-alpha.3...v2.2.0-alpha.4) (2019-11-30)
 
-
 ### Features
 
-* **gatsby-theme-docz:** add showMarkdownEditButton flag ([8fd04e8](https://github.com/doczjs/docz/commit/8fd04e8)), closes [#1291](https://github.com/doczjs/docz/issues/1291)
-
-
-
-
+- **gatsby-theme-docz:** add showMarkdownEditButton flag ([8fd04e8](https://github.com/doczjs/docz/commit/8fd04e8)), closes [#1291](https://github.com/doczjs/docz/issues/1291)
 
 # [2.2.0-alpha.3](https://github.com/doczjs/docz/compare/v2.2.0-alpha.2...v2.2.0-alpha.3) (2019-11-29)
 
-
 ### Bug Fixes
 
-* **docz-core:** re-sync .docz on build ([dfd4262](https://github.com/doczjs/docz/commit/dfd4262))
-
-
-
-
+- **docz-core:** re-sync .docz on build ([dfd4262](https://github.com/doczjs/docz/commit/dfd4262))
 
 # [2.2.0-alpha.2](https://github.com/doczjs/docz/compare/v2.2.0-alpha.1...v2.2.0-alpha.2) (2019-11-29)
 
-
 ### Bug Fixes
 
-* **docz-core:** log errors that happen in gatsby-config ([fe1e2da](https://github.com/doczjs/docz/commit/fe1e2da))
-
+- **docz-core:** log errors that happen in gatsby-config ([fe1e2da](https://github.com/doczjs/docz/commit/fe1e2da))
 
 ### Features
 
-* **docz-core:** copy .env ([51f7027](https://github.com/doczjs/docz/commit/51f7027))
-
-
-
-
+- **docz-core:** copy .env ([51f7027](https://github.com/doczjs/docz/commit/51f7027))
 
 # [2.2.0-alpha.1](https://github.com/doczjs/docz/compare/v2.2.0-alpha.0...v2.2.0-alpha.1) (2019-11-28)
 
-
 ### Bug Fixes
 
-* **gatsby-theme-docz:** remove typo from the theme styles ([a25da88](https://github.com/doczjs/docz/commit/a25da88))
-
+- **gatsby-theme-docz:** remove typo from the theme styles ([a25da88](https://github.com/doczjs/docz/commit/a25da88))
 
 ### Features
 
-* **docz-core:** add all gatsby node apis to generated gatsby-node ([918b44c](https://github.com/doczjs/docz/commit/918b44c)), closes [#1285](https://github.com/doczjs/docz/issues/1285)
-
-
-
-
+- **docz-core:** add all gatsby node apis to generated gatsby-node ([918b44c](https://github.com/doczjs/docz/commit/918b44c)), closes [#1285](https://github.com/doczjs/docz/issues/1285)
 
 # [2.2.0-alpha.0](https://github.com/doczjs/docz/compare/v2.1.1...v2.2.0-alpha.0) (2019-11-28)
 
-
 ### Bug Fixes
 
-* **gatsby-theme-docz:** set gatsby root from doczrc src ([e6b1521](https://github.com/doczjs/docz/commit/e6b1521))
-
+- **gatsby-theme-docz:** set gatsby root from doczrc src ([e6b1521](https://github.com/doczjs/docz/commit/e6b1521))
 
 ### Features
 
-* **docz-core:** recommend commands on typo ([#1282](https://github.com/doczjs/docz/issues/1282)) ([0f8430d](https://github.com/doczjs/docz/commit/0f8430d))
-
-
-
-
+- **docz-core:** recommend commands on typo ([#1282](https://github.com/doczjs/docz/issues/1282)) ([0f8430d](https://github.com/doczjs/docz/commit/0f8430d))
 
 ## [2.1.1](https://github.com/doczjs/docz/compare/v2.1.0...v2.1.1) (2019-11-27)
 
-
 ### Bug Fixes
 
-* **docz-core:** prepend dot to default mdx extensions ([18f78d6](https://github.com/doczjs/docz/commit/18f78d6))
-
-
-
-
+- **docz-core:** prepend dot to default mdx extensions ([18f78d6](https://github.com/doczjs/docz/commit/18f78d6))
 
 # [2.1.0](https://github.com/doczjs/docz/compare/v2.0.0-rc.77...v2.1.0) (2019-11-27)
 
-
 ### Bug Fixes
 
-* **docz:** remove lowercasing of enum ts prop type ([8f7b949](https://github.com/doczjs/docz/commit/8f7b949))
-* **gatsby-theme-docz:** allow empty ts prop defaultValue ([2512aa1](https://github.com/doczjs/docz/commit/2512aa1))
-* **gatsby-theme-docz:** fix min-height ([34fc31f](https://github.com/doczjs/docz/commit/34fc31f))
-
+- **docz:** remove lowercasing of enum ts prop type ([8f7b949](https://github.com/doczjs/docz/commit/8f7b949))
+- **gatsby-theme-docz:** allow empty ts prop defaultValue ([2512aa1](https://github.com/doczjs/docz/commit/2512aa1))
+- **gatsby-theme-docz:** fix min-height ([34fc31f](https://github.com/doczjs/docz/commit/34fc31f))
 
 ### Features
 
-* **docz:** spread remaining props to Props component ([#1276](https://github.com/doczjs/docz/issues/1276)) ([531244f](https://github.com/doczjs/docz/commit/531244f))
-* **docz-core:** add mdxExtensions to config ([77b84e8](https://github.com/doczjs/docz/commit/77b84e8))
-* **gatsby-theme-docz:** use mdxExtensions from config ([7d405c5](https://github.com/doczjs/docz/commit/7d405c5))
-
-
-
-
-
-
+- **docz:** spread remaining props to Props component ([#1276](https://github.com/doczjs/docz/issues/1276)) ([531244f](https://github.com/doczjs/docz/commit/531244f))
+- **docz-core:** add mdxExtensions to config ([77b84e8](https://github.com/doczjs/docz/commit/77b84e8))
+- **gatsby-theme-docz:** use mdxExtensions from config ([7d405c5](https://github.com/doczjs/docz/commit/7d405c5))
 
 ### Bug Fixes
 
-
-
-* **docz-core:** add docz init command ([43cdeca](https://github.com/pedronauck/docz/commit/43cdeca))
-* **docz-core:** remove installation step in .docz 🎉 ([4d01ead](https://github.com/pedronauck/docz/commit/4d01ead))
-* **docz-gatsby-monorepo:** add example showing docz usage in a monorepo ([241c757](https://github.com/pedronauck/docz/commit/241c757))
-* add normalize for trailing slashes ([4b0a710](https://github.com/pedronauck/docz/commit/4b0a710))
-* adds theme path overrrite option ([bb62c6b](https://github.com/pedronauck/docz/commit/bb62c6b))
-* rewrite dest path for themeDir override ([7418e55](https://github.com/pedronauck/docz/commit/7418e55))
-
-
-
-
+- **docz-core:** add docz init command ([43cdeca](https://github.com/pedronauck/docz/commit/43cdeca))
+- **docz-core:** remove installation step in .docz 🎉 ([4d01ead](https://github.com/pedronauck/docz/commit/4d01ead))
+- **docz-gatsby-monorepo:** add example showing docz usage in a monorepo ([241c757](https://github.com/pedronauck/docz/commit/241c757))
+- add normalize for trailing slashes ([4b0a710](https://github.com/pedronauck/docz/commit/4b0a710))
+- adds theme path overrrite option ([bb62c6b](https://github.com/pedronauck/docz/commit/bb62c6b))
+- rewrite dest path for themeDir override ([7418e55](https://github.com/pedronauck/docz/commit/7418e55))
 
 # [2.0.0-rc.33](https://github.com/pedronauck/docz/compare/v2.0.0-rc.32...v2.0.0-rc.33) (2019-09-04)
 
-
 ### Features
 
-* **docz-core:** remove installation step in .docz 🎉 ([6790179](https://github.com/pedronauck/docz/commit/6790179))
-
-
-
-
+- **docz-core:** remove installation step in .docz 🎉 ([6790179](https://github.com/pedronauck/docz/commit/6790179))
 
 # [2.0.0-rc.32](https://github.com/pedronauck/docz/compare/v2.0.0-rc.1...v2.0.0-rc.32) (2019-09-04)
 
