@@ -65,6 +65,7 @@ export interface Argv {
   description: string
   /** slugify separator */
   separator: string
+  https: boolean
 }
 
 export interface Config extends Argv {
