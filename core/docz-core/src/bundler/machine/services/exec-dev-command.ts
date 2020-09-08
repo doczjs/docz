@@ -36,8 +36,16 @@ export const execDevCommand = async ({ args }: ServerMachineCtx) => {
   const repoRootPath = get(args, 'repoRootPath', await findRootPath())
   const gatsbyPath = path.join(repoRootPath, 'node_modules/.bin/gatsby')
   // const cliArgs = process.argv.slice(3)
+
   // Has --https flag to enable https in dev mode
   const useHttps = args.https
+  const caFile = args.caFile
+  const keyFile = args.keyFile
+  const certFile = args.certFile
+  const caFileOption = caFile ? ['--ca-file', caFile] : []
+  const keyFileOption = keyFile ? ['--key-file', keyFile] : []
+  const certFileOption = certFile ? ['--cert-file', certFile] : []
+
   spawn(
     gatsbyPath,
     [
@@ -47,6 +55,9 @@ export const execDevCommand = async ({ args }: ServerMachineCtx) => {
       '--port',
       `${args.port}`,
       useHttps ? '--https' : '',
+      ...caFileOption,
+      ...keyFileOption,
+      ...certFileOption,
     ],
     {
       stdio: 'inherit',
