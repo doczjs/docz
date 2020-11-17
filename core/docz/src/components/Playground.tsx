@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ComponentType, SFC } from 'react'
+import { ComponentType, FC } from 'react'
 import { useComponents } from '../hooks'
 
 export interface PlaygroundProps {
@@ -14,7 +14,7 @@ export interface PlaygroundProps {
   language?: string
 }
 
-export const Playground: SFC<PlaygroundProps> = ({
+export const Playground: FC<PlaygroundProps> = ({
   className,
   children,
   style,

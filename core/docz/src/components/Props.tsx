@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SFC, ComponentType } from 'react'
+import { FC, ComponentType } from 'react'
 import { get } from 'lodash/fp'
 
 import { useComponents, useComponentProps } from '../hooks'
@@ -99,7 +99,7 @@ export interface PropsComponentProps {
   [key: string]: any
 }
 
-export const Props: SFC<PropsProps> = ({
+export const Props: FC<PropsProps> = ({
   title,
   isToggle,
   isRaw,

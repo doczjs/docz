@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { SFC } from 'react'
+import React, { FC } from 'react'
 
 export type Kind = 'info' | 'positive' | 'negative' | 'warning'
 export type KindMap = Record<Kind, string>
@@ -19,7 +19,7 @@ export interface AlertProps {
   kind: 'info' | 'positive' | 'negative' | 'warning'
 }
 
-export const Alert: SFC<AlertProps> = ({ children, kind, ...rest }) => (
+export const Alert: FC<AlertProps> = ({ children, kind, ...rest }) => (
   <div
     style={{
       padding: 20,

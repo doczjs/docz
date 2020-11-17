@@ -8,7 +8,7 @@ route: /
 import { Playground, Props } from 'docz'
 import { Alert } from './components/Alert'
 
-## JS 
+## JS
 
 ```js
 const a = "abc";
@@ -31,7 +31,7 @@ console.log(`${a}-${b}`)
 
 ```ts
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { SFC } from 'react'
+import React, { FC } from 'react'
 
 export type Kind = 'info' | 'positive' | 'negative' | 'warning'
 export type KindMap = Record<Kind, string>
@@ -51,7 +51,7 @@ export interface AlertProps {
   kind: 'info' | 'positive' | 'negative' | 'warning'
 }
 
-export const Alert: SFC<AlertProps> = ({ kind, ...props }) => (
+export const Alert: FC<AlertProps> = ({ kind, ...props }) => (
   <div className="alert"></div>
 )
 

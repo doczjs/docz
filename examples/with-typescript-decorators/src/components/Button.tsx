@@ -1,4 +1,4 @@
-import React, { SFC } from 'react'
+import React, { FC } from 'react'
 import styled from '@emotion/styled'
 
 const scales = {
@@ -67,6 +67,6 @@ const ButtonStyled = styled('button')<ButtonProps>`
   border-radius: 3px;
 `
 
-export const Button: SFC<ButtonProps> = ({ children, ...props }) => (
+export const Button: FC<ButtonProps> = ({ children, ...props }) => (
   <ButtonStyled {...props}>{children}</ButtonStyled>
 )
