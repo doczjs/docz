@@ -4,6 +4,7 @@ route: /
 ---
 
 import { Playground } from 'docz'
+import { useState } from 'react'
 
 # Getting Started
 
@@ -11,7 +12,7 @@ import { Playground } from 'docz'
 
 <Playground>
   {() => {
-    const [toggle, setToggle] = React.useState(true)
+    const [toggle, setToggle] = useState(true)
     return (
       <button
         onClick={() => {

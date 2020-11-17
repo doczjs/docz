@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React from 'react'
+import { Fragment, forwardRef } from 'react'
 import { jsx } from 'theme-ui'
 import { Link } from 'gatsby'
 import { useDocs, useCurrentDoc } from 'docz'
@@ -20,7 +20,7 @@ const getCurrentHash = () => {
   return window.location ? decodeURI(window.location.hash) : ''
 }
 
-export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
+export const NavLink = forwardRef(function NavLink({ item, ...props }, ref) {
   const docs = useDocs()
   const current = useCurrentDoc()
 
@@ -34,7 +34,7 @@ export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
   const showHeadings = isCurrent && headings && headings.length > 0
   const currentHash = getCurrentHash()
   return (
-    <React.Fragment>
+    <Fragment>
       <Link
         {...props}
         to={to}
@@ -53,6 +53,6 @@ export const NavLink = React.forwardRef(({ item, ...props }, ref) => {
             {heading.value}
           </Link>
         ))}
-    </React.Fragment>
+    </Fragment>
   )
 })

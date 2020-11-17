@@ -1,5 +1,5 @@
 import React, { useContext, createContext } from 'react'
-import { Fragment, FC, ComponentType as CT } from 'react'
+import { FC, ComponentType as CT } from 'react'
 
 import { Entry } from '../state'
 
@@ -29,8 +29,8 @@ export interface ComponentsMap {
   [key: string]: any
 }
 
-const DefNotFound: FC = () => <Fragment>Not found</Fragment>
-const DefLayout: FC = ({ children }) => <Fragment>{children}</Fragment>
+const DefNotFound: FC = () => <>Not found</>
+const DefLayout: FC = ({ children }) => <>{children}</>
 const DefPlayground: FC<PlaygroundProps> = ({ component, code }) => (
   <div>
     {component}

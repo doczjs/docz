@@ -19,10 +19,10 @@ The metadata is set up in a file called `wrapper.js` which lives in docz theme p
 1. Create a file called `wrapper.js` in `src/gatsby-theme-docz`. Then path is important.
 2. Paste the following content and edit it to your liking
 ```js
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Helmet } from 'react-helmet-async'
 
-const Wrapper = ({ children }) => <Fragment>
+const Wrapper = ({ children }) => <>
 	<Helmet>
 		<meta charSet="utf-8" />
 		<title>My Shadow!</title>
@@ -32,7 +32,7 @@ const Wrapper = ({ children }) => <Fragment>
 		/>
 	</Helmet>
 	{children}
-</Fragment>
+</>
 export default Wrapper
 ```
 
