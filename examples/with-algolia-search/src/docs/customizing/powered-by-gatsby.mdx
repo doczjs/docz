@@ -23,7 +23,7 @@ Using Gatsby as bundler behind the scenes gives you a lot of benefits like :
 
 ## Gatsby API and Hooks
 
-Gatsby has an extensive [API for developers](https://www.gatsbyjs.org/docs/api-reference/) and a lot of hooks and lifecycle methods that you can use in order to customize your build process. 
+Gatsby has an extensive [API for developers](https://www.gatsbyjs.org/docs/api-reference/) and a lot of hooks and lifecycle methods that you can use in order to customize your build process.
 
 You can hook into it in a lot of ways and all of these hooks and properties are available when you use docz.
 
@@ -35,7 +35,7 @@ create it in the root and docz will do the rest.
 If you want to make some changes to your webpack configuration, you can use
 the `onCreateWebpackConfig` hook by exporting a function from the `gatsby-node.js` file.
 
-For example to create aliases or change how your modules are resolved, you can do something like the below example :  
+For example to create aliases or change how your modules are resolved, you can do something like the below example :
 
 ```js
 // gatsby-node.js
@@ -61,7 +61,7 @@ Or if you want to change your Babel configuration you can use the `onCreateBabel
 // gatsby-node.js
 exports.onCreateBabelConfig = ({ actions }) => {
   actions.setBabelPlugin({
-    name:  `babel-plugin-emotion`,
+    name:  `@emotion/babel-plugin`,
     options: {
       sourceMap: true,
     },

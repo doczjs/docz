@@ -16,15 +16,14 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.14",
-    "@emotion/styled": "^10.0.14",
+    "@emotion/react": "^11.1.1",
+    "@emotion/styled": "^11.0.0",
     "@loadable/component": "^5.10.2",
     "@mdx-js/mdx": "^1.1.0",
     "@mdx-js/react": "^1.0.27",
     "@theme-ui/typography": "^0.2.5",
     "babel-plugin-export-metadata": "^2.3.0",
     "copy-text-to-clipboard": "^2.1.0",
-    "emotion-theming": "^10.0.14",
     "fs-extra": "^8.1.0",
     "gatsby": "^2.13.27",
     "gatsby-plugin-alias-imports": "^1.0.5",

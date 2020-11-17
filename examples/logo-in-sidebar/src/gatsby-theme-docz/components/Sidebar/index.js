@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React, { useState, useRef, useEffect } from "react";
-import { Global } from "@emotion/core";
+import { Global } from "@emotion/react";
 import { jsx, Box } from "theme-ui";
 import { useMenus, useCurrentDoc } from "docz";
 
