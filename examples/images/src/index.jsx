@@ -1,5 +1,5 @@
-import * as React from 'react'
+import React from 'react'
 
-export default function() {
+export default function Image() {
   return <img src="/public/tux.png" />
 }

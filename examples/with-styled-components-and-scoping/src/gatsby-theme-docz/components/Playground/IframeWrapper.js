@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
-import * as React from 'react'
 import Iframe, { FrameContextConsumer } from 'react-frame-component'
 
 import { StyleSheetManager } from 'styled-components'

@@ -1,5 +1,4 @@
-import * as React from 'react'
-import { useContext, createContext } from 'react'
+import React, { useContext, createContext } from 'react'
 import { Fragment, FC, ComponentType as CT } from 'react'
 
 import { Entry } from '../state'

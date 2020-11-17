@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import OriginalWrapper from 'gatsby-theme-docz/src/wrapper'
 
 const Wrapper = ({ children, doc }) => {

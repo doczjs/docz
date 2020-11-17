@@ -9,7 +9,7 @@ We start by creating the directory `gatsby-theme-docz-pink`.
 Inside we're going to shadow gatsby-theme-docz. To do that we create a folder : `src/gatsby-theme-docz`, the component in particular we want to shadow is located in src/gatsby-theme-docz/wrapper.js.
 
 ```jsx
-import * as React from 'react'
+import React from 'react'
 import OriginalWrapper from 'gatsby-theme-docz/src/wrapper'
 
 const Wrapper = ({ children, doc }) => {

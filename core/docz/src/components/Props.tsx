@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { FC, ComponentType } from 'react'
 import { get } from 'lodash/fp'
 

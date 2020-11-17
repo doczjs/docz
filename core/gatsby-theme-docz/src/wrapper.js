@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { Fragment } from 'react'
 
-const Wrapper = ({ children }) => <React.Fragment>{children}</React.Fragment>
+const Wrapper = ({ children }) => <Fragment>{children}</Fragment>
 export default Wrapper
