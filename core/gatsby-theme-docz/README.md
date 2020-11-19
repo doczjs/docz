@@ -77,7 +77,7 @@ One of the coolest thing of Docz is that you can create your own theme if you wa
 ```js
 import React from 'react'
 import { theme, useConfig, ComponentsProvider } from 'docz'
-import { ThemeProvider } from 'emotion-theming'
+import { ThemeProvider } from '@emotion/react'
 import baseComponents from 'gatsby-theme-docz/src/components'
 
 import { Menu } from './MyBeautifulMenu'

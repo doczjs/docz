@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { useRef, useState } from 'react'
 import { jsx, Layout as BaseLayout, Main } from 'theme-ui'
-import { Global } from '@emotion/core'
+import { Global } from '@emotion/react'
 
 import global from '~theme/global'
 import { Header } from '../Header'

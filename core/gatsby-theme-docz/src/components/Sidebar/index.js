@@ -1,6 +1,7 @@
 /** @jsx jsx */
-import { Fragment, forwardRef, useState, useRef, useEffect } from 'react'
-import { Global } from '@emotion/core'
+/** @jsxFrag React.Fragment */
+import React, { forwardRef, useState, useRef, useEffect } from 'react'
+import { Global } from '@emotion/react'
 import { jsx, Box } from 'theme-ui'
 import { useMenus, useCurrentDoc } from 'docz'
 

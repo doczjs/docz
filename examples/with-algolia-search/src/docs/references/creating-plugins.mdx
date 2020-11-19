@@ -64,7 +64,7 @@ A set of preconfigured webpack config plugins
 
 `actions {object}`
 
-#### Example 
+#### Example
 
 ```js
 exports.onCreateWebpackConfig = ({
@@ -115,7 +115,7 @@ exports.onCreateBabelConfig = ({
  stage, getConfig, rules, loaders, actions
 }) => {
   actions.setBabelPlugin({
-    name:  `babel-plugin-emotion`,
+    name:  `@emotion/babel-plugin`,
     options: {
       sourceMap: true,
     },
