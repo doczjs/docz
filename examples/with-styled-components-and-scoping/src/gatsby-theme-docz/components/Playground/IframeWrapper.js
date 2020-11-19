@@ -1,6 +1,6 @@
 /** @jsx jsx */
+import { Fragment } from 'react'
 import { jsx } from 'theme-ui'
-import * as React from 'react'
 import Iframe, { FrameContextConsumer } from 'react-frame-component'
 
 import { StyleSheetManager } from 'styled-components'
@@ -23,7 +23,7 @@ export const IframeWrapper = ({ children, height, style = {} }) => {
       <FrameContextConsumer>
         {frameContext => (
           <StyleSheetManager target={frameContext.document.head}>
-            <>{children}</>
+            <Fragment>{children}</Fragment>
           </StyleSheetManager>
         )}
       </FrameContextConsumer>

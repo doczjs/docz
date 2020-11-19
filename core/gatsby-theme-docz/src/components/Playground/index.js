@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
-import React from 'react'
+import { useState } from 'react'
 import { useConfig } from 'docz'
 import { LiveProvider, LiveError, LivePreview, LiveEditor } from 'react-live'
 import { Resizable } from 're-resizable'
@@ -48,10 +48,10 @@ export const Playground = ({ code, scope, language, useScoping = false }) => {
   } = useConfig()
 
   // Makes sure scope is only given on mount to avoid infinite re-render on hot reloads
-  const [scopeOnMount] = React.useState(scope)
+  const [scopeOnMount] = useState(scope)
   const theme = usePrismTheme()
-  const [showingCode, setShowingCode] = React.useState(showPlaygroundEditor)
-  const [width, setWidth] = React.useState('100%')
+  const [showingCode, setShowingCode] = useState(showPlaygroundEditor)
+  const [width, setWidth] = useState('100%')
   const resizableProps = getResizableProps(width, setWidth)
 
   const copyCode = () => copy(code)

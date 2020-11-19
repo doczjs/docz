@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { useComponents } from 'docz'
 import { propEq, get } from 'lodash/fp'
@@ -49,14 +49,14 @@ const Layout = ({ children, ...defaultProps }) => {
   const entry = findEntry(db, ctx)
   const isTransclusion = includesTransclusion(db, defaultProps)
   return (
-    <Fragment>
+    <>
       {entry && <SEO title={entry.value.name} {...entry.value} />}
       <Theme db={db} currentEntry={entry}>
         <Route {...defaultProps} entry={entry} isTransclusion={isTransclusion}>
           {children}
         </Route>
       </Theme>
-    </Fragment>
+    </>
   )
 }
 

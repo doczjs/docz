@@ -74,7 +74,7 @@ interface ComponentsProviderProps = {
   components: ComponentsMap
 }
 
-export const ComponentsProvider: React.SFC<ComponentsProviderProps>
+export const ComponentsProvider: React.FC<ComponentsProviderProps>
 ```
 
 ---
@@ -114,7 +114,7 @@ import MyComponent from './MyComponent'
 
 ### Descriptions
 
-You can add descriptions for your props by adding a comment on the line above the prop. 
+You can add descriptions for your props by adding a comment on the line above the prop.
 
 > Note: Description comments must be in the format `/** Description */`.
 
@@ -292,8 +292,8 @@ export function useConfig(): Config
 
 ## `theme()`
 
-If you want to create your custom theme you need to use the `theme()` function. 
-It's a Higher Order Component that receives a `config` property as the first parameter 
+If you want to create your custom theme you need to use the `theme()` function.
+It's a Higher Order Component that receives a `config` property as the first parameter
 and returns a function that receives your theme component as a parameter:
 
 ```js

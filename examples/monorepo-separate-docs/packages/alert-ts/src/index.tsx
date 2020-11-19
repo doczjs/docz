@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 const kinds = {
   info: '#5352ED',
@@ -13,7 +13,7 @@ interface Props {
   kind: Kind
 }
 
-const AlertStyled: React.FC<Props> = ({ children, kind, ...rest }) => (
+const AlertStyled: FC<Props> = ({ children, kind, ...rest }) => (
   <div
     style={{
       padding: 20,
@@ -27,7 +27,7 @@ const AlertStyled: React.FC<Props> = ({ children, kind, ...rest }) => (
   </div>
 )
 
-const Alert: React.FC<Props> = props => <AlertStyled {...props} />
+const Alert: FC<Props> = props => <AlertStyled {...props} />
 
 Alert.defaultProps = {
   kind: 'info',

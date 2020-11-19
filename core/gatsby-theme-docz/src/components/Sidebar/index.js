@@ -1,6 +1,6 @@
 /** @jsx jsx */
 /** @jsxFrag React.Fragment */
-import React, { useState, useRef, useEffect } from 'react'
+import React, { forwardRef, useState, useRef, useEffect } from 'react'
 import { Global } from '@emotion/react'
 import { jsx, Box } from 'theme-ui'
 import { useMenus, useCurrentDoc } from 'docz'
@@ -10,7 +10,7 @@ import { NavSearch } from '../NavSearch'
 import { NavLink } from '../NavLink'
 import { NavGroup } from '../NavGroup'
 
-export const Sidebar = React.forwardRef((props, ref) => {
+export const Sidebar = forwardRef(function Sidebar(props, ref) {
   const [query, setQuery] = useState('')
   const menus = useMenus({ query })
   const currentDoc = useCurrentDoc()
@@ -24,7 +24,7 @@ export const Sidebar = React.forwardRef((props, ref) => {
     }
   }, [])
   return (
-    <>
+    <Fragment>
       <Box onClick={props.onClick} sx={styles.overlay(props)}>
         {props.open && <Global styles={styles.global} />}
       </Box>
@@ -52,6 +52,6 @@ export const Sidebar = React.forwardRef((props, ref) => {
             )
           })}
       </Box>
-    </>
+    </Fragment>
   )
 })
