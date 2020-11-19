@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 const NotFound = () => {
   const style = {
@@ -10,9 +10,7 @@ const NotFound = () => {
     fontSize: 32,
   }
 
-  return (
-    <div style={style}>Not Found</div>
-  )
+  return <div style={style}>Not Found</div>
 }
 
 export default NotFound

@@ -1,6 +1,5 @@
-import * as React from 'react'
-import { Component } from 'react'
-import { createContext } from 'react'
+import React, { createContext } from 'react'
+import { Component, ReactNode, Context, ComponentType } from 'react'
 import equal from 'fast-deep-equal'
 
 export interface ProviderProps<T> {
@@ -8,13 +7,13 @@ export interface ProviderProps<T> {
 }
 
 export type PrevState<T> = (prevState: T) => T
-export type GetFn<T> = (state: T) => React.ReactNode
+export type GetFn<T> = (state: T) => ReactNode
 export type Dispatch<T> = T | PrevState<T>
 
 export interface State<T> {
-  context: React.Context<T>
+  context: Context<T>
   set: (param: Dispatch<T>) => void
-  Provider: React.ComponentType<ProviderProps<T>>
+  Provider: ComponentType<ProviderProps<T>>
 }
 
 export function create<T = any>(initial: T): State<T> {
@@ -41,7 +40,7 @@ export function create<T = any>(initial: T): State<T> {
       public componentWillUnmount(): void {
         listeners.clear()
       }
-      public render(): React.ReactNode {
+      public render(): ReactNode {
         return (
           <ctx.Provider value={this.state}>{this.props.children}</ctx.Provider>
         )

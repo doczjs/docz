@@ -1,6 +1,5 @@
-import * as React from 'react'
-import { useContext, createContext } from 'react'
-import { Fragment, SFC, ComponentType as CT } from 'react'
+import React, { useContext, createContext } from 'react'
+import { FC, ComponentType as CT } from 'react'
 
 import { Entry } from '../state'
 
@@ -30,9 +29,9 @@ export interface ComponentsMap {
   [key: string]: any
 }
 
-const DefNotFound: SFC = () => <Fragment>Not found</Fragment>
-const DefLayout: SFC = ({ children }) => <Fragment>{children}</Fragment>
-const DefPlayground: SFC<PlaygroundProps> = ({ component, code }) => (
+const DefNotFound: FC = () => <>Not found</>
+const DefLayout: FC = ({ children }) => <>{children}</>
+const DefPlayground: FC<PlaygroundProps> = ({ component, code }) => (
   <div>
     {component}
     <pre>{code}</pre>
@@ -50,7 +49,7 @@ export interface ComponentsProviderProps {
 }
 
 const ctx = createContext<ComponentsMap>(defaultComponents)
-export const ComponentsProvider: SFC<ComponentsProviderProps> = ({
+export const ComponentsProvider: FC<ComponentsProviderProps> = ({
   components: themeComponents = {},
   children,
 }) => (

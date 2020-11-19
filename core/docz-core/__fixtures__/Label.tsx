@@ -1,4 +1,4 @@
-import React, { SFC } from 'react'
+import React, { FC } from 'react'
 
 export interface LabelProps {
   /**
@@ -8,7 +8,7 @@ export interface LabelProps {
   text: string
 }
 
-const Label: SFC<LabelProps> = ({ text, ...props }) => (
+const Label: FC<LabelProps> = ({ text, ...props }) => (
   <div className="label" {...props}>
     {text}
   </div>

@@ -1,4 +1,4 @@
-import React, { SFC } from 'react'
+import React, { FC } from 'react'
 import styled from '@emotion/styled'
 
 export type Kind = 'info' | 'positive' | 'negative' | 'warning'
@@ -27,6 +27,6 @@ const AlertStyled = styled('div')<AlertProps>`
   background: ${({ kind = 'info' }) => kinds[kind]};
 `
 
-export const Alert: SFC<AlertProps> = ({ kind, ...props }) => (
+export const Alert: FC<AlertProps> = ({ kind, ...props }) => (
   <AlertStyled {...props} kind={kind} />
 )
