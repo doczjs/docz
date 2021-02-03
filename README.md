@@ -145,7 +145,7 @@ Start by building your site with `yarn docz build`, if you haven't provided a `d
 - **[with images](https://github.com/doczjs/docz/tree/master/examples/images)**
 - **[with sass](https://github.com/doczjs/docz/tree/master/examples/sass)**
 - **[with less](https://github.com/doczjs/docz/tree/master/examples/less)**
-- **[with stylus](https://github.com/doczjs/docz/tree/master/examples/css-stylus)**
+- **[with stylus](https://github.com/doczjs/docz/tree/master/examples/stylus)**
 - **with css modules**: works out of the box.
 
 ### You can check the complete list of docz examples [here](https://github.com/doczjs/docz/tree/master/examples).
