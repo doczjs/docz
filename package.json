@@ -58,7 +58,7 @@
     "babel-preset-react-app": "^9.1.2",
     "commitizen": "^3.1.2",
     "cross-env": "^5.2.0",
-    "eslint": "^6.5.1",
+    "eslint": "4.4.0",
     "eslint-plugin-react": "^7.16.0",
     "husky": "^3.0.0",
     "jest": "^24.8.0",
