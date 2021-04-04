@@ -85,7 +85,12 @@ export class Entries {
         const entry = new Entry(ast, file, config)
 
         if (this.repoEditUrl) entry.setLink(this.repoEditUrl)
-        const { settings, ...rest } = entry
+
+        // reduce modify entry plugin
+        const reduce = Plugin.reduceFromPlugins<Entry>(plugins)
+        const modifiedEntry = reduce('modifyEntry', entry, config)
+
+        const { settings, ...rest } = modifiedEntry
 
         return {
           ...settings,
@@ -98,7 +103,7 @@ export class Entries {
     }
 
     const reduce = Plugin.reduceFromPlugins<string[]>(plugins)
-    const modifiedFiles = reduce('modifyFiles', files)
+    const modifiedFiles = reduce('modifyFiles', files, config)
 
     const map = new Map()
     const entries = await Promise.all(

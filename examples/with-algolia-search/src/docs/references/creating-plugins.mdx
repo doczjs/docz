@@ -20,6 +20,7 @@ const myPlugin = () => createPlugin({
   onCreateDevServer: (args) => /* ... */,
   onCreateWebpackConfig: (args) => /* ... */,
   modifyFiles: (files, args) => /* ... */,
+  modifyEntry: (args) => /* ... */,
   onPreBuild: () => /* ... */,
   onPostBuild: () => /* ... */,
 })
@@ -68,7 +69,7 @@ A set of preconfigured webpack config plugins
 
 ```js
 exports.onCreateWebpackConfig = ({
- stage, getConfig, rules, loaders, actions
+  stage, getConfig, rules, loaders, actions
 }) => {
   actions.setWebpackConfig({
     module: {
@@ -112,7 +113,7 @@ A set of preconfigured webpack config plugins
 
 ```js
 exports.onCreateBabelConfig = ({
- stage, getConfig, rules, loaders, actions
+  stage, getConfig, rules, loaders, actions
 }) => {
   actions.setBabelPlugin({
     name:  `@emotion/babel-plugin`,
@@ -142,6 +143,27 @@ Use to modify mdx files before parsing
 
 ```ts
 export type ModifyFiles = (files: string[], args: Config) => string[]
+```
+
+---
+
+## `modifyEntry`
+
+Use to modify files entry after created
+
+#### Params
+
+- **entry:** files entry by Docz
+- **args:** The Docz config object merged with argv
+
+#### Return
+
+- `Entry`
+
+#### Types definitions
+
+```ts
+export type ModifyEntry = (entry: Entry, args: Config) => Entry
 ```
 
 ---
