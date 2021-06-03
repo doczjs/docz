@@ -2,18 +2,20 @@ import { get, isFunction } from 'lodash/fp'
 
 import { pReduce } from '../utils/p-reduce'
 import { Config } from '../config/argv'
+import { Entry } from './Entry'
 
 export type SetConfig = (config: Config) => Config | Promise<Config>
-export type onCreateBabelConfig = (params: any, dev: boolean) => void
+export type OnCreateBabelConfig = (params: any, dev: boolean) => void
 
-export type onCreateWebpackConfig<C = any> = (
+export type OnCreateWebpackConfig<C = any> = (
   config: C,
   dev: boolean,
   args: Config
 ) => C
 
 export type ModifyFiles = (files: string[], args: Config) => string[]
-export type onCreateDevServer = <A>(app: A) => void
+export type ModifyEntry = (entry: Entry, args: Config) => Entry
+export type OnCreateDevServer = <A>(app: A) => void
 export type OnPreBuild = (args: Config) => void
 export type OnPostBuild = (args: Config) => void
 export type OnPreRender = () => void
@@ -21,10 +23,11 @@ export type OnPostRender = () => void
 
 export interface PluginFactory {
   setConfig?: SetConfig
-  onCreateBabelConfig?: onCreateBabelConfig
-  onCreateDevServer?: onCreateDevServer
-  onCreateWebpackConfig?: onCreateWebpackConfig
+  onCreateBabelConfig?: OnCreateBabelConfig
+  onCreateDevServer?: OnCreateDevServer
+  onCreateWebpackConfig?: OnCreateWebpackConfig
   modifyFiles?: ModifyFiles
+  modifyEntry?: ModifyEntry
   onPreBuild?: OnPreBuild
   onPostBuild?: OnPostBuild
 }
@@ -81,10 +84,11 @@ export class Plugin<C = any> implements PluginFactory {
   }
 
   public readonly setConfig?: SetConfig
-  public readonly onCreateWebpackConfig?: onCreateWebpackConfig<C>
-  public readonly onCreateBabelConfig?: onCreateBabelConfig
+  public readonly onCreateWebpackConfig?: OnCreateWebpackConfig<C>
+  public readonly onCreateBabelConfig?: OnCreateBabelConfig
   public readonly modifyFiles?: ModifyFiles
-  public readonly onCreateDevServer?: onCreateDevServer
+  public readonly modifyEntry?: ModifyEntry
+  public readonly onCreateDevServer?: OnCreateDevServer
   public readonly onPreBuild?: OnPreBuild
   public readonly onPostBuild?: OnPostBuild
 
@@ -93,6 +97,7 @@ export class Plugin<C = any> implements PluginFactory {
     this.onCreateWebpackConfig = p.onCreateWebpackConfig
     this.onCreateBabelConfig = p.onCreateBabelConfig
     this.modifyFiles = p.modifyFiles
+    this.modifyEntry = p.modifyEntry
     this.onCreateDevServer = p.onCreateDevServer
     this.onPreBuild = p.onPreBuild
     this.onPostBuild = p.onPostBuild
