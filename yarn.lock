@@ -8633,6 +8633,42 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
+docz-core@2.3.2-alpha.0:
+  version "2.3.2-alpha.0"
+  resolved "https://registry.yarnpkg.com/docz-core/-/docz-core-2.3.2-alpha.0.tgz#9293ce3b8181dfca78e60cbb3671c3d95febf889"
+  integrity sha512-p/z/6GckvNmXXoSBn/HsG0Fl2CBD8pGqo7L0h1qijap6YgODxvLM/qMoNj/selA5fiJsBJck0q6bYAlFbwu6wA==
+  dependencies:
+    "@sindresorhus/slugify" "^0.9.1"
+    chalk "^2.4.2"
+    chokidar "^3.0.2"
+    detect-port "^1.3.0"
+    docz-utils "^2.3.0"
+    env-dot-prop "^2.0.1"
+    fast-deep-equal "^2.0.1"
+    fast-glob "^3.0.4"
+    find-up "^4.1.0"
+    fs-extra "^8.1.0"
+    get-pkg-repo "^4.1.0"
+    humanize-string "^2.1.0"
+    latest-version "^5.1.0"
+    load-cfg "^2.1.0"
+    lodash "^4.17.14"
+    minimatch "^3.0.4"
+    ora "^3.4.0"
+    react-docgen "^4.1.1"
+    react-docgen-actual-name-handler "^2.1.0"
+    react-docgen-external-proptypes-handler "^1.0.3"
+    react-docgen-typescript "^1.12.5"
+    recast "^0.18.1"
+    resolve "^1.11.1"
+    shelljs "^0.8.3"
+    signale "^1.4.0"
+    titleize "^2.1.0"
+    typescript "3.5.3"
+    wait-on "^3.3.0"
+    xstate "^4.6.7"
+    yargs "^13.3.0"
+
 docz-core@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/docz-core/-/docz-core-1.2.0.tgz#f760149032445050f187e553b0bbc4568c631009"
