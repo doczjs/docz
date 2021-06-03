@@ -4,7 +4,8 @@ import t from 'prop-types'
 import './Alert.styl'
 
 export const Alert = ({ children, kind, ...rest }) => (
-  <div className="Alert" {...rest}>
+  // space used after alert in order to have kind remain as a separate name
+  <div className={'Alert ' + kind} {...rest}>
     {children}
   </div>
 )
