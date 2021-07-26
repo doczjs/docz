@@ -45,6 +45,7 @@ const watchPackage = async (name, outputDir) => {
   const destinationPath = getDestinationPath(name, outputDir)
   const sourceRootPath = path.join(rootPath, `core/${name}/`)
   const dev = runCommand(`yarn run dev`, { cwd: sourceRootPath })
+
   try {
     await runCommand(`yarn run build`, { cwd: sourceRootPath })
   } catch (err) {
@@ -81,12 +82,14 @@ const watchPackage = async (name, outputDir) => {
     }
     return stop
   })
+
   const stop = () => {
     dev.cancel()
     unsubscribers.forEach(unsub => {
       unsub()
     })
   }
+
   return stop
 }
 
@@ -97,20 +100,23 @@ const main = async () => {
     for (let stopWatching of watchStoppers) {
       stopWatching()
     }
+
     console.log(`\nTerminated ${watchStoppers.length} running processes\n`)
     process.exit(0)
   })
+
   const build = runCommand(`yarn packages:build`, { cwd: rootPath })
+
   watchStoppers.push(() => build.cancel())
+
   await build
+
   for (let package of packages) {
-    const stopWatchingPackage = await watchPackage(
-      package.name,
-      package.outputDir
-    )
+    const stopWatchingPackage = await watchPackage(package.name, package.outputDir)
     console.log('watching package ', package.name)
     watchStoppers.push(stopWatchingPackage)
   }
+
   const dev = runCommand(`yarn docz dev`, { cwd: __dirname })
   watchStoppers.push(() => dev.cancel())
 }
