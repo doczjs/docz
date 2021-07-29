@@ -66,8 +66,7 @@ const watchPackage = async (name, outputDir) => {
       cpx.watch(`${sourcePath}/lib/**/*`, getDestinationPath(name, 'lib'))
     )
   } else {
-    const sync = cpx.watch(`${sourcePath}/**/*`, destinationPath)
-    fileWatchers.push(sync)
+    fileWatchers.push(cpx.watch(`${sourcePath}/**/*`, destinationPath))
   }
 
   const unsubscribers = fileWatchers.map(fileWatcher => {
@@ -90,6 +89,7 @@ const watchPackage = async (name, outputDir) => {
     })
   }
 
+  console.log('watching package: ', name)
   return stop
 }
 
@@ -111,10 +111,8 @@ const main = async () => {
 
   await build
 
-  for (let package of packages) {
-    const stopWatchingPackage = await watchPackage(package.name, package.outputDir)
-    console.log('watching package ', package.name)
-    watchStoppers.push(stopWatchingPackage)
+  for (const package of packages) {
+    watchStoppers.push(await watchPackage(package.name, package.outputDir))
   }
 
   const dev = runCommand(`yarn docz dev`, { cwd: __dirname })

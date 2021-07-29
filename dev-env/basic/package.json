@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "cpx": "^1.5.0",
-    "docz": "next",
+    "docz": "../../core/docz",
     "execa": "^2.0.4",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
