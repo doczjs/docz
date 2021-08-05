@@ -43,7 +43,7 @@
     "lodash": "^4.17.14",
     "minimatch": "^3.0.4",
     "open": "^7.0.3",
-    "react-docgen": "^5.4.0",
+    "react-docgen": "^4.1.1",
     "react-docgen-actual-name-handler": "^2.1.0",
     "react-docgen-typescript": "^2.1.0",
     "recast": "^0.18.1",
