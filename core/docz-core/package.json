@@ -1,6 +1,6 @@
 {
   "name": "docz-core",
-  "version": "2.3.2-alpha.5",
+  "version": "2.3.2-alpha.0",
   "description": "All docz core logic of bundle and parsing is included on this package",
   "license": "MIT",
   "main": "dist/index.js",
@@ -42,7 +42,7 @@
     "load-cfg": "^2.1.0",
     "lodash": "^4.17.14",
     "minimatch": "^3.0.4",
-    "open": "^7.0.3",
+    "open": "^7.4.2",
     "react-docgen": "^4.1.1",
     "react-docgen-actual-name-handler": "^2.1.0",
     "react-docgen-typescript": "^2.1.0",

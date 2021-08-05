@@ -15,8 +15,6 @@
     "url": "https://github.com/doczjs/docz.git"
   },
   "scripts": {
-    "tmp:unpublish": "npm unpublish docz-core --registry http://localhost:4873 --force && npm unpublish gatsby-theme-docz --registry http://localhost:4873 --force && npm unpublish docz --registry http://localhost:4873 --force",
-    "tmp:publish": "yarn tmp:unpublish && cd core/docz-core && npm publish --registry http://localhost:4873 && cd ../gatsby-theme-docz && npm publish --registry http://localhost:4873 &&  cd ../docz && npm publish --registry http://localhost:4873 && cd ../../",
     "clean": "lerna clean",
     "bs": "lerna bootstrap",
     "dev": "npm-run-all packages:build --parallel packages:dev sandbox:dev",
