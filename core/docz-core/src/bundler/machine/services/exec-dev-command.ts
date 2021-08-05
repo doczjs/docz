@@ -58,7 +58,7 @@ export const execDevCommand = async ({ args }: ServerMachineCtx) => {
       ...caFileOption,
       ...keyFileOption,
       ...certFileOption,
-    ],
+    ].filter(Boolean),
     {
       stdio: 'inherit',
       cwd: paths.docz,
