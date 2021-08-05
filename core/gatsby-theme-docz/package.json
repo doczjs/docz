@@ -53,11 +53,6 @@
     "typography-theme-moraga": "^0.16.19",
     "yargs": "^13.3.0"
   },
-  "devDependencies": {
-    "babel-eslint": "10.0.2",
-    "eslint": "^6.5.1",
-    "eslint-config-docz-js": "^2.1.0"
-  },
   "peerDependencies": {
     "docz": ">=2.0.0",
     "react": "^16.8.0",

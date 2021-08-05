@@ -33,9 +33,5 @@
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-progress": "^1.1.2",
     "rollup-plugin-typescript2": "^0.22.0"
-  },
-  "devDependencies": {
-    "eslint-config-docz-js": "^2.1.0",
-    "typescript": "3.5.3"
   }
 }
