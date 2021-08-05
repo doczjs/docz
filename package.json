@@ -19,13 +19,15 @@
     "tmp:publish": "yarn tmp:unpublish && cd core/docz-core && npm publish --registry http://localhost:4873 && cd ../gatsby-theme-docz && npm publish --registry http://localhost:4873 &&  cd ../docz && npm publish --registry http://localhost:4873 && cd ../../",
     "clean": "lerna clean",
     "bs": "lerna bootstrap",
-    "dev": "cd dev-env/basic && yarn && yarn dev",
+    "dev": "npm-run-all packages:build --parallel packages:dev sandbox:dev",
     "examples:lint": "eslint examples --ext js,mdx,ts,tsx",
+    "sandbox:dev": "lerna run dev --parallel --scope dev-env-*",
     "packages": "run-s packages:*",
     "packages:fix": "lerna run --parallel fix && echo",
     "packages:lint": "lerna run --parallel lint",
-    "packages:build": "lerna run build --ignore docz-example-*",
-    "packages:test": "lerna run test --stream --ignore docz-example-*",
+    "packages:dev": "lerna run dev --parallel --scope={docz,docz-core,gatsby-theme-docz,rehype-docz,remark-docz}",
+    "packages:build": "lerna run build --ignore docz-example-* --ignore dev-env-*",
+    "packages:test": "lerna run test --stream --ignore docz-example-* --ignore dev-env-*",
     "prerelease": "yarn run packages",
     "release": "lerna publish --conventional-commits",
     "release:next": "yarn run packages && lerna publish --conventional-commits --conventional-prerelease --dist-tag=next --exact",
@@ -76,10 +78,10 @@
   "workspaces": {
     "packages": [
       "core/*",
-      "other-packages/*"
+      "other-packages/*",
+      "dev-env/*"
     ],
     "nohoist": [
-      "dev-env/*",
       "examples/*"
     ]
   }

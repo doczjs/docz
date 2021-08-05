@@ -9,17 +9,14 @@
     "package.json"
   ],
   "scripts": {
-    "dev": "node dev.js",
+    "dev": "docz dev",
     "build": "docz build",
     "serve": "docz serve"
   },
   "dependencies": {
-    "cpx": "^1.5.0",
-    "docz": "../../core/docz",
-    "execa": "^2.0.4",
+    "docz": "^2.3.2-alpha.5",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "scheduler": "^0.15.0"
+    "react-dom": "^16.8.6"
   }
 }

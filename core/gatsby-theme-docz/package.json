@@ -49,6 +49,7 @@
     "remark-docz": "^2.1.0",
     "remark-frontmatter": "^1.3.2",
     "theme-ui": "^0.2.38",
+    "to-style": "^1.3.3",
     "typography-theme-moraga": "^0.16.19",
     "yargs": "^13.3.0"
   },

@@ -1,7 +1,5 @@
 import React from 'react'
 import t from 'prop-types'
-//@ts-ignore do not remove this to get live-reloading from changes made in packages
-import ChangesWhenAPackageSourceIsEdited from '../last-change-timestamp' // eslint-disable-line no-unused-vars
 
 const kinds = {
   info: '#5352ED',
