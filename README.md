@@ -22,9 +22,8 @@ Create MDX files showcasing your code and Docz turns them into a live-reloading,
 
 ## Table of Contents
 
-- [Why ?](#why)
-- [Start a New Project](#start-a-new-project)
-- [Add Docz to an Existing Project](#add-docz-to-an-existing-project)
+- [Why?](#why)
+- [Getting started](#getting-started)
 - [Build](#build)
 - [Deploy](#deploy)
 - [Examples](#examples)
@@ -41,19 +40,15 @@ A lot of time is spent on building and maintaining custom documentation sites.
 
 Docz enables you to quickly create live-reloading, seo-friendly, production-ready documentation sites with MDX and customize the look, feel and behavior when required by leveraging [GatsbyJS](https://www.gatsbyjs.org) and [Gatsby theme shadowing](https://www.gatsbyjs.org/docs/themes/shadowing/).
 
-## Start a New Project
+## Getting started
 
-Use [create-docz-app](https://www.npmjs.com/package/create-docz-app) to quickly get started :
+> There's also a [create-docz-app](https://www.npmjs.com/package/create-docz-app),
+> which you can be using to start new projects with docz even quicker,
+> but it's totally independent from docz, therefore not officially supported.
+> Once we strongly don't believe that it should be part of what we want to bring to the community as a project,
+> but feel free to use it as much as you need, especially to replace `create-react-app`, for example, to create new projects.
 
-```sh
-npx create-docz-app my-docz-app
-# or
-yarn create docz-app my-docz-app --example typescript
-```
-
-## Add Docz to an Existing Project
-
-Start by adding `docz` as a dependency :
+Start by adding `docz` as a dependency:
 
 ```bash
 $ yarn add docz # react react-dom
