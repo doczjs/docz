@@ -32,7 +32,7 @@ Create MDX files showcasing your code and Docz turns them into a live-reloading,
 - [Contributors](#contributors)
 - [Contributing](#contributing)
 
-## Why ?
+## Why?
 
 Documenting code is one of the most important and time-heavy processes when developing software.
 
