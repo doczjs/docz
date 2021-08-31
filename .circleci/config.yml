@@ -37,7 +37,7 @@ jobs:
 
       - run: sudo apt-get install -y lsof
 
-      - run: cd other-packages/e2e-tests && node index.js || true
+      # - run: cd other-packages/e2e-tests && node index.js || true
 
       - store_test_results:
           path: /tmp/test-result
