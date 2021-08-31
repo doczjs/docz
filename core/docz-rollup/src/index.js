@@ -12,7 +12,9 @@ const progress = require('rollup-plugin-progress')
 const clean = require('./plugins/clean')
 const size = require('./plugins/size')
 const copy = require('./plugins/copy')
-
+const isDevMode = ['--watch', '-w'].some(devFlag =>
+  process.argv.includes(devFlag)
+)
 const EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.es6', '.es', '.mjs']
 const omitOpts = omit([
   'alias',
@@ -41,7 +43,7 @@ const createOutput = (dir = 'dist', defaultOpts) => {
   } = defaultOpts
 
   const defaultPlugins = [
-    clean(dir),
+    !isDevMode && clean(dir),
     postcss({
       plugins: [autoprefixer()],
       inject: false,

@@ -1,6 +1,6 @@
 {
   "name": "gatsby-theme-docz",
-  "version": "2.3.1",
+  "version": "2.3.1-alpha.0",
   "description": "Gatsby theme created to use Docz",
   "license": "MIT",
   "author": "Pedro Nauck (pedronauck@gmail.com)",
@@ -49,14 +49,9 @@
     "remark-docz": "^2.1.0",
     "remark-frontmatter": "^1.3.2",
     "theme-ui": "^0.2.38",
-    "typescript": "3.5.3",
+    "to-style": "^1.3.3",
     "typography-theme-moraga": "^0.16.19",
     "yargs": "^13.3.0"
-  },
-  "devDependencies": {
-    "babel-eslint": "10.0.2",
-    "eslint": "^6.5.1",
-    "eslint-config-docz-js": "^2.1.0"
   },
   "peerDependencies": {
     "docz": ">=2.0.0",
