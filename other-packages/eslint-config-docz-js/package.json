@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-docz-js",
-  "version": "2.1.1",
+  "version": "2.3.3-alpha.0",
   "description": "Eslint config of Docz for Javascript",
   "license": "MIT",
   "author": {
