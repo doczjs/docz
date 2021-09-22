@@ -20,35 +20,24 @@ Create MDX files showcasing your code and Docz turns them into a live-reloading,
 
 ![docz example](https://cdn-std.dprcdn.net/files/acc_649651/S2YCID)
 
-## Table of Contents
-
-- [Why?](#why)
-- [Getting started](#getting-started)
-- [Build](#build)
-- [Deploy](#deploy)
-- [Examples](#examples)
-- [More info on docz.site](#more-info-on-doczsite)
-- [Used by](#used-by)
-- [Contributors](#contributors)
-- [Contributing](#contributing)
-
 ## Why?
 
-Documenting code is one of the most important and time-heavy processes when developing software.
+Documenting code is one of the most important and time-consuming tasks when developing software.
 
 A lot of time is spent on building and maintaining custom documentation sites.
 
-Docz enables you to quickly create live-reloading, seo-friendly, production-ready documentation sites with MDX and customize the look, feel and behavior when required by leveraging [GatsbyJS](https://www.gatsbyjs.org) and [Gatsby theme shadowing](https://www.gatsbyjs.org/docs/themes/shadowing/).
+Docz enables you to quickly create a live-reloading, SEO-friendly, production-ready documentation site with MDX and customize the look, feel and behavior when required by leveraging [GatsbyJS](https://www.gatsbyjs.org) and [Gatsby theme shadowing](https://www.gatsbyjs.org/docs/themes/shadowing/).
+
+## About `create-docz-app`
+
+There's a [create-docz-app](https://www.npmjs.com/package/create-docz-app), which you can use to start new projects with docz even faster.
+This app is developed indepently of the docz project, and is not officially supported.
+So use the app at your own risk.
+You can use `create-docz-app` as a replacement for `create-react-app`, when you're creating a new project.
 
 ## Getting started
 
-> There's also a [create-docz-app](https://www.npmjs.com/package/create-docz-app),
-> which you can be using to start new projects with docz even quicker,
-> but it's totally independent from docz, therefore not officially supported.
-> Once we strongly don't believe that it should be part of what we want to bring to the community as a project,
-> but feel free to use it as much as you need, especially to replace `create-react-app`, for example, to create new projects.
-
-Start by adding `docz` as a dependency:
+Start by adding `docz` as a dependency to your project with Yarn or npm:
 
 ```bash
 $ yarn add docz # react react-dom
@@ -60,7 +49,7 @@ $ npm install docz # react react-dom
 
 > **Note**: `react` and `react-dom` will not be installed automatically. You'll have to install them yourself.
 
-Then, add `.mdx` files anywhere in your project:
+Then, create `.mdx` files anywhere in your project:
 
 ```mdx
 ---
@@ -110,19 +99,20 @@ Finally, run:
 yarn docz dev
 ```
 
-This will start a local development server and open your documentation site in the browser.
+This starts a local development server and opens your documentation site in the browser.
 
 ## Build
 
-`yarn docz build` will generate a static site for your site in `.docz/dist/`.
+`yarn docz build` generates a static site in `.docz/dist/`.
 
-You can try it out with `yarn docz serve` or by serving the generated site with your favorite static file server (e.g. `npx serve .docz/dist`).
+Try it with `yarn docz serve` or by serving the generated site with your favorite static file server (e.g. `npx serve .docz/dist`).
 
-You can have `yarn docz build` emit to a different directory by providing a path to the `dest` field in your doczrc.js or from the command line : `yarn docz build --dest docs-site-directory`.
+You can have `yarn docz build` emit to a different directory by providing a path to the `dest` field in your `doczrc.js` or from the command line: `yarn docz build --dest docs-site-directory`.
 
-## Deploy
+## Deploying
 
-The output of docz consists of static assets only. This allows you to deploy your generated `docz` site with any static site hosting provider you'd like.
+The output of docz consists of static assets only.
+This allows you to deploy your generated `docz` site with any static site hosting provider you'd like.
 
 Start by building your site with `yarn docz build`, if you haven't provided a `dest` flag to your config then you will find your generated files in `.docz/dist` to copy to the server.
 
@@ -149,12 +139,12 @@ Start by building your site with `yarn docz build`, if you haven't provided a `d
 
 ## Used by
 
-- **[Welcome UI](http://welcome-ui.com/)** : Customizable design system with react • styled-components • styled-system and reakit.
-- **[React Hooks Testing Library](https://react-hooks-testing-library.com/)** : 🐏 Simple and complete React hooks testing utilities that encourage good testing practices.
-- **[Mobx React](https://mobx-react.js.org/)** : mobx-react documentation site.
-- **[React Google Charts](https://react-google-charts.com/)** : A thin, typed, React wrapper over Google Charts Visualization and Charts API.
-- **[Entur](https://developer.entur.org/)** : Entur operates the national registry for all public transport in Norway.
-- **[FAB Specification](https://fab.dev/)** : 💎 FABs are a compile target for frontend applications.
+- **[Welcome UI](http://welcome-ui.com/)**: Customizable design system with react • styled-components • styled-system and reakit.
+- **[React Hooks Testing Library](https://react-hooks-testing-library.com/)**: 🐏 Simple and complete React hooks testing utilities that encourage good testing practices.
+- **[Mobx React](https://mobx-react.js.org/)**: mobx-react documentation site.
+- **[React Google Charts](https://react-google-charts.com/)**: A thin, typed, React wrapper over Google Charts Visualization and Charts API.
+- **[Entur](https://developer.entur.org/)**: Entur operates the national registry for all public transport in Norway.
+- **[FAB Specification](https://fab.dev/)**: 💎 FABs are a compile target for frontend applications.
 - **[@umijs/hooks](https://hooks.umijs.org/)**: React Hooks Library.
 - **[React Yandex Maps](https://react-yandex-maps.now.sh/)**: Yandex Maps API bindings for React.
 - **[Components-extra](https://components-extra.netlify.com)**: Customizable react component blocks built with material-ui and styled-components.
@@ -168,23 +158,23 @@ This project exists thanks to all the people who contribute. [[Contribute](CONTR
 
 ## Contributing
 
-All kinds of contributions are very welcome and appreciated !
+All kinds of contributions are very welcome and appreciated!
 
-If you want to contribute time to docz then here's a list of suggestions to get you started :
+If you want to contribute time to docz then here's a list of suggestions to get you started:
 
-1. Star the project.
+1. Star the project on Github.
 2. Help people in the [issues](https://github.com/doczjs/docz/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) by sharing your knowledge and experience.
 3. Find and report issues.
-4. Submit PRs to help solve issues or add features.
+4. Submit pull requests to help solve issues or add features.
 5. Influence the future of docz with feature requests.
 
-If you're looking for a place to start make sure to check issues tagged with :
+If you're looking for a place to start make sure to check issues tagged with the `good first issue` label:
 
 [![Good First Issue](https://img.shields.io/github/issues/doczjs/docz/good%20first%20issue.svg)](https://github.com/doczjs/docz/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
 
-And make sure to read the [Contributing Guide](/CONTRIBUTING.md) before making a pull request.
+Read the [Contributing Guide](/CONTRIBUTING.md) before you open a pull request.
 
-You can also contribute money to help secure docz's future.
+You can also sponsor us via OpenCollective to help secure docz's future.
 
 <p align="center">
   <a href="https://opencollective.com/docz" target="_blank">
