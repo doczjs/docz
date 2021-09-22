@@ -31,7 +31,7 @@ Docz enables you to quickly create a live-reloading, SEO-friendly, production-re
 ## About `create-docz-app`
 
 There's a [create-docz-app](https://www.npmjs.com/package/create-docz-app), which you can use to start new projects with docz even faster.
-This app is developed indepently of the docz project, and is not officially supported.
+This app is developed independently of the docz project, and is not officially supported.
 So use the app at your own risk.
 You can use `create-docz-app` as a replacement for `create-react-app`, when you're creating a new project.
 
