@@ -162,7 +162,7 @@ All kinds of contributions are very welcome and appreciated!
 
 If you want to contribute time to docz then here's a list of suggestions to get you started:
 
-1. Star the project on Github.
+1. Star the project on GitHub.
 2. Help people in the [issues](https://github.com/doczjs/docz/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) by sharing your knowledge and experience.
 3. Find and report issues.
 4. Submit pull requests to help solve issues or add features.
