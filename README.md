@@ -149,7 +149,7 @@ Start by building your site with `yarn docz build`, if you haven't provided a `d
 
 ## Used by
 
-- **[Welcome UI](http://welcome-ui.com/)** : Customizable design system with react • styled-components • styled-system and reakit.
+- **[Welcome UI](https://welcome-ui.com/)** : Customizable design system with react • styled-components • styled-system and reakit.
 - **[React Hooks Testing Library](https://react-hooks-testing-library.com/)** : 🐏 Simple and complete React hooks testing utilities that encourage good testing practices.
 - **[Mobx React](https://mobx-react.js.org/)** : mobx-react documentation site.
 - **[React Google Charts](https://react-google-charts.com/)** : A thin, typed, React wrapper over Google Charts Visualization and Charts API.
