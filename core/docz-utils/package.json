@@ -18,6 +18,11 @@
     "lint": "eslint . --ext mdx,ts,tsx",
     "precommit": "lint-staged"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doczjs/docz.git",
+    "directory": "core/docz-utils"
+  },
   "dependencies": {
     "@babel/generator": "^7.5.5",
     "@babel/parser": "^7.5.5",

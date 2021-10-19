@@ -19,6 +19,11 @@
     "precommit": "lint-staged",
     "test": "jest"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doczjs/docz.git",
+    "directory": "core/rehype-docz"
+  },
   "dependencies": {
     "brace": "^0.11.1",
     "docz-utils": "2.3.3-alpha.0",

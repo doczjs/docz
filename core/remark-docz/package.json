@@ -19,6 +19,11 @@
     "precommit": "lint-staged",
     "test": "jest"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doczjs/docz.git",
+    "directory": "core/remark-docz"
+  },
   "dependencies": {
     "@babel/generator": "^7.5.5",
     "@babel/types": "^7.5.5",
