@@ -11,6 +11,11 @@
     "package.json",
     "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doczjs/docz.git",
+    "directory": "core/docz-utils"
+  },
   "scripts": {
     "dev": "cross-env NODE_ENV=development yarn build -w",
     "build": "trash lib && cross-env NODE_ENV=production rollup -c",
