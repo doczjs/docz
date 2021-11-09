@@ -18,6 +18,11 @@
     "src/",
     "package.json"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doczjs/docz.git",
+    "directory": "other-packages/babel-plugin-export-metadata"
+  },
   "scripts": {
     "fix": "yarn lint --fix",
     "lint": "eslint . --ext .js",

@@ -12,6 +12,11 @@
     "index.js",
     "package.json"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doczjs/docz.git",
+    "directory": "other-packages/eslint-config-docz-js"
+  },
   "scripts": {
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"**/*.js\" --write"

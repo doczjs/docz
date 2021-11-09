@@ -9,6 +9,11 @@
     "gatsby-theme",
     "docz"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doczjs/docz.git",
+    "directory": "core/gatsby-theme-docz"
+  },
   "scripts": {
     "dev": "echo noop",
     "fix": "yarn lint --fix",
