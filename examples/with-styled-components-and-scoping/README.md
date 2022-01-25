@@ -11,7 +11,7 @@ yarn create docz-app docz-app-styled-docz --example with-styled-components-and-s
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/with-styled-components-and-scoping
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/with-styled-components-and-scoping
 mv with-styled-components-and-scoping docz-example-styled-docz
 ```
 

@@ -11,7 +11,7 @@ yarn create docz-app docz-app-logo-in-sidebar --example logo-in-sidebar
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/logo-in-sidebar
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/logo-in-sidebar
 mv logo-in-sidebar docz-logo-in-sidebar-example
 cd docz-logo-in-sidebar-example
 ```

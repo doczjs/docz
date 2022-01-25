@@ -11,7 +11,7 @@ yarn create docz-app docz-app-basic --example material-ui
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/material-ui
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/material-ui
 mv material-ui docz-material-ui-example
 cd docz-material-ui-example
 ```

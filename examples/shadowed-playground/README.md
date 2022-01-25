@@ -11,7 +11,7 @@ yarn create docz-app docz-app-shadowed-playground
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/shadowed-playground
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/shadowed-playground
 mv shadowed-playground docz-shadowed-playground-example
 cd docz-shadowed-playground-example
 ```

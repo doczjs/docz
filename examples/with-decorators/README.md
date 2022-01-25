@@ -11,7 +11,7 @@ yarn create docz-app docz-app-with-decorators --example with-decorators
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/with-decorators
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/with-decorators
 mv with-decorators docz-with-decorators-example
 cd docz-with-decorators-example
 ```

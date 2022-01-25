@@ -11,7 +11,7 @@ yarn create docz-app docz-app-basic
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/basic
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/basic
 mv basic docz-basic-example
 cd docz-basic-example
 ```

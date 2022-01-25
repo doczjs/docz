@@ -87,7 +87,7 @@ yarn create docz-app docz-app-with-custom-docz-theme
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/with-custom-docz-theme
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/with-custom-docz-theme
 mv with-custom-docz-theme docz-with-custom-docz-theme-example
 cd docz-with-custom-docz-theme-example
 ```

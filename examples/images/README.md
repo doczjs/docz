@@ -11,7 +11,7 @@ yarn create docz-app docz-app-images --example images
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/images
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/images
 mv images docz-images-example
 cd docz-images-example
 ```

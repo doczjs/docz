@@ -11,7 +11,7 @@ yarn create docz-app docz-app-react-router --example react-router
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/react-router
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/react-router
 mv react-router docz-react-router-example
 cd docz-react-router-example
 ```

@@ -21,7 +21,7 @@ yarn create docz-app docz-app-with-algolia-search --example with-algolia-search
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/with-algolia-search
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/with-algolia-search
 mv with-algolia-search docz-with-algolia-search-example
 cd docz-with-algolia-search-example
 ```

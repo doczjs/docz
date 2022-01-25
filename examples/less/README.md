@@ -11,7 +11,7 @@ yarn create docz-app docz-app-less --example less
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/less
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/less
 mv less docz-less-example
 cd docz-less-example
 ```

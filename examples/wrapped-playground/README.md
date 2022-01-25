@@ -11,7 +11,7 @@ yarn create docz-app docz-app-wrapped-playground
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/wrapped-playground
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/wrapped-playground
 mv wrapped-playground docz-wrapped-playground-example
 cd docz-wrapped-playground-example
 ```

@@ -11,7 +11,7 @@ yarn create docz-app docz-app --example custom-config-location
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/custom-config-location
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/custom-config-location
 mv custom-config-location docz-custom-config-location-example
 cd docz-custom-config-location-example
 ```

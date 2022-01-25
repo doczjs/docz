@@ -11,7 +11,7 @@ yarn create docz-app docz-app-with-custom-links --example with-custom-links
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/with-custom-links
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/with-custom-links
 mv with-custom-links docz-with-custom-links-example
 cd docz-with-custom-links-example
 ```

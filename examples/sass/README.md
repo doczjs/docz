@@ -11,7 +11,7 @@ yarn create docz-app docz-app-sass --example sass
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/sass
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/sass
 mv sass docz-sass-example
 cd docz-sass-example
 ```

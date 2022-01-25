@@ -11,7 +11,7 @@ yarn create docz-app docz-app-with-favicon-and-metadata --example with-favicon-a
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/with-favicon-and-metadata
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/with-favicon-and-metadata
 mv with-favicon-and-metadata docz-with-favicon-and-metadata-example
 cd docz-with-favicon-and-metadata-example
 ```
