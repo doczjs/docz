@@ -2,7 +2,7 @@ import * as jsxUtils from 'jsx-ast-utils'
 import strip from 'strip-indent'
 import escapeJS from 'js-string-escape'
 
-import { valueFromTraverse, codeFromNode } from './ast'
+import { valueFromTraverse } from './ast'
 
 export const propFromElement = (prop: string) =>
   valueFromTraverse(
@@ -10,11 +10,21 @@ export const propFromElement = (prop: string) =>
     p => jsxUtils.getPropValue(jsxUtils.getProp(p.node.attributes, prop))
   )
 
-export const removeTags = (code: string) => {
-  const open = codeFromNode(p => p.isJSXOpeningElement())
-  const close = codeFromNode(p => p.isJSXClosingElement())
+const getTagContentsRange = valueFromTraverse<[number, number] | null>(
+  p => p.isJSXElement(),
+  ({ node }) => {
+    if (!node.closingElement) {
+      // if the JSX element doesn't have a closingElement, it's because it's self-closed
+      // and thus does not have any content: <Playground />
+      return null
+    }
+    return [node.openingElement.end, node.closingElement.start]
+  }
+)
 
-  return code.replace(open(code), '').replace(close(code), '')
+export const removeTags = (code: string) => {
+  const [start, end] = getTagContentsRange(code) || [0, 0]
+  return code.slice(start, end)
 }
 
 export const sanitizeCode = (code: string) => {

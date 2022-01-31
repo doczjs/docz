@@ -2,13 +2,13 @@ import * as parser from '@babel/parser'
 import traverse from '@babel/traverse'
 
 type Condition = (path: any) => boolean
-type Predicate = (path: any) => any
+type Predicate<Value> = (path: any) => Value
 
-export const valueFromTraverse = (
+export const valueFromTraverse = <Value = any>(
   condition: Condition,
-  predicate: Predicate = p => p
-) => (code: string) => {
-  let value = ''
+  predicate: Predicate<Value> = p => p
+) => (code: string): Value | '' => {
+  let value: Value | '' = ''
   const ast = parser.parse(code, { plugins: ['jsx'] })
 
   traverse(ast, {
