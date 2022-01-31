@@ -25,9 +25,9 @@
     "test": "yarn jest"
   },
   "dependencies": {
-    "@babel/generator": "^7.5.5",
-    "@babel/parser": "^7.5.5",
-    "@babel/traverse": "^7.5.5",
+    "@babel/generator": "^7.16.8",
+    "@babel/parser": "^7.16.12",
+    "@babel/traverse": "^7.16.10",
     "art-template": "^4.13.2",
     "fs-extra": "^8.1.0",
     "humanize-string": "^2.1.0",
