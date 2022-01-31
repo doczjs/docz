@@ -12,9 +12,9 @@ describe('removeTags', () => {
     ).toMatchInlineSnapshot(`
       "
             
-              <div>Some text</div>
+              <div>Some text
               <p>Other text</p>
-            
+            </Playground>
           "
     `)
   })
@@ -30,8 +30,8 @@ describe('removeTags', () => {
     ).toMatchInlineSnapshot(`
       "
             
-              {/*  */}
-              <div>Some text</div>
+              {/* </Playground> */}
+              <div>Some text
             </Playground>
           "
     `)
