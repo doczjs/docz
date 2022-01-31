@@ -21,7 +21,8 @@
     "build": "trash lib && cross-env NODE_ENV=production rollup -c",
     "fix": "yarn lint --fix",
     "lint": "eslint . --ext mdx,ts,tsx",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "test": "yarn jest"
   },
   "dependencies": {
     "@babel/generator": "^7.5.5",
