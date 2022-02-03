@@ -9,6 +9,7 @@ export const editor = theme => ({
   '* > textarea:focus': {
     outline: 'none',
   },
+  borderRadius: 'inherit',
 })
 
 export const error = {
