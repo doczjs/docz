@@ -11,7 +11,7 @@ yarn create docz-app docz-app-custom-base-path -- example custom-base-path
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/custom-base-path
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/custom-base-path
 mv basic docz-custom-base-path-example
 cd docz-custom-base-path-example
 ```

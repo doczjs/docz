@@ -11,7 +11,7 @@ yarn create docz-app docz-app-with-typescript-decorators --example with-typescri
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/with-typescript-decorators
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/with-typescript-decorators
 mv with-typescript-decorators docz-with-typescript-decorators-example
 cd docz-with-typescript-decorators-example
 ```

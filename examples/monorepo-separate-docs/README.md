@@ -16,7 +16,7 @@ yarn create docz-app docz-app-monorepo-separate-docs --example monorepo-separate
 ## Download
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/monorepo-separate-docs
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/monorepo-separate-docs
 mv monorepo-separate-docs docz-monorepo-separate-docs-example
 cd docz-monorepo-separate-docs-example
 ```

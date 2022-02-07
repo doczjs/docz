@@ -13,7 +13,7 @@ yarn create docz-app docz-app-with-gatsby-remark-vscode
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/with-gatsby-remark-vscode
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/with-gatsby-remark-vscode
 mv with-gatsby-remark-vscode docz-with-gatsby-remark-vscode-example
 cd docz-with-gatsby-remark-vscode-example
 ```

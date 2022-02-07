@@ -14,7 +14,7 @@ yarn create docz-app docz-app-monorepo --example monorepo-package
 ## Download
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/monorepo-package
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/monorepo-package
 mv monorepo-package docz-monorepo-example
 cd docz-monorepo-example
 ```

@@ -11,7 +11,7 @@ yarn create docz-app docz-app-cra --example create-react-app
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/create-react-app
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/create-react-app
 mv create-react-app docz-cra-example
 cd docz-cra-example
 ```

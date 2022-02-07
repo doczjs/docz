@@ -11,7 +11,7 @@ yarn create docz-app docz-app-webpack-alias --example webpack-alias
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/webpack-alias
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/webpack-alias
 mv webpack-alias docz-webpack-alias-example
 cd docz-webpack-alias-example
 ```

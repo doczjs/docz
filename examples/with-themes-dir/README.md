@@ -11,7 +11,7 @@ yarn create docz-app docz-app-with-themes-dir
 ## Download manually
 
 ```sh
-curl https://codeload.github.com/doczjs/docz/tar.gz/master | tar -xz --strip=2 docz-master/examples/with-themes-dir
+curl https://codeload.github.com/doczjs/docz/tar.gz/main | tar -xz --strip=2 docz-main/examples/with-themes-dir
 mv with-themes-dir docz-with-themes-dir-example
 cd docz-with-themes-dir-example
 ```
