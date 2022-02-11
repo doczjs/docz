@@ -1,6 +1,6 @@
 {
   "name": "react-docgen-actual-name-handler",
-  "version": "2.3.3-alpha.0",
+  "version": "2.4.0",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

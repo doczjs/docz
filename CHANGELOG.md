@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/doczjs/docz/compare/v2.3.2-alpha.0...v2.4.0) (2022-02-11)
+
+
+### Bug Fixes
+
+* **babel-plugin-export-metadata:** fix `hasOwnProperty` method call ([#1581](https://github.com/doczjs/docz/issues/1581)) ([9067ffb](https://github.com/doczjs/docz/commit/9067ffb))
+* **dev-env/basic:** building and running development ([#1646](https://github.com/doczjs/docz/issues/1646)) ([7baaaf2](https://github.com/doczjs/docz/commit/7baaaf2))
+* **docz:** dependency issues ([#1647](https://github.com/doczjs/docz/issues/1647)) ([5bdca48](https://github.com/doczjs/docz/commit/5bdca48))
+* **docz-utils:** fix closing tag detection in `removeTags` ([#1696](https://github.com/doczjs/docz/issues/1696)) ([bfcd923](https://github.com/doczjs/docz/commit/bfcd923))
+* **examples:** import alert component by correct lib name. ([#1605](https://github.com/doczjs/docz/issues/1605)) ([fadb6dd](https://github.com/doczjs/docz/commit/fadb6dd))
+* **gatsby-theme-docz:** wrong imports ([ed169cf](https://github.com/doczjs/docz/commit/ed169cf))
+* add functions never to eslint rule ([#1487](https://github.com/doczjs/docz/issues/1487)) ([becd589](https://github.com/doczjs/docz/commit/becd589))
+
+
+### Features
+
+* add gatsby https flag to use in dev mode ([#1569](https://github.com/doczjs/docz/issues/1569)) ([9d91503](https://github.com/doczjs/docz/commit/9d91503))
+* **docz-core:** add modifyEntry plugin supported ([#1621](https://github.com/doczjs/docz/issues/1621)) ([317987e](https://github.com/doczjs/docz/commit/317987e))
+* **gatsby-theme-docz:** configure SEO information from md/mdx files ([#1477](https://github.com/doczjs/docz/issues/1477)) ([24bb600](https://github.com/doczjs/docz/commit/24bb600))
+* **gatsby-theme-docz:** no reload on relative links ([#1482](https://github.com/doczjs/docz/issues/1482)) ([ff7211c](https://github.com/doczjs/docz/commit/ff7211c))
+
+
+
+
+
 # [2.3.3-alpha.0](https://github.com/doczjs/docz/compare/v2.3.2-alpha.0...v2.3.3-alpha.0) (2021-09-10)
 
 
