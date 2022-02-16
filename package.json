@@ -93,6 +93,7 @@
     "packages": [
       "core/*",
       "other-packages/*",
+      "packages/*",
       "dev-env/*"
     ],
     "nohoist": [
