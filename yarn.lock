@@ -5539,6 +5539,18 @@ babel-plugin-emotion@^10.0.14, babel-plugin-emotion@^10.0.17, babel-plugin-emoti
     find-root "^1.1.0"
     source-map "^0.5.7"
 
+babel-plugin-export-metadata@2.3.3-alpha.0:
+  version "2.3.3-alpha.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-export-metadata/-/babel-plugin-export-metadata-2.3.3-alpha.0.tgz#e73ade0457261bc2d943365847e62499391a2ca2"
+  integrity sha512-Pkj0mBIqZgJYfNx9h7Nt6OvMck1LEamCp2j576zBuhT9tPKCXlAg1usHC228cNUx7aCE6/RmOHRrWUjAjicYGQ==
+  dependencies:
+    "@babel/cli" "^7.5.5"
+    "@babel/core" "^7.5.5"
+    "@babel/preset-env" "^7.5.5"
+    "@babel/template" "^7.4.4"
+    babel-core "7.0.0-bridge.0"
+    lodash "^4.17.14"
+
 babel-plugin-export-metadata@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/babel-plugin-export-metadata/-/babel-plugin-export-metadata-1.2.0.tgz#ad85294547c10a466723e9ac928601f3cd8ec2e4"
@@ -8869,6 +8881,45 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
+docz-core@2.3.3-alpha.0:
+  version "2.3.3-alpha.0"
+  resolved "https://registry.yarnpkg.com/docz-core/-/docz-core-2.3.3-alpha.0.tgz#71dd5978a3bf959f88bd4966c2f2198127ef177b"
+  integrity sha512-i7DtnWNI/USGUSg1+brgMxh8N/hDx3Z9NvQWZOs7Z0KVT3C37OAHkh3rRIz2hw2BKQIH1mhLtLTekTulQD1zQw==
+  dependencies:
+    "@sindresorhus/slugify" "^0.9.1"
+    chalk "^2.4.2"
+    chokidar "^3.0.2"
+    cross-spawn "^7.0.2"
+    detect-port "^1.3.0"
+    docz-utils "2.3.3-alpha.0"
+    env-dot-prop "^2.0.1"
+    fast-deep-equal "^2.0.1"
+    fast-glob "^3.0.4"
+    find-up "^4.1.0"
+    fs-extra "^8.1.0"
+    gatsby-plugin-eslint "^2.0.5"
+    gatsby-plugin-typescript "^2.1.6"
+    get-pkg-repo "4.1.1"
+    humanize-string "^2.1.0"
+    load-cfg "2.3.3-alpha.0"
+    lodash "^4.17.14"
+    minimatch "^3.0.4"
+    open "^7.0.3"
+    ora "^3.4.0"
+    react-docgen "^4.1.1"
+    react-docgen-actual-name-handler "2.3.3-alpha.0"
+    react-docgen-external-proptypes-handler "^1.0.3"
+    react-docgen-typescript "^2.1.0"
+    recast "^0.18.1"
+    resolve "^1.11.1"
+    shelljs "^0.8.3"
+    signale "^1.4.0"
+    titleize "^2.1.0"
+    tslib "^1.11.1"
+    wait-on "^3.3.0"
+    xstate "^4.6.7"
+    yargs "^13.3.0"
+
 docz-core@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/docz-core/-/docz-core-1.2.0.tgz#f760149032445050f187e553b0bbc4568c631009"
@@ -8937,28 +8988,33 @@ docz-core@^1.2.0:
     ws "^7.0.0"
     yargs "^13.2.2"
 
-docz-rollup@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/docz-rollup/-/docz-rollup-2.1.0.tgz#b3480fc64d0c0ec052f6e31dba99fd819e5a79f5"
-  integrity sha512-Pxhz0dYeT4WZ1QdRTmVwXQy3sP8iQHBWJB8SE2KnCa2n6LsQb/dwqqBwmyEf/xsS9PmG9t4iGZBY9OmVy6gzjg==
+docz-utils@2.3.3-alpha.0:
+  version "2.3.3-alpha.0"
+  resolved "https://registry.yarnpkg.com/docz-utils/-/docz-utils-2.3.3-alpha.0.tgz#6e3d0f4392fa163143568889a7b3f674e01174f3"
+  integrity sha512-jiZK9CHivyBsT8q0u1wxAigbWJ58fiTOpjU1SIUyk57au2Is+oxx6ayVLPXz+ah/h1OifjxHdf2FwD0J0kcAWQ==
   dependencies:
-    chalk "^2.4.2"
-    figures "3.0.0"
-    filesize "^4.1.2"
+    "@babel/generator" "^7.5.5"
+    "@babel/parser" "^7.5.5"
+    "@babel/traverse" "^7.5.5"
+    art-template "^4.13.2"
     fs-extra "^8.1.0"
-    gzip-size "^5.1.1"
+    humanize-string "^2.1.0"
+    js-string-escape "^1.0.1"
+    jsx-ast-utils "^2.2.1"
     lodash "^4.17.14"
-    log-update "^3.2.0"
-    rollup "^1.17.0"
-    rollup-plugin-alias "^1.5.2"
-    rollup-plugin-babel "^4.3.3"
-    rollup-plugin-commonjs "^10.0.1"
-    rollup-plugin-json "^4.0.0"
-    rollup-plugin-node-resolve "^5.2.0"
-    rollup-plugin-peer-deps-external "^2.2.0"
-    rollup-plugin-postcss "^2.0.3"
-    rollup-plugin-progress "^1.1.1"
-    rollup-plugin-typescript2 "^0.22.0"
+    prettier "^1.18.2"
+    remark-frontmatter "^1.3.2"
+    remark-parse "^6.0.2"
+    remark-parse-yaml "^0.0.2"
+    remark-slug "^5.1.2"
+    signale "^1.4.0"
+    strip-indent "^3.0.0"
+    to-vfile "^6.0.0"
+    unescape-js "^1.1.1"
+    unified "^8.3.2"
+    unist-util-find "^1.0.1"
+    unist-util-is "^3.0.0"
+    unist-util-visit "^1.4.1"
 
 docz-utils@^1.2.0:
   version "1.2.0"
@@ -8988,6 +9044,30 @@ docz-utils@^1.2.0:
     unist-util-find "^1.0.1"
     unist-util-is "^2.1.2"
     unist-util-visit "^1.4.0"
+
+docz@2.3.3-alpha.0:
+  version "2.3.3-alpha.0"
+  resolved "https://registry.yarnpkg.com/docz/-/docz-2.3.3-alpha.0.tgz#208aafd3aeb8e8176a87f1ca459aff05a20a55cf"
+  integrity sha512-SqHMsCoQkA5ZzMMSJk4BvarJJ0dykJTzbhmHKjQ6dqMbldBCWJbCFlgWQHofvmZMQxJ1cbSYkgRtzWEz2q4EqQ==
+  dependencies:
+    "@emotion/react" "^11.1.1"
+    "@mdx-js/react" "^1.0.27"
+    array-sort "^1.0.0"
+    capitalize "^2.0.0"
+    docz-core "2.3.3-alpha.0"
+    fast-deep-equal "^2.0.1"
+    gatsby "^2.13.27"
+    gatsby-plugin-eslint "^2.0.5"
+    gatsby-plugin-typescript "^2.1.6"
+    gatsby-theme-docz "2.3.3-alpha.0"
+    lodash "^4.17.14"
+    marksy "^8.0.0"
+    match-sorter "^3.1.1"
+    pascal-case "^3.1.0"
+    prop-types "^15.7.2"
+    scheduler "^0.15.0"
+    ulid "^2.3.0"
+    yargs "^13.3.0"
 
 docz@^1.2.0:
   version "1.3.2"
@@ -9441,31 +9521,6 @@ escodegen@^1.8.1, escodegen@^1.9.1:
     optionator "^0.8.1"
   optionalDependencies:
     source-map "~0.6.1"
-
-eslint-config-docz-js@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-docz-js/-/eslint-config-docz-js-2.1.0.tgz#358f97cd27099462f7c66fde842f52cb634a8fe0"
-  integrity sha512-72s9brNYxArHS6hI6Obh6owbanenHb6jMHVR/3t6zEj+U8oZH/1zuJNBD4RMO3X9XZ3FrLXrdGV4IFKzaM0OdQ==
-  dependencies:
-    babel-eslint "^10.0.2"
-    eslint "^6.5.1"
-    eslint-config-prettier "^5.0.0"
-    eslint-plugin-mdx "^1.6.1"
-    eslint-plugin-prettier "^3.1.0"
-    eslint-plugin-react "^7.13.0"
-
-eslint-config-docz-ts@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-docz-ts/-/eslint-config-docz-ts-2.1.0.tgz#54a36ab45ba88e862d484e863a9164858c14484a"
-  integrity sha512-gm14cE/cyeqWzaDWMyWLgaMOJzhNat+hqPTXjDuC93vPNJBjXjwn/txplOB1rkQX6ke1TTrkWE/AgvsNVYbraw==
-  dependencies:
-    "@typescript-eslint/eslint-plugin" "^1.12.0"
-    "@typescript-eslint/parser" "^1.12.0"
-    eslint "^6.5.1"
-    eslint-config-prettier "^5.0.0"
-    eslint-plugin-mdx "^1.6.1"
-    eslint-plugin-prettier "^3.1.0"
-    eslint-plugin-react "^7.13.0"
 
 eslint-config-kentcdodds@^14.3.2:
   version "14.3.2"
@@ -10868,6 +10923,48 @@ gatsby-telemetry@^1.1.6:
     stack-trace "^0.0.10"
     stack-utils "1.0.2"
     uuid "3.3.2"
+
+gatsby-theme-docz@2.3.3-alpha.0:
+  version "2.3.3-alpha.0"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-docz/-/gatsby-theme-docz-2.3.3-alpha.0.tgz#2ec6cb2d59b6206a098a3baf3db4d0d9926a201a"
+  integrity sha512-y9zCNAj2KTZ4/aTRjP0CXhiAEWc9mUoh+vgdfAMS5i8Jd8umrK9Xaodg/5/Bu5u2Yl8nHujiDjJXbHYgZNiPcA==
+  dependencies:
+    "@emotion/react" "^11.1.1"
+    "@emotion/styled" "^11.0.0"
+    "@loadable/component" "^5.10.2"
+    "@mdx-js/mdx" "^1.1.0"
+    "@mdx-js/react" "^1.0.27"
+    "@theme-ui/typography" "^0.2.5"
+    babel-plugin-export-metadata "2.3.3-alpha.0"
+    copy-text-to-clipboard "^2.1.0"
+    fs-extra "^8.1.0"
+    gatsby "^2.13.27"
+    gatsby-plugin-alias-imports "^1.0.5"
+    gatsby-plugin-catch-links "^2.3.0"
+    gatsby-plugin-compile-es6-packages "^2.0.0"
+    gatsby-plugin-emotion "^4.1.2"
+    gatsby-plugin-mdx "^1.0.13"
+    gatsby-plugin-react-helmet-async "^1.0.5"
+    gatsby-plugin-root-import "^2.0.5"
+    gatsby-source-filesystem "^2.1.35"
+    lodash "^4.17.14"
+    mdx-utils "^0.2.0"
+    prism-react-renderer "^1.0.2"
+    prop-types "^15.7.2"
+    re-resizable "^6.1.0"
+    react-feather "^2.0.3"
+    react-frame-component "^4.1.1"
+    react-helmet-async "^1.0.4"
+    react-live "^2.2.1"
+    react-resize-detector "^4.2.1"
+    rehype-docz "2.3.3-alpha.0"
+    rehype-slug "^2.0.3"
+    remark-docz "2.3.3-alpha.0"
+    remark-frontmatter "^1.3.2"
+    theme-ui "^0.2.38"
+    to-style "^1.3.3"
+    typography-theme-moraga "^0.16.19"
+    yargs "^13.3.0"
 
 gatsby@^2.13.27:
   version "2.13.27"
@@ -13932,6 +14029,18 @@ listr@^0.14.3:
     p-map "^2.0.0"
     rxjs "^6.3.3"
 
+load-cfg@2.3.3-alpha.0:
+  version "2.3.3-alpha.0"
+  resolved "https://registry.yarnpkg.com/load-cfg/-/load-cfg-2.3.3-alpha.0.tgz#2e1faebba30f2c2012ef4da679f401b620c2edf1"
+  integrity sha512-zLld1mth3nMWPASBRrkYmJzukJ1wCZVmordAmCGMNCDG1xCrINzZqlZsdZhPzvA/3+t47zvFre0F/1PQYwcrCw==
+  dependencies:
+    "@babel/core" "^7.5.5"
+    "@babel/preset-env" "^7.5.5"
+    "@babel/register" "^7.5.5"
+    find-up "^4.1.0"
+    fs-extra "^8.1.0"
+    lodash "^4.17.14"
+
 load-cfg@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/load-cfg/-/load-cfg-1.2.0.tgz#6b5442c1be18799691307526eb3ceadbafbc36d1"
@@ -14048,9 +14157,9 @@ lockfile@^1.0.4:
     signal-exit "^3.0.2"
 
 lodash-es@^4.17.15:
-  version "4.17.15"
-  resolved "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
-  integrity sha512-rlrc3yU3+JNOpZ9zj5pQtxnx2THmvRykwL4Xlxoa8I9lHBlVbbyPhgyPMioxVZ4NqyxaVVtaJnzsyOidQIhyyQ==
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
 lodash._reinterpolate@^3.0.0, lodash._reinterpolate@~3.0.0:
   version "3.0.0"
@@ -17451,6 +17560,14 @@ react-dev-utils@^9.0.1:
     strip-ansi "5.2.0"
     text-table "0.2.0"
 
+react-docgen-actual-name-handler@2.3.3-alpha.0:
+  version "2.3.3-alpha.0"
+  resolved "https://registry.yarnpkg.com/react-docgen-actual-name-handler/-/react-docgen-actual-name-handler-2.3.3-alpha.0.tgz#5690d80d9d8a7b65a0cd2cbc9ea6e16bddc7fdcf"
+  integrity sha512-sp+OGKlszAR4BelBs7RvGp7O9RhHf82JXSultqYIQMLm71fWADEMa/M7Hf+eAw1DC3RxOadmdiA3E/L2lT2KSA==
+  dependencies:
+    react-docgen "^4.1.1"
+    recast "^0.18.1"
+
 react-docgen-actual-name-handler@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/react-docgen-actual-name-handler/-/react-docgen-actual-name-handler-1.2.0.tgz#5404e2433860b223d26f14d6a6918c9c164fd9e6"
@@ -18119,6 +18236,19 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
+rehype-docz@2.3.3-alpha.0:
+  version "2.3.3-alpha.0"
+  resolved "https://registry.yarnpkg.com/rehype-docz/-/rehype-docz-2.3.3-alpha.0.tgz#b3d8aed0c238ac935e86207f8c7b0f76a2132f45"
+  integrity sha512-XIq+dTVsVPIGKbTEh5Ej8Lss6FkqFZIS5TKe+JGj3CTMtvikQYLLSAj92bwG8hUUUoFNf3l8jiUEhG3MwEFNGg==
+  dependencies:
+    brace "^0.11.1"
+    docz-utils "2.3.3-alpha.0"
+    hast-util-to-string "^1.0.2"
+    jsx-ast-utils "^2.2.1"
+    lodash "^4.17.14"
+    react-ace "^7.0.2"
+    unist-util-is "^3.0.0"
+
 rehype-docz@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/rehype-docz/-/rehype-docz-1.2.0.tgz#cc336b4d270db1b43f6c6ae51af24a15a0032116"
@@ -18154,6 +18284,16 @@ relay-runtime@2.0.0:
     "@babel/runtime" "^7.0.0"
     fbjs "^1.0.0"
 
+remark-docz@2.3.3-alpha.0:
+  version "2.3.3-alpha.0"
+  resolved "https://registry.yarnpkg.com/remark-docz/-/remark-docz-2.3.3-alpha.0.tgz#7a9ed4c1b648082f028b6094b46c1b47bf506267"
+  integrity sha512-TgAvc4cVhh0ssE9L6i2/5GXqYVS4bPaX5vgdjiCq4bt9VLfV61cmqq/m0qUbx59KGKfnntzw048kWJF3FWkvOA==
+  dependencies:
+    "@babel/generator" "^7.5.5"
+    "@babel/types" "^7.5.5"
+    unist-util-remove "^1.0.3"
+    unist-util-visit "^1.4.1"
+
 remark-docz@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/remark-docz/-/remark-docz-1.2.0.tgz#20e11d4a34b2c7e9e4d29e5172dd16b135de03ca"
@@ -18163,16 +18303,6 @@ remark-docz@^1.2.0:
     "@babel/types" "^7.4.4"
     unist-util-remove "^1.0.1"
     unist-util-visit "^1.4.0"
-
-remark-docz@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/remark-docz/-/remark-docz-2.1.0.tgz#e5ea97ec1922689d6fcd9965d49ae36162709eb3"
-  integrity sha512-5Crfi0xyBEoEJP06eaVZ6FodMWf3SunzL8icubxxqgAaIklgqp9H2hQ6getSe+0VM8yj0P1r2LPrl7GA1PLEPw==
-  dependencies:
-    "@babel/generator" "^7.5.5"
-    "@babel/types" "^7.5.5"
-    unist-util-remove "^1.0.3"
-    unist-util-visit "^1.4.1"
 
 remark-frontmatter@^1.3.1, remark-frontmatter@^1.3.2:
   version "1.3.2"
@@ -18728,7 +18858,7 @@ rollup-plugin-postcss@^2.0.3:
     rollup-pluginutils "^2.0.1"
     style-inject "^0.3.0"
 
-rollup-plugin-progress@^1.1.1, rollup-plugin-progress@^1.1.2:
+rollup-plugin-progress@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/rollup-plugin-progress/-/rollup-plugin-progress-1.1.2.tgz#5c1dfe7c50f654906bc34d167d5512ee1a4b72d5"
   integrity sha512-6ehSZOMTZdAlRpe45kf56BnIOsDYC2GKWhGlK/Dh/Ae/AMUneMDyKdiv9ZlRrW/HVc986frTZcc2Zka+oF6W7Q==
