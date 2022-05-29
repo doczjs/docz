@@ -52,7 +52,7 @@ export const getRepoEditUrl = (config: Config): string | null => {
     if (!gitDir) return null
 
     const project = path.parse(gitDir).dir
-    const root = path.join(paths.getRootDir(config), config.src)
+    const root = paths.getRootDir(config)
     const relative = path.relative(project, root)
     const tree = getTree(repo, config.editBranch, relative)
 

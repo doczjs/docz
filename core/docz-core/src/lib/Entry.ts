@@ -73,7 +73,7 @@ export class Entry {
 
   private getFilepath(config: Config, file: string): string {
     const root = paths.getRootDir(config)
-    const fullpath = path.resolve(root, config.src, file)
+    const fullpath = path.resolve(root, file)
     const filepath = path.relative(root, fullpath)
 
     if (process.platform === 'win32') {
