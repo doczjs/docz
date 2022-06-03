@@ -35,7 +35,7 @@
     "gatsby-plugin-catch-links": "^2.3.0",
     "gatsby-plugin-compile-es6-packages": "^2.0.0",
     "gatsby-plugin-emotion": "^4.1.2",
-    "gatsby-plugin-mdx": "^1.0.13",
+    "gatsby-plugin-mdx": "^2.14.1",
     "gatsby-plugin-react-helmet-async": "^1.0.5",
     "gatsby-plugin-root-import": "^2.0.5",
     "gatsby-source-filesystem": "^2.1.35",
