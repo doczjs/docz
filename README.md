@@ -33,7 +33,7 @@ Create MDX files showcasing your code and Docz turns them into a live-reloading,
 - [Contributors](#contributors)
 - [Contributing](#contributing)
 
-## Why ?
+## Why?
 
 Documenting code is one of the most important and time-heavy processes when developing software.
 
@@ -43,7 +43,7 @@ Docz enables you to quickly create live-reloading, seo-friendly, production-read
 
 ## Start a New Project
 
-Use [create-docz-app](https://www.npmjs.com/package/create-docz-app) to quickly get started :
+Use [create-docz-app](https://www.npmjs.com/package/create-docz-app) to quickly get started:
 
 ```sh
 npx create-docz-app my-docz-app
@@ -53,7 +53,7 @@ yarn create docz-app my-docz-app --example typescript
 
 ## Add Docz to an Existing Project
 
-Start by adding `docz` as a dependency :
+Start by adding `docz` as a dependency:
 
 ```bash
 $ yarn add docz # react react-dom
@@ -154,12 +154,12 @@ Start by building your site with `yarn docz build`, if you haven't provided a `d
 
 ## Used by
 
-- **[Welcome UI](http://welcome-ui.com/)** : Customizable design system with react • styled-components • styled-system and reakit.
-- **[React Hooks Testing Library](https://react-hooks-testing-library.com/)** : 🐏 Simple and complete React hooks testing utilities that encourage good testing practices.
-- **[Mobx React](https://mobx-react.js.org/)** : mobx-react documentation site.
-- **[React Google Charts](https://react-google-charts.com/)** : A thin, typed, React wrapper over Google Charts Visualization and Charts API.
-- **[Entur](https://developer.entur.org/)** : Entur operates the national registry for all public transport in Norway.
-- **[FAB Specification](https://fab.dev/)** : 💎 FABs are a compile target for frontend applications.
+- **[Welcome UI](http://welcome-ui.com/)**: Customizable design system with react • styled-components • styled-system and reakit.
+- **[React Hooks Testing Library](https://react-hooks-testing-library.com/)**: 🐏 Simple and complete React hooks testing utilities that encourage good testing practices.
+- **[Mobx React](https://mobx-react.js.org/)**: Mobx-react documentation site.
+- **[React Google Charts](https://react-google-charts.com/)**: A thin, typed, React wrapper over Google Charts Visualization and Charts API.
+- **[Entur](https://developer.entur.org/)**: Entur operates the national registry for all public transport in Norway.
+- **[FAB Specification](https://fab.dev/)**: 💎 FABs are a compile target for frontend applications.
 - **[@umijs/hooks](https://hooks.umijs.org/)**: React Hooks Library.
 - **[React Yandex Maps](https://react-yandex-maps.now.sh/)**: Yandex Maps API bindings for React.
 - **[Components-extra](https://components-extra.netlify.com)**: Customizable react component blocks built with material-ui and styled-components.
@@ -173,9 +173,9 @@ This project exists thanks to all the people who contribute. [[Contribute](CONTR
 
 ## Contributing
 
-All kinds of contributions are very welcome and appreciated !
+All kinds of contributions are very welcome and appreciated!
 
-If you want to contribute time to docz then here's a list of suggestions to get you started :
+If you want to contribute time to docz then here's a list of suggestions to get you started:
 
 1. Star the project.
 2. Help people in the [issues](https://github.com/doczjs/docz/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) by sharing your knowledge and experience.
@@ -183,7 +183,7 @@ If you want to contribute time to docz then here's a list of suggestions to get 
 4. Submit PRs to help solve issues or add features.
 5. Influence the future of docz with feature requests.
 
-If you're looking for a place to start make sure to check issues tagged with :
+If you're looking for a place to start make sure to check issues tagged with:
 
 [![Good First Issue](https://img.shields.io/github/issues/doczjs/docz/good%20first%20issue.svg)](https://github.com/doczjs/docz/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
 
