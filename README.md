@@ -28,13 +28,6 @@ A lot of time is spent on building and maintaining custom documentation sites.
 
 Docz enables you to quickly create a live-reloading, SEO-friendly, production-ready documentation site with MDX and customize the look, feel and behavior when required by leveraging [GatsbyJS](https://www.gatsbyjs.org) and [Gatsby theme shadowing](https://www.gatsbyjs.org/docs/themes/shadowing/).
 
-### About `create-docz-app`
-
-There's a [create-docz-app](https://www.npmjs.com/package/create-docz-app), which you can use to start new projects with docz even faster.
-This app is developed independently of the docz project, and is not officially supported.
-So use the app at your own risk.
-You can use `create-docz-app` as a replacement for `create-react-app`, when you're creating a new project.
-
 ## Getting started
 
 Start by adding `docz` as a dependency to your project with Yarn or npm:
