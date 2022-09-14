@@ -1,0 +1,38 @@
+{
+  "name": "@docz/config",
+  "version": "2.4.0",
+  "license": "Apache-2.0",
+  "main": "./index.js",
+  "publishConfig": {
+    "access": "public",
+    "files": [
+      "./index.js",
+      "./react-imports.js",
+      "./tsup.ts"
+    ]
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.37.0",
+    "@typescript-eslint/parser": "^5.37.0",
+    "dotenv": "^16.0.2",
+    "eslint": "^8.23.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest-dom": "^4.0.2",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.8",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-testing-library": "^5.6.4",
+    "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "tsup": "^6.2.3",
+    "typescript": "^4.8.3"
+  }
+}

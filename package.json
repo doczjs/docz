@@ -1,0 +1,91 @@
+{
+  "name": "@doczjs/docz",
+  "version": "2.4.0",
+  "private": true,
+  "description": "It has never been so easy to document your things!",
+  "author": "Pedro Nauck <pedronauck@gmail.com> (https://docz.site)",
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=7"
+  },
+  "homepage": "https://github.com/doczjs/docz#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doczjs/docz.git"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/doczjs/docz/issues"
+  },
+  "workspaces": [
+    "./packages/*",
+    "./examples/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "build:no-cache": "turbo run build --no-cache",
+    "build:watch": "turbo run build --parallel --no-cache -- --watch",
+    "changeset": "changeset",
+    "changeset:release": "changeset publish --no-git-tag",
+    "changeset:version": "changeset version",
+    "changeset:check": "changeset status --since=master",
+    "deps:update": "updates -gu && pnpm -r exec updates -gu",
+    "lint:check": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "pnpm lint:check --fix",
+    "lint": "run-s lint:check prettier:check",
+    "prettier:check": "prettier --check .",
+    "prettier:format": "prettier --write .",
+    "test": "turbo run test",
+    "test:watch": "turbo run test -- --watch",
+    "test:coverage": "turbo run test -- --coverage",
+    "test:clear": "turbo run test -- --clearCache",
+    "ts:check": "pnpm -r run ts:check",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.0",
+    "@changesets/changelog-github": "^0.4.6",
+    "@changesets/cli": "^2.24.4",
+    "@changesets/get-github-info": "^0.5.1",
+    "docz": "workspace:*",
+    "@jest/types": "^29.0.3",
+    "@types/jest": "^29.0.2",
+    "@types/lodash": "^4.14.185",
+    "@types/node": "^18.7.18",
+    "@types/react": "^18.0.20",
+    "@types/react-dom": "^18.0.6",
+    "depcheck": "^1.4.3",
+    "dotenv": "^16.0.2",
+    "eslint": "^8.23.1",
+    "fs-extra": "^10.1.0",
+    "husky": "^8.0.1",
+    "jest": "^29.0.3",
+    "lint-staged": "^13.0.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
+    "tsup": "^6.2.3",
+    "turbo": "^1.4.6",
+    "typescript": "^4.8.3",
+    "updates": "^13.1.5"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowAny": [
+        "react",
+        "react-dom"
+      ],
+      "ignoreMissing": [
+        "react",
+        "react-dom"
+      ]
+    },
+    "overrides": {
+      "glob-parent@<5.1.2": ">=5.1.2",
+      "trim@<0.0.3": ">=0.0.3",
+      "trim-newlines@<3.0.1": ">=3.0.1",
+      "terser@>=5.0.0 <5.14.2": ">=5.14.2",
+      "terser@<4.8.1": ">=4.8.1"
+    }
+  }
+}

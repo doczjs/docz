@@ -1,0 +1,6 @@
+**/node_modules/
+**/coverage/
+*.js
+.changeset
+dist
+CHANGELOG.md

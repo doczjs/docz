@@ -1,0 +1,10 @@
+**/*.template
+.changeset
+.coverage_*
+.github
+CHANGELOG.md
+coverage
+dist
+node_modules
+pnpm-lock.yaml
+storybook-static
