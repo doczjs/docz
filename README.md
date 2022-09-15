@@ -1,13 +1,4 @@
-> **Warning**
-> This is an OUTDATED version of Docz, if you are going to use it, be aware that you may possibly find bugs due to the outdated dependencies.
-
-> We're working in a [new version](https://github.com/doczjs/docz/tree/new) that will include an entire core refactoring by adding NextJS and another cools feature.
-
-<p align="center" style="margin-bottom: -20px">
-  <img src="https://cdn-std.dprcdn.net/files/acc_649651/BSPk3z">
-</p>
-
-<p align="center">
+<p align="left">
   <a href="https://www.npmjs.com/package/docz" target="_blank">
     <img src="https://badgen.net/npm/v/docz" alt="">
   </a>
@@ -18,6 +9,20 @@
     <img src="https://badgen.net/npm/dt/docz" alt="">
   </a>
 </p>
+
+> ⚠️ WARNING
+
+> This is an **OUTDATED** version of Docz, if you are going to use it, be aware that you may possibly find bugs due to the outdated dependencies. Mainly because of all this time without updates, became almost impossible to follow with the decision of keep the same stack and update things.
+
+> So, we're working in a [new version](https://github.com/doczjs/docz/tree/new) that will include an entire core refactoring/rewritting by adding NextJS behind the scenes as bundler and another cools feature.
+
+> Since we really want to don't have so much breakings changes - and try to bring back the spot and quality Docz deserves - this can take a while to be done, please be patient and if you want to help, just send me a message [on my Twitter](https://twitter.com/pedronauck)!
+
+> Issues related to this old version, also won't be answered, ok? 😅
+
+> Thank you 🙏
+
+# Docz
 
 Docz makes it easy to write and publish beautiful interactive documentation for your code.
 Create MDX files showcasing your code and Docz turns them into a live-reloading, production-ready site.
