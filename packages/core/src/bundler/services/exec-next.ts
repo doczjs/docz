@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-throw-literal */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -12,11 +13,18 @@ import { parse } from 'url';
 import type { ServerMachineCtx } from '../machine/context';
 
 export const execNext = async ({ args: config }: ServerMachineCtx) => {
+  const { default: matter } = await import('remark-frontmatter');
+  const { default: parseFrontmatter } = await import('remark-parse-yaml');
+
   const mdxConfig = withMDX({
     extension: /\.mdx?$/,
     options: {
-      remarkPlugins: config.remarkPlugins,
-      rehypePlugins: config.rehypePlugins,
+      remarkPlugins: [
+        ...config.remarkPlugins,
+        parseFrontmatter,
+        [matter, ['yaml']],
+      ],
+      rehypePlugins: [...config.rehypePlugins],
     },
   });
 
@@ -24,6 +32,13 @@ export const execNext = async ({ args: config }: ServerMachineCtx) => {
   const { host: hostname, port } = config;
   const customNextConfig = mdxConfig({
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+    options: {
+      providerImportSource: require.resolve('@mdx-js/react'),
+    },
+    webpack(config) {
+      config.resolve.alias['@mdx-js/react'] = require.resolve('@mdx-js/react');
+      return config;
+    },
   });
 
   const app = next({
