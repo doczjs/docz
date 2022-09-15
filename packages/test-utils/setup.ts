@@ -25,7 +25,11 @@ if (typeof window.matchMedia !== 'function') {
 failOnConsole({
   shouldFailOnWarn: false,
   silenceMessage: (errorMessage) => {
-    if (/Warning: ReactDOM.render is no longer supported in React 18/i.test(errorMessage)) {
+    if (
+      /Warning: ReactDOM.render is no longer supported in React 18/i.test(
+        errorMessage
+      )
+    ) {
       return true;
     }
     return false;

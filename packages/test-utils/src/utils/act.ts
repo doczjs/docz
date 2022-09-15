@@ -6,7 +6,9 @@ export function queue(): Promise<void> {
 }
 
 export function nextTick(): Promise<void> {
-  return act(() => new Promise((resolve) => requestAnimationFrame(() => resolve())));
+  return act(
+    () => new Promise((resolve) => requestAnimationFrame(() => resolve()))
+  );
 }
 
 export async function sleep(ms = 16): Promise<void> {

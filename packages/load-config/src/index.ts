@@ -3,7 +3,7 @@ import JoyCon from 'joycon';
 import { merge } from 'lodash/fp';
 import path from 'path';
 
-const finds = (name: string): string[] => [
+export const finds = (name: string): string[] => [
   `${name}.json`,
   `.${name}rc`,
   `${name}rc.js`,
@@ -22,7 +22,11 @@ async function loadConfigFilePath(files: string[], name: string, cwd: string) {
   });
 }
 
-export async function load<C = any>(name: string, defaultConfig: C, cwd: string) {
+export async function load<C = any>(
+  name: string,
+  defaultConfig: C,
+  cwd: string
+) {
   const config = await loadConfigFilePath(finds(name), name, cwd);
   return merge(config?.data ?? {}, defaultConfig);
 }

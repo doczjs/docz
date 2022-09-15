@@ -4,7 +4,7 @@ import * as path from 'path';
 
 import { root, resolveApp } from './paths';
 
-import * as envDotProp from '~/helpers/env';
+import * as envDotProp from '~/utils/env';
 
 const populateNodePath = () => {
   // We support resolving modules according to `NODE_PATH`.

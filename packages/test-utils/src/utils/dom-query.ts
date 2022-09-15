@@ -22,10 +22,13 @@ const focusableElList = [
 
 const focusableElSelector = focusableElList.join();
 
-const isVisible = (el: HTMLElement) => el.offsetWidth > 0 && el.offsetHeight > 0;
+const isVisible = (el: HTMLElement) =>
+  el.offsetWidth > 0 && el.offsetHeight > 0;
 
 export function getAllFocusable<T extends HTMLElement>(container: T) {
-  const focusableEls = Array.from(container.querySelectorAll<T>(focusableElSelector));
+  const focusableEls = Array.from(
+    container.querySelectorAll<T>(focusableElSelector)
+  );
   focusableEls.unshift(container);
   return focusableEls.filter((el) => isFocusable(el) && isVisible(el));
 }
@@ -35,8 +38,13 @@ export function getFirstFocusable<T extends HTMLElement>(container: T) {
   return allFocusable.length ? allFocusable[0] : null;
 }
 
-export function getAllTabbable<T extends HTMLElement>(container: T, fallbackToFocusable?: boolean) {
-  const allFocusable = Array.from(container.querySelectorAll<T>(focusableElSelector));
+export function getAllTabbable<T extends HTMLElement>(
+  container: T,
+  fallbackToFocusable?: boolean
+) {
+  const allFocusable = Array.from(
+    container.querySelectorAll<T>(focusableElSelector)
+  );
   const allTabbable = allFocusable.filter(isTabbable);
 
   if (isTabbable(container)) {
@@ -115,7 +123,8 @@ export function focusPreviousTabbable<T extends HTMLElement>(
 
 function matches(element: Element, selectors: string): boolean {
   if ('matches' in element) return element.matches(selectors);
-  if ('msMatchesSelector' in element) return (element as any).msMatchesSelector(selectors);
+  if ('msMatchesSelector' in element)
+    return (element as any).msMatchesSelector(selectors);
   return (element as any).webkitMatchesSelector(selectors);
 }
 

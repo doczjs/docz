@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { NextConfig } from 'next';
 
+import type { Plugin } from '~/lib/Plugin';
+
 export type Env = 'production' | 'development';
 export type ThemeConfig = Record<string, any>;
 
@@ -48,12 +50,14 @@ export interface Argv {
   src: string;
   files: string | string[];
   ignore: any[];
+  watchIgnore: string;
   public: string;
   dest: string;
   editBranch: string;
   config: string;
   /* bundler args */
   debug: boolean;
+  typescript: boolean;
   propsParser: boolean;
   host: string;
   port: number;
@@ -71,8 +75,7 @@ export interface Config extends Argv {
   rehypePlugins: any[];
   menu: Menu[];
   paths: Paths;
-  // TODO: add Plugin configuration here
-  plugins: any[];
+  plugins: Plugin[];
   themeConfig: ThemeConfig;
   themesDir: string;
   mdxExtensions: string[];

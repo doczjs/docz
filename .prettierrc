@@ -3,7 +3,7 @@
     {
       "files": ["*.js", "*.ts"],
       "options": {
-        "printWidth": 100,
+        "printWidth": 80,
         "semi": true,
         "tabWidth": 2,
         "useTabs": false,

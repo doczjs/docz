@@ -7,7 +7,10 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     tsconfigRootDir: resolveRoot(),
-    project: [resolveRoot('./tsconfig.eslint.json'), resolveRoot('./**/**/tsconfig.json')],
+    project: [
+      resolveRoot('./tsconfig.eslint.json'),
+      resolveRoot('./**/**/tsconfig.json'),
+    ],
     ecmaVersion: 2020,
     sourceType: 'module',
     ecmaFeatures: {
@@ -40,6 +43,7 @@ module.exports = {
     ],
     '@typescript-eslint/no-inferrable-types': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    'no-restricted-syntax': 'off',
     'class-methods-use-this': 'off',
     'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
     'eslint-comments/no-unused-disable': 'error',
@@ -48,7 +52,11 @@ module.exports = {
     'import/order': [
       'error',
       {
-        groups: [['builtin', 'external', 'internal'], ['parent'], ['sibling', 'index']],
+        groups: [
+          ['builtin', 'external', 'internal'],
+          ['parent'],
+          ['sibling', 'index'],
+        ],
         'newlines-between': 'always',
         alphabetize: { order: 'asc' },
       },

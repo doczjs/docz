@@ -65,7 +65,9 @@ function keys(path: string, opts: any = {}) {
 
   if (!opts.caseSensitive) {
     env = env.toUpperCase();
-    return Object.keys(process.env).filter((key) => key.toUpperCase().startsWith(env));
+    return Object.keys(process.env).filter((key) =>
+      key.toUpperCase().startsWith(env)
+    );
   }
 
   return Object.keys(process.env).filter((key) => key.startsWith(env));

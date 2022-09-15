@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as fs from 'fs';
 import * as path from 'path';
-import resolve from 'resolve';
 
 import type { Config } from '~/types';
 
@@ -17,10 +15,9 @@ export const ensureSlash = (filepath: any, needsSlash: boolean) => {
   return filepath;
 };
 
-export const root = fs.realpathSync(process.cwd());
-const IS_DOCZ_PROJECT = path.parse(root).base === '.docz';
+export const root = process.cwd();
 
-export const resolveApp = (to: string) => path.resolve(root, IS_DOCZ_PROJECT ? '../' : './', to);
+export const resolveApp = (to: string) => path.resolve(root, './', to);
 
 export const checkIsDoczProject = (config: Config) => {
   return path.parse(config.root || root).base === '.docz';
@@ -36,7 +33,7 @@ export const getThemesDir = (config: Config) => {
   return path.resolve(path.join(getRootDir(config), config.themesDir));
 };
 
-export const templates = path.join(resolve.sync('docz-core'), '../templates');
+export const templates = path.resolve(__dirname, './templates');
 
 export const servedPath = (base: string) => ensureSlash(base, true);
 

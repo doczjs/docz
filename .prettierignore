@@ -8,3 +8,5 @@ dist
 node_modules
 pnpm-lock.yaml
 storybook-static
+*.tpl.js
+.next

@@ -6,7 +6,8 @@ import { getOwnerDocument, isHTMLElement } from './dom';
 export const hasDisplayNone = (element: HTMLElement) =>
   window.getComputedStyle(element).display === 'none';
 
-export const hasTabIndex = (element: HTMLElement) => element.hasAttribute('tabindex');
+export const hasTabIndex = (element: HTMLElement) =>
+  element.hasAttribute('tabindex');
 
 export const hasNegativeTabIndex = (element: HTMLElement) =>
   hasTabIndex(element) && element.tabIndex === -1;
@@ -22,8 +23,14 @@ export interface FocusableElement {
   focus(options?: FocusOptions): void;
 }
 
-export function isInputElement(element: FocusableElement): element is HTMLInputElement {
-  return isHTMLElement(element) && element.localName === 'input' && 'select' in element;
+export function isInputElement(
+  element: FocusableElement
+): element is HTMLInputElement {
+  return (
+    isHTMLElement(element) &&
+    element.localName === 'input' &&
+    'select' in element
+  );
 }
 
 export function isActiveElement(element: FocusableElement) {
@@ -72,5 +79,9 @@ export function isFocusable(element: HTMLElement) {
 
 export function isTabbable(element?: HTMLElement | null) {
   if (!element) return false;
-  return isHTMLElement(element) && isFocusable(element) && !hasNegativeTabIndex(element);
+  return (
+    isHTMLElement(element) &&
+    isFocusable(element) &&
+    !hasNegativeTabIndex(element)
+  );
 }
