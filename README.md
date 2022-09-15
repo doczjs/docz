@@ -1,3 +1,8 @@
+> **Warning**
+> This is an OUTDATED version of Docz, if you are going to use it, be aware that you may possibly find bugs due to the outdated dependencies.
+
+> We're working in a [new version](https://github.com/doczjs/docz/tree/new) that will include an entire core refactoring by adding NextJS and another cools feature.
+
 <p align="center" style="margin-bottom: -20px">
   <img src="https://cdn-std.dprcdn.net/files/acc_649651/BSPk3z">
 </p>
@@ -15,10 +20,7 @@
 </p>
 
 Docz makes it easy to write and publish beautiful interactive documentation for your code.
-
 Create MDX files showcasing your code and Docz turns them into a live-reloading, production-ready site.
-
-![docz example](https://cdn-std.dprcdn.net/files/acc_649651/S2YCID)
 
 ## Why?
 
