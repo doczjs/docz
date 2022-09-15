@@ -1,9 +1,0 @@
-{
-  "extends": ["docz-js"],
-  "overrides": [
-    {
-      "files": "*.{ts,tsx}",
-      "extends": ["docz-ts"]
-    }
-  ]
-}

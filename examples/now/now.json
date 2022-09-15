@@ -1,4 +1,0 @@
-{
-  "builds": [{ "src": ".docz/public/**", "use": "@now/static" }],
-  "routes": [{ "src": "/(.*)", "dest": ".docz/public/$1" }]
-}

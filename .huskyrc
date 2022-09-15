@@ -1,6 +1,0 @@
-{
-  "hooks": {
-    "pre-commit": "lerna run precommit --parallel",
-    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-  }
-}

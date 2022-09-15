@@ -1,3 +1,0 @@
-{
-  "*.{ts,tsx}": ["yarn fix", "git add"]
-}

@@ -1,4 +1,0 @@
-[ignore]
-<PROJECT_ROOT>/node_modules/**
-[libs]
-./flow-typed

@@ -1,6 +1,0 @@
-{
-  "ignore": ["dist/"],
-  "//verbose": true,
-  "exec": "yarn build && node bin/index.js init",
-  "ext": "js,ts,json"
-}
