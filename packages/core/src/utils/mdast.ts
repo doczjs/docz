@@ -2,7 +2,7 @@
 import flatten from 'lodash/flatten';
 import get from 'lodash/get';
 
-import humanizeString from './string';
+import { humanizeString } from './string';
 
 export const parseMdx = async (file: string, plugins: any[]) => {
   const { default: matter } = await import('remark-frontmatter');

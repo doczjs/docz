@@ -46,7 +46,7 @@ const update = async (params: Params, initial: Payload, { config }: Config) => {
   params.setState('config', next);
 };
 
-export const WATCH_IGNORE = /(((^|[/\\])\.((?!docz)(.+)))|(node_modules))/;
+export const WATCH_IGNORE = /((\.docz)|(node_modules))/;
 
 export const createWatcher = (glob: any, config: Config) => {
   const ignored = config.watchIgnore || WATCH_IGNORE;

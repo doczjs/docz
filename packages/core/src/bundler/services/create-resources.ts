@@ -59,18 +59,17 @@ const copyEslintIgnore = async () => {
   }
 };
 
-export const writeDefaultNotFound = async () => {
-  const outputPath = path.join(paths.app, 'pages/404.js');
-  // If it exists then it would have been created in ensureFiles while copying the theme
-  if (fs.existsSync(outputPath)) return;
-  await outputFileFromTemplate('404.tpl.js', outputPath, {});
-};
-
 export const writeNextFiles = async ({ title }: Config) => {
-  const outputPathApp = path.join(paths.app, 'pages/_app.js');
-  const outputPathDocument = path.join(paths.app, 'pages/_document.js');
-  await outputFileFromTemplate('_app.tpl.js', outputPathApp, { title });
-  await outputFileFromTemplate('_document.tpl.js', outputPathDocument);
+  const outputPath404 = path.join(paths.app, 'pages/404.jsx');
+  if (!fs.existsSync(outputPath404)) {
+    await outputFileFromTemplate('404.tpl.jsx', outputPath404);
+  }
+  const outputPathApp = path.join(paths.app, 'pages/_app.jsx');
+  const outputPathDocument = path.join(paths.app, 'pages/_document.jsx');
+  const outputPathJSConfig = path.join(paths.app, 'jsconfig.json');
+  await outputFileFromTemplate('_app.tpl.jsx', outputPathApp, { title });
+  await outputFileFromTemplate('_document.tpl.jsx', outputPathDocument);
+  await outputFileFromTemplate('jsconfig.tpl.json', outputPathJSConfig);
 };
 
 export const createResources = async (ctx: ServerMachineCtx) => {
@@ -80,7 +79,6 @@ export const createResources = async (ctx: ServerMachineCtx) => {
     await writeEslintRc();
     await writeNextFiles(ctx.args);
     await copyEslintIgnore();
-    await writeDefaultNotFound();
   } catch (err) {
     log.error(err);
   }

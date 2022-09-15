@@ -43,7 +43,7 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.0",
+    "@babel/core": "^7.19.1",
     "@changesets/changelog-github": "^0.4.6",
     "@changesets/cli": "^2.24.4",
     "@changesets/get-github-info": "^0.5.1",
@@ -76,6 +76,8 @@
         "react-dom"
       ],
       "ignoreMissing": [
+        "webpack",
+        "@types/node",
         "react",
         "react-dom"
       ]

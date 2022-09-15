@@ -9,7 +9,7 @@ import * as paths from '../config/paths';
 import type { Config } from '~/types';
 import { getParsedData, headingsFromAst } from '~/utils/mdast';
 import type { ParsedData, Heading } from '~/utils/mdast';
-import humanizeString from '~/utils/string';
+import { humanizeString } from '~/utils/string';
 
 const createId = (file: string) =>
   crypto.createHash('md5').update(file).digest('hex');
@@ -27,9 +27,9 @@ export interface EntryObj {
 }
 
 export class Entry {
-  private ast: any;
-  private file: any;
-  private config: any;
+  #ast: any;
+  #file: any;
+  #config: any;
 
   public link!: string | null;
   public filepath!: string;
@@ -46,19 +46,20 @@ export class Entry {
   };
 
   constructor(ast: any, file: string, config: Config) {
-    this.file = file;
-    this.config = config;
-    this.ast = ast;
+    this.#file = file;
+    this.#config = config;
+    this.#ast = ast;
   }
 
   public async populate() {
-    const { config, file, ast } = this;
+    const config = this.#config;
+    const ast = this.#ast;
+    const file = this.#file;
     const filepath = this.getFilepath(config, file);
     const parsed = await getParsedData(ast);
     const name = this.getName(filepath, parsed);
     const root = paths.getRootDir(config);
 
-    this.ast = ast;
     this.id = createId(file);
     this.filepath = filepath;
     this.fullpath = path.resolve(root, file);

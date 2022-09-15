@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import glob from 'fast-glob';
-import { isRegExp, isString } from 'lodash/fp';
+import fs from 'fs-extra';
+import { isRegExp, isString, omit } from 'lodash/fp';
 import minimatch from 'minimatch';
 import * as path from 'path';
 import logger from 'signale';
@@ -12,10 +13,14 @@ import { Plugin } from '~/lib/Plugin';
 import type { Config } from '~/types';
 import { parseMdx } from '~/utils/mdast';
 import { getRepoEditUrl } from '~/utils/repo-info';
+import { outputFileFromTemplate } from '~/utils/template';
 
 const mapToObj = (map: Map<any, any>) =>
   Array.from(map.entries()).reduce(
-    (obj, [key, value]) => ({ ...obj, [`${key}`]: value }),
+    (obj, [key, value]) => ({
+      ...obj,
+      [`${key}`]: omit(['config', 'ast'], value),
+    }),
     {}
   );
 
@@ -119,5 +124,39 @@ export class Entries {
     }
 
     return mapToObj(this.all);
+  }
+
+  static async cleanGenerated(config: Config) {
+    const generated = path.resolve(config.paths.docz, `pages/generated`);
+    const index = path.resolve(config.paths.docz, `pages/index.jsx`);
+    await fs.remove(generated);
+    await fs.remove(index);
+  }
+
+  static async generatePages(config: Config, entries?: Entries) {
+    await Entries.cleanGenerated(config);
+
+    if (!entries) return;
+    const generatedPath = path.resolve(config.paths.docz, `pages/generated`);
+    await fs.ensureDir(generatedPath);
+
+    for (const entry of entries.all.values()) {
+      const route = entry.route === '/' ? '../index' : entry.route;
+      const filename = `${route}.jsx`;
+      const filepath = path.join(generatedPath, filename);
+      const opts = {
+        importPath: `~/${entry.filepath}`,
+        id: entry.id,
+      };
+
+      await fs.ensureFile(filepath);
+      await outputFileFromTemplate(
+        'generated.tpl.jsx',
+        filepath,
+        opts,
+        {},
+        false
+      );
+    }
   }
 }

@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
-import { kebabCase } from 'lodash/fp';
+import { kebabCase, capitalize } from 'lodash/fp';
 
-export default function humanizeString(str: string) {
+export function humanizeString(str: string) {
   if (typeof str !== 'string') {
     throw new TypeError('Expected a string');
   }
@@ -15,4 +15,8 @@ export default function humanizeString(str: string) {
   str = str.charAt(0).toUpperCase() + str.slice(1);
 
   return str;
+}
+
+export function titleize(str: string) {
+  return str.split(' ').map(capitalize).join(' ');
 }

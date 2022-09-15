@@ -7,14 +7,14 @@ import { doczRcBaseConfig } from './docz';
 import * as paths from './paths';
 
 import * as envDotProp from '~/utils/env';
-import humanizeString from '~/utils/string';
+import { humanizeString, titleize } from '~/utils/string';
 
 const getEnv = (val: string | string[], defaultValue: any = null): any =>
   envDotProp.get(val, defaultValue, { parse: true });
 
 const getInitialTitle = (pkg: any): string => {
   const name = get('name', pkg) || 'MyDoc';
-  return humanizeString(name.replace(/^@.*\//, ''));
+  return titleize(humanizeString(name.replace(/^@.*\//, '')));
 };
 
 const getInitialDescription = (pkg: any): string =>

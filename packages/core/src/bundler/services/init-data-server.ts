@@ -23,7 +23,7 @@ export async function initDataServer({ args: config }: ServerMachineCtx) {
 
   try {
     return {
-      server: dataServer.start(),
+      server: await dataServer.start(),
       entries,
     };
   } catch (err) {

@@ -4,3 +4,4 @@
 .changeset
 dist
 CHANGELOG.md
+*.tpl.jsx

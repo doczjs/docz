@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-throw-literal */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import withMDX from '@next/mdx';
 import { createServer } from 'http';
 import { merge } from 'lodash/fp';
@@ -31,6 +30,8 @@ export const execNext = async ({ args: config }: ServerMachineCtx) => {
   const dev = process.env.NODE_ENV !== 'production';
   const { host: hostname, port } = config;
   const customNextConfig = mdxConfig({
+    distDir: config.public,
+    swcMinify: true,
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
     options: {
       providerImportSource: require.resolve('@mdx-js/react'),
@@ -38,6 +39,9 @@ export const execNext = async ({ args: config }: ServerMachineCtx) => {
     webpack(config) {
       config.resolve.alias['@mdx-js/react'] = require.resolve('@mdx-js/react');
       return config;
+    },
+    experimental: {
+      externalDir: true,
     },
   });
 
@@ -49,14 +53,16 @@ export const execNext = async ({ args: config }: ServerMachineCtx) => {
     conf: merge(config.nextConfig, customNextConfig),
   });
 
-  const handle = app.getRequestHandler();
+  // const handle = app.getRequestHandler();
   await app.prepare();
 
   const server = createServer(async (req, res) => {
     try {
       if (!req.url) throw new Error("req.url don't exist");
       const parsedUrl = parse(req.url, true);
-      await handle(req, res, parsedUrl);
+      const { pathname, query } = parsedUrl;
+      const route = pathname === '/' ? '/' : `/generated${pathname}`;
+      await app.render(req, res, route, query);
     } catch (err) {
       log.error('Error occurred handling', req.url, err);
       res.statusCode = 500;

@@ -1,12 +1,9 @@
-import Head from 'next/head'
+import { MDXProvider } from "@mdx-js/react";
 
 export default function MyApp({ Component, pageProps }) {
   return (
-    <>
-      <Head>
-        <title><%- title %></title>
-      </Head>
+    <MDXProvider>
       <Component {...pageProps} />
-    </>
+    </MDXProvider>
   );
 }

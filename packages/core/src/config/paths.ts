@@ -39,7 +39,7 @@ export const servedPath = (base: string) => ensureSlash(base, true);
 
 export const docz = resolveApp('.docz');
 export const cache = path.resolve(docz, '.cache/');
-export const app = path.resolve(docz, 'app/');
+export const app = path.resolve(docz);
 export const appPackageJson = resolveApp('package.json');
 export const appTsConfig = resolveApp('tsconfig.json');
 

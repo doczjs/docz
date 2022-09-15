@@ -55,14 +55,12 @@ const machine = createMachine<ServerMachineCtx>({
             src: 'initDataServer',
             onDone: {
               actions: 'assignDataServer',
-              target: 'watching',
+              target: 'idle',
             },
           },
         },
-        watching: {
-          invoke: {
-            src: 'watchDataServer',
-          },
+        idle: {
+          type: 'final',
         },
       },
     },

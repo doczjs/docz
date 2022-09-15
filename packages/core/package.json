@@ -81,7 +81,6 @@
     "@types/fs-extra": "^9.0.13",
     "@types/lodash": "^4.14.185",
     "@types/minimatch": "^5.1.2",
-    "@types/node": "^18.7.18",
     "@types/shelljs": "^0.8.11",
     "@types/signale": "^1.4.4",
     "@types/wait-on": "^5.3.1",
