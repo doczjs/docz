@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as fs from 'fs-extra';
+import { findUp } from 'find-up';
+import fs from 'fs-extra';
 import getPkgRepo from 'get-pkg-repo';
-import * as path from 'path';
+import path from 'path';
 import log from 'signale';
 
 import * as paths from '../config/paths';
@@ -48,14 +49,13 @@ const getTree = (repo: any, branch: string, relative: string) => {
 };
 
 export const getRepoEditUrl = async (config: Config) => {
-  const { findUp } = await import('find-up');
   try {
     const repo = parseRepo();
     const gitDir = await findUp('.git', { type: 'directory' });
     if (!gitDir) return null;
 
     const project = path.parse(gitDir).dir;
-    const root = path.join(paths.getRootDir(config), config.src);
+    const root = path.join(config.paths.root, config.src);
     const relative = path.relative(project, root);
     const tree = getTree(repo, config.editBranch, relative);
 

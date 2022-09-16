@@ -1,47 +1,32 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import slugify from '@sindresorhus/slugify';
 import * as crypto from 'crypto';
-import { get } from 'lodash/fp';
-import * as path from 'path';
-import slugify from 'slugify';
-
-import * as paths from '../config/paths';
+import _ from 'lodash';
+import path from 'path';
 
 import type { Config } from '~/types';
-import { getParsedData, headingsFromAst } from '~/utils/mdast';
-import type { ParsedData, Heading } from '~/utils/mdast';
+import { getParsedData } from '~/utils/mdast';
+import type { ParsedData } from '~/utils/mdast';
 import { humanizeString } from '~/utils/string';
 
 const createId = (file: string) =>
   crypto.createHash('md5').update(file).digest('hex');
 
-export interface EntryObj {
-  id: string;
-  filepath: string;
-  fullpath: string;
-  link: string | null;
-  slug: string;
-  name: string;
-  route: string;
-  menu: string | null;
-  [key: string]: any;
-}
-
 export class Entry {
   #ast: any;
   #file: any;
-  #config: any;
+  #config: Config;
 
   public link!: string | null;
   public filepath!: string;
   public fullpath!: string;
-  public headings!: Heading[];
   public id!: string;
   public hidden!: boolean;
   public menu!: string | null;
   public name!: string;
   public route!: string;
   public slug!: string;
-  public settings!: {
+  public frontmatter!: {
     [key: string]: any;
   };
 
@@ -58,19 +43,18 @@ export class Entry {
     const filepath = this.getFilepath(config, file);
     const parsed = await getParsedData(ast);
     const name = this.getName(filepath, parsed);
-    const root = paths.getRootDir(config);
 
     this.id = createId(file);
     this.filepath = filepath;
-    this.fullpath = path.resolve(root, file);
+    this.fullpath = path.resolve(config.paths.root, file);
     this.link = '';
     this.hidden = parsed.hidden || false;
     this.slug = this.slugify(filepath);
     this.route = this.getRoute(parsed);
     this.name = name;
     this.menu = parsed.menu || '';
-    this.headings = (await headingsFromAst())(ast);
-    this.settings = parsed;
+    this.frontmatter = parsed;
+    return this;
   }
 
   public setLink(url: string): void {
@@ -78,8 +62,8 @@ export class Entry {
   }
 
   private getFilepath(config: Config, file: string): string {
-    const root = paths.getRootDir(config);
-    const fullpath = path.resolve(root, config.src, file);
+    const root = config.paths.root;
+    const fullpath = path.resolve(root, file);
     const filepath = path.relative(root, fullpath);
 
     if (process.platform === 'win32') {
@@ -102,7 +86,7 @@ export class Entry {
   }
 
   private getRoute(parsed: any): string {
-    const parsedRoute = get('route', parsed);
+    const parsedRoute = _.get(parsed, 'route');
     return parsedRoute || `/${this.slug}`;
   }
 }

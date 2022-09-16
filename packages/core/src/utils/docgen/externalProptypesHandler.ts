@@ -2,35 +2,22 @@
 /* eslint-disable consistent-return */
 /* eslint-disable import/order */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable global-require */
+
 // vendored from react-docgen-external-proptypes-handler
 // which is not well maintained
 // https://github.com/doczjs/docz/issues/727
 
 import fs from 'fs-extra';
 import path from 'path';
-import log from 'signale';
 
 /**
  * Re-using few private methods of react-docgen to avoid code duplication
  */
-import isRequiredPropType from 'react-docgen/dist/utils/isRequiredPropType';
-import setPropDescription from 'react-docgen/dist/utils/setPropDescription';
+import isRequiredPropType from 'react-docgen/dist/utils/isRequiredPropType.js';
+import setPropDescription from 'react-docgen/dist/utils/setPropDescription.js';
 import * as recast from 'recast';
-
-let babylon: any;
-try {
-  const buildParser = require('react-docgen/dist/babelParser').default;
-  babylon = buildParser();
-} catch (e: any) {
-  /** DOCZ: special error message as people often encounter errors here because they misconfigure or lack a babel plugin */
-  log.error('Error while initializing babel in docz: ', e);
-  /** DOCZ: disabling this require because it no longer exists */
-  throw new Error(e);
-  // babylon = require('react-docgen/dist/babylon').default
-}
-
-const utils = require('react-docgen').utils;
+import babylon from 'react-docgen/dist/babelParser.js';
+import { utils } from 'react-docgen';
 
 const types = recast.types.namedTypes as any;
 const HOP = Object.prototype.hasOwnProperty;

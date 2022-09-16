@@ -1,32 +1,20 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import glob from 'fast-glob';
-import fs from 'fs-extra';
-import { isRegExp, isString, omit } from 'lodash/fp';
+// import fs from 'fs-extra';
+import _ from 'lodash';
 import minimatch from 'minimatch';
-import * as path from 'path';
+import path from 'path';
 import logger from 'signale';
 
-import type { EntryObj } from './Entry';
 import { Entry } from './Entry';
 
 import { Plugin } from '~/lib/Plugin';
 import type { Config } from '~/types';
 import { parseMdx } from '~/utils/mdast';
 import { getRepoEditUrl } from '~/utils/repo-info';
-import { outputFileFromTemplate } from '~/utils/template';
-
-const mapToObj = (map: Map<any, any>) =>
-  Array.from(map.entries()).reduce(
-    (obj, [key, value]) => ({
-      ...obj,
-      [`${key}`]: omit(['config', 'ast'], value),
-    }),
-    {}
-  );
 
 export const matchFilesWithSrc = (config: Config) => (files: string[]) => {
   const { paths, src } = config;
-  const rootDir = paths.getRootDir(config);
+  const rootDir = paths.root;
   const srcDir = path.resolve(rootDir, src);
   const prefix = path.relative(rootDir, srcDir);
   return files.map((file) =>
@@ -41,18 +29,16 @@ export const getFilesToMatch = (config: Config) => {
   return toMatch(arr);
 };
 
-export type EntryMap = Record<string, EntryObj>;
+export type EntryMap = Record<string, Entry>;
 
 export class Entries {
-  public all: Map<string, EntryObj>;
-  public get: () => Promise<EntryMap>;
+  public _all: Map<string, Entry>;
 
-  constructor(config: Config) {
-    this.all = new Map();
-    this.get = async () => this.getMap(config);
+  constructor() {
+    this._all = new Map();
   }
 
-  private async getMap(config: Config): Promise<EntryMap> {
+  public async populate(config: Config) {
     const repoEditUrl = await getRepoEditUrl(config);
     const { paths, ignore, plugins, rehypePlugins, src } = config;
     const fileMatchingPatterns = getFilesToMatch(config);
@@ -67,7 +53,7 @@ export class Entries {
       const globIgnore = shouldIncludeNodeModules ? [] : ['**/node_modules/**'];
 
       const filesFromPattern = await glob([filePattern], {
-        cwd: paths.getRootDir(config),
+        cwd: paths.root,
         ignore: globIgnore,
         onlyFiles: true,
         unique: true,
@@ -76,15 +62,16 @@ export class Entries {
       });
       initialFiles = [...initialFiles, ...filesFromPattern];
     }
+
     const files = initialFiles.filter((value: string) => {
       return !ignore.some((pattern) => {
-        if (isString(pattern)) return minimatch(value, pattern);
-        if (isRegExp(pattern)) return pattern.test(value);
+        if (_.isString(pattern)) return minimatch(value, pattern);
+        if (_.isRegExp(pattern)) return pattern.test(value);
         return false;
       });
     });
 
-    const rootDir = paths.getRootDir(config);
+    const rootDir = paths.root;
     const createEntry = async (file: string) => {
       try {
         const fullpath = path.resolve(rootDir, file);
@@ -96,14 +83,7 @@ export class Entries {
 
         // reduce modify entry plugin
         const reduce = Plugin.reduceFromPlugins<Entry>(plugins);
-        const modifiedEntry = reduce('modifyEntry', entry, config);
-
-        const { settings, ...rest } = modifiedEntry;
-
-        return {
-          ...settings,
-          ...rest,
-        };
+        return reduce('modifyEntry', entry, config);
       } catch (err) {
         logger.error(err);
         return null;
@@ -112,51 +92,25 @@ export class Entries {
 
     const reduce = Plugin.reduceFromPlugins<string[]>(plugins);
     const modifiedFiles = reduce('modifyFiles', files, config);
-    this.all = new Map();
     const entries = await Promise.all(
       modifiedFiles.map(createEntry).filter(Boolean)
     );
 
-    for (const entry of entries) {
-      if (entry) {
-        this.all.set(entry?.filepath, entry);
-      }
-    }
+    await Promise.all(
+      entries.map(async (entry) => {
+        if (!entry) return;
+        this._all.set(entry.filepath, entry);
+      })
+    );
 
-    return mapToObj(this.all);
+    return this._all;
   }
 
-  static async cleanGenerated(config: Config) {
-    const generated = path.resolve(config.paths.docz, `pages/generated`);
-    const index = path.resolve(config.paths.docz, `pages/index.jsx`);
-    await fs.remove(generated);
-    await fs.remove(index);
+  public async getAll() {
+    return this._all;
   }
 
-  static async generatePages(config: Config, entries?: Entries) {
-    await Entries.cleanGenerated(config);
-
-    if (!entries) return;
-    const generatedPath = path.resolve(config.paths.docz, `pages/generated`);
-    await fs.ensureDir(generatedPath);
-
-    for (const entry of entries.all.values()) {
-      const route = entry.route === '/' ? '../index' : entry.route;
-      const filename = `${route}.jsx`;
-      const filepath = path.join(generatedPath, filename);
-      const opts = {
-        importPath: `~/${entry.filepath}`,
-        id: entry.id,
-      };
-
-      await fs.ensureFile(filepath);
-      await outputFileFromTemplate(
-        'generated.tpl.jsx',
-        filepath,
-        opts,
-        {},
-        false
-      );
-    }
+  public remove(filepath: string) {
+    this._all.delete(filepath);
   }
 }

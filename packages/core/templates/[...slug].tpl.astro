@@ -1,0 +1,26 @@
+---
+import db from "../../db.json";
+import Layout from "../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  return db.entries.map((entry) => ({
+    params: { slug: entry.route === "/" ? undefined : getRoute(entry) },
+    props: { entry, config: db.config },
+  }));
+}
+
+export function getRoute(entry) {
+  if (entry.route === "/") return "/";
+  return entry.route?.match(/(\/?)(.+)/)?.[2] || entry.slug;
+}
+
+const { id } = Astro.props.entry;
+const entry = db.entries.find((entry) => entry.id === id);
+const posts = await Astro.glob("../../../**/*.{md,mdx}");
+const post = posts.find((post) => post.url === entry.fullpath);
+const Content = post?.Content;
+---
+
+<Layout entry={entry}>
+  {Content && <Content />}
+</Layout>

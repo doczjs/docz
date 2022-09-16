@@ -1,27 +1,22 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import chokidar from 'chokidar';
 import equal from 'fast-deep-equal';
-import { get } from 'lodash/fp';
+import _ from 'lodash';
 
 import { WATCH_IGNORE } from './config';
 
-import * as paths from '~/config/paths';
-import type { Params, State } from '~/lib/DataServer';
 import type { Entries } from '~/lib/Entries';
 import { getFilesToMatch } from '~/lib/Entries';
+import type { Params } from '~/lib/State';
+import { State } from '~/lib/State';
 import type { Config } from '~/types';
 
-const mapToArray = (map: any = []) =>
-  Object.entries(map)
-    .map((entry) => entry && { key: entry[0], value: entry[1] })
-    .filter(Boolean);
-
 const updateEntries = (entries: Entries) => async (p: Params) => {
-  const prev = get('entries', p.getState());
-  const map = await entries.get();
+  const prev = _.get(p.getState(), 'entries', []);
+  const map = await entries.getAll();
+  const curr = Array.from(map.values());
 
-  if (map && !equal(prev, map)) {
-    p.setState('entries', mapToArray(map));
+  if (curr && !equal(prev, curr)) {
+    p.setState('entries', curr);
   }
 };
 
@@ -34,39 +29,29 @@ export const state = (
   const watcher = chokidar.watch(getFilesToMatch(config), {
     ignored,
     persistent: true,
-    cwd: paths.root,
+    cwd: config.paths.root,
   });
 
   watcher.setMaxListeners(Infinity);
 
-  return {
-    id: 'entries',
+  return new State('entries', {
     start: async (params) => {
       const update = updateEntries(entries);
       await update(params);
 
       if (dev) {
-        watcher.on('add', async () => {
+        watcher.on('all', async () => {
+          await entries.populate(config);
           await update(params);
         });
-        watcher.on('change', async () => {
+        watcher.on('unlink', async (file) => {
+          entries.remove(file);
           await update(params);
         });
-        watcher.on('unlink', async () => {
-          await update(params);
-        });
-        watcher.on(
-          'raw',
-          async (_event: string, _path: string, details: any) => {
-            if (details.event === 'moved' && details.type === 'directory') {
-              await update(params);
-            }
-          }
-        );
       }
     },
     close: () => {
       watcher.close();
     },
-  };
+  });
 };

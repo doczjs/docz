@@ -2,8 +2,10 @@
 // Based on https://github.com/reactjs/react-docgen/issues/256#issuecomment-417352843
 
 import { utils, resolver as reactDocgenResolver } from 'react-docgen';
-import { resolveHOC } from 'react-docgen/dist/utils/resolveHOC';
-import resolveToModule from 'react-docgen/dist/utils/resolveToModule';
+import pkg from 'react-docgen/dist/utils/resolveHOC.js';
+import resolveToModule from 'react-docgen/dist/utils/resolveToModule.js';
+
+const { resolveHOC } = pkg;
 
 type Todo = any;
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import JoyCon from 'joycon';
-import { merge } from 'lodash/fp';
+import _ from 'lodash';
 import path from 'path';
 
 export const finds = (name: string): string[] => [
@@ -28,7 +28,7 @@ export async function load<C = any>(
   cwd: string
 ) {
   const config = await loadConfigFilePath(finds(name), name, cwd);
-  return merge(config?.data ?? {}, defaultConfig);
+  return _.merge(config?.data ?? {}, defaultConfig);
 }
 
 export async function loadFrom<C = any>(
@@ -38,5 +38,5 @@ export async function loadFrom<C = any>(
   cwd: string
 ) {
   const config = await loadConfigFilePath([filepath], name, cwd);
-  return merge(config?.data ?? {}, defaultConfig);
+  return _.merge(config?.data ?? {}, defaultConfig);
 }

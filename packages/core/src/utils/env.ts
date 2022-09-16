@@ -1,9 +1,12 @@
+/* eslint-disable prefer-const */
 /* eslint-disable no-param-reassign */
 /* eslint-disable prefer-rest-params */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-plusplus */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import _ from 'lodash';
+
+let meta = { env: {} };
 
 /**
  * Replace a character in the string provided taking care of the escaped chars.
@@ -65,12 +68,12 @@ function keys(path: string, opts: any = {}) {
 
   if (!opts.caseSensitive) {
     env = env.toUpperCase();
-    return Object.keys(process.env).filter((key) =>
+    return Object.keys(meta.env).filter((key) =>
       key.toUpperCase().startsWith(env)
     );
   }
 
-  return Object.keys(process.env).filter((key) => key.startsWith(env));
+  return Object.keys(meta.env).filter((key) => key.startsWith(env));
 }
 
 function parse(str: string, opts: any = {}) {
@@ -140,7 +143,7 @@ export function get(path: any, defaultValue?: any, opts: any = {}) {
         dotp = dotp.toLowerCase();
       }
 
-      const val = parse(process.env[key] as any, opts);
+      const val = parse(meta.env[key] as any, opts);
       if (dotp === '') {
         obj = val;
       } else {
@@ -188,7 +191,7 @@ export function set(path: string, value: string, opts: any = {}) {
   }
 
   del(path, opts);
-  process.env[env] = stringify(value, opts);
+  meta.env[env] = stringify(value, opts);
 }
 
 /**
@@ -206,7 +209,7 @@ export function del(path: string, opts: any = {}) {
     opts = {};
   }
 
-  keys(path, opts).forEach((key) => delete process.env[key]);
+  keys(path, opts).forEach((key) => delete meta.env[key]);
 }
 
 /**

@@ -1,1 +1,1 @@
-export const helo = {};
+export default {};

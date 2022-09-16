@@ -1,0 +1,22 @@
+---
+import db from "../../db.json";
+const { entry } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{entry.name} | {db.config.title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Posts</a>
+      <a href="#">Contact</a>
+    </nav>
+    <article>
+      {entry ? <slot /> : <div>Not Found</div>}
+    </article>
+  </body>
+</html>

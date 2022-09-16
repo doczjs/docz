@@ -9,6 +9,6 @@
       "~/*": ["./src/*"]
     }
   },
-  "include": ["src", "bin"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

@@ -1,32 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { NextConfig } from 'next';
+import type { AstroUserConfig } from 'astro/config';
 
+import type { paths } from '~/config';
 import type { Plugin } from '~/lib/Plugin';
 
 export type Env = 'production' | 'development';
 export type ThemeConfig = Record<string, any>;
-
-export interface Paths {
-  root: string;
-  templates: string;
-  servedPath: (base: string) => string;
-
-  docz: string;
-  app: string;
-  cache: string;
-
-  checkIsDoczProject: (config: any) => boolean;
-  getRootDir: (config: any) => string;
-  getThemesDir: (config: any) => string;
-  getDist: (dest: string) => string;
-  distPublic: (dest: string) => string;
-
-  importsJs: string;
-  rootJs: string;
-  indexJs: string;
-  indexHtml: string;
-  db: string;
-}
 
 export interface DocgenConfig {
   handlers?: any[];
@@ -43,42 +22,35 @@ export interface Menu {
   menu?: Menu[];
 }
 
-export interface Argv {
+export interface DoczArgs {
   /* io args */
   root: string;
-  base: string;
   src: string;
   files: string | string[];
   ignore: any[];
   watchIgnore: string;
-  public: string;
-  dest: string;
+  distDir: string;
+  publicDir: string;
   editBranch: string;
-  config: string;
+  configFile: string;
   /* bundler args */
   debug: boolean;
-  typescript: boolean;
   propsParser: boolean;
   host: string;
   port: number;
-  native: boolean;
   /* template args */
   title: string;
   description: string;
-  /** slugify separator */
-  separator: string;
 }
 
-export interface Config extends Argv {
+export interface Config extends DoczArgs {
   docgenConfig: DocgenConfig;
   remarkPlugins: any[];
   rehypePlugins: any[];
   menu: Menu[];
-  paths: Paths;
+  paths: typeof paths;
   plugins: Plugin[];
   themeConfig: ThemeConfig;
-  themesDir: string;
-  mdxExtensions: string[];
+  astro?: AstroUserConfig;
   filterComponents: (files: string[]) => string[];
-  nextConfig?: NextConfig;
 }

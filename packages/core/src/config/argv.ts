@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as fs from 'fs-extra';
-import { get } from 'lodash/fp';
+import fs from 'fs-extra';
+import _ from 'lodash';
 import type { Argv as Yargs } from 'yargs';
 
 import { doczRcBaseConfig } from './docz';
-import * as paths from './paths';
 
+import { paths } from '~/config';
+import type { DoczArgs } from '~/types';
 import * as envDotProp from '~/utils/env';
 import { humanizeString, titleize } from '~/utils/string';
 
@@ -13,70 +14,58 @@ const getEnv = (val: string | string[], defaultValue: any = null): any =>
   envDotProp.get(val, defaultValue, { parse: true });
 
 const getInitialTitle = (pkg: any): string => {
-  const name = get('name', pkg) || 'MyDoc';
+  const name = _.get(pkg, 'name') || 'MyDoc';
   return titleize(humanizeString(name.replace(/^@.*\//, '')));
 };
 
 const getInitialDescription = (pkg: any): string =>
-  get('description', pkg) || 'My awesome app using docz';
+  _.get(pkg, 'description') || 'My awesome app using docz';
 
-export const setArgs = (yargs: Yargs) => {
+export const setArgs = (yargs: Yargs<DoczArgs>) => {
   const pkg = fs.readJsonSync(paths.appPackageJson, { throws: false });
   return yargs
     .option('root', {
       type: 'string',
       default: getEnv('docz.root', paths.root),
     })
-    .option('base', {
+    .option('files', {
       type: 'string',
-      default: getEnv('docz.base', '/'),
+      default: getEnv('docz.files', '**/*.{md,markdown,mdx}'),
     })
     .option('source', {
       alias: 'src',
       type: 'string',
       default: getEnv('docz.source', doczRcBaseConfig.src),
     })
-    .option('files', {
-      type: 'string',
-      default: getEnv('docz.files', '**/*.{md,markdown,mdx}'),
-    })
     .option('ignore', {
       type: 'array',
       default: getEnv('docz.ignore', []),
     })
-    .option('public', {
-      type: 'string',
-      default: getEnv('docz.public', '/public'),
-    })
-    .option('dest', {
+    .option('distDir', {
       alias: 'd',
       type: 'string',
-      default: getEnv('docz.dest', '.docz/dist'),
+      default: getEnv('docz.distDir', '.docz/dist'),
+    })
+    .option('publicDir', {
+      type: 'string',
+      default: getEnv('docz.publicDir', '/public'),
     })
     .option('editBranch', {
       alias: 'eb',
       type: 'string',
-      default: getEnv('docz.edit.branch', 'master'),
+      default: getEnv('docz.editBranch', 'master'),
     })
-    .option('config', {
+    .option('configFile', {
       type: 'string',
-      default: getEnv('docz.config', ''),
-    })
-    .option('title', {
-      type: 'string',
-      default: getEnv('docz.title', getInitialTitle(pkg)),
-    })
-    .option('description', {
-      type: 'string',
-      default: getEnv('docz.description', getInitialDescription(pkg)),
-    })
-    .option('propsParser', {
-      type: 'boolean',
-      default: getEnv('docz.props.parser', true),
+      default: getEnv('docz.configFile', ''),
     })
     .option('debug', {
       type: 'boolean',
       default: getEnv('docz.debug', false),
+    })
+    .option('propsParser', {
+      type: 'boolean',
+      default: getEnv('docz.propsParser', false),
     })
     .option('host', {
       type: 'string',
@@ -87,8 +76,12 @@ export const setArgs = (yargs: Yargs) => {
       type: 'number',
       default: getEnv('docz.port', 3000),
     })
-    .option('separator', {
+    .option('title', {
       type: 'string',
-      default: getEnv('docz.separator', '-'),
+      default: getEnv('docz.title', getInitialTitle(pkg)),
+    })
+    .option('description', {
+      type: 'string',
+      default: getEnv('docz.description', getInitialDescription(pkg)),
     });
 };

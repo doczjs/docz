@@ -1,26 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { load, loadFrom } from '@docz/load-config';
-import detectPort from 'detect-port';
-import { omit, merge } from 'lodash/fp';
-import * as path from 'path';
+import _ from 'lodash';
+import path from 'path';
 import type { Arguments } from 'yargs';
 
-import * as paths from './paths';
-
+import { paths } from '~/config';
 import { Plugin } from '~/lib/Plugin';
-import type { Config, Argv } from '~/types';
+import type { Config, DoczArgs } from '~/types';
+import { load, loadFrom } from '~/utils/load-config';
 
 const toOmit = ['_', '$0', 'version', 'help'];
-export const doczRcBaseConfig: Partial<Config> = {
+export const doczRcBaseConfig = {
   themeConfig: {},
-  src: './',
-  themesDir: 'src',
-  mdxExtensions: ['.md', '.mdx'],
   docgenConfig: {},
   menu: [],
   plugins: [],
   rehypePlugins: [],
   remarkPlugins: [],
+  src: './',
   ignore: [
     /readme.md/i,
     /changelog.md/i,
@@ -44,21 +40,19 @@ export const doczRcBaseConfig: Partial<Config> = {
 };
 
 export const getBaseConfig = (
-  argv: Arguments<Argv>,
+  argv: Arguments<DoczArgs>,
   custom?: Partial<Config>
-): Config => {
-  const initial = omit<Arguments<Argv>, any>(toOmit, argv);
+) => {
+  const initial = _.omit<Arguments<DoczArgs>, any>(argv, toOmit);
   const base = { ...doczRcBaseConfig, ...initial, paths };
-  return merge(base, custom) as Config;
+  return _.merge(base, custom) as Config;
 };
 
-export const parseConfig = async (
-  argv: Arguments<Argv>,
+export async function parseConfig(
+  argv: Arguments<DoczArgs>,
   custom?: Partial<Config>
-): Promise<Config> => {
-  const port = await detectPort(argv.port);
-  const defaultConfig = getBaseConfig(argv, { port, ...custom });
-
+) {
+  const defaultConfig = getBaseConfig(argv, { port: argv.port, ...custom });
   const config = argv.config
     ? await loadFrom<Config>(
         'docz',
@@ -70,4 +64,4 @@ export const parseConfig = async (
 
   const reduceAsync = Plugin.reduceFromPluginsAsync<Config>(config.plugins);
   return reduceAsync('setConfig', config);
-};
+}

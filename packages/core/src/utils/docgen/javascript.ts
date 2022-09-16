@@ -1,19 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as fs from 'fs-extra';
-import { normalize } from 'path';
-import * as path from 'path';
-import * as reactDocgen from 'react-docgen';
+import fs from 'fs-extra';
+import path from 'path';
+import reactDocgen from 'react-docgen';
 import logger from 'signale';
 
 import { actualNameHandler } from './actual-name-handler';
 import { resolver as doczResolver } from './docz-docgen-resolver';
 import externalProptypesHandler from './externalProptypesHandler';
 
-import { getRootDir } from '~/config/paths';
 import type { Config } from '~/types';
 
 export const unixPath = (src: string): string => {
-  return normalize(src).replace(/\\/g, '/');
+  return path.normalize(src).replace(/\\/g, '/');
 };
 
 const throwError = (err: any) => {
@@ -23,8 +21,8 @@ const throwError = (err: any) => {
 
 export const jsParser = (files: string[], config: Config) => {
   const resolver = config.docgenConfig.resolver || doczResolver;
+  const root = config.paths.root;
 
-  const root = getRootDir(config);
   const parseFilepathProps = (filepath: string) => {
     const fullpath = path.resolve(root, filepath);
     const handlers = reactDocgen.defaultHandlers.concat([

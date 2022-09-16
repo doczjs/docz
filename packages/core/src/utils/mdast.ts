@@ -1,21 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import flatten from 'lodash/flatten';
-import get from 'lodash/get';
+import _ from 'lodash';
+import meta from 'rehype-meta';
+import stringify from 'rehype-stringify';
+import matter from 'remark-frontmatter';
+import gfm from 'remark-gfm';
+import remarkParse from 'remark-parse';
+import parseFrontmatter from 'remark-parse-yaml';
+import slug from 'remark-slug';
+import { toVFile } from 'to-vfile';
+import { unified } from 'unified';
+import find from 'unist-util-find';
+import { visit } from 'unist-util-visit';
 
 import { humanizeString } from './string';
 
 export const parseMdx = async (file: string, plugins: any[]) => {
-  const { default: matter } = await import('remark-frontmatter');
-  const { default: remarkParse } = await import('remark-parse');
-  const { default: parseFrontmatter } = await import('remark-parse-yaml');
-  const { default: slug } = await import('remark-slug');
-  const { default: stringify } = await import('rehype-stringify');
-  const { default: gfm } = await import('remark-gfm');
-  const { default: meta } = await import('rehype-meta');
-
-  const { toVFile } = await import('to-vfile');
-  const { unified } = await import('unified');
-
   const raw = toVFile.readSync(file, 'utf-8');
   const parser = unified()
     .use(remarkParse)
@@ -40,18 +39,17 @@ const getChildValue = (children: any) =>
   );
 
 const valueFromHeading = (node: any) => {
-  const children = get(node, 'children');
-  const slug = get(node, 'data.id');
+  const children = _.get(node, 'children');
+  const slug = _.get(node, 'data.id');
 
   if (Array.isArray(children)) {
-    return flatten(getChildValue(children)).filter(Boolean).join(' ');
+    return _.flatten(getChildValue(children)).filter(Boolean).join(' ');
   }
 
   return humanizeString(slug);
 };
 
 async function extractAst<T>(callback: (node: any) => T, type: string) {
-  const { visit } = await import('unist-util-visit');
   return (ast: any) => {
     const results: T[] = [];
 
@@ -72,8 +70,8 @@ export interface Heading {
 export const headingsFromAst = async () => {
   return extractAst<Heading>(
     (node: any) => ({
-      slug: get(node, 'data.id'),
-      depth: get(node, 'depth'),
+      slug: _.get(node, 'data.id'),
+      depth: _.get(node, 'depth'),
       value: valueFromHeading(node),
     }),
     'heading'
@@ -85,7 +83,6 @@ export interface ParsedData {
 }
 
 export const getParsedData = async (ast: any): Promise<ParsedData> => {
-  const { default: find } = await import('unist-util-find');
   const node = find(ast, { type: 'yaml' });
-  return get(node, `data.parsedValue`) || {};
+  return _.get(node, `data.parsedValue`) || {};
 };

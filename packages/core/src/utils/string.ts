@@ -1,12 +1,12 @@
 /* eslint-disable no-param-reassign */
-import { kebabCase, capitalize } from 'lodash/fp';
+import _ from 'lodash';
 
 export function humanizeString(str: string) {
   if (typeof str !== 'string') {
     throw new TypeError('Expected a string');
   }
 
-  str = kebabCase(str);
+  str = _.kebabCase(str);
   str = str
     .toLowerCase()
     .replace(/[_-]+/g, ' ')
@@ -18,5 +18,5 @@ export function humanizeString(str: string) {
 }
 
 export function titleize(str: string) {
-  return str.split(' ').map(capitalize).join(' ');
+  return str.split(' ').map(_.capitalize).join(' ');
 }

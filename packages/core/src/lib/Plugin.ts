@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { get, isFunction } from 'lodash/fp';
-
-import type { Entry } from './Entry';
+import _ from 'lodash';
 
 import type { Config } from '~/types';
 import { pReduce } from '~/utils/p-reduce';
+
+type Entry = {
+  id: string;
+};
 
 export type SetConfig = (config: Config) => Config | Promise<Config>;
 export type OnCreateBabelConfig = (params: any, dev: boolean) => void;
@@ -39,8 +41,8 @@ export class Plugin<C = any> implements PluginFactory {
     return (method, ...args) => {
       if (plugins && plugins.length > 0) {
         for (const plugin of plugins) {
-          const fn = get<Plugin, any>(method, plugin);
-          if (isFunction(fn)) {
+          const fn = _.get<Plugin, any>(plugin, method);
+          if (_.isFunction(fn)) {
             fn(...args);
           }
         }
@@ -53,7 +55,7 @@ export class Plugin<C = any> implements PluginFactory {
   ): (prop: keyof Plugin) => any[] {
     return (prop) =>
       plugins && plugins.length > 0
-        ? plugins.map((p) => get(prop, p)).filter(Boolean)
+        ? plugins.map((p) => _.get(p, prop)).filter(Boolean)
         : [];
   }
 
@@ -62,8 +64,8 @@ export class Plugin<C = any> implements PluginFactory {
   ): (method: keyof Plugin, initial: C, ...args: any[]) => C {
     return (method, initial, ...args) => {
       return [...(plugins || [])].reduce((obj: any, plugin) => {
-        const fn = get<Plugin, any>(method, plugin);
-        return fn && isFunction(fn) ? fn(obj, ...args) : obj;
+        const fn: any = _.get<Plugin, any>(plugin, method);
+        return fn && _.isFunction(fn) ? fn(obj, ...args) : obj;
       }, initial);
     };
   }
@@ -75,8 +77,10 @@ export class Plugin<C = any> implements PluginFactory {
       return pReduce(
         [...(plugins || [])],
         (obj: any, plugin: any) => {
-          const fn = get(method, plugin);
-          return Promise.resolve(fn && isFunction(fn) ? fn(obj, ...args) : obj);
+          const fn: any = _.get(method, plugin);
+          return Promise.resolve(
+            fn && _.isFunction(fn) ? fn(obj, ...args) : obj
+          );
         },
         initial
       );

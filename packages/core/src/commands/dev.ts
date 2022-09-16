@@ -1,24 +1,35 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import logger from 'signale';
-import type { Arguments } from 'yargs';
+import { spawn } from 'child_process';
+import { createRequire } from 'module';
+import type { ArgumentsCamelCase } from 'yargs';
 
-import { bundler as next } from '~/bundler';
-import { copyDoczRc } from '~/bundler/services';
 import { parseConfig } from '~/config/docz';
+import { AstroFiles } from '~/lib/AstroFiles';
+import { DataServer } from '~/lib/DataServer';
+import { Entries } from '~/lib/Entries';
+import type { DoczArgs } from '~/types';
 
-process.setMaxListeners(Infinity);
-
-export const dev = async (args: Arguments<any>) => {
-  copyDoczRc(args.config);
+export async function dev(args: ArgumentsCamelCase<DoczArgs>) {
   const config = await parseConfig(args);
-  const bundler = next(config);
-  const app = await bundler.createApp();
+  const require = createRequire(import.meta.url);
+  const bin = require.resolve('astro');
 
-  try {
-    app.start();
-  } catch (err) {
-    logger.fatal('Failed to process data server');
-    logger.error(err);
-    process.exit(1);
-  }
-};
+  /** create entries */
+  const entries = new Entries();
+  await entries.populate(config);
+
+  /** generate base files */
+  await AstroFiles.baseFiles(config);
+  // await AstroFiles.entryFiles(config, entries);
+
+  /** init data server */
+  const dataServer = new DataServer(entries, config);
+  await dataServer.start();
+
+  /** spawn astro */
+  const binArgs = [
+    'dev',
+    `--config=${config.paths.astroConfig}`,
+    `--root=${config.paths.docz}`,
+  ];
+  spawn(`${bin}`, binArgs, { stdio: 'inherit' });
+}

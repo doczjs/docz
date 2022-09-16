@@ -1,14 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import crypto from 'crypto';
 import fs from 'fs-extra';
-import _ from 'lodash/fp';
+import _ from 'lodash';
 import path from 'path';
 import reactDocgenTs from 'react-docgen-typescript';
 import log from 'signale';
-import ts from 'typescript';
+import type {
+  CompilerOptions,
+  LanguageService,
+  LanguageServiceHost,
+  ParsedCommandLine,
+  SourceFile,
+} from 'typescript';
+
+import { importTs } from './import-ts';
 
 import * as paths from '~/config/paths';
 import type { Config } from '~/types';
+
+const ts = await importTs();
 
 export const unixPath = (src: string): string => {
   return path.normalize(src).replace(/\\/g, '/');
@@ -33,20 +43,20 @@ export const readCacheFile = () =>
 
 function checkFilesOnCache(files: string[], config: Config): string[] {
   const cache = readCacheFile();
-  const root = paths.getRootDir(config);
+  const root = config.paths.root;
   if (_.isEmpty(cache)) return files;
   return files.filter((filepath) => {
     const normalized = path.normalize(filepath);
     const fullpath = path.resolve(root, normalized);
     const hash = digest(fs.readFileSync(fullpath, 'utf-8'));
-    const found = _.get(normalized, cache);
+    const found = _.get(cache, normalized);
     return found && hash !== found.hash;
   });
 }
 
 function writePropsOnCache(items: PropItem[], config: Config): void {
   const cache = readCacheFile();
-  const root = paths.getRootDir(config);
+  const root = config.paths.root;
   const newCache = items.reduce((obj, { key: filepath, value }) => {
     const fullpath = path.resolve(root, path.normalize(filepath));
     const hash = digest(fs.readFileSync(fullpath, 'utf-8'));
@@ -67,18 +77,18 @@ function getPropsOnCache(): any {
 
   return Object.entries(cache).map(([key, value]) => ({
     key: unixPath(key),
-    value: _.get('props', value),
+    value: _.get(value, 'props'),
   }));
 }
 
 const mergeWithCache = (cache: any[], props: any[]) => {
-  const keys = props.map(_.prop('key'));
-  return cache.filter((item) => !_.contains(item.key, keys)).concat(props);
+  const keys = props.map((k) => k.key);
+  return cache.filter((item) => keys.some((k) => k === item.key)).concat(props);
 };
 
 const removeFromCache = (filepath: string) => {
   const cache = readCacheFile();
-  fs.outputJSONSync(cacheFilepath, _.omit(filepath, cache));
+  fs.outputJSONSync(cacheFilepath, _.omit(cache, filepath));
 };
 
 const getInitialFilesMap = (): Map<string, TSFile> => {
@@ -99,10 +109,10 @@ const getInitialFilesMap = (): Map<string, TSFile> => {
   return map;
 };
 
-let languageService: ts.LanguageService | null = null;
+let languageService: LanguageService | null = null;
 const filesMap = getInitialFilesMap();
 
-function getTSConfigFile(tsconfigPath: string): ts.ParsedCommandLine {
+function getTSConfigFile(tsconfigPath: string): ParsedCommandLine {
   const basePath = path.dirname(tsconfigPath);
   const configFile = ts.readConfigFile(tsconfigPath, ts.sys.readFile);
   return ts.parseJsonConfigFileContent(
@@ -115,7 +125,7 @@ function getTSConfigFile(tsconfigPath: string): ts.ParsedCommandLine {
 }
 
 function loadFiles(filesToLoad: string[], config: Config): void {
-  const root = paths.getRootDir(config);
+  const root = config.paths.root;
   filesToLoad.forEach((filepath) => {
     const normalized = path.normalize(filepath);
     const fullpath = path.resolve(root, normalized);
@@ -128,11 +138,11 @@ function loadFiles(filesToLoad: string[], config: Config): void {
 }
 
 function createServiceHost(
-  compilerOptions: ts.CompilerOptions,
+  compilerOptions: CompilerOptions,
   files: Map<string, TSFile>,
   config: Config
-): ts.LanguageServiceHost {
-  const root = paths.getRootDir(config);
+): LanguageServiceHost {
+  const root = config.paths.root;
   return {
     getScriptFileNames: () => {
       return [...files.keys()];
@@ -181,7 +191,7 @@ const parseFiles = (files: string[], config: Config, tsconfig: string) => {
 
       return Boolean(propFilter(prop));
     },
-    componentNameResolver(exp: ts.Symbol, source: ts.SourceFile): any {
+    componentNameResolver(exp: any, source: SourceFile): any {
       const componentNameResolver = config.docgenConfig.resolver;
       const val =
         componentNameResolver &&
@@ -193,7 +203,7 @@ const parseFiles = (files: string[], config: Config, tsconfig: string) => {
 
   loadFiles(files, config);
   const parser = reactDocgenTs.withCustomConfig(tsconfig, opts);
-  const compilerOptions = _.get('options', getTSConfigFile(tsconfig));
+  const compilerOptions = _.get(getTSConfigFile(tsconfig), 'options');
 
   const programProvider = () => {
     if (languageService) return languageService.getProgram()!;

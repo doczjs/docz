@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as path from 'path';
+import { config } from 'dotenv';
+import path from 'path';
 
 import { root, resolveApp } from './paths';
 
@@ -44,10 +45,8 @@ const configDotEnv = () => {
   // that have already been set.  Variable expansion is supported in .env files.
   // https://github.com/motdotla/dotenv
   dotenvFiles.filter(Boolean).forEach((dotenvFile) => {
-    // eslint-disable-next-line global-require
-    require('dotenv').config({
-      path: dotenvFile,
-    });
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    dotenvFile && config({ path: dotenvFile });
   });
 };
 

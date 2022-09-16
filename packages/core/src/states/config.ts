@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { load, loadFrom, finds } from '@docz/load-config';
 import chokidar from 'chokidar';
-import * as fs from 'fs-extra';
-import get from 'lodash/get';
-import * as path from 'path';
+import fs from 'fs-extra';
+import _ from 'lodash';
+import path from 'path';
 
 import * as paths from '~/config/paths';
-import type { Params, State } from '~/lib/DataServer';
+import type { Params } from '~/lib/State';
+import { State } from '~/lib/State';
 import type { Config, Menu, ThemeConfig } from '~/types';
+import { load, loadFrom, finds } from '~/utils/load-config';
 import { getRepoUrl } from '~/utils/repo-info';
 
 interface Payload {
@@ -16,12 +17,10 @@ interface Payload {
   menu: Menu[];
   version: string | null;
   repository: string | null;
-  native: boolean;
   themeConfig: ThemeConfig;
-  separator: string;
 }
 
-const getInitialConfig = (config: Config): Payload => {
+const getInitialConfig = (config: Config) => {
   const pkg = fs.readJsonSync(paths.appPackageJson, { throws: false });
   const repoUrl = getRepoUrl();
 
@@ -29,17 +28,19 @@ const getInitialConfig = (config: Config): Payload => {
     title: config.title,
     description: config.description,
     menu: config.menu,
-    version: get(pkg, 'version'),
+    version: _.get(pkg, 'version'),
     repository: repoUrl,
-    native: config.native,
     themeConfig: config.themeConfig,
-    separator: config.separator,
   };
 };
 
-const update = async (params: Params, initial: Payload, { config }: Config) => {
+const update = async (
+  params: Params,
+  initial: Payload,
+  { configFile }: Config
+) => {
   const pathToConfig = path.join(paths.docz, 'doczrc.js');
-  const next = config
+  const next = configFile
     ? await loadFrom('docz', pathToConfig, initial, process.cwd())
     : await load('docz', initial, process.cwd());
 
@@ -52,21 +53,21 @@ export const createWatcher = (glob: any, config: Config) => {
   const ignored = config.watchIgnore || WATCH_IGNORE;
   const watcher = chokidar.watch(glob, {
     ignored,
-    cwd: paths.root,
+    cwd: config.paths.root,
     persistent: true,
+    useFsEvents: false,
   });
 
   watcher.setMaxListeners(Infinity);
   return watcher;
 };
 
-export const state = (config: Config, dev?: boolean): State => {
-  const glob = config.config || finds('docz');
+export const state = (config: Config, dev?: boolean) => {
+  const glob = config.configFile || finds('docz');
   const initial = getInitialConfig(config);
   const watcher = createWatcher(glob, config);
 
-  return {
-    id: 'config',
+  return new State('config', {
     start: async (params) => {
       const fn = async () => update(params, initial, config);
       await update(params, initial, config);
@@ -80,5 +81,5 @@ export const state = (config: Config, dev?: boolean): State => {
     close: () => {
       watcher.close();
     },
-  };
+  });
 };

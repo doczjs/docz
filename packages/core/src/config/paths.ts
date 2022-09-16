@@ -1,53 +1,21 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import * as path from 'path';
+/* eslint-disable @typescript-eslint/naming-convention */
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-import type { Config } from '~/types';
-
-export const ensureSlash = (filepath: any, needsSlash: boolean) => {
-  const hasSlash = filepath.endsWith('/');
-
-  if (hasSlash && !needsSlash) {
-    return filepath.substr(filepath, filepath.length - 1);
-  }
-  if (!hasSlash && needsSlash) {
-    return `${filepath}/`;
-  }
-  return filepath;
-};
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const root = process.cwd();
-
 export const resolveApp = (to: string) => path.resolve(root, './', to);
-
-export const checkIsDoczProject = (config: Config) => {
-  return path.parse(config.root || root).base === '.docz';
-};
-
-export const getRootDir = (config: Config) => {
-  const isDoczProject = checkIsDoczProject(config);
-  return isDoczProject ? path.resolve(root, '../') : root;
-};
-
-export const getThemesDir = (config: Config) => {
-  // resolve normalizes the new path and removes trailing slashes
-  return path.resolve(path.join(getRootDir(config), config.themesDir));
-};
-
 export const templates = path.resolve(__dirname, './templates');
-
-export const servedPath = (base: string) => ensureSlash(base, true);
-
 export const docz = resolveApp('.docz');
 export const cache = path.resolve(docz, '.cache/');
-export const app = path.resolve(docz);
+export const src = path.join(docz, 'src');
+export const pages = path.join(docz, 'src/pages');
+export const layouts = path.join(docz, 'src/layouts');
+export const publicDir = path.join(docz, 'public');
 export const appPackageJson = resolveApp('package.json');
 export const appTsConfig = resolveApp('tsconfig.json');
 
-export const getDist = (dest: string) => path.join(root, dest);
-export const distPublic = (dest: string) => path.join(dest, 'public/');
-
-export const importsJs = path.resolve(app, 'imports.js');
-export const rootJs = path.resolve(app, 'root.jsx');
-export const indexJs = path.resolve(app, 'index.jsx');
-export const indexHtml = path.resolve(app, 'index.html');
-export const db = path.resolve(app, 'db.json');
+export const db = path.join(docz, 'db.json');
+export const astroConfig = path.join(docz, 'astro.config.mjs');
