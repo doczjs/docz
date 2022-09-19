@@ -5,7 +5,7 @@ import path from 'path';
 config();
 
 export default (_options: any, { withReact }: any = {}) => ({
-  format: ['cjs', 'esm'],
+  format: ['esm'],
   splitting: false,
   sourcemap: true,
   clean: false,

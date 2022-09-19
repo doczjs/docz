@@ -1,17 +1,28 @@
 ---
 import db from "../../db.json";
+import { store } from "docz";
+
 const { entry } = Astro.props;
+store.setKey("entry", entry);
+store.setKey("config", db.config);
+store.setKey("props", db.props);
 ---
 
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>{entry.name} | {db.config.title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      set:html={`window.__DOCZ_INITIAL_STORE__ = ${JSON.stringify({
+        entry,
+        config: db.config,
+        props: db.props,
+      })}`}
+    ></script>
   </head>
   <body>
-    <article>
-      {entry ? <slot /> : <div>Not Found</div>}
-    </article>
+    {entry ? <slot /> : <div>Not Found</div>}
   </body>
 </html>

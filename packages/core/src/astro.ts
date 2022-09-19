@@ -21,6 +21,8 @@ export function createAstroConfig(baseConfig: DoczArgs, doczConfig?: Config) {
       remarkPlugins: doczConfig?.remarkPlugins || [],
       rehypePlugins: doczConfig?.rehypePlugins || [],
     },
-    ...(doczConfig?.viteConfig && { vite: doczConfig.viteConfig }),
+    vite: {
+      ...(doczConfig?.viteConfig && doczConfig?.viteConfig),
+    },
   });
 }

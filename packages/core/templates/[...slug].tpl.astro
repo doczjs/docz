@@ -3,10 +3,12 @@ import db from "../../db.json";
 import Layout from "../layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  return db.entries.map((entry) => ({
-    params: { slug: entry.route === "/" ? undefined : getRoute(entry) },
-    props: { entry, config: db.config },
-  }));
+  return db.entries.map((entry) => {
+    return {
+      params: { slug: entry.route === "/" ? undefined : getRoute(entry) },
+      props: { entry },
+    };
+  });
 }
 
 export function getRoute(entry) {
@@ -14,8 +16,7 @@ export function getRoute(entry) {
   return entry.route?.match(/(\/?)(.+)/)?.[2] || entry.slug;
 }
 
-const { id } = Astro.props.entry;
-const entry = db.entries.find((entry) => entry.id === id);
+const { entry } = Astro.props;
 const posts = await Astro.glob("../../../**/*.{md,mdx}");
 const post = posts.find((post) => post.url === entry.fullpath);
 const Content = post?.Content;

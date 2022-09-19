@@ -67,15 +67,22 @@ importers:
 
   examples/basic:
     specifiers:
+      '@types/react': ^18.0.20
+      '@types/react-dom': ^18.0.6
       astro: ^1.2.5
       docz: workspace:*
       react: ^18.2.0
       react-dom: ^18.2.0
+      typescript: ^4.8.3
     dependencies:
       astro: 1.2.5
       docz: link:../../packages/docz
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    devDependencies:
+      '@types/react': 18.0.20
+      '@types/react-dom': 18.0.6
+      typescript: 4.8.3
 
   packages/config:
     specifiers:
@@ -218,14 +225,25 @@ importers:
   packages/docz:
     specifiers:
       '@docz/core': workspace:*
+      '@types/react': ^18.0.20
+      '@types/react-dom': ^18.0.6
       ci-info: ^3.4.0
+      nanostores: ^0.7.0
       path-to-regexp: ^6.2.1
+      react: ^18.2.0
+      react-dom: ^18.2.0
       supports-esm: ^1.0.0
     dependencies:
       '@docz/core': link:../core
       ci-info: 3.4.0
+      nanostores: 0.7.0
       path-to-regexp: 6.2.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
       supports-esm: 1.0.0
+    devDependencies:
+      '@types/react': 18.0.20
+      '@types/react-dom': 18.0.6
 
   packages/test-utils:
     specifiers:
@@ -6807,6 +6825,11 @@ packages:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  /nanostores/0.7.0:
+    resolution: {integrity: sha512-y+ma9MVXuPzXKEXaRYW/iL/xG/HtMwB8fmFcMfUqt5fCNR/na2kDubbZGV4furUMTgmxfySJs0cQjORWhaPDyA==}
+    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
+    dev: false
 
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}

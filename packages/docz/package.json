@@ -42,7 +42,14 @@
   "dependencies": {
     "@docz/core": "workspace:*",
     "ci-info": "^3.4.0",
+    "nanostores": "^0.7.0",
     "path-to-regexp": "^6.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "supports-esm": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.20",
+    "@types/react-dom": "^18.0.6"
   }
 }
