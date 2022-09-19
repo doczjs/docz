@@ -5,20 +5,13 @@ import _ from 'lodash';
 import path from 'path';
 
 import * as paths from '~/config/paths';
-import type { Params } from '~/lib/State';
+import { db } from '~/lib/Database';
 import { State } from '~/lib/State';
-import type { Config, Menu, ThemeConfig } from '~/types';
+import type { Config } from '~/types';
 import { load, loadFrom, finds } from '~/utils/load-config';
 import { getRepoUrl } from '~/utils/repo-info';
 
-interface Payload {
-  title: string;
-  description: string;
-  menu: Menu[];
-  version: string | null;
-  repository: string | null;
-  themeConfig: ThemeConfig;
-}
+export const WATCH_IGNORE = /((\.docz)|(node_modules))/;
 
 const getInitialConfig = (config: Config) => {
   const pkg = fs.readJsonSync(paths.appPackageJson, { throws: false });
@@ -34,22 +27,7 @@ const getInitialConfig = (config: Config) => {
   };
 };
 
-const update = async (
-  params: Params,
-  initial: Payload,
-  { configFile }: Config
-) => {
-  const pathToConfig = path.join(paths.docz, 'doczrc.js');
-  const next = configFile
-    ? await loadFrom('docz', pathToConfig, initial, process.cwd())
-    : await load('docz', initial, process.cwd());
-
-  params.setState('config', next);
-};
-
-export const WATCH_IGNORE = /((\.docz)|(node_modules))/;
-
-export const createWatcher = (glob: any, config: Config) => {
+const createWatcher = (glob: any, config: Config) => {
   const ignored = config.watchIgnore || WATCH_IGNORE;
   const watcher = chokidar.watch(glob, {
     ignored,
@@ -62,24 +40,23 @@ export const createWatcher = (glob: any, config: Config) => {
   return watcher;
 };
 
-export const state = (config: Config, dev?: boolean) => {
+export const state = (config: Config) => {
   const glob = config.configFile || finds('docz');
   const initial = getInitialConfig(config);
   const watcher = createWatcher(glob, config);
 
-  return new State('config', {
-    start: async (params) => {
-      const fn = async () => update(params, initial, config);
-      await update(params, initial, config);
+  async function update() {
+    const pathToConfig = path.join(paths.docz, 'doczrc.js');
+    const next = config.configFile
+      ? await loadFrom('docz', pathToConfig, initial, paths.root)
+      : await load('docz', initial, paths.root);
 
-      if (dev) {
-        watcher.on('add', fn);
-        watcher.on('change', fn);
-        watcher.on('unlink', fn);
-      }
-    },
-    close: () => {
-      watcher.close();
-    },
+    await db.set('config', next);
+  }
+
+  return new State('config', {
+    watcher,
+    onStart: update,
+    onAll: update,
   });
 };

@@ -11,7 +11,7 @@ export const fromTemplates = (file: string) => {
   return path.join(paths.templates, file);
 };
 
-export const outputFileFromTemplate = async (
+export const outputTemplate = async (
   templatePath: string,
   outputPath: string,
   templateProps?: Record<string, any>,

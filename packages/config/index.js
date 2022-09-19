@@ -32,6 +32,7 @@ module.exports = {
     },
   },
   rules: {
+    '@typescript-eslint/no-unused-expressions': 'off',
     '@typescript-eslint/no-shadow': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-use-before-define': 'off',

@@ -3,8 +3,9 @@ import { createRequire } from 'module';
 import type { ArgumentsCamelCase } from 'yargs';
 
 import { parseConfig } from '~/config/docz';
-import { AstroFiles } from '~/lib/AstroFiles';
+import { Artifacts } from '~/lib/Artifacts';
 import { DataServer } from '~/lib/DataServer';
+import { db } from '~/lib/Database';
 import { Entries } from '~/lib/Entries';
 import type { DoczArgs } from '~/types';
 
@@ -18,11 +19,11 @@ export async function dev(args: ArgumentsCamelCase<DoczArgs>) {
   await entries.populate(config);
 
   /** generate base files */
-  await AstroFiles.baseFiles(config);
-  // await AstroFiles.entryFiles(config, entries);
+  await Artifacts.generate(config);
 
   /** init data server */
   const dataServer = new DataServer(entries, config);
+  await db.init();
   await dataServer.start();
 
   /** spawn astro */

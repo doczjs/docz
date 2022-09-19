@@ -1,2 +1,4 @@
 import { createAstroConfig } from "docz/astro";
-export default createAstroConfig();
+import baseConfig from './db.json'
+<% if (configFilepath) {%>import doczConfig from '<%- configFilepath %>'<% } %>
+export default createAstroConfig(baseConfig, <% if (configFilepath) { %>doczConfig<% } %>);

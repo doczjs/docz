@@ -4,22 +4,31 @@ import _ from 'lodash';
 import path from 'path';
 
 export const finds = (name: string): string[] => [
-  `${name}.json`,
-  `.${name}rc`,
-  `${name}rc.js`,
-  `${name}rc.json`,
-  `${name}.config.js`,
-  `${name}.config.json`,
+  `${name}rc.mjs`,
+  `${name}.config.mjs`,
 ];
 
-async function loadConfigFilePath(files: string[], name: string, cwd: string) {
+export async function loadConfigFile(
+  files: string[],
+  name: string,
+  cwd: string
+) {
   const configJoycon = new JoyCon();
-  return configJoycon.load({
+  const filepath = await configJoycon.resolve({
     cwd,
     files,
     stopDir: path.parse(cwd).root,
     packageKey: name,
   });
+  if (filepath) {
+    const mod = await requireESM(filepath);
+    return mod?.default || {};
+  }
+  return {};
+}
+
+function requireESM(filepath: string) {
+  return import(filepath);
 }
 
 export async function load<C = any>(
@@ -27,8 +36,8 @@ export async function load<C = any>(
   defaultConfig: C,
   cwd: string
 ) {
-  const config = await loadConfigFilePath(finds(name), name, cwd);
-  return _.merge(config?.data ?? {}, defaultConfig);
+  const config = await loadConfigFile(finds(name), name, cwd);
+  return _.merge(defaultConfig, config ?? {});
 }
 
 export async function loadFrom<C = any>(
@@ -37,6 +46,6 @@ export async function loadFrom<C = any>(
   defaultConfig: C,
   cwd: string
 ) {
-  const config = await loadConfigFilePath([filepath], name, cwd);
-  return _.merge(config?.data ?? {}, defaultConfig);
+  const config = await loadConfigFile([filepath], name, cwd);
+  return _.merge(defaultConfig, config ?? {});
 }

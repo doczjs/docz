@@ -38,7 +38,9 @@ export interface DoczArgs {
   propsParser: boolean;
   host: string;
   port: number;
-  /* template args */
+  /* website args */
+  base: string;
+  site: string;
   title: string;
   description: string;
 }
@@ -51,6 +53,29 @@ export interface Config extends DoczArgs {
   paths: typeof paths;
   plugins: Plugin[];
   themeConfig: ThemeConfig;
-  astro?: AstroUserConfig;
   filterComponents: (files: string[]) => string[];
+  astroIntegrations?: AstroUserConfig['integrations'];
+  viteConfig?: AstroUserConfig['vite'];
+}
+
+export interface EntryObj {
+  link: string | null;
+  filepath: string;
+  fullpath: string;
+  id: string;
+  hidden: boolean;
+  menu: string | null;
+  name: string;
+  route: string;
+  slug: string;
+  frontmatter?: Record<string, any>;
+}
+
+export interface ConfigObj {
+  title: string;
+  description: string;
+  menu: Menu[];
+  version: string | null;
+  repository: string | null;
+  themeConfig: ThemeConfig;
 }

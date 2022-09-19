@@ -1,17 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import chokidar from 'chokidar';
 import fastglob from 'fast-glob';
-import _ from 'lodash';
 import path from 'path';
 
 import { WATCH_IGNORE } from './config';
 
-import type { State } from '~/lib/DataServer';
-import type { Params } from '~/lib/State';
+import { db } from '~/lib/Database';
+import { State } from '~/lib/State';
 import type { Config } from '~/types';
 import { docgen, unixPath } from '~/utils/docgen';
 
-export const getPattern = (config: Config) => {
+const getPattern = (config: Config) => {
   const { ignore, src: source, docgenConfig } = config;
 
   if (docgenConfig.searchPatterns) {
@@ -37,32 +36,30 @@ export const getPattern = (config: Config) => {
 const removeFilepath = (items: any[], filepath: string) =>
   items.filter((item: any) => item.key !== filepath);
 
-export const initial =
-  (config: Config, pattern: string[]) => async (p: Params) => {
-    const { filterComponents } = config;
-    const cwd = config.paths.root;
-    const files = await fastglob(pattern, { cwd, caseSensitiveMatch: false });
-    const filtered = filterComponents ? filterComponents(files) : files;
-    const metadata = await docgen(filtered, config);
-    p.setState('props', metadata);
-  };
+async function setInitialProps(config: Config, pattern: string[]) {
+  const { filterComponents } = config;
+  const cwd = config.paths.root;
+  const files = await fastglob(pattern, { cwd, caseSensitiveMatch: false });
+  const filtered = filterComponents ? filterComponents(files) : files;
+  const metadata = await docgen(filtered, config);
+  await db.set('props', metadata);
+}
 
-const change = (p: Params, config: Config) => async (filepath: string) => {
-  const prev = _.get(p.getState(), 'props');
+async function updateProps(config: Config, filepath: string) {
+  const prev = db.get('props');
   const metadata = await docgen([filepath], config);
   const filtered = metadata.filter((m: any) => m.key === filepath);
   const next = removeFilepath(prev, filepath).concat(filtered);
-  p.setState('props', next);
-};
+  await db.set('props', next);
+}
 
-const remove = (p: Params) => async (filepath: string) => {
-  const prev = _.get(p.getState(), 'props');
+async function removeProps(filepath: string) {
+  const prev = db.get('props');
   const next = removeFilepath(prev, filepath);
-  p.setState('props', next);
-};
+  await db.set('props', next);
+}
 
-export const state = (config: Config, dev?: boolean): State => {
-  const pattern = getPattern(config);
+function createWatcher(config: Config, pattern: string[]) {
   const ignored = config.watchIgnore || WATCH_IGNORE;
   const cwd = config.paths.root;
   const watcher = chokidar.watch(pattern, {
@@ -73,20 +70,23 @@ export const state = (config: Config, dev?: boolean): State => {
   });
 
   watcher.setMaxListeners(Infinity);
+  return watcher;
+}
 
-  return {
-    id: 'props',
-    start: async (params) => {
-      const addInitial = initial(config, pattern);
-      await addInitial(params);
+export const state = (config: Config) => {
+  const pattern = getPattern(config);
+  const watcher = createWatcher(config, pattern);
 
-      if (dev) {
-        watcher.on('change', change(params, config));
-        watcher.on('unlink', remove(params));
-      }
+  return new State('props', {
+    watcher,
+    async onStart() {
+      await setInitialProps(config, pattern);
     },
-    close: () => {
-      watcher.close();
+    async onAll(filepath) {
+      await updateProps(config, filepath);
     },
-  };
+    async onDelete(filepath) {
+      await removeProps(filepath);
+    },
+  });
 };

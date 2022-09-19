@@ -3,8 +3,6 @@ import fs from 'fs-extra';
 import _ from 'lodash';
 import type { Argv as Yargs } from 'yargs';
 
-import { doczRcBaseConfig } from './docz';
-
 import { paths } from '~/config';
 import type { DoczArgs } from '~/types';
 import * as envDotProp from '~/utils/env';
@@ -35,7 +33,7 @@ export const setArgs = (yargs: Yargs<DoczArgs>) => {
     .option('source', {
       alias: 'src',
       type: 'string',
-      default: getEnv('docz.source', doczRcBaseConfig.src),
+      default: getEnv('docz.source', paths.appSrc),
     })
     .option('ignore', {
       type: 'array',
@@ -44,11 +42,11 @@ export const setArgs = (yargs: Yargs<DoczArgs>) => {
     .option('distDir', {
       alias: 'd',
       type: 'string',
-      default: getEnv('docz.distDir', '.docz/dist'),
+      default: getEnv('docz.distDir', paths.distDir),
     })
     .option('publicDir', {
       type: 'string',
-      default: getEnv('docz.publicDir', '/public'),
+      default: getEnv('docz.publicDir', paths.appPublic),
     })
     .option('editBranch', {
       alias: 'eb',
@@ -57,7 +55,7 @@ export const setArgs = (yargs: Yargs<DoczArgs>) => {
     })
     .option('configFile', {
       type: 'string',
-      default: getEnv('docz.configFile', ''),
+      default: getEnv('docz.configFile', null),
     })
     .option('debug', {
       type: 'boolean',
@@ -75,6 +73,14 @@ export const setArgs = (yargs: Yargs<DoczArgs>) => {
       alias: 'p',
       type: 'number',
       default: getEnv('docz.port', 3000),
+    })
+    .option('base', {
+      type: 'string',
+      default: getEnv('docz.base', '/'),
+    })
+    .option('site', {
+      type: 'string',
+      default: getEnv('docz.site', 'https://mysite.com'),
     })
     .option('title', {
       type: 'string',

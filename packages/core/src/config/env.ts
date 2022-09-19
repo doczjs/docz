@@ -45,7 +45,6 @@ const configDotEnv = () => {
   // that have already been set.  Variable expansion is supported in .env files.
   // https://github.com/motdotla/dotenv
   dotenvFiles.filter(Boolean).forEach((dotenvFile) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     dotenvFile && config({ path: dotenvFile });
   });
 };

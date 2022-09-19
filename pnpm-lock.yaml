@@ -139,6 +139,7 @@ importers:
       astro: ^1.2.5
       chokidar: ^3.5.3
       dotenv: ^16.0.2
+      esm: ^3.2.25
       fast-deep-equal: ^3.1.3
       fast-glob: ^3.2.12
       find-up: ^6.3.0
@@ -146,6 +147,7 @@ importers:
       get-pkg-repo: ^5.0.0
       joycon: ^3.1.1
       lodash: ^4.17.21
+      lowdb: ^3.0.0
       minimatch: ^5.1.0
       prettier: ^2.7.1
       react-docgen: ^5.4.3
@@ -174,6 +176,7 @@ importers:
       astro: 1.2.5
       chokidar: 3.5.3
       dotenv: 16.0.2
+      esm: 3.2.25
       fast-deep-equal: 3.1.3
       fast-glob: 3.2.12
       find-up: 6.3.0
@@ -181,6 +184,7 @@ importers:
       get-pkg-repo: 5.0.0
       joycon: 3.1.1
       lodash: 4.17.21
+      lowdb: 3.0.0
       minimatch: 5.1.0
       prettier: 2.7.1
       react-docgen: 5.4.3
@@ -4041,6 +4045,11 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
+  /esm/3.2.25:
+    resolution: {integrity: sha512-U1suiZ2oDVWv4zPO56S0NcR5QriEahGtdN2OR6FiOG4WJvcjBVFB0qI4+eKoWFH483PKGuLuu6V8Z4T5g63UVA==}
+    engines: {node: '>=6'}
+    dev: false
+
   /espree/9.4.0:
     resolution: {integrity: sha512-DQmnRpLj7f6TgN/NYb0MTzJXL+vJF9h3pHy4JhCIs3zwcgez8xmGg3sXHcEO97BrmO2OSvCwMdfdlyl+E9KjOw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -6049,6 +6058,13 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
+
+  /lowdb/3.0.0:
+    resolution: {integrity: sha512-9KZRulmIcU8fZuWiaM0d5e2/nPnrFyXkeXVpqT+MJS+vgbgOf1EbtvgQmba8HwUFgDl1oeZR6XqEJnkJmQdKmg==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      steno: 2.1.0
+    dev: false
 
   /lower-case/1.1.4:
     resolution: {integrity: sha512-2Fgx1Ycm599x+WGpIYwJOvsjmXFzTSc34IwDWALRA/8AopUKAVPwfJ+h5+f85BCp0PWmmJcWzEpxOpoXycMpdA==}
@@ -8202,6 +8218,11 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       escape-string-regexp: 2.0.0
+
+  /steno/2.1.0:
+    resolution: {integrity: sha512-mauOsiaqTNGFkWqIfwcm3y/fq+qKKaIWf1vf3ocOuTdco9XoHCO2AGF1gFYXuZFSWuP38Q8LBHBGJv2KnJSXyA==}
+    engines: {node: ^14.13.1 || >=16.0.0}
+    dev: false
 
   /stream-transform/2.1.3:
     resolution: {integrity: sha512-9GHUiM5hMiCi6Y03jD2ARC1ettBXkQBoQAe7nJsPknnI0ow10aXjTnew8QtYQmLjzn974BnmWEAJgCY6ZP1DeQ==}

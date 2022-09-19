@@ -12,7 +12,7 @@ export default defineConfig((options) => ({
   clean: true,
   platform: 'node',
   format: ['esm'],
-  external: ['typescript'],
+  external: ['typescript', 'fs'],
   target: 'es2022',
   entry: {
     index: 'src/index.ts',

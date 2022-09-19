@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import _ from 'lodash';
-import path from 'path';
 import type { Arguments } from 'yargs';
 
 import { paths } from '~/config';
@@ -16,7 +15,6 @@ export const doczRcBaseConfig = {
   plugins: [],
   rehypePlugins: [],
   remarkPlugins: [],
-  src: './',
   ignore: [
     /readme.md/i,
     /changelog.md/i,
@@ -48,20 +46,28 @@ export const getBaseConfig = (
   return _.merge(base, custom) as Config;
 };
 
+function omitAbbr(config: any) {
+  return _.omit(config, [
+    'public-dir',
+    'd',
+    'dist-dir',
+    'eb',
+    'edit-branch',
+    'config-file',
+    'props-parser',
+    'p',
+  ]);
+}
+
 export async function parseConfig(
   argv: Arguments<DoczArgs>,
   custom?: Partial<Config>
 ) {
-  const defaultConfig = getBaseConfig(argv, { port: argv.port, ...custom });
-  const config = argv.config
-    ? await loadFrom<Config>(
-        'docz',
-        path.join(paths.docz, 'doczrc.js'),
-        defaultConfig,
-        paths.root
-      )
+  const defaultConfig = getBaseConfig(argv, custom);
+  const config = argv.configFile
+    ? await loadFrom<Config>('docz', argv.configFile, defaultConfig, paths.root)
     : await load<Config>('docz', defaultConfig, paths.root);
 
   const reduceAsync = Plugin.reduceFromPluginsAsync<Config>(config.plugins);
-  return reduceAsync('setConfig', config);
+  return reduceAsync('setConfig', omitAbbr(config) as Config);
 }

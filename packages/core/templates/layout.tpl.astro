@@ -10,11 +10,6 @@ const { entry } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Posts</a>
-      <a href="#">Contact</a>
-    </nav>
     <article>
       {entry ? <slot /> : <div>Not Found</div>}
     </article>
