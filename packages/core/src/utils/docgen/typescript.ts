@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import crypto from 'crypto';
 import fs from 'fs-extra';
@@ -18,6 +19,7 @@ import { importTs } from './import-ts';
 import * as paths from '~/config/paths';
 import type { Config } from '~/types';
 
+// @ts-ignore
 const ts = await importTs();
 
 export const unixPath = (src: string): string => {
@@ -71,7 +73,7 @@ function getPropsOnCache(): any {
   if (_.isEmpty(cache)) {
     log.warn('No cache was found with your props definitions');
     log.warn("We'll parse your components to get props from them");
-    log.warn('Depending on your components, this could take while...');
+    log.warn('Depending on your components, this could take while...\n');
     return [];
   }
 

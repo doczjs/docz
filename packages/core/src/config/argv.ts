@@ -63,7 +63,7 @@ export const setArgs = (yargs: Yargs<DoczArgs>) => {
     })
     .option('propsParser', {
       type: 'boolean',
-      default: getEnv('docz.propsParser', false),
+      default: getEnv('docz.propsParser', true),
     })
     .option('host', {
       type: 'string',

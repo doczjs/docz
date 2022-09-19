@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import chokidar from 'chokidar';
 import fastglob from 'fast-glob';
+import _ from 'lodash';
 import path from 'path';
 
 import { WATCH_IGNORE } from './config';
@@ -33,8 +34,14 @@ const getPattern = (config: Config) => {
     ]) as string[];
 };
 
-const removeFilepath = (items: any[], filepath: string) =>
-  items.filter((item: any) => item.key !== filepath);
+interface PropItem {
+  key: string;
+  value: any[];
+}
+
+const removeFilepath = (items: PropItem[], filepath: string) => {
+  return items.filter((i) => i.key !== filepath);
+};
 
 async function setInitialProps(config: Config, pattern: string[]) {
   const { filterComponents } = config;
@@ -47,10 +54,11 @@ async function setInitialProps(config: Config, pattern: string[]) {
 
 async function updateProps(config: Config, filepath: string) {
   const prev = db.get('props');
-  const metadata = await docgen([filepath], config);
-  const filtered = metadata.filter((m: any) => m.key === filepath);
-  const next = removeFilepath(prev, filepath).concat(filtered);
-  await db.set('props', next);
+  const metadata = (await docgen([filepath], config)) as any[];
+  const filtered = metadata.filter((m: PropItem) => m.key === filepath);
+  const old = removeFilepath(prev, filepath);
+  const next = old.concat(filtered ? _.last(filtered) : []);
+  await db.set('props', _.uniqBy(next, 'key'));
 }
 
 async function removeProps(filepath: string) {
@@ -82,7 +90,13 @@ export const state = (config: Config) => {
     async onStart() {
       await setInitialProps(config, pattern);
     },
-    async onAll(filepath) {
+    async onChange(filepath) {
+      await updateProps(config, filepath);
+    },
+    async onAdd(filepath) {
+      await updateProps(config, filepath);
+    },
+    async onMove(filepath) {
       await updateProps(config, filepath);
     },
     async onDelete(filepath) {

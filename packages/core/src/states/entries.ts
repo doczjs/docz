@@ -36,7 +36,15 @@ export const state = (entries: Entries, config: Config) => {
 
   return new State('entries', {
     watcher,
-    async onAll() {
+    async onAdd() {
+      await entries.populate(config);
+      await update();
+    },
+    async onChange() {
+      await entries.populate(config);
+      await update();
+    },
+    async onMove() {
       await entries.populate(config);
       await update();
     },

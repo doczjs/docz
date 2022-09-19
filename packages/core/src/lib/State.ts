@@ -25,7 +25,10 @@ export class State {
   async start() {
     const { onAll, onAdd, onChange, onDelete, onMove, onStart } = this.opts;
     await onStart?.();
-    onAll && this.watcher.on('all', onAll);
+    onAll &&
+      this.watcher.on('all', async (_action, filepath) => {
+        await onAll(filepath);
+      });
     onAdd && this.watcher.on('add', onAdd);
     onChange && this.watcher.on('change', onChange);
     onDelete && this.watcher.on('unlink', onDelete);
