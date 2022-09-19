@@ -21,8 +21,6 @@ async function getConfigFilepath(config: Config) {
 export class Artifacts {
   static async generate(config: Config) {
     const { paths } = config;
-    await fs.remove(paths.docz);
-
     await fs.ensureDir(paths.docz);
     await fs.ensureDir(paths.src);
     await fs.ensureDir(paths.pages);
