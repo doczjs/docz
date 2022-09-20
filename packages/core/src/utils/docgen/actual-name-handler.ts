@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { utils } from 'react-docgen';
 import * as recast from 'recast';
 

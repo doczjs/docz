@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { FSWatcher } from 'chokidar';
 
 type Opts = {

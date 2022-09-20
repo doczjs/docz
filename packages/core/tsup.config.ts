@@ -7,12 +7,14 @@ import { defineConfig } from 'tsup';
 
 import baseConfig from '../config/tsup';
 
+import pkg from './package.json';
+
 export default defineConfig((options) => ({
   ...baseConfig(options),
   clean: true,
   platform: 'node',
   format: ['esm'],
-  external: ['typescript', 'fs'],
+  external: ['typescript', 'fs', ...Object.keys(pkg.dependencies)],
   target: 'es2022',
   entry: {
     index: 'src/index.ts',

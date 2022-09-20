@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as prettier from 'prettier';
 import logger from 'signale';
 

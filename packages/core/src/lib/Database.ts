@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable max-classes-per-file */
 import lodash from 'lodash';
 import { Low, JSONFile } from 'lowdb';

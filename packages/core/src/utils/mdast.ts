@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import _ from 'lodash';
 import meta from 'rehype-meta';
 import stringify from 'rehype-stringify';

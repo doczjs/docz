@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as states from '../states';
 
 import type { Entries } from './Entries';

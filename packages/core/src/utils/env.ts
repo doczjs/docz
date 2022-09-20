@@ -3,7 +3,7 @@
 /* eslint-disable prefer-rest-params */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-plusplus */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import _ from 'lodash';
 
 let meta = { env: {} };

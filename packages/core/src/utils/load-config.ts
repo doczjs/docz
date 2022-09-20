@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import JoyCon from 'joycon';
 import _ from 'lodash';
 import path from 'path';

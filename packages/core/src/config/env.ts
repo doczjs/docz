@@ -1,5 +1,4 @@
 /* eslint-disable no-param-reassign */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { config } from 'dotenv';
 import path from 'path';
 

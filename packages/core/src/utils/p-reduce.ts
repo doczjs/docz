@@ -1,5 +1,5 @@
 /* eslint-disable no-plusplus */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export const pReduce = (iterable: any, reducer: any, initialValue: any): any =>
   new Promise((resolve, reject) => {
     const iterator = iterable[Symbol.iterator]();

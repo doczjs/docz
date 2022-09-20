@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { findUp } from 'find-up';
 import fs from 'fs-extra';
 import getPkgRepo from 'get-pkg-repo';
 import path from 'path';
-import log from 'signale';
+import logger from 'signale';
 
 import * as paths from '../config/paths';
 
@@ -69,7 +68,7 @@ export const getRepoEditUrl = async (config: Config) => {
         .replace('{/tree/committish}', tree)
     );
   } catch (err) {
-    log.error(err);
+    logger.error(err);
     return null;
   }
 };

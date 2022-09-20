@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-async-promise-executor */
 import artTemplate from 'art-template';
 import fs from 'fs-extra';

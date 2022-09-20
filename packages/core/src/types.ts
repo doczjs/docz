@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { AstroUserConfig } from 'astro/config';
 
 import type { paths } from '~/config';
@@ -78,4 +77,5 @@ export interface ConfigObj {
   version: string | null;
   repository: string | null;
   themeConfig: ThemeConfig;
+  rawConfig: Config;
 }

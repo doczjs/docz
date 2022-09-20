@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { isHTMLElement } from './dom';
 import { isFocusable, isTabbable } from './tabbable';
 

@@ -44,6 +44,7 @@ module.exports = {
     ],
     '@typescript-eslint/no-inferrable-types': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     'no-restricted-syntax': 'off',
     'class-methods-use-this': 'off',
     'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],

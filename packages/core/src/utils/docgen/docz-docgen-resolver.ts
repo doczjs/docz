@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // Based on https://github.com/reactjs/react-docgen/issues/256#issuecomment-417352843
 
 import { utils, resolver as reactDocgenResolver } from 'react-docgen';

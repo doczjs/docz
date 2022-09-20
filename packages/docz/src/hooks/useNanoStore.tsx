@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { MapStore } from "nanostores";
 import { listenKeys } from "nanostores";
 import { useCallback, useSyncExternalStore } from "react";

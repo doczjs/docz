@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import chokidar from 'chokidar';
 import fs from 'fs-extra';
 import _ from 'lodash';
@@ -24,6 +23,15 @@ const getInitialConfig = (config: Config) => {
     version: _.get(pkg, 'version'),
     repository: repoUrl,
     themeConfig: config.themeConfig,
+    rawConfig: _.omit(config, [
+      'themeConfig',
+      'docgenConfig',
+      'menu',
+      'plugins',
+      'rehypePlugins',
+      'remarkPlugins',
+      'ignore',
+    ]),
   };
 };
 

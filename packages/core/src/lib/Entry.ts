@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import slugify from '@sindresorhus/slugify';
 import * as crypto from 'crypto';
 import _ from 'lodash';

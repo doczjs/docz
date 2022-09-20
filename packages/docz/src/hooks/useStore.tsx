@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { map } from "nanostores";
 
 import { useNanoStore } from "./useNanoStore";
@@ -21,5 +20,5 @@ try {
 export const store = map<Store>(initialStore);
 
 export function useStore() {
-  return useNanoStore(store);
+  return useNanoStore<Store>(store);
 }

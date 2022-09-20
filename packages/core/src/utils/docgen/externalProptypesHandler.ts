@@ -1,7 +1,6 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable consistent-return */
 /* eslint-disable import/order */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 // vendored from react-docgen-external-proptypes-handler
 // which is not well maintained

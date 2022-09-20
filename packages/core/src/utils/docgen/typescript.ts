@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import crypto from 'crypto';
 import fs from 'fs-extra';
 import _ from 'lodash';
 import path from 'path';
 import reactDocgenTs from 'react-docgen-typescript';
-import log from 'signale';
+import logger from 'signale';
 import type {
   CompilerOptions,
   LanguageService,
@@ -71,9 +71,9 @@ function writePropsOnCache(items: PropItem[], config: Config): void {
 function getPropsOnCache(): any {
   const cache = readCacheFile();
   if (_.isEmpty(cache)) {
-    log.warn('No cache was found with your props definitions');
-    log.warn("We'll parse your components to get props from them");
-    log.warn('Depending on your components, this could take while...\n');
+    logger.warn('No cache was found with your props definitions');
+    logger.warn("We'll parse your components to get props from them");
+    logger.warn('Depending on your components, this could take while...\n');
     return [];
   }
 

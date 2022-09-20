@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 

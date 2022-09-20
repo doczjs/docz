@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Booleanish, EventKeys } from './types';
 
 export function isElement(el: any): el is Element {

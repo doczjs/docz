@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import chokidar from 'chokidar';
 import fastglob from 'fast-glob';
 import _ from 'lodash';
