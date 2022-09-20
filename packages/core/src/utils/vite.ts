@@ -13,15 +13,18 @@ async function addFilemeta(src: string, filepath: string, config: Config) {
   let execs = '';
   for (const comp of components) {
     const component = comp?.[2];
-    execs = `${execs}\n ${component} = __addComponentData(${component})`;
+    execs = `
+      ${execs}
+      ${component} = __addComponentData(${component}, "${component}")
+    `;
   }
   const addComponentFn = `
-    function __addComponentData(Component) {
+    function __addComponentData(Component, displayName) {
       if (typeof Component !== 'undefined') {
         return new Proxy(Component, {
           get(target, prop, receiver) {
             if (prop === "__filemeta") {
-              return { filepath: "${relativeFilepath}" };
+              return { filepath: "${relativeFilepath}", displayName };
             }
             return Reflect.get(...arguments);
           },

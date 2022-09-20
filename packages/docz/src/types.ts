@@ -31,5 +31,11 @@ export type Config = {
 export type PropItem = {
   key: string;
   // TODO: type here later
-  value: any;
+  value: {
+    filePath: string;
+    description: string;
+    displayName: string;
+    methods: any[];
+    props: any[];
+  }[];
 };
