@@ -36,9 +36,9 @@ async function main() {
 
   // Preflight check complete. Enjoy! ✨
   if (supportsESM) {
-    return import('@docz/core')
-      .then((mod) => {
-        mod.cli();
+    return import('@docz/core/cli')
+      .then(() => {
+        // console.log('');
       })
       .catch((error) => {
         console.log(error);

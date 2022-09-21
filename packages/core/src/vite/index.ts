@@ -2,9 +2,9 @@
 import MagicString from 'magic-string';
 import ts from 'typescript';
 
-import type { Config } from '~/types';
-import { docgen } from '~/utils/docgen';
-import { format } from '~/utils/format';
+import type { Config } from '../types';
+import { docgen } from '../utils/docgen';
+import { format } from '../utils/format';
 import {
   addImportStatement,
   addMethodStatement,
@@ -12,7 +12,7 @@ import {
   isNodeExported,
   hasReactComponent,
   setDisplayName,
-} from '~/utils/ts-program';
+} from '../utils/ts-program';
 
 const { ESNext } = ts.ScriptTarget;
 

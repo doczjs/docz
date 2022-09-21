@@ -8,19 +8,31 @@
     "url": "https://github.com/doczjs/docz.git",
     "directory": "packages/docz"
   },
-  "access": "public",
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "typings": "./dist/index.d.ts",
+  "main": "src/index.ts",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.mjs"
-    },
-    "./astro": {
-      "types": "./dist/astro.d.ts",
-      "default": "./dist/astro.mjs"
+    ".": "./src/index.ts",
+    "./astro": "./src/astro.ts",
+    "./cli": "./bin/cli-dev.mjs"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "./dist/index.mjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "typings": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      },
+      "./cli": {
+        "types": "./dist/cli.d.ts",
+        "default": "./dist/cli.mjs"
+      },
+      "./astro": {
+        "types": "./dist/astro.d.ts",
+        "default": "./dist/astro.mjs"
+      }
     }
   },
   "files": [
@@ -53,6 +65,7 @@
     "lowdb": "^3.0.0",
     "magic-string": "^0.26.3",
     "minimatch": "^5.1.0",
+    "nodemon": "^2.0.20",
     "pnpm": "^7.12.0",
     "prettier": "^2.7.1",
     "react-docgen": "^5.4.3",
@@ -81,6 +94,7 @@
     "@types/fs-extra": "^9.0.13",
     "@types/lodash": "^4.14.185",
     "@types/minimatch": "^5.1.2",
+    "@types/nodemon": "^1.19.2",
     "@types/prettier": "^2.7.0",
     "@types/shelljs": "^0.8.11",
     "@types/signale": "^1.4.4",

@@ -3,11 +3,11 @@ import path from 'path';
 import reactDocgen from 'react-docgen';
 import logger from 'signale';
 
+import type { Config } from '../../types';
+
 import { actualNameHandler } from './actual-name-handler';
 import { resolver as doczResolver } from './docz-docgen-resolver';
 import externalProptypesHandler from './externalProptypesHandler';
-
-import type { Config } from '~/types';
 
 export const unixPath = (src: string): string => {
   return path.normalize(src).replace(/\\/g, '/');

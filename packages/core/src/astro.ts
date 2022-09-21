@@ -5,8 +5,8 @@ import { defineConfig } from 'astro/config';
 import _ from 'lodash';
 import remarkToc from 'remark-toc';
 
-import type { Config, ConfigObj } from '~/types';
-import { doczVitePlugin } from '~/vite';
+import type { Config, ConfigObj } from './types';
+import { doczVitePlugin } from './vite';
 
 function mergeCustomizer(obj: any, src: any) {
   if (_.isArray(obj)) {

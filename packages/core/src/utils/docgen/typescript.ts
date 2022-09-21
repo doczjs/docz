@@ -13,8 +13,8 @@ import type {
   SourceFile,
 } from 'typescript';
 
-import * as paths from '~/config/paths';
-import type { Config } from '~/types';
+import * as paths from '../../config/paths';
+import type { Config } from '../../types';
 
 export const unixPath = (src: string): string => {
   return path.normalize(src).replace(/\\/g, '/');

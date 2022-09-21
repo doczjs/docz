@@ -19,8 +19,10 @@ export default defineConfig((options) => ({
   entry: {
     index: 'src/index.ts',
     astro: 'src/astro.ts',
+    cli: 'src/cli.ts',
   },
   async onSuccess() {
+    if (!options.watch) return;
     const watcher = chokidar.watch('./templates/*', {
       persistent: true,
     });
