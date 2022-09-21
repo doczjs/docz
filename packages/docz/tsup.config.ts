@@ -6,7 +6,7 @@ import baseConfig from '../config/tsup';
 
 export default defineConfig({
   ...baseConfig({}, { withReact: true }),
-  external: ['esbuild', 'react/jsx-runtime', 'react', 'react-dom'],
+  external: ['esbuild', 'react/jsx-runtime', 'react', 'react-dom', 'shiki'],
   entry: {
     index: 'src/index.ts',
   },

@@ -23,7 +23,6 @@ export function createAstroConfig(config: ConfigObj, doczConfig?: Config) {
     plugins: [doczVitePlugin(config.rawConfig)],
     ssr: {
       external: ['github-slugger'],
-      noExternal: ['@astrojs/prism'],
     },
   };
 
@@ -54,7 +53,10 @@ export function createAstroConfig(config: ConfigObj, doczConfig?: Config) {
     },
     vite,
     markdown: {
-      syntaxHighlight: 'prism',
+      syntaxHighlight: 'shiki',
+      shikiConfig: {
+        theme: 'dracula',
+      },
     },
   });
 }

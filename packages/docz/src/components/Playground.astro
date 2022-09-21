@@ -1,0 +1,27 @@
+---
+import type { ReactNode } from "react";
+import Code from "./Code.astro";
+
+const children = await Astro.slots.render("default");
+const { __code, lang } = Astro.props;
+---
+
+<div class="playground">
+  <div>
+    <Fragment set:html={children} />
+  </div>
+  <Code code={__code} lang={lang} />
+</div>
+
+<style is:inline>
+  .playground {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+  }
+  .playground pre {
+    margin: 0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+</style>

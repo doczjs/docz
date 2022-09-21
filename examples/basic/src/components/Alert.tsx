@@ -2,8 +2,8 @@ import type { ReactNode } from "react";
 
 const KINDS = {
   info: "#5352ED",
-  positive: "#2ED573",
-  negative: "#FF4757",
+  success: "#2ED573",
+  error: "#FF4757",
   warning: "#FFA502",
 };
 
