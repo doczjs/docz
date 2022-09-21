@@ -1,0 +1,17 @@
+---
+const { of } = Astro.props;
+const { docgenInfo } = of.__filemeta;
+---
+
+<div>
+  {
+    Object.keys(docgenInfo?.props || {}).map((key) => {
+      const item = docgenInfo?.props[key];
+      return (
+        <div key={key}>
+          {key}: {item.type?.name}
+        </div>
+      );
+    })
+  }
+</div>
