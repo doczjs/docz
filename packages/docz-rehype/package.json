@@ -1,0 +1,44 @@
+{
+  "name": "@docz/rehype",
+  "version": "2.4.0",
+  "description": "Rehype plugin used by docz",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doczjs/docz.git",
+    "directory": "packages/docz-rehype"
+  },
+  "access": "public",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist/",
+    "package.json",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup --dts",
+    "build:watch": "tsup --dts --watch"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.19.1",
+    "@babel/traverse": "^7.19.1",
+    "jsx-ast-utils": "^3.3.3",
+    "lodash": "^4.17.21",
+    "prettier": "^2.7.1",
+    "unist-util-source": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/prettier": "^2.7.0",
+    "@docz/config": "workspace:*",
+    "typescript": "^4.8.3"
+  }
+}
