@@ -135,7 +135,6 @@ importers:
       '@astrojs/react': ^1.1.3
       '@docz/config': workspace:*
       '@docz/rehype': workspace:*
-      '@docz/remark': workspace:*
       '@sindresorhus/slugify': ^2.1.0
       '@types/find-up': ^4.0.0
       '@types/fs-extra': ^9.0.13
@@ -159,6 +158,7 @@ importers:
       joycon: ^3.1.1
       lodash: ^4.17.21
       lowdb: ^3.0.0
+      magic-string: ^0.26.3
       minimatch: ^5.1.0
       pnpm: ^7.12.0
       prettier: ^2.7.1
@@ -175,6 +175,7 @@ importers:
       remark-toc: ^8.0.1
       shelljs: ^0.8.5
       signale: ^1.4.0
+      talt: ^2.3.1
       to-vfile: ^7.2.3
       typescript: ^4.8.3
       unified: ^10.1.2
@@ -185,7 +186,6 @@ importers:
       '@astrojs/mdx': 0.11.1
       '@astrojs/react': 1.1.3
       '@docz/rehype': link:../docz-rehype
-      '@docz/remark': link:../docz-remark
       '@sindresorhus/slugify': 2.1.0
       add: 2.0.6
       art-template: 4.13.2
@@ -201,6 +201,7 @@ importers:
       joycon: 3.1.1
       lodash: 4.17.21
       lowdb: 3.0.0
+      magic-string: 0.26.3
       minimatch: 5.1.0
       pnpm: 7.12.0
       prettier: 2.7.1
@@ -217,6 +218,7 @@ importers:
       remark-toc: 8.0.1
       shelljs: 0.8.5
       signale: 1.4.0
+      talt: 2.3.1_typescript@4.8.3
       to-vfile: 7.2.3
       unified: 10.1.2
       unist-util-find: 1.0.2
@@ -236,6 +238,7 @@ importers:
 
   packages/docz:
     specifiers:
+      '@astrojs/prism': ^1.0.1
       '@docz/core': workspace:*
       '@types/react': ^18.0.20
       '@types/react-dom': ^18.0.6
@@ -244,14 +247,17 @@ importers:
       path-to-regexp: ^6.2.1
       react: ^18.2.0
       react-dom: ^18.2.0
+      shiki: ^0.11.1
       supports-esm: ^1.0.0
     dependencies:
+      '@astrojs/prism': 1.0.1
       '@docz/core': link:../core
       ci-info: 3.4.0
       nanostores: 0.7.0
       path-to-regexp: 6.2.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      shiki: 0.11.1
       supports-esm: 1.0.0
     devDependencies:
       '@types/react': 18.0.20
@@ -259,46 +265,25 @@ importers:
 
   packages/docz-rehype:
     specifiers:
-      '@babel/generator': ^7.19.0
       '@babel/parser': ^7.19.1
       '@babel/traverse': ^7.19.1
       '@docz/config': workspace:*
       '@types/prettier': ^2.7.0
-      hast-util-to-string: ^2.0.0
       jsx-ast-utils: ^3.3.3
       lodash: ^4.17.21
       prettier: ^2.7.1
       typescript: ^4.8.3
+      unist-util-source: ^4.0.1
     dependencies:
-      '@babel/generator': 7.19.0
       '@babel/parser': 7.19.1
       '@babel/traverse': 7.19.1
-      '@types/prettier': 2.7.0
-      hast-util-to-string: 2.0.0
       jsx-ast-utils: 3.3.3
       lodash: 4.17.21
       prettier: 2.7.1
+      unist-util-source: 4.0.1
     devDependencies:
       '@docz/config': link:../config
-      typescript: 4.8.3
-
-  packages/docz-remark:
-    specifiers:
-      '@babel/generator': ^7.19.0
-      '@babel/types': ^7.19.0
-      '@docz/config': workspace:*
-      lodash: ^4.17.21
-      typescript: ^4.8.3
-      unist-util-remove: ^3.1.0
-      unist-util-visit: ^4.1.1
-    dependencies:
-      '@babel/generator': 7.19.0
-      '@babel/types': 7.19.0
-      lodash: 4.17.21
-      unist-util-remove: 3.1.0
-      unist-util-visit: 4.1.1
-    devDependencies:
-      '@docz/config': link:../config
+      '@types/prettier': 2.7.0
       typescript: 4.8.3
 
   packages/test-utils:
@@ -6179,6 +6164,13 @@ packages:
     dependencies:
       sourcemap-codec: 1.4.8
 
+  /magic-string/0.26.3:
+    resolution: {integrity: sha512-u1Po0NDyFcwdg2nzHT88wSK0+Rih0N1M+Ph1Sp08k8yvFFU3KR72wryS7e1qMPJypt99WB7fIFVCA92mQrMjrg==}
+    engines: {node: '>=12'}
+    dependencies:
+      sourcemap-codec: 1.4.8
+    dev: false
+
   /make-dir/3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
@@ -8538,6 +8530,14 @@ packages:
       '@pkgr/utils': 2.3.1
       tslib: 2.4.0
 
+  /talt/2.3.1_typescript@4.8.3:
+    resolution: {integrity: sha512-O+FqEfcrhqcJbxeXpG+Hkc6BS0wOXh9MNDHSuQi2C8B0V66pUct5Y0uwOFQEe6PLrjVyoZ6/x1CFRXphgopecg==}
+    peerDependencies:
+      typescript: ^3.0.0 || ^4.0.0
+    dependencies:
+      typescript: 4.8.3
+    dev: false
+
   /term-size/2.2.1:
     resolution: {integrity: sha512-wK0Ri4fOGjv/XPy8SBHZChl8CM7uMc5VML7SqiQ0zG7+J5Vr+RMQDoHa2CNT6KHUnTGIXH34UDMkPzAUyapBZg==}
     engines: {node: '>=8'}
@@ -9153,12 +9153,12 @@ packages:
       unist-util-visit: 4.1.1
     dev: false
 
-  /unist-util-remove/3.1.0:
-    resolution: {integrity: sha512-rO/sIghl13eN8irs5OBN2a4RC10MsJdiePCfwrvnzGtgIbHcDXr2REr0qi9F2r/CIb1r9FyyFmcMRIGs+EyUFw==}
+  /unist-util-source/4.0.1:
+    resolution: {integrity: sha512-Ba/ZWitVHLcE90kb8/doekTOdFkjM555EiDxT6tbhBIWBPioGVR9LHbWMZ2OX9Ak473ST+fKj8x39yiDRSrdzw==}
     dependencies:
       '@types/unist': 2.0.6
-      unist-util-is: 5.1.1
-      unist-util-visit-parents: 5.1.1
+      vfile: 5.3.5
+      vfile-location: 4.0.1
     dev: false
 
   /unist-util-stringify-position/3.0.2:

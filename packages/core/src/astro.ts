@@ -1,18 +1,38 @@
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
+import { rehypeDocz } from '@docz/rehype';
 import { defineConfig } from 'astro/config';
 import _ from 'lodash';
 import remarkToc from 'remark-toc';
 
-import pkg from '../package.json';
-
 import type { Config, ConfigObj } from '~/types';
-import { viteExportFilemeta } from '~/utils/vite';
+import { doczVitePlugin } from '~/vite';
+
+function mergeCustomizer(obj: any, src: any) {
+  if (_.isArray(obj)) {
+    return obj.concat(src);
+  }
+  return _.merge(obj, src);
+}
 
 export function createAstroConfig(config: ConfigObj, doczConfig?: Config) {
   const baseConfig = config.rawConfig;
   const remarkPlugins = doczConfig?.remarkPlugins || [];
   const rehypePlugins = doczConfig?.rehypePlugins || [];
+  const viteDefaultConfig = {
+    plugins: [doczVitePlugin(config.rawConfig)],
+    ssr: {
+      external: ['github-slugger'],
+      noExternal: ['@astrojs/prism'],
+    },
+  };
+
+  const vite = _.mergeWith(
+    viteDefaultConfig,
+    doczConfig?.viteConfig,
+    mergeCustomizer
+  );
+
   return defineConfig({
     publicDir: baseConfig.publicDir,
     outDir: baseConfig.distDir,
@@ -21,8 +41,9 @@ export function createAstroConfig(config: ConfigObj, doczConfig?: Config) {
     output: 'static',
     integrations: [
       mdx({
-        rehypePlugins,
+        rehypePlugins: rehypePlugins.concat([rehypeDocz]),
         remarkPlugins: remarkPlugins.concat([remarkToc]),
+        extendPlugins: 'astroDefaults',
       }),
       react(),
       ...(doczConfig?.astroIntegrations || []),
@@ -31,14 +52,9 @@ export function createAstroConfig(config: ConfigObj, doczConfig?: Config) {
       host: baseConfig.host,
       port: baseConfig.port,
     },
-    vite: _.merge(
-      {
-        plugins: [viteExportFilemeta(config.rawConfig)],
-        ssr: {
-          external: [...Object.keys(pkg.dependencies), 'github-slugger'],
-        },
-      },
-      doczConfig?.viteConfig
-    ),
+    vite,
+    markdown: {
+      syntaxHighlight: 'prism',
+    },
   });
 }

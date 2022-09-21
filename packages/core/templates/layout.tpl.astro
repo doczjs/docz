@@ -5,7 +5,6 @@ import { store } from "docz";
 const { entry } = Astro.props;
 store.setKey("entry", entry);
 store.setKey("config", db.config);
-store.setKey("props", db.props);
 ---
 
 <!DOCTYPE html>
@@ -18,7 +17,6 @@ store.setKey("props", db.props);
       set:html={`window.__DOCZ_INITIAL_STORE__ = ${JSON.stringify({
         entry,
         config: db.config,
-        props: db.props,
       })}`}
     ></script>
   </head>

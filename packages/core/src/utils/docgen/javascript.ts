@@ -19,7 +19,7 @@ const throwError = (err: any) => {
 };
 
 export const jsParser = (files: string[], config: Config) => {
-  const resolver = config.docgenConfig.resolver || doczResolver;
+  const resolver = config.docgenConfig?.resolver ?? doczResolver;
   const root = config.paths.root;
 
   const parseFilepathProps = (filepath: string) => {

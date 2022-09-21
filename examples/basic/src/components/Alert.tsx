@@ -8,8 +8,7 @@ const KINDS = {
 };
 
 export type AlertProps = {
-  kind: "info" | "positive" | "negative" | "warning";
-  test: string;
+  kind: "info" | "success" | "error" | "warning";
   children: ReactNode;
 };
 

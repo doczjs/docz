@@ -3,13 +3,18 @@ name: Alert
 menu: Components
 ---
 
+import Playground from "docz/playground";
 import { Props } from "docz";
-import { Alert, Test } from "./Alert";
+import { Alert } from "./Alert";
 
 # Alert
 
-<Alert client:load>Some message</Alert>
-
-# Props Alert
+## Props Alert
 
 <Props of={Alert} />
+
+## Usage
+
+<Playground>
+  <Alert>Helo</Alert>
+</Playground>

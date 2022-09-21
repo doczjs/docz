@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-
 import crypto from 'crypto';
 import fs from 'fs-extra';
 import _ from 'lodash';
 import path from 'path';
 import reactDocgenTs from 'react-docgen-typescript';
 import logger from 'signale';
+import ts from 'typescript';
 import type {
   CompilerOptions,
   LanguageService,
@@ -14,13 +13,8 @@ import type {
   SourceFile,
 } from 'typescript';
 
-import { importTs } from './import-ts';
-
 import * as paths from '~/config/paths';
 import type { Config } from '~/types';
-
-// @ts-ignore
-const ts = await importTs();
 
 export const unixPath = (src: string): string => {
   return path.normalize(src).replace(/\\/g, '/');
@@ -68,7 +62,7 @@ function writePropsOnCache(items: PropItem[], config: Config): void {
   fs.outputJSONSync(cacheFilepath, { ...cache, ...newCache });
 }
 
-function getPropsOnCache(): any {
+function getPropsOnCache() {
   const cache = readCacheFile();
   if (_.isEmpty(cache)) {
     logger.warn('No cache was found with your props definitions');

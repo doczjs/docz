@@ -4,8 +4,8 @@ import logger from 'signale';
 export const formatter = (code: string) =>
   prettier.format(code, {
     parser: 'babel',
-    semi: false,
-    singleQuote: true,
+    semi: true,
+    singleQuote: false,
     trailingComma: 'all',
   } as any);
 

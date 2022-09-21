@@ -28,7 +28,6 @@ export class DataServer {
 
   private register(): DataServer {
     const { config, entries } = this;
-    if (config.propsParser) this.states.add(states.props(config));
     this.states.add(states.config(config));
     this.states.add(states.entries(entries, config));
     return this;

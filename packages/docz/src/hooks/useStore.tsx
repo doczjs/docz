@@ -2,12 +2,11 @@ import { map } from "nanostores";
 
 import { useNanoStore } from "./useNanoStore";
 
-import type { Config, Entry, PropItem } from "~/types";
+import type { Config, Entry } from "~/types";
 
 type Store = {
   entry: Entry;
   config: Config;
-  props: PropItem[];
 };
 
 let initialStore: Store;
