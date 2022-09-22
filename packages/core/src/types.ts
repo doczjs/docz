@@ -42,6 +42,8 @@ export interface DoczArgs {
   site: string;
   title: string;
   description: string;
+  /* theme */
+  layoutFile?: string | null;
 }
 
 export interface Config extends DoczArgs {

@@ -1,7 +1,7 @@
 import chokidar from 'chokidar';
+import { findUp } from 'find-up';
 import fs from 'fs-extra';
 import _ from 'lodash';
-import path from 'path';
 
 import * as paths from '~/config/paths';
 import { db } from '~/lib/Database';
@@ -54,9 +54,9 @@ export const state = (config: Config) => {
   const watcher = createWatcher(glob, config);
 
   async function update() {
-    const pathToConfig = path.join(paths.docz, 'doczrc.js');
+    const pathToConfig = await findUp(finds('docz'), { cwd: paths.root });
     const next = config.configFile
-      ? await loadFrom('docz', pathToConfig, initial, paths.root)
+      ? await loadFrom('docz', pathToConfig!, initial, paths.root)
       : await load('docz', initial, paths.root);
 
     await db.set('config', next);

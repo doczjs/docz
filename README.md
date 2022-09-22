@@ -52,8 +52,8 @@ name: Button
 route: /
 ---
 
-import { Playground, Props } from 'docz'
-import Button from './Button'
+import { Playground, Props } from "docz";
+import Button from "./Button";
 
 # Button
 
@@ -70,22 +70,22 @@ import Button from './Button'
 And a Button component `Button.jsx`:
 
 ```typescript
-import React from 'react'
-import t from 'prop-types'
+import React from "react";
+import t from "prop-types";
 
-const Button = ({ children, type }) => <button type={type}>{children}</button>
+const Button = ({ children, type }) => <button type={type}>{children}</button>;
 
 Button.propTypes = {
   /**
    * This is a description for this prop.
    * Button type.
    */
-  type: t.oneOf(['button', 'submit', 'reset']),
-}
+  type: t.oneOf(["button", "submit", "reset"]),
+};
 Button.defaultProps = {
-  type: 'button',
-}
-export default Button
+  type: "button",
+};
+export default Button;
 ```
 
 Finally, run:

@@ -88,5 +88,9 @@ export const setArgs = (yargs: Yargs<DoczArgs>) => {
     .option('description', {
       type: 'string',
       default: getEnv('docz.description', getInitialDescription(pkg)),
+    })
+    .option('layoutFile', {
+      type: 'string',
+      default: getEnv('docz.description', null),
     });
 };

@@ -6,7 +6,7 @@ export async function getStaticPaths() {
   return db.entries.map((entry) => {
     return {
       params: { slug: entry.route === "/" ? undefined : getRoute(entry) },
-      props: { entry },
+      props: { page: entry, db },
     };
   });
 }
@@ -16,12 +16,12 @@ export function getRoute(entry) {
   return entry.route?.match(/(\/?)(.+)/)?.[2] || entry.slug;
 }
 
-const { entry } = Astro.props;
-const posts = await Astro.glob("../../../**/*.{md,mdx}");
-const post = posts.find((post) => post.url === entry.fullpath);
-const Content = post?.Content;
+const { config } = db;
+const { page } = Astro.props;
+const posts = await Astro.glob(`../../../**/*.{md,mdx}`);
+const post = posts.find((post) => post.url === page.fullpath);
 ---
 
-<Layout entry={entry}>
-  {Content && <Content />}
+<Layout {page} {config} {post}>
+  <slot />
 </Layout>

@@ -1,0 +1,83 @@
+---
+import { getCssText } from "../styles";
+---
+
+<style id="stitches" set:html={getCssText()}>
+
+</style>
+
+<style>
+  @font-face {
+    font-family: "Satoshi";
+    src: url("https://pedronauck-strapi.sfo3.digitaloceanspaces.com/fonts/Satoshi-Variable.woff2")
+        format("woff2"),
+      url("https://pedronauck-strapi.sfo3.digitaloceanspaces.com/fonts/Satoshi-Variable.woff")
+        format("woff"),
+      url("https://pedronauck-strapi.sfo3.digitaloceanspaces.com/fonts/Satoshi-Variable.ttf")
+        format("truetype");
+    font-weight: 300 900;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Satoshi";
+    src: url("https://pedronauck-strapi.sfo3.digitaloceanspaces.com/fonts/Satoshi-VariableItalic.woff2")
+        format("woff2"),
+      url("https://pedronauck-strapi.sfo3.digitaloceanspaces.com/fonts/Satoshi-VariableItalic.woff")
+        format("woff"),
+      url("https://pedronauck-strapi.sfo3.digitaloceanspaces.com/fonts/Satoshi-VariableItalic.ttf")
+        format("truetype");
+    font-weight: 300 900;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "GeneralSans";
+    src: url("https://pedronauck-strapi.sfo3.digitaloceanspaces.com/fonts/GeneralSans-Variable.woff2")
+        format("woff2"),
+      url("https://pedronauck-strapi.sfo3.digitaloceanspaces.com/fonts/GeneralSans-Variable.woff")
+        format("woff"),
+      url("https://pedronauck-strapi.sfo3.digitaloceanspaces.com/fonts/GeneralSans-Variable.ttf")
+        format("truetype");
+    font-weight: 300 900;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "GeneralSans";
+    src: url("https://pedronauck-strapi.sfo3.digitaloceanspaces.com/fonts/GeneralSans-VariableItalic.woff2")
+        format("woff2"),
+      url("https://pedronauck-strapi.sfo3.digitaloceanspaces.com/fonts/GeneralSans-VariableItalic.woff")
+        format("woff"),
+      url("https://pedronauck-strapi.sfo3.digitaloceanspaces.com/fonts/GeneralSans-VariableItalic.ttf")
+        format("truetype");
+    font-weight: 300 900;
+    font-style: italic;
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    letter-spacing: 0.01em;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    font-family: "Satoshi", system-ui, -apple-system;
+    line-height: 1.25;
+    color: white;
+    background: #101112;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "General Sans", system-ui, -apple-system;
+  }
+</style>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+  integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>

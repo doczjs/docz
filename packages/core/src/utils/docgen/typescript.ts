@@ -179,7 +179,7 @@ const defaultPropFilter = (prop: any): boolean => {
 const parseFiles = (files: string[], config: Config, tsconfig: string) => {
   const opts = {
     propFilter(prop: any): boolean {
-      const customPropFilter = config.docgenConfig.propFilter;
+      const customPropFilter = config.docgenConfig?.propFilter;
       const propFilter =
         customPropFilter && _.isFunction(customPropFilter)
           ? customPropFilter
@@ -188,7 +188,7 @@ const parseFiles = (files: string[], config: Config, tsconfig: string) => {
       return Boolean(propFilter(prop));
     },
     componentNameResolver(exp: any, source: SourceFile): any {
-      const componentNameResolver = config.docgenConfig.resolver;
+      const componentNameResolver = config.docgenConfig?.resolver;
       const val =
         componentNameResolver &&
         _.isFunction(componentNameResolver) &&

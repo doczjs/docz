@@ -1,12 +1,13 @@
-import { map } from "nanostores";
+import { map } from 'nanostores';
 
-import { useNanoStore } from "./useNanoStore";
+import { useNanoStore } from './useNanoStore';
 
-import type { Config, Entry } from "~/types";
+import type { Config, Page } from '~/types';
 
 type Store = {
-  entry: Entry;
+  page: Page;
   config: Config;
+  components: Record<string, any>;
 };
 
 let initialStore: Store;

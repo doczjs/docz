@@ -14,6 +14,7 @@ export const cache = path.join(docz, '.cache/');
 export const src = path.join(docz, 'src');
 export const pages = path.join(docz, 'src/pages');
 export const layouts = path.join(docz, 'src/layouts');
+export const components = path.join(docz, 'src/components');
 export const db = path.join(docz, 'db.json');
 export const astroConfig = path.join(docz, 'astro.config.mjs');
 export const doczConfig = path.join(docz, 'doczrc.mjs');

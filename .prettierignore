@@ -10,3 +10,4 @@ pnpm-lock.yaml
 storybook-static
 *.tpl.js
 .next
+.docz

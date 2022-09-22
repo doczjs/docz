@@ -1,17 +1,10 @@
 ---
+import { store } from "../hooks/useStore";
+
 const { of } = Astro.props;
 const { docgenInfo } = of.__filemeta;
+const { components = {} } = store.get();
+const Props = components?.Props;
 ---
 
-<div>
-  {
-    Object.keys(docgenInfo?.props || {}).map((key) => {
-      const item = docgenInfo?.props[key];
-      return (
-        <div key={key}>
-          {key}: {item.type?.name}
-        </div>
-      );
-    })
-  }
-</div>
+{docgenInfo?.props && <Props info={docgenInfo.props} />}

@@ -5,7 +5,7 @@ export type Menu = {
   menu?: Menu[];
 };
 
-export type Entry = {
+export type Page = {
   link: string | null;
   filepath: string;
   fullpath: string;

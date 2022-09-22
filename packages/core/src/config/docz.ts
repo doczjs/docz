@@ -1,10 +1,11 @@
+import { findUp } from 'find-up';
 import _ from 'lodash';
 import type { Arguments } from 'yargs';
 
 import { paths } from '~/config';
 import { Plugin } from '~/lib/Plugin';
 import type { Config, DoczArgs } from '~/types';
-import { load, loadFrom } from '~/utils/load-config';
+import { finds, load, loadFrom } from '~/utils/load-config';
 
 const toOmit = ['_', '$0', 'version', 'help'];
 export const doczRcBaseConfig = {
@@ -54,6 +55,7 @@ function omitAbbr(config: any) {
     'edit-branch',
     'config-file',
     'props-parser',
+    'layout-file',
     'p',
   ]);
 }
@@ -63,8 +65,11 @@ export async function parseConfig(
   custom?: Partial<Config>
 ) {
   const defaultConfig = getBaseConfig(argv, custom);
-  const config = argv.configFile
-    ? await loadFrom<Config>('docz', argv.configFile, defaultConfig, paths.root)
+  const configPath =
+    argv.configFile || (await findUp(finds('docz'), { cwd: paths.root }));
+
+  const config = configPath
+    ? await loadFrom<Config>('docz', configPath, defaultConfig, paths.root)
     : await load<Config>('docz', defaultConfig, paths.root);
 
   const reduceAsync = Plugin.reduceFromPluginsAsync<Config>(config.plugins);

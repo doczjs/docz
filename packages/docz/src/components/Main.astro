@@ -1,0 +1,15 @@
+---
+const { page, config, components, post } = Astro.props;
+import { store } from "../hooks/useStore";
+
+store.set({ config, page, components });
+
+const Content = post?.Content;
+const initialStore = `window.__DOCZ_INITIAL_STORE__ = ${JSON.stringify({
+  config,
+  page,
+})}`;
+---
+
+{Content && <Content />}
+<script set:html={initialStore}></script>

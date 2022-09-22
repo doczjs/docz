@@ -1,16 +1,16 @@
-import type { MapStore } from "nanostores";
-import { listenKeys } from "nanostores";
-import { useCallback, useSyncExternalStore } from "react";
+import type { MapStore } from 'nanostores';
+import { listenKeys } from 'nanostores';
+import { useCallback, useSyncExternalStore } from 'react';
 
 export function useNanoStore<T extends object = any>(
   store: MapStore<T>,
   opts: any = {}
 ) {
-  if (process.env.NODE_ENV !== "production") {
-    if (typeof store === "function") {
+  if (process.env.NODE_ENV !== 'production') {
+    if (typeof store === 'function') {
       throw new Error(
-        "Use useStore(Template(id)) or useSync() " +
-          "from @logux/client/react for templates"
+        'Use useStore(Template(id)) or useSync() ' +
+          'from @logux/client/react for templates'
       );
     }
   }

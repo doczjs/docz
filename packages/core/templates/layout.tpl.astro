@@ -1,26 +1,19 @@
 ---
-import db from "../../db.json";
-import { store } from "docz";
+import { Main } from "docz/components";
+import { Styles, components } from "@docz/theme-basic";
 
-const { entry } = Astro.props;
-store.setKey("entry", entry);
-store.setKey("config", db.config);
+const { page, config } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>{entry.name} | {db.config.title}</title>
+    <title>{page.name} | {config.title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script
-      set:html={`window.__DOCZ_INITIAL_STORE__ = ${JSON.stringify({
-        entry,
-        config: db.config,
-      })}`}
-    ></script>
+    <Styles />
   </head>
   <body>
-    {entry ? <slot /> : <div>Not Found</div>}
+    <Main {...Astro.props} {components} />
   </body>
 </html>
