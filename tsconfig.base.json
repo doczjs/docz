@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
     "preserveSymlinks": false,
     "forceConsistentCasingInFileNames": true,
     "lib": ["dom", "esnext", "ES2022"],
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",

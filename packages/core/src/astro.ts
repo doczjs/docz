@@ -1,5 +1,6 @@
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
+import vue from '@astrojs/vue';
 import { rehypeDocz } from '@docz/rehype';
 import { defineConfig } from 'astro/config';
 import _ from 'lodash';
@@ -42,9 +43,9 @@ export function createAstroConfig(config: ConfigObj, doczConfig?: Config) {
       mdx({
         rehypePlugins: rehypePlugins.concat([rehypeDocz]),
         remarkPlugins: remarkPlugins.concat([remarkToc]),
-        extendPlugins: 'astroDefaults',
       }),
       react(),
+      vue(),
       ...(doczConfig?.astroIntegrations || []),
     ],
     server: {

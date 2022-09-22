@@ -12,7 +12,7 @@ export type AlertProps = {
   children: ReactNode;
 };
 
-export function Alert({ children, kind = "info", ...rest }: AlertProps) {
+export default function Alert({ children, kind = "info" }: AlertProps) {
   return (
     <div
       style={{
@@ -22,7 +22,6 @@ export function Alert({ children, kind = "info", ...rest }: AlertProps) {
         color: "white",
         backgroundColor: KINDS[kind],
       }}
-      {...rest}
     >
       {children}
     </div>

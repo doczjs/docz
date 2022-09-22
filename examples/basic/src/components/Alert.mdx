@@ -4,19 +4,29 @@ menu: Components
 ---
 
 import { Playground, Props } from "docz/components";
-import { Alert } from "./Alert";
+import ReactAlert from "./Alert";
+import VueAlert from "./Alert.vue";
 
 # Alert
 
-## Props Alert
+## Props
 
-<Props of={Alert} />
+<Props of={ReactAlert} />
 
-## Usage
+## Usage React
 
-<Playground lang="jsx">
-  <Alert>Helo</Alert>
-  <Alert kind="success">Helo</Alert>
-  <Alert kind="error">Helo</Alert>
-  <Alert kind="warning">Helo</Alert>
+<Playground type="react">
+  <ReactAlert kind="info">Some message</ReactAlert>
+  <ReactAlert kind="success">Some message</ReactAlert>
+  <ReactAlert kind="error">Some message</ReactAlert>
+  <ReactAlert kind="warning">Some message</ReactAlert>
+</Playground>
+
+## Usage Vue
+
+<Playground type="vue">
+  <VueAlert kind="info">Some message</VueAlert>
+  <VueAlert kind="success">Some message</VueAlert>
+  <VueAlert kind="error">Some message</VueAlert>
+  <VueAlert kind="warning">Some message</VueAlert>
 </Playground>

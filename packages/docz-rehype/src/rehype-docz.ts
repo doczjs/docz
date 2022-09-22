@@ -4,9 +4,16 @@ import { strip } from './utils/strip-indent';
 
 import { format } from '~/utils/format';
 
-const isPlayground = (name: string) => {
+function isPlayground(name: string) {
   return name.includes('Playground');
-};
+}
+
+function walk(children: any[], cb: (node: any) => void) {
+  for (const node of children) {
+    cb(node);
+    node.children && walk(node.children, cb);
+  }
+}
 
 const addComponentsProps = (vfile: any) => async (node: any, idx: number) => {
   if (isPlayground(node.name)) {
@@ -20,12 +27,21 @@ const addComponentsProps = (vfile: any) => async (node: any, idx: number) => {
         })
     );
     const code = strip(codes.join(''));
-    // const typeAttr = node.attributes.find((i: any) => i.name === 'type');
+    const attrType = node.attributes.find((attr: any) => attr.name === 'type');
     node.attributes.push(
-      // { type: 'mdxJsxAttribute', name: 'client:only', value: typeAttr.value },
       { type: 'mdxJsxAttribute', name: '__position', value: idx },
       { type: 'mdxJsxAttribute', name: '__code', value: code }
     );
+
+    walk(node.children, (node) => {
+      if (node.type === 'mdxJsxFlowElement') {
+        node.attributes.push({
+          type: 'mdxJsxAttribute',
+          name: 'client:only',
+          value: attrType?.value ?? 'react',
+        });
+      }
+    });
   }
 };
 
