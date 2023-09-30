@@ -12,9 +12,16 @@
 
 > ⚠️ WARNING
 
-> This is an **OUTDATED** version of Docz, if you are going to use it, be aware that you may possibly find bugs due to the outdated dependencies. Mainly because of all this time without updates, became almost impossible to follow with the decision of keep the same stack and update things.
+> This README refers to an **OUTDATED** version of Docz. If you are planning to use Docz, we recommend checking out the latest version to ensure you have access to the latest features and bug fixes. The new version is undergoing significant improvements, including core refactoring and the integration of [Astro](https://astro.build) as a bundler.
 
-> So, we're working in a [new version](https://github.com/doczjs/docz/tree/new) that will include an entire core refactoring/rewritting by adding [Astro](https://astro.build) behind the scenes as bundler and another cools feature.
+## Introducing the Upcoming Docz Version
+> We are thrilled to announce the upcoming release of Docz, which will bring several exciting enhancements to the world of documentation for your code. Here's a sneak peek at what you can expect from the [new version](https://github.com/doczjs/docz/tree/new):
+
+>> Core Refactoring: We've undertaken a comprehensive rewrite of Docz's core, making it more efficient and powerful than ever.
+
+>> Astro Integration: Say hello to [Astro](https://astro.build)! We've integrated this cutting-edge bundler behind the scenes to supercharge your documentation site's performance.
+
+>> Cool New Features: While we're working hard to maintain compatibility and minimize breaking changes, we're also introducing some cool new features to make your documentation experience even better.
 
 > Since we really want to don't have so much breakings changes - and try to bring back the spot and quality Docz deserves - this can take a while to be done, please be patient and if you want to help, just send me a message [on my Twitter](https://twitter.com/pedronauck)!
 
