@@ -31,7 +31,6 @@ Create MDX files showcasing your code and Docz turns them into a live-reloading,
 - [Add Docz to an Existing Project](#add-docz-to-an-existing-project)
 - [Build](#build)
 - [Deploy](#deploy)
-- [Examples](#examples)
 - [More info on docz.site](#more-info-on-doczsite)
 - [Used by](#used-by)
 - [Contributors](#contributors)
@@ -134,23 +133,6 @@ You can have `yarn docz build` emit to a different directory by providing a path
 The output of docz consists of static assets only. This allows you to deploy your generated `docz` site with any static site hosting provider you'd like. 
 
 Start by building your site with `yarn docz build`, if you haven't provided a `dest` flag to your config then you will find your generated files in `.docz/dist` to copy to the server.
-
-## Examples
-
-- **[basic](https://github.com/doczjs/docz/tree/master/examples/basic)** - Barebones example.
-- **[gatsby](https://github.com/doczjs/docz/tree/master/examples/gatsby)** - Example using Docz in a Gastby project.
-- **[react native](https://github.com/doczjs/docz/tree/master/examples/react-native)** - Using Docz in a React Native project.
-- **[styled-components](https://github.com/doczjs/docz/tree/master/examples/styled-components)** - Using Docz with `styled-components`.
-- **[with typescript](https://github.com/doczjs/docz/tree/master/examples/typescript)** - Using Docz with Typescript.
-- **[with flow](https://github.com/doczjs/docz/tree/master/examples/flow)** - Using Docz with Flow.
-- **[with images](https://github.com/doczjs/docz/tree/master/examples/images)** - Using Docz with images in mdx and jsx.
-
-- **[with sass](https://github.com/doczjs/docz/tree/master/examples/sass)** - Using Docz parsing CSS with SASS.
-- **[with less](https://github.com/doczjs/docz/tree/master/examples/less)** - Using Docz parsing CSS with LESS.
-- **[with stylus](https://github.com/doczjs/docz/tree/master/examples/css-stylus)** - Using Docz parsing CSS with Stylus.
-- **with css modules**: works out of the box with gatsby
-
-You can check the complete list of docz examples [here](https://github.com/doczjs/docz/tree/master/examples).
 
 ## More info on [docz.site](https://docz.site)
 

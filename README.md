@@ -116,25 +116,6 @@ This allows you to deploy your generated `docz` site with any static site hostin
 
 Start by building your site with `yarn docz build`, if you haven't provided a `dest` flag to your config then you will find your generated files in `.docz/dist` to copy to the server.
 
-## Examples
-
-- **[with basic](https://github.com/doczjs/docz/tree/main/examples/basic)**
-- **[with a gatsby site](https://github.com/doczjs/docz/tree/main/examples/gatsby)**
-- **[with react native](https://github.com/doczjs/docz/tree/main/examples/react-native)**
-- **[with styled-components](https://github.com/doczjs/docz/tree/main/examples/styled-components)**
-- **[with typescript](https://github.com/doczjs/docz/tree/main/examples/typescript)**
-- **[with algolia search](https://github.com/doczjs/docz/tree/main/examples/with-algolia-search)**
-- **[with gatsby-remark-vscode](https://github.com/doczjs/docz/tree/main/examples/with-gatsby-remark-vscode)**
-- **[with react-router](https://github.com/doczjs/docz/tree/main/examples/react-router)**
-- **[with flow](https://github.com/doczjs/docz/tree/main/examples/flow)**
-- **[with images](https://github.com/doczjs/docz/tree/main/examples/images)**
-- **[with sass](https://github.com/doczjs/docz/tree/main/examples/sass)**
-- **[with less](https://github.com/doczjs/docz/tree/main/examples/less)**
-- **[with stylus](https://github.com/doczjs/docz/tree/main/examples/css-stylus)**
-- **with css modules**: works out of the box.
-
-### You can check the complete list of docz examples [here](https://github.com/doczjs/docz/tree/main/examples).
-
 ## More info on [docz.site](https://docz.site)
 
 ## Used by

@@ -56,7 +56,6 @@ docz follows the [Monorepo](https://en.wikipedia.org/wiki/Monorepo) design manag
 The are just two directories to care about if you would like to contribute:
 
 - **Packages**: Host all docz source code.
-- **Examples**: Host all available usage examples.
 
 #### Packages
 
@@ -89,11 +88,6 @@ Commit messages should follow the [commit message convention](https://convention
 - Work in the **src** folder of a respective package and **DO NOT** check `dist` in the commits.
 
 - It's OK - and a very nice thing - to have multiple small commits as you work on the PR - we will let GitHub automatically squash it before merging.
-
-### If adding a new feature:
-
-- Make sure that [all examples](https://github.com/pedronauck/docz/tree/master/examples) are running as expected
-- Provide convincing reason to add this feature. Ideally you should open a suggestion issue first and have it greenlighted before working on it.
 
 ## Contributors
 
