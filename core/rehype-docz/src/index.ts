@@ -9,25 +9,23 @@ const isPlayground = (name: string) => {
   return name === 'Playground'
 }
 
-const addComponentsProps = (scopes: string[]) => async (
-  node: any,
-  idx: number
-) => {
-  const name = componentName(node.value)
-  const tagOpen = new RegExp(`^\\<${name}`)
+const addComponentsProps =
+  (scopes: string[]) => async (node: any, idx: number) => {
+    const name = componentName(node.value)
+    const tagOpen = new RegExp(`^\\<${name}`)
 
-  if (isPlayground(name)) {
-    const formatted = await format(nodeToString(node))
-    const code = formatted.slice(1, Infinity)
-    const scope = `{props,${scopes.join(',')}}`
-    const child = sanitizeCode(removeTags(code))
+    if (isPlayground(name)) {
+      const formatted = await format(nodeToString(node))
+      const code = formatted.slice(1, Infinity)
+      const scope = `{props,${scopes.join(',')}}`
+      const child = sanitizeCode(removeTags(code))
 
-    node.value = node.value.replace(
-      tagOpen,
-      `<${name} __position={${idx}} __code={'${child}'} __scope={${scope}}`
-    )
+      node.value = node.value.replace(
+        tagOpen,
+        `<${name} __position={${idx}} __code={'${child}'} __scope={${scope}}`
+      )
+    }
   }
-}
 
 export interface PluginOpts {
   root: string

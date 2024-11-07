@@ -1,6 +1,6 @@
 {
-  "name": "docz-example-basic",
-  "version": "2.0.0",
+  "name": "@waylay/docz-example-basic",
+  "version": "2.5.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
     "serve": "docz serve"
   },
   "dependencies": {
-    "docz": "latest",
+    "@waylay/docz": "latest",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0"

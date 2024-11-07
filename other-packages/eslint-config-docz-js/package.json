@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-docz-js",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "Eslint config of Docz for Javascript",
   "license": "MIT",
   "author": {
@@ -22,11 +22,11 @@
     "fix:prettier": "prettier \"**/*.js\" --write"
   },
   "dependencies": {
-    "babel-eslint": "^10.0.2",
-    "eslint": "^6.5.1",
-    "eslint-config-prettier": "^5.0.0",
-    "eslint-plugin-mdx": "^1.6.1",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react": "^7.13.0"
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-mdx": "^3.1.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.37.2"
   }
 }

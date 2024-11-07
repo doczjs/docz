@@ -4,7 +4,12 @@
     "core/**/*",
     "other-packages/**/*"
   ],
-  "version": "2.4.0",
+  "command": {
+    "publish": {
+      "registry": "https:/npm.waylay.io"
+    }
+  },
+  "version": "2.5.0",
   "npmClient": "yarn",
   "useWorkspaces": true
 }

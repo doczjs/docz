@@ -15,10 +15,7 @@ import * as paths from '../config/paths'
 import { Config } from '../config/argv'
 
 const createId = (file: string) =>
-  crypto
-    .createHash('md5')
-    .update(file)
-    .digest('hex')
+  crypto.createHash('md5').update(file).digest('hex')
 
 export interface EntryObj {
   id: string

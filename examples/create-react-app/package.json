@@ -1,9 +1,9 @@
 {
-  "name": "docz-example-create-react-app",
-  "version": "2.0.0-rc.43",
+  "name": "@waylay/docz-example-create-react-app",
+  "version": "2.5.0",
   "private": true,
   "dependencies": {
-    "docz": "latest",
+    "@waylay/docz": "latest",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-scripts": "^3.2.0"

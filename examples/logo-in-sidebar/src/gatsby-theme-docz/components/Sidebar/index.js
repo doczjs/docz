@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { Fragment, forwardRef, useState, useRef, useEffect } from 'react'
-import { Global } from "@emotion/react";
-import { jsx, Box } from "theme-ui";
-import { useMenus, useCurrentDoc } from "docz";
+import { Global } from '@emotion/react'
+import { jsx, Box } from 'theme-ui'
+import { useMenus, useCurrentDoc } from 'docz'
 
 import * as styles from 'gatsby-theme-docz/src/components/Sidebar/styles'
 import { NavSearch } from 'gatsby-theme-docz/src/components/NavSearch'

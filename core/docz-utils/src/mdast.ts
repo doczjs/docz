@@ -36,9 +36,7 @@ const valueFromHeading = (node: any) => {
   const slug = get(node, 'data.id')
 
   if (Array.isArray(children)) {
-    return flatten(getChildValue(children))
-      .filter(Boolean)
-      .join(' ')
+    return flatten(getChildValue(children)).filter(Boolean).join(' ')
   }
 
   return humanize(slug)

@@ -1,8 +1,8 @@
 import React from 'react'
 import { connectSearchBox } from 'react-instantsearch-dom'
 import { SearchIcon, Form, Input } from './primitives'
-import { Search } from 'gatsby-theme-docz/src/components/Icons'
-import * as styles from 'gatsby-theme-docz/src/components/NavSearch/styles'
+// import { Search } from 'gatsby-theme-docz/src/components/Icons'
+// import * as styles from 'gatsby-theme-docz/src/components/NavSearch/styles'
 
 export default connectSearchBox(({ refine, ...rest }) => (
   <Form>

@@ -44,10 +44,7 @@ const normalize = (item: MenuItem | string): MenuItem => {
 const clean = (item: MenuItem) =>
   item.href || item.route ? omit('menu', item) : item
 
-const normalizeAndClean = pipe(
-  normalize,
-  clean
-)
+const normalizeAndClean = pipe(normalize, clean)
 
 const mergeMenus = (entriesMenu: Menus, configMenu: Menus): Menus => {
   const first = entriesMenu.map(normalizeAndClean)
@@ -77,10 +74,12 @@ const findPos = (item: any, orderedList: string[] = []) => {
 }
 
 type ToCompare = Menus | undefined
-const compareWithMenu = (to: ToCompare = []) => (a: string, b: string) => {
-  const list = to.map((i: any) => i.name || i)
-  return compare(findPos(a, list), findPos(b, list))
-}
+const compareWithMenu =
+  (to: ToCompare = []) =>
+  (a: string, b: string) => {
+    const list = to.map((i: any) => i.name || i)
+    return compare(findPos(a, list), findPos(b, list))
+  }
 
 const sortByName = (a: MenuItem, b: MenuItem) => {
   return a.name < b.name ? -1 : a.name > b.name ? 1 : 0

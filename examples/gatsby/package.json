@@ -1,8 +1,8 @@
 {
-  "name": "docz-example-gatsby",
+  "name": "@waylay/docz-example-gatsby",
   "private": true,
   "description": "Example of how to integrate docz with gatsby as a theme",
-  "version": "2.0.0-rc.41",
+  "version": "2.5.0",
   "keywords": [
     "gatsby",
     "docz"
@@ -21,7 +21,7 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
-    "docz": "^2.0.0-rc.76",
+    "@waylay/docz": "^2.5.0",
     "gatsby": "^2.13.73",
     "gatsby-plugin-offline": "^2.2.7",
     "gatsby-plugin-sharp": "^2.2.18",

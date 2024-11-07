@@ -1,7 +1,7 @@
 {
-  "name": "docz-example-gatsby-remark-vscode",
+  "name": "@waylay/docz-example-gatsby-remark-vscode",
   "private": true,
-  "version": "2.0.0",
+  "version": "2.5.0",
   "license": "MIT",
   "scripts": {
     "dev": "docz dev",
@@ -9,7 +9,7 @@
     "serve": "docz serve"
   },
   "dependencies": {
-    "docz": "latest",
+    "@waylay/docz": "latest",
     "gatsby-remark-vscode": "^1.4.0",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",

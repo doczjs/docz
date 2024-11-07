@@ -33,6 +33,7 @@ dist
 .cache
 .docz
 .idea
+.vscode
 
 storage
 .e2e-tests-cache

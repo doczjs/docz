@@ -170,7 +170,7 @@ const insertNodeExportDefault = t => (path, state) => {
   }
 }
 
-module.exports = function({ types: t }) {
+module.exports = function ({ types: t }) {
   const insertExport = insertNodeExport(t)
   const insertExportDefault = insertNodeExportDefault(t)
 

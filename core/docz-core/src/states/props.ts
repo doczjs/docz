@@ -43,16 +43,15 @@ export const getPattern = (config: Config) => {
 const removeFilepath = (items: any[], filepath: string) =>
   items.filter((item: any) => item.key !== filepath)
 
-export const initial = (config: Config, pattern: string[]) => async (
-  p: Params
-) => {
-  const { filterComponents } = config
-  const cwd = paths.getRootDir(config)
-  const files = await fastglob(pattern, { cwd, caseSensitiveMatch: false })
-  const filtered = filterComponents ? filterComponents(files) : files
-  const metadata = await docgen(filtered, config)
-  p.setState('props', metadata)
-}
+export const initial =
+  (config: Config, pattern: string[]) => async (p: Params) => {
+    const { filterComponents } = config
+    const cwd = paths.getRootDir(config)
+    const files = await fastglob(pattern, { cwd, caseSensitiveMatch: false })
+    const filtered = filterComponents ? filterComponents(files) : files
+    const metadata = await docgen(filtered, config)
+    p.setState('props', metadata)
+  }
 
 const change = (p: Params, config: Config) => async (filepath: string) => {
   const prev = get('props', p.getState())

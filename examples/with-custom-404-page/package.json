@@ -1,6 +1,6 @@
 {
   "name": "with-custom-404-page",
-  "version": "2.0.0",
+  "version": "2.5.0",
   "license": "MIT",
   "scripts": {
     "dev": "docz dev",
@@ -8,7 +8,7 @@
     "serve": "docz serve"
   },
   "dependencies": {
-    "docz": "^2.3.2-alpha.0",
+    "@waylay/docz": "^2.5.0",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0"

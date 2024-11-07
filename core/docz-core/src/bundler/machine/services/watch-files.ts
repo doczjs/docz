@@ -46,28 +46,22 @@ const watchGatsbyThemeFiles = (args: Config) => {
   return () => watcher.close()
 }
 
-const createWatch = (args: Config) => (
-  glob: any,
-  src: string,
-  custom?: boolean
-) => {
-  const watcher = createWatcher(glob, args)
-  const srcPath = path.join(paths.root, src)
-  const destPath = path.join(
-    paths.docz,
-    custom ? src.replace('.js', '.custom.js') : src
-  )
+const createWatch =
+  (args: Config) => (glob: any, src: string, custom?: boolean) => {
+    const watcher = createWatcher(glob, args)
+    const srcPath = path.join(paths.root, src)
+    const destPath = path.join(
+      paths.docz,
+      custom ? src.replace('.js', '.custom.js') : src
+    )
 
-  const copyFile = () => fs.copySync(srcPath, destPath)
-  const deleteFile = () => fs.removeSync(destPath)
+    const copyFile = () => fs.copySync(srcPath, destPath)
+    const deleteFile = () => fs.removeSync(destPath)
 
-  watcher
-    .on('add', copyFile)
-    .on('change', copyFile)
-    .on('unlink', deleteFile)
+    watcher.on('add', copyFile).on('change', copyFile).on('unlink', deleteFile)
 
-  return () => watcher.close()
-}
+    return () => watcher.close()
+  }
 
 const watchDoczRc = (args: Context['args']) => {
   const watcher = createWatcher(
@@ -85,28 +79,27 @@ const watchDoczRc = (args: Context['args']) => {
     fs.removeSync(path.resolve(paths.docz, 'doczrc.js'))
   }
 
-  watcher
-    .on('add', copy)
-    .on('change', copy)
-    .on('unlink', remove)
+  watcher.on('add', copy).on('change', copy).on('unlink', remove)
   return () => watcher.close()
 }
 
-export const watchFiles = ({ args }: Context) => () => {
-  const watch = createWatch(args)
-  const doczrc = watchDoczRc(args)
-  const gatsbyBrowser = watch(paths.gatsbyBrowser, 'gatsby-browser.js')
-  const gatsbyNode = watch(paths.gatsbyNode, 'gatsby-node.js')
-  const gatsbySSR = watch(paths.gatsbySSR, 'gatsby-ssr.js')
-  const gatsbyConfig = watch(paths.gatsbyConfig, 'gatsby-config.js', true)
-  const themeFilesWatcher = watchGatsbyThemeFiles(args)
+export const watchFiles =
+  ({ args }: Context) =>
+  () => {
+    const watch = createWatch(args)
+    const doczrc = watchDoczRc(args)
+    const gatsbyBrowser = watch(paths.gatsbyBrowser, 'gatsby-browser.js')
+    const gatsbyNode = watch(paths.gatsbyNode, 'gatsby-node.js')
+    const gatsbySSR = watch(paths.gatsbySSR, 'gatsby-ssr.js')
+    const gatsbyConfig = watch(paths.gatsbyConfig, 'gatsby-config.js', true)
+    const themeFilesWatcher = watchGatsbyThemeFiles(args)
 
-  return () => {
-    doczrc()
-    gatsbyConfig()
-    gatsbyBrowser()
-    gatsbyNode()
-    gatsbySSR()
-    themeFilesWatcher()
+    return () => {
+      doczrc()
+      gatsbyConfig()
+      gatsbyBrowser()
+      gatsbyNode()
+      gatsbySSR()
+      themeFilesWatcher()
+    }
   }
-}

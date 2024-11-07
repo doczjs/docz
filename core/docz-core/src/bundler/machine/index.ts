@@ -1,33 +1,34 @@
-import { Machine } from 'xstate'
+import { createMachine } from 'xstate'
 
 import { ServerMachineCtx } from './context'
 import * as services from './services'
 import * as actions from './actions'
 
-const asyncState = (src: string, onDoneTarget?: string) => ({
-  initial: 'exec',
-  states: {
-    exec: {
-      invoke: {
-        src,
-        onDone: 'success',
-        onError: 'failure',
+const asyncState = (src: string, onDoneTarget?: string) =>
+  ({
+    initial: 'exec',
+    states: {
+      exec: {
+        invoke: {
+          src,
+          onDone: 'success',
+          onError: 'failure',
+        },
+      },
+      success: {
+        type: 'final',
+      },
+      failure: {
+        actions: ['logError'],
+        type: 'final',
       },
     },
-    success: {
-      type: 'final',
+    onDone: {
+      target: onDoneTarget || 'exit',
     },
-    failure: {
-      actions: ['logError'],
-      type: 'final',
-    },
-  },
-  onDone: {
-    target: onDoneTarget || 'exit',
-  },
-})
+  } as const)
 
-const machine = Machine<ServerMachineCtx>({
+const machine = createMachine<ServerMachineCtx>({
   id: 'devServer',
   type: 'parallel',
   states: {

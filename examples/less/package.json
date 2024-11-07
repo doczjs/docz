@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "docz-example-less",
-  "version": "2.0.0-rc.52",
+  "name": "@waylay/docz-example-less",
+  "version": "2.5.0",
   "license": "MIT",
   "files": [
     "src/",
@@ -13,7 +13,7 @@
     "build": "docz build"
   },
   "dependencies": {
-    "docz": "latest",
+    "@waylay/docz": "latest",
     "gatsby-plugin-less": "3.0.9",
     "less": "3.10.3",
     "prop-types": "^15.7.2",

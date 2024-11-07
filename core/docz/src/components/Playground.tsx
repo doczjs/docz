@@ -30,6 +30,7 @@ export const Playground: FC<PlaygroundProps> = ({
   if (!PlaygroundComponent) return null
 
   return (
+    /* @ts-ignore */
     <PlaygroundComponent
       components={components}
       component={children}

@@ -52,7 +52,7 @@ export class Entries {
     const srcHasNodeModules = src.indexOf('node_modules') !== -1
     // Hack around fast-glob not returning the whole set when many patterns are provided in the array
     let initialFiles: string[] = []
-    for (let filePattern of fileMatchingPatterns) {
+    for (const filePattern of fileMatchingPatterns) {
       const filePatternHasNodeModules =
         filePattern.indexOf('node_modules') !== -1
       const shouldIncludeNodeModules =

@@ -2,7 +2,7 @@ import { Config } from '../config/argv'
 import * as paths from '../config/paths'
 // let a: Config
 export const createConfigStateInput = () => {
-  return ({
+  return {
     title: 'test-tile',
     description: 'test-desc',
     menu: [{ name: 'menu-name' }],
@@ -11,5 +11,5 @@ export const createConfigStateInput = () => {
     themeConfig: undefined,
     separator: undefined,
     src: 'src/',
-  } as unknown) as Config
+  } as unknown as Config
 }

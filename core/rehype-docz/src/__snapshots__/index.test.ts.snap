@@ -1,28 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`adding custom props on <Playground> 1`] = `
-"/* @jsx mdx */
+"/* @jsxRuntime classic */
+/* @jsx mdx */
 import { Playground } from 'docz'
 
-const makeShortcode = name => function MDXDefaultShortcode(props) {
-  console.warn(\\"Component \\" + name + \\" was not imported, exported, or provided by MDXProvider as global scope\\")
-  return <div {...props}/>
-};
 
 const layoutProps = {
   
 };
-const MDXLayout = \\"wrapper\\"
+const MDXLayout = "wrapper"
 export default function MDXContent({
   components,
   ...props
 }) {
-  return <MDXLayout {...layoutProps} {...props} components={components} mdxType=\\"MDXLayout\\">
+  return <MDXLayout {...layoutProps} {...props} components={components} mdxType="MDXLayout">
 
-    <Playground __position={0} __code={'() => {\\\\n  const foo = \\\\'foo\\\\'\\\\n  return <div>{foo}</div>\\\\n}'} __scope={{
+    <Playground __position={0} __code={'() => {\\n  const foo = \\'foo\\'\\n  return <div>{foo}</div>\\n}'} __scope={{
       props,
       Playground
-    }} mdxType=\\"Playground\\">
+    }} mdxType="Playground">
   {() => {
         const foo = 'foo';
         return <div>{foo}</div>;
@@ -30,34 +27,30 @@ export default function MDXContent({
     </Playground>
     </MDXLayout>;
 }
-
 ;
 MDXContent.isMDXComponent = true;"
 `;
 
 exports[`adding custom props on <Playground> 2`] = `
-"/* @jsx mdx */
+"/* @jsxRuntime classic */
+/* @jsx mdx */
 import { Playground } from 'docz'
 
-const makeShortcode = name => function MDXDefaultShortcode(props) {
-  console.warn(\\"Component \\" + name + \\" was not imported, exported, or provided by MDXProvider as global scope\\")
-  return <div {...props}/>
-};
 
 const layoutProps = {
   
 };
-const MDXLayout = \\"wrapper\\"
+const MDXLayout = "wrapper"
 export default function MDXContent({
   components,
   ...props
 }) {
-  return <MDXLayout {...layoutProps} {...props} components={components} mdxType=\\"MDXLayout\\">
+  return <MDXLayout {...layoutProps} {...props} components={components} mdxType="MDXLayout">
 
-    <Playground __position={0} __code={'() => {\\\\n  const foo = \\\\'foo\\\\'\\\\n  return <div>{foo}</div>\\\\n}'} __scope={{
+    <Playground __position={0} __code={'() => {\\n  const foo = \\'foo\\'\\n  return <div>{foo}</div>\\n}'} __scope={{
       props,
       Playground
-    }} mdxType=\\"Playground\\">
+    }} mdxType="Playground">
   {() => {
         const foo = 'foo';
         return <div>{foo}</div>;
@@ -65,7 +58,6 @@ export default function MDXContent({
     </Playground>
     </MDXLayout>;
 }
-
 ;
 MDXContent.isMDXComponent = true;"
 `;

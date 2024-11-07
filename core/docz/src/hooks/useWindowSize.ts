@@ -11,7 +11,7 @@ const getSize = (initialWidth: number, initialHeight: number) => ({
 })
 
 export const useWindowSize = (
-  throttleMs: number = 300,
+  throttleMs = 300,
   _initialWidth = Infinity,
   initialHeight = Infinity
 ) => {

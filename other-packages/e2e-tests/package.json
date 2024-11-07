@@ -1,6 +1,6 @@
 {
   "name": "e2e-tests",
-  "version": "2.2.0",
+  "version": "2.5.0",
   "private": true,
   "description": "",
   "main": "index.js",
@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "docz": "^1.2.0",
+    "@waylay/docz": "^2.5.0",
     "execa": "^2.0.4",
     "fs-extra": "^8.1.0",
     "lodash": "^4.17.15",

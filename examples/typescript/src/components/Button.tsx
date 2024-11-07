@@ -49,9 +49,9 @@ const kinds = (outline: boolean): Kinds => {
 }
 
 export interface ButtonProps {
-  scale: 'small' | 'normal' | 'big';
-  kind: 'primary' | 'secondary' | 'cancel' | 'dark' | 'gray';
-  outline: boolean;
+  scale: 'small' | 'normal' | 'big'
+  kind: 'primary' | 'secondary' | 'cancel' | 'dark' | 'gray'
+  outline: boolean
 }
 
 const getScale = ({ scale = 'normal' }: ButtonProps) => scales[scale]

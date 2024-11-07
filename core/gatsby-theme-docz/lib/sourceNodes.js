@@ -6,11 +6,7 @@ const { parseConfig } = require('./utils/parseConfig')
 const NODE_ENV = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV
 const IS_DEV = NODE_ENV === 'development'
 
-const digest = str =>
-  crypto
-    .createHash('md5')
-    .update(str)
-    .digest('hex')
+const digest = str => crypto.createHash('md5').update(str).digest('hex')
 
 module.exports = async ({ actions, createNodeId }, opts) => {
   const { createNode } = actions

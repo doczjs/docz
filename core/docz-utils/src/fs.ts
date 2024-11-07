@@ -10,7 +10,7 @@ export const touch = (file: string, raw: string) =>
     const stream = fs.createWriteStream(file)
 
     stream.write(content, 'utf-8')
-    stream.on('finish', () => resolve())
+    stream.on('finish', () => resolve(undefined))
     stream.on('error', err => reject(err))
     stream.end()
   })

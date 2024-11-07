@@ -52,42 +52,42 @@
     "@types/cross-spawn": "^6.0.0",
     "@types/find-up": "^4.0.0",
     "@types/fs-extra": "^8.0.0",
-    "@types/jest": "^24.0.15",
-    "@types/lodash": "^4.14.136",
+    "@types/jest": "^29.5.14",
+    "@types/lodash": "^4.17.13",
     "@types/node": "^12.6.8",
     "@types/pascal-case": "^1.1.2",
-    "@types/prettier": "^1.16.4",
+    "@types/prettier": "^2.7.3",
     "@types/reach__router": "^1.2.4",
-    "@types/react-dom": "^16.8.4",
-    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16",
+    "@types/react": "^16",
     "@types/resolve": "^0.0.8",
     "@types/shelljs": "^0.8.5",
     "@types/signale": "^1.2.1",
     "@types/wait-on": "^3.2.0",
     "all-contributors-cli": "^6.8.0",
-    "babel-eslint": "^10.0.3",
-    "babel-jest": "^24.8.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^29.7.0",
     "babel-plugin-lodash": "^3.3.4",
     "babel-preset-react-app": "^9.1.2",
-    "commitizen": "^3.1.2",
+    "commitizen": "^4.3.1",
     "cross-env": "^5.2.1",
-    "docz-rollup": "^2.1.0",
+    "docz-rollup": "^2.4.0",
     "eslint-config-docz-js": "^2.1.0",
     "eslint-config-docz-ts": "^2.1.0",
     "eslint-plugin-react": "^7.16.0",
-    "eslint": "^6.5.1",
+    "eslint": "^8",
     "husky": "^3.0.0",
-    "jest": "^24.9.0",
+    "jest": "^29.7.0",
     "lerna": "^3.15.0",
     "lint-staged": "^9.2.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.18.2",
+    "prettier": "^2.8.8",
     "remark-docz": "^2.1.0",
     "rollup": "^1.17.0",
     "trash-cli": "^3.0.0",
     "trash": "^6.0.0",
-    "ts-jest": "^24.0.2",
-    "typescript": "^3.5.3"
+    "ts-jest": "^29.2.5",
+    "typescript": "^4.9.5"
   },
   "workspaces": {
     "packages": [
@@ -98,5 +98,8 @@
     "nohoist": [
       "examples/*"
     ]
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
