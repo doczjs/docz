@@ -7,13 +7,13 @@
 
 'use strict'
 
-var chalk = require('chalk')
-var execSync = require('child_process').execSync
-var spawn = require('cross-spawn')
-var open = require('open')
+const chalk = require('chalk')
+const execSync = require('child_process').execSync
+const spawn = require('cross-spawn')
+const open = require('open')
 
 // https://github.com/sindresorhus/open#app
-var OSX_CHROME = 'google chrome'
+const OSX_CHROME = 'google chrome'
 
 const Actions = Object.freeze({
   NONE: 0,
@@ -96,7 +96,7 @@ function startBrowserProcess(browser: any, url: any) {
   // Fallback to opn
   // (It will always open new tab)
   try {
-    var options = { app: browser, wait: false }
+    const options = { app: browser, wait: false }
     open(url, options).catch(() => {}) // Prevent `unhandledRejection` error.
     return true
   } catch (err) {

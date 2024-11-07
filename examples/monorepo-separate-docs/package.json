@@ -5,8 +5,8 @@
       "packages/*"
     ]
   },
-  "name": "docz-gatsby-monorepo-separate-docs-package",
-  "version": "2.0.0-rc.58",
+  "name": "@waylay/docz-gatsby-monorepo-separate-docs-package",
+  "version": "2.5.0",
   "description": "",
   "main": "index.js",
   "scripts": {

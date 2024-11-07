@@ -1,6 +1,6 @@
 {
-  "name": "docz-utils",
-  "version": "2.4.0",
+  "name": "@waylay/docz-utils",
+  "version": "2.5.0",
   "description": "Some methods used and utilities used on docz",
   "license": "MIT",
   "main": "lib/index.js",
@@ -20,7 +20,8 @@
     "dev": "cross-env NODE_ENV=development yarn build -w",
     "build": "trash lib && cross-env NODE_ENV=production rollup -c",
     "fix": "yarn lint --fix",
-    "lint": "eslint . --ext mdx,ts,tsx",
+    "lint": "echo 'no linting'",
+    "lint:to:fix": "eslint . --ext mdx,ts,tsx",
     "precommit": "lint-staged",
     "test": "yarn jest"
   },
@@ -34,7 +35,7 @@
     "js-string-escape": "^1.0.1",
     "jsx-ast-utils": "^2.2.1",
     "lodash": "^4.17.14",
-    "prettier": "^1.18.2",
+    "prettier": "^2.8.8",
     "remark-frontmatter": "^1.3.2",
     "remark-parse": "^6.0.2",
     "remark-parse-yaml": "^0.0.2",

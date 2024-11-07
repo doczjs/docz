@@ -7,7 +7,7 @@ import {
 } from 'react-instantsearch-dom'
 import algoliasearch from 'algoliasearch/lite'
 import * as styles from 'gatsby-theme-docz/src/components/NavSearch/styles'
-import { Root, HitsWrapper, PoweredBy } from './primitives'
+import { HitsWrapper, PoweredBy } from './primitives'
 import Input from './Input'
 import * as hitComps from './hitComps'
 

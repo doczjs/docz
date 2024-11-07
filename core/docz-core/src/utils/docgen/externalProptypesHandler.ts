@@ -9,10 +9,10 @@ const recast = require('recast')
 /**
  * Re-using few private methods of react-docgen to avoid code duplication
  */
-const isRequiredPropType = require('react-docgen/dist/utils/isRequiredPropType')
-  .default
-const setPropDescription = require('react-docgen/dist/utils/setPropDescription')
-  .default
+const isRequiredPropType =
+  require('react-docgen/dist/utils/isRequiredPropType').default
+const setPropDescription =
+  require('react-docgen/dist/utils/setPropDescription').default
 let babylon: any
 try {
   const buildParser = require('react-docgen/dist/babelParser').default
@@ -465,9 +465,8 @@ function externalProptypesHandler(componentPath: string) {
       )
       const propTypesSrc = getSrc(propTypesFilePath)
       propTypesAST = getAST(propTypesSrc)
-      const importedPropTypes = getIdentifiers(propTypesAST)[
-        propsNameIdentifier
-      ]
+      const importedPropTypes =
+        getIdentifiers(propTypesAST)[propsNameIdentifier]
 
       if (!importedPropTypes) {
         return

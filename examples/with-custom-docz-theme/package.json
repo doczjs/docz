@@ -1,7 +1,7 @@
 {
-  "name": "docz-example-with-custom-docz-theme",
+  "name": "@waylay/docz-example-with-custom-docz-theme",
   "private": true,
-  "version": "2.0.0",
+  "version": "2.5.0",
   "license": "MIT",
   "scripts": {
     "install:theme": "cp -r gatsby-theme-docz-pink/ node_modules/gatsby-theme-docz-pink",
@@ -10,7 +10,7 @@
     "serve": "docz serve"
   },
   "dependencies": {
-    "docz": "latest",
+    "@waylay/docz": "latest",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0"

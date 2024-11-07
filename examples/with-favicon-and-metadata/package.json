@@ -1,7 +1,7 @@
 {
-  "name": "docz-example-with-favicon-and-metadata",
+  "name": "@waylay/docz-example-with-favicon-and-metadata",
   "private": true,
-  "version": "2.0.0",
+  "version": "2.5.0",
   "license": "MIT",
   "scripts": {
     "dev": "docz dev",
@@ -9,7 +9,7 @@
     "serve": "docz serve"
   },
   "dependencies": {
-    "docz": "next",
+    "@waylay/docz": "latest",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"

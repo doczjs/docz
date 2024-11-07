@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "docz-example-typescript",
-  "version": "2.0.0-rc.41",
+  "name": "@waylay/docz-example-typescript",
+  "version": "2.5.0",
   "license": "MIT",
   "files": [
     "src/",
@@ -16,12 +16,12 @@
   "dependencies": {
     "@emotion/react": "^11.1.1",
     "@emotion/styled": "^11.0.0",
-    "docz": "latest",
+    "@waylay/docz": "latest",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "@types/react": "^16.8.23",
-    "@types/react-dom": "^16.8.4"
+    "@types/react": "^16",
+    "@types/react-dom": "^16"
   }
 }

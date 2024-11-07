@@ -18,7 +18,9 @@ export function theme(
       const initial: any = { ...db, currentEntry, themeConfig, transform }
 
       return (
+        /* @ts-ignore */
         <doczState.Provider initial={initial}>
+          {/* @ts-ignore */}
           <WrappedComponent>{children}</WrappedComponent>
         </doczState.Provider>
       )

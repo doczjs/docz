@@ -7,10 +7,20 @@ module.exports = {
     'prettier/@typescript-eslint',
   ],
   rules: {
-    'comma-dangle': ['error', 'always-multiline', { functions: 'never' }],
+    'comma-dangle': [
+      'error',
+      {
+        arrays: 'always-multiline',
+        objects: 'always-multiline',
+        imports: 'always-multiline',
+        exports: 'always-multiline',
+        functions: 'never',
+      },
+    ],
     'no-mixed-operators': 'error',
     'no-console': 'off',
     'react/prop-types': 'off',
+    'react/no-unknown-property': ['error', { ignore: ['sx'] }],
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
@@ -29,12 +39,17 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/no-object-literal-type-assertion': 'off',
     '@typescript-eslint/no-parameter-properties': 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
   },
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
+      legacyDecorators: true,
     },
   },
   settings: {

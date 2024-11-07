@@ -2,7 +2,8 @@ import capitalize from 'capitalize'
 
 import { PropType, FlowType } from '../components/Props'
 
-const RE_OBJECTOF = /(?:React\.)?(?:PropTypes\.)?objectOf\((?:React\.)?(?:PropTypes\.)?(\w+)\)/
+const RE_OBJECTOF =
+  /(?:React\.)?(?:PropTypes\.)?objectOf\((?:React\.)?(?:PropTypes\.)?(\w+)\)/
 
 const getTypeStr = (type: PropType | FlowType): any => {
   switch (type.name.toLowerCase()) {

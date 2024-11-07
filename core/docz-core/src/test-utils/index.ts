@@ -5,7 +5,7 @@ import { Params } from '../lib/DataServer'
 import { getBaseConfig } from '../config/docz'
 
 export const mockedParams = (): Params => {
-  let data: any = {}
+  const data: any = {}
   return {
     getState: () => data,
     setState: (key: string, value: string) => (data[key] = value),

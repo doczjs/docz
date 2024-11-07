@@ -21,10 +21,7 @@ interface PropItem {
 }
 
 const digest = (str: string) =>
-  crypto
-    .createHash('md5')
-    .update(str)
-    .digest('hex')
+  crypto.createHash('md5').update(str).digest('hex')
 
 const cacheFilepath = path.join(paths.cache, 'propsParser.json')
 export const readCacheFile = () =>
